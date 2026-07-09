@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-07-09T16:06:51-04:00
+  Generated at   : 2026-07-09T16:12:14-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,10 +17,10 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : 64ab120af3dfeb826ff972764666c15c0a2d5921
-  Commit (short) : 64ab120
-  Commit date    : 2026-07-09 15:31:11 -0400
-  Commit message : add dump
+  Commit (full)  : 418426376e9fd7085d38c5ac2565c59db609fd95
+  Commit (short) : 4184263
+  Commit date    : 2026-07-09 16:11:32 -0400
+  Commit message : add claude instructions
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
   Files included : 17
   Excluded path  : docs/llm/
@@ -28,11 +28,7 @@ REPOSITORY METADATA
 
 GIT WORKING TREE STATUS (first 20 lines)
 ═════════════════════════════════════════════════════════════════════════════════
- M .gitignore
  M docs/llm/vendor/output.txt
-?? content/
-?? docs/llm/vendor/claude-instructions.md
-?? public/
 
 ################################################################################
 # FILE: export.sh  [THIS SCRIPT — included for full context]
@@ -476,7 +472,7 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   Hard links:            1
   MIME type:             text/plain
   SHA-256:               be833770ec5d02cb36e6c6bdb3fa3cc9e1544eb481570154c538c9b0276f6bd9
-  Last git commit:       
+  Last git commit:       30641d6 2026-07-09 16:07:17 -0400 add instructions
 
 --- CONTENT ---
 name: kphoto team
@@ -503,7 +499,7 @@ socials:
   Hard links:            1
   MIME type:             inode/x-empty
   SHA-256:               e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-  Last git commit:       
+  Last git commit:       30641d6 2026-07-09 16:07:17 -0400 add instructions
 
 --- CONTENT ---
 
@@ -960,7 +956,7 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   Hard links:            1
   MIME type:             text/plain
   SHA-256:               7c4f6094b0392b71e24f521ad0e5d82e63560089601cc03ca09289a7a832bed7
-  Last git commit:       3bb9dff 2026-07-09 15:30:50 -0400 remove dist from git
+  Last git commit:       30641d6 2026-07-09 16:07:17 -0400 add instructions
 
 --- CONTENT ---
 # See http://help.github.com/ignore-files/ for more about ignoring files.
@@ -1100,7 +1096,7 @@ Thumbs.db
   Hard links:            1
   MIME type:             image/svg+xml
   SHA-256:               61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66
-  Last git commit:       
+  Last git commit:       30641d6 2026-07-09 16:07:17 -0400 add instructions
 
 --- CONTENT ---
 [Binary file — content omitted. Size: 9.2 KiB, SHA-256: 61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66]
@@ -1121,7 +1117,7 @@ Thumbs.db
   Hard links:            1
   MIME type:             image/svg+xml
   SHA-256:               b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a
-  Last git commit:       
+  Last git commit:       30641d6 2026-07-09 16:07:17 -0400 add instructions
 
 --- CONTENT ---
 [Binary file — content omitted. Size: 4.9 KiB, SHA-256: b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a]
@@ -1142,7 +1138,7 @@ Thumbs.db
   Hard links:            1
   MIME type:             image/png
   SHA-256:               15547d2bcc749a549de370e51db0b890e99c7f8efc03596325bfee138830aa9e
-  Last git commit:       
+  Last git commit:       30641d6 2026-07-09 16:07:17 -0400 add instructions
 
 --- CONTENT ---
 [Binary file — content omitted. Size: 1.8 MiB, SHA-256: 15547d2bcc749a549de370e51db0b890e99c7f8efc03596325bfee138830aa9e]
@@ -1699,7 +1695,7 @@ code {
   Files dumped   : 17
   Total size     : 1.8 MiB (1991849 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-07-09T16:06:51-04:00
+  Completed at   : 2026-07-09T16:12:15-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
