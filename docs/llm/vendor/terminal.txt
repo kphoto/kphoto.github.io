@@ -901,34 +901,34 @@ $ vite
   ➜  press h + enter to show help
 
 ^C
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash export.sh > docs/llm/vendor/output.txt
+
+real	0m0.320s
+user	0m0.151s
+sys	0m0.213s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash export.sh > docs/llm/vendor/output.txt; time yarn run build
+
+real	0m0.339s
+user	0m0.177s
+sys	0m0.208s
+yarn run v1.22.22
+$ tsc && vite build
+vite v8.1.4 building client environment for production...
+✓ 9 modules transformed.
+computing gzip size...
+dist/index.html                  0.45 kB │ gzip: 0.29 kB
+dist/assets/vite-BF8QNONU.svg    8.70 kB │ gzip: 1.60 kB
+dist/assets/hero-CLDdwZDr.png   13.05 kB
+dist/assets/index-CsUDhMuy.css   4.10 kB │ gzip: 1.46 kB
+dist/assets/index-B4vdZNPd.js    4.52 kB │ gzip: 2.02 kB
+
+✓ built in 62ms
+Done in 0.55s.
+
+real	0m0.658s
+user	0m0.743s
+sys	0m0.195s
 kushal@fedora:~/src/ts/kphoto$ 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
