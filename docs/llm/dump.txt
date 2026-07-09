@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-07-09T15:27:13-04:00
+  Generated at   : 2026-07-09T15:28:21-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,10 +17,10 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : fec93857bf506ed16fc14d9b97dccc0a6c16d45f
-  Commit (short) : fec9385
-  Commit date    : 2026-07-09 15:25:21 -0400
-  Commit message : add terminal output
+  Commit (full)  : b24a66f56b0cc8edb944daa89ab3d05f57ff47b6
+  Commit (short) : b24a66f
+  Commit date    : 2026-07-09 15:27:56 -0400
+  Commit message : build again
   Remote origin  : none
   Files included : 19
   Excluded path  : docs/llm/
@@ -28,10 +28,8 @@ REPOSITORY METADATA
 
 GIT WORKING TREE STATUS (first 20 lines)
 ═════════════════════════════════════════════════════════════════════════════════
- M docs/llm/dump.txt
  M docs/llm/vendor/output.txt
- M src/main.ts
- M tsconfig.json
+ M package.json
 
 ################################################################################
 # FILE: export.sh  [THIS SCRIPT — included for full context]
@@ -466,10 +464,10 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   Relative path:         dist/assets/hero-CLDdwZDr.png
   Absolute path:         /home/kushal/src/ts/kphoto/dist/assets/hero-CLDdwZDr.png
   Size:                  12.7 KiB (13057 bytes)
-  Last modified:         2026-07-09 15:23:05.244901742 -0400
+  Last modified:         2026-07-09 15:27:14.534583878 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20258824
+  Inode:                 20259588
   Hard links:            1
   MIME type:             image/png
   SHA-256:               881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c
@@ -487,10 +485,10 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   Relative path:         dist/assets/index-B4vdZNPd.js
   Absolute path:         /home/kushal/src/ts/kphoto/dist/assets/index-B4vdZNPd.js
   Size:                  4.4 KiB (4524 bytes)
-  Last modified:         2026-07-09 15:23:05.244177219 -0400
+  Last modified:         2026-07-09 15:27:14.533634671 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20258823
+  Inode:                 20259587
   Hard links:            1
   MIME type:             text/html
   SHA-256:               df9735d6f072e88251f410fbdf04aa8f54b43f7f448bdca7e84bedf6434f105e
@@ -559,10 +557,10 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   Relative path:         dist/assets/index-CsUDhMuy.css
   Absolute path:         /home/kushal/src/ts/kphoto/dist/assets/index-CsUDhMuy.css
   Size:                  4.0 KiB (4104 bytes)
-  Last modified:         2026-07-09 15:23:05.244955954 -0400
+  Last modified:         2026-07-09 15:27:14.534637129 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20258825
+  Inode:                 20259589
   Hard links:            1
   MIME type:             text/plain
   SHA-256:               14c8336af8a5eaa112d2c70efc20196011b96ff669cad1c91b6e6c2ab6ce6286
@@ -581,10 +579,10 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   Relative path:         dist/assets/vite-BF8QNONU.svg
   Absolute path:         /home/kushal/src/ts/kphoto/dist/assets/vite-BF8QNONU.svg
   Size:                  8.5 KiB (8709 bytes)
-  Last modified:         2026-07-09 15:23:05.245001470 -0400
+  Last modified:         2026-07-09 15:27:14.534681602 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20258826
+  Inode:                 20259590
   Hard links:            1
   MIME type:             image/svg+xml
   SHA-256:               5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f
@@ -602,10 +600,10 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   Relative path:         dist/favicon.svg
   Absolute path:         /home/kushal/src/ts/kphoto/dist/favicon.svg
   Size:                  9.2 KiB (9522 bytes)
-  Last modified:         2026-07-09 15:23:05.209769705 -0400
+  Last modified:         2026-07-09 15:27:14.524273945 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20258820
+  Inode:                 20259584
   Hard links:            1
   MIME type:             image/svg+xml
   SHA-256:               61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66
@@ -623,10 +621,10 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   Relative path:         dist/icons.svg
   Absolute path:         /home/kushal/src/ts/kphoto/dist/icons.svg
   Size:                  4.9 KiB (5031 bytes)
-  Last modified:         2026-07-09 15:23:05.209845438 -0400
+  Last modified:         2026-07-09 15:27:14.524412996 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20258821
+  Inode:                 20259585
   Hard links:            1
   MIME type:             image/svg+xml
   SHA-256:               b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a
@@ -644,10 +642,10 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   Relative path:         dist/index.html
   Absolute path:         /home/kushal/src/ts/kphoto/dist/index.html
   Size:                  455 B (455 bytes)
-  Last modified:         2026-07-09 15:23:05.245001470 -0400
+  Last modified:         2026-07-09 15:27:14.534681602 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20258827
+  Inode:                 20259591
   Hard links:            1
   MIME type:             text/html
   SHA-256:               3d4918371695b0e6a7a59a78f318fca2a0e2b9c666a4a83ebb46529665bad35a
@@ -1224,13 +1222,13 @@ public/
   Relative path:         package.json
   Absolute path:         /home/kushal/src/ts/kphoto/package.json
   Size:                  264 B (264 bytes)
-  Last modified:         2026-07-09 15:16:02.068276644 -0400
+  Last modified:         2026-07-09 15:28:08.698103811 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
   Inode:                 20256862
   Hard links:            1
   MIME type:             application/json
-  SHA-256:               ad36a40f6319dc3c1cf9c151179a384b3350e2091364713dce819665734eb5fd
+  SHA-256:               b87a4c2481862b3993f50de808b6748a8d26d531473d984dbaadb54a1ee34154
   Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
 
 --- CONTENT ---
@@ -1245,7 +1243,7 @@ public/
     "preview": "vite preview"
   },
   "devDependencies": {
-    "typescript": "~6.0.2",
+    "typescript": "~7.0.2",
     "vite": "^8.1.1"
   }
 }
@@ -1360,7 +1358,7 @@ export function setupCounter(element: HTMLButtonElement) {
   Hard links:            1
   MIME type:             application/javascript
   SHA-256:               ac6f1768e3788f515a1cea9776c4b03a45e69f24827181bc3c6cc829690843a5
-  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
+  Last git commit:       b24a66f 2026-07-09 15:27:56 -0400 build again
 
 --- CONTENT ---
 import './style.css'
@@ -1758,7 +1756,7 @@ code {
   Hard links:            1
   MIME type:             text/plain
   SHA-256:               c3d595d448f70cfd6154234d6946d89e591c53eec7e770622ec9ec327c445aad
-  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
+  Last git commit:       b24a66f 2026-07-09 15:27:56 -0400 build again
 
 --- CONTENT ---
 {
@@ -1803,7 +1801,7 @@ code {
   Files dumped   : 19
   Total size     : 93.5 KiB (95836 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-07-09T15:27:13-04:00
+  Completed at   : 2026-07-09T15:28:21-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
