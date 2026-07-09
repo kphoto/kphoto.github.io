@@ -1,0 +1,1545 @@
+################################################################################
+#                                                                              #
+#   REPOSITORY CONTEXT DUMP                                                    #
+#   Generated for LLM consumption — do not edit manually                       #
+#                                                                              #
+################################################################################
+
+DUMP METADATA
+═════════════════════════════════════════════════════════════════════════════════
+  Generated at   : 2026-07-09T15:19:51-04:00
+  Generator      : export.sh
+  Host           : fedora
+  User           : kushal
+  OS             : Linux 7.1.3-100.fc43.x86_64 x86_64
+
+REPOSITORY METADATA
+═════════════════════════════════════════════════════════════════════════════════
+  Repository root: /home/kushal/src/ts/kphoto
+  Branch         : HEAD
+unknown
+  Commit (full)  : HEAD
+unknown
+  Commit (short) : unknown
+  Commit date    : unknown
+  Commit message : unknown
+  Remote origin  : none
+  Files included : 11
+  Excluded path  : docs/llm/
+  Excluded files : yarn.lock
+
+GIT WORKING TREE STATUS (first 20 lines)
+═════════════════════════════════════════════════════════════════════════════════
+?? .gitignore
+?? docs/
+?? export.sh
+?? index.html
+?? package.json
+?? src/
+?? tsconfig.json
+?? yarn.lock
+
+################################################################################
+# FILE: export.sh  [THIS SCRIPT — included for full context]
+################################################################################
+
+--- METADATA ---
+  File name:             export.sh
+  Relative path:         export.sh
+  Size:                  16.6 KiB (17016 bytes)
+  Last modified:         2026-07-09 15:13:46.034237088 -0400
+  Permissions:           -rw-r--r--
+  SHA-256:               efbba1bf9e95500596d0bb65d30060a8e6a811653bbbd38c492597db1c23bfaa
+  MIME type:             text/x-shellscript
+
+--- CONTENT ---
+#!/usr/bin/env bash
+# =============================================================================
+# export.sh — Repository context dump for LLM consumption
+#
+# Location: <repo root>/export.sh
+#
+# Usage:  bash export.sh
+#         time bash export.sh
+#
+# Behaviour:
+#   • Resolves its own location; works regardless of CWD.
+#   • Silently exits if no Git repository is found at that location.
+#   • Dumps all Git-tracked files (excluding docs/llm/** and yarn.lock) to
+#     docs/llm/dump.txt.
+#   • Prepends its own source to the dump (self-documentation).
+#   • Emits rich per-file metadata (name, path, size, permissions, mtime, SHA-256).
+#   • Includes a file-tree view of all included files.
+#   • Prints the complete dump to stdout before writing the file.
+# =============================================================================
+
+set -euo pipefail
+IFS=$'\n\t'
+
+# ---------------------------------------------------------------------------
+# 0. Resolve script's own directory — immune to CWD
+# ---------------------------------------------------------------------------
+SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
+SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
+SCRIPT_NAME="$(basename "$SCRIPT_PATH")"
+
+# ---------------------------------------------------------------------------
+# 1. Validate: must be inside a working Git repository
+# ---------------------------------------------------------------------------
+if ! git -C "$SCRIPT_DIR" rev-parse --is-inside-work-tree &>/dev/null 2>&1; then
+    exit 0
+fi
+
+# Ensure git is usable (index readable, not a bare repo, etc.)
+if ! git -C "$SCRIPT_DIR" status --porcelain &>/dev/null 2>&1; then
+    exit 0
+fi
+
+REPO_ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel 2>/dev/null)" || exit 0
+
+# ---------------------------------------------------------------------------
+# 2. Constants & derived paths
+# ---------------------------------------------------------------------------
+EXCLUDE_DIR="docs/llm"
+
+# Individual files to exclude from the dump, in addition to EXCLUDE_DIR.
+# A bare name (no slash) is excluded wherever it appears; a name containing a
+# slash is treated as an exact repo-relative path.
+EXCLUDE_FILES=("yarn.lock")
+EXCLUDE_FILES_DISPLAY="$(printf '%s, ' "${EXCLUDE_FILES[@]}")"
+EXCLUDE_FILES_DISPLAY="${EXCLUDE_FILES_DISPLAY%, }"
+
+OUTPUT_DIR="${REPO_ROOT}/${EXCLUDE_DIR}"
+OUTPUT_FILE="${OUTPUT_DIR}/dump.txt"
+
+TIMESTAMP="$(date --iso-8601=seconds)"
+GIT_BRANCH="$(git -C "$REPO_ROOT" rev-parse --abbrev-ref HEAD 2>/dev/null || echo 'unknown')"
+GIT_COMMIT="$(git -C "$REPO_ROOT" rev-parse HEAD 2>/dev/null || echo 'unknown')"
+GIT_COMMIT_SHORT="$(git -C "$REPO_ROOT" rev-parse --short HEAD 2>/dev/null || echo 'unknown')"
+GIT_COMMIT_MSG="$(git -C "$REPO_ROOT" log -1 --pretty=format:'%s' 2>/dev/null || echo 'unknown')"
+GIT_COMMIT_DATE="$(git -C "$REPO_ROOT" log -1 --pretty=format:'%ci' 2>/dev/null || echo 'unknown')"
+GIT_REMOTE="$(git -C "$REPO_ROOT" remote get-url origin 2>/dev/null || echo 'none')"
+GIT_STATUS_SUMMARY="$(git -C "$REPO_ROOT" status --short 2>/dev/null | head -20 || echo '')"
+
+HOSTNAME_VAL="$(hostname -f 2>/dev/null || hostname 2>/dev/null || echo 'unknown')"
+USER_VAL="$(id -un 2>/dev/null || echo 'unknown')"
+OS_VAL="$(uname -srm 2>/dev/null || echo 'unknown')"
+
+# ---------------------------------------------------------------------------
+# 3. Collect tracked files, excluding the output directory and EXCLUDE_FILES
+#    git ls-files guarantees only committed/staged files; no build artefacts.
+# ---------------------------------------------------------------------------
+mapfile -t _RAW_FILES < <(
+    git -C "$REPO_ROOT" ls-files \
+        --cached \
+        --others \
+        --exclude-standard \
+        -z \
+        2>/dev/null \
+    | tr '\0' '\n' \
+    | sort -u
+)
+
+ALL_FILES=()
+for _f in "${_RAW_FILES[@]}"; do
+    [[ -z "$_f" ]] && continue
+    # Skip the entire excluded directory tree.
+    [[ "$_f" == "${EXCLUDE_DIR}/"* ]] && continue
+    # Skip any individually-excluded file.
+    _skip=0
+    for _ex in "${EXCLUDE_FILES[@]}"; do
+        if [[ "$_ex" == */* ]]; then
+            [[ "$_f" == "$_ex" ]] && { _skip=1; break; }
+        else
+            [[ "$_f" == "$_ex" || "$_f" == */"$_ex" ]] && { _skip=1; break; }
+        fi
+    done
+    (( _skip )) && continue
+    ALL_FILES+=("$_f")
+done
+
+FILE_COUNT="${#ALL_FILES[@]}"
+
+# ---------------------------------------------------------------------------
+# 4. Helper: human-readable file size
+# ---------------------------------------------------------------------------
+human_size() {
+    local bytes="$1"
+    if   (( bytes < 1024 ));               then printf '%d B'      "$bytes"
+    elif (( bytes < 1048576 ));            then printf '%.1f KiB'  "$(echo "scale=1; $bytes/1024"       | bc)"
+    elif (( bytes < 1073741824 ));         then printf '%.1f MiB'  "$(echo "scale=1; $bytes/1048576"    | bc)"
+    else                                        printf '%.1f GiB'  "$(echo "scale=1; $bytes/1073741824" | bc)"
+    fi
+}
+
+# ---------------------------------------------------------------------------
+# 5. Helper: SHA-256 of a file (portable across Linux distros)
+# ---------------------------------------------------------------------------
+file_sha256() {
+    local path="$1"
+    if command -v sha256sum &>/dev/null; then
+        sha256sum "$path" | awk '{print $1}'
+    elif command -v shasum &>/dev/null; then
+        shasum -a 256 "$path" | awk '{print $1}'
+    else
+        echo 'unavailable'
+    fi
+}
+
+# ---------------------------------------------------------------------------
+# 6. Helper: MIME type (best-effort, no error on missing tool)
+# ---------------------------------------------------------------------------
+file_mime() {
+    local path="$1"
+    if command -v file &>/dev/null; then
+        file --brief --mime-type "$path" 2>/dev/null || echo 'unknown'
+    else
+        echo 'unknown'
+    fi
+}
+
+# ---------------------------------------------------------------------------
+# 7. Build the tree view using 'tree' if available, else pure bash fallback
+# ---------------------------------------------------------------------------
+build_tree() {
+    if command -v tree &>/dev/null; then
+        # --fromfile reads the path list from stdin and renders a tree
+        printf '%s\n' "${ALL_FILES[@]}" \
+        | tree --fromfile -a --noreport 2>/dev/null \
+        || _bash_tree
+    else
+        _bash_tree
+    fi
+}
+
+_bash_tree() {
+    # Pure-bash tree: reconstruct directory hierarchy from the flat file list
+    local -A SEEN_DIRS=()
+    local prev_depth=0
+    local line
+
+    for f in "${ALL_FILES[@]}"; do
+        local dir parts depth i prefix
+        dir="$(dirname "$f")"
+        IFS='/' read -ra parts <<< "$f"
+        depth=$(( ${#parts[@]} - 1 ))
+
+        # Print intermediate directories we haven't seen yet
+        local partial=""
+        for (( i=0; i<depth; i++ )); do
+            if [[ -z "$partial" ]]; then
+                partial="${parts[$i]}"
+            else
+                partial="${partial}/${parts[$i]}"
+            fi
+            if [[ -z "${SEEN_DIRS[$partial]+_}" ]]; then
+                SEEN_DIRS["$partial"]=1
+                prefix="$(printf '│   %.0s' $(seq 1 $i))├── "
+                printf '%s%s/\n' "$prefix" "${parts[$i]}"
+            fi
+        done
+
+        # Print the file itself
+        prefix="$(printf '│   %.0s' $(seq 1 $depth))└── "
+        printf '%s%s\n' "$prefix" "${parts[$depth]}"
+    done
+}
+
+# ---------------------------------------------------------------------------
+# 8. Assemble the dump into a variable (stdout + file simultaneously)
+# ---------------------------------------------------------------------------
+mkdir -p "$OUTPUT_DIR"
+
+# We use a temp file to build, then atomic-rename at the end.
+TMP_FILE="$(mktemp "${OUTPUT_DIR}/.dump.XXXXXX")"
+trap 'rm -f "$TMP_FILE"' EXIT
+
+# Tee everything to both stdout and the temp file
+exec > >(tee "$TMP_FILE") 2>&1
+
+# ── Preamble banner ──────────────────────────────────────────────────────────
+cat <<BANNER
+################################################################################
+#                                                                              #
+#   REPOSITORY CONTEXT DUMP                                                    #
+#   Generated for LLM consumption — do not edit manually                       #
+#                                                                              #
+################################################################################
+
+DUMP METADATA
+═════════════════════════════════════════════════════════════════════════════════
+  Generated at   : ${TIMESTAMP}
+  Generator      : ${SCRIPT_NAME}
+  Host           : ${HOSTNAME_VAL}
+  User           : ${USER_VAL}
+  OS             : ${OS_VAL}
+
+REPOSITORY METADATA
+═════════════════════════════════════════════════════════════════════════════════
+  Repository root: ${REPO_ROOT}
+  Branch         : ${GIT_BRANCH}
+  Commit (full)  : ${GIT_COMMIT}
+  Commit (short) : ${GIT_COMMIT_SHORT}
+  Commit date    : ${GIT_COMMIT_DATE}
+  Commit message : ${GIT_COMMIT_MSG}
+  Remote origin  : ${GIT_REMOTE}
+  Files included : ${FILE_COUNT}
+  Excluded path  : ${EXCLUDE_DIR}/
+  Excluded files : ${EXCLUDE_FILES_DISPLAY}
+
+GIT WORKING TREE STATUS (first 20 lines)
+═════════════════════════════════════════════════════════════════════════════════
+BANNER
+
+if [[ -n "$GIT_STATUS_SUMMARY" ]]; then
+    printf '%s\n' "$GIT_STATUS_SUMMARY"
+else
+    echo "  (clean — no uncommitted changes)"
+fi
+
+# ── Self-documentation: dump this script first ───────────────────────────────
+cat <<SELF_HEADER
+
+################################################################################
+# FILE: ${SCRIPT_NAME}  [THIS SCRIPT — included for full context]
+################################################################################
+SELF_HEADER
+
+printf '\n--- METADATA ---\n'
+_self_size="$(wc -c < "$SCRIPT_PATH")"
+_self_mtime="$(stat --format='%y' "$SCRIPT_PATH" 2>/dev/null \
+               || stat -f '%Sm' -t '%Y-%m-%d %H:%M:%S %z' "$SCRIPT_PATH" 2>/dev/null \
+               || echo 'unavailable')"
+_self_perms="$(stat --format='%A' "$SCRIPT_PATH" 2>/dev/null \
+               || stat -f '%Sp' "$SCRIPT_PATH" 2>/dev/null \
+               || echo 'unavailable')"
+_self_sha="$(file_sha256 "$SCRIPT_PATH")"
+
+printf '  %-22s %s\n'  "File name:"       "$SCRIPT_NAME"
+printf '  %-22s %s\n'  "Relative path:"   "$(realpath --relative-to="$REPO_ROOT" "$SCRIPT_PATH" 2>/dev/null || echo "$SCRIPT_PATH")"
+printf '  %-22s %s\n'  "Size:"            "$(human_size "$_self_size") (${_self_size} bytes)"
+printf '  %-22s %s\n'  "Last modified:"   "$_self_mtime"
+printf '  %-22s %s\n'  "Permissions:"     "$_self_perms"
+printf '  %-22s %s\n'  "SHA-256:"         "$_self_sha"
+printf '  %-22s %s\n'  "MIME type:"       "$(file_mime "$SCRIPT_PATH")"
+printf '\n--- CONTENT ---\n'
+cat "$SCRIPT_PATH"
+
+# ── File tree ─────────────────────────────────────────────────────────────────
+cat <<TREE_HEADER
+
+################################################################################
+# FILE TREE  (all ${FILE_COUNT} included files)
+################################################################################
+.
+TREE_HEADER
+
+build_tree
+echo ""
+
+# ── Per-file content dump ─────────────────────────────────────────────────────
+TOTAL_BYTES=0
+
+for rel_path in "${ALL_FILES[@]}"; do
+    abs_path="${REPO_ROOT}/${rel_path}"
+
+    # Skip if the file no longer exists on disk (deleted but still indexed)
+    [[ -f "$abs_path" ]] || continue
+
+    # ── Metadata collection ────────────────────────────────────────────────
+    file_size="$(wc -c < "$abs_path" 2>/dev/null || echo 0)"
+    TOTAL_BYTES=$(( TOTAL_BYTES + file_size ))
+
+    file_mtime="$(stat --format='%y' "$abs_path" 2>/dev/null \
+                  || stat -f '%Sm' -t '%Y-%m-%d %H:%M:%S %z' "$abs_path" 2>/dev/null \
+                  || echo 'unavailable')"
+
+    file_perms="$(stat --format='%A' "$abs_path" 2>/dev/null \
+                  || stat -f '%Sp' "$abs_path" 2>/dev/null \
+                  || echo 'unavailable')"
+
+    file_owner="$(stat --format='%U:%G' "$abs_path" 2>/dev/null \
+                  || stat -f '%Su:%Sg' "$abs_path" 2>/dev/null \
+                  || echo 'unavailable')"
+
+    file_inode="$(stat --format='%i' "$abs_path" 2>/dev/null \
+                  || stat -f '%i' "$abs_path" 2>/dev/null \
+                  || echo 'unavailable')"
+
+    file_links="$(stat --format='%h' "$abs_path" 2>/dev/null \
+                  || stat -f '%l' "$abs_path" 2>/dev/null \
+                  || echo 'unavailable')"
+
+    file_sha="$(file_sha256 "$abs_path")"
+    file_type="$(file_mime "$abs_path")"
+
+    git_log_line="$(git -C "$REPO_ROOT" log -1 --pretty=format:'%h %ai %s' -- "$rel_path" 2>/dev/null || echo 'unavailable')"
+
+    # ── Section header ─────────────────────────────────────────────────────
+    printf '\n'
+    printf '################################################################################\n'
+    printf '# FILE: %s\n' "$rel_path"
+    printf '################################################################################\n'
+    printf '\n--- METADATA ---\n'
+    printf '  %-22s %s\n'  "File name:"       "$(basename "$rel_path")"
+    printf '  %-22s %s\n'  "Relative path:"   "$rel_path"
+    printf '  %-22s %s\n'  "Absolute path:"   "$abs_path"
+    printf '  %-22s %s\n'  "Size:"            "$(human_size "$file_size") (${file_size} bytes)"
+    printf '  %-22s %s\n'  "Last modified:"   "$file_mtime"
+    printf '  %-22s %s\n'  "Permissions:"     "$file_perms"
+    printf '  %-22s %s\n'  "Owner:"           "$file_owner"
+    printf '  %-22s %s\n'  "Inode:"           "$file_inode"
+    printf '  %-22s %s\n'  "Hard links:"      "$file_links"
+    printf '  %-22s %s\n'  "MIME type:"       "$file_type"
+    printf '  %-22s %s\n'  "SHA-256:"         "$file_sha"
+    printf '  %-22s %s\n'  "Last git commit:" "$git_log_line"
+    printf '\n--- CONTENT ---\n'
+
+    # ── Content emission ───────────────────────────────────────────────────
+    # Binary files: emit a notice instead of raw bytes
+    if [[ "$file_type" == application/octet-stream ]] \
+    || [[ "$file_type" == image/* ]] \
+    || [[ "$file_type" == audio/* ]] \
+    || [[ "$file_type" == video/* ]] \
+    || ! file --brief "$abs_path" 2>/dev/null | grep -qi 'text\|script\|xml\|json\|yaml\|svg\|source\|empty'; then
+        printf '[Binary file — content omitted. Size: %s, SHA-256: %s]\n' \
+            "$(human_size "$file_size")" "$file_sha"
+    else
+        cat "$abs_path"
+        # Ensure there is always a trailing newline so the next header aligns
+        [[ "$(tail -c1 "$abs_path" | wc -c)" -gt 0 ]] \
+            && [[ "$(tail -c1 "$abs_path")" != $'\n' ]] \
+            && printf '\n'
+    fi
+done
+
+# ── Summary footer ────────────────────────────────────────────────────────────
+cat <<FOOTER
+
+################################################################################
+# DUMP SUMMARY
+################################################################################
+  Files dumped   : ${FILE_COUNT}
+  Total size     : $(human_size "$TOTAL_BYTES") (${TOTAL_BYTES} bytes)
+  Output file    : ${OUTPUT_FILE}
+  Completed at   : $(date --iso-8601=seconds)
+################################################################################
+# END OF DUMP
+################################################################################
+FOOTER
+
+# ---------------------------------------------------------------------------
+# 9. Atomic rename — avoids partial writes being read by concurrent processes
+# ---------------------------------------------------------------------------
+mv -f "$TMP_FILE" "$OUTPUT_FILE"
+
+################################################################################
+# FILE TREE  (all 11 included files)
+################################################################################
+.
+.
+├── export.sh
+├── .gitignore
+├── index.html
+├── package.json
+├── src
+│   ├── assets
+│   │   ├── hero.png
+│   │   ├── typescript.svg
+│   │   └── vite.svg
+│   ├── counter.ts
+│   ├── main.ts
+│   └── style.css
+└── tsconfig.json
+
+
+################################################################################
+# FILE: export.sh
+################################################################################
+
+--- METADATA ---
+  File name:             export.sh
+  Relative path:         export.sh
+  Absolute path:         /home/kushal/src/ts/kphoto/export.sh
+  Size:                  16.6 KiB (17016 bytes)
+  Last modified:         2026-07-09 15:13:46.034237088 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20255834
+  Hard links:            1
+  MIME type:             text/x-shellscript
+  SHA-256:               efbba1bf9e95500596d0bb65d30060a8e6a811653bbbd38c492597db1c23bfaa
+  Last git commit:       unavailable
+
+--- CONTENT ---
+#!/usr/bin/env bash
+# =============================================================================
+# export.sh — Repository context dump for LLM consumption
+#
+# Location: <repo root>/export.sh
+#
+# Usage:  bash export.sh
+#         time bash export.sh
+#
+# Behaviour:
+#   • Resolves its own location; works regardless of CWD.
+#   • Silently exits if no Git repository is found at that location.
+#   • Dumps all Git-tracked files (excluding docs/llm/** and yarn.lock) to
+#     docs/llm/dump.txt.
+#   • Prepends its own source to the dump (self-documentation).
+#   • Emits rich per-file metadata (name, path, size, permissions, mtime, SHA-256).
+#   • Includes a file-tree view of all included files.
+#   • Prints the complete dump to stdout before writing the file.
+# =============================================================================
+
+set -euo pipefail
+IFS=$'\n\t'
+
+# ---------------------------------------------------------------------------
+# 0. Resolve script's own directory — immune to CWD
+# ---------------------------------------------------------------------------
+SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
+SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
+SCRIPT_NAME="$(basename "$SCRIPT_PATH")"
+
+# ---------------------------------------------------------------------------
+# 1. Validate: must be inside a working Git repository
+# ---------------------------------------------------------------------------
+if ! git -C "$SCRIPT_DIR" rev-parse --is-inside-work-tree &>/dev/null 2>&1; then
+    exit 0
+fi
+
+# Ensure git is usable (index readable, not a bare repo, etc.)
+if ! git -C "$SCRIPT_DIR" status --porcelain &>/dev/null 2>&1; then
+    exit 0
+fi
+
+REPO_ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel 2>/dev/null)" || exit 0
+
+# ---------------------------------------------------------------------------
+# 2. Constants & derived paths
+# ---------------------------------------------------------------------------
+EXCLUDE_DIR="docs/llm"
+
+# Individual files to exclude from the dump, in addition to EXCLUDE_DIR.
+# A bare name (no slash) is excluded wherever it appears; a name containing a
+# slash is treated as an exact repo-relative path.
+EXCLUDE_FILES=("yarn.lock")
+EXCLUDE_FILES_DISPLAY="$(printf '%s, ' "${EXCLUDE_FILES[@]}")"
+EXCLUDE_FILES_DISPLAY="${EXCLUDE_FILES_DISPLAY%, }"
+
+OUTPUT_DIR="${REPO_ROOT}/${EXCLUDE_DIR}"
+OUTPUT_FILE="${OUTPUT_DIR}/dump.txt"
+
+TIMESTAMP="$(date --iso-8601=seconds)"
+GIT_BRANCH="$(git -C "$REPO_ROOT" rev-parse --abbrev-ref HEAD 2>/dev/null || echo 'unknown')"
+GIT_COMMIT="$(git -C "$REPO_ROOT" rev-parse HEAD 2>/dev/null || echo 'unknown')"
+GIT_COMMIT_SHORT="$(git -C "$REPO_ROOT" rev-parse --short HEAD 2>/dev/null || echo 'unknown')"
+GIT_COMMIT_MSG="$(git -C "$REPO_ROOT" log -1 --pretty=format:'%s' 2>/dev/null || echo 'unknown')"
+GIT_COMMIT_DATE="$(git -C "$REPO_ROOT" log -1 --pretty=format:'%ci' 2>/dev/null || echo 'unknown')"
+GIT_REMOTE="$(git -C "$REPO_ROOT" remote get-url origin 2>/dev/null || echo 'none')"
+GIT_STATUS_SUMMARY="$(git -C "$REPO_ROOT" status --short 2>/dev/null | head -20 || echo '')"
+
+HOSTNAME_VAL="$(hostname -f 2>/dev/null || hostname 2>/dev/null || echo 'unknown')"
+USER_VAL="$(id -un 2>/dev/null || echo 'unknown')"
+OS_VAL="$(uname -srm 2>/dev/null || echo 'unknown')"
+
+# ---------------------------------------------------------------------------
+# 3. Collect tracked files, excluding the output directory and EXCLUDE_FILES
+#    git ls-files guarantees only committed/staged files; no build artefacts.
+# ---------------------------------------------------------------------------
+mapfile -t _RAW_FILES < <(
+    git -C "$REPO_ROOT" ls-files \
+        --cached \
+        --others \
+        --exclude-standard \
+        -z \
+        2>/dev/null \
+    | tr '\0' '\n' \
+    | sort -u
+)
+
+ALL_FILES=()
+for _f in "${_RAW_FILES[@]}"; do
+    [[ -z "$_f" ]] && continue
+    # Skip the entire excluded directory tree.
+    [[ "$_f" == "${EXCLUDE_DIR}/"* ]] && continue
+    # Skip any individually-excluded file.
+    _skip=0
+    for _ex in "${EXCLUDE_FILES[@]}"; do
+        if [[ "$_ex" == */* ]]; then
+            [[ "$_f" == "$_ex" ]] && { _skip=1; break; }
+        else
+            [[ "$_f" == "$_ex" || "$_f" == */"$_ex" ]] && { _skip=1; break; }
+        fi
+    done
+    (( _skip )) && continue
+    ALL_FILES+=("$_f")
+done
+
+FILE_COUNT="${#ALL_FILES[@]}"
+
+# ---------------------------------------------------------------------------
+# 4. Helper: human-readable file size
+# ---------------------------------------------------------------------------
+human_size() {
+    local bytes="$1"
+    if   (( bytes < 1024 ));               then printf '%d B'      "$bytes"
+    elif (( bytes < 1048576 ));            then printf '%.1f KiB'  "$(echo "scale=1; $bytes/1024"       | bc)"
+    elif (( bytes < 1073741824 ));         then printf '%.1f MiB'  "$(echo "scale=1; $bytes/1048576"    | bc)"
+    else                                        printf '%.1f GiB'  "$(echo "scale=1; $bytes/1073741824" | bc)"
+    fi
+}
+
+# ---------------------------------------------------------------------------
+# 5. Helper: SHA-256 of a file (portable across Linux distros)
+# ---------------------------------------------------------------------------
+file_sha256() {
+    local path="$1"
+    if command -v sha256sum &>/dev/null; then
+        sha256sum "$path" | awk '{print $1}'
+    elif command -v shasum &>/dev/null; then
+        shasum -a 256 "$path" | awk '{print $1}'
+    else
+        echo 'unavailable'
+    fi
+}
+
+# ---------------------------------------------------------------------------
+# 6. Helper: MIME type (best-effort, no error on missing tool)
+# ---------------------------------------------------------------------------
+file_mime() {
+    local path="$1"
+    if command -v file &>/dev/null; then
+        file --brief --mime-type "$path" 2>/dev/null || echo 'unknown'
+    else
+        echo 'unknown'
+    fi
+}
+
+# ---------------------------------------------------------------------------
+# 7. Build the tree view using 'tree' if available, else pure bash fallback
+# ---------------------------------------------------------------------------
+build_tree() {
+    if command -v tree &>/dev/null; then
+        # --fromfile reads the path list from stdin and renders a tree
+        printf '%s\n' "${ALL_FILES[@]}" \
+        | tree --fromfile -a --noreport 2>/dev/null \
+        || _bash_tree
+    else
+        _bash_tree
+    fi
+}
+
+_bash_tree() {
+    # Pure-bash tree: reconstruct directory hierarchy from the flat file list
+    local -A SEEN_DIRS=()
+    local prev_depth=0
+    local line
+
+    for f in "${ALL_FILES[@]}"; do
+        local dir parts depth i prefix
+        dir="$(dirname "$f")"
+        IFS='/' read -ra parts <<< "$f"
+        depth=$(( ${#parts[@]} - 1 ))
+
+        # Print intermediate directories we haven't seen yet
+        local partial=""
+        for (( i=0; i<depth; i++ )); do
+            if [[ -z "$partial" ]]; then
+                partial="${parts[$i]}"
+            else
+                partial="${partial}/${parts[$i]}"
+            fi
+            if [[ -z "${SEEN_DIRS[$partial]+_}" ]]; then
+                SEEN_DIRS["$partial"]=1
+                prefix="$(printf '│   %.0s' $(seq 1 $i))├── "
+                printf '%s%s/\n' "$prefix" "${parts[$i]}"
+            fi
+        done
+
+        # Print the file itself
+        prefix="$(printf '│   %.0s' $(seq 1 $depth))└── "
+        printf '%s%s\n' "$prefix" "${parts[$depth]}"
+    done
+}
+
+# ---------------------------------------------------------------------------
+# 8. Assemble the dump into a variable (stdout + file simultaneously)
+# ---------------------------------------------------------------------------
+mkdir -p "$OUTPUT_DIR"
+
+# We use a temp file to build, then atomic-rename at the end.
+TMP_FILE="$(mktemp "${OUTPUT_DIR}/.dump.XXXXXX")"
+trap 'rm -f "$TMP_FILE"' EXIT
+
+# Tee everything to both stdout and the temp file
+exec > >(tee "$TMP_FILE") 2>&1
+
+# ── Preamble banner ──────────────────────────────────────────────────────────
+cat <<BANNER
+################################################################################
+#                                                                              #
+#   REPOSITORY CONTEXT DUMP                                                    #
+#   Generated for LLM consumption — do not edit manually                       #
+#                                                                              #
+################################################################################
+
+DUMP METADATA
+═════════════════════════════════════════════════════════════════════════════════
+  Generated at   : ${TIMESTAMP}
+  Generator      : ${SCRIPT_NAME}
+  Host           : ${HOSTNAME_VAL}
+  User           : ${USER_VAL}
+  OS             : ${OS_VAL}
+
+REPOSITORY METADATA
+═════════════════════════════════════════════════════════════════════════════════
+  Repository root: ${REPO_ROOT}
+  Branch         : ${GIT_BRANCH}
+  Commit (full)  : ${GIT_COMMIT}
+  Commit (short) : ${GIT_COMMIT_SHORT}
+  Commit date    : ${GIT_COMMIT_DATE}
+  Commit message : ${GIT_COMMIT_MSG}
+  Remote origin  : ${GIT_REMOTE}
+  Files included : ${FILE_COUNT}
+  Excluded path  : ${EXCLUDE_DIR}/
+  Excluded files : ${EXCLUDE_FILES_DISPLAY}
+
+GIT WORKING TREE STATUS (first 20 lines)
+═════════════════════════════════════════════════════════════════════════════════
+BANNER
+
+if [[ -n "$GIT_STATUS_SUMMARY" ]]; then
+    printf '%s\n' "$GIT_STATUS_SUMMARY"
+else
+    echo "  (clean — no uncommitted changes)"
+fi
+
+# ── Self-documentation: dump this script first ───────────────────────────────
+cat <<SELF_HEADER
+
+################################################################################
+# FILE: ${SCRIPT_NAME}  [THIS SCRIPT — included for full context]
+################################################################################
+SELF_HEADER
+
+printf '\n--- METADATA ---\n'
+_self_size="$(wc -c < "$SCRIPT_PATH")"
+_self_mtime="$(stat --format='%y' "$SCRIPT_PATH" 2>/dev/null \
+               || stat -f '%Sm' -t '%Y-%m-%d %H:%M:%S %z' "$SCRIPT_PATH" 2>/dev/null \
+               || echo 'unavailable')"
+_self_perms="$(stat --format='%A' "$SCRIPT_PATH" 2>/dev/null \
+               || stat -f '%Sp' "$SCRIPT_PATH" 2>/dev/null \
+               || echo 'unavailable')"
+_self_sha="$(file_sha256 "$SCRIPT_PATH")"
+
+printf '  %-22s %s\n'  "File name:"       "$SCRIPT_NAME"
+printf '  %-22s %s\n'  "Relative path:"   "$(realpath --relative-to="$REPO_ROOT" "$SCRIPT_PATH" 2>/dev/null || echo "$SCRIPT_PATH")"
+printf '  %-22s %s\n'  "Size:"            "$(human_size "$_self_size") (${_self_size} bytes)"
+printf '  %-22s %s\n'  "Last modified:"   "$_self_mtime"
+printf '  %-22s %s\n'  "Permissions:"     "$_self_perms"
+printf '  %-22s %s\n'  "SHA-256:"         "$_self_sha"
+printf '  %-22s %s\n'  "MIME type:"       "$(file_mime "$SCRIPT_PATH")"
+printf '\n--- CONTENT ---\n'
+cat "$SCRIPT_PATH"
+
+# ── File tree ─────────────────────────────────────────────────────────────────
+cat <<TREE_HEADER
+
+################################################################################
+# FILE TREE  (all ${FILE_COUNT} included files)
+################################################################################
+.
+TREE_HEADER
+
+build_tree
+echo ""
+
+# ── Per-file content dump ─────────────────────────────────────────────────────
+TOTAL_BYTES=0
+
+for rel_path in "${ALL_FILES[@]}"; do
+    abs_path="${REPO_ROOT}/${rel_path}"
+
+    # Skip if the file no longer exists on disk (deleted but still indexed)
+    [[ -f "$abs_path" ]] || continue
+
+    # ── Metadata collection ────────────────────────────────────────────────
+    file_size="$(wc -c < "$abs_path" 2>/dev/null || echo 0)"
+    TOTAL_BYTES=$(( TOTAL_BYTES + file_size ))
+
+    file_mtime="$(stat --format='%y' "$abs_path" 2>/dev/null \
+                  || stat -f '%Sm' -t '%Y-%m-%d %H:%M:%S %z' "$abs_path" 2>/dev/null \
+                  || echo 'unavailable')"
+
+    file_perms="$(stat --format='%A' "$abs_path" 2>/dev/null \
+                  || stat -f '%Sp' "$abs_path" 2>/dev/null \
+                  || echo 'unavailable')"
+
+    file_owner="$(stat --format='%U:%G' "$abs_path" 2>/dev/null \
+                  || stat -f '%Su:%Sg' "$abs_path" 2>/dev/null \
+                  || echo 'unavailable')"
+
+    file_inode="$(stat --format='%i' "$abs_path" 2>/dev/null \
+                  || stat -f '%i' "$abs_path" 2>/dev/null \
+                  || echo 'unavailable')"
+
+    file_links="$(stat --format='%h' "$abs_path" 2>/dev/null \
+                  || stat -f '%l' "$abs_path" 2>/dev/null \
+                  || echo 'unavailable')"
+
+    file_sha="$(file_sha256 "$abs_path")"
+    file_type="$(file_mime "$abs_path")"
+
+    git_log_line="$(git -C "$REPO_ROOT" log -1 --pretty=format:'%h %ai %s' -- "$rel_path" 2>/dev/null || echo 'unavailable')"
+
+    # ── Section header ─────────────────────────────────────────────────────
+    printf '\n'
+    printf '################################################################################\n'
+    printf '# FILE: %s\n' "$rel_path"
+    printf '################################################################################\n'
+    printf '\n--- METADATA ---\n'
+    printf '  %-22s %s\n'  "File name:"       "$(basename "$rel_path")"
+    printf '  %-22s %s\n'  "Relative path:"   "$rel_path"
+    printf '  %-22s %s\n'  "Absolute path:"   "$abs_path"
+    printf '  %-22s %s\n'  "Size:"            "$(human_size "$file_size") (${file_size} bytes)"
+    printf '  %-22s %s\n'  "Last modified:"   "$file_mtime"
+    printf '  %-22s %s\n'  "Permissions:"     "$file_perms"
+    printf '  %-22s %s\n'  "Owner:"           "$file_owner"
+    printf '  %-22s %s\n'  "Inode:"           "$file_inode"
+    printf '  %-22s %s\n'  "Hard links:"      "$file_links"
+    printf '  %-22s %s\n'  "MIME type:"       "$file_type"
+    printf '  %-22s %s\n'  "SHA-256:"         "$file_sha"
+    printf '  %-22s %s\n'  "Last git commit:" "$git_log_line"
+    printf '\n--- CONTENT ---\n'
+
+    # ── Content emission ───────────────────────────────────────────────────
+    # Binary files: emit a notice instead of raw bytes
+    if [[ "$file_type" == application/octet-stream ]] \
+    || [[ "$file_type" == image/* ]] \
+    || [[ "$file_type" == audio/* ]] \
+    || [[ "$file_type" == video/* ]] \
+    || ! file --brief "$abs_path" 2>/dev/null | grep -qi 'text\|script\|xml\|json\|yaml\|svg\|source\|empty'; then
+        printf '[Binary file — content omitted. Size: %s, SHA-256: %s]\n' \
+            "$(human_size "$file_size")" "$file_sha"
+    else
+        cat "$abs_path"
+        # Ensure there is always a trailing newline so the next header aligns
+        [[ "$(tail -c1 "$abs_path" | wc -c)" -gt 0 ]] \
+            && [[ "$(tail -c1 "$abs_path")" != $'\n' ]] \
+            && printf '\n'
+    fi
+done
+
+# ── Summary footer ────────────────────────────────────────────────────────────
+cat <<FOOTER
+
+################################################################################
+# DUMP SUMMARY
+################################################################################
+  Files dumped   : ${FILE_COUNT}
+  Total size     : $(human_size "$TOTAL_BYTES") (${TOTAL_BYTES} bytes)
+  Output file    : ${OUTPUT_FILE}
+  Completed at   : $(date --iso-8601=seconds)
+################################################################################
+# END OF DUMP
+################################################################################
+FOOTER
+
+# ---------------------------------------------------------------------------
+# 9. Atomic rename — avoids partial writes being read by concurrent processes
+# ---------------------------------------------------------------------------
+mv -f "$TMP_FILE" "$OUTPUT_FILE"
+
+
+################################################################################
+# FILE: .gitignore
+################################################################################
+
+--- METADATA ---
+  File name:             .gitignore
+  Relative path:         .gitignore
+  Absolute path:         /home/kushal/src/ts/kphoto/.gitignore
+  Size:                  702 B (702 bytes)
+  Last modified:         2026-07-09 15:18:52.511989145 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20258148
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               a691d921978bf8e62f3b4be3884fc63bb012fa66d00ce2aecd5a94d23678055f
+  Last git commit:       unavailable
+
+--- CONTENT ---
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+# Only exists if Bazel was run
+/bazel-out
+
+# dependencies
+/node_modules
+
+# profiling files
+chrome-profiler-events*.json
+speed-measure-plugin*.json
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# misc
+/.angular/cache
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# firebase
+.firebase/*.cache
+
+# public output
+public/
+
+
+################################################################################
+# FILE: index.html
+################################################################################
+
+--- METADATA ---
+  File name:             index.html
+  Relative path:         index.html
+  Absolute path:         /home/kushal/src/ts/kphoto/index.html
+  Size:                  356 B (356 bytes)
+  Last modified:         2026-07-09 15:16:02.067101844 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20256849
+  Hard links:            1
+  MIME type:             text/html
+  SHA-256:               58a603c771c0f99a07aa88188936cdd72cf5afedf6887e459584245fe5edfd70
+  Last git commit:       unavailable
+
+--- CONTENT ---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>kphoto</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+
+
+################################################################################
+# FILE: package.json
+################################################################################
+
+--- METADATA ---
+  File name:             package.json
+  Relative path:         package.json
+  Absolute path:         /home/kushal/src/ts/kphoto/package.json
+  Size:                  264 B (264 bytes)
+  Last modified:         2026-07-09 15:16:02.068276644 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20256862
+  Hard links:            1
+  MIME type:             application/json
+  SHA-256:               ad36a40f6319dc3c1cf9c151179a384b3350e2091364713dce819665734eb5fd
+  Last git commit:       unavailable
+
+--- CONTENT ---
+{
+  "name": "kphoto",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.2",
+    "vite": "^8.1.1"
+  }
+}
+
+
+################################################################################
+# FILE: src/assets/hero.png
+################################################################################
+
+--- METADATA ---
+  File name:             hero.png
+  Relative path:         src/assets/hero.png
+  Absolute path:         /home/kushal/src/ts/kphoto/src/assets/hero.png
+  Size:                  12.7 KiB (13057 bytes)
+  Last modified:         2026-07-09 15:16:02.067861333 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20256855
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c
+  Last git commit:       unavailable
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 12.7 KiB, SHA-256: 881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c]
+
+################################################################################
+# FILE: src/assets/typescript.svg
+################################################################################
+
+--- METADATA ---
+  File name:             typescript.svg
+  Relative path:         src/assets/typescript.svg
+  Absolute path:         /home/kushal/src/ts/kphoto/src/assets/typescript.svg
+  Size:                  1.2 KiB (1303 bytes)
+  Last modified:         2026-07-09 15:16:02.067928449 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20256856
+  Hard links:            1
+  MIME type:             image/svg+xml
+  SHA-256:               e45b2f008f0a40c1011b0fd460081f8bb00df063a41240449159da164724d96c
+  Last git commit:       unavailable
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 1.2 KiB, SHA-256: e45b2f008f0a40c1011b0fd460081f8bb00df063a41240449159da164724d96c]
+
+################################################################################
+# FILE: src/assets/vite.svg
+################################################################################
+
+--- METADATA ---
+  File name:             vite.svg
+  Relative path:         src/assets/vite.svg
+  Absolute path:         /home/kushal/src/ts/kphoto/src/assets/vite.svg
+  Size:                  8.5 KiB (8709 bytes)
+  Last modified:         2026-07-09 15:16:02.067993822 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20256857
+  Hard links:            1
+  MIME type:             image/svg+xml
+  SHA-256:               5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f
+  Last git commit:       unavailable
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 8.5 KiB, SHA-256: 5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f]
+
+################################################################################
+# FILE: src/counter.ts
+################################################################################
+
+--- METADATA ---
+  File name:             counter.ts
+  Relative path:         src/counter.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/counter.ts
+  Size:                  274 B (274 bytes)
+  Last modified:         2026-07-09 15:16:02.068071348 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20256858
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               463d42c0e00508ec48e0f349b6d0f161b5a88908f0416a7195090dced3adfc41
+  Last git commit:       unavailable
+
+--- CONTENT ---
+export function setupCounter(element: HTMLButtonElement) {
+  let counter = 0
+  const setCounter = (count: number) => {
+    counter = count
+    element.innerHTML = `Count is ${counter}`
+  }
+  element.addEventListener('click', () => setCounter(counter + 1))
+  setCounter(0)
+}
+
+
+################################################################################
+# FILE: src/main.ts
+################################################################################
+
+--- METADATA ---
+  File name:             main.ts
+  Relative path:         src/main.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/main.ts
+  Size:                  2.4 KiB (2464 bytes)
+  Last modified:         2026-07-09 15:16:02.068134357 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20256859
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               24cabca7c823c3f15be77ef8fc22e0e323299e7824a93e573ef1f5f6cd2fb0f6
+  Last git commit:       unavailable
+
+--- CONTENT ---
+import './style.css'
+import typescriptLogo from './assets/typescript.svg'
+import viteLogo from './assets/vite.svg'
+import heroImg from './assets/hero.png'
+import { setupCounter } from './counter.ts'
+
+document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+<section id="center">
+  <div class="hero">
+    <img src="${heroImg}" class="base" width="170" height="179">
+    <img src="${typescriptLogo}" class="framework" alt="TypeScript logo"/>
+    <img src="${viteLogo}" class="vite" alt="Vite logo" />
+  </div>
+  <div>
+    <h1>Get started</h1>
+    <p>Edit <code>src/main.ts</code> and save to test <code>HMR</code></p>
+  </div>
+  <button id="counter" type="button" class="counter"></button>
+</section>
+
+<div class="ticks"></div>
+
+<section id="next-steps">
+  <div id="docs">
+    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#documentation-icon"></use></svg>
+    <h2>Documentation</h2>
+    <p>Your questions, answered</p>
+    <ul>
+      <li>
+        <a href="https://vite.dev/" target="_blank">
+          <img class="logo" src="${viteLogo}" alt="" />
+          Explore Vite
+        </a>
+      </li>
+      <li>
+        <a href="https://www.typescriptlang.org" target="_blank">
+          <img class="button-icon" src="${typescriptLogo}" alt="">
+          Learn more
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div id="social">
+    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#social-icon"></use></svg>
+    <h2>Connect with us</h2>
+    <p>Join the Vite community</p>
+    <ul>
+      <li><a href="https://github.com/vitejs/vite" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#github-icon"></use></svg>GitHub</a></li>
+      <li><a href="https://chat.vite.dev/" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#discord-icon"></use></svg>Discord</a></li>
+      <li><a href="https://x.com/vite_js" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#x-icon"></use></svg>X.com</a></li>
+      <li><a href="https://bsky.app/profile/vite.dev" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#bluesky-icon"></use></svg>Bluesky</a></li>
+    </ul>
+  </div>
+</section>
+
+<div class="ticks"></div>
+<section id="spacer"></section>
+`
+
+setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+
+
+################################################################################
+# FILE: src/style.css
+################################################################################
+
+--- METADATA ---
+  File name:             style.css
+  Relative path:         src/style.css
+  Absolute path:         /home/kushal/src/ts/kphoto/src/style.css
+  Size:                  4.9 KiB (5060 bytes)
+  Last modified:         2026-07-09 15:16:02.068203447 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20256860
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               5ec45168127a4b9229c69b55d25b3c5c6d3fcf284e0cf2bf24533285f7f89208
+  Last git commit:       unavailable
+
+--- CONTENT ---
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+.counter {
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+  margin-bottom: 24px;
+
+  &:hover {
+    border-color: var(--accent-border);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+.hero {
+  position: relative;
+
+  .base,
+  .framework,
+  .vite {
+    inset-inline: 0;
+    margin: 0 auto;
+  }
+
+  .base {
+    width: 170px;
+    position: relative;
+    z-index: 0;
+  }
+
+  .framework,
+  .vite {
+    position: absolute;
+  }
+
+  .framework {
+    z-index: 1;
+    top: 34px;
+    height: 28px;
+    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
+      scale(1.4);
+  }
+
+  .vite {
+    z-index: 0;
+    top: 107px;
+    height: 26px;
+    width: auto;
+    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
+      scale(0.8);
+  }
+}
+
+#app {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+#center {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  place-content: center;
+  place-items: center;
+  flex-grow: 1;
+
+  @media (max-width: 1024px) {
+    padding: 32px 20px 24px;
+    gap: 18px;
+  }
+}
+
+#next-steps {
+  display: flex;
+  border-top: 1px solid var(--border);
+  text-align: left;
+
+  & > div {
+    flex: 1 1 0;
+    padding: 32px;
+    @media (max-width: 1024px) {
+      padding: 24px 20px;
+    }
+  }
+
+  .icon {
+    margin-bottom: 16px;
+    width: 22px;
+    height: 22px;
+  }
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+#docs {
+  border-right: 1px solid var(--border);
+
+  @media (max-width: 1024px) {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+#next-steps ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+  margin: 32px 0 0;
+
+  .logo {
+    height: 18px;
+  }
+
+  a {
+    color: var(--text-h);
+    font-size: 16px;
+    border-radius: 6px;
+    background: var(--social-bg);
+    display: flex;
+    padding: 6px 12px;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: var(--shadow);
+    }
+    .button-icon {
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+      flex: 1 1 calc(50% - 8px);
+    }
+
+    a {
+      width: 100%;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+  }
+}
+
+#spacer {
+  height: 88px;
+  border-top: 1px solid var(--border);
+  @media (max-width: 1024px) {
+    height: 48px;
+  }
+}
+
+.ticks {
+  position: relative;
+  width: 100%;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -4.5px;
+    border: 5px solid transparent;
+  }
+
+  &::before {
+    left: 0;
+    border-left-color: var(--border);
+  }
+  &::after {
+    right: 0;
+    border-right-color: var(--border);
+  }
+}
+
+
+################################################################################
+# FILE: tsconfig.json
+################################################################################
+
+--- METADATA ---
+  File name:             tsconfig.json
+  Relative path:         tsconfig.json
+  Absolute path:         /home/kushal/src/ts/kphoto/tsconfig.json
+  Size:                  560 B (560 bytes)
+  Last modified:         2026-07-09 15:16:02.068276644 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20256861
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               132c62cab1e0f7b7cdd6ab4c4ffe9e96dc959f41b7197607d18253a8a9402bd1
+  Last git commit:       unavailable
+
+--- CONTENT ---
+{
+  "compilerOptions": {
+    "target": "es2023",
+    "module": "esnext",
+    "lib": ["ES2023", "DOM"],
+    "types": ["vite/client"],
+    "allowArbitraryExtensions": true,
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"]
+}
+
+
+################################################################################
+# DUMP SUMMARY
+################################################################################
+  Files dumped   : 11
+  Total size     : 48.5 KiB (49765 bytes)
+  Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
+  Completed at   : 2026-07-09T15:19:52-04:00
+################################################################################
+# END OF DUMP
+################################################################################
