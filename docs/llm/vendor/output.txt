@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-07-09T15:19:51-04:00
+  Generated at   : 2026-07-09T15:23:04-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -16,28 +16,19 @@ DUMP METADATA
 REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
-  Branch         : HEAD
-unknown
-  Commit (full)  : HEAD
-unknown
-  Commit (short) : unknown
-  Commit date    : unknown
-  Commit message : unknown
+  Branch         : main
+  Commit (full)  : 2975c5cc00ac51ba8e25f927e6b4aa37588f4048
+  Commit (short) : 2975c5c
+  Commit date    : 2026-07-09 15:21:33 -0400
+  Commit message : initialize git repository
   Remote origin  : none
-  Files included : 11
+  Files included : 12
   Excluded path  : docs/llm/
   Excluded files : yarn.lock
 
 GIT WORKING TREE STATUS (first 20 lines)
 ═════════════════════════════════════════════════════════════════════════════════
-?? .gitignore
-?? docs/
-?? export.sh
-?? index.html
-?? package.json
-?? src/
-?? tsconfig.json
-?? yarn.lock
+ M docs/llm/vendor/output.txt
 
 ################################################################################
 # FILE: export.sh  [THIS SCRIPT — included for full context]
@@ -434,10 +425,11 @@ FOOTER
 mv -f "$TMP_FILE" "$OUTPUT_FILE"
 
 ################################################################################
-# FILE TREE  (all 11 included files)
+# FILE TREE  (all 12 included files)
 ################################################################################
 .
 .
+├── .editorconfig
 ├── export.sh
 ├── .gitignore
 ├── index.html
@@ -451,6 +443,43 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   ├── main.ts
 │   └── style.css
 └── tsconfig.json
+
+
+################################################################################
+# FILE: .editorconfig
+################################################################################
+
+--- METADATA ---
+  File name:             .editorconfig
+  Relative path:         .editorconfig
+  Absolute path:         /home/kushal/src/ts/kphoto/.editorconfig
+  Size:                  274 B (274 bytes)
+  Last modified:         2026-07-09 15:21:14.497099263 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20258488
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               08fe692cae5731d5ff601317e427ce338b9879472552ad1c9e41e8146a99d9d8
+  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
+
+--- CONTENT ---
+# Editor configuration, see https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.ts]
+quote_type = single
+
+[*.md]
+max_line_length = off
+trim_trailing_whitespace = false
 
 
 ################################################################################
@@ -469,7 +498,7 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   Hard links:            1
   MIME type:             text/x-shellscript
   SHA-256:               efbba1bf9e95500596d0bb65d30060a8e6a811653bbbd38c492597db1c23bfaa
-  Last git commit:       unavailable
+  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
 
 --- CONTENT ---
 #!/usr/bin/env bash
@@ -869,7 +898,7 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   Hard links:            1
   MIME type:             text/plain
   SHA-256:               a691d921978bf8e62f3b4be3884fc63bb012fa66d00ce2aecd5a94d23678055f
-  Last git commit:       unavailable
+  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
 
 --- CONTENT ---
 # See http://help.github.com/ignore-files/ for more about ignoring files.
@@ -943,7 +972,7 @@ public/
   Hard links:            1
   MIME type:             text/html
   SHA-256:               58a603c771c0f99a07aa88188936cdd72cf5afedf6887e459584245fe5edfd70
-  Last git commit:       unavailable
+  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
 
 --- CONTENT ---
 <!doctype html>
@@ -977,7 +1006,7 @@ public/
   Hard links:            1
   MIME type:             application/json
   SHA-256:               ad36a40f6319dc3c1cf9c151179a384b3350e2091364713dce819665734eb5fd
-  Last git commit:       unavailable
+  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
 
 --- CONTENT ---
 {
@@ -1013,7 +1042,7 @@ public/
   Hard links:            1
   MIME type:             image/png
   SHA-256:               881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c
-  Last git commit:       unavailable
+  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
 
 --- CONTENT ---
 [Binary file — content omitted. Size: 12.7 KiB, SHA-256: 881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c]
@@ -1034,7 +1063,7 @@ public/
   Hard links:            1
   MIME type:             image/svg+xml
   SHA-256:               e45b2f008f0a40c1011b0fd460081f8bb00df063a41240449159da164724d96c
-  Last git commit:       unavailable
+  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
 
 --- CONTENT ---
 [Binary file — content omitted. Size: 1.2 KiB, SHA-256: e45b2f008f0a40c1011b0fd460081f8bb00df063a41240449159da164724d96c]
@@ -1055,7 +1084,7 @@ public/
   Hard links:            1
   MIME type:             image/svg+xml
   SHA-256:               5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f
-  Last git commit:       unavailable
+  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
 
 --- CONTENT ---
 [Binary file — content omitted. Size: 8.5 KiB, SHA-256: 5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f]
@@ -1076,7 +1105,7 @@ public/
   Hard links:            1
   MIME type:             application/javascript
   SHA-256:               463d42c0e00508ec48e0f349b6d0f161b5a88908f0416a7195090dced3adfc41
-  Last git commit:       unavailable
+  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
 
 --- CONTENT ---
 export function setupCounter(element: HTMLButtonElement) {
@@ -1106,7 +1135,7 @@ export function setupCounter(element: HTMLButtonElement) {
   Hard links:            1
   MIME type:             application/javascript
   SHA-256:               24cabca7c823c3f15be77ef8fc22e0e323299e7824a93e573ef1f5f6cd2fb0f6
-  Last git commit:       unavailable
+  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
 
 --- CONTENT ---
 import './style.css'
@@ -1187,7 +1216,7 @@ setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
   Hard links:            1
   MIME type:             text/plain
   SHA-256:               5ec45168127a4b9229c69b55d25b3c5c6d3fcf284e0cf2bf24533285f7f89208
-  Last git commit:       unavailable
+  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
 
 --- CONTENT ---
 :root {
@@ -1497,14 +1526,14 @@ code {
   Relative path:         tsconfig.json
   Absolute path:         /home/kushal/src/ts/kphoto/tsconfig.json
   Size:                  560 B (560 bytes)
-  Last modified:         2026-07-09 15:16:02.068276644 -0400
+  Last modified:         2026-07-09 15:22:18.317579160 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
   Inode:                 20256861
   Hard links:            1
   MIME type:             text/plain
   SHA-256:               132c62cab1e0f7b7cdd6ab4c4ffe9e96dc959f41b7197607d18253a8a9402bd1
-  Last git commit:       unavailable
+  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
 
 --- CONTENT ---
 {
@@ -1536,10 +1565,10 @@ code {
 ################################################################################
 # DUMP SUMMARY
 ################################################################################
-  Files dumped   : 11
-  Total size     : 48.5 KiB (49765 bytes)
+  Files dumped   : 12
+  Total size     : 48.8 KiB (50039 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-07-09T15:19:52-04:00
+  Completed at   : 2026-07-09T15:23:04-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
