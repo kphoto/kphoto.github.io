@@ -4,8 +4,7 @@
 /dist
 /tmp
 /out-tsc
-# Only exists if Bazel was run
-/bazel-out
+
 
 # dependencies
 /node_modules
@@ -48,6 +47,3 @@ Thumbs.db
 
 # firebase
 .firebase/*.cache
-
-# public output
-public/

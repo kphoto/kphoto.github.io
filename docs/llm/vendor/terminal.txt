@@ -1,916 +1,20 @@
-kushal@fedora:~/src/rust/myinkbird$ cd ~/src/ts/kphoto/; time bash export.sh 
-
-real	0m0.019s
-user	0m0.004s
-sys	0m0.005s
-kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash export.sh 
-################################################################################
-#                                                                              #
-#   REPOSITORY CONTEXT DUMP                                                    #
-#   Generated for LLM consumption — do not edit manually                       #
-#                                                                              #
-################################################################################
-
-DUMP METADATA
-═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-07-09T15:14:38-04:00
-  Generator      : export.sh
-  Host           : fedora
-  User           : kushal
-  OS             : Linux 7.1.3-100.fc43.x86_64 x86_64
-
-REPOSITORY METADATA
-═════════════════════════════════════════════════════════════════════════════════
-  Repository root: /home/kushal/src/ts/kphoto
-  Branch         : main
-  Commit (full)  : 1358d824f6bb635d2f41081b428e2e5d7bb14cf9
-  Commit (short) : 1358d82
-  Commit date    : 2026-07-09 15:14:35 -0400
-  Commit message : initialize git repository
-  Remote origin  : none
-  Files included : 1
-  Excluded path  : docs/llm/
-  Excluded files : yarn.lock
-
-GIT WORKING TREE STATUS (first 20 lines)
-═════════════════════════════════════════════════════════════════════════════════
-  (clean — no uncommitted changes)
-
-################################################################################
-# FILE: export.sh  [THIS SCRIPT — included for full context]
-################################################################################
-
---- METADATA ---
-  File name:             export.sh
-  Relative path:         export.sh
-  Size:                  16.6 KiB (17016 bytes)
-  Last modified:         2026-07-09 15:13:46.034237088 -0400
-  Permissions:           -rw-r--r--
-  SHA-256:               efbba1bf9e95500596d0bb65d30060a8e6a811653bbbd38c492597db1c23bfaa
-  MIME type:             text/x-shellscript
-
---- CONTENT ---
-#!/usr/bin/env bash
-# =============================================================================
-# export.sh — Repository context dump for LLM consumption
-#
-# Location: <repo root>/export.sh
-#
-# Usage:  bash export.sh
-#         time bash export.sh
-#
-# Behaviour:
-#   • Resolves its own location; works regardless of CWD.
-#   • Silently exits if no Git repository is found at that location.
-#   • Dumps all Git-tracked files (excluding docs/llm/** and yarn.lock) to
-#     docs/llm/dump.txt.
-#   • Prepends its own source to the dump (self-documentation).
-#   • Emits rich per-file metadata (name, path, size, permissions, mtime, SHA-256).
-#   • Includes a file-tree view of all included files.
-#   • Prints the complete dump to stdout before writing the file.
-# =============================================================================
-
-set -euo pipefail
-IFS=$'\n\t'
-
-# ---------------------------------------------------------------------------
-# 0. Resolve script's own directory — immune to CWD
-# ---------------------------------------------------------------------------
-SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
-SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
-SCRIPT_NAME="$(basename "$SCRIPT_PATH")"
-
-# ---------------------------------------------------------------------------
-# 1. Validate: must be inside a working Git repository
-# ---------------------------------------------------------------------------
-if ! git -C "$SCRIPT_DIR" rev-parse --is-inside-work-tree &>/dev/null 2>&1; then
-    exit 0
-fi
-
-# Ensure git is usable (index readable, not a bare repo, etc.)
-if ! git -C "$SCRIPT_DIR" status --porcelain &>/dev/null 2>&1; then
-    exit 0
-fi
-
-REPO_ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel 2>/dev/null)" || exit 0
-
-# ---------------------------------------------------------------------------
-# 2. Constants & derived paths
-# ---------------------------------------------------------------------------
-EXCLUDE_DIR="docs/llm"
-
-# Individual files to exclude from the dump, in addition to EXCLUDE_DIR.
-# A bare name (no slash) is excluded wherever it appears; a name containing a
-# slash is treated as an exact repo-relative path.
-EXCLUDE_FILES=("yarn.lock")
-EXCLUDE_FILES_DISPLAY="$(printf '%s, ' "${EXCLUDE_FILES[@]}")"
-EXCLUDE_FILES_DISPLAY="${EXCLUDE_FILES_DISPLAY%, }"
-
-OUTPUT_DIR="${REPO_ROOT}/${EXCLUDE_DIR}"
-OUTPUT_FILE="${OUTPUT_DIR}/dump.txt"
-
-TIMESTAMP="$(date --iso-8601=seconds)"
-GIT_BRANCH="$(git -C "$REPO_ROOT" rev-parse --abbrev-ref HEAD 2>/dev/null || echo 'unknown')"
-GIT_COMMIT="$(git -C "$REPO_ROOT" rev-parse HEAD 2>/dev/null || echo 'unknown')"
-GIT_COMMIT_SHORT="$(git -C "$REPO_ROOT" rev-parse --short HEAD 2>/dev/null || echo 'unknown')"
-GIT_COMMIT_MSG="$(git -C "$REPO_ROOT" log -1 --pretty=format:'%s' 2>/dev/null || echo 'unknown')"
-GIT_COMMIT_DATE="$(git -C "$REPO_ROOT" log -1 --pretty=format:'%ci' 2>/dev/null || echo 'unknown')"
-GIT_REMOTE="$(git -C "$REPO_ROOT" remote get-url origin 2>/dev/null || echo 'none')"
-GIT_STATUS_SUMMARY="$(git -C "$REPO_ROOT" status --short 2>/dev/null | head -20 || echo '')"
-
-HOSTNAME_VAL="$(hostname -f 2>/dev/null || hostname 2>/dev/null || echo 'unknown')"
-USER_VAL="$(id -un 2>/dev/null || echo 'unknown')"
-OS_VAL="$(uname -srm 2>/dev/null || echo 'unknown')"
-
-# ---------------------------------------------------------------------------
-# 3. Collect tracked files, excluding the output directory and EXCLUDE_FILES
-#    git ls-files guarantees only committed/staged files; no build artefacts.
-# ---------------------------------------------------------------------------
-mapfile -t _RAW_FILES < <(
-    git -C "$REPO_ROOT" ls-files \
-        --cached \
-        --others \
-        --exclude-standard \
-        -z \
-        2>/dev/null \
-    | tr '\0' '\n' \
-    | sort -u
-)
-
-ALL_FILES=()
-for _f in "${_RAW_FILES[@]}"; do
-    [[ -z "$_f" ]] && continue
-    # Skip the entire excluded directory tree.
-    [[ "$_f" == "${EXCLUDE_DIR}/"* ]] && continue
-    # Skip any individually-excluded file.
-    _skip=0
-    for _ex in "${EXCLUDE_FILES[@]}"; do
-        if [[ "$_ex" == */* ]]; then
-            [[ "$_f" == "$_ex" ]] && { _skip=1; break; }
-        else
-            [[ "$_f" == "$_ex" || "$_f" == */"$_ex" ]] && { _skip=1; break; }
-        fi
-    done
-    (( _skip )) && continue
-    ALL_FILES+=("$_f")
-done
-
-FILE_COUNT="${#ALL_FILES[@]}"
-
-# ---------------------------------------------------------------------------
-# 4. Helper: human-readable file size
-# ---------------------------------------------------------------------------
-human_size() {
-    local bytes="$1"
-    if   (( bytes < 1024 ));               then printf '%d B'      "$bytes"
-    elif (( bytes < 1048576 ));            then printf '%.1f KiB'  "$(echo "scale=1; $bytes/1024"       | bc)"
-    elif (( bytes < 1073741824 ));         then printf '%.1f MiB'  "$(echo "scale=1; $bytes/1048576"    | bc)"
-    else                                        printf '%.1f GiB'  "$(echo "scale=1; $bytes/1073741824" | bc)"
-    fi
-}
-
-# ---------------------------------------------------------------------------
-# 5. Helper: SHA-256 of a file (portable across Linux distros)
-# ---------------------------------------------------------------------------
-file_sha256() {
-    local path="$1"
-    if command -v sha256sum &>/dev/null; then
-        sha256sum "$path" | awk '{print $1}'
-    elif command -v shasum &>/dev/null; then
-        shasum -a 256 "$path" | awk '{print $1}'
-    else
-        echo 'unavailable'
-    fi
-}
-
-# ---------------------------------------------------------------------------
-# 6. Helper: MIME type (best-effort, no error on missing tool)
-# ---------------------------------------------------------------------------
-file_mime() {
-    local path="$1"
-    if command -v file &>/dev/null; then
-        file --brief --mime-type "$path" 2>/dev/null || echo 'unknown'
-    else
-        echo 'unknown'
-    fi
-}
-
-# ---------------------------------------------------------------------------
-# 7. Build the tree view using 'tree' if available, else pure bash fallback
-# ---------------------------------------------------------------------------
-build_tree() {
-    if command -v tree &>/dev/null; then
-        # --fromfile reads the path list from stdin and renders a tree
-        printf '%s\n' "${ALL_FILES[@]}" \
-        | tree --fromfile -a --noreport 2>/dev/null \
-        || _bash_tree
-    else
-        _bash_tree
-    fi
-}
-
-_bash_tree() {
-    # Pure-bash tree: reconstruct directory hierarchy from the flat file list
-    local -A SEEN_DIRS=()
-    local prev_depth=0
-    local line
-
-    for f in "${ALL_FILES[@]}"; do
-        local dir parts depth i prefix
-        dir="$(dirname "$f")"
-        IFS='/' read -ra parts <<< "$f"
-        depth=$(( ${#parts[@]} - 1 ))
-
-        # Print intermediate directories we haven't seen yet
-        local partial=""
-        for (( i=0; i<depth; i++ )); do
-            if [[ -z "$partial" ]]; then
-                partial="${parts[$i]}"
-            else
-                partial="${partial}/${parts[$i]}"
-            fi
-            if [[ -z "${SEEN_DIRS[$partial]+_}" ]]; then
-                SEEN_DIRS["$partial"]=1
-                prefix="$(printf '│   %.0s' $(seq 1 $i))├── "
-                printf '%s%s/\n' "$prefix" "${parts[$i]}"
-            fi
-        done
-
-        # Print the file itself
-        prefix="$(printf '│   %.0s' $(seq 1 $depth))└── "
-        printf '%s%s\n' "$prefix" "${parts[$depth]}"
-    done
-}
-
-# ---------------------------------------------------------------------------
-# 8. Assemble the dump into a variable (stdout + file simultaneously)
-# ---------------------------------------------------------------------------
-mkdir -p "$OUTPUT_DIR"
-
-# We use a temp file to build, then atomic-rename at the end.
-TMP_FILE="$(mktemp "${OUTPUT_DIR}/.dump.XXXXXX")"
-trap 'rm -f "$TMP_FILE"' EXIT
-
-# Tee everything to both stdout and the temp file
-exec > >(tee "$TMP_FILE") 2>&1
-
-# ── Preamble banner ──────────────────────────────────────────────────────────
-cat <<BANNER
-################################################################################
-#                                                                              #
-#   REPOSITORY CONTEXT DUMP                                                    #
-#   Generated for LLM consumption — do not edit manually                       #
-#                                                                              #
-################################################################################
-
-DUMP METADATA
-═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : ${TIMESTAMP}
-  Generator      : ${SCRIPT_NAME}
-  Host           : ${HOSTNAME_VAL}
-  User           : ${USER_VAL}
-  OS             : ${OS_VAL}
-
-REPOSITORY METADATA
-═════════════════════════════════════════════════════════════════════════════════
-  Repository root: ${REPO_ROOT}
-  Branch         : ${GIT_BRANCH}
-  Commit (full)  : ${GIT_COMMIT}
-  Commit (short) : ${GIT_COMMIT_SHORT}
-  Commit date    : ${GIT_COMMIT_DATE}
-  Commit message : ${GIT_COMMIT_MSG}
-  Remote origin  : ${GIT_REMOTE}
-  Files included : ${FILE_COUNT}
-  Excluded path  : ${EXCLUDE_DIR}/
-  Excluded files : ${EXCLUDE_FILES_DISPLAY}
-
-GIT WORKING TREE STATUS (first 20 lines)
-═════════════════════════════════════════════════════════════════════════════════
-BANNER
-
-if [[ -n "$GIT_STATUS_SUMMARY" ]]; then
-    printf '%s\n' "$GIT_STATUS_SUMMARY"
-else
-    echo "  (clean — no uncommitted changes)"
-fi
-
-# ── Self-documentation: dump this script first ───────────────────────────────
-cat <<SELF_HEADER
-
-################################################################################
-# FILE: ${SCRIPT_NAME}  [THIS SCRIPT — included for full context]
-################################################################################
-SELF_HEADER
-
-printf '\n--- METADATA ---\n'
-_self_size="$(wc -c < "$SCRIPT_PATH")"
-_self_mtime="$(stat --format='%y' "$SCRIPT_PATH" 2>/dev/null \
-               || stat -f '%Sm' -t '%Y-%m-%d %H:%M:%S %z' "$SCRIPT_PATH" 2>/dev/null \
-               || echo 'unavailable')"
-_self_perms="$(stat --format='%A' "$SCRIPT_PATH" 2>/dev/null \
-               || stat -f '%Sp' "$SCRIPT_PATH" 2>/dev/null \
-               || echo 'unavailable')"
-_self_sha="$(file_sha256 "$SCRIPT_PATH")"
-
-printf '  %-22s %s\n'  "File name:"       "$SCRIPT_NAME"
-printf '  %-22s %s\n'  "Relative path:"   "$(realpath --relative-to="$REPO_ROOT" "$SCRIPT_PATH" 2>/dev/null || echo "$SCRIPT_PATH")"
-printf '  %-22s %s\n'  "Size:"            "$(human_size "$_self_size") (${_self_size} bytes)"
-printf '  %-22s %s\n'  "Last modified:"   "$_self_mtime"
-printf '  %-22s %s\n'  "Permissions:"     "$_self_perms"
-printf '  %-22s %s\n'  "SHA-256:"         "$_self_sha"
-printf '  %-22s %s\n'  "MIME type:"       "$(file_mime "$SCRIPT_PATH")"
-printf '\n--- CONTENT ---\n'
-cat "$SCRIPT_PATH"
-
-# ── File tree ─────────────────────────────────────────────────────────────────
-cat <<TREE_HEADER
-
-################################################################################
-# FILE TREE  (all ${FILE_COUNT} included files)
-################################################################################
-.
-TREE_HEADER
-
-build_tree
-echo ""
-
-# ── Per-file content dump ─────────────────────────────────────────────────────
-TOTAL_BYTES=0
-
-for rel_path in "${ALL_FILES[@]}"; do
-    abs_path="${REPO_ROOT}/${rel_path}"
-
-    # Skip if the file no longer exists on disk (deleted but still indexed)
-    [[ -f "$abs_path" ]] || continue
-
-    # ── Metadata collection ────────────────────────────────────────────────
-    file_size="$(wc -c < "$abs_path" 2>/dev/null || echo 0)"
-    TOTAL_BYTES=$(( TOTAL_BYTES + file_size ))
-
-    file_mtime="$(stat --format='%y' "$abs_path" 2>/dev/null \
-                  || stat -f '%Sm' -t '%Y-%m-%d %H:%M:%S %z' "$abs_path" 2>/dev/null \
-                  || echo 'unavailable')"
-
-    file_perms="$(stat --format='%A' "$abs_path" 2>/dev/null \
-                  || stat -f '%Sp' "$abs_path" 2>/dev/null \
-                  || echo 'unavailable')"
-
-    file_owner="$(stat --format='%U:%G' "$abs_path" 2>/dev/null \
-                  || stat -f '%Su:%Sg' "$abs_path" 2>/dev/null \
-                  || echo 'unavailable')"
-
-    file_inode="$(stat --format='%i' "$abs_path" 2>/dev/null \
-                  || stat -f '%i' "$abs_path" 2>/dev/null \
-                  || echo 'unavailable')"
-
-    file_links="$(stat --format='%h' "$abs_path" 2>/dev/null \
-                  || stat -f '%l' "$abs_path" 2>/dev/null \
-                  || echo 'unavailable')"
-
-    file_sha="$(file_sha256 "$abs_path")"
-    file_type="$(file_mime "$abs_path")"
-
-    git_log_line="$(git -C "$REPO_ROOT" log -1 --pretty=format:'%h %ai %s' -- "$rel_path" 2>/dev/null || echo 'unavailable')"
-
-    # ── Section header ─────────────────────────────────────────────────────
-    printf '\n'
-    printf '################################################################################\n'
-    printf '# FILE: %s\n' "$rel_path"
-    printf '################################################################################\n'
-    printf '\n--- METADATA ---\n'
-    printf '  %-22s %s\n'  "File name:"       "$(basename "$rel_path")"
-    printf '  %-22s %s\n'  "Relative path:"   "$rel_path"
-    printf '  %-22s %s\n'  "Absolute path:"   "$abs_path"
-    printf '  %-22s %s\n'  "Size:"            "$(human_size "$file_size") (${file_size} bytes)"
-    printf '  %-22s %s\n'  "Last modified:"   "$file_mtime"
-    printf '  %-22s %s\n'  "Permissions:"     "$file_perms"
-    printf '  %-22s %s\n'  "Owner:"           "$file_owner"
-    printf '  %-22s %s\n'  "Inode:"           "$file_inode"
-    printf '  %-22s %s\n'  "Hard links:"      "$file_links"
-    printf '  %-22s %s\n'  "MIME type:"       "$file_type"
-    printf '  %-22s %s\n'  "SHA-256:"         "$file_sha"
-    printf '  %-22s %s\n'  "Last git commit:" "$git_log_line"
-    printf '\n--- CONTENT ---\n'
-
-    # ── Content emission ───────────────────────────────────────────────────
-    # Binary files: emit a notice instead of raw bytes
-    if [[ "$file_type" == application/octet-stream ]] \
-    || [[ "$file_type" == image/* ]] \
-    || [[ "$file_type" == audio/* ]] \
-    || [[ "$file_type" == video/* ]] \
-    || ! file --brief "$abs_path" 2>/dev/null | grep -qi 'text\|script\|xml\|json\|yaml\|svg\|source\|empty'; then
-        printf '[Binary file — content omitted. Size: %s, SHA-256: %s]\n' \
-            "$(human_size "$file_size")" "$file_sha"
-    else
-        cat "$abs_path"
-        # Ensure there is always a trailing newline so the next header aligns
-        [[ "$(tail -c1 "$abs_path" | wc -c)" -gt 0 ]] \
-            && [[ "$(tail -c1 "$abs_path")" != $'\n' ]] \
-            && printf '\n'
-    fi
-done
-
-# ── Summary footer ────────────────────────────────────────────────────────────
-cat <<FOOTER
-
-################################################################################
-# DUMP SUMMARY
-################################################################################
-  Files dumped   : ${FILE_COUNT}
-  Total size     : $(human_size "$TOTAL_BYTES") (${TOTAL_BYTES} bytes)
-  Output file    : ${OUTPUT_FILE}
-  Completed at   : $(date --iso-8601=seconds)
-################################################################################
-# END OF DUMP
-################################################################################
-FOOTER
-
-# ---------------------------------------------------------------------------
-# 9. Atomic rename — avoids partial writes being read by concurrent processes
-# ---------------------------------------------------------------------------
-mv -f "$TMP_FILE" "$OUTPUT_FILE"
-
-################################################################################
-# FILE TREE  (all 1 included files)
-################################################################################
-.
-.
-└── export.sh
-
-
-################################################################################
-# FILE: export.sh
-################################################################################
-
---- METADATA ---
-  File name:             export.sh
-  Relative path:         export.sh
-  Absolute path:         /home/kushal/src/ts/kphoto/export.sh
-  Size:                  16.6 KiB (17016 bytes)
-  Last modified:         2026-07-09 15:13:46.034237088 -0400
-  Permissions:           -rw-r--r--
-  Owner:                 kushal:kushal
-  Inode:                 20255834
-  Hard links:            1
-  MIME type:             text/x-shellscript
-  SHA-256:               efbba1bf9e95500596d0bb65d30060a8e6a811653bbbd38c492597db1c23bfaa
-  Last git commit:       1358d82 2026-07-09 15:14:35 -0400 initialize git repository
-
---- CONTENT ---
-#!/usr/bin/env bash
-# =============================================================================
-# export.sh — Repository context dump for LLM consumption
-#
-# Location: <repo root>/export.sh
-#
-# Usage:  bash export.sh
-#         time bash export.sh
-#
-# Behaviour:
-#   • Resolves its own location; works regardless of CWD.
-#   • Silently exits if no Git repository is found at that location.
-#   • Dumps all Git-tracked files (excluding docs/llm/** and yarn.lock) to
-#     docs/llm/dump.txt.
-#   • Prepends its own source to the dump (self-documentation).
-#   • Emits rich per-file metadata (name, path, size, permissions, mtime, SHA-256).
-#   • Includes a file-tree view of all included files.
-#   • Prints the complete dump to stdout before writing the file.
-# =============================================================================
-
-set -euo pipefail
-IFS=$'\n\t'
-
-# ---------------------------------------------------------------------------
-# 0. Resolve script's own directory — immune to CWD
-# ---------------------------------------------------------------------------
-SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
-SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
-SCRIPT_NAME="$(basename "$SCRIPT_PATH")"
-
-# ---------------------------------------------------------------------------
-# 1. Validate: must be inside a working Git repository
-# ---------------------------------------------------------------------------
-if ! git -C "$SCRIPT_DIR" rev-parse --is-inside-work-tree &>/dev/null 2>&1; then
-    exit 0
-fi
-
-# Ensure git is usable (index readable, not a bare repo, etc.)
-if ! git -C "$SCRIPT_DIR" status --porcelain &>/dev/null 2>&1; then
-    exit 0
-fi
-
-REPO_ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel 2>/dev/null)" || exit 0
-
-# ---------------------------------------------------------------------------
-# 2. Constants & derived paths
-# ---------------------------------------------------------------------------
-EXCLUDE_DIR="docs/llm"
-
-# Individual files to exclude from the dump, in addition to EXCLUDE_DIR.
-# A bare name (no slash) is excluded wherever it appears; a name containing a
-# slash is treated as an exact repo-relative path.
-EXCLUDE_FILES=("yarn.lock")
-EXCLUDE_FILES_DISPLAY="$(printf '%s, ' "${EXCLUDE_FILES[@]}")"
-EXCLUDE_FILES_DISPLAY="${EXCLUDE_FILES_DISPLAY%, }"
-
-OUTPUT_DIR="${REPO_ROOT}/${EXCLUDE_DIR}"
-OUTPUT_FILE="${OUTPUT_DIR}/dump.txt"
-
-TIMESTAMP="$(date --iso-8601=seconds)"
-GIT_BRANCH="$(git -C "$REPO_ROOT" rev-parse --abbrev-ref HEAD 2>/dev/null || echo 'unknown')"
-GIT_COMMIT="$(git -C "$REPO_ROOT" rev-parse HEAD 2>/dev/null || echo 'unknown')"
-GIT_COMMIT_SHORT="$(git -C "$REPO_ROOT" rev-parse --short HEAD 2>/dev/null || echo 'unknown')"
-GIT_COMMIT_MSG="$(git -C "$REPO_ROOT" log -1 --pretty=format:'%s' 2>/dev/null || echo 'unknown')"
-GIT_COMMIT_DATE="$(git -C "$REPO_ROOT" log -1 --pretty=format:'%ci' 2>/dev/null || echo 'unknown')"
-GIT_REMOTE="$(git -C "$REPO_ROOT" remote get-url origin 2>/dev/null || echo 'none')"
-GIT_STATUS_SUMMARY="$(git -C "$REPO_ROOT" status --short 2>/dev/null | head -20 || echo '')"
-
-HOSTNAME_VAL="$(hostname -f 2>/dev/null || hostname 2>/dev/null || echo 'unknown')"
-USER_VAL="$(id -un 2>/dev/null || echo 'unknown')"
-OS_VAL="$(uname -srm 2>/dev/null || echo 'unknown')"
-
-# ---------------------------------------------------------------------------
-# 3. Collect tracked files, excluding the output directory and EXCLUDE_FILES
-#    git ls-files guarantees only committed/staged files; no build artefacts.
-# ---------------------------------------------------------------------------
-mapfile -t _RAW_FILES < <(
-    git -C "$REPO_ROOT" ls-files \
-        --cached \
-        --others \
-        --exclude-standard \
-        -z \
-        2>/dev/null \
-    | tr '\0' '\n' \
-    | sort -u
-)
-
-ALL_FILES=()
-for _f in "${_RAW_FILES[@]}"; do
-    [[ -z "$_f" ]] && continue
-    # Skip the entire excluded directory tree.
-    [[ "$_f" == "${EXCLUDE_DIR}/"* ]] && continue
-    # Skip any individually-excluded file.
-    _skip=0
-    for _ex in "${EXCLUDE_FILES[@]}"; do
-        if [[ "$_ex" == */* ]]; then
-            [[ "$_f" == "$_ex" ]] && { _skip=1; break; }
-        else
-            [[ "$_f" == "$_ex" || "$_f" == */"$_ex" ]] && { _skip=1; break; }
-        fi
-    done
-    (( _skip )) && continue
-    ALL_FILES+=("$_f")
-done
-
-FILE_COUNT="${#ALL_FILES[@]}"
-
-# ---------------------------------------------------------------------------
-# 4. Helper: human-readable file size
-# ---------------------------------------------------------------------------
-human_size() {
-    local bytes="$1"
-    if   (( bytes < 1024 ));               then printf '%d B'      "$bytes"
-    elif (( bytes < 1048576 ));            then printf '%.1f KiB'  "$(echo "scale=1; $bytes/1024"       | bc)"
-    elif (( bytes < 1073741824 ));         then printf '%.1f MiB'  "$(echo "scale=1; $bytes/1048576"    | bc)"
-    else                                        printf '%.1f GiB'  "$(echo "scale=1; $bytes/1073741824" | bc)"
-    fi
-}
-
-# ---------------------------------------------------------------------------
-# 5. Helper: SHA-256 of a file (portable across Linux distros)
-# ---------------------------------------------------------------------------
-file_sha256() {
-    local path="$1"
-    if command -v sha256sum &>/dev/null; then
-        sha256sum "$path" | awk '{print $1}'
-    elif command -v shasum &>/dev/null; then
-        shasum -a 256 "$path" | awk '{print $1}'
-    else
-        echo 'unavailable'
-    fi
-}
-
-# ---------------------------------------------------------------------------
-# 6. Helper: MIME type (best-effort, no error on missing tool)
-# ---------------------------------------------------------------------------
-file_mime() {
-    local path="$1"
-    if command -v file &>/dev/null; then
-        file --brief --mime-type "$path" 2>/dev/null || echo 'unknown'
-    else
-        echo 'unknown'
-    fi
-}
-
-# ---------------------------------------------------------------------------
-# 7. Build the tree view using 'tree' if available, else pure bash fallback
-# ---------------------------------------------------------------------------
-build_tree() {
-    if command -v tree &>/dev/null; then
-        # --fromfile reads the path list from stdin and renders a tree
-        printf '%s\n' "${ALL_FILES[@]}" \
-        | tree --fromfile -a --noreport 2>/dev/null \
-        || _bash_tree
-    else
-        _bash_tree
-    fi
-}
-
-_bash_tree() {
-    # Pure-bash tree: reconstruct directory hierarchy from the flat file list
-    local -A SEEN_DIRS=()
-    local prev_depth=0
-    local line
-
-    for f in "${ALL_FILES[@]}"; do
-        local dir parts depth i prefix
-        dir="$(dirname "$f")"
-        IFS='/' read -ra parts <<< "$f"
-        depth=$(( ${#parts[@]} - 1 ))
-
-        # Print intermediate directories we haven't seen yet
-        local partial=""
-        for (( i=0; i<depth; i++ )); do
-            if [[ -z "$partial" ]]; then
-                partial="${parts[$i]}"
-            else
-                partial="${partial}/${parts[$i]}"
-            fi
-            if [[ -z "${SEEN_DIRS[$partial]+_}" ]]; then
-                SEEN_DIRS["$partial"]=1
-                prefix="$(printf '│   %.0s' $(seq 1 $i))├── "
-                printf '%s%s/\n' "$prefix" "${parts[$i]}"
-            fi
-        done
-
-        # Print the file itself
-        prefix="$(printf '│   %.0s' $(seq 1 $depth))└── "
-        printf '%s%s\n' "$prefix" "${parts[$depth]}"
-    done
-}
-
-# ---------------------------------------------------------------------------
-# 8. Assemble the dump into a variable (stdout + file simultaneously)
-# ---------------------------------------------------------------------------
-mkdir -p "$OUTPUT_DIR"
-
-# We use a temp file to build, then atomic-rename at the end.
-TMP_FILE="$(mktemp "${OUTPUT_DIR}/.dump.XXXXXX")"
-trap 'rm -f "$TMP_FILE"' EXIT
-
-# Tee everything to both stdout and the temp file
-exec > >(tee "$TMP_FILE") 2>&1
-
-# ── Preamble banner ──────────────────────────────────────────────────────────
-cat <<BANNER
-################################################################################
-#                                                                              #
-#   REPOSITORY CONTEXT DUMP                                                    #
-#   Generated for LLM consumption — do not edit manually                       #
-#                                                                              #
-################################################################################
-
-DUMP METADATA
-═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : ${TIMESTAMP}
-  Generator      : ${SCRIPT_NAME}
-  Host           : ${HOSTNAME_VAL}
-  User           : ${USER_VAL}
-  OS             : ${OS_VAL}
-
-REPOSITORY METADATA
-═════════════════════════════════════════════════════════════════════════════════
-  Repository root: ${REPO_ROOT}
-  Branch         : ${GIT_BRANCH}
-  Commit (full)  : ${GIT_COMMIT}
-  Commit (short) : ${GIT_COMMIT_SHORT}
-  Commit date    : ${GIT_COMMIT_DATE}
-  Commit message : ${GIT_COMMIT_MSG}
-  Remote origin  : ${GIT_REMOTE}
-  Files included : ${FILE_COUNT}
-  Excluded path  : ${EXCLUDE_DIR}/
-  Excluded files : ${EXCLUDE_FILES_DISPLAY}
-
-GIT WORKING TREE STATUS (first 20 lines)
-═════════════════════════════════════════════════════════════════════════════════
-BANNER
-
-if [[ -n "$GIT_STATUS_SUMMARY" ]]; then
-    printf '%s\n' "$GIT_STATUS_SUMMARY"
-else
-    echo "  (clean — no uncommitted changes)"
-fi
-
-# ── Self-documentation: dump this script first ───────────────────────────────
-cat <<SELF_HEADER
-
-################################################################################
-# FILE: ${SCRIPT_NAME}  [THIS SCRIPT — included for full context]
-################################################################################
-SELF_HEADER
-
-printf '\n--- METADATA ---\n'
-_self_size="$(wc -c < "$SCRIPT_PATH")"
-_self_mtime="$(stat --format='%y' "$SCRIPT_PATH" 2>/dev/null \
-               || stat -f '%Sm' -t '%Y-%m-%d %H:%M:%S %z' "$SCRIPT_PATH" 2>/dev/null \
-               || echo 'unavailable')"
-_self_perms="$(stat --format='%A' "$SCRIPT_PATH" 2>/dev/null \
-               || stat -f '%Sp' "$SCRIPT_PATH" 2>/dev/null \
-               || echo 'unavailable')"
-_self_sha="$(file_sha256 "$SCRIPT_PATH")"
-
-printf '  %-22s %s\n'  "File name:"       "$SCRIPT_NAME"
-printf '  %-22s %s\n'  "Relative path:"   "$(realpath --relative-to="$REPO_ROOT" "$SCRIPT_PATH" 2>/dev/null || echo "$SCRIPT_PATH")"
-printf '  %-22s %s\n'  "Size:"            "$(human_size "$_self_size") (${_self_size} bytes)"
-printf '  %-22s %s\n'  "Last modified:"   "$_self_mtime"
-printf '  %-22s %s\n'  "Permissions:"     "$_self_perms"
-printf '  %-22s %s\n'  "SHA-256:"         "$_self_sha"
-printf '  %-22s %s\n'  "MIME type:"       "$(file_mime "$SCRIPT_PATH")"
-printf '\n--- CONTENT ---\n'
-cat "$SCRIPT_PATH"
-
-# ── File tree ─────────────────────────────────────────────────────────────────
-cat <<TREE_HEADER
-
-################################################################################
-# FILE TREE  (all ${FILE_COUNT} included files)
-################################################################################
-.
-TREE_HEADER
-
-build_tree
-echo ""
-
-# ── Per-file content dump ─────────────────────────────────────────────────────
-TOTAL_BYTES=0
-
-for rel_path in "${ALL_FILES[@]}"; do
-    abs_path="${REPO_ROOT}/${rel_path}"
-
-    # Skip if the file no longer exists on disk (deleted but still indexed)
-    [[ -f "$abs_path" ]] || continue
-
-    # ── Metadata collection ────────────────────────────────────────────────
-    file_size="$(wc -c < "$abs_path" 2>/dev/null || echo 0)"
-    TOTAL_BYTES=$(( TOTAL_BYTES + file_size ))
-
-    file_mtime="$(stat --format='%y' "$abs_path" 2>/dev/null \
-                  || stat -f '%Sm' -t '%Y-%m-%d %H:%M:%S %z' "$abs_path" 2>/dev/null \
-                  || echo 'unavailable')"
-
-    file_perms="$(stat --format='%A' "$abs_path" 2>/dev/null \
-                  || stat -f '%Sp' "$abs_path" 2>/dev/null \
-                  || echo 'unavailable')"
-
-    file_owner="$(stat --format='%U:%G' "$abs_path" 2>/dev/null \
-                  || stat -f '%Su:%Sg' "$abs_path" 2>/dev/null \
-                  || echo 'unavailable')"
-
-    file_inode="$(stat --format='%i' "$abs_path" 2>/dev/null \
-                  || stat -f '%i' "$abs_path" 2>/dev/null \
-                  || echo 'unavailable')"
-
-    file_links="$(stat --format='%h' "$abs_path" 2>/dev/null \
-                  || stat -f '%l' "$abs_path" 2>/dev/null \
-                  || echo 'unavailable')"
-
-    file_sha="$(file_sha256 "$abs_path")"
-    file_type="$(file_mime "$abs_path")"
-
-    git_log_line="$(git -C "$REPO_ROOT" log -1 --pretty=format:'%h %ai %s' -- "$rel_path" 2>/dev/null || echo 'unavailable')"
-
-    # ── Section header ─────────────────────────────────────────────────────
-    printf '\n'
-    printf '################################################################################\n'
-    printf '# FILE: %s\n' "$rel_path"
-    printf '################################################################################\n'
-    printf '\n--- METADATA ---\n'
-    printf '  %-22s %s\n'  "File name:"       "$(basename "$rel_path")"
-    printf '  %-22s %s\n'  "Relative path:"   "$rel_path"
-    printf '  %-22s %s\n'  "Absolute path:"   "$abs_path"
-    printf '  %-22s %s\n'  "Size:"            "$(human_size "$file_size") (${file_size} bytes)"
-    printf '  %-22s %s\n'  "Last modified:"   "$file_mtime"
-    printf '  %-22s %s\n'  "Permissions:"     "$file_perms"
-    printf '  %-22s %s\n'  "Owner:"           "$file_owner"
-    printf '  %-22s %s\n'  "Inode:"           "$file_inode"
-    printf '  %-22s %s\n'  "Hard links:"      "$file_links"
-    printf '  %-22s %s\n'  "MIME type:"       "$file_type"
-    printf '  %-22s %s\n'  "SHA-256:"         "$file_sha"
-    printf '  %-22s %s\n'  "Last git commit:" "$git_log_line"
-    printf '\n--- CONTENT ---\n'
-
-    # ── Content emission ───────────────────────────────────────────────────
-    # Binary files: emit a notice instead of raw bytes
-    if [[ "$file_type" == application/octet-stream ]] \
-    || [[ "$file_type" == image/* ]] \
-    || [[ "$file_type" == audio/* ]] \
-    || [[ "$file_type" == video/* ]] \
-    || ! file --brief "$abs_path" 2>/dev/null | grep -qi 'text\|script\|xml\|json\|yaml\|svg\|source\|empty'; then
-        printf '[Binary file — content omitted. Size: %s, SHA-256: %s]\n' \
-            "$(human_size "$file_size")" "$file_sha"
-    else
-        cat "$abs_path"
-        # Ensure there is always a trailing newline so the next header aligns
-        [[ "$(tail -c1 "$abs_path" | wc -c)" -gt 0 ]] \
-            && [[ "$(tail -c1 "$abs_path")" != $'\n' ]] \
-            && printf '\n'
-    fi
-done
-
-# ── Summary footer ────────────────────────────────────────────────────────────
-cat <<FOOTER
-
-################################################################################
-# DUMP SUMMARY
-################################################################################
-  Files dumped   : ${FILE_COUNT}
-  Total size     : $(human_size "$TOTAL_BYTES") (${TOTAL_BYTES} bytes)
-  Output file    : ${OUTPUT_FILE}
-  Completed at   : $(date --iso-8601=seconds)
-################################################################################
-# END OF DUMP
-################################################################################
-FOOTER
-
-# ---------------------------------------------------------------------------
-# 9. Atomic rename — avoids partial writes being read by concurrent processes
-# ---------------------------------------------------------------------------
-mv -f "$TMP_FILE" "$OUTPUT_FILE"
-
-
-################################################################################
-# DUMP SUMMARY
-################################################################################
-  Files dumped   : 1
-  Total size     : 16.6 KiB (17016 bytes)
-  Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-07-09T15:14:38-04:00
-################################################################################
-# END OF DUMP
-################################################################################
-
-real	0m0.105s
-user	0m0.039s
-sys	0m0.064s
-kushal@fedora:~/src/ts/kphoto$ yarn --version; npm --version; node --version;
-1.22.22
-11.16.0
-v24.18.0
-kushal@fedora:~/src/ts/kphoto$ yarn create vite
-yarn create v1.22.22
-[1/4] Resolving packages...
-[2/4] Fetching packages...
-[3/4] Linking dependencies...
-[4/4] Building fresh packages...
-success Installed "create-vite@9.1.1" with binaries:
-      - create-vite
-      - cva
-│
-◇  Project name:
-│  kphoto
-│
-◇  Select a framework:
-│  Vanilla
-│
-◇  Select a variant:
-│  TypeScript
-│
-◇  Install with yarn and start now?
-│  Yes
-│
-◇  Scaffolding project in /home/kushal/src/ts/kphoto/kphoto...
-│
-◇  Installing dependencies with yarn...
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash export.sh > docs/llm/vendor/output.txt; time yarn; time yarn run build
+
+real	0m0.502s
+user	0m0.258s
+sys	0m0.313s
 yarn install v1.22.22
-info No lockfile found.
 [1/4] Resolving packages...
 [2/4] Fetching packages...
 [3/4] Linking dependencies...
 [4/4] Building fresh packages...
+
 success Saved lockfile.
-Done in 4.08s.
-│
-◇  Starting dev server...
-yarn run v1.22.22
-$ vite
+Done in 6.05s.
 
-  VITE v8.1.4  ready in 135 ms
-
-  ➜  Local:   http://localhost:5173/
-  ➜  Network: use --host to expose
-  ➜  press h + enter to show help
-
-^C
-kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash export.sh > docs/llm/vendor/output.txt
-
-real	0m0.320s
-user	0m0.151s
-sys	0m0.213s
-kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash export.sh > docs/llm/vendor/output.txt; time yarn run build
-
-real	0m0.339s
-user	0m0.177s
-sys	0m0.208s
+real	0m6.175s
+user	0m4.696s
+sys	0m1.942s
 yarn run v1.22.22
 $ tsc && vite build
 vite v8.1.4 building client environment for production...
@@ -922,29 +26,114 @@ dist/assets/hero-CLDdwZDr.png   13.05 kB
 dist/assets/index-CsUDhMuy.css   4.10 kB │ gzip: 1.46 kB
 dist/assets/index-B4vdZNPd.js    4.52 kB │ gzip: 2.02 kB
 
-✓ built in 62ms
-Done in 0.55s.
+✓ built in 50ms
+Done in 0.27s.
 
-real	0m0.658s
-user	0m0.743s
-sys	0m0.195s
+real	0m0.382s
+user	0m0.321s
+sys	0m0.236s
+kushal@fedora:~/src/ts/kphoto$ time yarn outdated
+yarn outdated v1.22.22
+Done in 1.54s.
+
+real	0m1.671s
+user	0m0.443s
+sys	0m0.216s
+kushal@fedora:~/src/ts/kphoto$ git rm --cached dist
+fatal: not removing 'dist' recursively without -r
+kushal@fedora:~/src/ts/kphoto$ time git rm --cached --recursive dist
+error: unknown option `recursive'
+usage: git rm [-f | --force] [-n] [-r] [--cached] [--ignore-unmatch]
+              [--quiet] [--pathspec-from-file=<file> [--pathspec-file-nul]]
+              [--] [<pathspec>...]
+
+    -n, --[no-]dry-run    dry run
+    -q, --[no-]quiet      do not list removed files
+    --[no-]cached         only remove from the index
+    -f, --[no-]force      override the up-to-date check
+    -r                    allow recursive removal
+    --[no-]ignore-unmatch exit with a zero status even if nothing matched
+    --[no-]sparse         allow updating entries outside of the sparse-checkout cone
+    --[no-]pathspec-from-file <file>
+                          read pathspec from file
+    --[no-]pathspec-file-nul
+                          with --pathspec-from-file, pathspec elements are separated with NUL character
+
+
+real	0m0.002s
+user	0m0.000s
+sys	0m0.002s
+kushal@fedora:~/src/ts/kphoto$ time git rm --cached -r dist
+rm 'dist/assets/hero-CLDdwZDr.png'
+rm 'dist/assets/index-B4vdZNPd.js'
+rm 'dist/assets/index-CsUDhMuy.css'
+rm 'dist/assets/vite-BF8QNONU.svg'
+rm 'dist/favicon.svg'
+rm 'dist/icons.svg'
+rm 'dist/index.html'
+
+real	0m0.004s
+user	0m0.001s
+sys	0m0.003s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash export.sh > docs/llm/vendor/output.txt; time yarn; time yarn run build
+
+real	0m0.372s
+user	0m0.171s
+sys	0m0.237s
+yarn install v1.22.22
+[1/4] Resolving packages...
+success Already up-to-date.
+Done in 0.04s.
+
+real	0m0.149s
+user	0m0.115s
+sys	0m0.047s
+yarn run v1.22.22
+$ tsc && vite build
+vite v8.1.4 building client environment for production...
+✓ 9 modules transformed.
+computing gzip size...
+dist/index.html                  0.45 kB │ gzip: 0.29 kB
+dist/assets/vite-BF8QNONU.svg    8.70 kB │ gzip: 1.60 kB
+dist/assets/hero-CLDdwZDr.png   13.05 kB
+dist/assets/index-CsUDhMuy.css   4.10 kB │ gzip: 1.46 kB
+dist/assets/index-B4vdZNPd.js    4.52 kB │ gzip: 2.02 kB
+
+✓ built in 35ms
+Done in 0.21s.
+
+real	0m0.322s
+user	0m0.323s
+sys	0m0.126s
+kushal@fedora:~/src/ts/kphoto$ git remote show
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash export.sh > docs/llm/vendor/output.txt; time yarn; time yarn run build
+
+real	0m0.704s
+user	0m0.232s
+sys	0m0.340s
+yarn install v1.22.22
+[1/4] Resolving packages...
+success Already up-to-date.
+Done in 0.04s.
+
+real	0m0.190s
+user	0m0.115s
+sys	0m0.050s
+yarn run v1.22.22
+$ tsc && vite build
+vite v8.1.4 building client environment for production...
+✓ 9 modules transformed.
+computing gzip size...
+dist/index.html                  0.45 kB │ gzip: 0.29 kB
+dist/assets/vite-BF8QNONU.svg    8.70 kB │ gzip: 1.60 kB
+dist/assets/hero-CLDdwZDr.png   13.05 kB
+dist/assets/index-CsUDhMuy.css   4.10 kB │ gzip: 1.46 kB
+dist/assets/index-B4vdZNPd.js    4.52 kB │ gzip: 2.02 kB
+
+✓ built in 51ms
+Done in 0.28s.
+
+real	0m0.390s
+user	0m0.312s
+sys	0m0.158s
 kushal@fedora:~/src/ts/kphoto$ 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
