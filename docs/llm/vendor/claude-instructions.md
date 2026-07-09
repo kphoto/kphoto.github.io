@@ -67,6 +67,11 @@ Public: https://github.com/kphoto/kphoto.github.io
   each blog post has its own url 
   blog post url include the date stamp to make sure they are unique
   for example there could be multiple good morning but only one per day
+  each post can also belong to a series
+  while each post has a tag, not all post belong to a series 
+  a post can only belong to one series and if it does, it has a episode in the series such as 1, 2, and so on 
+  while the tag page shows posts latest first 
+  the series page shows posts starting with the lowest episode so if 1, 2, and so on 
 ```markdown content/blog/2026-03-22-good-morning.md
 ---
 title: Good morning!
@@ -93,7 +98,9 @@ avatar: images/authors/kphoto-team.png
 socials:
   github: kphoto
 ```
+there will also be an author list and author detail page accessible and the detail page is linked from the blog post authored by them
 - website should be fully responsive and have multiple theme options such as light mode, dark mode, solarized light, solarzied dark, etc 
 - website should highlight the github repository in the footer
 - website should be fully accessible
 - website should use browser features such as local storage to the max to remember user settings 
+- for anything else please use your best judgment and make sure to include all decisions here as well as all decisions you make in the ADR files, one decision per file 
