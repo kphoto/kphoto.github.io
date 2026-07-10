@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-07-10T15:06:42-04:00
+  Generated at   : 2026-07-10T15:11:37-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,10 +17,10 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : bf6b7eb553e1a7116f23f9a60fc3a757171fc2c0
-  Commit (short) : bf6b7eb
-  Commit date    : 2026-07-10 15:05:55 -0400
-  Commit message : make socials a string
+  Commit (full)  : 679088fd1c4880fdd4b04d9cbc866c025becb222
+  Commit (short) : 679088f
+  Commit date    : 2026-07-10 15:06:59 -0400
+  Commit message : fix socials
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
   Files included : 132
   Excluded path  : docs/llm/
@@ -929,18 +929,18 @@ socials:
   File name:             kushal.yml
   Relative path:         content/authors/kushal.yml
   Absolute path:         /home/kushal/src/ts/kphoto/content/authors/kushal.yml
-  Size:                  138 B (138 bytes)
-  Last modified:         2026-07-10 15:06:16.859671299 -0400
+  Size:                  132 B (132 bytes)
+  Last modified:         2026-07-10 15:11:12.331992459 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
   Inode:                 20472410
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               c2c1178e6f33724eb164a25c9dfb36e2f971e788591140ec2aba95020e728b90
-  Last git commit:       bf6b7eb 2026-07-10 15:05:55 -0400 make socials a string
+  SHA-256:               375c0c5628ef1b61623c6b9f72e3d9b7f2cf5369597884b2ae34c9c7a066e0c7
+  Last git commit:       679088f 2026-07-10 15:06:59 -0400 fix socials
 
 --- CONTENT ---
-name: Casey Rivers
+name: Kushal
 bio: Writes about life, the universe, and everything
 avatar: images/authors/kushal.png
 socials:
@@ -11454,9 +11454,9 @@ packageExtensions:
 # DUMP SUMMARY
 ################################################################################
   Files dumped   : 132
-  Total size     : 5.0 MiB (5298620 bytes)
+  Total size     : 5.0 MiB (5298614 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-07-10T15:06:45-04:00
+  Completed at   : 2026-07-10T15:11:41-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
