@@ -194,3 +194,107 @@ real	0m23.721s
 user	0m13.556s
 sys	0m5.611s
 kushal@fedora:~/src/ts/kphoto$ 
+
+
+
+
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
+[15:01:47] 1/8 bootstrap
+[15:01:47] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.17.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Post-resolution validation
+➤ YN0002: │ kphoto@workspace:. doesn't provide typescript (p8aebeb), requested by typescript-eslint.
+➤ YN0086: │ Some peer dependencies are incorrectly met by your project; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code.
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done with warnings in 0s 281ms
+[15:01:47] bootstrap complete — try ./scripts/dev.sh
+[15:01:47] 2/8 format check
+[15:01:47] checking formatting (prettier --check)
+Checking formatting...
+[warn] content/blog/2026-07-10-welcome.md
+[warn] Code style issues found in the above file. Run Prettier with --write to fix.
+
+real	0m1.727s
+user	0m2.387s
+sys	0m0.382s
+kushal@fedora:~/src/ts/kphoto$ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
