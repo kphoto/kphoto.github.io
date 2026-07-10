@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-07-10T14:41:17-04:00
+  Generated at   : 2026-07-10T15:06:42-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,18 +17,18 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : 3e632209272f1bac85cdcaa74f5096175e9ed755
-  Commit (short) : 3e63220
-  Commit date    : 2026-07-10 14:39:22 -0400
-  Commit message : add claude changes
+  Commit (full)  : bf6b7eb553e1a7116f23f9a60fc3a757171fc2c0
+  Commit (short) : bf6b7eb
+  Commit date    : 2026-07-10 15:05:55 -0400
+  Commit message : make socials a string
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
-  Files included : 129
+  Files included : 132
   Excluded path  : docs/llm/
   Excluded files : yarn.lock, .pnp.cjs, .pnp.loader.mjs
 
 GIT WORKING TREE STATUS (first 20 lines)
 ═════════════════════════════════════════════════════════════════════════════════
-  (clean — no uncommitted changes)
+ M content/authors/kushal.yml
 
 ################################################################################
 # FILE: export.sh  [THIS SCRIPT — included for full context]
@@ -430,7 +430,7 @@ FOOTER
 mv -f "$TMP_FILE" "$OUTPUT_FILE"
 
 ################################################################################
-# FILE TREE  (all 129 included files)
+# FILE TREE  (all 132 included files)
 ################################################################################
 .
 .
@@ -440,7 +440,8 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 ├── content
 │   ├── authors
 │   │   ├── casey-rivers.yml
-│   │   └── kphoto-team.yml
+│   │   ├── kphoto-team.yml
+│   │   └── kushal.yml
 │   ├── blog
 │   │   ├── 2026-03-22-good-morning.md
 │   │   ├── 2026-04-01-good-morning.md
@@ -448,7 +449,8 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── 2026-05-12-a-markdown-renderer-from-scratch.md
 │   │   ├── 2026-05-19-scoped-styles-with-declarative-shadow-dom.md
 │   │   ├── 2026-06-10-five-themes-one-localstorage-key.md
-│   │   └── 2026-07-01-what-this-site-is.md
+│   │   ├── 2026-07-01-what-this-site-is.md
+│   │   └── 2026-07-10-welcome.md
 │   └── pages
 │       ├── about.md
 │       └── contact.md
@@ -497,7 +499,8 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   └── images
 │       └── authors
 │           ├── casey-rivers.svg
-│           └── kphoto-team.png
+│           ├── kphoto-team.png
+│           └── kushal.png
 ├── README.md
 ├── scripts
 │   ├── bootstrap.sh
@@ -919,6 +922,32 @@ socials:
 
 
 ################################################################################
+# FILE: content/authors/kushal.yml
+################################################################################
+
+--- METADATA ---
+  File name:             kushal.yml
+  Relative path:         content/authors/kushal.yml
+  Absolute path:         /home/kushal/src/ts/kphoto/content/authors/kushal.yml
+  Size:                  138 B (138 bytes)
+  Last modified:         2026-07-10 15:06:16.859671299 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20472410
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               c2c1178e6f33724eb164a25c9dfb36e2f971e788591140ec2aba95020e728b90
+  Last git commit:       bf6b7eb 2026-07-10 15:05:55 -0400 make socials a string
+
+--- CONTENT ---
+name: Casey Rivers
+bio: Writes about life, the universe, and everything
+avatar: images/authors/kushal.png
+socials:
+  github: '9034725985'
+
+
+################################################################################
 # FILE: content/blog/2026-03-22-good-morning.md
 ################################################################################
 
@@ -1288,6 +1317,43 @@ every page, because it is part of the experiment.
 
 The [TypeScript 7 in Practice](/series/typescript-7-in-practice/) series walks
 through the interesting parts in order.
+
+
+################################################################################
+# FILE: content/blog/2026-07-10-welcome.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-07-10-welcome.md
+  Relative path:         content/blog/2026-07-10-welcome.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-07-10-welcome.md
+  Size:                  267 B (267 bytes)
+  Last modified:         2026-07-10 15:04:36.587061312 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20472618
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               57ca22e64cff10b83cb78f432f5f03886a0c8a39e64fba272079328c040e7faa
+  Last git commit:       c65b85b 2026-07-10 15:04:51 -0400 clean up
+
+--- CONTENT ---
+---
+title: Welcome!
+date: 2026-07-10
+author: kushal
+summary: Welcome to kphoto!
+tags:
+  - introductions
+---
+
+## Welcome
+
+It is three in the afternoon
+and I would like to welcome you to my blog.
+With the power of typescript 7
+and the open web,
+everything is possible!
 
 
 ################################################################################
@@ -4630,6 +4696,27 @@ yarn.lock
 
 --- CONTENT ---
 [Binary file — content omitted. Size: 1.8 MiB, SHA-256: 15547d2bcc749a549de370e51db0b890e99c7f8efc03596325bfee138830aa9e]
+
+################################################################################
+# FILE: public/images/authors/kushal.png
+################################################################################
+
+--- METADATA ---
+  File name:             kushal.png
+  Relative path:         public/images/authors/kushal.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/authors/kushal.png
+  Size:                  2.9 MiB (3066753 bytes)
+  Last modified:         2026-01-17 17:44:42.179253007 -0500
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20472550
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               9361084b8a2d305b6b1c918b4d222091dfb50464bd6a20681830e9b6ca1930d1
+  Last git commit:       d16f848 2026-07-10 15:02:13 -0400 add a new blog post
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 2.9 MiB, SHA-256: 9361084b8a2d305b6b1c918b4d222091dfb50464bd6a20681830e9b6ca1930d1]
 
 ################################################################################
 # FILE: README.md
@@ -11366,10 +11453,10 @@ packageExtensions:
 ################################################################################
 # DUMP SUMMARY
 ################################################################################
-  Files dumped   : 129
-  Total size     : 2.1 MiB (2231462 bytes)
+  Files dumped   : 132
+  Total size     : 5.0 MiB (5298620 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-07-10T14:41:21-04:00
+  Completed at   : 2026-07-10T15:06:45-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
