@@ -68,15 +68,17 @@
 
 /* ---------- cross-document view transitions (MPA) ---------- */
 
-@view-transition {
-  navigation: auto;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation: none !important;
+/*
+ * The opt-in itself is motion-gated (ADR 0018). Under
+ * `prefers-reduced-motion: reduce` the page never opts in, so the browser
+ * takes no snapshot and runs none of the transition machinery — stronger
+ * than the previous approach of zeroing the ::view-transition-* animations,
+ * which still engaged the capture/reveal pipeline. The Playwright suite
+ * emulates reduced motion and therefore navigates without transitions.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
   }
 }
 

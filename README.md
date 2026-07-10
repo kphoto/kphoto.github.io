@@ -99,9 +99,15 @@ The image tag in `compose.yaml` and `.github/workflows/verify.yml` must match
 `@playwright/test` in `package.json` exactly; the unit suite
 (`src/versionSync.test.ts`) fails the moment they drift. The chromium
 projects run the real Chromium build in "new headless" mode instead of the
-Chrome Headless Shell, whose rendering loop freezes on this site's
-cross-document view transitions
-([ADR 0016](docs/adr/0016-chromium-new-headless-channel.md)).
+Chrome Headless Shell
+([ADR 0016](docs/adr/0016-chromium-new-headless-channel.md)), and every
+project emulates `prefers-reduced-motion: reduce`: the site motion-gates its
+cross-document view-transition opt-in, so navigations under test skip the
+transition machinery that froze containerised Chromium
+([ADR 0018](docs/adr/0018-motion-gated-view-transitions.md)). The CI job
+additionally pins `HOME=/root`, without which Firefox refuses to launch in
+GitHub's job containers
+([ADR 0019](docs/adr/0019-ci-container-home-override.md)).
 
 ## Writing content
 

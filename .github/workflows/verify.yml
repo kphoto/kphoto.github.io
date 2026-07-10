@@ -50,6 +50,12 @@ jobs:
       # Must match devDependencies["@playwright/test"] — see ADR 0017.
       image: mcr.microsoft.com/playwright:v1.61.1-noble
       options: --init --ipc=host
+    env:
+      # GitHub points $HOME at /github/home, which the container's root user
+      # does not own; Firefox refuses to launch under a $HOME it does not
+      # own. Pointing HOME back at root's own home directory is Playwright's
+      # documented workaround for container jobs — see ADR 0019.
+      HOME: /root
     steps:
       - name: Check out
         uses: actions/checkout@v7

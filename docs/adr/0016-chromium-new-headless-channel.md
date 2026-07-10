@@ -4,7 +4,7 @@ Date: 2026-07-10
 
 ## Status
 
-Accepted
+Accepted — amended by [ADR 0018](0018-motion-gated-view-transitions.md)
 
 ## Context
 
@@ -60,3 +60,23 @@ documentation recommends when the two diverge. The shell is no longer
 downloaded anywhere. If a future Chromium fixes the shell's view-transition
 handling, reverting is a two-line config change; the config comment points
 back to this record.
+
+## Amendment (2026-07-10)
+
+Moving the suite into the official Playwright container (ADR 0017) showed
+the freeze was not shell-specific after all: the **real Chromium build in
+new headless mode reproduces the identical stall inside the container**
+(podman locally and the CI `e2e` job — same image), while passing on the
+Fedora host. The channel decision above stands — the authentic build is
+still the right browser to test with — but it is no longer sufficient on
+its own.
+
+The rejected alternative "`reducedMotion: 'reduce'` in the Playwright
+config — verified ineffective" was evaluated against the CSS of the time,
+which only zeroed the `::view-transition-*` animations while the snapshot
+and reveal machinery still engaged (and froze) before any animation frame.
+[ADR 0018](0018-motion-gated-view-transitions.md) changes the CSS to gate
+the `@view-transition` opt-in itself behind
+`prefers-reduced-motion: no-preference`, after which reduced-motion
+emulation prevents the navigation from opting in at all — making that
+option effective and adopted.

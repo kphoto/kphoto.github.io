@@ -21,8 +21,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `scripts/dev.sh` and `scripts/preview.sh` forward extra arguments to Vite
   (the compose services use this to bind `0.0.0.0`).
 
+### Changed
+
+- Reduced-motion visitors no longer engage the view-transition machinery at
+  all: the `@view-transition { navigation: auto }` opt-in now lives inside
+  `@media (prefers-reduced-motion: no-preference)`, replacing the previous
+  approach of zeroing the `::view-transition-*` animations after the
+  transition had already started (ADR 0018).
+- `repo_root()` in `scripts/lib.sh` derives the repository root from the
+  script's own location instead of `git rev-parse`, so it behaves
+  identically on the host, under podman, and in CI containers where git's
+  dubious-ownership protection previously made it print a spurious
+  `[error] not inside a git repository` (ADR 0020).
+
 ### Fixed
 
+- Containerised chromium and mobile-chrome e2e runs no longer freeze for
+  30 s on "header navigation reaches every section": the real Chromium
+  build reproduced the Headless Shell's view-transition rendering stall
+  inside the Playwright container, so the Playwright config now emulates
+  `prefers-reduced-motion: reduce` in every project and — with the opt-in
+  motion-gated — navigations under test never enter the transition
+  pipeline (ADR 0018, amending ADR 0016).
+- Firefox launches again in the CI `e2e` container job: GitHub points
+  `$HOME` at `/github/home`, which the job's root user does not own and
+  which Firefox refuses to run under; the job now pins `HOME=/root`,
+  Playwright's documented workaround (ADR 0019).
 - Chromium and mobile-chrome e2e runs no longer time out on "header
   navigation reaches every section": the site's cross-document view
   transitions freeze Chrome Headless Shell's rendering loop after

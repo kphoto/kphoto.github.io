@@ -28,8 +28,10 @@ The site commits to, and the code enforces:
   section carries `aria-current="page"`; the theme picker is a labelled
   `<select>` (visually hidden label), not a custom widget; images carry alt
   text and author avatars describe the person.
-- **Motion**: `prefers-reduced-motion: reduce` disables the view transitions
-  and the wordmark's cursor-blink animation.
+- **Motion**: under `prefers-reduced-motion: reduce` the page never opts
+  into cross-document view transitions (the snapshot machinery does not
+  engage at all — ADR 0018) and the wordmark's cursor-blink animation is
+  disabled.
 - **Testing**: the Playwright suite exercises the skip link, `aria-current`
   and picker semantics in all four browser projects; markdown-generated
   heading ids give stable in-page anchors.
