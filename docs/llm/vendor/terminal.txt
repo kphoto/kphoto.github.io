@@ -298,3 +298,288 @@ kushal@fedora:~/src/ts/kphoto$
 
 
 
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
+[15:01:47] 1/8 bootstrap
+[15:01:47] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.17.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Post-resolution validation
+➤ YN0002: │ kphoto@workspace:. doesn't provide typescript (p8aebeb), requested by typescript-eslint.
+➤ YN0086: │ Some peer dependencies are incorrectly met by your project; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code.
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done with warnings in 0s 281ms
+[15:01:47] bootstrap complete — try ./scripts/dev.sh
+[15:01:47] 2/8 format check
+[15:01:47] checking formatting (prettier --check)
+Checking formatting...
+[warn] content/blog/2026-07-10-welcome.md
+[warn] Code style issues found in the above file. Run Prettier with --write to fix.
+
+real	0m1.727s
+user	0m2.387s
+sys	0m0.382s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash scripts/format.sh 
+[15:04:36] formatting (prettier --write)
+.github/workflows/ci.yml 9ms (unchanged)
+.github/workflows/deploy.yml 5ms (unchanged)
+.github/workflows/verify.yml 10ms (unchanged)
+.prettierrc.json 10ms (unchanged)
+.vscode/extensions.json 1ms (unchanged)
+.vscode/settings.json 1ms (unchanged)
+.yarnrc.yml 2ms (unchanged)
+CHANGELOG.md 33ms (unchanged)
+compose.yaml 3ms (unchanged)
+content/authors/casey-rivers.yml 1ms (unchanged)
+content/authors/kphoto-team.yml 1ms (unchanged)
+content/authors/kushal.yml 1ms (unchanged)
+content/blog/2026-03-22-good-morning.md 4ms (unchanged)
+content/blog/2026-04-01-good-morning.md 4ms (unchanged)
+content/blog/2026-05-05-typescript-7-native-compiler.md 7ms (unchanged)
+content/blog/2026-05-12-a-markdown-renderer-from-scratch.md 25ms (unchanged)
+content/blog/2026-05-19-scoped-styles-with-declarative-shadow-dom.md 25ms (unchanged)
+content/blog/2026-06-10-five-themes-one-localstorage-key.md 5ms (unchanged)
+content/blog/2026-07-01-what-this-site-is.md 5ms (unchanged)
+content/blog/2026-07-10-welcome.md 2ms
+content/pages/about.md 3ms (unchanged)
+content/pages/contact.md 4ms (unchanged)
+docs/adr/0001-record-architecture-decisions.md 3ms (unchanged)
+docs/adr/0002-agpl-license-and-dependency-policy.md 3ms (unchanged)
+docs/adr/0003-static-site-on-github-pages.md 2ms (unchanged)
+docs/adr/0004-zero-runtime-dependencies.md 3ms (unchanged)
+docs/adr/0005-vite-with-custom-ssg-plugin.md 5ms (unchanged)
+docs/adr/0006-dual-typescript-toolchain.md 7ms (unchanged)
+docs/adr/0007-declarative-shadow-dom-components.md 3ms (unchanged)
+docs/adr/0008-theming-and-contrast.md 3ms (unchanged)
+docs/adr/0009-content-model-and-url-scheme.md 4ms (unchanged)
+docs/adr/0010-test-strategy.md 3ms (unchanged)
+docs/adr/0011-slim-ci-and-pages-deploy.md 4ms (unchanged)
+docs/adr/0012-evergreen-browser-baseline.md 3ms (unchanged)
+docs/adr/0013-localstorage-settings-store.md 3ms (unchanged)
+docs/adr/0014-yarn-and-dependency-policy.md 3ms (unchanged)
+docs/adr/0015-accessibility-commitments.md 4ms (unchanged)
+docs/adr/0016-chromium-new-headless-channel.md 7ms (unchanged)
+docs/adr/0017-containerised-e2e-playwright-image.md 7ms (unchanged)
+docs/adr/0018-motion-gated-view-transitions.md 10ms (unchanged)
+docs/adr/0019-ci-container-home-override.md 4ms (unchanged)
+docs/adr/0020-repo-root-from-script-location.md 3ms (unchanged)
+docs/architecture.md 3ms (unchanged)
+docs/content-authoring.md 9ms (unchanged)
+docs/README.md 2ms (unchanged)
+eslint.config.ts 7ms (unchanged)
+package.json 1ms (unchanged)
+playwright.config.ts 6ms (unchanged)
+README.md 14ms (unchanged)
+src/client/main.ts 10ms (unchanged)
+src/client/storage.test.ts 9ms (unchanged)
+src/client/storage.ts 7ms (unchanged)
+src/client/theme.test.ts 9ms (unchanged)
+src/client/theme.ts 5ms (unchanged)
+src/client/themeInit.test.ts 6ms (unchanged)
+src/client/themeInit.ts 3ms (unchanged)
+src/components/authorCard.ts 8ms (unchanged)
+src/components/components.test.ts 11ms (unchanged)
+src/components/postCard.ts 3ms (unchanged)
+src/components/postMeta.ts 2ms (unchanged)
+src/components/seriesNav.ts 3ms (unchanged)
+src/components/siteFooter.ts 1ms (unchanged)
+src/components/siteHeader.ts 3ms (unchanged)
+src/components/themePicker.ts 2ms (unchanged)
+src/lib/collections.test.ts 8ms (unchanged)
+src/lib/collections.ts 8ms (unchanged)
+src/lib/config.ts 2ms (unchanged)
+src/lib/content.test.ts 13ms (unchanged)
+src/lib/content.ts 16ms (unchanged)
+src/lib/dates.test.ts 3ms (unchanged)
+src/lib/dates.ts 4ms (unchanged)
+src/lib/feed.test.ts 4ms (unchanged)
+src/lib/feed.ts 3ms (unchanged)
+src/lib/frontmatter.test.ts 2ms (unchanged)
+src/lib/frontmatter.ts 2ms (unchanged)
+src/lib/html.test.ts 2ms (unchanged)
+src/lib/html.ts 2ms (unchanged)
+src/lib/markdown.test.ts 4ms (unchanged)
+src/lib/markdown.ts 14ms (unchanged)
+src/lib/readingTime.test.ts 2ms (unchanged)
+src/lib/readingTime.ts 2ms (unchanged)
+src/lib/sitemap.test.ts 2ms (unchanged)
+src/lib/sitemap.ts 2ms (unchanged)
+src/lib/slug.test.ts 1ms (unchanged)
+src/lib/slug.ts 1ms (unchanged)
+src/lib/testFixtures.ts 2ms (unchanged)
+src/lib/types.ts 3ms (unchanged)
+src/lib/yaml.test.ts 3ms (unchanged)
+src/lib/yaml.ts 10ms (unchanged)
+src/pages/authors.ts 3ms (unchanged)
+src/pages/blogIndex.ts 2ms (unchanged)
+src/pages/home.ts 2ms (unchanged)
+src/pages/layout.ts 3ms (unchanged)
+src/pages/markdownPage.ts 1ms (unchanged)
+src/pages/notFound.ts 1ms (unchanged)
+src/pages/post.ts 2ms (unchanged)
+src/pages/routes.test.ts 7ms (unchanged)
+src/pages/routes.ts 5ms (unchanged)
+src/pages/series.ts 4ms (unchanged)
+src/pages/tags.ts 3ms (unchanged)
+src/ssg/loadContent.test.ts 3ms (unchanged)
+src/ssg/loadContent.ts 2ms (unchanged)
+src/ssg/vitePlugin.ts 9ms (unchanged)
+src/styles/global.css 23ms (unchanged)
+src/versionSync.test.ts 3ms (unchanged)
+tests/e2e/site.spec.ts 9ms (unchanged)
+tsconfig.json 1ms (unchanged)
+vite.config.ts 1ms (unchanged)
+vitest.config.ts 1ms (unchanged)
+[15:04:37] format complete
+
+real	0m1.187s
+user	0m1.754s
+sys	0m0.240s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
+[15:05:01] 1/8 bootstrap
+[15:05:01] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.17.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Post-resolution validation
+➤ YN0002: │ kphoto@workspace:. doesn't provide typescript (p8aebeb), requested by typescript-eslint.
+➤ YN0086: │ Some peer dependencies are incorrectly met by your project; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code.
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done with warnings in 0s 290ms
+[15:05:01] bootstrap complete — try ./scripts/dev.sh
+[15:05:01] 2/8 format check
+[15:05:02] checking formatting (prettier --check)
+Checking formatting...
+All matched files use Prettier code style!
+[15:05:03] format complete
+[15:05:03] 3/8 lint
+[15:05:03] linting (eslint, zero warnings allowed)
+[15:05:05] lint complete
+[15:05:05] 4/8 typecheck
+[15:05:06] type-checking with tsc Version 7.0.2 (native compiler)
+[15:05:06] typecheck complete
+[15:05:06] 5/8 unit tests
+[15:05:06] running unit tests with coverage (vitest)
+
+ RUN  v4.1.10 /home/kushal/src/ts/kphoto
+      Coverage enabled with v8
+
+ ✓ src/lib/yaml.test.ts (11 tests) 8ms
+ ✓ src/client/storage.test.ts (9 tests) 6ms
+ ✓ src/lib/frontmatter.test.ts (4 tests) 6ms
+ ✓ src/client/theme.test.ts (7 tests) 5ms
+ ✓ src/lib/dates.test.ts (8 tests) 6ms
+ ✓ src/client/themeInit.test.ts (5 tests) 5ms
+ ✓ src/lib/readingTime.test.ts (3 tests) 5ms
+ ✓ src/lib/slug.test.ts (5 tests) 5ms
+ ✓ src/lib/markdown.test.ts (19 tests) 10ms
+ ✓ src/lib/sitemap.test.ts (1 test) 6ms
+ ✓ src/ssg/loadContent.test.ts (2 tests) 11ms
+ ✓ src/lib/collections.test.ts (9 tests) 16ms
+ ✓ src/lib/content.test.ts (22 tests) 27ms
+ ✓ src/components/components.test.ts (20 tests) 7ms
+ ✓ src/pages/routes.test.ts (14 tests) 7ms
+ ✓ src/lib/html.test.ts (3 tests) 3ms
+ ✓ src/versionSync.test.ts (3 tests) 3ms
+ ✓ src/lib/feed.test.ts (5 tests) 3ms
+
+ Test Files  18 passed (18)
+      Tests  150 passed (150)
+   Start at  15:05:07
+   Duration  531ms (transform 1.13s, setup 0ms, import 1.75s, tests 139ms, environment 2ms)
+
+ % Coverage report from v8
+------------------|---------|----------|---------|---------|-------------------------------------------------------
+File              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                     
+------------------|---------|----------|---------|---------|-------------------------------------------------------
+All files         |   79.94 |    71.36 |   81.01 |   79.89 |                                                       
+ client           |   64.61 |    76.92 |   66.66 |   64.06 |                                                       
+  main.ts         |       0 |        0 |       0 |       0 | 4-63                                                  
+  storage.ts      |     100 |      100 |     100 |     100 |                                                       
+  theme.ts        |     100 |      100 |     100 |     100 |                                                       
+  themeInit.ts    |     100 |      100 |     100 |     100 |                                                       
+ components       |   95.83 |     92.5 |   88.88 |   95.74 |                                                       
+  authorCard.ts   |    87.5 |    89.47 |   66.66 |    87.5 | 6-7                                                   
+  postCard.ts     |     100 |      100 |     100 |     100 |                                                       
+  postMeta.ts     |     100 |      100 |     100 |     100 |                                                       
+  seriesNav.ts    |     100 |       90 |     100 |     100 | 15                                                    
+  siteFooter.ts   |     100 |      100 |     100 |     100 |                                                       
+  siteHeader.ts   |     100 |      100 |     100 |     100 |                                                       
+  themePicker.ts  |     100 |      100 |     100 |     100 |                                                       
+ lib              |   92.14 |    79.44 |   97.26 |    92.4 |                                                       
+  collections.ts  |   97.05 |    78.57 |   88.88 |     100 | 44-60                                                 
+  config.ts       |     100 |      100 |     100 |     100 |                                                       
+  content.ts      |   94.69 |    88.23 |     100 |   94.61 | 54,66,102,152,157,197,245                             
+  dates.ts        |     100 |     91.3 |     100 |     100 | 31,75                                                 
+  feed.ts         |     100 |       50 |     100 |     100 | 8-12                                                  
+  frontmatter.ts  |     100 |     87.5 |     100 |     100 | 18                                                    
+  html.ts         |     100 |       50 |     100 |     100 | 11                                                    
+  markdown.ts     |   91.17 |     70.1 |   93.33 |   91.85 | 136,145-158,171                                       
+  readingTime.ts  |     100 |      100 |     100 |     100 |                                                       
+  sitemap.ts      |     100 |      100 |     100 |     100 |                                                       
+  slug.ts         |     100 |      100 |     100 |     100 |                                                       
+  testFixtures.ts |     100 |      100 |     100 |     100 |                                                       
+  types.ts        |       0 |        0 |       0 |       0 |                                                       
+  yaml.ts         |   84.34 |    78.65 |     100 |   84.21 | 67-71,76-79,89,95,106,135,141,157,160,167,171,198,213 
+ pages            |     100 |    68.75 |     100 |     100 |                                                       
+  authors.ts      |     100 |     62.5 |     100 |     100 | 10-31                                                 
+  blogIndex.ts    |     100 |       50 |     100 |     100 | 11                                                    
+  home.ts         |     100 |      100 |     100 |     100 |                                                       
+  layout.ts       |     100 |      100 |     100 |     100 |                                                       
+  markdownPage.ts |     100 |      100 |     100 |     100 |                                                       
+  notFound.ts     |     100 |      100 |     100 |     100 |                                                       
+  post.ts         |     100 |       70 |     100 |     100 | 13-14                                                 
+  routes.ts       |     100 |       75 |     100 |     100 | 61                                                    
+  series.ts       |     100 |       50 |     100 |     100 | 11-34                                                 
+  tags.ts         |     100 |      100 |     100 |     100 |                                                       
+ ssg              |   10.57 |     1.96 |    9.52 |   10.78 |                                                       
+  loadContent.ts  |   91.66 |       50 |     100 |   91.66 | 15                                                    
+  vitePlugin.ts   |       0 |        0 |       0 |       0 | 13-194                                                
+------------------|---------|----------|---------|---------|-------------------------------------------------------
+[15:05:07] unit tests complete
+[15:05:07] 6/8 build
+[15:05:07] building the static site (vite build + kphoto-ssg)
+vite v8.1.3 building client environment for production...
+✓ 5 modules transformed.
+computing gzip size...
+dist/.vite/manifest.json         0.34 kB │ gzip: 0.17 kB
+dist/assets/styles-DC9AySgQ.css  5.35 kB │ gzip: 1.74 kB
+dist/assets/client-EgueYxfX.js   1.57 kB │ gzip: 0.77 kB
+
+✓ built in 44ms
+error during build:
+ContentValidationError: content validation failed:
+  - content/authors/kushal.yml: "socials.github" must be a non-empty string
+  - content/blog/2026-07-10-welcome.md: unknown author "kushal" (expected content/authors/kushal.yml)
+    at loadSiteModel (file:///home/kushal/src/ts/kphoto/node_modules/.vite-temp/vite.config.ts.timestamp-1783710307980-1d9fad625289e.mjs:709:31)
+    at renderCurrentSite (file:///home/kushal/src/ts/kphoto/node_modules/.vite-temp/vite.config.ts.timestamp-1783710307980-1d9fad625289e.mjs:1629:20)
+    at async PluginContextImpl.closeBundle (file:///home/kushal/src/ts/kphoto/node_modules/.vite-temp/vite.config.ts.timestamp-1783710307980-1d9fad625289e.mjs:1756:18)
+    at async plugin (file:///home/kushal/src/ts/kphoto/node_modules/rolldown/dist/shared/bindingify-input-options-XPJLJOD0.mjs:1737:4)
+    at async plugin.<computed> (file:///home/kushal/src/ts/kphoto/node_modules/rolldown/dist/shared/bindingify-input-options-XPJLJOD0.mjs:1959:12) {
+  issues: [
+    {
+      file: 'content/authors/kushal.yml',
+      message: '"socials.github" must be a non-empty string'
+    },
+    {
+      file: 'content/blog/2026-07-10-welcome.md',
+      message: 'unknown author "kushal" (expected content/authors/kushal.yml)'
+    }
+  ],
+  code: 'PLUGIN_ERROR',
+  plugin: 'kphoto-ssg',
+  hook: 'closeBundle'
+}
+
+real	0m6.600s
+user	0m12.101s
+sys	0m2.463s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
