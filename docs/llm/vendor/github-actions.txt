@@ -1,0 +1,119 @@
+deploy
+run dump #2
+
+    All jobs
+    Run details
+
+Annotations
+1 error
+verify / e2e
+failed 1 minute ago in 2m 41s
+1s
+25s
+1s
+0s
+2s
+3s
+1s
+2m 6s
+Run ./scripts/test-e2e.sh
+[error] not inside a git repository
+[12:54:46] using browsers preinstalled at /ms-playwright
+[12:54:46] running end-to-end tests (playwright)
+
+Running 48 tests using 2 workers
+
+[1/48] [chromium] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post
+[2/48] [chromium] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts
+[3/48] [chromium] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current
+[4/48] [chromium] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header
+[5/48] [chromium] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page
+[6/48] [chromium] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order
+[7/48] [chromium] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours
+[8/48] [chromium] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload
+[9/48] [chromium] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme
+[10/48] [chromium] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status
+[11/48] [chromium] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content
+[12/48] [chromium] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed
+[13/48] [firefox] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts
+[14/48] (retries) [firefox] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (retry #1)
+[15/48] (retries) [firefox] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (retry #2)
+  1) [firefox] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts ──────
+
+    Error: browserType.launch: Failed to launch the browser process.
+    Browser logs:
+
+    ╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+    ║ Firefox is unable to launch if the $HOME folder isn't owned by the current user.                                  ║
+    ║ Workaround: Set the HOME=/root environment variable in your GitHub Actions workflow file when running Playwright. ║
+    ╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+    Call log:
+      - <launching> /ms-playwright/firefox-1532/firefox/firefox -no-remote -headless -profile /tmp/playwright_firefoxdev_profile-4VCwAq -juggler-pipe -silent
+      - <launched> pid=837
+      - [pid=837][err] [837] Sandbox: CanCreateUserNamespace() clone() failure: EPERM
+      - [pid=837][err] Running Nightly as root in a regular user's session is not supported.  ($HOME is /github/home which is owned by pwuser.)
+      - [pid=837] <process did exit: exitCode=1, signal=null>
+      - [pid=837] starting temporary directories cleanup
+      - [pid=837] <gracefully close start>
+      - [pid=837] <kill>
+      - [pid=837] <skipped force kill spawnedProcess.killed=false processClosed=true>
+      - [pid=837] finished temporary directories cleanup
+      - [pid=837] <gracefully close end>
+
+
+    Error Context: test-results/site-home-page-shows-the-hero-and-the-latest-posts-firefox/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Failed to launch the browser process.
+    Browser logs:
+
+    ╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+    ║ Firefox is unable to launch if the $HOME folder isn't owned by the current user.                                  ║
+    ║ Workaround: Set the HOME=/root environment variable in your GitHub Actions workflow file when running Playwright. ║
+    ╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+    Call log:
+      - <launching> /ms-playwright/firefox-1532/firefox/firefox -no-remote -headless -profile /tmp/playwright_firefoxdev_profile-hdYHBh -juggler-pipe -silent
+      - <launched> pid=852
+      - [pid=852][err] [852] Sandbox: CanCreateUserNamespace() clone() failure: EPERM
+      - [pid=852][err] Running Nightly as root in a regular user's session is not supported.  ($HOME is /github/home which is owned by pwuser.)
+      - [pid=852] <process did exit: exitCode=1, signal=null>
+      - [pid=852] starting temporary directories cleanup
+      - [pid=852] <gracefully close start>
+      - [pid=852] <kill>
+      - [pid=852] <skipped force kill spawnedProcess.killed=false processClosed=true>
+      - [pid=852] finished temporary directories cleanup
+      - [pid=852] <gracefully close end>
+
+
+    Error Context: test-results/site-home-page-shows-the-hero-and-the-latest-posts-firefox-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/site-home-page-shows-the-hero-and-the-latest-posts-firefox-retry1/trace.zip
+    Usage:
+
+        yarn playwright show-trace test-results/site-home-page-shows-the-hero-and-the-latest-posts-firefox-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Failed to launch the browser process.
+    Browser logs:
+
+    ╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+    ║ Firefox is unable to launch if the $HOME folder isn't owned by the current user.                                  ║
+    ║ Workaround: Set the HOME=/root environment variable in your GitHub Actions workflow file when running Playwright. ║
+    ╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+    Call log:
+      - <launching> /ms-playwright/firefox-1532/firefox/firefox -no-remote -headless -profile /tmp/playwright_firefoxdev_profile-RDw9Jq -juggler-pipe -silent
+      - <launched> pid=867
+      - [pid=867][err] [867] Sandbox: CanCreateUserNamespace() clone() failure: EPERM
+      - [pid=867][err] Running Nightly as root in a regular user's session is not supported.  ($HOME is /github/home which is owned by pwuser.)
+      - [pid=867] <process did exit: exitCode=1, signal=null>
+      - [pid=867] starting temporary directories cleanup
+      - [pid=867] <gracefully close start>
+0s
+0s
+0s
+0s
