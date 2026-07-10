@@ -547,3 +547,22 @@ real	1m10.311s
 user	1m10.107s
 sys	0m25.458s
 kushal@fedora:~/src/ts/kphoto$ 
+kushal@fedora:~/src/ts/kphoto$ time sudo yarn playwright install-deps
+[sudo] password for kushal: 
+sudo: yarn: command not found
+
+real	0m4.211s
+user	0m0.033s
+sys	0m0.044s
+kushal@fedora:~/src/ts/kphoto$ time yarn playwright install-deps
+BEWARE: your OS is not officially supported by Playwright; installing dependencies for ubuntu24.04-x64 as a fallback.
+Installing dependencies...
+Switching to root user to install dependencies...
+sh: line 1: apt-get: command not found
+Failed to install browser dependencies
+Error: Installation process exited with code: 127
+
+real	0m0.869s
+user	0m0.592s
+sys	0m0.125s
+kushal@fedora:~/src/ts/kphoto$ 
