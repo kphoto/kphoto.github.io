@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-07-10T06:41:58-04:00
+  Generated at   : 2026-07-10T06:45:39-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,12 +17,12 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : 7611c5c5706381574969cdd6b866ee5f63477d5d
-  Commit (short) : 7611c5c
-  Commit date    : 2026-07-10 06:41:16 -0400
-  Commit message : add claude changes
+  Commit (full)  : be0f012e575f0314a04f581d3baf565eb860d21e
+  Commit (short) : be0f012
+  Commit date    : 2026-07-10 06:45:16 -0400
+  Commit message : add terminal
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
-  Files included : 120
+  Files included : 113
   Excluded path  : docs/llm/
   Excluded files : yarn.lock
 
@@ -425,7 +425,7 @@ FOOTER
 mv -f "$TMP_FILE" "$OUTPUT_FILE"
 
 ################################################################################
-# FILE TREE  (all 120 included files)
+# FILE TREE  (all 113 included files)
 ################################################################################
 .
 .
@@ -470,7 +470,6 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 ├── eslint.config.ts
 ├── export.sh
 ├── .gitignore
-├── index.html
 ├── LICENSE
 ├── package.json
 ├── playwright.config.ts
@@ -495,10 +494,6 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   ├── test-unit.sh
 │   └── typecheck.sh
 ├── src
-│   ├── assets
-│   │   ├── hero.png
-│   │   ├── typescript.svg
-│   │   └── vite.svg
 │   ├── client
 │   │   ├── main.ts
 │   │   ├── storage.test.ts
@@ -516,7 +511,6 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── siteFooter.ts
 │   │   ├── siteHeader.ts
 │   │   └── themePicker.ts
-│   ├── counter.ts
 │   ├── lib
 │   │   ├── collections.test.ts
 │   │   ├── collections.ts
@@ -543,7 +537,6 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── types.ts
 │   │   ├── yaml.test.ts
 │   │   └── yaml.ts
-│   ├── main.ts
 │   ├── pages
 │   │   ├── authors.ts
 │   │   ├── blogIndex.ts
@@ -560,7 +553,6 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── loadContent.test.ts
 │   │   ├── loadContent.ts
 │   │   └── vitePlugin.ts
-│   ├── style.css
 │   └── styles
 │       └── global.css
 ├── tests
@@ -2893,40 +2885,6 @@ Thumbs.db
 
 
 ################################################################################
-# FILE: index.html
-################################################################################
-
---- METADATA ---
-  File name:             index.html
-  Relative path:         index.html
-  Absolute path:         /home/kushal/src/ts/kphoto/index.html
-  Size:                  356 B (356 bytes)
-  Last modified:         2026-07-09 15:16:02.067101844 -0400
-  Permissions:           -rw-r--r--
-  Owner:                 kushal:kushal
-  Inode:                 20256849
-  Hard links:            1
-  MIME type:             text/html
-  SHA-256:               58a603c771c0f99a07aa88188936cdd72cf5afedf6887e459584245fe5edfd70
-  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
-
---- CONTENT ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>kphoto</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
-</html>
-
-
-################################################################################
 # FILE: LICENSE
 ################################################################################
 
@@ -4329,69 +4287,6 @@ log "type-checking with tsc $(yarn tsc --version) (native compiler)"
 yarn typecheck
 log "typecheck complete"
 
-
-################################################################################
-# FILE: src/assets/hero.png
-################################################################################
-
---- METADATA ---
-  File name:             hero.png
-  Relative path:         src/assets/hero.png
-  Absolute path:         /home/kushal/src/ts/kphoto/src/assets/hero.png
-  Size:                  12.7 KiB (13057 bytes)
-  Last modified:         2026-07-09 15:16:02.067861333 -0400
-  Permissions:           -rw-r--r--
-  Owner:                 kushal:kushal
-  Inode:                 20256855
-  Hard links:            1
-  MIME type:             image/png
-  SHA-256:               881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c
-  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
-
---- CONTENT ---
-[Binary file — content omitted. Size: 12.7 KiB, SHA-256: 881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c]
-
-################################################################################
-# FILE: src/assets/typescript.svg
-################################################################################
-
---- METADATA ---
-  File name:             typescript.svg
-  Relative path:         src/assets/typescript.svg
-  Absolute path:         /home/kushal/src/ts/kphoto/src/assets/typescript.svg
-  Size:                  1.2 KiB (1303 bytes)
-  Last modified:         2026-07-09 15:16:02.067928449 -0400
-  Permissions:           -rw-r--r--
-  Owner:                 kushal:kushal
-  Inode:                 20256856
-  Hard links:            1
-  MIME type:             image/svg+xml
-  SHA-256:               e45b2f008f0a40c1011b0fd460081f8bb00df063a41240449159da164724d96c
-  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
-
---- CONTENT ---
-[Binary file — content omitted. Size: 1.2 KiB, SHA-256: e45b2f008f0a40c1011b0fd460081f8bb00df063a41240449159da164724d96c]
-
-################################################################################
-# FILE: src/assets/vite.svg
-################################################################################
-
---- METADATA ---
-  File name:             vite.svg
-  Relative path:         src/assets/vite.svg
-  Absolute path:         /home/kushal/src/ts/kphoto/src/assets/vite.svg
-  Size:                  8.5 KiB (8709 bytes)
-  Last modified:         2026-07-09 15:16:02.067993822 -0400
-  Permissions:           -rw-r--r--
-  Owner:                 kushal:kushal
-  Inode:                 20256857
-  Hard links:            1
-  MIME type:             image/svg+xml
-  SHA-256:               5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f
-  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
-
---- CONTENT ---
-[Binary file — content omitted. Size: 8.5 KiB, SHA-256: 5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f]
 
 ################################################################################
 # FILE: src/client/main.ts
@@ -5937,36 +5832,6 @@ select:focus-visible {
 <select id="theme-select" autocomplete="off">${options}</select>
 </template>
 </kp-theme-picker>`;
-}
-
-
-################################################################################
-# FILE: src/counter.ts
-################################################################################
-
---- METADATA ---
-  File name:             counter.ts
-  Relative path:         src/counter.ts
-  Absolute path:         /home/kushal/src/ts/kphoto/src/counter.ts
-  Size:                  274 B (274 bytes)
-  Last modified:         2026-07-09 15:16:02.068071348 -0400
-  Permissions:           -rw-r--r--
-  Owner:                 kushal:kushal
-  Inode:                 20256858
-  Hard links:            1
-  MIME type:             application/javascript
-  SHA-256:               463d42c0e00508ec48e0f349b6d0f161b5a88908f0416a7195090dced3adfc41
-  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
-
---- CONTENT ---
-export function setupCounter(element: HTMLButtonElement) {
-  let counter = 0
-  const setCounter = (count: number) => {
-    counter = count
-    element.innerHTML = `Count is ${counter}`
-  }
-  element.addEventListener('click', () => setCounter(counter + 1))
-  setCounter(0)
 }
 
 
@@ -8514,87 +8379,6 @@ export function parseYaml(source: string): YamlMap {
 
 
 ################################################################################
-# FILE: src/main.ts
-################################################################################
-
---- METADATA ---
-  File name:             main.ts
-  Relative path:         src/main.ts
-  Absolute path:         /home/kushal/src/ts/kphoto/src/main.ts
-  Size:                  2.4 KiB (2461 bytes)
-  Last modified:         2026-07-09 15:27:08.278598108 -0400
-  Permissions:           -rw-r--r--
-  Owner:                 kushal:kushal
-  Inode:                 20256859
-  Hard links:            1
-  MIME type:             application/javascript
-  SHA-256:               ac6f1768e3788f515a1cea9776c4b03a45e69f24827181bc3c6cc829690843a5
-  Last git commit:       b24a66f 2026-07-09 15:27:56 -0400 build again
-
---- CONTENT ---
-import './style.css'
-import typescriptLogo from './assets/typescript.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import { setupCounter } from './counter'
-
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-<section id="center">
-  <div class="hero">
-    <img src="${heroImg}" class="base" width="170" height="179">
-    <img src="${typescriptLogo}" class="framework" alt="TypeScript logo"/>
-    <img src="${viteLogo}" class="vite" alt="Vite logo" />
-  </div>
-  <div>
-    <h1>Get started</h1>
-    <p>Edit <code>src/main.ts</code> and save to test <code>HMR</code></p>
-  </div>
-  <button id="counter" type="button" class="counter"></button>
-</section>
-
-<div class="ticks"></div>
-
-<section id="next-steps">
-  <div id="docs">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#documentation-icon"></use></svg>
-    <h2>Documentation</h2>
-    <p>Your questions, answered</p>
-    <ul>
-      <li>
-        <a href="https://vite.dev/" target="_blank">
-          <img class="logo" src="${viteLogo}" alt="" />
-          Explore Vite
-        </a>
-      </li>
-      <li>
-        <a href="https://www.typescriptlang.org" target="_blank">
-          <img class="button-icon" src="${typescriptLogo}" alt="">
-          Learn more
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div id="social">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#social-icon"></use></svg>
-    <h2>Connect with us</h2>
-    <p>Join the Vite community</p>
-    <ul>
-      <li><a href="https://github.com/vitejs/vite" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#github-icon"></use></svg>GitHub</a></li>
-      <li><a href="https://chat.vite.dev/" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#discord-icon"></use></svg>Discord</a></li>
-      <li><a href="https://x.com/vite_js" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#x-icon"></use></svg>X.com</a></li>
-      <li><a href="https://bsky.app/profile/vite.dev" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#bluesky-icon"></use></svg>Bluesky</a></li>
-    </ul>
-  </div>
-</section>
-
-<div class="ticks"></div>
-<section id="spacer"></section>
-`
-
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
-
-
-################################################################################
 # FILE: src/pages/authors.ts
 ################################################################################
 
@@ -9752,323 +9536,6 @@ export function kphotoSsg(): Plugin {
 
 
 ################################################################################
-# FILE: src/style.css
-################################################################################
-
---- METADATA ---
-  File name:             style.css
-  Relative path:         src/style.css
-  Absolute path:         /home/kushal/src/ts/kphoto/src/style.css
-  Size:                  4.9 KiB (5060 bytes)
-  Last modified:         2026-07-09 15:16:02.068203447 -0400
-  Permissions:           -rw-r--r--
-  Owner:                 kushal:kushal
-  Inode:                 20256860
-  Hard links:            1
-  MIME type:             text/plain
-  SHA-256:               5ec45168127a4b9229c69b55d25b3c5c6d3fcf284e0cf2bf24533285f7f89208
-  Last git commit:       2975c5c 2026-07-09 15:21:33 -0400 initialize git repository
-
---- CONTENT ---
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-body {
-  margin: 0;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
-}
-
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-}
-
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#app {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
-  width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
-}
-
-
-################################################################################
 # FILE: src/styles/global.css
 ################################################################################
 
@@ -10770,10 +10237,10 @@ export default defineConfig({
 ################################################################################
 # DUMP SUMMARY
 ################################################################################
-  Files dumped   : 120
-  Total size     : 2.1 MiB (2229070 bytes)
+  Files dumped   : 113
+  Total size     : 2.0 MiB (2197850 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-07-10T06:42:01-04:00
+  Completed at   : 2026-07-10T06:45:42-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
