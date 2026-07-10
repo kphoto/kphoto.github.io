@@ -1,0 +1,413 @@
+/*
+ * kphoto global stylesheet.
+ *
+ * Design tokens live on :root and per-theme [data-theme] blocks; they pierce
+ * every component's shadow DOM, so this file plus each component's scoped
+ * <style> is the entire styling story. All text/background pairs below were
+ * verified against WCAG AA (4.5:1) — see docs/adr/0008-theming.md.
+ */
+
+/* ---------- tokens ---------- */
+
+:root {
+  color-scheme: light;
+
+  --bg: #f8f8f6;
+  --surface: #efefec;
+  --text: #1b1b19;
+  --muted: #5b5852;
+  --border: #dcdad4;
+  --accent: #c08a00;
+  --accent-strong: #7d5300;
+  --focus: #7d5300;
+
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:
+    ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+  --measure: 44rem;
+  --measure-wide: 60rem;
+  --gutter: clamp(1rem, 4vw, 2rem);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #101014;
+  --surface: #1a1a20;
+  --text: #e9e7e2;
+  --muted: #a29e96;
+  --border: #2c2c33;
+  --accent: #f2b544;
+  --accent-strong: #f2b544;
+  --focus: #f2b544;
+}
+
+[data-theme='solarized-light'] {
+  color-scheme: light;
+  --bg: #fdf6e3;
+  --surface: #eee8d5;
+  --text: #586e75;
+  --muted: #556a72;
+  --border: #d9d2bc;
+  --accent: #b58900;
+  --accent-strong: #7a5c00;
+  --focus: #7a5c00;
+}
+
+[data-theme='solarized-dark'] {
+  color-scheme: dark;
+  --bg: #002b36;
+  --surface: #073642;
+  --text: #9db1b1;
+  --muted: #95a6a6;
+  --border: #0f4552;
+  --accent: #deb043;
+  --accent-strong: #deb043;
+  --focus: #deb043;
+}
+
+/* ---------- cross-document view transitions (MPA) ---------- */
+
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* ---------- base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-block-size: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  accent-color: var(--accent-strong);
+}
+
+img {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+main {
+  inline-size: 100%;
+  max-inline-size: calc(var(--measure) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: 2rem var(--gutter) 4rem;
+}
+
+main:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+a {
+  color: var(--accent-strong);
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  padding: 0.08em 0.35em;
+}
+
+/* Undefined-at-parse-time custom elements default to inline; make the
+   layout components behave as blocks before (and without) JavaScript. */
+kp-header,
+kp-footer,
+kp-post-card,
+kp-post-meta,
+kp-series-nav,
+kp-author-card {
+  display: block;
+}
+
+kp-theme-picker {
+  display: inline-block;
+}
+
+/* ---------- skip link ---------- */
+
+.skip-link {
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline-start: 0.5rem;
+  z-index: 10;
+  padding: 0.5rem 0.9rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  transform: translateY(-300%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* ---------- shared page furniture ---------- */
+
+.page-header {
+  margin-block-end: 2rem;
+}
+
+.page-header h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.eyebrow {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-strong);
+}
+
+.lede {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.lede + .lede {
+  margin-block-start: 0.5rem;
+}
+
+.section-heading {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  border-block-end: 1px solid var(--border);
+  padding-block-end: 0.4rem;
+  margin: 0 0 0.25rem;
+}
+
+.post-list {
+  display: grid;
+}
+
+.post-list + .post-list,
+.page-header + .post-list {
+  margin-block-start: 1rem;
+}
+
+.more {
+  margin: 1.25rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.index-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+
+.index-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.7rem;
+  border-block-end: 1px solid var(--border);
+}
+
+.index-list a {
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.index-list a:hover {
+  color: var(--accent-strong);
+  text-decoration: underline;
+}
+
+.index-list .count {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.author-list {
+  display: grid;
+  gap: 1rem;
+}
+
+/* ---------- home hero ---------- */
+
+.hero {
+  padding-block: 1.5rem 2.5rem;
+  border-block-end: 1px solid var(--border);
+  margin-block-end: 2rem;
+}
+
+.hero-frontmatter {
+  display: inline-block;
+  margin: 0 0 1.5rem;
+  padding: 0.9rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-inline-start: 3px solid var(--accent);
+  border-radius: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--muted);
+  overflow-x: auto;
+  max-inline-size: 100%;
+}
+
+.hero-frontmatter code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+.hero h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2.1rem, 6vw, 3.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+/* ---------- post page ---------- */
+
+.post .page-header {
+  margin-block-end: 1.5rem;
+}
+
+.post kp-post-meta {
+  margin-block-start: 1rem;
+}
+
+.post kp-series-nav {
+  margin-block: 1.5rem;
+}
+
+.post-author {
+  margin-block-start: 3rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+/* ---------- prose (rendered markdown) ---------- */
+
+.prose {
+  font-size: 1.02rem;
+}
+
+.prose > :first-child {
+  margin-block-start: 0;
+}
+
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  margin-block: 2rem 0.6rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+}
+
+.prose h3 {
+  font-size: 1.2rem;
+}
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose blockquote {
+  margin-block: 0 1.1rem;
+}
+
+.prose ul,
+.prose ol {
+  padding-inline-start: 1.4rem;
+}
+
+.prose li + li {
+  margin-block-start: 0.25rem;
+}
+
+.prose blockquote {
+  border-inline-start: 3px solid var(--accent);
+  background: var(--surface);
+  border-radius: 0 0.4rem 0.4rem 0;
+  padding: 0.7rem 1rem;
+  color: var(--muted);
+}
+
+.prose blockquote > :last-child {
+  margin-block-end: 0;
+}
+
+.prose pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+  line-height: 1.55;
+  margin-block: 0 1.1rem;
+}
+
+.prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.85rem;
+}
+
+.prose hr {
+  border: none;
+  border-block-start: 1px solid var(--border);
+  margin-block: 2rem;
+}
+
+.prose img {
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+}

@@ -1,6 +1,6 @@
 name: kphoto team
-email: hello@mkphoto.example
-bio: The team behind Merciful Potato Magazine — building free, open-source tools with .NET 10 and Blazor WebAssembly.
+email: hello@kphoto.example
+bio: The team behind kphoto — showing what TypeScript 7 and the bare web platform can do, with zero runtime dependencies.
 avatar: images/authors/kphoto-team.png
 socials:
   github: kphoto
