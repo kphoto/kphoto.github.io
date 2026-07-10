@@ -1,26 +1,26 @@
 kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash export.sh > docs/llm/vendor/output.txt; time yarn; time yarn run build; time bash scripts/bootstrap.sh; time bash check.sh 
 
-real	0m3.267s
-user	0m1.457s
-sys	0m2.253s
+real	0m3.443s
+user	0m1.570s
+sys	0m2.340s
 ➤ YN0000: · Yarn 4.17.1
 ➤ YN0000: ┌ Resolution step
-➤ YN0000: └ Completed
+➤ YN0085: │ + typescript@npm:6.0.3, typescript@patch:typescript@npm%3A6.0.3#optional!builtin<compat/typescript>::version=6.0.3&hash=5786d5
+➤ YN0000: └ Completed in 0s 511ms
 ➤ YN0000: ┌ Post-resolution validation
 ➤ YN0002: │ kphoto@workspace:. doesn't provide typescript (p8aebeb), requested by typescript-eslint.
 ➤ YN0086: │ Some peer dependencies are incorrectly met by your project; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code.
 ➤ YN0000: └ Completed
 ➤ YN0000: ┌ Fetch step
-➤ YN0000: └ Completed
+➤ YN0013: │ 2 packages were added to the project (+ 46.5 MiB).
+➤ YN0000: └ Completed in 1s 33ms
 ➤ YN0000: ┌ Link step
-➤ YN0092: │ ESM support for PnP uses the experimental loader API and is therefore experimental
-➤ YN0000: └ Completed
-➤ YN0000: · Done with warnings in 0s 170ms
+➤ YN0000: └ Completed in 0s 924ms
+➤ YN0000: · Done with warnings in 2s 503ms
 
-real	0m0.338s
-user	0m0.374s
-sys	0m0.098s
-Using Yarn PnP with Vite is discouraged and PnP-specific bugs will no longer be actively worked on. Please switch to a different nodeLinker mode or to a different package manager.
+real	0m2.735s
+user	0m2.042s
+sys	0m1.236s
 vite v8.1.3 building client environment for production...
 ✓ 5 modules transformed.
 computing gzip size...
@@ -28,13 +28,13 @@ dist/.vite/manifest.json         0.34 kB │ gzip: 0.17 kB
 dist/assets/styles-BpsJfnMC.css  5.49 kB │ gzip: 1.77 kB
 dist/assets/client-EgueYxfX.js   1.57 kB │ gzip: 0.77 kB
 
-✓ built in 39ms
+✓ built in 24ms
 kphoto-ssg: wrote 27 pages and feeds
 
-real	0m0.988s
-user	0m0.964s
-sys	0m0.682s
-[07:06:02] installing dependencies (yarn install --immutable)
+real	0m0.395s
+user	0m0.412s
+sys	0m0.215s
+[07:21:56] installing dependencies (yarn install --immutable)
 ➤ YN0000: · Yarn 4.17.1
 ➤ YN0000: ┌ Resolution step
 ➤ YN0000: └ Completed
@@ -45,16 +45,15 @@ sys	0m0.682s
 ➤ YN0000: ┌ Fetch step
 ➤ YN0000: └ Completed
 ➤ YN0000: ┌ Link step
-➤ YN0092: │ ESM support for PnP uses the experimental loader API and is therefore experimental
 ➤ YN0000: └ Completed
-➤ YN0000: · Done with warnings in 0s 185ms
-[07:06:02] bootstrap complete — try ./scripts/dev.sh
+➤ YN0000: · Done with warnings in 0s 271ms
+[07:21:56] bootstrap complete — try ./scripts/dev.sh
 
-real	0m0.372s
-user	0m0.422s
-sys	0m0.088s
-[07:06:02] 1/8 bootstrap
-[07:06:02] installing dependencies (yarn install --immutable)
+real	0m0.466s
+user	0m0.526s
+sys	0m0.117s
+[07:21:56] 1/8 bootstrap
+[07:21:57] installing dependencies (yarn install --immutable)
 ➤ YN0000: · Yarn 4.17.1
 ➤ YN0000: ┌ Resolution step
 ➤ YN0000: └ Completed
@@ -65,83 +64,486 @@ sys	0m0.088s
 ➤ YN0000: ┌ Fetch step
 ➤ YN0000: └ Completed
 ➤ YN0000: ┌ Link step
-➤ YN0092: │ ESM support for PnP uses the experimental loader API and is therefore experimental
 ➤ YN0000: └ Completed
-➤ YN0000: · Done with warnings in 0s 174ms
-[07:06:02] bootstrap complete — try ./scripts/dev.sh
-[07:06:02] 2/8 format check
-[07:06:02] installing dependencies (yarn install --immutable)
-➤ YN0000: · Yarn 4.17.1
-➤ YN0000: ┌ Resolution step
-➤ YN0000: └ Completed
-➤ YN0000: ┌ Post-resolution validation
-➤ YN0002: │ kphoto@workspace:. doesn't provide typescript (p8aebeb), requested by typescript-eslint.
-➤ YN0086: │ Some peer dependencies are incorrectly met by your project; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code.
-➤ YN0000: └ Completed
-➤ YN0000: ┌ Fetch step
-➤ YN0000: └ Completed
-➤ YN0000: ┌ Link step
-➤ YN0092: │ ESM support for PnP uses the experimental loader API and is therefore experimental
-➤ YN0000: └ Completed
-➤ YN0000: · Done with warnings in 0s 176ms
-[07:06:03] checking formatting (prettier --check)
+➤ YN0000: · Done with warnings in 0s 259ms
+[07:21:57] bootstrap complete — try ./scripts/dev.sh
+[07:21:57] 2/8 format check
+[07:21:57] checking formatting (prettier --check)
 Checking formatting...
-[warn] .pnp.cjs
-[warn] .pnp.loader.mjs
-[warn] docs/llm/vendor/claude-000.md
-[warn] docs/llm/vendor/claude-001.md
-[warn] docs/llm/vendor/claude-instructions.md
-[warn] eslint.config.ts
-[warn] src/client/main.ts
-[warn] src/client/storage.test.ts
-[warn] src/client/storage.ts
-[warn] src/client/theme.test.ts
-[warn] src/client/theme.ts
-[warn] src/client/themeInit.test.ts
-[warn] src/client/themeInit.ts
-[warn] src/components/authorCard.ts
-[warn] src/components/components.test.ts
-[warn] src/components/seriesNav.ts
-[warn] src/components/siteFooter.ts
-[warn] src/lib/collections.test.ts
-[warn] src/lib/collections.ts
-[warn] src/lib/config.ts
-[warn] src/lib/content.test.ts
-[warn] src/lib/content.ts
-[warn] src/lib/dates.test.ts
-[warn] src/lib/dates.ts
-[warn] src/lib/feed.test.ts
-[warn] src/lib/frontmatter.test.ts
-[warn] src/lib/frontmatter.ts
-[warn] src/lib/html.ts
-[warn] src/lib/markdown.test.ts
-[warn] src/lib/markdown.ts
-[warn] src/lib/readingTime.test.ts
-[warn] src/lib/readingTime.ts
-[warn] src/lib/sitemap.test.ts
-[warn] src/lib/slug.test.ts
-[warn] src/lib/testFixtures.ts
-[warn] src/lib/yaml.test.ts
-[warn] src/lib/yaml.ts
-[warn] src/pages/authors.ts
-[warn] src/pages/blogIndex.ts
-[warn] src/pages/home.ts
-[warn] src/pages/layout.ts
-[warn] src/pages/markdownPage.ts
-[warn] src/pages/notFound.ts
-[warn] src/pages/post.ts
-[warn] src/pages/routes.test.ts
-[warn] src/pages/routes.ts
-[warn] src/pages/series.ts
-[warn] src/pages/tags.ts
-[warn] src/ssg/loadContent.test.ts
-[warn] src/ssg/loadContent.ts
-[warn] src/ssg/vitePlugin.ts
-[warn] src/styles/global.css
-[warn] tests/e2e/site.spec.ts
-[warn] Code style issues found in 53 files. Run Prettier with --write to fix.
+All matched files use Prettier code style!
+[07:21:58] format complete
+[07:21:58] 3/8 lint
+[07:21:58] linting (eslint, zero warnings allowed)
+[07:22:01] lint complete
+[07:22:01] 4/8 typecheck
+[07:22:01] type-checking with tsc Version 7.0.2 (native compiler)
+[07:22:01] typecheck complete
+[07:22:01] 5/8 unit tests
+[07:22:01] running unit tests with coverage (vitest)
 
-real	0m2.672s
-user	0m3.690s
-sys	0m0.549s
+ RUN  v4.1.10 /home/kushal/src/ts/kphoto
+      Coverage enabled with v8
+
+ ✓ src/client/storage.test.ts (9 tests) 6ms
+ ✓ src/lib/dates.test.ts (8 tests) 8ms
+ ✓ src/lib/readingTime.test.ts (3 tests) 5ms
+ ✓ src/lib/yaml.test.ts (11 tests) 9ms
+ ✓ src/client/themeInit.test.ts (5 tests) 6ms
+ ✓ src/lib/slug.test.ts (5 tests) 6ms
+ ✓ src/lib/markdown.test.ts (19 tests) 10ms
+ ✓ src/client/theme.test.ts (7 tests) 8ms
+ ✓ src/lib/frontmatter.test.ts (4 tests) 8ms
+ ✓ src/ssg/loadContent.test.ts (2 tests) 11ms
+ ✓ src/lib/collections.test.ts (9 tests) 13ms
+ ✓ src/lib/feed.test.ts (5 tests) 3ms
+ ✓ src/lib/content.test.ts (22 tests) 21ms
+ ✓ src/components/components.test.ts (20 tests) 6ms
+ ✓ src/pages/routes.test.ts (14 tests) 7ms
+ ✓ src/lib/html.test.ts (3 tests) 3ms
+ ✓ src/lib/sitemap.test.ts (1 test) 4ms
+
+ Test Files  17 passed (17)
+      Tests  147 passed (147)
+   Start at  07:22:02
+   Duration  497ms (transform 1.03s, setup 0ms, import 1.63s, tests 132ms, environment 1ms)
+
+ % Coverage report from v8
+------------------|---------|----------|---------|---------|-------------------------------------------------------
+File              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                     
+------------------|---------|----------|---------|---------|-------------------------------------------------------
+All files         |   79.94 |    71.36 |   81.01 |   79.89 |                                                       
+ client           |   64.61 |    76.92 |   66.66 |   64.06 |                                                       
+  main.ts         |       0 |        0 |       0 |       0 | 4-63                                                  
+  storage.ts      |     100 |      100 |     100 |     100 |                                                       
+  theme.ts        |     100 |      100 |     100 |     100 |                                                       
+  themeInit.ts    |     100 |      100 |     100 |     100 |                                                       
+ components       |   95.83 |     92.5 |   88.88 |   95.74 |                                                       
+  authorCard.ts   |    87.5 |    89.47 |   66.66 |    87.5 | 6-7                                                   
+  postCard.ts     |     100 |      100 |     100 |     100 |                                                       
+  postMeta.ts     |     100 |      100 |     100 |     100 |                                                       
+  seriesNav.ts    |     100 |       90 |     100 |     100 | 15                                                    
+  siteFooter.ts   |     100 |      100 |     100 |     100 |                                                       
+  siteHeader.ts   |     100 |      100 |     100 |     100 |                                                       
+  themePicker.ts  |     100 |      100 |     100 |     100 |                                                       
+ lib              |   92.14 |    79.44 |   97.26 |    92.4 |                                                       
+  collections.ts  |   97.05 |    78.57 |   88.88 |     100 | 44-60                                                 
+  config.ts       |     100 |      100 |     100 |     100 |                                                       
+  content.ts      |   94.69 |    88.23 |     100 |   94.61 | 54,66,102,152,157,197,245                             
+  dates.ts        |     100 |     91.3 |     100 |     100 | 31,75                                                 
+  feed.ts         |     100 |       50 |     100 |     100 | 8-12                                                  
+  frontmatter.ts  |     100 |     87.5 |     100 |     100 | 18                                                    
+  html.ts         |     100 |       50 |     100 |     100 | 11                                                    
+  markdown.ts     |   91.17 |     70.1 |   93.33 |   91.85 | 136,145-158,171                                       
+  readingTime.ts  |     100 |      100 |     100 |     100 |                                                       
+  sitemap.ts      |     100 |      100 |     100 |     100 |                                                       
+  slug.ts         |     100 |      100 |     100 |     100 |                                                       
+  testFixtures.ts |     100 |      100 |     100 |     100 |                                                       
+  types.ts        |       0 |        0 |       0 |       0 |                                                       
+  yaml.ts         |   84.34 |    78.65 |     100 |   84.21 | 67-71,76-79,89,95,106,135,141,157,160,167,171,198,213 
+ pages            |     100 |    68.75 |     100 |     100 |                                                       
+  authors.ts      |     100 |     62.5 |     100 |     100 | 10-31                                                 
+  blogIndex.ts    |     100 |       50 |     100 |     100 | 11                                                    
+  home.ts         |     100 |      100 |     100 |     100 |                                                       
+  layout.ts       |     100 |      100 |     100 |     100 |                                                       
+  markdownPage.ts |     100 |      100 |     100 |     100 |                                                       
+  notFound.ts     |     100 |      100 |     100 |     100 |                                                       
+  post.ts         |     100 |       70 |     100 |     100 | 13-14                                                 
+  routes.ts       |     100 |       75 |     100 |     100 | 61                                                    
+  series.ts       |     100 |       50 |     100 |     100 | 11-34                                                 
+  tags.ts         |     100 |      100 |     100 |     100 |                                                       
+ ssg              |   10.57 |     1.96 |    9.52 |   10.78 |                                                       
+  loadContent.ts  |   91.66 |       50 |     100 |   91.66 | 15                                                    
+  vitePlugin.ts   |       0 |        0 |       0 |       0 | 13-194                                                
+------------------|---------|----------|---------|---------|-------------------------------------------------------
+[07:22:02] unit tests complete
+[07:22:02] 6/8 build
+[07:22:02] building the static site (vite build + kphoto-ssg)
+vite v8.1.3 building client environment for production...
+✓ 5 modules transformed.
+computing gzip size...
+dist/.vite/manifest.json         0.34 kB │ gzip: 0.17 kB
+dist/assets/styles-BpsJfnMC.css  5.49 kB │ gzip: 1.77 kB
+dist/assets/client-EgueYxfX.js   1.57 kB │ gzip: 0.77 kB
+
+✓ built in 20ms
+kphoto-ssg: wrote 27 pages and feeds
+[07:22:03] build complete — output in dist/
+[07:22:03] 7/8 end-to-end tests
+[07:22:03] ensuring playwright browsers are installed
+Removing unused browser at /home/kushal/.cache/ms-playwright/chromium-1187
+Removing unused browser at /home/kushal/.cache/ms-playwright/chromium_headless_shell-1187
+Removing unused browser at /home/kushal/.cache/ms-playwright/firefox-1490
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+Downloading Chrome for Testing 149.0.7827.55 (playwright chromium v1228) from https://cdn.playwright.dev/builds/cft/149.0.7827.55/linux64/chrome-linux64.zip
+177 MiB [====================] 100% 0.0s
+Chrome for Testing 149.0.7827.55 (playwright chromium v1228) downloaded to /home/kushal/.cache/ms-playwright/chromium-1228
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+Downloading Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) from https://cdn.playwright.dev/builds/cft/149.0.7827.55/linux64/chrome-headless-shell-linux64.zip
+114.2 MiB [====================] 100% 0.0s
+Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) downloaded to /home/kushal/.cache/ms-playwright/chromium_headless_shell-1228
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+Downloading Firefox 151.0 (playwright firefox v1532) from https://cdn.playwright.dev/dbazure/download/playwright/builds/firefox/1532/firefox-ubuntu-24.04.zip
+104.9 MiB [====================] 100% 0.0s
+Firefox 151.0 (playwright firefox v1532) downloaded to /home/kushal/.cache/ms-playwright/firefox-1532
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+Downloading WebKit 26.5 (playwright webkit v2311) from https://cdn.playwright.dev/dbazure/download/playwright/builds/webkit/2311/webkit-ubuntu-24.04.zip
+100.9 MiB [====================] 100% 0.0s
+WebKit 26.5 (playwright webkit v2311) downloaded to /home/kushal/.cache/ms-playwright/webkit-2311
+BEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.
+Playwright Host validation warning: 
+╔══════════════════════════════════════════════════════╗
+║ Host system is missing dependencies to run browsers. ║
+║ Please install them with the following command:      ║
+║                                                      ║
+║     sudo yarn playwright install-deps                ║
+║                                                      ║
+║ Alternatively, use apt:                              ║
+║     sudo apt-get install libicu74\                   ║
+║         libjpeg-turbo8                               ║
+║                                                      ║
+║ <3 Playwright Team                                   ║
+╚══════════════════════════════════════════════════════╝
+    at validateDependenciesLinux (/home/kushal/src/ts/kphoto/node_modules/playwright-core/lib/coreBundle.js:27624:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Registry._validateHostRequirements (/home/kushal/src/ts/kphoto/node_modules/playwright-core/lib/coreBundle.js:29051:18)
+    at async Registry._validateHostRequirementsForExecutableIfNeeded (/home/kushal/src/ts/kphoto/node_modules/playwright-core/lib/coreBundle.js:29173:11)
+    at async Registry.validateHostRequirementsForExecutablesIfNeeded (/home/kushal/src/ts/kphoto/node_modules/playwright-core/lib/coreBundle.js:29162:11)
+    at async installBrowsers (/home/kushal/src/ts/kphoto/node_modules/playwright-core/lib/coreBundle.js:67954:5)
+    at async _Command.<anonymous> (/home/kushal/src/ts/kphoto/node_modules/playwright-core/lib/coreBundle.js:69577:7)
+[07:22:27] running end-to-end tests (playwright)
+
+Running 48 tests using 8 workers
+
+  ✓   1 [chromium] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (331ms)
+  ✘   2 [chromium] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (30.0s)
+  ✓   3 [chromium] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (377ms)
+  ✓   4 [chromium] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (299ms)
+  ✓   5 [chromium] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (305ms)
+  ✓   6 [chromium] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (319ms)
+  ✓   7 [chromium] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (398ms)
+  ✓   8 [chromium] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (343ms)
+  ✓   9 [chromium] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (167ms)
+  ✓  10 [chromium] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (135ms)
+  ✓  11 [chromium] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (161ms)
+  ✓  12 [chromium] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (133ms)
+  ✓  13 [firefox] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (1.4s)
+  ✓  14 [firefox] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (1.1s)
+  ✓  15 [firefox] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (1.2s)
+  ✓  16 [firefox] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (2.4s)
+  ✓  17 [firefox] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (1.3s)
+  ✓  18 [firefox] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (857ms)
+  ✓  19 [firefox] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (1.2s)
+  ✓  20 [firefox] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (754ms)
+  ✓  21 [firefox] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (422ms)
+  ✓  22 [firefox] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (299ms)
+  ✓  23 [firefox] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (686ms)
+  ✓  24 [firefox] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (474ms)
+  ✘  25 [webkit] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (2ms)
+  ✘  26 [webkit] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (2ms)
+  ✘  27 [webkit] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (2ms)
+  ✘  28 [webkit] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (1ms)
+  ✘  29 [webkit] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (2ms)
+  ✘  30 [webkit] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (2ms)
+  ✘  31 [webkit] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (2ms)
+  ✘  32 [webkit] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (3ms)
+  ✘  33 [webkit] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (2ms)
+  ✘  34 [webkit] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (3ms)
+  ✘  35 [webkit] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (3ms)
+  ✘  36 [webkit] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (2ms)
+  ✓  37 [mobile-chrome] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (303ms)
+  ✓  38 [mobile-chrome] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (163ms)
+  ✘  39 [mobile-chrome] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (30.0s)
+  ✓  40 [mobile-chrome] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (178ms)
+  ✓  41 [mobile-chrome] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (176ms)
+  ✓  42 [mobile-chrome] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (204ms)
+  ✓  43 [mobile-chrome] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (142ms)
+  ✓  44 [mobile-chrome] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (166ms)
+  ✓  45 [mobile-chrome] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (103ms)
+  ✓  46 [mobile-chrome] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (116ms)
+  ✓  47 [mobile-chrome] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (91ms)
+  ✓  48 [mobile-chrome] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (94ms)
+
+
+  1) [chromium] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('kp-header').getByRole('link', { name: 'Tags', exact: true })
+        - locator resolved to <a href="/tags/">Tags</a>
+      - attempting click action
+        - waiting for element to be visible, enabled and stable
+
+
+      38 |       ['Contact', '/contact/', 'Contact'],
+      39 |     ] as const) {
+    > 40 |       await page.locator('kp-header').getByRole('link', { name, exact: true }).click();
+         |                                                                                ^
+      41 |       await expect(page).toHaveURL(url);
+      42 |       await expect(page.getByRole('heading', { level: 1 })).toHaveText(heading);
+      43 |     }
+        at /home/kushal/src/ts/kphoto/tests/e2e/site.spec.ts:40:80
+
+    Error Context: test-results/site-header-navigation-reaches-every-section-from-the-header-chromium/error-context.md
+
+  2) [webkit] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts ───────
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo yarn playwright install-deps                ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libicu74\                   ║
+    ║         libjpeg-turbo8                               ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+
+    Error Context: test-results/site-home-page-shows-the-hero-and-the-latest-posts-webkit/error-context.md
+
+  3) [webkit] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post ───
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo yarn playwright install-deps                ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libicu74\                   ║
+    ║         libjpeg-turbo8                               ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+
+    Error Context: test-results/site-home-page-navigates-from-a-post-card-to-the-post-webkit/error-context.md
+
+  4) [webkit] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current 
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo yarn playwright install-deps                ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libicu74\                   ║
+    ║         libjpeg-turbo8                               ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+
+    Error Context: test-results/site-header-navigation-mar-97090-t-section-with-aria-current-webkit/error-context.md
+
+  5) [webkit] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header 
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo yarn playwright install-deps                ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libicu74\                   ║
+    ║         libjpeg-turbo8                               ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+
+    Error Context: test-results/site-header-navigation-reaches-every-section-from-the-header-webkit/error-context.md
+
+  6) [webkit] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page 
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo yarn playwright install-deps                ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libicu74\                   ║
+    ║         libjpeg-turbo8                               ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+
+    Error Context: test-results/site-date-stamped-URLs-two-4b37e-ewest-first-on-the-tag-page-webkit/error-context.md
+
+  7) [webkit] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order 
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo yarn playwright install-deps                ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libicu74\                   ║
+    ║         libjpeg-turbo8                               ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+
+    Error Context: test-results/site-series-series-page-lists-episodes-in-ascending-order-webkit/error-context.md
+
+  8) [webkit] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours ────
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo yarn playwright install-deps                ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libicu74\                   ║
+    ║         libjpeg-turbo8                               ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+
+    Error Context: test-results/site-series-a-middle-episode-links-to-its-neighbours-webkit/error-context.md
+
+  9) [webkit] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload 
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo yarn playwright install-deps                ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libicu74\                   ║
+    ║         libjpeg-turbo8                               ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+
+    Error Context: test-results/site-theming-the-picker-ap-73e91-me-and-it-survives-a-reload-webkit/error-context.md
+
+  10) [webkit] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme ───────
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo yarn playwright install-deps                ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libicu74\                   ║
+    ║         libjpeg-turbo8                               ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+
+    Error Context: test-results/site-theming-system-follows-the-OS-colour-scheme-webkit/error-context.md
+
+  11) [webkit] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status 
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo yarn playwright install-deps                ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libicu74\                   ║
+    ║         libjpeg-turbo8                               ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+
+    Error Context: test-results/site-resilience-and-access-07e16--404-page-with-a-404-status-webkit/error-context.md
+
+  12) [webkit] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content 
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo yarn playwright install-deps                ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libicu74\                   ║
+    ║         libjpeg-turbo8                               ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+
+    Error Context: test-results/site-resilience-and-access-17c46-k-jumps-to-the-main-content-webkit/error-context.md
+
+  13) [webkit] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed 
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo yarn playwright install-deps                ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libicu74\                   ║
+    ║         libjpeg-turbo8                               ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+
+    Error Context: test-results/site-resilience-and-access-ceebd-ge-advertises-the-Atom-feed-webkit/error-context.md
+
+  14) [mobile-chrome] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('kp-header').getByRole('link', { name: 'Tags', exact: true })
+        - locator resolved to <a href="/tags/">Tags</a>
+      - attempting click action
+        - waiting for element to be visible, enabled and stable
+
+
+      38 |       ['Contact', '/contact/', 'Contact'],
+      39 |     ] as const) {
+    > 40 |       await page.locator('kp-header').getByRole('link', { name, exact: true }).click();
+         |                                                                                ^
+      41 |       await expect(page).toHaveURL(url);
+      42 |       await expect(page.getByRole('heading', { level: 1 })).toHaveText(heading);
+      43 |     }
+        at /home/kushal/src/ts/kphoto/tests/e2e/site.spec.ts:40:80
+
+    Error Context: test-results/site-header-navigation-reaches-every-section-from-the-header-mobile-chrome/error-context.md
+
+  14 failed
+    [chromium] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header 
+    [webkit] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts ────────
+    [webkit] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post ────
+    [webkit] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current 
+    [webkit] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header 
+    [webkit] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page 
+    [webkit] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order 
+    [webkit] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours ─────
+    [webkit] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload 
+    [webkit] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme ─────────
+    [webkit] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status 
+    [webkit] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content 
+    [webkit] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed 
+    [mobile-chrome] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header 
+  34 passed (39.0s)
+
+real	1m10.311s
+user	1m10.107s
+sys	0m25.458s
 kushal@fedora:~/src/ts/kphoto$ 
