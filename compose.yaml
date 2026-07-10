@@ -1,0 +1,53 @@
+# Containerised workflows via podman compose (docker compose also works).
+# See ADR 0017 and the README's "End-to-end tests in a container" section.
+#
+# The image tag MUST match devDependencies["@playwright/test"] in package.json
+# exactly — Playwright only guarantees its bundled browsers work with the
+# matching library version. src/versionSync.test.ts fails the unit suite if
+# the pins ever drift apart.
+#
+#   podman compose run --rm e2e    # build the site + full Playwright suite
+#   podman compose up dev          # dev server on http://localhost:5173
+#   podman compose up preview      # built site on http://localhost:4173
+#
+# `init: true` reaps zombie browser processes and `ipc: host` prevents
+# Chromium crashing from shared-memory exhaustion, both as recommended by
+# the Playwright Docker documentation. `:Z` relabels the bind mount for
+# SELinux (Fedora). `corepack enable` shadows the image's npm-installed
+# classic yarn with the Yarn 4 version pinned in package.json.
+
+x-base: &base
+  image: mcr.microsoft.com/playwright:v1.61.1-noble
+  init: true
+  ipc: host
+  working_dir: /work
+  volumes:
+    - .:/work:Z
+    - yarn-cache:/root/.yarn
+  environment:
+    COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
+
+services:
+  e2e:
+    <<: *base
+    command: ['bash', '-c', 'corepack enable && ./scripts/build.sh && ./scripts/test-e2e.sh']
+
+  dev:
+    <<: *base
+    command: ['bash', '-c', 'corepack enable && ./scripts/dev.sh --host 0.0.0.0']
+    ports:
+      - '5173:5173'
+
+  preview:
+    <<: *base
+    command:
+      [
+        'bash',
+        '-c',
+        'corepack enable && ./scripts/preview.sh --host 0.0.0.0 --port 4173 --strictPort',
+      ]
+    ports:
+      - '4173:4173'
+
+volumes:
+  yarn-cache:

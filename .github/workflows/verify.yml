@@ -1,12 +1,17 @@
 # Reusable verification suite. Deliberately slim: every step just calls a
 # script from scripts/, so CI runs exactly what ./check.sh runs locally.
+#
+# Two jobs: "checks" runs the fast host gates; "e2e" runs the Playwright
+# suite inside the official Playwright image — the same image compose.yaml
+# uses locally (ADR 0017). The image tag must match @playwright/test in
+# package.json; src/versionSync.test.ts enforces this.
 name: verify
 
 on:
   workflow_call:
 
 jobs:
-  verify:
+  checks:
     runs-on: ubuntu-latest
     steps:
       - name: Check out
@@ -35,6 +40,31 @@ jobs:
 
       - name: Unit tests
         run: ./scripts/test-unit.sh
+
+      - name: Build
+        run: ./scripts/build.sh
+
+  e2e:
+    runs-on: ubuntu-latest
+    container:
+      # Must match devDependencies["@playwright/test"] — see ADR 0017.
+      image: mcr.microsoft.com/playwright:v1.61.1-noble
+      options: --init --ipc=host
+    steps:
+      - name: Check out
+        uses: actions/checkout@v7
+
+      - name: Enable corepack (yarn)
+        run: corepack enable
+
+      - name: Set up Node 24
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: yarn
+
+      - name: Bootstrap
+        run: ./scripts/bootstrap.sh
 
       - name: Build
         run: ./scripts/build.sh

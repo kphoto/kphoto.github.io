@@ -5,6 +5,31 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Containerised end-to-end testing: `compose.yaml` (services `e2e`, `dev`,
+  `preview`) on the official pinned Playwright image, driven by podman
+  compose (docker also works), plus the `scripts/test-e2e-container.sh`
+  wrapper and a CI `e2e` job running in the same image (ADR 0017).
+- `src/versionSync.test.ts` — unit test that fails when the Playwright
+  container image pins in `compose.yaml` or `.github/workflows/verify.yml`
+  drift from `devDependencies["@playwright/test"]`.
+- `./check.sh --e2e-host` flag; `./check.sh` now prefers the containerised
+  e2e run when podman (or `$CONTAINER_ENGINE`) is available.
+- `scripts/dev.sh` and `scripts/preview.sh` forward extra arguments to Vite
+  (the compose services use this to bind `0.0.0.0`).
+
+### Fixed
+
+- Chromium and mobile-chrome e2e runs no longer time out on "header
+  navigation reaches every section": the site's cross-document view
+  transitions freeze Chrome Headless Shell's rendering loop after
+  link-click navigations, so the chromium projects now run the real
+  Chromium build in "new headless" mode via `channel: 'chromium'`
+  (ADR 0016). Browser installs skip the now-unused shell (`--no-shell`).
+
 ## [0.1.0] - 2026-07-09
 
 ### Added
@@ -50,4 +75,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Corrected the `kphoto-team` author file, which carried a bio and e-mail
   address copy-pasted from an unrelated project.
 
+[Unreleased]: https://github.com/kphoto/kphoto.github.io/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/kphoto/kphoto.github.io/releases/tag/v0.1.0

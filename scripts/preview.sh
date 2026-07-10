@@ -8,4 +8,4 @@ cd "$(repo_root)"
 ensure_node; ensure_deps
 [[ -d dist ]] || "$HERE/build.sh"
 log "previewing dist/ (vite preview)"
-exec yarn preview
+exec yarn preview "$@"

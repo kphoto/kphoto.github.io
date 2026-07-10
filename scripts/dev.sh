@@ -7,4 +7,4 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$(repo_root)"
 ensure_node; ensure_deps
 log "starting dev server (vite)"
-exec yarn dev
+exec yarn dev "$@"

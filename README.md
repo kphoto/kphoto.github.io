@@ -54,8 +54,9 @@ cd kphoto.github.io
 Before pushing, run everything CI runs:
 
 ```bash
-./check.sh            # full suite, including Playwright end-to-end tests
-./check.sh --no-e2e   # skip the browser tests
+./check.sh             # full suite; e2e runs in the Playwright container if podman is available
+./check.sh --e2e-host  # force the browser tests onto the host instead
+./check.sh --no-e2e    # skip the browser tests
 ```
 
 ## Scripts
@@ -63,20 +64,44 @@ Before pushing, run everything CI runs:
 Every script works from any directory and does exactly one thing. CI calls
 these same scripts, so local and CI behaviour cannot drift.
 
-| Script                   | What it does                                                 |
-| ------------------------ | ------------------------------------------------------------ |
-| `./scripts/bootstrap.sh` | Verify Node 24+, enable corepack, `yarn install --immutable` |
-| `./scripts/dev.sh`       | Dev server; every route renders live from `content/`         |
-| `./scripts/format.sh`    | Prettier write mode (`--check` to verify only)               |
-| `./scripts/lint.sh`      | ESLint, type-aware rules, zero warnings allowed              |
-| `./scripts/typecheck.sh` | `tsc --noEmit` with the TypeScript 7 native compiler         |
-| `./scripts/test-unit.sh` | Vitest unit suite with V8 coverage                           |
-| `./scripts/build.sh`     | Static build into `dist/` (pages + feed + sitemap)           |
-| `./scripts/test-e2e.sh`  | Playwright suite against a preview of `dist/`                |
-| `./scripts/preview.sh`   | Serve `dist/` the way GitHub Pages will                      |
-| `./scripts/clean.sh`     | Remove build and test artifacts                              |
-| `./check.sh`             | All of the above in CI order, then `./export.sh`             |
-| `./export.sh`            | Dump all tracked files to `docs/llm/dump.txt` for LLM use    |
+| Script                            | What it does                                                 |
+| --------------------------------- | ------------------------------------------------------------ |
+| `./scripts/bootstrap.sh`          | Verify Node 24+, enable corepack, `yarn install --immutable` |
+| `./scripts/dev.sh`                | Dev server; every route renders live from `content/`         |
+| `./scripts/format.sh`             | Prettier write mode (`--check` to verify only)               |
+| `./scripts/lint.sh`               | ESLint, type-aware rules, zero warnings allowed              |
+| `./scripts/typecheck.sh`          | `tsc --noEmit` with the TypeScript 7 native compiler         |
+| `./scripts/test-unit.sh`          | Vitest unit suite with V8 coverage                           |
+| `./scripts/build.sh`              | Static build into `dist/` (pages + feed + sitemap)           |
+| `./scripts/test-e2e.sh`           | Playwright suite against a preview of `dist/`                |
+| `./scripts/test-e2e-container.sh` | Same suite inside the official Playwright image (podman)     |
+| `./scripts/preview.sh`            | Serve `dist/` the way GitHub Pages will                      |
+| `./scripts/clean.sh`              | Remove build and test artifacts                              |
+| `./check.sh`                      | All of the above in CI order, then `./export.sh`             |
+| `./export.sh`                     | Dump all tracked files to `docs/llm/dump.txt` for LLM use    |
+
+## End-to-end tests in a container
+
+Playwright supports only a handful of host distributions — Fedora is not one
+of them — so the e2e suite runs inside the **official Playwright image**,
+the exact image the CI `e2e` job uses
+([ADR 0017](docs/adr/0017-containerised-e2e-playwright-image.md)):
+
+```bash
+sudo dnf install podman podman-compose   # once
+./scripts/test-e2e-container.sh          # = podman compose run --rm e2e
+podman compose up dev                    # containerised dev server on :5173
+podman compose up preview                # containerised built site on :4173
+```
+
+Docker works too: `CONTAINER_ENGINE=docker ./scripts/test-e2e-container.sh`.
+The image tag in `compose.yaml` and `.github/workflows/verify.yml` must match
+`@playwright/test` in `package.json` exactly; the unit suite
+(`src/versionSync.test.ts`) fails the moment they drift. The chromium
+projects run the real Chromium build in "new headless" mode instead of the
+Chrome Headless Shell, whose rendering loop freezes on this site's
+cross-document view transitions
+([ADR 0016](docs/adr/0016-chromium-new-headless-channel.md)).
 
 ## Writing content
 

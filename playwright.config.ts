@@ -20,9 +20,14 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
   },
   projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    // channel 'chromium' runs the real Chromium build in "new headless" mode
+    // instead of the default Chrome Headless Shell, whose rendering loop
+    // freezes after link-click navigations when the site's cross-document
+    // view transitions (`@view-transition` in global.css) are active.
+    // See ADR 0016.
+    { name: 'chromium', use: { ...devices['Desktop Chrome'], channel: 'chromium' } },
     { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
     { name: 'webkit', use: { ...devices['Desktop Safari'] } },
-    { name: 'mobile-chrome', use: { ...devices['Pixel 7'] } },
+    { name: 'mobile-chrome', use: { ...devices['Pixel 7'], channel: 'chromium' } },
   ],
 });
