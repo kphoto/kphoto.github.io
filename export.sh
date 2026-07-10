@@ -10,8 +10,8 @@
 # Behaviour:
 #   • Resolves its own location; works regardless of CWD.
 #   • Silently exits if no Git repository is found at that location.
-#   • Dumps all Git-tracked files (excluding docs/llm/** and yarn.lock) to
-#     docs/llm/dump.txt.
+#   • Dumps all Git-tracked files (excluding docs/llm/**, yarn.lock, .pnp.cjs,
+#     and .pnp.loader.mjs) to docs/llm/dump.txt.
 #   • Prepends its own source to the dump (self-documentation).
 #   • Emits rich per-file metadata (name, path, size, permissions, mtime, SHA-256).
 #   • Includes a file-tree view of all included files.
@@ -50,7 +50,12 @@ EXCLUDE_DIR="docs/llm"
 # Individual files to exclude from the dump, in addition to EXCLUDE_DIR.
 # A bare name (no slash) is excluded wherever it appears; a name containing a
 # slash is treated as an exact repo-relative path.
-EXCLUDE_FILES=("yarn.lock", ".pnp.cjs", ".pnp.loader.mjs")
+#
+# yarn.lock, .pnp.cjs, and .pnp.loader.mjs are all Yarn-generated artifacts
+# (lockfile + PnP resolution map + PnP loader shim). They stay tracked in git
+# for Yarn's Zero-Installs workflow, but they are pure noise for an LLM
+# context dump, so they're excluded here rather than from git itself.
+EXCLUDE_FILES=("yarn.lock" ".pnp.cjs" ".pnp.loader.mjs")
 EXCLUDE_FILES_DISPLAY="$(printf '%s, ' "${EXCLUDE_FILES[@]}")"
 EXCLUDE_FILES_DISPLAY="${EXCLUDE_FILES_DISPLAY%, }"
 

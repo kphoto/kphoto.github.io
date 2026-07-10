@@ -43,6 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   every push to `main`.
 - Documentation: README with prominent AI/LLM assistance disclosure,
   architecture and content-authoring guides, and ADRs 0001–0015.
+- Ignore generated .pnp files when generating `dump.txt` using `export.sh`
 
 ### Fixed
 
