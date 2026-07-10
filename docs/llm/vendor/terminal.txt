@@ -136,4 +136,81 @@ Done in 0.28s.
 real	0m0.390s
 user	0m0.312s
 sys	0m0.158s
-kushal@fedora:~/src/ts/kphoto$ 
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash export.sh > docs/llm/vendor/output.txt; time yarn; time yarn run build
+
+real	0m0.491s
+user	0m0.231s
+sys	0m0.304s
+yarn install v1.22.22
+[1/4] Resolving packages...
+success Already up-to-date.
+Done in 0.04s.
+
+real	0m0.144s
+user	0m0.105s
+sys	0m0.054s
+yarn run v1.22.22
+$ tsc && vite build
+vite v8.1.4 building client environment for production...
+✓ 9 modules transformed.
+computing gzip size...
+dist/index.html                  0.45 kB │ gzip: 0.29 kB
+dist/assets/vite-BF8QNONU.svg    8.70 kB │ gzip: 1.60 kB
+dist/assets/hero-CLDdwZDr.png   13.05 kB
+dist/assets/index-CsUDhMuy.css   4.10 kB │ gzip: 1.46 kB
+dist/assets/index-B4vdZNPd.js    4.52 kB │ gzip: 2.02 kB
+
+✓ built in 39ms
+Done in 0.22s.
+
+real	0m0.331s
+user	0m0.349s
+sys	0m0.115s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash export.sh > docs/llm/vendor/output.txt; time yarn; time yarn run build
+
+real	0m3.279s
+user	0m1.505s
+sys	0m2.197s
+error This project's package.json defines "packageManager": "yarn@4.17.1". However the current global version of Yarn is 1.22.22.
+
+Presence of the "packageManager" field indicates that the project is meant to be used with Corepack, a tool included by default with all official Node.js distributions starting from 16.9 and 14.19.
+Corepack must currently be enabled by running corepack enable in your terminal. For more information, check out https://yarnpkg.com/corepack.
+
+real	0m0.128s
+user	0m0.076s
+sys	0m0.050s
+error This project's package.json defines "packageManager": "yarn@4.17.1". However the current global version of Yarn is 1.22.22.
+
+Presence of the "packageManager" field indicates that the project is meant to be used with Corepack, a tool included by default with all official Node.js distributions starting from 16.9 and 14.19.
+Corepack must currently be enabled by running corepack enable in your terminal. For more information, check out https://yarnpkg.com/corepack.
+
+real	0m0.116s
+user	0m0.079s
+sys	0m0.042s
+kushal@fedora:~/src/ts/kphoto$ git rm index.html src/counter.ts src/main.ts src/style.css \
+       src/assets/hero.png src/assets/typescript.svg src/assets/vite.svg
+rm 'index.html'
+rm 'src/assets/hero.png'
+rm 'src/assets/typescript.svg'
+rm 'src/assets/vite.svg'
+rm 'src/counter.ts'
+rm 'src/main.ts'
+rm 'src/style.css'
+kushal@fedora:~/src/ts/kphoto$ sudo corepak enable
+[sudo] password for kushal: 
+sudo: corepak: command not found
+kushal@fedora:~/src/ts/kphoto$ sudo corepack enable
+sudo: corepack: command not found
+kushal@fedora:~/src/ts/kphoto$ time npm install --global corepack
+
+changed 1 package in 347ms
+
+real	0m0.400s
+user	0m0.233s
+sys	0m0.078s
+kushal@fedora:~/src/ts/kphoto$ time corepack enable
+
+real	0m0.047s
+user	0m0.040s
+sys	0m0.009s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash export.sh > docs/llm/vendor/output.txt; time yarn; time yarn run build
