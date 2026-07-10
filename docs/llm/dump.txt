@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-07-10T06:51:23-04:00
+  Generated at   : 2026-07-10T06:53:29-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,10 +17,10 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : c3f79a076b12e6cd2ef0e5a3c736aa2d502ca01a
-  Commit (short) : c3f79a0
-  Commit date    : 2026-07-10 06:51:19 -0400
-  Commit message : exclude pnp
+  Commit (full)  : 370f7af23067b0cc4055dd48b4473607e4ea299b
+  Commit (short) : 370f7af
+  Commit date    : 2026-07-10 06:51:44 -0400
+  Commit message : run dump again
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
   Files included : 115
   Excluded path  : docs/llm/
@@ -28,7 +28,7 @@ REPOSITORY METADATA
 
 GIT WORKING TREE STATUS (first 20 lines)
 ═════════════════════════════════════════════════════════════════════════════════
- M docs/llm/vendor/output.txt
+  (clean — no uncommitted changes)
 
 ################################################################################
 # FILE: export.sh  [THIS SCRIPT — included for full context]
@@ -38,7 +38,7 @@ GIT WORKING TREE STATUS (first 20 lines)
   File name:             export.sh
   Relative path:         export.sh
   Size:                  16.6 KiB (17047 bytes)
-  Last modified:         2026-07-10 06:51:07.315626239 -0400
+  Last modified:         2026-07-10 06:52:35.139635268 -0400
   Permissions:           -rwxr-xr-x
   SHA-256:               575f4ba95ef066e38383d8b0489c9cce1b16fb54e2e948892d8d89d6bce83109
   MIME type:             text/x-shellscript
@@ -2425,7 +2425,7 @@ export default defineConfig(
   Relative path:         export.sh
   Absolute path:         /home/kushal/src/ts/kphoto/export.sh
   Size:                  16.6 KiB (17047 bytes)
-  Last modified:         2026-07-10 06:51:07.315626239 -0400
+  Last modified:         2026-07-10 06:52:35.139635268 -0400
   Permissions:           -rwxr-xr-x
   Owner:                 kushal:kushal
   Inode:                 20354423
@@ -23071,7 +23071,7 @@ __metadata:
   Files dumped   : 115
   Total size     : 2.6 MiB (2828777 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-07-10T06:51:26-04:00
+  Completed at   : 2026-07-10T06:53:32-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
