@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-07-10T07:21:49-04:00
+  Generated at   : 2026-07-10T08:49:59-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,12 +17,12 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : a5cbbfb1bd7b2af58ef069c55c1a9d69517c9162
-  Commit (short) : a5cbbfb
-  Commit date    : 2026-07-10 07:21:40 -0400
-  Commit message : add missing hidden files
+  Commit (full)  : ba244cba3414ddeb6c86385b25c135c1446f1cf8
+  Commit (short) : ba244cb
+  Commit date    : 2026-07-10 08:48:06 -0400
+  Commit message : add claude changes
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
-  Files included : 121
+  Files included : 126
   Excluded path  : docs/llm/
   Excluded files : yarn.lock, .pnp.cjs, .pnp.loader.mjs
 
@@ -430,12 +430,13 @@ FOOTER
 mv -f "$TMP_FILE" "$OUTPUT_FILE"
 
 ################################################################################
-# FILE TREE  (all 121 included files)
+# FILE TREE  (all 126 included files)
 ################################################################################
 .
 .
 ├── CHANGELOG.md
 ├── check.sh
+├── compose.yaml
 ├── content
 │   ├── authors
 │   │   ├── casey-rivers.yml
@@ -467,7 +468,9 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── 0012-evergreen-browser-baseline.md
 │   │   ├── 0013-localstorage-settings-store.md
 │   │   ├── 0014-yarn-and-dependency-policy.md
-│   │   └── 0015-accessibility-commitments.md
+│   │   ├── 0015-accessibility-commitments.md
+│   │   ├── 0016-chromium-new-headless-channel.md
+│   │   └── 0017-containerised-e2e-playwright-image.md
 │   ├── architecture.md
 │   ├── content-authoring.md
 │   └── README.md
@@ -502,6 +505,7 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   ├── lib.sh
 │   ├── lint.sh
 │   ├── preview.sh
+│   ├── test-e2e-container.sh
 │   ├── test-e2e.sh
 │   ├── test-unit.sh
 │   └── typecheck.sh
@@ -565,8 +569,9 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── loadContent.test.ts
 │   │   ├── loadContent.ts
 │   │   └── vitePlugin.ts
-│   └── styles
-│       └── global.css
+│   ├── styles
+│   │   └── global.css
+│   └── versionSync.test.ts
 ├── tests
 │   └── e2e
 │       └── site.spec.ts
@@ -587,15 +592,15 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   File name:             CHANGELOG.md
   Relative path:         CHANGELOG.md
   Absolute path:         /home/kushal/src/ts/kphoto/CHANGELOG.md
-  Size:                  2.8 KiB (2966 bytes)
-  Last modified:         2026-07-10 07:05:25.984712737 -0400
-  Permissions:           -rw-r--r--
+  Size:                  4.1 KiB (4245 bytes)
+  Last modified:         2026-07-10 08:37:51.000000000 -0400
+  Permissions:           -rw-rw-r--
   Owner:                 kushal:kushal
-  Inode:                 20354472
+  Inode:                 20383626
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               ad083bdd0fb8ceaea4d5e81be87a6c30d02b96d60f65d77fedfcb7924df67846
-  Last git commit:       691da6e 2026-07-10 07:05:49 -0400 ignore pnp files in dump.txt
+  SHA-256:               02d7336d96cad5289712873d654aaa56b9fdcce4dd1a987390f3d5d14f01c8cb
+  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
 
 --- CONTENT ---
 # Changelog
@@ -604,6 +609,31 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Added
+
+- Containerised end-to-end testing: `compose.yaml` (services `e2e`, `dev`,
+  `preview`) on the official pinned Playwright image, driven by podman
+  compose (docker also works), plus the `scripts/test-e2e-container.sh`
+  wrapper and a CI `e2e` job running in the same image (ADR 0017).
+- `src/versionSync.test.ts` — unit test that fails when the Playwright
+  container image pins in `compose.yaml` or `.github/workflows/verify.yml`
+  drift from `devDependencies["@playwright/test"]`.
+- `./check.sh --e2e-host` flag; `./check.sh` now prefers the containerised
+  e2e run when podman (or `$CONTAINER_ENGINE`) is available.
+- `scripts/dev.sh` and `scripts/preview.sh` forward extra arguments to Vite
+  (the compose services use this to bind `0.0.0.0`).
+
+### Fixed
+
+- Chromium and mobile-chrome e2e runs no longer time out on "header
+  navigation reaches every section": the site's cross-document view
+  transitions freeze Chrome Headless Shell's rendering loop after
+  link-click navigations, so the chromium projects now run the real
+  Chromium build in "new headless" mode via `channel: 'chromium'`
+  (ADR 0016). Browser installs skip the now-unused shell (`--no-shell`).
 
 ## [0.1.0] - 2026-07-09
 
@@ -650,6 +680,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Corrected the `kphoto-team` author file, which carried a bio and e-mail
   address copy-pasted from an unrelated project.
 
+[Unreleased]: https://github.com/kphoto/kphoto.github.io/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/kphoto/kphoto.github.io/releases/tag/v0.1.0
 
 
@@ -661,23 +692,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   File name:             check.sh
   Relative path:         check.sh
   Absolute path:         /home/kushal/src/ts/kphoto/check.sh
-  Size:                  1.3 KiB (1383 bytes)
-  Last modified:         2026-07-09 21:52:24.000000000 -0400
+  Size:                  1.9 KiB (1987 bytes)
+  Last modified:         2026-07-10 08:37:51.000000000 -0400
   Permissions:           -rwxr-xr-x
   Owner:                 kushal:kushal
-  Inode:                 20354471
+  Inode:                 20383628
   Hard links:            1
   MIME type:             text/x-shellscript
-  SHA-256:               f888ed1d9a2e6895bee7c6822737a325790f271093c721faa373f48ccf416ece
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               7b5e6ca18d5320e6233ea709b95a936e8062935a6c57db99c18c931463990e84
+  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
 
 --- CONTENT ---
 #!/usr/bin/env bash
 # =============================================================================
 # check.sh — run everything CI runs, locally, in the same order.
 #
-# Usage:  ./check.sh            # full suite including Playwright e2e
-#         ./check.sh --no-e2e   # skip the browser tests (they need browsers)
+# Usage:  ./check.sh             # full suite; e2e runs in a container when
+#                                # podman (or $CONTAINER_ENGINE) is available,
+#                                # matching the CI environment exactly
+#         ./check.sh --e2e-host  # force the browser tests onto the host
+#         ./check.sh --no-e2e    # skip the browser tests entirely
 #
 # Order: bootstrap → format check → lint → typecheck → unit tests → build
 #        → e2e tests → export.sh (regenerates docs/llm/dump.txt).
@@ -690,10 +724,12 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$(repo_root)"
 
 RUN_E2E=1
+E2E_HOST=0
 for arg in "$@"; do
   case "$arg" in
     --no-e2e) RUN_E2E=0 ;;
-    *) die "unknown argument: $arg (supported: --no-e2e)" ;;
+    --e2e-host) E2E_HOST=1 ;;
+    *) die "unknown argument: $arg (supported: --no-e2e, --e2e-host)" ;;
   esac
 done
 
@@ -710,14 +746,96 @@ log "5/8 unit tests"
 log "6/8 build"
 ./scripts/build.sh
 if (( RUN_E2E )); then
-  log "7/8 end-to-end tests"
-  ./scripts/test-e2e.sh
+  if (( E2E_HOST )); then
+    log "7/8 end-to-end tests (host, --e2e-host)"
+    ./scripts/test-e2e.sh
+  elif command -v "${CONTAINER_ENGINE:-podman}" >/dev/null 2>&1; then
+    log "7/8 end-to-end tests (container — see ADR 0017)"
+    ./scripts/test-e2e-container.sh
+  else
+    log "7/8 end-to-end tests (host — ${CONTAINER_ENGINE:-podman} not found)"
+    ./scripts/test-e2e.sh
+  fi
 else
   log "7/8 end-to-end tests — skipped (--no-e2e)"
 fi
 log "8/8 export repository dump"
 ./export.sh >/dev/null
 log "all checks passed ✔"
+
+
+################################################################################
+# FILE: compose.yaml
+################################################################################
+
+--- METADATA ---
+  File name:             compose.yaml
+  Relative path:         compose.yaml
+  Absolute path:         /home/kushal/src/ts/kphoto/compose.yaml
+  Size:                  1.6 KiB (1706 bytes)
+  Last modified:         2026-07-10 08:37:51.000000000 -0400
+  Permissions:           -rw-rw-r--
+  Owner:                 kushal:kushal
+  Inode:                 20383629
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               2c8a2d9296ca5592a6dd63522daf02cd34db745cf326eb4961a4df1e725c6822
+  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
+
+--- CONTENT ---
+# Containerised workflows via podman compose (docker compose also works).
+# See ADR 0017 and the README's "End-to-end tests in a container" section.
+#
+# The image tag MUST match devDependencies["@playwright/test"] in package.json
+# exactly — Playwright only guarantees its bundled browsers work with the
+# matching library version. src/versionSync.test.ts fails the unit suite if
+# the pins ever drift apart.
+#
+#   podman compose run --rm e2e    # build the site + full Playwright suite
+#   podman compose up dev          # dev server on http://localhost:5173
+#   podman compose up preview      # built site on http://localhost:4173
+#
+# `init: true` reaps zombie browser processes and `ipc: host` prevents
+# Chromium crashing from shared-memory exhaustion, both as recommended by
+# the Playwright Docker documentation. `:Z` relabels the bind mount for
+# SELinux (Fedora). `corepack enable` shadows the image's npm-installed
+# classic yarn with the Yarn 4 version pinned in package.json.
+
+x-base: &base
+  image: mcr.microsoft.com/playwright:v1.61.1-noble
+  init: true
+  ipc: host
+  working_dir: /work
+  volumes:
+    - .:/work:Z
+    - yarn-cache:/root/.yarn
+  environment:
+    COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
+
+services:
+  e2e:
+    <<: *base
+    command: ['bash', '-c', 'corepack enable && ./scripts/build.sh && ./scripts/test-e2e.sh']
+
+  dev:
+    <<: *base
+    command: ['bash', '-c', 'corepack enable && ./scripts/dev.sh --host 0.0.0.0']
+    ports:
+      - '5173:5173'
+
+  preview:
+    <<: *base
+    command:
+      [
+        'bash',
+        '-c',
+        'corepack enable && ./scripts/preview.sh --host 0.0.0.0 --port 4173 --strictPort',
+      ]
+    ports:
+      - '4173:4173'
+
+volumes:
+  yarn-cache:
 
 
 ################################################################################
@@ -2112,6 +2230,167 @@ in CI yet; if one is added, a new ADR will record the tool and its gate.
 
 
 ################################################################################
+# FILE: docs/adr/0016-chromium-new-headless-channel.md
+################################################################################
+
+--- METADATA ---
+  File name:             0016-chromium-new-headless-channel.md
+  Relative path:         docs/adr/0016-chromium-new-headless-channel.md
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0016-chromium-new-headless-channel.md
+  Size:                  3.1 KiB (3221 bytes)
+  Last modified:         2026-07-10 08:37:51.000000000 -0400
+  Permissions:           -rw-rw-r--
+  Owner:                 kushal:kushal
+  Inode:                 20383632
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               657fdfb6ad0fde0803a5e6453b6b9173aa341c485ef8fbe6c0fd317314e27150
+  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
+
+--- CONTENT ---
+# 16. Chromium e2e projects run the real browser via channel 'chromium'
+
+Date: 2026-07-10
+
+## Status
+
+Accepted
+
+## Context
+
+The e2e scenario "header navigation reaches every section" started timing
+out after 30 s — on the `chromium` and `mobile-chrome` projects only, both
+locally and in CI, while `firefox` and `webkit` passed. The Playwright log
+showed a click on a header link stuck at "waiting for element to be visible,
+enabled and stable" after an earlier link click had already navigated once.
+
+Playwright's default headless Chromium is **Chrome Headless Shell**, a
+stripped build maintained for backwards compatibility. Reproducing against
+the shell build of Chromium 149 (the version Playwright 1.61 pins) isolated
+the cause: with the site's cross-document view transitions active
+(`@view-transition { navigation: auto }` in `src/styles/global.css`,
+ADR 0012), a renderer-initiated navigation — a real link click, not
+`page.goto()` — leaves the incoming document's rendering pipeline frozen.
+`pagereveal` never fires, `requestAnimationFrame` callbacks never run, and
+even Chromium's own four-second view-transition skip timeout never triggers.
+Playwright considers an element stable only after two consecutive animation
+frames, so every subsequent click waits forever. Only this one scenario
+clicks through a chain of navigations, which is why only it failed. Removing
+`@view-transition` from the built CSS unfroze the shell, confirming the
+interaction; the full Chromium build in "new headless" mode runs the same
+transition to completion (`pagereveal` fires with a live `ViewTransition`,
+frames keep flowing), matching what real browsers do on the site.
+
+## Decision
+
+Set `channel: 'chromium'` on the `chromium` and `mobile-chrome` projects in
+`playwright.config.ts`. Playwright documents this channel as opting headless
+runs into the **real Chromium build in "new headless" mode** instead of the
+shell — its recommended path when shell behaviour diverges. The view
+transition itself stays: it is a showcased platform feature and it is not
+the bug; the shell's frozen rendering loop is. Since nothing uses the shell
+any more, browser installs pass `--no-shell` (`scripts/test-e2e.sh`).
+
+Alternatives rejected:
+
+- **Removing or build-time-gating `@view-transition`** — sacrifices a
+  documented feature of the site to accommodate a test-only browser build.
+- **`reducedMotion: 'reduce'` in the Playwright config** — verified
+  ineffective: the pipeline freezes before any animation would play, so the
+  reduced-motion CSS (which this site ships, ADR 0015) never gets a frame.
+- **`click({ force: true })` or added timeouts** — masks the symptom,
+  violates the testing rule of waiting for real events instead of padding
+  timeouts (ADR 0010), and later assertions still meet a frozen page.
+
+## Consequences
+
+Chromium scenarios now run on the same binary users run, trading the
+shell's slightly faster startup for fidelity — the exact trade Playwright's
+documentation recommends when the two diverge. The shell is no longer
+downloaded anywhere. If a future Chromium fixes the shell's view-transition
+handling, reverting is a two-line config change; the config comment points
+back to this record.
+
+
+################################################################################
+# FILE: docs/adr/0017-containerised-e2e-playwright-image.md
+################################################################################
+
+--- METADATA ---
+  File name:             0017-containerised-e2e-playwright-image.md
+  Relative path:         docs/adr/0017-containerised-e2e-playwright-image.md
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0017-containerised-e2e-playwright-image.md
+  Size:                  2.8 KiB (2944 bytes)
+  Last modified:         2026-07-10 08:37:51.000000000 -0400
+  Permissions:           -rw-rw-r--
+  Owner:                 kushal:kushal
+  Inode:                 20383633
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               cb7e6839fef81d4a6b9fc198d4fd9f04dcc953668d0e4459f58bc1038b9f6200
+  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
+
+--- CONTENT ---
+# 17. End-to-end tests run in the official Playwright container
+
+Date: 2026-07-10
+
+## Status
+
+Accepted
+
+## Context
+
+Playwright supports a short list of host distributions (Ubuntu and Debian
+LTS, macOS, Windows). The development machine runs Fedora 43, which is not
+on it: Playwright falls back to `ubuntu24.04` browser builds that
+dynamically link libraries Fedora does not ship under those sonames
+(libicu74, libjpeg-turbo8, …), and `playwright install --with-deps` requires
+`apt-get`. WebKit cannot start at all. Meanwhile CI provisioned browsers its
+own way on `ubuntu-latest`, so "works here" and "works in CI" were different
+claims about different environments.
+
+## Decision
+
+Run the e2e suite inside the **official Playwright image**, pinned in
+`compose.yaml` as `mcr.microsoft.com/playwright:v1.61.1-noble`, which bakes
+in the browsers and OS dependencies matching that exact library version plus
+Node 24 (satisfying `engines`). Specifics:
+
+- **podman compose** is the primary engine (rootless; the bind mount is
+  labelled `:Z` for SELinux hosts like Fedora). `CONTAINER_ENGINE=docker`
+  switches to docker compose; the file is plain Compose spec.
+- Three services: `e2e` (build + full Playwright suite),
+  `dev` (port 5173) and `preview` (port 4173) for containerised serving.
+- `init: true` and `ipc: host` follow Playwright's container guidance
+  (zombie-process reaping; Chromium shared-memory exhaustion).
+- The image presets `PLAYWRIGHT_BROWSERS_PATH` to its baked-in browsers;
+  `scripts/test-e2e.sh` detects that and skips downloading anything.
+- `corepack enable` runs first inside the container so the Yarn 4 version
+  pinned in `package.json` shadows the image's npm-installed classic yarn.
+- The CI e2e job (`verify.yml`) runs in the **same image** with the same
+  options, so the local container and CI are the same environment;
+  `scripts/test-e2e-container.sh` and `./check.sh` (which prefers the
+  container when podman is present, `--e2e-host` to opt out) wrap it.
+- Playwright only guarantees bundled browsers against the matching library
+  version, so the image tag must equal `devDependencies["@playwright/test"]`.
+  `src/versionSync.test.ts` fails the unit suite if `package.json`,
+  `compose.yaml` and `verify.yml` ever disagree. Upgrading Playwright is
+  therefore: bump the dependency, let the unit test fail, update both pins.
+
+## Consequences
+
+E2e results stop depending on the host distribution; Fedora runs all four
+browser projects, WebKit included, and a green local run means a green CI
+run because they are the same image. The cost is one more tool (a container
+engine) for full local verification — `--no-e2e` and `--e2e-host` remain
+for environments without one. Rootless podman maps container root back to
+the invoking user, so `node_modules/` and `dist/` written through the bind
+mount stay owned by the developer; rootful docker would leave root-owned
+files (use rootless, or chown afterwards).
+
+
+################################################################################
 # FILE: docs/architecture.md
 ################################################################################
 
@@ -2951,26 +3230,31 @@ jobs:
   File name:             verify.yml
   Relative path:         .github/workflows/verify.yml
   Absolute path:         /home/kushal/src/ts/kphoto/.github/workflows/verify.yml
-  Size:                  946 B (946 bytes)
-  Last modified:         2026-07-09 21:54:36.000000000 -0400
-  Permissions:           -rw-r--r--
+  Size:                  1.7 KiB (1816 bytes)
+  Last modified:         2026-07-10 08:37:51.000000000 -0400
+  Permissions:           -rw-rw-r--
   Owner:                 kushal:kushal
-  Inode:                 20354430
+  Inode:                 20383625
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               31167d30648dca50599818f7134e24313e43496d6c82ba6a0bce07a6e48fa3ee
-  Last git commit:       a5cbbfb 2026-07-10 07:21:40 -0400 add missing hidden files
+  SHA-256:               1de37f0c50c2252e3ffa647aef9a9bfbefa9d09b559773d21a3d6cbf9c89c45c
+  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
 
 --- CONTENT ---
 # Reusable verification suite. Deliberately slim: every step just calls a
 # script from scripts/, so CI runs exactly what ./check.sh runs locally.
+#
+# Two jobs: "checks" runs the fast host gates; "e2e" runs the Playwright
+# suite inside the official Playwright image — the same image compose.yaml
+# uses locally (ADR 0017). The image tag must match @playwright/test in
+# package.json; src/versionSync.test.ts enforces this.
 name: verify
 
 on:
   workflow_call:
 
 jobs:
-  verify:
+  checks:
     runs-on: ubuntu-latest
     steps:
       - name: Check out
@@ -2999,6 +3283,31 @@ jobs:
 
       - name: Unit tests
         run: ./scripts/test-unit.sh
+
+      - name: Build
+        run: ./scripts/build.sh
+
+  e2e:
+    runs-on: ubuntu-latest
+    container:
+      # Must match devDependencies["@playwright/test"] — see ADR 0017.
+      image: mcr.microsoft.com/playwright:v1.61.1-noble
+      options: --init --ipc=host
+    steps:
+      - name: Check out
+        uses: actions/checkout@v7
+
+      - name: Enable corepack (yarn)
+        run: corepack enable
+
+      - name: Set up Node 24
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: yarn
+
+      - name: Bootstrap
+        run: ./scripts/bootstrap.sh
 
       - name: Build
         run: ./scripts/build.sh
@@ -3798,15 +4107,15 @@ For more information on this, and how to apply and follow the GNU AGPL, see
   File name:             playwright.config.ts
   Relative path:         playwright.config.ts
   Absolute path:         /home/kushal/src/ts/kphoto/playwright.config.ts
-  Size:                  931 B (931 bytes)
-  Last modified:         2026-07-09 21:39:03.000000000 -0400
-  Permissions:           -rw-r--r--
+  Size:                  1.2 KiB (1292 bytes)
+  Last modified:         2026-07-10 08:37:51.000000000 -0400
+  Permissions:           -rw-rw-r--
   Owner:                 kushal:kushal
-  Inode:                 20354473
+  Inode:                 20383634
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               776c51d3e0504b02415aa154b937af22b5fecea6356f5568fa71b9ea8178e541
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               eb93165c044f3a24dc630961b870c3c3f575b835d73b1499fa0c8c0f586c0288
+  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
 
 --- CONTENT ---
 import { defineConfig, devices } from '@playwright/test';
@@ -3831,10 +4140,15 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
   },
   projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    // channel 'chromium' runs the real Chromium build in "new headless" mode
+    // instead of the default Chrome Headless Shell, whose rendering loop
+    // freezes after link-click navigations when the site's cross-document
+    // view transitions (`@view-transition` in global.css) are active.
+    // See ADR 0016.
+    { name: 'chromium', use: { ...devices['Desktop Chrome'], channel: 'chromium' } },
     { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
     { name: 'webkit', use: { ...devices['Desktop Safari'] } },
-    { name: 'mobile-chrome', use: { ...devices['Pixel 7'] } },
+    { name: 'mobile-chrome', use: { ...devices['Pixel 7'], channel: 'chromium' } },
   ],
 });
 
@@ -3987,15 +4301,15 @@ yarn.lock
   File name:             README.md
   Relative path:         README.md
   Absolute path:         /home/kushal/src/ts/kphoto/README.md
-  Size:                  5.8 KiB (5994 bytes)
-  Last modified:         2026-07-10 03:07:33.000000000 -0400
-  Permissions:           -rw-r--r--
+  Size:                  7.2 KiB (7424 bytes)
+  Last modified:         2026-07-10 08:37:51.000000000 -0400
+  Permissions:           -rw-rw-r--
   Owner:                 kushal:kushal
-  Inode:                 20354432
+  Inode:                 20383627
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               f7a5ed7b7204509660454a3ceffcac5e4fb15162fda17f83c16347c844baf3b0
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               d295e8b0fb3d48007970d83abd8638161f9c67aa1115ea0fc76d800e4e7d2718
+  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
 
 --- CONTENT ---
 # kphoto
@@ -4054,8 +4368,9 @@ cd kphoto.github.io
 Before pushing, run everything CI runs:
 
 ```bash
-./check.sh            # full suite, including Playwright end-to-end tests
-./check.sh --no-e2e   # skip the browser tests
+./check.sh             # full suite; e2e runs in the Playwright container if podman is available
+./check.sh --e2e-host  # force the browser tests onto the host instead
+./check.sh --no-e2e    # skip the browser tests
 ```
 
 ## Scripts
@@ -4063,20 +4378,44 @@ Before pushing, run everything CI runs:
 Every script works from any directory and does exactly one thing. CI calls
 these same scripts, so local and CI behaviour cannot drift.
 
-| Script                   | What it does                                                 |
-| ------------------------ | ------------------------------------------------------------ |
-| `./scripts/bootstrap.sh` | Verify Node 24+, enable corepack, `yarn install --immutable` |
-| `./scripts/dev.sh`       | Dev server; every route renders live from `content/`         |
-| `./scripts/format.sh`    | Prettier write mode (`--check` to verify only)               |
-| `./scripts/lint.sh`      | ESLint, type-aware rules, zero warnings allowed              |
-| `./scripts/typecheck.sh` | `tsc --noEmit` with the TypeScript 7 native compiler         |
-| `./scripts/test-unit.sh` | Vitest unit suite with V8 coverage                           |
-| `./scripts/build.sh`     | Static build into `dist/` (pages + feed + sitemap)           |
-| `./scripts/test-e2e.sh`  | Playwright suite against a preview of `dist/`                |
-| `./scripts/preview.sh`   | Serve `dist/` the way GitHub Pages will                      |
-| `./scripts/clean.sh`     | Remove build and test artifacts                              |
-| `./check.sh`             | All of the above in CI order, then `./export.sh`             |
-| `./export.sh`            | Dump all tracked files to `docs/llm/dump.txt` for LLM use    |
+| Script                            | What it does                                                 |
+| --------------------------------- | ------------------------------------------------------------ |
+| `./scripts/bootstrap.sh`          | Verify Node 24+, enable corepack, `yarn install --immutable` |
+| `./scripts/dev.sh`                | Dev server; every route renders live from `content/`         |
+| `./scripts/format.sh`             | Prettier write mode (`--check` to verify only)               |
+| `./scripts/lint.sh`               | ESLint, type-aware rules, zero warnings allowed              |
+| `./scripts/typecheck.sh`          | `tsc --noEmit` with the TypeScript 7 native compiler         |
+| `./scripts/test-unit.sh`          | Vitest unit suite with V8 coverage                           |
+| `./scripts/build.sh`              | Static build into `dist/` (pages + feed + sitemap)           |
+| `./scripts/test-e2e.sh`           | Playwright suite against a preview of `dist/`                |
+| `./scripts/test-e2e-container.sh` | Same suite inside the official Playwright image (podman)     |
+| `./scripts/preview.sh`            | Serve `dist/` the way GitHub Pages will                      |
+| `./scripts/clean.sh`              | Remove build and test artifacts                              |
+| `./check.sh`                      | All of the above in CI order, then `./export.sh`             |
+| `./export.sh`                     | Dump all tracked files to `docs/llm/dump.txt` for LLM use    |
+
+## End-to-end tests in a container
+
+Playwright supports only a handful of host distributions — Fedora is not one
+of them — so the e2e suite runs inside the **official Playwright image**,
+the exact image the CI `e2e` job uses
+([ADR 0017](docs/adr/0017-containerised-e2e-playwright-image.md)):
+
+```bash
+sudo dnf install podman podman-compose   # once
+./scripts/test-e2e-container.sh          # = podman compose run --rm e2e
+podman compose up dev                    # containerised dev server on :5173
+podman compose up preview                # containerised built site on :4173
+```
+
+Docker works too: `CONTAINER_ENGINE=docker ./scripts/test-e2e-container.sh`.
+The image tag in `compose.yaml` and `.github/workflows/verify.yml` must match
+`@playwright/test` in `package.json` exactly; the unit suite
+(`src/versionSync.test.ts`) fails the moment they drift. The chromium
+projects run the real Chromium build in "new headless" mode instead of the
+Chrome Headless Shell, whose rendering loop freezes on this site's
+cross-document view transitions
+([ADR 0016](docs/adr/0016-chromium-new-headless-channel.md)).
 
 ## Writing content
 
@@ -4225,15 +4564,15 @@ log "clean complete"
   File name:             dev.sh
   Relative path:         scripts/dev.sh
   Absolute path:         /home/kushal/src/ts/kphoto/scripts/dev.sh
-  Size:                  311 B (311 bytes)
-  Last modified:         2026-07-09 21:52:24.000000000 -0400
+  Size:                  316 B (316 bytes)
+  Last modified:         2026-07-10 08:37:51.000000000 -0400
   Permissions:           -rwxr-xr-x
   Owner:                 kushal:kushal
-  Inode:                 20354451
+  Inode:                 20383636
   Hard links:            1
   MIME type:             text/x-shellscript
-  SHA-256:               e4a922832cfccc4519abbcb6531e2689c46234a40a38ac43623404afc35c92df
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               a30bb7eccb1fc4b5794a10b087ba0b230cfdaf498721f6fb629f336fc7b001a4
+  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
 
 --- CONTENT ---
 #!/usr/bin/env bash
@@ -4245,7 +4584,7 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$(repo_root)"
 ensure_node; ensure_deps
 log "starting dev server (vite)"
-exec yarn dev
+exec yarn dev "$@"
 
 
 ################################################################################
@@ -4376,15 +4715,15 @@ log "lint complete"
   File name:             preview.sh
   Relative path:         scripts/preview.sh
   Absolute path:         /home/kushal/src/ts/kphoto/scripts/preview.sh
-  Size:                  349 B (349 bytes)
-  Last modified:         2026-07-09 21:52:24.000000000 -0400
+  Size:                  354 B (354 bytes)
+  Last modified:         2026-07-10 08:37:51.000000000 -0400
   Permissions:           -rwxr-xr-x
   Owner:                 kushal:kushal
-  Inode:                 20354453
+  Inode:                 20383637
   Hard links:            1
   MIME type:             text/x-shellscript
-  SHA-256:               24854ec7ed69f7410d51479b964598fc8ffe60b9945bc64e49344d96e90bfc41
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               6bb4c5a91155e638787145d57eda990a6ae0fba7092d24cbbc863e3965c6ad27
+  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
 
 --- CONTENT ---
 #!/usr/bin/env bash
@@ -4397,7 +4736,43 @@ cd "$(repo_root)"
 ensure_node; ensure_deps
 [[ -d dist ]] || "$HERE/build.sh"
 log "previewing dist/ (vite preview)"
-exec yarn preview
+exec yarn preview "$@"
+
+
+################################################################################
+# FILE: scripts/test-e2e-container.sh
+################################################################################
+
+--- METADATA ---
+  File name:             test-e2e-container.sh
+  Relative path:         scripts/test-e2e-container.sh
+  Absolute path:         /home/kushal/src/ts/kphoto/scripts/test-e2e-container.sh
+  Size:                  712 B (712 bytes)
+  Last modified:         2026-07-10 08:37:51.000000000 -0400
+  Permissions:           -rwxr-xr-x
+  Owner:                 kushal:kushal
+  Inode:                 20383638
+  Hard links:            1
+  MIME type:             text/x-shellscript
+  SHA-256:               63db82b1eb0d86ea0df751ffa0d0629eb5f0c104271282d852ee2006dd3c5977
+  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
+
+--- CONTENT ---
+#!/usr/bin/env bash
+# Run the Playwright end-to-end suite inside the official Playwright container
+# (compose.yaml, service "e2e") so results do not depend on the host distro.
+# Uses podman by default; set CONTAINER_ENGINE=docker to use docker instead.
+# See ADR 0017.
+set -euo pipefail
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=scripts/lib.sh
+. "$HERE/lib.sh"
+cd "$(repo_root)"
+ENGINE="${CONTAINER_ENGINE:-podman}"
+command -v "$ENGINE" >/dev/null 2>&1 \
+  || die "$ENGINE not found; on Fedora: sudo dnf install podman podman-compose (or set CONTAINER_ENGINE=docker)"
+log "running end-to-end tests in a container ($ENGINE compose run --rm e2e)"
+exec "$ENGINE" compose run --rm e2e
 
 
 ################################################################################
@@ -4408,15 +4783,15 @@ exec yarn preview
   File name:             test-e2e.sh
   Relative path:         scripts/test-e2e.sh
   Absolute path:         /home/kushal/src/ts/kphoto/scripts/test-e2e.sh
-  Size:                  725 B (725 bytes)
-  Last modified:         2026-07-09 21:52:24.000000000 -0400
+  Size:                  1.1 KiB (1206 bytes)
+  Last modified:         2026-07-10 08:37:51.000000000 -0400
   Permissions:           -rwxr-xr-x
   Owner:                 kushal:kushal
-  Inode:                 20354461
+  Inode:                 20383639
   Hard links:            1
   MIME type:             text/x-shellscript
-  SHA-256:               3a93783ac99ffa7579b66d9de73eaf0933adf0b9f333e2620ac638f6a38f8483
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               e15f692fd2d5c625686ce344e7dff76010ae6da2733949de28e6e2a95edc1d5f
+  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
 
 --- CONTENT ---
 #!/usr/bin/env bash
@@ -4432,12 +4807,18 @@ if [[ ! -d dist ]]; then
   log "no dist/ found — building first"
   "$HERE/build.sh"
 fi
-if [[ "${CI:-}" == "true" ]]; then
+# The official Playwright image bakes matching browsers into the path named
+# by PLAYWRIGHT_BROWSERS_PATH, so nothing needs downloading there (ADR 0017).
+# --no-shell skips the Chrome Headless Shell everywhere else: the chromium
+# projects run the real browser via channel 'chromium' instead (ADR 0016).
+if [[ -n "${PLAYWRIGHT_BROWSERS_PATH:-}" && -d "${PLAYWRIGHT_BROWSERS_PATH:-}" ]]; then
+  log "using browsers preinstalled at $PLAYWRIGHT_BROWSERS_PATH"
+elif [[ "${CI:-}" == "true" ]]; then
   log "installing playwright browsers with system dependencies (CI)"
-  yarn playwright install --with-deps
+  yarn playwright install --with-deps --no-shell
 else
   log "ensuring playwright browsers are installed"
-  yarn playwright install
+  yarn playwright install --no-shell
 fi
 log "running end-to-end tests (playwright)"
 yarn test:e2e
@@ -10190,6 +10571,66 @@ kp-theme-picker {
 
 
 ################################################################################
+# FILE: src/versionSync.test.ts
+################################################################################
+
+--- METADATA ---
+  File name:             versionSync.test.ts
+  Relative path:         src/versionSync.test.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/versionSync.test.ts
+  Size:                  1.4 KiB (1480 bytes)
+  Last modified:         2026-07-10 08:37:51.000000000 -0400
+  Permissions:           -rw-rw-r--
+  Owner:                 kushal:kushal
+  Inode:                 20383641
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               e944c2ce1210a7147775c848fd6ae4ac06e7f07240792774cbb32ed86194318c
+  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
+
+--- CONTENT ---
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { describe, expect, it } from 'vitest';
+
+/**
+ * Playwright only guarantees that its bundled browsers work with the matching
+ * library version, so the container image pinned in compose.yaml and in the
+ * CI workflow must stay in lockstep with devDependencies["@playwright/test"]
+ * (ADR 0017). This test fails the unit suite the moment any pin drifts.
+ */
+
+const read = (relativeToRepoRoot: string): string =>
+  readFileSync(fileURLToPath(new URL(`../${relativeToRepoRoot}`, import.meta.url)), 'utf8');
+
+const imagePattern = /mcr\.microsoft\.com\/playwright:v(\d+\.\d+\.\d+)-noble/g;
+
+const imageVersions = (source: string): string[] =>
+  [...source.matchAll(imagePattern)].map((match) => match[1] ?? '');
+
+describe('playwright version pins', () => {
+  const packageJson = JSON.parse(read('package.json')) as {
+    devDependencies?: Record<string, string>;
+  };
+  const declared = packageJson.devDependencies?.['@playwright/test'];
+
+  it('declares @playwright/test as an exact version', () => {
+    expect(declared).toMatch(/^\d+\.\d+\.\d+$/);
+  });
+
+  for (const file of ['compose.yaml', '.github/workflows/verify.yml']) {
+    it(`pins the matching container image in ${file}`, () => {
+      const versions = imageVersions(read(file));
+      expect(versions.length).toBeGreaterThan(0);
+      for (const version of versions) {
+        expect(version).toBe(declared);
+      }
+    });
+  }
+});
+
+
+################################################################################
 # FILE: tests/e2e/site.spec.ts
 ################################################################################
 
@@ -10573,10 +11014,10 @@ packageExtensions:
 ################################################################################
 # DUMP SUMMARY
 ################################################################################
-  Files dumped   : 121
-  Total size     : 2.1 MiB (2202032 bytes)
+  Files dumped   : 126
+  Total size     : 2.1 MiB (2217130 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-07-10T07:21:53-04:00
+  Completed at   : 2026-07-10T08:50:03-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
