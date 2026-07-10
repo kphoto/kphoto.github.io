@@ -45,11 +45,147 @@ user	0m0.972s
 sys	0m0.368s
 kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash export.sh > docs/llm/vendor/output.txt; time yarn; time yarn run build; time bash scripts/bootstrap.sh; time bash check.sh 
 
+real	0m3.115s
+user	0m1.447s
+sys	0m2.114s
+➤ YN0000: · Yarn 4.17.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Post-resolution validation
+➤ YN0002: │ kphoto@workspace:. doesn't provide typescript (p8aebeb), requested by typescript-eslint.
+➤ YN0086: │ Some peer dependencies are incorrectly met by your project; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code.
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0092: │ ESM support for PnP uses the experimental loader API and is therefore experimental
+➤ YN0000: └ Completed
+➤ YN0000: · Done with warnings in 0s 160ms
 
+real	0m0.322s
+user	0m0.360s
+sys	0m0.095s
+Using Yarn PnP with Vite is discouraged and PnP-specific bugs will no longer be actively worked on. Please switch to a different nodeLinker mode or to a different package manager.
+vite v8.1.3 building client environment for production...
+✓ 5 modules transformed.
+computing gzip size...
+dist/.vite/manifest.json         0.34 kB │ gzip: 0.17 kB
+dist/assets/styles-BpsJfnMC.css  5.49 kB │ gzip: 1.77 kB
+dist/assets/client-EgueYxfX.js   1.57 kB │ gzip: 0.77 kB
 
+✓ built in 24ms
+kphoto-ssg: wrote 27 pages and feeds
 
+real	0m0.874s
+user	0m0.930s
+sys	0m0.385s
+[06:47:52] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.17.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Post-resolution validation
+➤ YN0002: │ kphoto@workspace:. doesn't provide typescript (p8aebeb), requested by typescript-eslint.
+➤ YN0086: │ Some peer dependencies are incorrectly met by your project; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code.
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0092: │ ESM support for PnP uses the experimental loader API and is therefore experimental
+➤ YN0000: └ Completed
+➤ YN0000: · Done with warnings in 0s 165ms
+[06:47:52] bootstrap complete — try ./scripts/dev.sh
 
+real	0m0.349s
+user	0m0.381s
+sys	0m0.101s
+[06:47:52] 1/8 bootstrap
+[06:47:52] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.17.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Post-resolution validation
+➤ YN0002: │ kphoto@workspace:. doesn't provide typescript (p8aebeb), requested by typescript-eslint.
+➤ YN0086: │ Some peer dependencies are incorrectly met by your project; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code.
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0092: │ ESM support for PnP uses the experimental loader API and is therefore experimental
+➤ YN0000: └ Completed
+➤ YN0000: · Done with warnings in 0s 163ms
+[06:47:53] bootstrap complete — try ./scripts/dev.sh
+[06:47:53] 2/8 format check
+[06:47:53] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.17.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Post-resolution validation
+➤ YN0002: │ kphoto@workspace:. doesn't provide typescript (p8aebeb), requested by typescript-eslint.
+➤ YN0086: │ Some peer dependencies are incorrectly met by your project; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code.
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0092: │ ESM support for PnP uses the experimental loader API and is therefore experimental
+➤ YN0000: └ Completed
+➤ YN0000: · Done with warnings in 0s 162ms
+[06:47:53] checking formatting (prettier --check)
+Checking formatting...
+[warn] .pnp.cjs
+[warn] .pnp.loader.mjs
+[warn] docs/llm/vendor/claude-000.md
+[warn] docs/llm/vendor/claude-instructions.md
+[warn] eslint.config.ts
+[warn] src/client/main.ts
+[warn] src/client/storage.test.ts
+[warn] src/client/storage.ts
+[warn] src/client/theme.test.ts
+[warn] src/client/theme.ts
+[warn] src/client/themeInit.test.ts
+[warn] src/client/themeInit.ts
+[warn] src/components/authorCard.ts
+[warn] src/components/components.test.ts
+[warn] src/components/seriesNav.ts
+[warn] src/components/siteFooter.ts
+[warn] src/lib/collections.test.ts
+[warn] src/lib/collections.ts
+[warn] src/lib/config.ts
+[warn] src/lib/content.test.ts
+[warn] src/lib/content.ts
+[warn] src/lib/dates.test.ts
+[warn] src/lib/dates.ts
+[warn] src/lib/feed.test.ts
+[warn] src/lib/frontmatter.test.ts
+[warn] src/lib/frontmatter.ts
+[warn] src/lib/html.ts
+[warn] src/lib/markdown.test.ts
+[warn] src/lib/markdown.ts
+[warn] src/lib/readingTime.test.ts
+[warn] src/lib/readingTime.ts
+[warn] src/lib/sitemap.test.ts
+[warn] src/lib/slug.test.ts
+[warn] src/lib/testFixtures.ts
+[warn] src/lib/yaml.test.ts
+[warn] src/lib/yaml.ts
+[warn] src/pages/authors.ts
+[warn] src/pages/blogIndex.ts
+[warn] src/pages/home.ts
+[warn] src/pages/layout.ts
+[warn] src/pages/markdownPage.ts
+[warn] src/pages/notFound.ts
+[warn] src/pages/post.ts
+[warn] src/pages/routes.test.ts
+[warn] src/pages/routes.ts
+[warn] src/pages/series.ts
+[warn] src/pages/tags.ts
+[warn] src/ssg/loadContent.test.ts
+[warn] src/ssg/loadContent.ts
+[warn] src/ssg/vitePlugin.ts
+[warn] src/styles/global.css
+[warn] tests/e2e/site.spec.ts
+[warn] Code style issues found in 52 files. Run Prettier with --write to fix.
 
-
-
-
+real	0m2.321s
+user	0m3.265s
+sys	0m0.477s
+kushal@fedora:~/src/ts/kphoto$ 
