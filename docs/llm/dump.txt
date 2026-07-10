@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-07-10T08:49:59-04:00
+  Generated at   : 2026-07-10T14:41:17-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,18 +17,18 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : ba244cba3414ddeb6c86385b25c135c1446f1cf8
-  Commit (short) : ba244cb
-  Commit date    : 2026-07-10 08:48:06 -0400
+  Commit (full)  : 3e632209272f1bac85cdcaa74f5096175e9ed755
+  Commit (short) : 3e63220
+  Commit date    : 2026-07-10 14:39:22 -0400
   Commit message : add claude changes
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
-  Files included : 126
+  Files included : 129
   Excluded path  : docs/llm/
   Excluded files : yarn.lock, .pnp.cjs, .pnp.loader.mjs
 
 GIT WORKING TREE STATUS (first 20 lines)
 ═════════════════════════════════════════════════════════════════════════════════
- M docs/llm/vendor/output.txt
+  (clean — no uncommitted changes)
 
 ################################################################################
 # FILE: export.sh  [THIS SCRIPT — included for full context]
@@ -430,7 +430,7 @@ FOOTER
 mv -f "$TMP_FILE" "$OUTPUT_FILE"
 
 ################################################################################
-# FILE TREE  (all 126 included files)
+# FILE TREE  (all 129 included files)
 ################################################################################
 .
 .
@@ -470,7 +470,10 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── 0014-yarn-and-dependency-policy.md
 │   │   ├── 0015-accessibility-commitments.md
 │   │   ├── 0016-chromium-new-headless-channel.md
-│   │   └── 0017-containerised-e2e-playwright-image.md
+│   │   ├── 0017-containerised-e2e-playwright-image.md
+│   │   ├── 0018-motion-gated-view-transitions.md
+│   │   ├── 0019-ci-container-home-override.md
+│   │   └── 0020-repo-root-from-script-location.md
 │   ├── architecture.md
 │   ├── content-authoring.md
 │   └── README.md
@@ -592,15 +595,15 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   File name:             CHANGELOG.md
   Relative path:         CHANGELOG.md
   Absolute path:         /home/kushal/src/ts/kphoto/CHANGELOG.md
-  Size:                  4.1 KiB (4245 bytes)
-  Last modified:         2026-07-10 08:37:51.000000000 -0400
-  Permissions:           -rw-rw-r--
+  Size:                  5.5 KiB (5667 bytes)
+  Last modified:         2026-07-10 09:14:58.000000000 -0400
+  Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20383626
+  Inode:                 20461605
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               02d7336d96cad5289712873d654aaa56b9fdcce4dd1a987390f3d5d14f01c8cb
-  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
+  SHA-256:               68268db57f881c3bb376113e304bf6a95eb07b52720f659b4e053677cf9921b9
+  Last git commit:       3e63220 2026-07-10 14:39:22 -0400 add claude changes
 
 --- CONTENT ---
 # Changelog
@@ -626,8 +629,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `scripts/dev.sh` and `scripts/preview.sh` forward extra arguments to Vite
   (the compose services use this to bind `0.0.0.0`).
 
+### Changed
+
+- Reduced-motion visitors no longer engage the view-transition machinery at
+  all: the `@view-transition { navigation: auto }` opt-in now lives inside
+  `@media (prefers-reduced-motion: no-preference)`, replacing the previous
+  approach of zeroing the `::view-transition-*` animations after the
+  transition had already started (ADR 0018).
+- `repo_root()` in `scripts/lib.sh` derives the repository root from the
+  script's own location instead of `git rev-parse`, so it behaves
+  identically on the host, under podman, and in CI containers where git's
+  dubious-ownership protection previously made it print a spurious
+  `[error] not inside a git repository` (ADR 0020).
+
 ### Fixed
 
+- Containerised chromium and mobile-chrome e2e runs no longer freeze for
+  30 s on "header navigation reaches every section": the real Chromium
+  build reproduced the Headless Shell's view-transition rendering stall
+  inside the Playwright container, so the Playwright config now emulates
+  `prefers-reduced-motion: reduce` in every project and — with the opt-in
+  motion-gated — navigations under test never enter the transition
+  pipeline (ADR 0018, amending ADR 0016).
+- Firefox launches again in the CI `e2e` container job: GitHub points
+  `$HOME` at `/github/home`, which the job's root user does not own and
+  which Firefox refuses to run under; the job now pins `HOME=/root`,
+  Playwright's documented workaround (ADR 0019).
 - Chromium and mobile-chrome e2e runs no longer time out on "header
   navigation reaches every section": the site's cross-document view
   transitions freeze Chrome Headless Shell's rendering loop after
@@ -2174,15 +2201,15 @@ past the gate". Corepack needs enabling once per machine
   File name:             0015-accessibility-commitments.md
   Relative path:         docs/adr/0015-accessibility-commitments.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0015-accessibility-commitments.md
-  Size:                  1.7 KiB (1821 bytes)
-  Last modified:         2026-07-09 22:00:14.000000000 -0400
+  Size:                  1.8 KiB (1931 bytes)
+  Last modified:         2026-07-10 09:14:33.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354495
+  Inode:                 20461599
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               a9aa4fcb2df8b8760307319748517d4e8d3427ac9cc79aedf86579f05676068d
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               78ddab97b1a9ecd1b9712ddb7ae1ce9ebf1e985708fd7b0bfcf26aaff1927fc1
+  Last git commit:       3e63220 2026-07-10 14:39:22 -0400 add claude changes
 
 --- CONTENT ---
 # 15. Accessibility commitments: AA contrast, keyboard-first, reduced motion
@@ -2215,8 +2242,10 @@ The site commits to, and the code enforces:
   section carries `aria-current="page"`; the theme picker is a labelled
   `<select>` (visually hidden label), not a custom widget; images carry alt
   text and author avatars describe the person.
-- **Motion**: `prefers-reduced-motion: reduce` disables the view transitions
-  and the wordmark's cursor-blink animation.
+- **Motion**: under `prefers-reduced-motion: reduce` the page never opts
+  into cross-document view transitions (the snapshot machinery does not
+  engage at all — ADR 0018) and the wordmark's cursor-blink animation is
+  disabled.
 - **Testing**: the Playwright suite exercises the skip link, `aria-current`
   and picker semantics in all four browser projects; markdown-generated
   heading ids give stable in-page anchors.
@@ -2237,15 +2266,15 @@ in CI yet; if one is added, a new ADR will record the tool and its gate.
   File name:             0016-chromium-new-headless-channel.md
   Relative path:         docs/adr/0016-chromium-new-headless-channel.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0016-chromium-new-headless-channel.md
-  Size:                  3.1 KiB (3221 bytes)
-  Last modified:         2026-07-10 08:37:51.000000000 -0400
-  Permissions:           -rw-rw-r--
+  Size:                  4.2 KiB (4351 bytes)
+  Last modified:         2026-07-10 09:13:21.000000000 -0400
+  Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20383632
+  Inode:                 20461600
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               657fdfb6ad0fde0803a5e6453b6b9173aa341c485ef8fbe6c0fd317314e27150
-  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
+  SHA-256:               6c8327064cde26a7e1e1acc1eec6649475ad73bc339b99ca7f2d462e99dde5d4
+  Last git commit:       3e63220 2026-07-10 14:39:22 -0400 add claude changes
 
 --- CONTENT ---
 # 16. Chromium e2e projects run the real browser via channel 'chromium'
@@ -2254,7 +2283,7 @@ Date: 2026-07-10
 
 ## Status
 
-Accepted
+Accepted — amended by [ADR 0018](0018-motion-gated-view-transitions.md)
 
 ## Context
 
@@ -2310,6 +2339,26 @@ documentation recommends when the two diverge. The shell is no longer
 downloaded anywhere. If a future Chromium fixes the shell's view-transition
 handling, reverting is a two-line config change; the config comment points
 back to this record.
+
+## Amendment (2026-07-10)
+
+Moving the suite into the official Playwright container (ADR 0017) showed
+the freeze was not shell-specific after all: the **real Chromium build in
+new headless mode reproduces the identical stall inside the container**
+(podman locally and the CI `e2e` job — same image), while passing on the
+Fedora host. The channel decision above stands — the authentic build is
+still the right browser to test with — but it is no longer sufficient on
+its own.
+
+The rejected alternative "`reducedMotion: 'reduce'` in the Playwright
+config — verified ineffective" was evaluated against the CSS of the time,
+which only zeroed the `::view-transition-*` animations while the snapshot
+and reveal machinery still engaged (and froze) before any animation frame.
+[ADR 0018](0018-motion-gated-view-transitions.md) changes the CSS to gate
+the `@view-transition` opt-in itself behind
+`prefers-reduced-motion: no-preference`, after which reduced-motion
+emulation prevents the navigation from opting in at all — making that
+option effective and adopted.
 
 
 ################################################################################
@@ -2388,6 +2437,275 @@ for environments without one. Rootless podman maps container root back to
 the invoking user, so `node_modules/` and `dist/` written through the bind
 mount stay owned by the developer; rootful docker would leave root-owned
 files (use rootless, or chown afterwards).
+
+
+################################################################################
+# FILE: docs/adr/0018-motion-gated-view-transitions.md
+################################################################################
+
+--- METADATA ---
+  File name:             0018-motion-gated-view-transitions.md
+  Relative path:         docs/adr/0018-motion-gated-view-transitions.md
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0018-motion-gated-view-transitions.md
+  Size:                  4.6 KiB (4748 bytes)
+  Last modified:         2026-07-10 13:25:39.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20461601
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               9bdef32313a27176ab7177d9eacfa362794088208812a3f56cfeaef776dde55e
+  Last git commit:       3e63220 2026-07-10 14:39:22 -0400 add claude changes
+
+--- CONTENT ---
+# 18. View transitions are motion-gated; e2e runs emulate reduced motion
+
+Date: 2026-07-10
+
+## Status
+
+Accepted — amends [ADR 0016](0016-chromium-new-headless-channel.md)
+
+## Context
+
+ADR 0016 moved the chromium e2e projects onto the real Chromium build after
+Chrome Headless Shell froze on the site's cross-document view transitions.
+That held on the Fedora host, but once the suite ran inside the official
+Playwright container (ADR 0017) the identical failure returned on
+`chromium` and `mobile-chrome` only: the "header navigation reaches every
+section" scenario clicks through a chain of real link navigations, and the
+second click sits at "waiting for element to be visible, enabled and
+stable" for the full 30 s. `firefox` (no cross-document view-transition
+support) and `webkit` pass in the same container. The freeze therefore
+tracks the view-transition machinery in the containerised Chromium
+environment, not any particular headless build — and it would hit the CI
+`e2e` job identically, since it runs the same image.
+
+Two facts about the site's CSS mattered:
+
+1. The opt-in was unconditional: `@view-transition { navigation: auto }`.
+2. Reduced-motion handling only zeroed the `::view-transition-*`
+   animations. A reduced-motion navigation still opted in, still snapshotted
+   the old page, and still entered the reveal pipeline — the part that
+   freezes — before any animation would have played. This is why ADR 0016
+   correctly measured `reducedMotion: 'reduce'` as ineffective at the time.
+
+The CSS View Transitions Level 2 specification allows `@view-transition`
+inside conditional group rules, and gating the opt-in itself behind
+`@media (prefers-reduced-motion: no-preference)` is the pattern the Chrome
+team's own guidance recommends: a motion-sensitive visitor should not have
+the capture/reveal machinery engaged at all, not merely see its animations
+suppressed.
+
+## Decision
+
+Two halves, one in the product and one in the test rig:
+
+1. **`src/styles/global.css`** wraps the opt-in:
+
+   ```css
+   @media (prefers-reduced-motion: no-preference) {
+     @view-transition {
+       navigation: auto;
+     }
+   }
+   ```
+
+   The `::view-transition-*` animation-zeroing block is deleted — with the
+   opt-in gated there is nothing left to neutralise. Under
+   `prefers-reduced-motion: reduce` a navigation never opts in, so no
+   snapshot is taken and no transition runs. This strengthens the ADR 0015
+   motion commitment for real users independently of testing.
+
+2. **`playwright.config.ts`** sets `reducedMotion: 'reduce'` under the
+   shared `use.contextOptions` block — reduced motion is a browser-context
+   option, not a first-class test option, and this placement is the usage
+   Playwright's own documentation shows. Every context in every browser
+   project emulates the reduced-motion preference, so e2e navigations take
+   the motion-free path: deterministic clicks, no snapshot pipeline to
+   freeze, and the wordmark blink (or any future animation) can never
+   destabilise an actionability check. This is Playwright's cross-browser
+   media emulation rather than the chromium-only
+   `--force-prefers-reduced-motion` flag.
+
+ADR 0016's channel choice stands: the authentic Chromium build remains the
+right binary to test against.
+
+Alternatives rejected:
+
+- **Skipping transitions only under automation** (a `pagereveal`/`pageswap`
+  listener calling `skipTransition()` when `navigator.webdriver` is set) —
+  ships automation-detection into production code and creates a path real
+  users never take; the reduced-motion path is one real users do take.
+- **`click({ force: true })`, `waitForURL` padding, or per-test timeouts**
+  — masks the frozen page; later assertions in the same scenario still meet
+  it (the reasoning from ADR 0010 and 0016 unchanged).
+- **Exercising transitions in one designated project** — reintroduces the
+  freeze in exactly the environment (the container) the suite standardised
+  on; the transition remains a progressive enhancement verified manually.
+
+## Consequences
+
+The full suite passes in the container and therefore in CI. The e2e suite
+now verifies the reduced-motion experience — a real, shipped configuration
+— and no longer exercises the view-transition path in any browser; the
+transition itself is treated as an unasserted progressive enhancement,
+which matches how the site treats browsers that lack the feature entirely
+(ADR 0012). Motion-sensitive visitors get a strictly better behaviour:
+their navigations no longer engage the snapshot machinery at all. If a
+future Playwright/Chromium pairing runs containerised view transitions
+reliably, a dedicated project with `reducedMotion: 'no-preference'` can
+reintroduce coverage without touching the site.
+
+
+################################################################################
+# FILE: docs/adr/0019-ci-container-home-override.md
+################################################################################
+
+--- METADATA ---
+  File name:             0019-ci-container-home-override.md
+  Relative path:         docs/adr/0019-ci-container-home-override.md
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0019-ci-container-home-override.md
+  Size:                  2.1 KiB (2232 bytes)
+  Last modified:         2026-07-10 09:14:08.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20461602
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               7acc6e2e1b6dd22ac805a191713fc413f05540c2ab4ed1076230ec88cb2a15d0
+  Last git commit:       3e63220 2026-07-10 14:39:22 -0400 add claude changes
+
+--- CONTENT ---
+# 19. The CI e2e container job pins HOME=/root for Firefox
+
+Date: 2026-07-10
+
+## Status
+
+Accepted
+
+## Context
+
+The `verify / e2e` job runs inside the official Playwright image
+(ADR 0017). GitHub Actions mounts its own home volume into job containers
+and points `$HOME` at `/github/home`, while the job's processes run as
+root. Firefox refuses to start when `$HOME` is not owned by the user
+launching it, and every firefox-project test failed at browser launch:
+
+```
+Firefox is unable to launch if the $HOME folder isn't owned by the current
+user. Workaround: Set the HOME=/root environment variable in your GitHub
+Actions workflow file when running Playwright.
+Running Nightly as root in a regular user's session is not supported.
+($HOME is /github/home which is owned by pwuser.)
+```
+
+The same suite passes in the same image under podman locally because
+rootless podman leaves the container's `$HOME` at `/root`, owned by the
+in-container root user — the mismatch is specific to how Actions wires job
+containers. Chromium and WebKit do not perform this ownership check, which
+is why only firefox failed.
+
+Two remedies exist. Running the job as the image's `pwuser`
+(`options: --user 1001`) also aligns ownership, but the job's first step is
+`corepack enable`, which symlinks into root-owned `/usr/local/bin` and
+would fail for an unprivileged user. Overriding `HOME` keeps the root user
+and is the workaround Playwright's own error message and container
+documentation prescribe.
+
+## Decision
+
+Set `HOME: /root` as job-level `env` on the `e2e` job in
+`.github/workflows/verify.yml`. Job level rather than step level so every
+step — checkout, corepack, setup-node's yarn cache, bootstrap, build,
+tests — agrees on one home directory instead of splitting caches and
+`.gitconfig` writes across two.
+
+## Consequences
+
+Firefox launches in CI; the container job and the local podman run agree on
+`$HOME` again. The GitHub-provided `/github/home` volume goes unused by
+this job, which costs nothing — the job container is ephemeral and nothing
+in this repository persists state there. If a future job ever runs as a
+non-root user, this override must be revisited together with the corepack
+step (see the `--user 1001` note above).
+
+
+################################################################################
+# FILE: docs/adr/0020-repo-root-from-script-location.md
+################################################################################
+
+--- METADATA ---
+  File name:             0020-repo-root-from-script-location.md
+  Relative path:         docs/adr/0020-repo-root-from-script-location.md
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0020-repo-root-from-script-location.md
+  Size:                  2.2 KiB (2318 bytes)
+  Last modified:         2026-07-10 09:15:33.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20461603
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               61fdcb56f4bd6cfed0e0fc39b3c26fe1d3a9870cc8f35c5092aca16405667d08
+  Last git commit:       3e63220 2026-07-10 14:39:22 -0400 add claude changes
+
+--- CONTENT ---
+# 20. Scripts derive the repo root from their own location, not git
+
+Date: 2026-07-10
+
+## Status
+
+Accepted
+
+## Context
+
+Every script sources `scripts/lib.sh` and starts with `cd "$(repo_root)"`.
+`repo_root()` shelled out to `git rev-parse --show-toplevel`, which fails
+inside the CI e2e container: the checkout is owned by the runner's uid
+while the scripts run as root, so git's dubious-ownership protection
+refuses to treat the directory as a repository. The CI log showed
+`[error] not inside a git repository` at the top of `scripts/test-e2e.sh` —
+and then, alarmingly, the script _kept running_. The `die` fired inside the
+`$( )` command substitution, so it terminated only that subshell; the
+captured output was empty, and `cd ""` in bash is a silent no-op that
+leaves the caller in its current directory, which happened to be the
+workspace. Every script's safety net was working by coincidence.
+
+Fixing this with `git config --global --add safe.directory` would paper
+over one environment while keeping the git dependency (and the
+subshell-swallowed `die`) everywhere else. The scripts don't actually need
+git to find the root: `lib.sh` has exactly one location in the tree,
+`<repo root>/scripts/lib.sh`.
+
+## Decision
+
+`repo_root()` resolves `lib.sh`'s own path (`readlink -f` on
+`BASH_SOURCE`) and returns its grandparent directory, inside an explicit
+subshell so calling it can never change the caller's working directory:
+
+```bash
+repo_root() {
+  (cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)
+}
+```
+
+No git invocation, no ownership sensitivity, no failure mode that a
+command substitution can swallow — the same deterministic answer on the
+Fedora host, under rootless podman, and in the Actions container.
+`export.sh` still uses git heavily, correctly so: it dumps _tracked_ files
+and runs only on the developer host where the repository is owned by the
+developer.
+
+## Consequences
+
+The spurious CI error disappears and scripts stop depending on an
+accident of bash's `cd ""` behaviour. Scripts now assume the
+`scripts/lib.sh` location is stable — true by construction, and any move
+would be a deliberate restructuring touching every script anyway. Symlinked
+checkouts resolve through `readlink -f` to the physical location, which is
+the desired behaviour for locating sibling files.
 
 
 ################################################################################
@@ -3230,15 +3548,15 @@ jobs:
   File name:             verify.yml
   Relative path:         .github/workflows/verify.yml
   Absolute path:         /home/kushal/src/ts/kphoto/.github/workflows/verify.yml
-  Size:                  1.7 KiB (1816 bytes)
-  Last modified:         2026-07-10 08:37:51.000000000 -0400
-  Permissions:           -rw-rw-r--
+  Size:                  2.0 KiB (2138 bytes)
+  Last modified:         2026-07-10 09:12:46.000000000 -0400
+  Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20383625
+  Inode:                 20461594
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               1de37f0c50c2252e3ffa647aef9a9bfbefa9d09b559773d21a3d6cbf9c89c45c
-  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
+  SHA-256:               d4b4a1d5ae2b8186a4e89b4b48dc2a4c49c43e5ebbaabe1d17bcf88a426ef978
+  Last git commit:       3e63220 2026-07-10 14:39:22 -0400 add claude changes
 
 --- CONTENT ---
 # Reusable verification suite. Deliberately slim: every step just calls a
@@ -3293,6 +3611,12 @@ jobs:
       # Must match devDependencies["@playwright/test"] — see ADR 0017.
       image: mcr.microsoft.com/playwright:v1.61.1-noble
       options: --init --ipc=host
+    env:
+      # GitHub points $HOME at /github/home, which the container's root user
+      # does not own; Firefox refuses to launch under a $HOME it does not
+      # own. Pointing HOME back at root's own home directory is Playwright's
+      # documented workaround for container jobs — see ADR 0019.
+      HOME: /root
     steps:
       - name: Check out
         uses: actions/checkout@v7
@@ -4107,15 +4431,15 @@ For more information on this, and how to apply and follow the GNU AGPL, see
   File name:             playwright.config.ts
   Relative path:         playwright.config.ts
   Absolute path:         /home/kushal/src/ts/kphoto/playwright.config.ts
-  Size:                  1.2 KiB (1292 bytes)
-  Last modified:         2026-07-10 08:37:51.000000000 -0400
-  Permissions:           -rw-rw-r--
+  Size:                  2.1 KiB (2175 bytes)
+  Last modified:         2026-07-10 13:25:26.000000000 -0400
+  Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20383634
+  Inode:                 20461591
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               eb93165c044f3a24dc630961b870c3c3f575b835d73b1499fa0c8c0f586c0288
-  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
+  SHA-256:               2468c6cb64b00154cf82e5d5efc20e7d9aa273b46c8abdac6c0b609ac66be10d
+  Last git commit:       3e63220 2026-07-10 14:39:22 -0400 add claude changes
 
 --- CONTENT ---
 import { defineConfig, devices } from '@playwright/test';
@@ -4133,6 +4457,19 @@ export default defineConfig({
   use: {
     baseURL: 'http://127.0.0.1:4173',
     trace: 'on-first-retry',
+    // Every context emulates `prefers-reduced-motion: reduce` (this is a
+    // browser-context option, so it lives under contextOptions — the exact
+    // usage Playwright's own documentation shows; note a project-level
+    // `contextOptions` would replace, not merge with, this one). Because
+    // the site motion-gates its cross-document view-transition opt-in
+    // (ADR 0018), navigations under test never engage the snapshot/reveal
+    // machinery whose rendering stall froze Chromium-engine runs inside
+    // the Playwright container. This also pins down the wordmark blink and
+    // any future animation, in every browser project, and exercises the
+    // same path a motion-sensitive visitor gets.
+    contextOptions: {
+      reducedMotion: 'reduce',
+    },
   },
   webServer: {
     command: 'yarn preview --host 127.0.0.1 --port 4173 --strictPort',
@@ -4144,7 +4481,8 @@ export default defineConfig({
     // instead of the default Chrome Headless Shell, whose rendering loop
     // freezes after link-click navigations when the site's cross-document
     // view transitions (`@view-transition` in global.css) are active.
-    // See ADR 0016.
+    // See ADR 0016 — amended by ADR 0018 after the real build showed the
+    // same freeze inside the Playwright container.
     { name: 'chromium', use: { ...devices['Desktop Chrome'], channel: 'chromium' } },
     { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
     { name: 'webkit', use: { ...devices['Desktop Safari'] } },
@@ -4301,15 +4639,15 @@ yarn.lock
   File name:             README.md
   Relative path:         README.md
   Absolute path:         /home/kushal/src/ts/kphoto/README.md
-  Size:                  7.2 KiB (7424 bytes)
-  Last modified:         2026-07-10 08:37:51.000000000 -0400
-  Permissions:           -rw-rw-r--
+  Size:                  7.6 KiB (7794 bytes)
+  Last modified:         2026-07-10 09:14:43.000000000 -0400
+  Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20383627
+  Inode:                 20461604
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               d295e8b0fb3d48007970d83abd8638161f9c67aa1115ea0fc76d800e4e7d2718
-  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
+  SHA-256:               e8eab940b6dc2c2d3070c077ad478dc2cfb44de9a4c88997487fa06b36d8c82f
+  Last git commit:       3e63220 2026-07-10 14:39:22 -0400 add claude changes
 
 --- CONTENT ---
 # kphoto
@@ -4413,9 +4751,15 @@ The image tag in `compose.yaml` and `.github/workflows/verify.yml` must match
 `@playwright/test` in `package.json` exactly; the unit suite
 (`src/versionSync.test.ts`) fails the moment they drift. The chromium
 projects run the real Chromium build in "new headless" mode instead of the
-Chrome Headless Shell, whose rendering loop freezes on this site's
-cross-document view transitions
-([ADR 0016](docs/adr/0016-chromium-new-headless-channel.md)).
+Chrome Headless Shell
+([ADR 0016](docs/adr/0016-chromium-new-headless-channel.md)), and every
+project emulates `prefers-reduced-motion: reduce`: the site motion-gates its
+cross-document view-transition opt-in, so navigations under test skip the
+transition machinery that froze containerised Chromium
+([ADR 0018](docs/adr/0018-motion-gated-view-transitions.md)). The CI job
+additionally pins `HOME=/root`, without which Firefox refuses to launch in
+GitHub's job containers
+([ADR 0019](docs/adr/0019-ci-container-home-override.md)).
 
 ## Writing content
 
@@ -4632,15 +4976,15 @@ log "format complete"
   File name:             lib.sh
   Relative path:         scripts/lib.sh
   Absolute path:         /home/kushal/src/ts/kphoto/scripts/lib.sh
-  Size:                  1.1 KiB (1167 bytes)
-  Last modified:         2026-07-09 21:52:24.000000000 -0400
+  Size:                  1.6 KiB (1640 bytes)
+  Last modified:         2026-07-10 09:12:58.000000000 -0400
   Permissions:           -rwxr-xr-x
   Owner:                 kushal:kushal
-  Inode:                 20354456
+  Inode:                 20461596
   Hard links:            1
   MIME type:             text/x-shellscript
-  SHA-256:               9a7661565c0c5ac8566bbe60035917b2067f03c982148ed2f5a01df1ae80bfee
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               c46f4ea88810760c3607d89e13b1517b416ecb132e67e1aa1128951f10bca8cc
+  Last git commit:       3e63220 2026-07-10 14:39:22 -0400 add claude changes
 
 --- CONTENT ---
 #!/usr/bin/env bash
@@ -4650,8 +4994,14 @@ log() { printf '\033[1;34m[%s]\033[0m %s\n' "$(date +%H:%M:%S)" "$*"; }
 die() { printf '\033[1;31m[error]\033[0m %s\n' "$*" >&2; exit 1; }
 
 repo_root() {
-  git -C "$(dirname "${BASH_SOURCE[0]}")" rev-parse --show-toplevel 2>/dev/null \
-    || die "not inside a git repository"
+  # lib.sh lives at <repo root>/scripts/lib.sh, so the root is this file's
+  # grandparent. Deliberately not `git rev-parse`: inside CI containers the
+  # checkout is owned by a different uid than the (root) user running the
+  # scripts, and git's dubious-ownership protection makes it fail — which
+  # previously printed a spurious "[error] not inside a git repository" and
+  # only kept working because the die() fired inside a command substitution
+  # subshell. Path derivation behaves identically everywhere. See ADR 0020.
+  (cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)
 }
 
 # Verify Node 24+ and make Yarn 4 available via corepack (ships with Node).
@@ -10144,15 +10494,15 @@ export function kphotoSsg(): Plugin {
   File name:             global.css
   Relative path:         src/styles/global.css
   Absolute path:         /home/kushal/src/ts/kphoto/src/styles/global.css
-  Size:                  7.0 KiB (7249 bytes)
-  Last modified:         2026-07-09 21:41:34.000000000 -0400
+  Size:                  7.3 KiB (7573 bytes)
+  Last modified:         2026-07-10 09:12:23.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354365
+  Inode:                 20461590
   Hard links:            1
   MIME type:             text/html
-  SHA-256:               4599476d2c29e31edc61f197eb063da6108806298458526182a2dd5f1cdc2b3d
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               46ce20887082770759564ebe3a645466de934b5f1e3f59c1ba15e93bb0f18eb3
+  Last git commit:       3e63220 2026-07-10 14:39:22 -0400 add claude changes
 
 --- CONTENT ---
 /*
@@ -10225,15 +10575,17 @@ export function kphotoSsg(): Plugin {
 
 /* ---------- cross-document view transitions (MPA) ---------- */
 
-@view-transition {
-  navigation: auto;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation: none !important;
+/*
+ * The opt-in itself is motion-gated (ADR 0018). Under
+ * `prefers-reduced-motion: reduce` the page never opts in, so the browser
+ * takes no snapshot and runs none of the transition machinery — stronger
+ * than the previous approach of zeroing the ::view-transition-* animations,
+ * which still engaged the capture/reveal pipeline. The Playwright suite
+ * emulates reduced motion and therefore navigates without transitions.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
   }
 }
 
@@ -11014,10 +11366,10 @@ packageExtensions:
 ################################################################################
 # DUMP SUMMARY
 ################################################################################
-  Files dumped   : 126
-  Total size     : 2.1 MiB (2217130 bytes)
+  Files dumped   : 129
+  Total size     : 2.1 MiB (2231462 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-07-10T08:50:03-04:00
+  Completed at   : 2026-07-10T14:41:21-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################

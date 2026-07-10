@@ -1,9 +1,6 @@
-kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash export.sh > docs/llm/vendor/output.txt; time bash scripts/bootstrap.sh; time bash scripts/test-e2e-container.sh; time bash check.sh
-
-real	0m3.743s
-user	0m1.603s
-sys	0m2.584s
-[08:50:03] installing dependencies (yarn install --immutable)
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
+[14:40:57] 1/8 bootstrap
+[14:40:57] installing dependencies (yarn install --immutable)
 ➤ YN0000: · Yarn 4.17.1
 ➤ YN0000: ┌ Resolution step
 ➤ YN0000: └ Completed
@@ -15,200 +12,48 @@ sys	0m2.584s
 ➤ YN0000: └ Completed
 ➤ YN0000: ┌ Link step
 ➤ YN0000: └ Completed
-➤ YN0000: · Done with warnings in 0s 304ms
-[08:50:03] bootstrap complete — try ./scripts/dev.sh
-
-real	0m0.525s
-user	0m0.597s
-sys	0m0.167s
-[08:50:03] running end-to-end tests in a container (podman compose run --rm e2e)
->>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
-
-24b461d6bb5c5f621b83e6dda4cebbc908596919cd05ab6ae41cf4d1997ce0ae
-Trying to pull mcr.microsoft.com/playwright:v1.61.1-noble...
-Getting image source signatures
-Copying blob 0b569fd65eaf done   | 
-Copying blob dfbf326447c4 done   | 
-Copying blob 0e5f8475f38b done   | 
-Copying blob 11a52a28a3f8 done   | 
-Copying config 89924b46ec done   | 
-Writing manifest to image destination
-[12:51:00] building the static site (vite build + kphoto-ssg)
-vite v8.1.3 building client environment for production...
-✓ 5 modules transformed.
-computing gzip size...
-dist/.vite/manifest.json         0.34 kB │ gzip: 0.17 kB
-dist/assets/styles-BpsJfnMC.css  5.49 kB │ gzip: 1.77 kB
-dist/assets/client-EgueYxfX.js   1.57 kB │ gzip: 0.77 kB
-
-✓ built in 39ms
-kphoto-ssg: wrote 27 pages and feeds
-[12:51:00] build complete — output in dist/
-[12:51:00] using browsers preinstalled at /ms-playwright
-[12:51:00] running end-to-end tests (playwright)
-
-Running 48 tests using 8 workers
-
-  ✓   1 [chromium] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (612ms)
-  ✓   2 [chromium] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (568ms)
-  ✓   3 [chromium] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (734ms)
-  ✓   4 [chromium] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (556ms)
-  ✘   5 [chromium] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (30.0s)
-  ✓   6 [chromium] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (538ms)
-  ✓   7 [chromium] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (612ms)
-  ✓   8 [chromium] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (677ms)
-  ✓   9 [chromium] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (299ms)
-  ✓  10 [chromium] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (270ms)
-  ✓  11 [chromium] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (314ms)
-  ✓  12 [chromium] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (255ms)
-  ✓  13 [firefox] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (826ms)
-  ✓  14 [firefox] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (1.4s)
-  ✓  15 [firefox] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (832ms)
-  ✓  16 [firefox] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (1.3s)
-  ✓  17 [firefox] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (2.1s)
-  ✓  18 [firefox] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (1.2s)
-  ✓  19 [firefox] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (980ms)
-  ✓  20 [firefox] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (802ms)
-  ✓  21 [firefox] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (490ms)
-  ✓  22 [firefox] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (458ms)
-  ✓  23 [firefox] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (586ms)
-  ✓  24 [firefox] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (423ms)
-  ✓  25 [webkit] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (471ms)
-  ✓  26 [webkit] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (1.3s)
-  ✓  27 [webkit] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (521ms)
-  ✓  28 [webkit] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (3.0s)
-  ✓  29 [webkit] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (553ms)
-  ✓  30 [webkit] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (611ms)
-  ✓  31 [webkit] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (722ms)
-  ✓  32 [webkit] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (547ms)
-  ✓  33 [webkit] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (472ms)
-  ✓  34 [webkit] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (472ms)
-  ✓  35 [webkit] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (442ms)
-  ✓  36 [webkit] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (645ms)
-  ✓  37 [mobile-chrome] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (415ms)
-  ✓  38 [mobile-chrome] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (433ms)
-  ✓  39 [mobile-chrome] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (596ms)
-  ✘  40 [mobile-chrome] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (30.0s)
-  ✓  41 [mobile-chrome] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (348ms)
-  ✓  42 [mobile-chrome] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (346ms)
-  ✓  43 [mobile-chrome] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (370ms)
-  ✓  44 [mobile-chrome] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (201ms)
-  ✓  45 [mobile-chrome] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (217ms)
-  ✓  46 [mobile-chrome] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (194ms)
-  ✓  47 [mobile-chrome] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (216ms)
-  ✓  48 [mobile-chrome] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (157ms)
-
-
-  1) [chromium] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header 
-
-    Test timeout of 30000ms exceeded.
-
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for locator('kp-header').getByRole('link', { name: 'Tags', exact: true })
-        - locator resolved to <a href="/tags/">Tags</a>
-      - attempting click action
-        - waiting for element to be visible, enabled and stable
-
-
-      38 |       ['Contact', '/contact/', 'Contact'],
-      39 |     ] as const) {
-    > 40 |       await page.locator('kp-header').getByRole('link', { name, exact: true }).click();
-         |                                                                                ^
-      41 |       await expect(page).toHaveURL(url);
-      42 |       await expect(page.getByRole('heading', { level: 1 })).toHaveText(heading);
-      43 |     }
-        at /work/tests/e2e/site.spec.ts:40:80
-
-    Error Context: test-results/site-header-navigation-reaches-every-section-from-the-header-chromium/error-context.md
-
-  2) [mobile-chrome] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header 
-
-    Test timeout of 30000ms exceeded.
-
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for locator('kp-header').getByRole('link', { name: 'Tags', exact: true })
-        - locator resolved to <a href="/tags/">Tags</a>
-      - attempting click action
-        - waiting for element to be visible, enabled and stable
-
-
-      38 |       ['Contact', '/contact/', 'Contact'],
-      39 |     ] as const) {
-    > 40 |       await page.locator('kp-header').getByRole('link', { name, exact: true }).click();
-         |                                                                                ^
-      41 |       await expect(page).toHaveURL(url);
-      42 |       await expect(page.getByRole('heading', { level: 1 })).toHaveText(heading);
-      43 |     }
-        at /work/tests/e2e/site.spec.ts:40:80
-
-    Error Context: test-results/site-header-navigation-reaches-every-section-from-the-header-mobile-chrome/error-context.md
-
-  2 failed
-    [chromium] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header 
-    [mobile-chrome] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header 
-  46 passed (39.4s)
-Error: executing /usr/bin/podman-compose run --rm e2e: exit status 1
-
-real	1m37.323s
-user	0m25.470s
-sys	0m8.425s
-[08:51:41] 1/8 bootstrap
-[08:51:41] installing dependencies (yarn install --immutable)
-➤ YN0000: · Yarn 4.17.1
-➤ YN0000: ┌ Resolution step
-➤ YN0000: └ Completed
-➤ YN0000: ┌ Post-resolution validation
-➤ YN0002: │ kphoto@workspace:. doesn't provide typescript (p8aebeb), requested by typescript-eslint.
-➤ YN0086: │ Some peer dependencies are incorrectly met by your project; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code.
-➤ YN0000: └ Completed
-➤ YN0000: ┌ Fetch step
-➤ YN0000: └ Completed
-➤ YN0000: ┌ Link step
-➤ YN0000: └ Completed
-➤ YN0000: · Done with warnings in 0s 281ms
-[08:51:41] bootstrap complete — try ./scripts/dev.sh
-[08:51:41] 2/8 format check
-[08:51:41] checking formatting (prettier --check)
+➤ YN0000: · Done with warnings in 0s 282ms
+[14:40:57] bootstrap complete — try ./scripts/dev.sh
+[14:40:57] 2/8 format check
+[14:40:57] checking formatting (prettier --check)
 Checking formatting...
 All matched files use Prettier code style!
-[08:51:42] format complete
-[08:51:42] 3/8 lint
-[08:51:42] linting (eslint, zero warnings allowed)
-[08:51:45] lint complete
-[08:51:45] 4/8 typecheck
-[08:51:45] type-checking with tsc Version 7.0.2 (native compiler)
-[08:51:46] typecheck complete
-[08:51:46] 5/8 unit tests
-[08:51:46] running unit tests with coverage (vitest)
+[14:40:59] format complete
+[14:40:59] 3/8 lint
+[14:40:59] linting (eslint, zero warnings allowed)
+[14:41:01] lint complete
+[14:41:01] 4/8 typecheck
+[14:41:02] type-checking with tsc Version 7.0.2 (native compiler)
+[14:41:02] typecheck complete
+[14:41:02] 5/8 unit tests
+[14:41:02] running unit tests with coverage (vitest)
 
  RUN  v4.1.10 /home/kushal/src/ts/kphoto
       Coverage enabled with v8
 
- ✓ src/lib/slug.test.ts (5 tests) 4ms
- ✓ src/lib/readingTime.test.ts (3 tests) 4ms
+ ✓ src/ssg/loadContent.test.ts (2 tests) 6ms
  ✓ src/client/storage.test.ts (9 tests) 6ms
- ✓ src/lib/yaml.test.ts (11 tests) 6ms
- ✓ src/lib/frontmatter.test.ts (4 tests) 6ms
- ✓ src/lib/dates.test.ts (8 tests) 7ms
- ✓ src/client/theme.test.ts (7 tests) 5ms
- ✓ src/client/themeInit.test.ts (5 tests) 5ms
- ✓ src/ssg/loadContent.test.ts (2 tests) 10ms
- ✓ src/lib/sitemap.test.ts (1 test) 5ms
- ✓ src/lib/markdown.test.ts (19 tests) 11ms
+ ✓ src/lib/readingTime.test.ts (3 tests) 4ms
+ ✓ src/lib/frontmatter.test.ts (4 tests) 9ms
+ ✓ src/lib/dates.test.ts (8 tests) 6ms
+ ✓ src/lib/yaml.test.ts (11 tests) 13ms
+ ✓ src/lib/slug.test.ts (5 tests) 4ms
  ✓ src/lib/collections.test.ts (9 tests) 14ms
- ✓ src/lib/content.test.ts (22 tests) 23ms
+ ✓ src/lib/sitemap.test.ts (1 test) 4ms
+ ✓ src/client/theme.test.ts (7 tests) 8ms
+ ✓ src/client/themeInit.test.ts (5 tests) 7ms
+ ✓ src/lib/markdown.test.ts (19 tests) 10ms
+ ✓ src/lib/content.test.ts (22 tests) 22ms
  ✓ src/components/components.test.ts (20 tests) 6ms
  ✓ src/pages/routes.test.ts (14 tests) 7ms
- ✓ src/versionSync.test.ts (3 tests) 4ms
+ ✓ src/versionSync.test.ts (3 tests) 3ms
  ✓ src/lib/html.test.ts (3 tests) 3ms
  ✓ src/lib/feed.test.ts (5 tests) 3ms
 
  Test Files  18 passed (18)
       Tests  150 passed (150)
-   Start at  08:51:46
-   Duration  543ms (transform 1.28s, setup 0ms, import 1.79s, tests 129ms, environment 2ms)
+   Start at  14:41:02
+   Duration  581ms (transform 1.82s, setup 0ms, import 2.33s, tests 134ms, environment 2ms)
 
  % Coverage report from v8
 ------------------|---------|----------|---------|---------|-------------------------------------------------------
@@ -258,142 +103,94 @@ All files         |   79.94 |    71.36 |   81.01 |   79.89 |
   loadContent.ts  |   91.66 |       50 |     100 |   91.66 | 15                                                    
   vitePlugin.ts   |       0 |        0 |       0 |       0 | 13-194                                                
 ------------------|---------|----------|---------|---------|-------------------------------------------------------
-[08:51:47] unit tests complete
-[08:51:47] 6/8 build
-[08:51:47] building the static site (vite build + kphoto-ssg)
+[14:41:03] unit tests complete
+[14:41:03] 6/8 build
+[14:41:03] building the static site (vite build + kphoto-ssg)
 vite v8.1.3 building client environment for production...
 ✓ 5 modules transformed.
 computing gzip size...
 dist/.vite/manifest.json         0.34 kB │ gzip: 0.17 kB
-dist/assets/styles-BpsJfnMC.css  5.49 kB │ gzip: 1.77 kB
+dist/assets/styles-DC9AySgQ.css  5.35 kB │ gzip: 1.74 kB
 dist/assets/client-EgueYxfX.js   1.57 kB │ gzip: 0.77 kB
 
-✓ built in 52ms
+✓ built in 44ms
 kphoto-ssg: wrote 27 pages and feeds
-[08:51:47] build complete — output in dist/
-[08:51:47] 7/8 end-to-end tests (container — see ADR 0017)
-[08:51:47] running end-to-end tests in a container (podman compose run --rm e2e)
+[14:41:03] build complete — output in dist/
+[14:41:03] 7/8 end-to-end tests (container — see ADR 0017)
+[14:41:03] running end-to-end tests in a container (podman compose run --rm e2e)
 >>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
 
-[12:51:48] building the static site (vite build + kphoto-ssg)
+[18:41:04] building the static site (vite build + kphoto-ssg)
 vite v8.1.3 building client environment for production...
 ✓ 5 modules transformed.
 computing gzip size...
 dist/.vite/manifest.json         0.34 kB │ gzip: 0.17 kB
-dist/assets/styles-BpsJfnMC.css  5.49 kB │ gzip: 1.77 kB
+dist/assets/styles-DC9AySgQ.css  5.35 kB │ gzip: 1.74 kB
 dist/assets/client-EgueYxfX.js   1.57 kB │ gzip: 0.77 kB
 
-✓ built in 22ms
+✓ built in 27ms
 kphoto-ssg: wrote 27 pages and feeds
-[12:51:48] build complete — output in dist/
-[12:51:48] using browsers preinstalled at /ms-playwright
-[12:51:48] running end-to-end tests (playwright)
+[18:41:05] build complete — output in dist/
+[18:41:05] using browsers preinstalled at /ms-playwright
+[18:41:05] running end-to-end tests (playwright)
 
 Running 48 tests using 8 workers
 
-  ✓   1 [chromium] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (486ms)
-  ✓   2 [chromium] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (431ms)
-  ✓   3 [chromium] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (513ms)
-  ✓   4 [chromium] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (559ms)
-  ✓   5 [chromium] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (405ms)
-  ✓   6 [chromium] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (441ms)
-  ✓   7 [chromium] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (444ms)
-  ✘   8 [chromium] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (30.0s)
-  ✓   9 [chromium] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (255ms)
-  ✓  10 [chromium] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (210ms)
-  ✓  11 [chromium] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (262ms)
-  ✓  12 [chromium] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (224ms)
-  ✓  13 [firefox] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (778ms)
-  ✓  14 [firefox] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (1.4s)
-  ✓  15 [firefox] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (1.2s)
-  ✓  16 [firefox] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (2.0s)
-  ✓  17 [firefox] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (1.0s)
-  ✓  18 [firefox] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (1.3s)
-  ✓  19 [firefox] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (1.3s)
-  ✓  20 [firefox] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (659ms)
-  ✓  21 [firefox] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (442ms)
-  ✓  22 [firefox] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (454ms)
-  ✓  23 [firefox] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (434ms)
-  ✓  24 [firefox] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (367ms)
-  ✓  25 [webkit] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (432ms)
-  ✓  26 [webkit] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (1.2s)
-  ✓  27 [webkit] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (486ms)
-  ✓  28 [webkit] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (551ms)
-  ✓  29 [webkit] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (2.9s)
-  ✓  30 [webkit] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (408ms)
-  ✓  31 [webkit] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (670ms)
-  ✓  32 [webkit] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (732ms)
-  ✓  33 [webkit] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (627ms)
-  ✓  34 [webkit] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (494ms)
-  ✓  35 [webkit] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (538ms)
-  ✓  36 [webkit] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (473ms)
-  ✓  37 [mobile-chrome] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (448ms)
-  ✓  38 [mobile-chrome] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (612ms)
-  ✓  39 [mobile-chrome] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (389ms)
-  ✘  40 [mobile-chrome] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (30.0s)
-  ✓  41 [mobile-chrome] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (359ms)
-  ✓  42 [mobile-chrome] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (386ms)
-  ✓  43 [mobile-chrome] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (325ms)
-  ✓  44 [mobile-chrome] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (384ms)
-  ✓  45 [mobile-chrome] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (288ms)
-  ✓  46 [mobile-chrome] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (232ms)
-  ✓  47 [mobile-chrome] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (239ms)
-  ✓  48 [mobile-chrome] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (149ms)
+  ✓   1 [chromium] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (483ms)
+  ✓   2 [chromium] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (525ms)
+  ✓   3 [chromium] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (979ms)
+  ✓   4 [chromium] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (589ms)
+  ✓   5 [chromium] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (471ms)
+  ✓   6 [chromium] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (462ms)
+  ✓   7 [chromium] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (462ms)
+  ✓   8 [chromium] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (451ms)
+  ✓   9 [chromium] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (297ms)
+  ✓  10 [chromium] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (227ms)
+  ✓  11 [chromium] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (273ms)
+  ✓  12 [chromium] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (229ms)
+  ✓  13 [firefox] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (1.3s)
+  ✓  14 [firefox] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (954ms)
+  ✓  15 [firefox] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (830ms)
+  ✓  16 [firefox] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (1.4s)
+  ✓  17 [firefox] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (2.3s)
+  ✓  18 [firefox] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (1.3s)
+  ✓  19 [firefox] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (1.2s)
+  ✓  20 [firefox] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (1.5s)
+  ✓  21 [firefox] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (570ms)
+  ✓  22 [firefox] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (386ms)
+  ✓  23 [firefox] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (715ms)
+  ✓  24 [firefox] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (400ms)
+  ✓  25 [webkit] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (1.5s)
+  ✓  26 [webkit] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (665ms)
+  ✓  27 [webkit] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (690ms)
+  ✓  28 [webkit] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (2.1s)
+  ✓  29 [webkit] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (646ms)
+  ✓  30 [webkit] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (560ms)
+  ✓  31 [webkit] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (917ms)
+  ✓  32 [webkit] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (762ms)
+  ✓  33 [webkit] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (744ms)
+  ✓  34 [webkit] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (666ms)
+  ✓  35 [webkit] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (656ms)
+  ✓  36 [webkit] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (785ms)
+  ✓  37 [mobile-chrome] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (504ms)
+  ✓  38 [mobile-chrome] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (415ms)
+  ✓  39 [mobile-chrome] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (404ms)
+  ✓  40 [mobile-chrome] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (911ms)
+  ✓  41 [mobile-chrome] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (320ms)
+  ✓  42 [mobile-chrome] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (362ms)
+  ✓  43 [mobile-chrome] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (383ms)
+  ✓  44 [mobile-chrome] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (315ms)
+  ✓  45 [mobile-chrome] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (310ms)
+  ✓  46 [mobile-chrome] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (197ms)
+  ✓  47 [mobile-chrome] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (261ms)
+  ✓  48 [mobile-chrome] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (215ms)
 
+  48 passed (10.8s)
+[18:41:16] end-to-end tests complete
+[14:41:17] 8/8 export repository dump
+[14:41:21] all checks passed ✔
 
-  1) [chromium] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header 
-
-    Test timeout of 30000ms exceeded.
-
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for locator('kp-header').getByRole('link', { name: 'Tags', exact: true })
-        - locator resolved to <a href="/tags/">Tags</a>
-      - attempting click action
-        - waiting for element to be visible, enabled and stable
-
-
-      38 |       ['Contact', '/contact/', 'Contact'],
-      39 |     ] as const) {
-    > 40 |       await page.locator('kp-header').getByRole('link', { name, exact: true }).click();
-         |                                                                                ^
-      41 |       await expect(page).toHaveURL(url);
-      42 |       await expect(page.getByRole('heading', { level: 1 })).toHaveText(heading);
-      43 |     }
-        at /work/tests/e2e/site.spec.ts:40:80
-
-    Error Context: test-results/site-header-navigation-reaches-every-section-from-the-header-chromium/error-context.md
-
-  2) [mobile-chrome] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header 
-
-    Test timeout of 30000ms exceeded.
-
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for locator('kp-header').getByRole('link', { name: 'Tags', exact: true })
-        - locator resolved to <a href="/tags/">Tags</a>
-      - attempting click action
-        - waiting for element to be visible, enabled and stable
-
-
-      38 |       ['Contact', '/contact/', 'Contact'],
-      39 |     ] as const) {
-    > 40 |       await page.locator('kp-header').getByRole('link', { name, exact: true }).click();
-         |                                                                                ^
-      41 |       await expect(page).toHaveURL(url);
-      42 |       await expect(page.getByRole('heading', { level: 1 })).toHaveText(heading);
-      43 |     }
-        at /work/tests/e2e/site.spec.ts:40:80
-
-    Error Context: test-results/site-header-navigation-reaches-every-section-from-the-header-mobile-chrome/error-context.md
-
-  2 failed
-    [chromium] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header 
-    [mobile-chrome] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header 
-  46 passed (38.7s)
-Error: executing /usr/bin/podman-compose run --rm e2e: exit status 1
-
-real	0m47.402s
-user	0m11.852s
-sys	0m2.761s
+real	0m23.721s
+user	0m13.556s
+sys	0m5.611s
 kushal@fedora:~/src/ts/kphoto$ 
