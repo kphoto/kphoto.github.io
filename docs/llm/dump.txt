@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-07-10T15:11:37-04:00
+  Generated at   : 2026-07-12T13:38:52-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,10 +17,10 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : 679088fd1c4880fdd4b04d9cbc866c025becb222
-  Commit (short) : 679088f
-  Commit date    : 2026-07-10 15:06:59 -0400
-  Commit message : fix socials
+  Commit (full)  : 4d3064acd4830f574e387b2fcad8a02f104fcf3e
+  Commit (short) : 4d3064a
+  Commit date    : 2026-07-10 15:12:02 -0400
+  Commit message : fix my name
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
   Files included : 132
   Excluded path  : docs/llm/
@@ -28,7 +28,7 @@ REPOSITORY METADATA
 
 GIT WORKING TREE STATUS (first 20 lines)
 ═════════════════════════════════════════════════════════════════════════════════
- M content/authors/kushal.yml
+  (clean — no uncommitted changes)
 
 ################################################################################
 # FILE: export.sh  [THIS SCRIPT — included for full context]
@@ -937,7 +937,7 @@ socials:
   Hard links:            1
   MIME type:             text/plain
   SHA-256:               375c0c5628ef1b61623c6b9f72e3d9b7f2cf5369597884b2ae34c9c7a066e0c7
-  Last git commit:       679088f 2026-07-10 15:06:59 -0400 fix socials
+  Last git commit:       4d3064a 2026-07-10 15:12:02 -0400 fix my name
 
 --- CONTENT ---
 name: Kushal
@@ -11456,7 +11456,7 @@ packageExtensions:
   Files dumped   : 132
   Total size     : 5.0 MiB (5298614 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-07-10T15:11:41-04:00
+  Completed at   : 2026-07-12T13:38:56-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
