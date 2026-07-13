@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-07-12T13:38:52-04:00
+  Generated at   : 2026-07-13T15:25:04-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,10 +17,10 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : 4d3064acd4830f574e387b2fcad8a02f104fcf3e
-  Commit (short) : 4d3064a
-  Commit date    : 2026-07-10 15:12:02 -0400
-  Commit message : fix my name
+  Commit (full)  : d438354efcc3b5ebe0308ee8459be038eb5685d6
+  Commit (short) : d438354
+  Commit date    : 2026-07-12 13:40:45 -0400
+  Commit message : run dump
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
   Files included : 132
   Excluded path  : docs/llm/
@@ -28,7 +28,9 @@ REPOSITORY METADATA
 
 GIT WORKING TREE STATUS (first 20 lines)
 ═════════════════════════════════════════════════════════════════════════════════
-  (clean — no uncommitted changes)
+ D docs/llm/vendor/kphoto-e2e-container-fix.zip
+ D docs/llm/vendor/kphoto-e2e-fixes.zip
+ D docs/llm/vendor/kphoto-site.zip
 
 ################################################################################
 # FILE: export.sh  [THIS SCRIPT — included for full context]
@@ -11456,7 +11458,7 @@ packageExtensions:
   Files dumped   : 132
   Total size     : 5.0 MiB (5298614 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-07-12T13:38:56-04:00
+  Completed at   : 2026-07-13T15:25:08-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
