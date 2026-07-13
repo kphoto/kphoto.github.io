@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-07-13T15:48:33-04:00
+  Generated at   : 2026-07-13T17:27:02-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,12 +17,12 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : 010aff960ec80fd8735d3ff08a05bd4ac156004b
-  Commit (short) : 010aff9
-  Commit date    : 2026-07-13 15:48:12 -0400
-  Commit message : run dump
+  Commit (full)  : 5c83b7cee7e6da082da6540155b2a572495a9007
+  Commit (short) : 5c83b7c
+  Commit date    : 2026-07-13 17:26:49 -0400
+  Commit message : add claude changes
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
-  Files included : 152
+  Files included : 153
   Excluded path  : docs/llm/
   Excluded files : yarn.lock, .pnp.cjs, .pnp.loader.mjs
 
@@ -430,7 +430,7 @@ FOOTER
 mv -f "$TMP_FILE" "$OUTPUT_FILE"
 
 ################################################################################
-# FILE TREE  (all 152 included files)
+# FILE TREE  (all 153 included files)
 ################################################################################
 .
 .
@@ -495,7 +495,8 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── 0017-containerised-e2e-playwright-image.md
 │   │   ├── 0018-motion-gated-view-transitions.md
 │   │   ├── 0019-ci-container-home-override.md
-│   │   └── 0020-repo-root-from-script-location.md
+│   │   ├── 0020-repo-root-from-script-location.md
+│   │   └── 0021-scheduled-publishing-and-daily-rebuild.md
 │   ├── architecture.md
 │   ├── content-authoring.md
 │   └── README.md
@@ -618,15 +619,15 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   File name:             CHANGELOG.md
   Relative path:         CHANGELOG.md
   Absolute path:         /home/kushal/src/ts/kphoto/CHANGELOG.md
-  Size:                  5.5 KiB (5667 bytes)
-  Last modified:         2026-07-10 09:14:58.000000000 -0400
+  Size:                  7.7 KiB (7923 bytes)
+  Last modified:         2026-07-13 17:20:30.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20461605
+  Inode:                 20816857
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               68268db57f881c3bb376113e304bf6a95eb07b52720f659b4e053677cf9921b9
-  Last git commit:       3e63220 2026-07-10 14:39:22 -0400 add claude changes
+  SHA-256:               2f1c32f7f4f18fecc643da43a25f5e3b8193d4a833c0363fbca4cc494e21e6d8
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
 
 --- CONTENT ---
 # Changelog
@@ -640,6 +641,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Scheduled publishing (ADR 0021): a post dated in the future is validated
+  on every build but excluded from the site — pages, feed and sitemap — until
+  its date arrives in the site's time zone (`siteConfig.timeZone`, new). The
+  deploy workflow now also runs on a daily cron (05:10 UTC, just past
+  midnight US-Eastern) so each scheduled post goes live on its date without
+  a commit; `KPHOTO_SHOW_FUTURE=1` lets the dev server preview scheduled
+  posts. New pure helper `isoDateInTimeZone` in `src/lib/dates.ts`;
+  `loadSiteModel` takes an optional `publishedThrough` cutoff.
+- Twenty-episode "Photography Fundamentals" series
+  (`content/blog/2026-07-13-…` through `2026-08-01-…`), publishing one
+  episode per day via the scheduling above.
 - Containerised end-to-end testing: `compose.yaml` (services `e2e`, `dev`,
   `preview`) on the official pinned Playwright image, driven by podman
   compose (docker also works), plus the `scripts/test-e2e-container.sh`
@@ -654,6 +666,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- The home-page e2e scenarios are content-agnostic (ADR 0010 amendment):
+  "navigates from a post card to the post" derives the expected URL and
+  title from the first card instead of naming a specific post, and the card
+  count comes from `siteConfig.postsOnHome`. Previously the test hard-coded
+  a post that new content had displaced from the home page, timing out in
+  all four browser projects.
+- Routine dependency bumps past the 72-hour quarantine, exactly as ADR 0014
+  scheduled: vite 8.1.3 → 8.1.4, prettier 3.9.4 → 3.9.5. eslint 10.7.0 and
+  typescript-eslint 8.64.0 remain quarantined at the time of this change
+  (yarn refuses them with `YN0016`) and stay at 10.6.0 / 8.63.0 until the
+  next routine `yarn up`.
 - Reduced-motion visitors no longer engage the view-transition machinery at
   all: the `@view-transition { navigation: auto }` opt-in now lives inside
   `@media (prefers-reduced-motion: no-preference)`, replacing the previous
@@ -667,6 +690,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- `yarn install` is warning-free again: the ADR 0006 packageExtensions realm
+  now also gives `typescript-eslint` (the meta package) and
+  `@typescript-eslint/utils` the nested `typescript@6.0.3` fallback, which
+  satisfies their `typescript` peer edge and removes the `YN0002`/`YN0086`
+  post-resolution warnings (ADR 0006 amendment).
+- `.yarnrc.yml` carries `npmMinimalAgeGate: 4320` again. ADR 0014 documents
+  the 72-hour supply-chain quarantine as accepted policy, but the setting
+  itself had been lost from the config; restored and verified (a 2-hour-old
+  release is refused with `YN0016: … quarantined`).
+- Stale ADR references in `.yarnrc.yml` comments now point at the real
+  files (`0006-dual-typescript-toolchain.md`,
+  `0014-yarn-and-dependency-policy.md`).
 - Containerised chromium and mobile-chrome e2e runs no longer freeze for
   30 s on "header navigation reaches every section": the real Chromium
   build reproduced the Headless Shell's view-transition rendering stall
@@ -2740,15 +2775,15 @@ without it `vite preview` serves only raw assets.
   File name:             0006-dual-typescript-toolchain.md
   Relative path:         docs/adr/0006-dual-typescript-toolchain.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0006-dual-typescript-toolchain.md
-  Size:                  2.1 KiB (2182 bytes)
-  Last modified:         2026-07-10 03:07:32.000000000 -0400
+  Size:                  3.2 KiB (3283 bytes)
+  Last modified:         2026-07-13 17:19:12.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354497
+  Inode:                 20816861
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               ca4185f93a3a6629afe60e860d60a9f2f057e50dca2780ce0937786688053f26
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               db220afe5f27229cb975ee0f20c6c8a5a42f4199f74378244171efb12132b18c
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
 
 --- CONTENT ---
 # 6. Dual TypeScript install: 7 (native) compiles, 6 (classic) serves the linter
@@ -2797,6 +2832,26 @@ invoking `./node_modules/.bin/tsc` directly does not — always go through
 `yarn tsc`. When typescript-eslint gains TypeScript 7 support, delete the
 packageExtensions block and this becomes a one-package install (a future ADR
 will supersede this one).
+
+## Amendment (2026-07-13): the realm was two packages short
+
+The original extension list left a `YN0002` warning on every install:
+`kphoto@workspace:. doesn't provide typescript, requested by
+typescript-eslint`. `yarn explain peer-requirements` shows why — the
+**`typescript-eslint` meta package** and **`@typescript-eslint/utils`** also
+declare the `typescript >=4.8.4 <6.1.0` peer, and neither had received the
+nested 6.0.3 dependency, so their peer edge resolved against the (empty)
+workspace. The "dependency override … failed to satisfy the peer edge"
+sentence above described that incomplete attempt.
+
+The fix is completion, not a new mechanism: the same
+`dependencies: { typescript: '6.0.3' }` extension now also covers
+`typescript-eslint@*` and `@typescript-eslint/utils@*` (eight packages
+total). Yarn treats a name listed in both `peerDependencies` and
+`dependencies` as a peer with a fallback, so the edge is satisfied inside the
+realm and the install is warning-free. Verified after the change:
+`yarn install` emits no `YN0002`/`YN0086`, and `yarn tsc --version` still
+reports 7.0.2.
 
 
 ################################################################################
@@ -2987,15 +3042,15 @@ sitemap.
   File name:             0010-test-strategy.md
   Relative path:         docs/adr/0010-test-strategy.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0010-test-strategy.md
-  Size:                  1.7 KiB (1816 bytes)
-  Last modified:         2026-07-10 03:07:32.000000000 -0400
+  Size:                  2.8 KiB (2891 bytes)
+  Last modified:         2026-07-13 17:20:58.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354493
+  Inode:                 20816862
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               3c9f59ceae21436794313b9246484bed7ef82174c6392bb68be707917dae208c
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               50037cdc3baa9cacd01b9859d7296f8247feeb4a56a0806d7b5b49b36b0baea3
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
 
 --- CONTENT ---
 # 10. Test strategy: co-located Vitest units, Playwright against preview
@@ -3040,6 +3095,24 @@ Unit tests run in ~2 s with no browser, so they run constantly; e2e is the
 slow, honest layer. Fakes at the seams (storage, media, host, time) keep
 client logic testable without jsdom. A percentage gate is deliberately
 rejected to avoid coverage-shaped tests.
+
+## Amendment (2026-07-13): e2e tests must not depend on editorial content
+
+"navigates from a post card to the post" hard-coded a post title and URL and
+assumed that post sat on the home page. Twenty new dated posts later it timed
+out in all four browser projects — the post had simply scrolled off. The
+lesson generalises: the home page's "latest posts" is a **moving window over
+content**, and with scheduled publishing (ADR 0021) it now moves on its own
+every day, with no commit at all.
+
+Rule going forward: e2e scenarios assert **behaviour and invariants**, never
+the presence of a particular piece of writing. The rewritten test derives the
+expected URL and title from the first card in the DOM and asserts the dated
+URL shape and the title round-trip; the card count comes from
+`siteConfig.postsOnHome` instead of a literal `5`. Tests that intentionally
+pin specific posts (the duplicate-title pair, the three-episode series) may
+keep doing so — those posts exist _as fixtures for those behaviours_ and are
+past-dated, so the publishing clock can never hide them.
 
 
 ################################################################################
@@ -3800,6 +3873,81 @@ the desired behaviour for locating sibling files.
 
 
 ################################################################################
+# FILE: docs/adr/0021-scheduled-publishing-and-daily-rebuild.md
+################################################################################
+
+--- METADATA ---
+  File name:             0021-scheduled-publishing-and-daily-rebuild.md
+  Relative path:         docs/adr/0021-scheduled-publishing-and-daily-rebuild.md
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0021-scheduled-publishing-and-daily-rebuild.md
+  Size:                  2.6 KiB (2696 bytes)
+  Last modified:         2026-07-13 16:08:45.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 20816863
+  Hard links:            1
+  MIME type:             text/x-Algol68
+  SHA-256:               8fb40dbd328da67063bad0fb5e660fdf33d55cb19d6dc1e380d53bab181e29c3
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
+
+--- CONTENT ---
+# 21. Scheduled publishing: dated posts go live on their date
+
+Date: 2026-07-13
+
+## Status
+
+Accepted
+
+## Context
+
+Twenty "Photography Fundamentals" episodes landed at once, dated one per day
+into the future. The build published all of them immediately: the home page's
+"latest posts" jumped nineteen days ahead, the Atom feed announced entries
+"from the future", and the site contradicted its own dates. (It also broke an
+e2e test that assumed a specific post sat on the home page — a test defect
+fixed separately under ADR 0010's amendment.) A static site has no server
+clock at request time, so "publish on the date" has to be a property of the
+build.
+
+## Decision
+
+A post is **published** when its date has arrived in the site's time zone,
+and unpublished posts are absent from the built site entirely:
+
+- `SiteConfig` gains `timeZone` (`America/New_York`). The new pure helper
+  `isoDateInTimeZone(instant, timeZone)` (in `src/lib/dates.ts`, built on
+  `Intl.DateTimeFormat`) maps an injected clock reading to the calendar date
+  that decides publication — no hand-rolled offset arithmetic, no DST bugs.
+- `loadSiteModel(input, publishedThrough?)` takes the cutoff date. Validation
+  still runs over **every** post first (a broken or episode-conflicting
+  future post fails today's build, when it is cheapest to fix); the filter
+  applies after validation, before any collection is derived. Because tags,
+  series, author groupings, the feed and the sitemap are all built from the
+  filtered list, nothing anywhere links to an unpublished URL — a series
+  reads "Part 1 of 1" until episode 2 exists publicly.
+- The Vite plugin (the only impure shell) reads the clock once per render and
+  passes the cutoff down. The dev server renders per request, so a scheduled
+  post flips live at midnight without a restart. Setting
+  `KPHOTO_SHOW_FUTURE=1` omits the cutoff for previewing scheduled posts
+  locally.
+- `deploy.yml` gains `schedule: cron '10 5 * * *'` — a daily rebuild at
+  05:10 UTC (00:10 EST / 01:10 EDT), which is the mechanism that actually
+  flips each episode live on GitHub Pages.
+
+## Consequences
+
+Writing ahead now works the way the daily-dated URL scheme always implied:
+commit twenty episodes, and they appear one per day. The published site can
+lag a scheduled date by up to ~70 minutes past midnight Eastern (cron
+granularity), which is acceptable for a blog. GitHub disables cron schedules
+on repositories with no activity for 60 days; any push re-enables it, and
+`workflow_dispatch` can force a publish at any moment. Omitting the cutoff
+(the two-argument call with `undefined`) is reserved for previews and tests;
+the production path always passes today's date.
+
+
+################################################################################
 # FILE: docs/architecture.md
 ################################################################################
 
@@ -3807,15 +3955,15 @@ the desired behaviour for locating sibling files.
   File name:             architecture.md
   Relative path:         docs/architecture.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/architecture.md
-  Size:                  2.8 KiB (2953 bytes)
-  Last modified:         2026-07-09 21:56:34.000000000 -0400
+  Size:                  3.2 KiB (3329 bytes)
+  Last modified:         2026-07-13 17:19:47.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354484
+  Inode:                 20816864
   Hard links:            1
   MIME type:             text/html
-  SHA-256:               1d64578cbd67aa6b13d8e128f22b6128f9790d89e194a316f7d0acf3f1ab6a62
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               e041f2062abc49d5d934de57eacc5002a951b5832e452edcb88ce20394019e2a
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
 
 --- CONTENT ---
 # Architecture
@@ -3855,6 +4003,10 @@ src/client/      the only code that runs in the browser
    `{ fileName: rawText }` records — the only filesystem access.
 2. `loadSiteModel` parses and cross-validates everything, collecting every
    problem into one `ContentValidationError` so authors fix a batch at once.
+   It then drops posts dated after the publish cutoff — today's date in the
+   site's time zone, computed once per render in the plugin — so every
+   derived collection, the feed and the sitemap see published posts only
+   (ADR 0021).
 3. `renderSite` turns the model into `{ path, body, contentType }` files:
    every page, `404.html`, `feed.xml`, `sitemap.xml`.
 4. In dev, the Vite plugin runs steps 1–3 per request (content is always
@@ -3865,8 +4017,10 @@ src/client/      the only code that runs in the browser
 
 ## Dependency inversion in practice
 
-Anything impure is injected at the edge. `PageContext` carries the build year
-so renders are pure functions of (model, context). `ThemeController` receives
+Anything impure is injected at the edge. The plugin reads the clock once per
+render and passes it down as data: the build year rides in `PageContext` and
+today's date becomes the publish cutoff for `loadSiteModel`, so renders are
+pure functions of (model, context). `ThemeController` receives
 `{ settings, host, media }` interfaces, so unit tests flip the OS colour
 scheme with a fake instead of jsdom. `SettingsStore` wraps a two-method
 `KeyValueStore`, so a throwing store (private browsing) is a test case, not a
@@ -3889,15 +4043,15 @@ components without any selector piercing. See ADR 0007 and ADR 0008.
   File name:             content-authoring.md
   Relative path:         docs/content-authoring.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/content-authoring.md
-  Size:                  2.7 KiB (2791 bytes)
-  Last modified:         2026-07-10 03:07:32.000000000 -0400
+  Size:                  3.5 KiB (3623 bytes)
+  Last modified:         2026-07-13 17:19:39.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354485
+  Inode:                 20816865
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               26d5064b2e3d2260f282f38e48fa53611f473d7e5c186c81daa6c189aadcfca5
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               da99debc6e93b518631fdc4843133f39a4424c3c3c3ed93d85eed5428650654b
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
 
 --- CONTENT ---
 # Writing content
@@ -3936,6 +4090,25 @@ Rules the build enforces:
 - `summary` is required (it is shown in lists and in the feed)
 - `tags` needs at least one entry; tags are shown on lists and detail pages
 - unknown keys are rejected (catches typos like `sereis:`)
+
+### Scheduled publishing
+
+The date does not just name the post — it **schedules** it
+([ADR 0021](adr/0021-scheduled-publishing-and-daily-rebuild.md)). A post is
+part of the site once its date has arrived in the site's time zone
+(`America/New_York`, set in `src/lib/config.ts`); until then it is absent
+from every page, the feed and the sitemap, and nothing links to it. You can
+commit a whole run of future-dated posts at once and they will appear one by
+one — a daily rebuild at 00:10/01:10 Eastern (plus every push) is what flips
+each one live.
+
+Future-dated posts are still **fully validated on every build**, so a typo in
+next month's episode fails today, not at 1 a.m. on its publish date. To
+preview scheduled posts locally, run the dev server with the cutoff disabled:
+
+```bash
+KPHOTO_SHOW_FUTURE=1 ./scripts/dev.sh
+```
 
 ### Series (optional)
 
@@ -4562,15 +4735,15 @@ jobs:
   File name:             deploy.yml
   Relative path:         .github/workflows/deploy.yml
   Absolute path:         /home/kushal/src/ts/kphoto/.github/workflows/deploy.yml
-  Size:                  1.1 KiB (1217 bytes)
-  Last modified:         2026-07-09 21:54:36.000000000 -0400
+  Size:                  1.4 KiB (1531 bytes)
+  Last modified:         2026-07-13 16:06:39.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354431
+  Inode:                 20816855
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               26f8789ddc550862185fd318280a141097035b0e3fea702156ea949722eeb34c
-  Last git commit:       a5cbbfb 2026-07-10 07:21:40 -0400 add missing hidden files
+  SHA-256:               2a093586fd11053a6fb061b215d2b16ec1c8f3d4e1c108b56d81078e1226c276
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
 
 --- CONTENT ---
 # Every push to main: run the full verification suite, then build and deploy
@@ -4580,6 +4753,12 @@ name: deploy
 on:
   push:
     branches: [main]
+  # Scheduled publishing (ADR 0021): posts are dated, and the build only
+  # includes posts whose date has arrived in the site's time zone. This
+  # daily rebuild shortly after midnight US-Eastern is what flips each
+  # scheduled post live (05:10 UTC = 00:10 EST / 01:10 EDT).
+  schedule:
+    - cron: '10 5 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -5463,14 +5642,14 @@ For more information on this, and how to apply and follow the GNU AGPL, see
   Relative path:         package.json
   Absolute path:         /home/kushal/src/ts/kphoto/package.json
   Size:                  1.0 KiB (1101 bytes)
-  Last modified:         2026-07-09 16:35:54.000000000 -0400
+  Last modified:         2026-07-13 16:03:19.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354470
+  Inode:                 20816866
   Hard links:            1
   MIME type:             application/json
-  SHA-256:               d1ee288cab3640a331ec8d60139ba018db5b416b7a7e3ef76726376ea7bdb452
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               d727126ffe6e6c66071b45ff24c7f7952ed156ff798ea1ca74b8d97d7e671867
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
 
 --- CONTENT ---
 {
@@ -5505,10 +5684,10 @@ For more information on this, and how to apply and follow the GNU AGPL, see
     "eslint": "10.6.0",
     "eslint-config-prettier": "10.1.8",
     "jiti": "2.7.0",
-    "prettier": "3.9.4",
+    "prettier": "3.9.5",
     "typescript-eslint": "8.63.0",
     "typescript-go": "npm:typescript@7.0.2",
-    "vite": "8.1.3",
+    "vite": "8.1.4",
     "vitest": "4.1.10"
   }
 }
@@ -5751,15 +5930,15 @@ yarn.lock
   File name:             README.md
   Relative path:         README.md
   Absolute path:         /home/kushal/src/ts/kphoto/README.md
-  Size:                  7.6 KiB (7794 bytes)
-  Last modified:         2026-07-10 09:14:43.000000000 -0400
+  Size:                  8.1 KiB (8366 bytes)
+  Last modified:         2026-07-13 17:20:01.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20461604
+  Inode:                 20816858
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               e8eab940b6dc2c2d3070c077ad478dc2cfb44de9a4c88997487fa06b36d8c82f
-  Last git commit:       3e63220 2026-07-10 14:39:22 -0400 add claude changes
+  SHA-256:               fd5008ef60bf8ca6d05789acdc77a1bc77e33f055aea7ce1f6c3373b391bd32e
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
 
 --- CONTENT ---
 # kphoto
@@ -5877,11 +6056,16 @@ GitHub's job containers
 
 Posts live in `content/blog/` as `YYYY-MM-DD-name.md`; the date in the file
 name **is** the URL prefix, so two posts may share a title as long as they
-were published on different days. Frontmatter carries `title`, `date`,
-`author`, `summary`, a `tags` list, and optionally `series` + `episode`.
-Authors live in `content/authors/*.yml`; standalone pages in
-`content/pages/*.md`. Every rule is validated at build time with file-scoped
-error messages — see [docs/content-authoring.md](docs/content-authoring.md).
+were published on different days. The date also **schedules** the post: a
+post dated in the future is validated on every build but stays out of the
+site — pages, feed and sitemap alike — until its date arrives in the site's
+time zone, at which point the daily rebuild publishes it
+([ADR 0021](docs/adr/0021-scheduled-publishing-and-daily-rebuild.md)).
+Frontmatter carries `title`, `date`, `author`, `summary`, a `tags` list, and
+optionally `series` + `episode`. Authors live in `content/authors/*.yml`;
+standalone pages in `content/pages/*.md`. Every rule is validated at build
+time with file-scoped error messages — see
+[docs/content-authoring.md](docs/content-authoring.md).
 
 ## Architecture in one paragraph
 
@@ -5889,8 +6073,8 @@ error messages — see [docs/content-authoring.md](docs/content-authoring.md).
 `src/components/` and `src/pages/` render strings from that model;
 `src/ssg/` is the only code that touches the filesystem and Vite;
 `src/client/` is the only code that runs in the browser. Time (the footer
-year) and storage (localStorage) are injected, so every layer is unit-testable
-with fakes. The longer version is in [docs/architecture.md](docs/architecture.md),
+year and the publish cutoff) and storage (localStorage) are injected, so
+every layer is unit-testable with fakes. The longer version is in [docs/architecture.md](docs/architecture.md),
 and every non-obvious decision has an ADR in [docs/adr/](docs/adr/).
 
 ## Toolchain
@@ -5907,8 +6091,11 @@ deviations from "absolute latest" are quarantine holds documented in
 ## Deployment
 
 Every push to `main` runs the full verification suite and, if green, deploys
-`dist/` to GitHub Pages (`.github/workflows/deploy.yml`). The repository
-setting **Pages → Source** must be **GitHub Actions**.
+`dist/` to GitHub Pages (`.github/workflows/deploy.yml`). The same workflow
+also runs on a **daily schedule** (05:10 UTC ≈ just past midnight US-Eastern)
+so scheduled posts go live on their date without a commit
+([ADR 0021](docs/adr/0021-scheduled-publishing-and-daily-rebuild.md)). The
+repository setting **Pages → Source** must be **GitHub Actions**.
 
 ## License
 
@@ -8114,15 +8301,15 @@ export function groupPostsByAuthor(
   File name:             config.ts
   Relative path:         src/lib/config.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/lib/config.ts
-  Size:                  773 B (773 bytes)
-  Last modified:         2026-07-09 16:40:55.000000000 -0400
+  Size:                  1.0 KiB (1024 bytes)
+  Last modified:         2026-07-13 16:03:54.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354375
+  Inode:                 20816869
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               6d03b2862a0aa226148115927c6b8bf4fa471d80bd6562448e3813ce9cdd9192
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               1f5d9a2eef6f83ac13195fa74c0a920356fdb119ab2f80aee2cf1f2a905dcd1a
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
 
 --- CONTENT ---
 /**
@@ -8138,6 +8325,12 @@ export interface SiteConfig {
   readonly language: string;
   /** How many of the latest posts the home page showcases. */
   readonly postsOnHome: number;
+  /**
+   * IANA time zone that decides when a dated post counts as published: a post
+   * goes live on the build whose local date in this zone reaches the post's
+   * date (ADR 0021).
+   */
+  readonly timeZone: string;
 }
 
 export const siteConfig: SiteConfig = {
@@ -8147,6 +8340,7 @@ export const siteConfig: SiteConfig = {
   repoUrl: 'https://github.com/kphoto/kphoto.github.io',
   language: 'en',
   postsOnHome: 5,
+  timeZone: 'America/New_York',
 };
 
 
@@ -8158,15 +8352,15 @@ export const siteConfig: SiteConfig = {
   File name:             content.test.ts
   Relative path:         src/lib/content.test.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/lib/content.test.ts
-  Size:                  8.6 KiB (8815 bytes)
-  Last modified:         2026-07-09 21:53:05.000000000 -0400
+  Size:                  10.6 KiB (10906 bytes)
+  Last modified:         2026-07-13 16:06:04.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354367
+  Inode:                 20816870
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               2a24398fac66e49ad6ed030c747a8412d6c2c7ddd7cebd8d9bbde708227ac448
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               4f99cd368918a75405893fbedba7361ab338e4b3f59620bc0a7ac65d672dfd71
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
 
 --- CONTENT ---
 import { describe, expect, it } from 'vitest';
@@ -8464,6 +8658,64 @@ describe('loadSiteModel', () => {
   });
 });
 
+describe('loadSiteModel scheduled publishing (ADR 0021)', () => {
+  const datedPost = (date: string, episode?: number): string =>
+    postFile(
+      [
+        `title: Post of ${date}`,
+        `date: ${date}`,
+        'author: kphoto-team',
+        'summary: s',
+        'tags:',
+        '  - fundamentals',
+        ...(episode === undefined ? [] : ['series: Drip', `episode: ${String(episode)}`]),
+      ].join('\n'),
+    );
+
+  const input = {
+    blog: {
+      '2026-07-12-yesterday.md': datedPost('2026-07-12', 1),
+      '2026-07-13-today.md': datedPost('2026-07-13', 2),
+      '2026-07-14-tomorrow.md': datedPost('2026-07-14', 3),
+    },
+    authors: { 'kphoto-team.yml': GOOD_AUTHOR },
+    pages: {},
+  };
+
+  it('publishes posts dated on or before the cutoff and hides the rest everywhere', () => {
+    const model = loadSiteModel(input, '2026-07-13');
+    expect(model.posts.map((post) => post.date)).toEqual(['2026-07-13', '2026-07-12']);
+    expect(model.tags.get('fundamentals')?.posts).toHaveLength(2);
+    expect(model.series.get('drip')?.posts.map((post) => post.series?.episode)).toEqual([1, 2]);
+    expect(model.postsByAuthor.get('kphoto-team')).toHaveLength(2);
+  });
+
+  it('includes everything when no cutoff is given (future preview)', () => {
+    const model = loadSiteModel(input);
+    expect(model.posts).toHaveLength(3);
+  });
+
+  it('still validates unpublished posts so a broken future post fails the build', () => {
+    const broken = {
+      ...input,
+      blog: { ...input.blog, '2026-08-01-broken.md': 'no frontmatter at all' },
+    };
+    expect(() => loadSiteModel(broken, '2026-07-13')).toThrow(ContentValidationError);
+  });
+
+  it('still rejects series conflicts among unpublished posts', () => {
+    const broken = {
+      ...input,
+      blog: { ...input.blog, '2026-08-02-duplicate.md': datedPost('2026-08-02', 3) },
+    };
+    expect(() => loadSiteModel(broken, '2026-07-13')).toThrow(/episode 3 of "Drip"/);
+  });
+
+  it('rejects a malformed cutoff date', () => {
+    expect(() => loadSiteModel(input, 'someday')).toThrow(/valid YYYY-MM-DD/);
+  });
+});
+
 
 ################################################################################
 # FILE: src/lib/content.ts
@@ -8473,15 +8725,15 @@ describe('loadSiteModel', () => {
   File name:             content.ts
   Relative path:         src/lib/content.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/lib/content.ts
-  Size:                  9.5 KiB (9807 bytes)
-  Last modified:         2026-07-09 21:41:33.000000000 -0400
+  Size:                  10.4 KiB (10673 bytes)
+  Last modified:         2026-07-13 16:04:33.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354387
+  Inode:                 20816871
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               4eac302da7e6dca688dac3f2ad3fffb89d930ba6bb0aee9a53bd3ce9d7c949a3
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               7af7790c43418502ac7f887d0c67c4344d6e0431ca44aa64db0812027be333ad
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
 
 --- CONTENT ---
 import {
@@ -8699,8 +8951,18 @@ function sortedEntries(record: Readonly<Record<string, string>>): [string, strin
 /**
  * Builds the whole {@link SiteModel} from raw file contents, validating
  * everything and aggregating problems into one {@link ContentValidationError}.
+ *
+ * When `publishedThrough` (a `YYYY-MM-DD` date) is given, posts dated after it
+ * are validated but excluded from the model — the scheduled-publishing rule of
+ * ADR 0021. Every derived view (home, indexes, tags, series, authors, feed,
+ * sitemap) is built from the published posts only, so nothing ever links to an
+ * unpublished URL. Omitting the cutoff includes every post, which is how the
+ * dev server previews the future under `KPHOTO_SHOW_FUTURE=1`.
  */
-export function loadSiteModel(input: ContentInput): SiteModel {
+export function loadSiteModel(input: ContentInput, publishedThrough?: string): SiteModel {
+  if (publishedThrough !== undefined && !isValidIsoDate(publishedThrough)) {
+    throw new Error(`publishedThrough "${publishedThrough}" is not a valid YYYY-MM-DD date`);
+  }
   const issues: ContentIssue[] = [];
 
   const authors = new Map<string, Author>();
@@ -8772,7 +9034,11 @@ export function loadSiteModel(input: ContentInput): SiteModel {
     throw new ContentValidationError(issues);
   }
 
-  const sortedPosts = sortPostsByDateDesc(posts);
+  // ISO dates compare correctly as strings, the same idiom the sort uses.
+  const published =
+    publishedThrough === undefined ? posts : posts.filter((post) => post.date <= publishedThrough);
+
+  const sortedPosts = sortPostsByDateDesc(published);
   return {
     posts: sortedPosts,
     authors,
@@ -8796,21 +9062,22 @@ function describe(error: unknown): string {
   File name:             dates.test.ts
   Relative path:         src/lib/dates.test.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/lib/dates.test.ts
-  Size:                  1.8 KiB (1864 bytes)
-  Last modified:         2026-07-09 21:44:19.000000000 -0400
+  Size:                  2.6 KiB (2753 bytes)
+  Last modified:         2026-07-13 16:05:43.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354380
+  Inode:                 20816872
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               cdb0c6afa152a5d31ca2d310c274c7a8d89f16b9713fcb0043113a8cf7be5a1a
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               7c1f4470ea0463a20ceb350e2fd217207ce845beb964752fae95bf773bfa83ca
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
 
 --- CONTENT ---
 import { describe, expect, it } from 'vitest';
 import {
   compareIsoDatesDesc,
   formatDisplayDate,
+  isoDateInTimeZone,
   isValidIsoDate,
   parseIsoDate,
   toUtcTimestamp,
@@ -8869,6 +9136,26 @@ describe('toUtcTimestamp', () => {
   });
 });
 
+describe('isoDateInTimeZone', () => {
+  it('maps one instant to different calendar dates across zones', () => {
+    // 03:30 UTC on July 14 is still 23:30 on July 13 in New York.
+    const instant = new Date('2026-07-14T03:30:00Z');
+    expect(isoDateInTimeZone(instant, 'America/New_York')).toBe('2026-07-13');
+    expect(isoDateInTimeZone(instant, 'UTC')).toBe('2026-07-14');
+    expect(isoDateInTimeZone(instant, 'Asia/Tokyo')).toBe('2026-07-14');
+  });
+
+  it('handles the winter offset too', () => {
+    // 04:30 UTC on January 2 is 23:30 on January 1 in New York (EST).
+    const instant = new Date('2026-01-02T04:30:00Z');
+    expect(isoDateInTimeZone(instant, 'America/New_York')).toBe('2026-01-01');
+  });
+
+  it('rejects a time zone the runtime does not know', () => {
+    expect(() => isoDateInTimeZone(new Date(), 'Neverland/Nowhere')).toThrow();
+  });
+});
+
 
 ################################################################################
 # FILE: src/lib/dates.ts
@@ -8878,15 +9165,15 @@ describe('toUtcTimestamp', () => {
   File name:             dates.ts
   Relative path:         src/lib/dates.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/lib/dates.ts
-  Size:                  2.2 KiB (2278 bytes)
-  Last modified:         2026-07-09 16:40:55.000000000 -0400
+  Size:                  2.8 KiB (2880 bytes)
+  Last modified:         2026-07-13 16:04:05.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354388
+  Inode:                 20816873
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               47f5217d2478cae29e5ab215c26f1d9183877aadbb6f8ae2cb2fecda327a76dd
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               144758468ce0c0a10de4b30f54fcec037bc11944ece40b6a3adc75d81544822c
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
 
 --- CONTENT ---
 /** A calendar date without any time or zone information. */
@@ -8971,6 +9258,24 @@ export function formatDisplayDate(isoDate: string): string {
 export function toUtcTimestamp(isoDate: string): string {
   parseIsoDate(isoDate);
   return `${isoDate}T00:00:00Z`;
+}
+
+/**
+ * The calendar date, as `YYYY-MM-DD`, that a given instant falls on in the
+ * given IANA time zone. This is what decides whether a dated post is
+ * published yet (ADR 0021): the clock is injected, the mapping is pure.
+ */
+export function isoDateInTimeZone(instant: Date, timeZone: string): string {
+  const formatted = new Intl.DateTimeFormat('en-CA', {
+    timeZone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(instant);
+  if (!isValidIsoDate(formatted)) {
+    throw new Error(`could not derive an ISO date for time zone "${timeZone}"`);
+  }
+  return formatted;
 }
 
 
@@ -11388,15 +11693,15 @@ export async function readContentInput(rootDir: string): Promise<ContentInput> {
   File name:             vitePlugin.ts
   Relative path:         src/ssg/vitePlugin.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/ssg/vitePlugin.ts
-  Size:                  6.6 KiB (6844 bytes)
-  Last modified:         2026-07-09 21:49:57.000000000 -0400
+  Size:                  7.2 KiB (7416 bytes)
+  Last modified:         2026-07-13 16:04:59.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354402
+  Inode:                 20816875
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               807a6a2575b9a2cf431da95dfd51f9481460f9a6910501469e8c54c2e87a36dd
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               c1a00b08f8166689a052b23a63a16244eb1423c1a939133864f8789cc00d49d4
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
 
 --- CONTENT ---
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
@@ -11405,6 +11710,7 @@ import path from 'node:path';
 import type { Plugin, ResolvedConfig, ViteDevServer } from 'vite';
 import { siteConfig } from '../lib/config';
 import { ContentValidationError, loadSiteModel } from '../lib/content';
+import { isoDateInTimeZone } from '../lib/dates';
 import { escapeHtml } from '../lib/html';
 import { outputFileFor, renderSite, type PageContext } from '../pages/routes';
 import type { RenderedFile } from '../pages/routes';
@@ -11420,17 +11726,29 @@ interface ManifestChunk {
   readonly file: string;
 }
 
-function pageContext(assets: PageContext['assets']): PageContext {
-  return { config: siteConfig, assets, buildYear: new Date().getUTCFullYear() };
+/**
+ * The publish cutoff for one render: today's date in the site's time zone, or
+ * no cutoff at all when `KPHOTO_SHOW_FUTURE=1` asks the dev server to preview
+ * scheduled posts (ADR 0021).
+ */
+function publishedThrough(now: Date): string | undefined {
+  if (process.env.KPHOTO_SHOW_FUTURE === '1') {
+    return undefined;
+  }
+  return isoDateInTimeZone(now, siteConfig.timeZone);
 }
 
 async function renderCurrentSite(
   rootDir: string,
   assets: PageContext['assets'],
 ): Promise<RenderedFile[]> {
+  // One clock read per render; everything below it is pure. The dev server
+  // renders per request, so a scheduled post flips live at midnight in the
+  // site's time zone without a restart.
+  const now = new Date();
   const input = await readContentInput(rootDir);
-  const model = loadSiteModel(input);
-  return renderSite(model, pageContext(assets));
+  const model = loadSiteModel(input, publishedThrough(now));
+  return renderSite(model, { config: siteConfig, assets, buildYear: now.getUTCFullYear() });
 }
 
 function send(
@@ -12102,18 +12420,19 @@ describe('playwright version pins', () => {
   File name:             site.spec.ts
   Relative path:         tests/e2e/site.spec.ts
   Absolute path:         /home/kushal/src/ts/kphoto/tests/e2e/site.spec.ts
-  Size:                  5.1 KiB (5281 bytes)
-  Last modified:         2026-07-09 21:53:06.000000000 -0400
+  Size:                  5.6 KiB (5780 bytes)
+  Last modified:         2026-07-13 16:06:30.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354468
+  Inode:                 20816878
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               1e4da908316aa3bb3e9ba1a5ad64c9792b7b90cc5b74fd36d3d716c241707e79
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               b1da47328bf13288c9dd3ee5ac23927c0dc302a11340ebe47f290082df34a799
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
 
 --- CONTENT ---
 import { expect, test } from '@playwright/test';
+import { siteConfig } from '../../src/lib/config';
 
 test.describe('home page', () => {
   test('shows the hero and the latest posts', async ({ page }) => {
@@ -12124,14 +12443,22 @@ test.describe('home page', () => {
       'The modern web, hand-rolled.',
     );
     const cards = page.locator('kp-post-card');
-    await expect(cards).toHaveCount(5);
+    await expect(cards).toHaveCount(siteConfig.postsOnHome);
   });
 
   test('navigates from a post card to the post', async ({ page }) => {
     await page.goto('/');
-    await page.getByRole('link', { name: 'What this site is' }).click();
-    await expect(page).toHaveURL('/blog/2026-07-01-what-this-site-is/');
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('What this site is');
+    // Content-agnostic on purpose (ADR 0010): the newest published post
+    // changes every time an episode goes live, so the test derives the
+    // expected URL and title from the first card instead of naming one.
+    const link = page.locator('kp-post-card').first().locator('h2 a');
+    const href = (await link.getAttribute('href')) ?? '';
+    const title = ((await link.textContent()) ?? '').trim();
+    expect(href).toMatch(/^\/blog\/\d{4}-\d{2}-\d{2}-[a-z0-9-]+\/$/);
+    expect(title.length).toBeGreaterThan(0);
+    await link.click();
+    await expect(page).toHaveURL(href);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(title);
   });
 });
 
@@ -12435,26 +12762,36 @@ export default defineConfig({
   File name:             .yarnrc.yml
   Relative path:         .yarnrc.yml
   Absolute path:         /home/kushal/src/ts/kphoto/.yarnrc.yml
-  Size:                  936 B (936 bytes)
-  Last modified:         2026-07-09 21:41:32.000000000 -0400
+  Size:                  1.4 KiB (1496 bytes)
+  Last modified:         2026-07-13 16:03:16.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354426
+  Inode:                 20816856
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               df78c9afb3391a675248768b67f2939fe7ea39dfae3d6253da504a5f8cc92246
-  Last git commit:       a5cbbfb 2026-07-10 07:21:40 -0400 add missing hidden files
+  SHA-256:               6c7a4b3da3a056d0e2beb280637759566091a824b4bbf30413820c91ae600eb0
+  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
 
 --- CONTENT ---
-# Yarn 4 configuration — see docs/adr/0014-yarn-4-via-corepack.md
+# Yarn 4 configuration — see docs/adr/0014-yarn-and-dependency-policy.md
 nodeLinker: node-modules
 enableGlobalCache: true
+
+# Supply-chain quarantine (ADR 0014): refuse versions published more recently
+# than 4320 minutes (72 hours). "Latest" means latest past this gate.
+npmMinimalAgeGate: 4320
 
 # typescript-eslint (and its dependency ts-api-utils) still require TypeScript's
 # classic JS API, which typescript@7 no longer ships. These extensions give that
 # tool realm a nested typescript@6.0.3 while the project itself compiles with the
-# native typescript@7. See docs/adr/0006-linting-with-typescript-eslint.md
+# native typescript@7. The `typescript-eslint` meta package and
+# `@typescript-eslint/utils` carry the same fallback so their `typescript` peer
+# edge is satisfied without a workspace-level typescript (which would collide
+# with the native compiler's `tsc` bin). See docs/adr/0006-dual-typescript-toolchain.md
 packageExtensions:
+  'typescript-eslint@*':
+    dependencies:
+      typescript: '6.0.3'
   '@typescript-eslint/eslint-plugin@*':
     dependencies:
       typescript: '6.0.3'
@@ -12470,6 +12807,9 @@ packageExtensions:
   '@typescript-eslint/typescript-estree@*':
     dependencies:
       typescript: '6.0.3'
+  '@typescript-eslint/utils@*':
+    dependencies:
+      typescript: '6.0.3'
   'ts-api-utils@*':
     dependencies:
       typescript: '6.0.3'
@@ -12478,10 +12818,10 @@ packageExtensions:
 ################################################################################
 # DUMP SUMMARY
 ################################################################################
-  Files dumped   : 152
-  Total size     : 5.0 MiB (5336747 bytes)
+  Files dumped   : 153
+  Total size     : 5.1 MiB (5352299 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-07-13T15:48:37-04:00
+  Completed at   : 2026-07-13T17:27:06-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
