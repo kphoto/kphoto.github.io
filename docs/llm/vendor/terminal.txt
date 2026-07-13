@@ -1,6 +1,6 @@
-kushal@fedora:~/src/rust/myinkbird$ cd ~/src/ts/kphoto/; time bash check.sh
-[13:38:22] 1/8 bootstrap
-[13:38:22] installing dependencies (yarn install --immutable)
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
+[15:42:51] 1/8 bootstrap
+[15:42:51] installing dependencies (yarn install --immutable)
 ➤ YN0000: · Yarn 4.17.1
 ➤ YN0000: ┌ Resolution step
 ➤ YN0000: └ Completed
@@ -12,185 +12,94 @@ kushal@fedora:~/src/rust/myinkbird$ cd ~/src/ts/kphoto/; time bash check.sh
 ➤ YN0000: └ Completed
 ➤ YN0000: ┌ Link step
 ➤ YN0000: └ Completed
-➤ YN0000: · Done with warnings in 0s 299ms
-[13:38:23] bootstrap complete — try ./scripts/dev.sh
-[13:38:23] 2/8 format check
-[13:38:23] checking formatting (prettier --check)
+➤ YN0000: · Done with warnings in 0s 308ms
+[15:42:51] bootstrap complete — try ./scripts/dev.sh
+[15:42:51] 2/8 format check
+[15:42:51] checking formatting (prettier --check)
 Checking formatting...
-All matched files use Prettier code style!
-[13:38:24] format complete
-[13:38:24] 3/8 lint
-[13:38:24] linting (eslint, zero warnings allowed)
-[13:38:27] lint complete
-[13:38:27] 4/8 typecheck
-[13:38:28] type-checking with tsc Version 7.0.2 (native compiler)
-[13:38:28] typecheck complete
-[13:38:28] 5/8 unit tests
-[13:38:28] running unit tests with coverage (vitest)
+[warn] content/blog/2026-07-15-reading-your-histogram.md
+[warn] content/blog/2026-07-16-composition-basics-that-never-expire.md
+[warn] content/blog/2026-07-18-depth-of-field-and-selective-focus.md
+[warn] content/blog/2026-07-19-freezing-and-blurring-motion.md
+[warn] content/blog/2026-07-20-white-balance-and-color-temperature.md
+[warn] content/blog/2026-07-30-finding-your-own-style.md
+[warn] content/blog/2026-08-01-how-to-keep-getting-better.md
+[warn] Code style issues found in 7 files. Run Prettier with --write to fix.
 
- RUN  v4.1.10 /home/kushal/src/ts/kphoto
-      Coverage enabled with v8
+real	0m2.000s
+user	0m2.665s
+sys	0m0.387s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/dotnet/MyBlog/; time bash run.sh
+run.sh: repository root: /home/kushal/src/dotnet/MyBlog
+run.sh: logging to     : /home/kushal/src/dotnet/MyBlog/docs/llm/output/2026-07-13-15-43-45.txt
+[01] dotnet --info ...
+[01] dotnet --info -> ok (0.233s)
+[02] dotnet --version ...
+[02] dotnet --version -> ok (0.099s)
+[03] dotnet --list-sdks ...
+[03] dotnet --list-sdks -> ok (0.003s)
+[04] dotnet --list-runtimes ...
+[04] dotnet --list-runtimes -> ok (0.002s)
+[05] git status ...
+[05] git status -> ok (0.034s)
+[06] git log (recent) ...
+[06] git log (recent) -> ok (0.003s)
+[07] podman --version ...
+[07] podman --version -> ok (0.019s)
+[08] podman-compose --version ...
+[08] podman-compose --version -> ok (0.157s)
+[09] dotnet format ...
+[09] dotnet format -> ok (10.086s)
+[10] dotnet restore ...
+[10] dotnet restore -> ok (0.757s)
+[11] dotnet clean ...
+[11] dotnet clean -> ok (0.814s)
+[12] dotnet build ...
+[12] dotnet build -> ok (8.380s)
+[13] dotnet run (MyBlog.Tests) ...
+[13] dotnet run (MyBlog.Tests) -> ok (46.168s)
+[14] dotnet list package ...
+[14] dotnet list package -> ok (1.685s)
+[15] dotnet list package --outdated ...
+[15] dotnet list package --outdated -> ok (4.613s)
+[16] export.sh (repository dump) ...
+[16] export.sh (repository dump) -> ok (5.189s)
+[17] run-e2e.sh (Playwright E2E) ...
+[17] run-e2e.sh (Playwright E2E) -> ok (36.362s)
 
- ✓ src/lib/slug.test.ts (5 tests) 4ms
- ✓ src/lib/dates.test.ts (8 tests) 5ms
- ✓ src/lib/readingTime.test.ts (3 tests) 4ms
- ✓ src/client/storage.test.ts (9 tests) 6ms
- ✓ src/lib/yaml.test.ts (11 tests) 7ms
- ✓ src/lib/collections.test.ts (9 tests) 12ms
- ✓ src/ssg/loadContent.test.ts (2 tests) 9ms
- ✓ src/lib/frontmatter.test.ts (4 tests) 5ms
- ✓ src/lib/markdown.test.ts (19 tests) 10ms
- ✓ src/client/theme.test.ts (7 tests) 5ms
- ✓ src/client/themeInit.test.ts (5 tests) 4ms
- ✓ src/lib/content.test.ts (22 tests) 23ms
- ✓ src/lib/sitemap.test.ts (1 test) 4ms
- ✓ src/components/components.test.ts (20 tests) 7ms
- ✓ src/pages/routes.test.ts (14 tests) 7ms
- ✓ src/lib/html.test.ts (3 tests) 3ms
- ✓ src/versionSync.test.ts (3 tests) 3ms
- ✓ src/lib/feed.test.ts (5 tests) 3ms
+###############################################################################
+# SUMMARY
+###############################################################################
+  [PASS] dotnet --info                            exit=0    0.233s
+  [PASS] dotnet --version                         exit=0    0.099s
+  [PASS] dotnet --list-sdks                       exit=0    0.003s
+  [PASS] dotnet --list-runtimes                   exit=0    0.002s
+  [PASS] git status                               exit=0    0.034s
+  [PASS] git log (recent)                         exit=0    0.003s
+  [PASS] podman --version                         exit=0    0.019s
+  [PASS] podman-compose --version                 exit=0    0.157s
+  [PASS] dotnet format                            exit=0    10.086s
+  [PASS] dotnet restore                           exit=0    0.757s
+  [PASS] dotnet clean                             exit=0    0.814s
+  [PASS] dotnet build                             exit=0    8.380s
+  [PASS] dotnet run (MyBlog.Tests)                exit=0    46.168s
+  [PASS] dotnet list package                      exit=0    1.685s
+  [PASS] dotnet list package --outdated           exit=0    4.613s
+  [PASS] export.sh (repository dump)              exit=0    5.189s
+  [PASS] run-e2e.sh (Playwright E2E)              exit=0    36.362s
+  ---------------------------------------------------------------------------
+  Steps: 17    Failures: 0
+  Finished: 2026-07-13T15:45:40-04:00
+  Log file: /home/kushal/src/dotnet/MyBlog/docs/llm/output/2026-07-13-15-43-45.txt
 
- Test Files  18 passed (18)
-      Tests  150 passed (150)
-   Start at  13:38:28
-   Duration  489ms (transform 1.05s, setup 0ms, import 1.61s, tests 120ms, environment 2ms)
+real	1m54.702s
+user	1m25.431s
+sys	0m9.108s
+kushal@fedora:~/src/dotnet/MyBlog$ 
 
- % Coverage report from v8
-------------------|---------|----------|---------|---------|-------------------------------------------------------
-File              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                     
-------------------|---------|----------|---------|---------|-------------------------------------------------------
-All files         |   79.94 |    71.36 |   81.01 |   79.89 |                                                       
- client           |   64.61 |    76.92 |   66.66 |   64.06 |                                                       
-  main.ts         |       0 |        0 |       0 |       0 | 4-63                                                  
-  storage.ts      |     100 |      100 |     100 |     100 |                                                       
-  theme.ts        |     100 |      100 |     100 |     100 |                                                       
-  themeInit.ts    |     100 |      100 |     100 |     100 |                                                       
- components       |   95.83 |     92.5 |   88.88 |   95.74 |                                                       
-  authorCard.ts   |    87.5 |    89.47 |   66.66 |    87.5 | 6-7                                                   
-  postCard.ts     |     100 |      100 |     100 |     100 |                                                       
-  postMeta.ts     |     100 |      100 |     100 |     100 |                                                       
-  seriesNav.ts    |     100 |       90 |     100 |     100 | 15                                                    
-  siteFooter.ts   |     100 |      100 |     100 |     100 |                                                       
-  siteHeader.ts   |     100 |      100 |     100 |     100 |                                                       
-  themePicker.ts  |     100 |      100 |     100 |     100 |                                                       
- lib              |   92.14 |    79.44 |   97.26 |    92.4 |                                                       
-  collections.ts  |   97.05 |    78.57 |   88.88 |     100 | 44-60                                                 
-  config.ts       |     100 |      100 |     100 |     100 |                                                       
-  content.ts      |   94.69 |    88.23 |     100 |   94.61 | 54,66,102,152,157,197,245                             
-  dates.ts        |     100 |     91.3 |     100 |     100 | 31,75                                                 
-  feed.ts         |     100 |       50 |     100 |     100 | 8-12                                                  
-  frontmatter.ts  |     100 |     87.5 |     100 |     100 | 18                                                    
-  html.ts         |     100 |       50 |     100 |     100 | 11                                                    
-  markdown.ts     |   91.17 |     70.1 |   93.33 |   91.85 | 136,145-158,171                                       
-  readingTime.ts  |     100 |      100 |     100 |     100 |                                                       
-  sitemap.ts      |     100 |      100 |     100 |     100 |                                                       
-  slug.ts         |     100 |      100 |     100 |     100 |                                                       
-  testFixtures.ts |     100 |      100 |     100 |     100 |                                                       
-  types.ts        |       0 |        0 |       0 |       0 |                                                       
-  yaml.ts         |   84.34 |    78.65 |     100 |   84.21 | 67-71,76-79,89,95,106,135,141,157,160,167,171,198,213 
- pages            |     100 |    68.75 |     100 |     100 |                                                       
-  authors.ts      |     100 |     62.5 |     100 |     100 | 10-31                                                 
-  blogIndex.ts    |     100 |       50 |     100 |     100 | 11                                                    
-  home.ts         |     100 |      100 |     100 |     100 |                                                       
-  layout.ts       |     100 |      100 |     100 |     100 |                                                       
-  markdownPage.ts |     100 |      100 |     100 |     100 |                                                       
-  notFound.ts     |     100 |      100 |     100 |     100 |                                                       
-  post.ts         |     100 |       70 |     100 |     100 | 13-14                                                 
-  routes.ts       |     100 |       75 |     100 |     100 | 61                                                    
-  series.ts       |     100 |       50 |     100 |     100 | 11-34                                                 
-  tags.ts         |     100 |      100 |     100 |     100 |                                                       
- ssg              |   10.57 |     1.96 |    9.52 |   10.78 |                                                       
-  loadContent.ts  |   91.66 |       50 |     100 |   91.66 | 15                                                    
-  vitePlugin.ts   |       0 |        0 |       0 |       0 | 13-194                                                
-------------------|---------|----------|---------|---------|-------------------------------------------------------
-[13:38:29] unit tests complete
-[13:38:29] 6/8 build
-[13:38:29] building the static site (vite build + kphoto-ssg)
-vite v8.1.3 building client environment for production...
-✓ 5 modules transformed.
-computing gzip size...
-dist/.vite/manifest.json         0.34 kB │ gzip: 0.17 kB
-dist/assets/styles-DC9AySgQ.css  5.35 kB │ gzip: 1.74 kB
-dist/assets/client-EgueYxfX.js   1.57 kB │ gzip: 0.77 kB
 
-✓ built in 46ms
-kphoto-ssg: wrote 29 pages and feeds
-[13:38:29] build complete — output in dist/
-[13:38:29] 7/8 end-to-end tests (container — see ADR 0017)
-[13:38:29] running end-to-end tests in a container (podman compose run --rm e2e)
->>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
 
-[17:38:30] building the static site (vite build + kphoto-ssg)
-vite v8.1.3 building client environment for production...
-✓ 5 modules transformed.
-computing gzip size...
-dist/.vite/manifest.json         0.34 kB │ gzip: 0.17 kB
-dist/assets/styles-DC9AySgQ.css  5.35 kB │ gzip: 1.74 kB
-dist/assets/client-EgueYxfX.js   1.57 kB │ gzip: 0.77 kB
 
-✓ built in 22ms
-kphoto-ssg: wrote 29 pages and feeds
-[17:38:31] build complete — output in dist/
-[17:38:31] using browsers preinstalled at /ms-playwright
-[17:38:31] running end-to-end tests (playwright)
 
-Running 48 tests using 8 workers
 
-  ✓   1 [chromium] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (411ms)
-  ✓   2 [chromium] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (445ms)
-  ✓   3 [chromium] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (491ms)
-  ✓   4 [chromium] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (517ms)
-  ✓   5 [chromium] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (928ms)
-  ✓   6 [chromium] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (390ms)
-  ✓   7 [chromium] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (428ms)
-  ✓   8 [chromium] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (479ms)
-  ✓   9 [chromium] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (276ms)
-  ✓  10 [chromium] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (230ms)
-  ✓  11 [chromium] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (291ms)
-  ✓  12 [chromium] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (210ms)
-  ✓  13 [firefox] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (1.3s)
-  ✓  14 [firefox] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (1.2s)
-  ✓  15 [firefox] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (1.2s)
-  ✓  16 [firefox] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (1.9s)
-  ✓  17 [firefox] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (1.1s)
-  ✓  18 [firefox] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (769ms)
-  ✓  19 [firefox] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (1.2s)
-  ✓  20 [firefox] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (1.1s)
-  ✓  21 [firefox] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (535ms)
-  ✓  22 [firefox] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (521ms)
-  ✓  23 [firefox] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (311ms)
-  ✓  24 [firefox] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (368ms)
-  ✓  25 [webkit] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (1.4s)
-  ✓  26 [webkit] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (638ms)
-  ✓  27 [webkit] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (639ms)
-  ✓  28 [webkit] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (1.9s)
-  ✓  29 [webkit] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (529ms)
-  ✓  30 [webkit] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (551ms)
-  ✓  31 [webkit] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (735ms)
-  ✓  32 [webkit] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (864ms)
-  ✓  33 [webkit] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (588ms)
-  ✓  34 [webkit] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (572ms)
-  ✓  35 [webkit] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (696ms)
-  ✓  36 [webkit] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (539ms)
-  ✓  37 [mobile-chrome] › tests/e2e/site.spec.ts:24:3 › header navigation › marks the current section with aria-current (396ms)
-  ✓  38 [mobile-chrome] › tests/e2e/site.spec.ts:4:3 › home page › shows the hero and the latest posts (400ms)
-  ✓  39 [mobile-chrome] › tests/e2e/site.spec.ts:30:3 › header navigation › reaches every section from the header (1.4s)
-  ✓  40 [mobile-chrome] › tests/e2e/site.spec.ts:48:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (695ms)
-  ✓  41 [mobile-chrome] › tests/e2e/site.spec.ts:58:3 › series › series page lists episodes in ascending order (667ms)
-  ✓  42 [mobile-chrome] › tests/e2e/site.spec.ts:72:3 › series › a middle episode links to its neighbours (440ms)
-  ✓  43 [mobile-chrome] › tests/e2e/site.spec.ts:96:3 › theming › system follows the OS colour scheme (576ms)
-  ✓  44 [mobile-chrome] › tests/e2e/site.spec.ts:106:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (509ms)
-  ✓  45 [mobile-chrome] › tests/e2e/site.spec.ts:82:3 › theming › the picker applies a theme and it survives a reload (486ms)
-  ✓  46 [mobile-chrome] › tests/e2e/site.spec.ts:112:3 › resilience and accessibility › the skip link jumps to the main content (268ms)
-  ✓  47 [mobile-chrome] › tests/e2e/site.spec.ts:122:3 › resilience and accessibility › every page advertises the Atom feed (196ms)
-  ✓  48 [mobile-chrome] › tests/e2e/site.spec.ts:15:3 › home page › navigates from a post card to the post (250ms)
 
-  48 passed (19.9s)
-[17:38:52] end-to-end tests complete
-[13:38:52] 8/8 export repository dump
-[13:38:56] all checks passed ✔
-
-real	0m33.846s
-user	0m14.603s
-sys	0m5.440s
-kushal@fedora:~/src/ts/kphoto$ 
