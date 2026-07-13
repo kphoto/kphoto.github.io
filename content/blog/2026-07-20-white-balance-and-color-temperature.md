@@ -22,7 +22,7 @@ Human vision adapts to ambient color almost instantly — a white shirt looks wh
 
 ## Using it as a creative choice
 
-Correcting white balance isn't the only valid move. A photo of a candlelit dinner often benefits from *keeping* some of that warmth rather than neutralizing it — the color is part of the mood. White balance is a dial you can set for accuracy or for feeling.
+Correcting white balance isn't the only valid move. A photo of a candlelit dinner often benefits from _keeping_ some of that warmth rather than neutralizing it — the color is part of the mood. White balance is a dial you can set for accuracy or for feeling.
 
 ## Why this endures
 

@@ -18,7 +18,7 @@ A fast enough shutter speed can stop a hummingbird's wings, a splash of water, o
 
 ## Blurring motion on purpose
 
-A slow shutter speed turns a river into silk, city traffic into ribbons of light, and a spinning wheel into a soft blur that reads, instantly, as motion. This is often *more* accurate to how motion feels than a frozen frame — we experience movement as a blur, not a series of stills.
+A slow shutter speed turns a river into silk, city traffic into ribbons of light, and a spinning wheel into a soft blur that reads, instantly, as motion. This is often _more_ accurate to how motion feels than a frozen frame — we experience movement as a blur, not a series of stills.
 
 ## Keeping the camera steady, or not
 

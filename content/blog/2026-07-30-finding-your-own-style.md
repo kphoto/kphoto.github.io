@@ -20,7 +20,7 @@ Trying to invent a style directly, before you've made much work, usually just pr
 
 - What subjects do you keep returning to, even without meaning to?
 - What time of day, or type of light, shows up again and again in your favorite shots?
-- What do you tend to *include* — and what do you tend to leave out of the frame?
+- What do you tend to _include_ — and what do you tend to leave out of the frame?
 - When you edit, what do you always seem to push toward — warmer, cooler, higher contrast, quieter?
 
 ## Influence isn't the enemy

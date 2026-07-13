@@ -26,4 +26,4 @@ There's no single "correct" shape — a night scene should have a graph weighted
 
 ## Why this beats trusting your eyes
 
-Your screen's brightness, and the ambient light around you, change how a photo *looks* — a photo that seems perfectly exposed in a dim room can be badly overexposed in daylight. The histogram is calculated from the actual pixel data, so it tells the truth regardless of where you're standing.
+Your screen's brightness, and the ambient light around you, change how a photo _looks_ — a photo that seems perfectly exposed in a dim room can be badly overexposed in daylight. The histogram is calculated from the actual pixel data, so it tells the truth regardless of where you're standing.

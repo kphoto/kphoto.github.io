@@ -18,7 +18,7 @@ Divide the frame into a 3×3 grid. Placing a subject or horizon along one of tho
 
 ## When to break it
 
-A perfectly centered subject can be exactly the right choice — it reads as formal, confrontational, or calm, depending on the subject. Symmetry in architecture, a face looking straight at the lens, a reflection split down the middle: these often *want* the center.
+A perfectly centered subject can be exactly the right choice — it reads as formal, confrontational, or calm, depending on the subject. Symmetry in architecture, a face looking straight at the lens, a reflection split down the middle: these often _want_ the center.
 
 ## The deeper skill underneath the rule
 

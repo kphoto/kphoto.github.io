@@ -18,11 +18,11 @@ Three factors determine depth of field: the aperture (wider apertures give shall
 
 ## When to go shallow
 
-A portrait where the background dissolves into soft color draws every ounce of attention to the person's eyes. A single flower sharp against a blurred field does the same for a small subject lost in a busy scene. Shallow depth of field is a tool for *removing* information the viewer doesn't need.
+A portrait where the background dissolves into soft color draws every ounce of attention to the person's eyes. A single flower sharp against a blurred field does the same for a small subject lost in a busy scene. Shallow depth of field is a tool for _removing_ information the viewer doesn't need.
 
 ## When to go deep
 
-A landscape where the foreground rocks and the distant mountains are both sharp tells the viewer "take in the whole scene." Deep depth of field is a tool for *including* information — context, scale, environment.
+A landscape where the foreground rocks and the distant mountains are both sharp tells the viewer "take in the whole scene." Deep depth of field is a tool for _including_ information — context, scale, environment.
 
 ## The timeless part
 

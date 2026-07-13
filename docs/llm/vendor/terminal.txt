@@ -1,6 +1,6 @@
-kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
-[15:42:51] 1/8 bootstrap
-[15:42:51] installing dependencies (yarn install --immutable)
+kushal@fedora:~/src/dotnet/MyBlog$ cd ~/src/ts/kphoto/; time bash check.sh
+[15:46:06] 1/8 bootstrap
+[15:46:06] installing dependencies (yarn install --immutable)
 ➤ YN0000: · Yarn 4.17.1
 ➤ YN0000: ┌ Resolution step
 ➤ YN0000: └ Completed
@@ -12,10 +12,10 @@ kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
 ➤ YN0000: └ Completed
 ➤ YN0000: ┌ Link step
 ➤ YN0000: └ Completed
-➤ YN0000: · Done with warnings in 0s 308ms
-[15:42:51] bootstrap complete — try ./scripts/dev.sh
-[15:42:51] 2/8 format check
-[15:42:51] checking formatting (prettier --check)
+➤ YN0000: · Done with warnings in 0s 301ms
+[15:46:06] bootstrap complete — try ./scripts/dev.sh
+[15:46:06] 2/8 format check
+[15:46:06] checking formatting (prettier --check)
 Checking formatting...
 [warn] content/blog/2026-07-15-reading-your-histogram.md
 [warn] content/blog/2026-07-16-composition-basics-that-never-expire.md
@@ -26,80 +26,143 @@ Checking formatting...
 [warn] content/blog/2026-08-01-how-to-keep-getting-better.md
 [warn] Code style issues found in 7 files. Run Prettier with --write to fix.
 
-real	0m2.000s
-user	0m2.665s
-sys	0m0.387s
-kushal@fedora:~/src/ts/kphoto$ cd ~/src/dotnet/MyBlog/; time bash run.sh
-run.sh: repository root: /home/kushal/src/dotnet/MyBlog
-run.sh: logging to     : /home/kushal/src/dotnet/MyBlog/docs/llm/output/2026-07-13-15-43-45.txt
-[01] dotnet --info ...
-[01] dotnet --info -> ok (0.233s)
-[02] dotnet --version ...
-[02] dotnet --version -> ok (0.099s)
-[03] dotnet --list-sdks ...
-[03] dotnet --list-sdks -> ok (0.003s)
-[04] dotnet --list-runtimes ...
-[04] dotnet --list-runtimes -> ok (0.002s)
-[05] git status ...
-[05] git status -> ok (0.034s)
-[06] git log (recent) ...
-[06] git log (recent) -> ok (0.003s)
-[07] podman --version ...
-[07] podman --version -> ok (0.019s)
-[08] podman-compose --version ...
-[08] podman-compose --version -> ok (0.157s)
-[09] dotnet format ...
-[09] dotnet format -> ok (10.086s)
-[10] dotnet restore ...
-[10] dotnet restore -> ok (0.757s)
-[11] dotnet clean ...
-[11] dotnet clean -> ok (0.814s)
-[12] dotnet build ...
-[12] dotnet build -> ok (8.380s)
-[13] dotnet run (MyBlog.Tests) ...
-[13] dotnet run (MyBlog.Tests) -> ok (46.168s)
-[14] dotnet list package ...
-[14] dotnet list package -> ok (1.685s)
-[15] dotnet list package --outdated ...
-[15] dotnet list package --outdated -> ok (4.613s)
-[16] export.sh (repository dump) ...
-[16] export.sh (repository dump) -> ok (5.189s)
-[17] run-e2e.sh (Playwright E2E) ...
-[17] run-e2e.sh (Playwright E2E) -> ok (36.362s)
+real	0m1.907s
+user	0m2.538s
+sys	0m0.370s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash scripts/format.sh
+[15:46:31] formatting (prettier --write)
+.github/workflows/ci.yml 9ms (unchanged)
+.github/workflows/deploy.yml 6ms (unchanged)
+.github/workflows/verify.yml 6ms (unchanged)
+.prettierrc.json 9ms (unchanged)
+.vscode/extensions.json 1ms (unchanged)
+.vscode/settings.json 1ms (unchanged)
+.yarnrc.yml 2ms (unchanged)
+CHANGELOG.md 33ms (unchanged)
+compose.yaml 3ms (unchanged)
+content/authors/casey-rivers.yml 1ms (unchanged)
+content/authors/kphoto-team.yml 1ms (unchanged)
+content/authors/kushal.yml 1ms (unchanged)
+content/blog/2026-03-22-good-morning.md 3ms (unchanged)
+content/blog/2026-04-01-good-morning.md 4ms (unchanged)
+content/blog/2026-05-05-typescript-7-native-compiler.md 6ms (unchanged)
+content/blog/2026-05-12-a-markdown-renderer-from-scratch.md 23ms (unchanged)
+content/blog/2026-05-19-scoped-styles-with-declarative-shadow-dom.md 24ms (unchanged)
+content/blog/2026-06-10-five-themes-one-localstorage-key.md 5ms (unchanged)
+content/blog/2026-07-01-what-this-site-is.md 5ms (unchanged)
+content/blog/2026-07-10-welcome.md 2ms (unchanged)
+content/blog/2026-07-13-light-the-foundation-of-every-photograph.md 4ms (unchanged)
+content/blog/2026-07-14-the-exposure-triangle.md 5ms (unchanged)
+content/blog/2026-07-15-reading-your-histogram.md 5ms
+content/blog/2026-07-16-composition-basics-that-never-expire.md 3ms
+content/blog/2026-07-17-leading-lines-framing-and-negative-space.md 3ms (unchanged)
+content/blog/2026-07-18-depth-of-field-and-selective-focus.md 3ms
+content/blog/2026-07-19-freezing-and-blurring-motion.md 3ms
+content/blog/2026-07-20-white-balance-and-color-temperature.md 3ms
+content/blog/2026-07-21-understanding-dynamic-range.md 4ms (unchanged)
+content/blog/2026-07-22-golden-hour-and-blue-hour.md 4ms (unchanged)
+content/blog/2026-07-23-portraits-working-with-people.md 3ms (unchanged)
+content/blog/2026-07-24-landscapes-patience-and-scale.md 3ms (unchanged)
+content/blog/2026-07-25-street-photography-ethics-and-instinct.md 4ms (unchanged)
+content/blog/2026-07-26-macro-photography-seeing-small-worlds.md 4ms (unchanged)
+content/blog/2026-07-27-seeing-in-black-and-white.md 4ms (unchanged)
+content/blog/2026-07-28-raw-versus-jpeg-and-why-it-still-matters.md 4ms (unchanged)
+content/blog/2026-07-29-a-philosophy-for-editing-photographs.md 3ms (unchanged)
+content/blog/2026-07-30-finding-your-own-style.md 4ms
+content/blog/2026-07-31-sharing-your-work-ethically.md 3ms (unchanged)
+content/blog/2026-08-01-how-to-keep-getting-better.md 4ms
+content/pages/about.md 3ms (unchanged)
+content/pages/contact.md 2ms (unchanged)
+docs/adr/0001-record-architecture-decisions.md 2ms (unchanged)
+docs/adr/0002-agpl-license-and-dependency-policy.md 2ms (unchanged)
+docs/adr/0003-static-site-on-github-pages.md 2ms (unchanged)
+docs/adr/0004-zero-runtime-dependencies.md 2ms (unchanged)
+docs/adr/0005-vite-with-custom-ssg-plugin.md 4ms (unchanged)
+docs/adr/0006-dual-typescript-toolchain.md 4ms (unchanged)
+docs/adr/0007-declarative-shadow-dom-components.md 2ms (unchanged)
+docs/adr/0008-theming-and-contrast.md 2ms (unchanged)
+docs/adr/0009-content-model-and-url-scheme.md 4ms (unchanged)
+docs/adr/0010-test-strategy.md 3ms (unchanged)
+docs/adr/0011-slim-ci-and-pages-deploy.md 3ms (unchanged)
+docs/adr/0012-evergreen-browser-baseline.md 2ms (unchanged)
+docs/adr/0013-localstorage-settings-store.md 2ms (unchanged)
+docs/adr/0014-yarn-and-dependency-policy.md 3ms (unchanged)
+docs/adr/0015-accessibility-commitments.md 3ms (unchanged)
+docs/adr/0016-chromium-new-headless-channel.md 5ms (unchanged)
+docs/adr/0017-containerised-e2e-playwright-image.md 4ms (unchanged)
+docs/adr/0018-motion-gated-view-transitions.md 10ms (unchanged)
+docs/adr/0019-ci-container-home-override.md 3ms (unchanged)
+docs/adr/0020-repo-root-from-script-location.md 3ms (unchanged)
+docs/architecture.md 3ms (unchanged)
+docs/content-authoring.md 9ms (unchanged)
+docs/README.md 2ms (unchanged)
+eslint.config.ts 7ms (unchanged)
+package.json 1ms (unchanged)
+playwright.config.ts 6ms (unchanged)
+README.md 15ms (unchanged)
+src/client/main.ts 9ms (unchanged)
+src/client/storage.test.ts 9ms (unchanged)
+src/client/storage.ts 6ms (unchanged)
+src/client/theme.test.ts 9ms (unchanged)
+src/client/theme.ts 5ms (unchanged)
+src/client/themeInit.test.ts 6ms (unchanged)
+src/client/themeInit.ts 2ms (unchanged)
+src/components/authorCard.ts 6ms (unchanged)
+src/components/components.test.ts 9ms (unchanged)
+src/components/postCard.ts 3ms (unchanged)
+src/components/postMeta.ts 2ms (unchanged)
+src/components/seriesNav.ts 2ms (unchanged)
+src/components/siteFooter.ts 1ms (unchanged)
+src/components/siteHeader.ts 2ms (unchanged)
+src/components/themePicker.ts 1ms (unchanged)
+src/lib/collections.test.ts 5ms (unchanged)
+src/lib/collections.ts 5ms (unchanged)
+src/lib/config.ts 2ms (unchanged)
+src/lib/content.test.ts 10ms (unchanged)
+src/lib/content.ts 14ms (unchanged)
+src/lib/dates.test.ts 3ms (unchanged)
+src/lib/dates.ts 4ms (unchanged)
+src/lib/feed.test.ts 2ms (unchanged)
+src/lib/feed.ts 3ms (unchanged)
+src/lib/frontmatter.test.ts 2ms (unchanged)
+src/lib/frontmatter.ts 2ms (unchanged)
+src/lib/html.test.ts 2ms (unchanged)
+src/lib/html.ts 1ms (unchanged)
+src/lib/markdown.test.ts 3ms (unchanged)
+src/lib/markdown.ts 12ms (unchanged)
+src/lib/readingTime.test.ts 2ms (unchanged)
+src/lib/readingTime.ts 1ms (unchanged)
+src/lib/sitemap.test.ts 1ms (unchanged)
+src/lib/sitemap.ts 1ms (unchanged)
+src/lib/slug.test.ts 1ms (unchanged)
+src/lib/slug.ts 1ms (unchanged)
+src/lib/testFixtures.ts 1ms (unchanged)
+src/lib/types.ts 2ms (unchanged)
+src/lib/yaml.test.ts 3ms (unchanged)
+src/lib/yaml.ts 9ms (unchanged)
+src/pages/authors.ts 3ms (unchanged)
+src/pages/blogIndex.ts 2ms (unchanged)
+src/pages/home.ts 2ms (unchanged)
+src/pages/layout.ts 2ms (unchanged)
+src/pages/markdownPage.ts 1ms (unchanged)
+src/pages/notFound.ts 1ms (unchanged)
+src/pages/post.ts 2ms (unchanged)
+src/pages/routes.test.ts 5ms (unchanged)
+src/pages/routes.ts 5ms (unchanged)
+src/pages/series.ts 3ms (unchanged)
+src/pages/tags.ts 2ms (unchanged)
+src/ssg/loadContent.test.ts 3ms (unchanged)
+src/ssg/loadContent.ts 2ms (unchanged)
+src/ssg/vitePlugin.ts 8ms (unchanged)
+src/styles/global.css 21ms (unchanged)
+src/versionSync.test.ts 3ms (unchanged)
+tests/e2e/site.spec.ts 7ms (unchanged)
+tsconfig.json 1ms (unchanged)
+vite.config.ts 1ms (unchanged)
+vitest.config.ts 1ms (unchanged)
+[15:46:32] format complete
 
-###############################################################################
-# SUMMARY
-###############################################################################
-  [PASS] dotnet --info                            exit=0    0.233s
-  [PASS] dotnet --version                         exit=0    0.099s
-  [PASS] dotnet --list-sdks                       exit=0    0.003s
-  [PASS] dotnet --list-runtimes                   exit=0    0.002s
-  [PASS] git status                               exit=0    0.034s
-  [PASS] git log (recent)                         exit=0    0.003s
-  [PASS] podman --version                         exit=0    0.019s
-  [PASS] podman-compose --version                 exit=0    0.157s
-  [PASS] dotnet format                            exit=0    10.086s
-  [PASS] dotnet restore                           exit=0    0.757s
-  [PASS] dotnet clean                             exit=0    0.814s
-  [PASS] dotnet build                             exit=0    8.380s
-  [PASS] dotnet run (MyBlog.Tests)                exit=0    46.168s
-  [PASS] dotnet list package                      exit=0    1.685s
-  [PASS] dotnet list package --outdated           exit=0    4.613s
-  [PASS] export.sh (repository dump)              exit=0    5.189s
-  [PASS] run-e2e.sh (Playwright E2E)              exit=0    36.362s
-  ---------------------------------------------------------------------------
-  Steps: 17    Failures: 0
-  Finished: 2026-07-13T15:45:40-04:00
-  Log file: /home/kushal/src/dotnet/MyBlog/docs/llm/output/2026-07-13-15-43-45.txt
-
-real	1m54.702s
-user	1m25.431s
-sys	0m9.108s
-kushal@fedora:~/src/dotnet/MyBlog$ 
-
-
-
-
-
-
-
+real	0m1.161s
+user	0m1.785s
+sys	0m0.217s
+kushal@fedora:~/src/ts/kphoto$ 

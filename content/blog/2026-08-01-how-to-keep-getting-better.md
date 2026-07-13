@@ -14,11 +14,11 @@ episode: 20
 
 ## Volume, then reflection
 
-Shooting often matters, but shooting often *without* reviewing the results critically just repeats the same habits at higher volume. The improvement happens in the gap between intention and result — looking back at a photograph and asking specifically what you meant to capture, and specifically where the photo falls short of that, rather than a vague "I don't love this one."
+Shooting often matters, but shooting often _without_ reviewing the results critically just repeats the same habits at higher volume. The improvement happens in the gap between intention and result — looking back at a photograph and asking specifically what you meant to capture, and specifically where the photo falls short of that, rather than a vague "I don't love this one."
 
 ## Study work you didn't make
 
-Looking closely at photographs you admire — and asking concrete questions about *why* they work (where the light is coming from, what's excluded from the frame, what draws your eye first) — trains your eye faster than technique tutorials alone. Copying a photographer's specific approach on purpose, as an exercise, is a legitimate and fast way to internalize a new skill.
+Looking closely at photographs you admire — and asking concrete questions about _why_ they work (where the light is coming from, what's excluded from the frame, what draws your eye first) — trains your eye faster than technique tutorials alone. Copying a photographer's specific approach on purpose, as an exercise, is a legitimate and fast way to internalize a new skill.
 
 ## Constraints accelerate learning
 
@@ -26,4 +26,4 @@ Deliberately limiting yourself — one focal length for a month, only black and 
 
 ## The thread through this whole series
 
-Every episode in *Photography Fundamentals* has pointed at the same idea from a different angle: light, composition, and intention matter more than equipment, and none of that changes as tools improve. That's the actual foundation — not any single technique, but the habit of seeing deliberately. Keep that habit, and you'll keep improving no matter what camera ends up in your hand.
+Every episode in _Photography Fundamentals_ has pointed at the same idea from a different angle: light, composition, and intention matter more than equipment, and none of that changes as tools improve. That's the actual foundation — not any single technique, but the habit of seeing deliberately. Keep that habit, and you'll keep improving no matter what camera ends up in your hand.
