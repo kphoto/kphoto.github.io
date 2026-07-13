@@ -44,3 +44,23 @@ invoking `./node_modules/.bin/tsc` directly does not — always go through
 `yarn tsc`. When typescript-eslint gains TypeScript 7 support, delete the
 packageExtensions block and this becomes a one-package install (a future ADR
 will supersede this one).
+
+## Amendment (2026-07-13): the realm was two packages short
+
+The original extension list left a `YN0002` warning on every install:
+`kphoto@workspace:. doesn't provide typescript, requested by
+typescript-eslint`. `yarn explain peer-requirements` shows why — the
+**`typescript-eslint` meta package** and **`@typescript-eslint/utils`** also
+declare the `typescript >=4.8.4 <6.1.0` peer, and neither had received the
+nested 6.0.3 dependency, so their peer edge resolved against the (empty)
+workspace. The "dependency override … failed to satisfy the peer edge"
+sentence above described that incomplete attempt.
+
+The fix is completion, not a new mechanism: the same
+`dependencies: { typescript: '6.0.3' }` extension now also covers
+`typescript-eslint@*` and `@typescript-eslint/utils@*` (eight packages
+total). Yarn treats a name listed in both `peerDependencies` and
+`dependencies` as a peer with a fallback, so the edge is satisfied inside the
+realm and the install is warning-free. Verified after the change:
+`yarn install` emits no `YN0002`/`YN0086`, and `yarn tsc --version` still
+reports 7.0.2.

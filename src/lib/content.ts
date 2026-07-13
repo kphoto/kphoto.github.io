@@ -213,8 +213,18 @@ function sortedEntries(record: Readonly<Record<string, string>>): [string, strin
 /**
  * Builds the whole {@link SiteModel} from raw file contents, validating
  * everything and aggregating problems into one {@link ContentValidationError}.
+ *
+ * When `publishedThrough` (a `YYYY-MM-DD` date) is given, posts dated after it
+ * are validated but excluded from the model — the scheduled-publishing rule of
+ * ADR 0021. Every derived view (home, indexes, tags, series, authors, feed,
+ * sitemap) is built from the published posts only, so nothing ever links to an
+ * unpublished URL. Omitting the cutoff includes every post, which is how the
+ * dev server previews the future under `KPHOTO_SHOW_FUTURE=1`.
  */
-export function loadSiteModel(input: ContentInput): SiteModel {
+export function loadSiteModel(input: ContentInput, publishedThrough?: string): SiteModel {
+  if (publishedThrough !== undefined && !isValidIsoDate(publishedThrough)) {
+    throw new Error(`publishedThrough "${publishedThrough}" is not a valid YYYY-MM-DD date`);
+  }
   const issues: ContentIssue[] = [];
 
   const authors = new Map<string, Author>();
@@ -286,7 +296,11 @@ export function loadSiteModel(input: ContentInput): SiteModel {
     throw new ContentValidationError(issues);
   }
 
-  const sortedPosts = sortPostsByDateDesc(posts);
+  // ISO dates compare correctly as strings, the same idiom the sort uses.
+  const published =
+    publishedThrough === undefined ? posts : posts.filter((post) => post.date <= publishedThrough);
+
+  const sortedPosts = sortPostsByDateDesc(published);
   return {
     posts: sortedPosts,
     authors,

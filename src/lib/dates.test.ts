@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   compareIsoDatesDesc,
   formatDisplayDate,
+  isoDateInTimeZone,
   isValidIsoDate,
   parseIsoDate,
   toUtcTimestamp,
@@ -57,5 +58,25 @@ describe('formatDisplayDate', () => {
 describe('toUtcTimestamp', () => {
   it('renders midnight UTC', () => {
     expect(toUtcTimestamp('2026-03-22')).toBe('2026-03-22T00:00:00Z');
+  });
+});
+
+describe('isoDateInTimeZone', () => {
+  it('maps one instant to different calendar dates across zones', () => {
+    // 03:30 UTC on July 14 is still 23:30 on July 13 in New York.
+    const instant = new Date('2026-07-14T03:30:00Z');
+    expect(isoDateInTimeZone(instant, 'America/New_York')).toBe('2026-07-13');
+    expect(isoDateInTimeZone(instant, 'UTC')).toBe('2026-07-14');
+    expect(isoDateInTimeZone(instant, 'Asia/Tokyo')).toBe('2026-07-14');
+  });
+
+  it('handles the winter offset too', () => {
+    // 04:30 UTC on January 2 is 23:30 on January 1 in New York (EST).
+    const instant = new Date('2026-01-02T04:30:00Z');
+    expect(isoDateInTimeZone(instant, 'America/New_York')).toBe('2026-01-01');
+  });
+
+  it('rejects a time zone the runtime does not know', () => {
+    expect(() => isoDateInTimeZone(new Date(), 'Neverland/Nowhere')).toThrow();
   });
 });

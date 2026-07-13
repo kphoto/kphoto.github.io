@@ -35,6 +35,10 @@ src/client/      the only code that runs in the browser
    `{ fileName: rawText }` records — the only filesystem access.
 2. `loadSiteModel` parses and cross-validates everything, collecting every
    problem into one `ContentValidationError` so authors fix a batch at once.
+   It then drops posts dated after the publish cutoff — today's date in the
+   site's time zone, computed once per render in the plugin — so every
+   derived collection, the feed and the sitemap see published posts only
+   (ADR 0021).
 3. `renderSite` turns the model into `{ path, body, contentType }` files:
    every page, `404.html`, `feed.xml`, `sitemap.xml`.
 4. In dev, the Vite plugin runs steps 1–3 per request (content is always
@@ -45,8 +49,10 @@ src/client/      the only code that runs in the browser
 
 ## Dependency inversion in practice
 
-Anything impure is injected at the edge. `PageContext` carries the build year
-so renders are pure functions of (model, context). `ThemeController` receives
+Anything impure is injected at the edge. The plugin reads the clock once per
+render and passes it down as data: the build year rides in `PageContext` and
+today's date becomes the publish cutoff for `loadSiteModel`, so renders are
+pure functions of (model, context). `ThemeController` receives
 `{ settings, host, media }` interfaces, so unit tests flip the OS colour
 scheme with a fake instead of jsdom. `SettingsStore` wraps a two-method
 `KeyValueStore`, so a throwing store (private browsing) is a test case, not a

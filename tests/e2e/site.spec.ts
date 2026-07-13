@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { siteConfig } from '../../src/lib/config';
 
 test.describe('home page', () => {
   test('shows the hero and the latest posts', async ({ page }) => {
@@ -9,14 +10,22 @@ test.describe('home page', () => {
       'The modern web, hand-rolled.',
     );
     const cards = page.locator('kp-post-card');
-    await expect(cards).toHaveCount(5);
+    await expect(cards).toHaveCount(siteConfig.postsOnHome);
   });
 
   test('navigates from a post card to the post', async ({ page }) => {
     await page.goto('/');
-    await page.getByRole('link', { name: 'What this site is' }).click();
-    await expect(page).toHaveURL('/blog/2026-07-01-what-this-site-is/');
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('What this site is');
+    // Content-agnostic on purpose (ADR 0010): the newest published post
+    // changes every time an episode goes live, so the test derives the
+    // expected URL and title from the first card instead of naming one.
+    const link = page.locator('kp-post-card').first().locator('h2 a');
+    const href = (await link.getAttribute('href')) ?? '';
+    const title = ((await link.textContent()) ?? '').trim();
+    expect(href).toMatch(/^\/blog\/\d{4}-\d{2}-\d{2}-[a-z0-9-]+\/$/);
+    expect(title.length).toBeGreaterThan(0);
+    await link.click();
+    await expect(page).toHaveURL(href);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(title);
   });
 });
 

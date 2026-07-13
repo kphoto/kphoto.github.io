@@ -4,6 +4,7 @@ import path from 'node:path';
 import type { Plugin, ResolvedConfig, ViteDevServer } from 'vite';
 import { siteConfig } from '../lib/config';
 import { ContentValidationError, loadSiteModel } from '../lib/content';
+import { isoDateInTimeZone } from '../lib/dates';
 import { escapeHtml } from '../lib/html';
 import { outputFileFor, renderSite, type PageContext } from '../pages/routes';
 import type { RenderedFile } from '../pages/routes';
@@ -19,17 +20,29 @@ interface ManifestChunk {
   readonly file: string;
 }
 
-function pageContext(assets: PageContext['assets']): PageContext {
-  return { config: siteConfig, assets, buildYear: new Date().getUTCFullYear() };
+/**
+ * The publish cutoff for one render: today's date in the site's time zone, or
+ * no cutoff at all when `KPHOTO_SHOW_FUTURE=1` asks the dev server to preview
+ * scheduled posts (ADR 0021).
+ */
+function publishedThrough(now: Date): string | undefined {
+  if (process.env.KPHOTO_SHOW_FUTURE === '1') {
+    return undefined;
+  }
+  return isoDateInTimeZone(now, siteConfig.timeZone);
 }
 
 async function renderCurrentSite(
   rootDir: string,
   assets: PageContext['assets'],
 ): Promise<RenderedFile[]> {
+  // One clock read per render; everything below it is pure. The dev server
+  // renders per request, so a scheduled post flips live at midnight in the
+  // site's time zone without a restart.
+  const now = new Date();
   const input = await readContentInput(rootDir);
-  const model = loadSiteModel(input);
-  return renderSite(model, pageContext(assets));
+  const model = loadSiteModel(input, publishedThrough(now));
+  return renderSite(model, { config: siteConfig, assets, buildYear: now.getUTCFullYear() });
 }
 
 function send(

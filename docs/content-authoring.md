@@ -35,6 +35,25 @@ Rules the build enforces:
 - `tags` needs at least one entry; tags are shown on lists and detail pages
 - unknown keys are rejected (catches typos like `sereis:`)
 
+### Scheduled publishing
+
+The date does not just name the post — it **schedules** it
+([ADR 0021](adr/0021-scheduled-publishing-and-daily-rebuild.md)). A post is
+part of the site once its date has arrived in the site's time zone
+(`America/New_York`, set in `src/lib/config.ts`); until then it is absent
+from every page, the feed and the sitemap, and nothing links to it. You can
+commit a whole run of future-dated posts at once and they will appear one by
+one — a daily rebuild at 00:10/01:10 Eastern (plus every push) is what flips
+each one live.
+
+Future-dated posts are still **fully validated on every build**, so a typo in
+next month's episode fails today, not at 1 a.m. on its publish date. To
+preview scheduled posts locally, run the dev server with the cutoff disabled:
+
+```bash
+KPHOTO_SHOW_FUTURE=1 ./scripts/dev.sh
+```
+
 ### Series (optional)
 
 A post may belong to at most one series:

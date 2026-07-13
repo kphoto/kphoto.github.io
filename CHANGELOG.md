@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Scheduled publishing (ADR 0021): a post dated in the future is validated
+  on every build but excluded from the site — pages, feed and sitemap — until
+  its date arrives in the site's time zone (`siteConfig.timeZone`, new). The
+  deploy workflow now also runs on a daily cron (05:10 UTC, just past
+  midnight US-Eastern) so each scheduled post goes live on its date without
+  a commit; `KPHOTO_SHOW_FUTURE=1` lets the dev server preview scheduled
+  posts. New pure helper `isoDateInTimeZone` in `src/lib/dates.ts`;
+  `loadSiteModel` takes an optional `publishedThrough` cutoff.
+- Twenty-episode "Photography Fundamentals" series
+  (`content/blog/2026-07-13-…` through `2026-08-01-…`), publishing one
+  episode per day via the scheduling above.
 - Containerised end-to-end testing: `compose.yaml` (services `e2e`, `dev`,
   `preview`) on the official pinned Playwright image, driven by podman
   compose (docker also works), plus the `scripts/test-e2e-container.sh`
@@ -23,6 +34,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- The home-page e2e scenarios are content-agnostic (ADR 0010 amendment):
+  "navigates from a post card to the post" derives the expected URL and
+  title from the first card instead of naming a specific post, and the card
+  count comes from `siteConfig.postsOnHome`. Previously the test hard-coded
+  a post that new content had displaced from the home page, timing out in
+  all four browser projects.
+- Routine dependency bumps past the 72-hour quarantine, exactly as ADR 0014
+  scheduled: vite 8.1.3 → 8.1.4, prettier 3.9.4 → 3.9.5. eslint 10.7.0 and
+  typescript-eslint 8.64.0 remain quarantined at the time of this change
+  (yarn refuses them with `YN0016`) and stay at 10.6.0 / 8.63.0 until the
+  next routine `yarn up`.
 - Reduced-motion visitors no longer engage the view-transition machinery at
   all: the `@view-transition { navigation: auto }` opt-in now lives inside
   `@media (prefers-reduced-motion: no-preference)`, replacing the previous
@@ -36,6 +58,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- `yarn install` is warning-free again: the ADR 0006 packageExtensions realm
+  now also gives `typescript-eslint` (the meta package) and
+  `@typescript-eslint/utils` the nested `typescript@6.0.3` fallback, which
+  satisfies their `typescript` peer edge and removes the `YN0002`/`YN0086`
+  post-resolution warnings (ADR 0006 amendment).
+- `.yarnrc.yml` carries `npmMinimalAgeGate: 4320` again. ADR 0014 documents
+  the 72-hour supply-chain quarantine as accepted policy, but the setting
+  itself had been lost from the config; restored and verified (a 2-hour-old
+  release is refused with `YN0016: … quarantined`).
+- Stale ADR references in `.yarnrc.yml` comments now point at the real
+  files (`0006-dual-typescript-toolchain.md`,
+  `0014-yarn-and-dependency-policy.md`).
 - Containerised chromium and mobile-chrome e2e runs no longer freeze for
   30 s on "header navigation reaches every section": the real Chromium
   build reproduced the Headless Shell's view-transition rendering stall

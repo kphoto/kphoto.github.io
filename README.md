@@ -113,11 +113,16 @@ GitHub's job containers
 
 Posts live in `content/blog/` as `YYYY-MM-DD-name.md`; the date in the file
 name **is** the URL prefix, so two posts may share a title as long as they
-were published on different days. Frontmatter carries `title`, `date`,
-`author`, `summary`, a `tags` list, and optionally `series` + `episode`.
-Authors live in `content/authors/*.yml`; standalone pages in
-`content/pages/*.md`. Every rule is validated at build time with file-scoped
-error messages — see [docs/content-authoring.md](docs/content-authoring.md).
+were published on different days. The date also **schedules** the post: a
+post dated in the future is validated on every build but stays out of the
+site — pages, feed and sitemap alike — until its date arrives in the site's
+time zone, at which point the daily rebuild publishes it
+([ADR 0021](docs/adr/0021-scheduled-publishing-and-daily-rebuild.md)).
+Frontmatter carries `title`, `date`, `author`, `summary`, a `tags` list, and
+optionally `series` + `episode`. Authors live in `content/authors/*.yml`;
+standalone pages in `content/pages/*.md`. Every rule is validated at build
+time with file-scoped error messages — see
+[docs/content-authoring.md](docs/content-authoring.md).
 
 ## Architecture in one paragraph
 
@@ -125,8 +130,8 @@ error messages — see [docs/content-authoring.md](docs/content-authoring.md).
 `src/components/` and `src/pages/` render strings from that model;
 `src/ssg/` is the only code that touches the filesystem and Vite;
 `src/client/` is the only code that runs in the browser. Time (the footer
-year) and storage (localStorage) are injected, so every layer is unit-testable
-with fakes. The longer version is in [docs/architecture.md](docs/architecture.md),
+year and the publish cutoff) and storage (localStorage) are injected, so
+every layer is unit-testable with fakes. The longer version is in [docs/architecture.md](docs/architecture.md),
 and every non-obvious decision has an ADR in [docs/adr/](docs/adr/).
 
 ## Toolchain
@@ -143,8 +148,11 @@ deviations from "absolute latest" are quarantine holds documented in
 ## Deployment
 
 Every push to `main` runs the full verification suite and, if green, deploys
-`dist/` to GitHub Pages (`.github/workflows/deploy.yml`). The repository
-setting **Pages → Source** must be **GitHub Actions**.
+`dist/` to GitHub Pages (`.github/workflows/deploy.yml`). The same workflow
+also runs on a **daily schedule** (05:10 UTC ≈ just past midnight US-Eastern)
+so scheduled posts go live on their date without a commit
+([ADR 0021](docs/adr/0021-scheduled-publishing-and-daily-rebuild.md)). The
+repository setting **Pages → Source** must be **GitHub Actions**.
 
 ## License
 

@@ -81,3 +81,21 @@ export function toUtcTimestamp(isoDate: string): string {
   parseIsoDate(isoDate);
   return `${isoDate}T00:00:00Z`;
 }
+
+/**
+ * The calendar date, as `YYYY-MM-DD`, that a given instant falls on in the
+ * given IANA time zone. This is what decides whether a dated post is
+ * published yet (ADR 0021): the clock is injected, the mapping is pure.
+ */
+export function isoDateInTimeZone(instant: Date, timeZone: string): string {
+  const formatted = new Intl.DateTimeFormat('en-CA', {
+    timeZone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(instant);
+  if (!isValidIsoDate(formatted)) {
+    throw new Error(`could not derive an ISO date for time zone "${timeZone}"`);
+  }
+  return formatted;
+}

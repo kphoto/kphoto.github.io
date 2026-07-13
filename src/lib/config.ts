@@ -11,6 +11,12 @@ export interface SiteConfig {
   readonly language: string;
   /** How many of the latest posts the home page showcases. */
   readonly postsOnHome: number;
+  /**
+   * IANA time zone that decides when a dated post counts as published: a post
+   * goes live on the build whose local date in this zone reaches the post's
+   * date (ADR 0021).
+   */
+  readonly timeZone: string;
 }
 
 export const siteConfig: SiteConfig = {
@@ -20,4 +26,5 @@ export const siteConfig: SiteConfig = {
   repoUrl: 'https://github.com/kphoto/kphoto.github.io',
   language: 'en',
   postsOnHome: 5,
+  timeZone: 'America/New_York',
 };

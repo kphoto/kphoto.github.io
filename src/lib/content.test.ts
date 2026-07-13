@@ -292,3 +292,61 @@ describe('loadSiteModel', () => {
     ]);
   });
 });
+
+describe('loadSiteModel scheduled publishing (ADR 0021)', () => {
+  const datedPost = (date: string, episode?: number): string =>
+    postFile(
+      [
+        `title: Post of ${date}`,
+        `date: ${date}`,
+        'author: kphoto-team',
+        'summary: s',
+        'tags:',
+        '  - fundamentals',
+        ...(episode === undefined ? [] : ['series: Drip', `episode: ${String(episode)}`]),
+      ].join('\n'),
+    );
+
+  const input = {
+    blog: {
+      '2026-07-12-yesterday.md': datedPost('2026-07-12', 1),
+      '2026-07-13-today.md': datedPost('2026-07-13', 2),
+      '2026-07-14-tomorrow.md': datedPost('2026-07-14', 3),
+    },
+    authors: { 'kphoto-team.yml': GOOD_AUTHOR },
+    pages: {},
+  };
+
+  it('publishes posts dated on or before the cutoff and hides the rest everywhere', () => {
+    const model = loadSiteModel(input, '2026-07-13');
+    expect(model.posts.map((post) => post.date)).toEqual(['2026-07-13', '2026-07-12']);
+    expect(model.tags.get('fundamentals')?.posts).toHaveLength(2);
+    expect(model.series.get('drip')?.posts.map((post) => post.series?.episode)).toEqual([1, 2]);
+    expect(model.postsByAuthor.get('kphoto-team')).toHaveLength(2);
+  });
+
+  it('includes everything when no cutoff is given (future preview)', () => {
+    const model = loadSiteModel(input);
+    expect(model.posts).toHaveLength(3);
+  });
+
+  it('still validates unpublished posts so a broken future post fails the build', () => {
+    const broken = {
+      ...input,
+      blog: { ...input.blog, '2026-08-01-broken.md': 'no frontmatter at all' },
+    };
+    expect(() => loadSiteModel(broken, '2026-07-13')).toThrow(ContentValidationError);
+  });
+
+  it('still rejects series conflicts among unpublished posts', () => {
+    const broken = {
+      ...input,
+      blog: { ...input.blog, '2026-08-02-duplicate.md': datedPost('2026-08-02', 3) },
+    };
+    expect(() => loadSiteModel(broken, '2026-07-13')).toThrow(/episode 3 of "Drip"/);
+  });
+
+  it('rejects a malformed cutoff date', () => {
+    expect(() => loadSiteModel(input, 'someday')).toThrow(/valid YYYY-MM-DD/);
+  });
+});

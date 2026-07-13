@@ -40,3 +40,21 @@ Unit tests run in ~2 s with no browser, so they run constantly; e2e is the
 slow, honest layer. Fakes at the seams (storage, media, host, time) keep
 client logic testable without jsdom. A percentage gate is deliberately
 rejected to avoid coverage-shaped tests.
+
+## Amendment (2026-07-13): e2e tests must not depend on editorial content
+
+"navigates from a post card to the post" hard-coded a post title and URL and
+assumed that post sat on the home page. Twenty new dated posts later it timed
+out in all four browser projects — the post had simply scrolled off. The
+lesson generalises: the home page's "latest posts" is a **moving window over
+content**, and with scheduled publishing (ADR 0021) it now moves on its own
+every day, with no commit at all.
+
+Rule going forward: e2e scenarios assert **behaviour and invariants**, never
+the presence of a particular piece of writing. The rewritten test derives the
+expected URL and title from the first card in the DOM and asserts the dated
+URL shape and the title round-trip; the card count comes from
+`siteConfig.postsOnHome` instead of a literal `5`. Tests that intentionally
+pin specific posts (the duplicate-title pair, the three-episode series) may
+keep doing so — those posts exist _as fixtures for those behaviours_ and are
+past-dated, so the publishing clock can never hide them.

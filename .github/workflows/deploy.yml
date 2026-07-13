@@ -5,6 +5,12 @@ name: deploy
 on:
   push:
     branches: [main]
+  # Scheduled publishing (ADR 0021): posts are dated, and the build only
+  # includes posts whose date has arrived in the site's time zone. This
+  # daily rebuild shortly after midnight US-Eastern is what flips each
+  # scheduled post live (05:10 UTC = 00:10 EST / 01:10 EDT).
+  schedule:
+    - cron: '10 5 * * *'
   workflow_dispatch:
 
 concurrency:
