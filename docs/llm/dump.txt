@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-07-14T08:34:55-04:00
+  Generated at   : 2026-07-14T20:17:28-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,9 +17,9 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : 4681b7987c2166f41a7bb742f6353548cf113869
-  Commit (short) : 4681b79
-  Commit date    : 2026-07-13 17:37:48 -0400
+  Commit (full)  : 45b8716c00a80236274a618cdbd02905e5d0b64f
+  Commit (short) : 45b8716
+  Commit date    : 2026-07-14 08:35:22 -0400
   Commit message : run dump
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
   Files included : 153
@@ -28,7 +28,7 @@ REPOSITORY METADATA
 
 GIT WORKING TREE STATUS (first 20 lines)
 ═════════════════════════════════════════════════════════════════════════════════
- M docs/llm/vendor/output.txt
+  (clean — no uncommitted changes)
 
 ################################################################################
 # FILE: export.sh  [THIS SCRIPT — included for full context]
@@ -12821,7 +12821,7 @@ packageExtensions:
   Files dumped   : 153
   Total size     : 5.1 MiB (5352299 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-07-14T08:34:59-04:00
+  Completed at   : 2026-07-14T20:17:33-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
