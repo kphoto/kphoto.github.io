@@ -26,6 +26,7 @@ themes: light · dark · solarized
 <h2 id="latest-heading" class="section-heading">Latest posts</h2>
 ${cards}
 <p class="more"><a href="/blog/">All posts →</a></p>
+<img src="/images/food/IMG_20260814_124517771_HDR.jpg" loading="lazy" />
 </section>`;
   return renderDocument(
     context,
