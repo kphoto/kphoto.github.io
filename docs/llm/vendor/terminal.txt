@@ -1,216 +1,448 @@
-<img src="/images/food/IMG_20260814_124517771_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_124524458_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_124529627_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_124548753_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_124556833_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_125518896_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_125522013_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_125524744_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_125529968_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_125542788_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_155508288_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_155511072_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_155516939_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_155519390_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_155523770_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_160350210_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_160846998_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_160849855_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_160852511_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_160855730_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_160859412_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_164138366_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_164140291_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_164144323_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_164146928_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_164149836_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_164153566_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_164157321_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_164200441_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_164202578_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_164205226_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_164219113_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_164221820_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_164314029_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_164320161_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_164322369_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260814_164324406.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_120432948_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_120439762_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_120443899_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_120450436_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_120453210_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_120837921_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_120842110_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_120848098_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_120851457_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_120854378_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_132109394_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_155557542_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_155559148_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_155601252.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_155604044_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_155607607_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_155611145_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_155614357_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_155616094_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_155617741.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260815_155619589_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_114841503_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_114844230_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_114847098_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_114850942_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_114854863_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_114857279_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_114858933_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_114901346_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_114903268.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_114905583_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_120017956_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_120021340_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_120622628_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_120626563_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_120633967_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_120636911_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_120640551_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_120643754_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_120646640_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_131505164_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_131938635_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_132005590_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_164246046_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_164250599_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_164254217_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_164258871_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260816_164305040_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_123439944_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_123444119_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_123450714_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_123503071_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_123505833_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_123508432_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_123510898_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_123513475_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_123515834_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_123518160.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_123520387.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_123533317_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_123539512_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_123553756_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_123557370_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_123602000_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_124233639_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_124639865_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_124658842_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_124701897_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_124704928_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_124744700_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_170842777_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_170847438_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_170851239_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_170854736_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_170859298_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_170903739_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_170911667_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_171029793_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_171033226_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_171037372_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_171039775_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260817_171042711_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_122025969_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_122028949_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_122032764_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_122037677_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_122043070_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_123002661_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_123036562_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_123038947_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_123432071_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_123434493_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_123436566.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_123448673_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_123454012_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_123457320_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_123501644_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_142058770_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_142101592_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_142103906_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_142105717.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_142107865_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_165456267_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_165458507_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_165501591_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_165508880_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260818_165511780_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_120232028_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_120236510_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_120240789_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_120245514_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_120250196_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_122235209_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_122237290_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_122251136_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_122257426_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_122301313_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_122305371_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_163824160_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_163827290_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_163833142_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_163840132_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_163845780.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_164038283_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_164043151_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_164058796_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_164133208_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_165252073_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_165253816_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_165256373_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_165258956.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260819_165302564_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_120847843_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_120852447_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_120856981_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_120902201_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_120908394_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_120914958_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_120917491_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_120920570_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_120922798_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_120924821_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_120927038_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_120929627_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_123034961_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_123038224_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_123045346_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_123048526.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_123052243.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_123200393_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_123204129_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_123208794_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_123212900_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_123216128_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_135542634_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_135620649_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_170328260_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_170332915_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_170335821_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_170347705_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_170350571_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260820_170849140_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_122649372_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_124213142_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_124225982_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_124229926_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_124233805_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_124238046_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_130353748_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_164208097_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_164210533_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_164213274_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_164216010_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_164218576_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_164223755.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_164226158.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_164228027_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_164230455_HDR.jpg" alt = "" loading="lazy" />
-<img src="/images/food/IMG_20260821_164232956.jpg" alt = "" loading="lazy" />
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; yarn run dev
+
+  VITE v8.1.4  ready in 201 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+7:48:39 AM [vite] src/pages/home.ts changed, restarting server...
+7:48:39 AM [vite] server restarted.
+7:48:57 AM [vite] src/pages/home.ts changed, restarting server...
+7:48:57 AM [vite] server restarted.
+7:51:49 AM [vite] src/pages/home.ts changed, restarting server...
+7:51:49 AM [vite] server restarted.
+7:52:27 AM [vite] src/pages/home.ts changed, restarting server...
+7:52:27 AM [vite] server restarted.
+7:54:06 AM [vite] src/pages/home.ts changed, restarting server...
+7:54:06 AM [vite] server restarted.
+7:54:46 AM [vite] src/pages/home.ts changed, restarting server...
+7:54:46 AM [vite] server restarted.
+7:54:50 AM [vite] src/pages/home.ts changed, restarting server...
+7:54:50 AM [vite] server restarted.
+7:55:22 AM [vite] (client) hmr update /src/styles/global.css?direct
+7:55:33 AM [vite] (client) hmr update /src/styles/global.css?direct (x2)
+7:56:00 AM [vite] (client) hmr update /src/styles/global.css?direct (x3)
+7:56:08 AM [vite] (client) hmr update /src/styles/global.css?direct (x4)
+^Ckushal@fedora:~/src/ts/kphoto$ 
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
+[08:00:09] 1/8 bootstrap
+[08:00:09] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.17.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done in 0s 321ms
+[08:00:10] bootstrap complete — try ./scripts/dev.sh
+[08:00:10] 2/8 format check
+[08:00:10] checking formatting (prettier --check)
+Checking formatting...
+[warn] src/styles/global.css
+[warn] Code style issues found in the above file. Run Prettier with --write to fix.
+
+real	0m7.364s
+user	0m7.322s
+sys	0m0.932s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time yarn run format
+.github/workflows/ci.yml 8ms (unchanged)
+.github/workflows/deploy.yml 6ms (unchanged)
+.github/workflows/verify.yml 5ms (unchanged)
+.prettierrc.json 9ms (unchanged)
+.vscode/extensions.json 1ms (unchanged)
+.vscode/settings.json 1ms (unchanged)
+.yarnrc.yml 3ms (unchanged)
+CHANGELOG.md 55ms (unchanged)
+compose.yaml 3ms (unchanged)
+content/authors/casey-rivers.yml 1ms (unchanged)
+content/authors/kphoto-team.yml 1ms (unchanged)
+content/authors/kushal.yml 1ms (unchanged)
+content/blog/2026-03-22-good-morning.md 3ms (unchanged)
+content/blog/2026-04-01-good-morning.md 4ms (unchanged)
+content/blog/2026-05-05-typescript-7-native-compiler.md 5ms (unchanged)
+content/blog/2026-05-12-a-markdown-renderer-from-scratch.md 24ms (unchanged)
+content/blog/2026-05-19-scoped-styles-with-declarative-shadow-dom.md 24ms (unchanged)
+content/blog/2026-06-10-five-themes-one-localstorage-key.md 4ms (unchanged)
+content/blog/2026-07-01-what-this-site-is.md 3ms (unchanged)
+content/blog/2026-07-10-welcome.md 2ms (unchanged)
+content/blog/2026-07-13-light-the-foundation-of-every-photograph.md 4ms (unchanged)
+content/blog/2026-07-14-the-exposure-triangle.md 3ms (unchanged)
+content/blog/2026-07-15-reading-your-histogram.md 3ms (unchanged)
+content/blog/2026-07-16-composition-basics-that-never-expire.md 3ms (unchanged)
+content/blog/2026-07-17-leading-lines-framing-and-negative-space.md 3ms (unchanged)
+content/blog/2026-07-18-depth-of-field-and-selective-focus.md 3ms (unchanged)
+content/blog/2026-07-19-freezing-and-blurring-motion.md 5ms (unchanged)
+content/blog/2026-07-20-white-balance-and-color-temperature.md 4ms (unchanged)
+content/blog/2026-07-21-understanding-dynamic-range.md 3ms (unchanged)
+content/blog/2026-07-22-golden-hour-and-blue-hour.md 3ms (unchanged)
+content/blog/2026-07-23-portraits-working-with-people.md 3ms (unchanged)
+content/blog/2026-07-24-landscapes-patience-and-scale.md 3ms (unchanged)
+content/blog/2026-07-25-street-photography-ethics-and-instinct.md 3ms (unchanged)
+content/blog/2026-07-26-macro-photography-seeing-small-worlds.md 3ms (unchanged)
+content/blog/2026-07-27-seeing-in-black-and-white.md 4ms (unchanged)
+content/blog/2026-07-28-raw-versus-jpeg-and-why-it-still-matters.md 3ms (unchanged)
+content/blog/2026-07-29-a-philosophy-for-editing-photographs.md 3ms (unchanged)
+content/blog/2026-07-30-finding-your-own-style.md 4ms (unchanged)
+content/blog/2026-07-31-sharing-your-work-ethically.md 3ms (unchanged)
+content/blog/2026-08-01-how-to-keep-getting-better.md 3ms (unchanged)
+content/pages/about.md 3ms (unchanged)
+content/pages/contact.md 2ms (unchanged)
+docs/adr/0001-record-architecture-decisions.md 2ms (unchanged)
+docs/adr/0002-agpl-license-and-dependency-policy.md 2ms (unchanged)
+docs/adr/0003-static-site-on-github-pages.md 2ms (unchanged)
+docs/adr/0004-zero-runtime-dependencies.md 2ms (unchanged)
+docs/adr/0005-vite-with-custom-ssg-plugin.md 3ms (unchanged)
+docs/adr/0006-dual-typescript-toolchain.md 5ms (unchanged)
+docs/adr/0007-declarative-shadow-dom-components.md 2ms (unchanged)
+docs/adr/0008-theming-and-contrast.md 3ms (unchanged)
+docs/adr/0009-content-model-and-url-scheme.md 4ms (unchanged)
+docs/adr/0010-test-strategy.md 7ms (unchanged)
+docs/adr/0011-slim-ci-and-pages-deploy.md 4ms (unchanged)
+docs/adr/0012-evergreen-browser-baseline.md 2ms (unchanged)
+docs/adr/0013-localstorage-settings-store.md 2ms (unchanged)
+docs/adr/0014-yarn-and-dependency-policy.md 2ms (unchanged)
+docs/adr/0015-accessibility-commitments.md 3ms (unchanged)
+docs/adr/0016-chromium-new-headless-channel.md 9ms (unchanged)
+docs/adr/0017-containerised-e2e-playwright-image.md 6ms (unchanged)
+docs/adr/0018-motion-gated-view-transitions.md 9ms (unchanged)
+docs/adr/0019-ci-container-home-override.md 3ms (unchanged)
+docs/adr/0020-repo-root-from-script-location.md 4ms (unchanged)
+docs/adr/0021-scheduled-publishing-and-daily-rebuild.md 4ms (unchanged)
+docs/architecture.md 4ms (unchanged)
+docs/content-authoring.md 8ms (unchanged)
+docs/README.md 2ms (unchanged)
+eslint.config.ts 7ms (unchanged)
+package.json 1ms (unchanged)
+playwright.config.ts 5ms (unchanged)
+README.md 18ms (unchanged)
+src/client/main.ts 11ms (unchanged)
+src/client/storage.test.ts 10ms (unchanged)
+src/client/storage.ts 7ms (unchanged)
+src/client/theme.test.ts 10ms (unchanged)
+src/client/theme.ts 5ms (unchanged)
+src/client/themeInit.test.ts 6ms (unchanged)
+src/client/themeInit.ts 2ms (unchanged)
+src/components/authorCard.ts 7ms (unchanged)
+src/components/components.test.ts 13ms (unchanged)
+src/components/postCard.ts 3ms (unchanged)
+src/components/postMeta.ts 2ms (unchanged)
+src/components/seriesNav.ts 2ms (unchanged)
+src/components/siteFooter.ts 1ms (unchanged)
+src/components/siteHeader.ts 2ms (unchanged)
+src/components/themePicker.ts 1ms (unchanged)
+src/lib/collections.test.ts 6ms (unchanged)
+src/lib/collections.ts 5ms (unchanged)
+src/lib/config.ts 1ms (unchanged)
+src/lib/content.test.ts 15ms (unchanged)
+src/lib/content.ts 19ms (unchanged)
+src/lib/dates.test.ts 5ms (unchanged)
+src/lib/dates.ts 6ms (unchanged)
+src/lib/feed.test.ts 3ms (unchanged)
+src/lib/feed.ts 3ms (unchanged)
+src/lib/frontmatter.test.ts 1ms (unchanged)
+src/lib/frontmatter.ts 2ms (unchanged)
+src/lib/html.test.ts 1ms (unchanged)
+src/lib/html.ts 1ms (unchanged)
+src/lib/markdown.test.ts 4ms (unchanged)
+src/lib/markdown.ts 12ms (unchanged)
+src/lib/readingTime.test.ts 2ms (unchanged)
+src/lib/readingTime.ts 1ms (unchanged)
+src/lib/sitemap.test.ts 1ms (unchanged)
+src/lib/sitemap.ts 1ms (unchanged)
+src/lib/slug.test.ts 1ms (unchanged)
+src/lib/slug.ts 1ms (unchanged)
+src/lib/testFixtures.ts 1ms (unchanged)
+src/lib/types.ts 2ms (unchanged)
+src/lib/yaml.test.ts 3ms (unchanged)
+src/lib/yaml.ts 8ms (unchanged)
+src/pages/authors.ts 3ms (unchanged)
+src/pages/blogIndex.ts 1ms (unchanged)
+src/pages/home.ts 2ms (unchanged)
+src/pages/layout.ts 2ms (unchanged)
+src/pages/markdownPage.ts 1ms (unchanged)
+src/pages/notFound.ts 1ms (unchanged)
+src/pages/post.ts 2ms (unchanged)
+src/pages/routes.test.ts 6ms (unchanged)
+src/pages/routes.ts 5ms (unchanged)
+src/pages/series.ts 3ms (unchanged)
+src/pages/tags.ts 2ms (unchanged)
+src/ssg/loadContent.test.ts 2ms (unchanged)
+src/ssg/loadContent.ts 2ms (unchanged)
+src/ssg/vitePlugin.ts 9ms (unchanged)
+src/styles/global.css 24ms
+src/versionSync.test.ts 3ms (unchanged)
+tests/e2e/site.spec.ts 8ms (unchanged)
+tsconfig.json 1ms (unchanged)
+vite.config.ts 1ms (unchanged)
+vitest.config.ts 1ms (unchanged)
+
+real	0m6.481s
+user	0m6.732s
+sys	0m0.686s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
+[08:01:21] 1/8 bootstrap
+[08:01:21] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.17.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done in 0s 281ms
+[08:01:21] bootstrap complete — try ./scripts/dev.sh
+[08:01:21] 2/8 format check
+[08:01:21] checking formatting (prettier --check)
+Checking formatting...
+All matched files use Prettier code style!
+[08:01:28] format complete
+[08:01:28] 3/8 lint
+[08:01:28] linting (eslint, zero warnings allowed)
+[08:01:31] lint complete
+[08:01:31] 4/8 typecheck
+[08:01:31] type-checking with tsc Version 7.0.2 (native compiler)
+[08:01:31] typecheck complete
+[08:01:31] 5/8 unit tests
+[08:01:31] running unit tests with coverage (vitest)
+
+ RUN  v4.1.10 /home/kushal/src/ts/kphoto
+      Coverage enabled with v8
+
+ ✓ src/ssg/loadContent.test.ts (2 tests) 13ms
+ ✓ src/lib/readingTime.test.ts (3 tests) 4ms
+ ✓ src/lib/slug.test.ts (5 tests) 7ms
+ ✓ src/client/storage.test.ts (9 tests) 7ms
+ ✓ src/lib/yaml.test.ts (11 tests) 8ms
+ ✓ src/lib/collections.test.ts (9 tests) 13ms
+ ✓ src/client/theme.test.ts (7 tests) 6ms
+ ✓ src/client/themeInit.test.ts (5 tests) 5ms
+ ✓ src/lib/frontmatter.test.ts (4 tests) 6ms
+ ✓ src/lib/markdown.test.ts (19 tests) 9ms
+ ✓ src/lib/sitemap.test.ts (1 test) 5ms
+ ✓ src/lib/content.test.ts (27 tests) 30ms
+ ✓ src/components/components.test.ts (20 tests) 6ms
+ ✓ src/lib/dates.test.ts (11 tests) 110ms
+ ✓ src/pages/routes.test.ts (14 tests) 7ms
+ ✓ src/lib/html.test.ts (3 tests) 3ms
+ ✓ src/versionSync.test.ts (3 tests) 3ms
+ ✓ src/lib/feed.test.ts (5 tests) 3ms
+
+ Test Files  18 passed (18)
+      Tests  158 passed (158)
+   Start at  08:01:32
+   Duration  530ms (transform 1.39s, setup 0ms, import 1.96s, tests 245ms, environment 2ms)
+
+ % Coverage report from v8
+------------------|---------|----------|---------|---------|-------------------------------------------------------
+File              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                     
+------------------|---------|----------|---------|---------|-------------------------------------------------------
+All files         |   79.72 |    71.34 |   81.25 |   79.63 |                                                       
+ client           |   64.61 |    76.92 |   66.66 |   64.06 |                                                       
+  main.ts         |       0 |        0 |       0 |       0 | 4-63                                                  
+  storage.ts      |     100 |      100 |     100 |     100 |                                                       
+  theme.ts        |     100 |      100 |     100 |     100 |                                                       
+  themeInit.ts    |     100 |      100 |     100 |     100 |                                                       
+ components       |   95.83 |     92.5 |   88.88 |   95.74 |                                                       
+  authorCard.ts   |    87.5 |    89.47 |   66.66 |    87.5 | 6-7                                                   
+  postCard.ts     |     100 |      100 |     100 |     100 |                                                       
+  postMeta.ts     |     100 |      100 |     100 |     100 |                                                       
+  seriesNav.ts    |     100 |       90 |     100 |     100 | 15                                                    
+  siteFooter.ts   |     100 |      100 |     100 |     100 |                                                       
+  siteHeader.ts   |     100 |      100 |     100 |     100 |                                                       
+  themePicker.ts  |     100 |      100 |     100 |     100 |                                                       
+ lib              |   92.07 |    79.64 |   97.33 |    92.3 |                                                       
+  collections.ts  |   97.05 |    78.57 |   88.88 |     100 | 44-60                                                 
+  config.ts       |     100 |      100 |     100 |     100 |                                                       
+  content.ts      |   94.85 |    89.01 |     100 |   94.73 | 54,66,102,152,157,197,255                             
+  dates.ts        |   96.87 |       88 |     100 |   96.87 | 98                                                    
+  feed.ts         |     100 |       50 |     100 |     100 | 8-12                                                  
+  frontmatter.ts  |     100 |     87.5 |     100 |     100 | 18                                                    
+  html.ts         |     100 |       50 |     100 |     100 | 11                                                    
+  markdown.ts     |   91.17 |     70.1 |   93.33 |   91.85 | 136,145-158,171                                       
+  readingTime.ts  |     100 |      100 |     100 |     100 |                                                       
+  sitemap.ts      |     100 |      100 |     100 |     100 |                                                       
+  slug.ts         |     100 |      100 |     100 |     100 |                                                       
+  testFixtures.ts |     100 |      100 |     100 |     100 |                                                       
+  types.ts        |       0 |        0 |       0 |       0 |                                                       
+  yaml.ts         |   84.34 |    78.65 |     100 |   84.21 | 67-71,76-79,89,95,106,135,141,157,160,167,171,198,213 
+ pages            |     100 |    68.75 |     100 |     100 |                                                       
+  authors.ts      |     100 |     62.5 |     100 |     100 | 10-31                                                 
+  blogIndex.ts    |     100 |       50 |     100 |     100 | 11                                                    
+  home.ts         |     100 |      100 |     100 |     100 |                                                       
+  layout.ts       |     100 |      100 |     100 |     100 |                                                       
+  markdownPage.ts |     100 |      100 |     100 |     100 |                                                       
+  notFound.ts     |     100 |      100 |     100 |     100 |                                                       
+  post.ts         |     100 |       70 |     100 |     100 | 13-14                                                 
+  routes.ts       |     100 |       75 |     100 |     100 | 61                                                    
+  series.ts       |     100 |       50 |     100 |     100 | 11-34                                                 
+  tags.ts         |     100 |      100 |     100 |     100 |                                                       
+ ssg              |   10.28 |     1.88 |    9.52 |   10.47 |                                                       
+  loadContent.ts  |   91.66 |       50 |     100 |   91.66 | 15                                                    
+  vitePlugin.ts   |       0 |        0 |       0 |       0 | 14-207                                                
+------------------|---------|----------|---------|---------|-------------------------------------------------------
+[08:01:33] unit tests complete
+[08:01:33] 6/8 build
+[08:01:33] building the static site (vite build + kphoto-ssg)
+vite v8.1.4 building client environment for production...
+✓ 5 modules transformed.
+computing gzip size...
+dist/.vite/manifest.json         0.34 kB │ gzip: 0.17 kB
+dist/assets/styles-kPO2xPQs.css  5.41 kB │ gzip: 1.76 kB
+dist/assets/client-EgueYxfX.js   1.57 kB │ gzip: 0.77 kB
+
+✓ built in 107ms
+kphoto-ssg: wrote 67 pages and feeds
+[08:01:33] build complete — output in dist/
+[08:01:33] 7/8 end-to-end tests (container — see ADR 0017)
+[08:01:33] running end-to-end tests in a container (podman compose run --rm e2e)
+>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[12:01:34] building the static site (vite build + kphoto-ssg)
+vite v8.1.4 building client environment for production...
+✓ 5 modules transformed.
+computing gzip size...
+dist/.vite/manifest.json         0.34 kB │ gzip: 0.17 kB
+dist/assets/styles-kPO2xPQs.css  5.41 kB │ gzip: 1.76 kB
+dist/assets/client-EgueYxfX.js   1.57 kB │ gzip: 0.77 kB
+
+✓ built in 63ms
+kphoto-ssg: wrote 67 pages and feeds
+[12:01:35] build complete — output in dist/
+[12:01:35] using browsers preinstalled at /ms-playwright
+[12:01:35] running end-to-end tests (playwright)
+
+Running 48 tests using 8 workers
+
+  ✓   1 [chromium] › tests/e2e/site.spec.ts:81:3 › series › a middle episode links to its neighbours (774ms)
+  ✓   2 [chromium] › tests/e2e/site.spec.ts:67:3 › series › series page lists episodes in ascending order (764ms)
+  ✓   3 [chromium] › tests/e2e/site.spec.ts:91:3 › theming › the picker applies a theme and it survives a reload (1.1s)
+  ✓   4 [chromium] › tests/e2e/site.spec.ts:39:3 › header navigation › reaches every section from the header (1.6s)
+  ✓   5 [chromium] › tests/e2e/site.spec.ts:57:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (866ms)
+  ✓   6 [chromium] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (812ms)
+  ✓   7 [chromium] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (1.1s)
+  ✓   8 [chromium] › tests/e2e/site.spec.ts:33:3 › header navigation › marks the current section with aria-current (757ms)
+  ✓   9 [chromium] › tests/e2e/site.spec.ts:121:3 › resilience and accessibility › the skip link jumps to the main content (422ms)
+  ✓  10 [chromium] › tests/e2e/site.spec.ts:105:3 › theming › system follows the OS colour scheme (502ms)
+  ✓  11 [chromium] › tests/e2e/site.spec.ts:115:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (392ms)
+  ✓  12 [chromium] › tests/e2e/site.spec.ts:131:3 › resilience and accessibility › every page advertises the Atom feed (351ms)
+  ✓  13 [firefox] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (855ms)
+  ✓  14 [firefox] › tests/e2e/site.spec.ts:67:3 › series › series page lists episodes in ascending order (1.2s)
+  ✓  15 [firefox] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (1.4s)
+  ✓  16 [firefox] › tests/e2e/site.spec.ts:33:3 › header navigation › marks the current section with aria-current (1.3s)
+  ✓  17 [firefox] › tests/e2e/site.spec.ts:39:3 › header navigation › reaches every section from the header (2.1s)
+  ✓  18 [firefox] › tests/e2e/site.spec.ts:57:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (1.2s)
+  ✓  19 [firefox] › tests/e2e/site.spec.ts:81:3 › series › a middle episode links to its neighbours (1.3s)
+  ✓  20 [firefox] › tests/e2e/site.spec.ts:91:3 › theming › the picker applies a theme and it survives a reload (1.5s)
+  ✓  21 [firefox] › tests/e2e/site.spec.ts:105:3 › theming › system follows the OS colour scheme (675ms)
+  ✓  22 [firefox] › tests/e2e/site.spec.ts:115:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (344ms)
+  ✓  23 [firefox] › tests/e2e/site.spec.ts:121:3 › resilience and accessibility › the skip link jumps to the main content (727ms)
+  ✓  24 [firefox] › tests/e2e/site.spec.ts:131:3 › resilience and accessibility › every page advertises the Atom feed (412ms)
+  ✓  25 [webkit] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (786ms)
+  ✓  26 [webkit] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (1.5s)
+  ✓  27 [webkit] › tests/e2e/site.spec.ts:33:3 › header navigation › marks the current section with aria-current (808ms)
+  ✓  28 [webkit] › tests/e2e/site.spec.ts:39:3 › header navigation › reaches every section from the header (2.2s)
+  ✓  29 [webkit] › tests/e2e/site.spec.ts:57:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (784ms)
+  ✓  30 [webkit] › tests/e2e/site.spec.ts:67:3 › series › series page lists episodes in ascending order (698ms)
+  ✓  31 [webkit] › tests/e2e/site.spec.ts:81:3 › series › a middle episode links to its neighbours (726ms)
+  ✓  32 [webkit] › tests/e2e/site.spec.ts:105:3 › theming › system follows the OS colour scheme (820ms)
+  ✓  33 [webkit] › tests/e2e/site.spec.ts:115:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (504ms)
+  ✓  34 [webkit] › tests/e2e/site.spec.ts:121:3 › resilience and accessibility › the skip link jumps to the main content (573ms)
+  ✓  35 [webkit] › tests/e2e/site.spec.ts:131:3 › resilience and accessibility › every page advertises the Atom feed (590ms)
+  ✓  36 [webkit] › tests/e2e/site.spec.ts:91:3 › theming › the picker applies a theme and it survives a reload (590ms)
+  ✓  37 [mobile-chrome] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (443ms)
+  ✓  38 [mobile-chrome] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (572ms)
+  ✓  39 [mobile-chrome] › tests/e2e/site.spec.ts:33:3 › header navigation › marks the current section with aria-current (340ms)
+  ✓  40 [mobile-chrome] › tests/e2e/site.spec.ts:67:3 › series › series page lists episodes in ascending order (391ms)
+  ✓  41 [mobile-chrome] › tests/e2e/site.spec.ts:39:3 › header navigation › reaches every section from the header (994ms)
+  ✓  42 [mobile-chrome] › tests/e2e/site.spec.ts:57:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (335ms)
+  ✓  43 [mobile-chrome] › tests/e2e/site.spec.ts:105:3 › theming › system follows the OS colour scheme (391ms)
+  ✓  44 [mobile-chrome] › tests/e2e/site.spec.ts:115:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (265ms)
+  ✓  45 [mobile-chrome] › tests/e2e/site.spec.ts:121:3 › resilience and accessibility › the skip link jumps to the main content (300ms)
+  ✓  46 [mobile-chrome] › tests/e2e/site.spec.ts:131:3 › resilience and accessibility › every page advertises the Atom feed (255ms)
+  ✓  47 [mobile-chrome] › tests/e2e/site.spec.ts:81:3 › series › a middle episode links to its neighbours (240ms)
+  ✓  48 [mobile-chrome] › tests/e2e/site.spec.ts:91:3 › theming › the picker applies a theme and it survives a reload (253ms)
+
+  48 passed (11.4s)
+[12:01:47] end-to-end tests complete
+[08:01:47] 8/8 export repository dump
+[08:01:59] all checks passed ✔
+
+real	0m37.698s
+user	0m23.631s
+sys	0m10.152s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time yarn outdated
+Usage Error: Couldn't find a script named "outdated".
+
+$ yarn run [--inspect] [--inspect-brk] [-T,--top-level] [-B,--binaries-only] [--require #0] <scriptName> ...
+
+real	0m0.439s
+user	0m0.196s
+sys	0m0.076s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time npx npm-check-updates
+Need to install the following packages:
+npm-check-updates@23.1.0
+Ok to proceed? (y) n
+npm error canceled
+npm error A complete log of this run can be found in: /home/kushal/.npm/_logs/2026-08-28T12_03_21_257Z-debug-0.log
+
+real	0m27.727s
+user	0m0.479s
+sys	0m0.128s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time yarn upgrade-interactive
+ Press <up>/<down> to select packages.            Press <enter> to install.
+ Press <left>/<right> to select versions.         Press <ctrl+c> to abort.
+ Press c/r/l to select all current/range/latest.
+
+? Pick the packages you want to upgrade.          Current          Range            Latest
+
+ > @playwright/test ---------------------------- ◯ 1.61.1 ------- ◉ 1.62.1 -------
+   @types/node --------------------------------- ◯ 26.1.1 ------- ◉ 26.3.0 -------
+   @vitest/coverage-v8 ------------------------- ◯ 4.1.10 ------- ◉ 4.1.11 -------
+   eslint -------------------------------------- ◯ 10.6.0 ------- ◉ 10.9.1 -------
+   prettier ------------------------------------ ◯ 3.9.5 -------- ◉ 3.9.6 --------
+   typescript-eslint --------------------------- ◯ 8.63.0 ------- ◉ 8.68.0 -------
+   typescript-go ------------------------------- ◯ npm:typescrip… ◉ ^7.0.2 ------- ◯ ^0.0.1-securi…
+   vite ---------------------------------------- ◯ 8.1.4 -------- ◉ 8.2.2 --------
+   vitest -------------------------------------- ◯ 4.1.10 ------- ◉ 4.1.11 -------
+➤ YN0000: · Yarn 4.17.1
+➤ YN0000: ┌ Resolution step
+➤ YN0082: │ typescript-go@npm:^7.0.2: No candidates found
+➤ YN0000: └ Completed
+➤ YN0000: · Failed with errors in 0s 53ms
+
+real	0m41.590s
+user	0m3.355s
+sys	0m0.553s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time yarn upgrade-interactive
+ Press <up>/<down> to select packages.            Press <enter> to install.
+ Press <left>/<right> to select versions.         Press <ctrl+c> to abort.
+ Press c/r/l to select all current/range/latest.
+
+? Pick the packages you want to upgrade.          Current          Range            Latest
+
+   @playwright/test ---------------------------- ◯ 1.61.1 ------- ◉ 1.62.1 -------
+   @types/node --------------------------------- ◯ 26.1.1 ------- ◉ 26.3.0 -------
+   @vitest/coverage-v8 ------------------------- ◯ 4.1.10 ------- ◉ 4.1.11 -------
+   eslint -------------------------------------- ◯ 10.6.0 ------- ◉ 10.9.1 -------
+   prettier ------------------------------------ ◯ 3.9.5 -------- ◉ 3.9.6 --------
+   typescript-eslint --------------------------- ◯ 8.63.0 ------- ◉ 8.68.0 -------
+   typescript-go ------------------------------- ◯ npm:typescrip… ◯ ^7.0.2 ------- ◉ ^0.0.1-securi…
+   vite ---------------------------------------- ◯ 8.1.4 -------- ◉ 8.2.2 --------
+ > vitest -------------------------------------- ◯ 4.1.10 ------- ◉ 4.1.11 -------
+➤ YN0000: · Yarn 4.17.1
+➤ YN0000: ┌ Resolution step
+➤ YN0085: │ + @playwright/test@npm:1.62.1, @types/node@npm:26.3.0, @vitest/coverage-v8@npm:4.1.11, eslint@npm:10.9.1, prettier@npm:3.9.6, typescript-eslint@npm:8.68.0, and 56 more.
+➤ YN0085: │ - @eslint/config-helpers@npm:0.6.0, @playwright/test@npm:1.61.1, @types/node@npm:26.1.1, @typescript-eslint/eslint-plugin@npm:8.63.0, @typescript-eslint/parser@npm:8.63.0, and 44 more.
+➤ YN0000: └ Completed in 0s 300ms
+➤ YN0000: ┌ Fetch step
+➤ YN0013: │ 38 packages were added to the project (+ 73.03 MiB).
+➤ YN0000: └ Completed in 0s 787ms
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed in 0s 530ms
+➤ YN0000: · Done in 1s 643ms
+
+real	0m11.657s
+user	0m4.831s
+sys	0m1.361s
+kushal@fedora:~/src/ts/kphoto$ 

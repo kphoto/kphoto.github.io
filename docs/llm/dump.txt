@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-08-28T07:38:48-04:00
+  Generated at   : 2026-08-28T08:01:49-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,10 +17,10 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : 8a5dca43f0f89abc9ec3a3d8152e06fe8b17c24a
-  Commit (short) : 8a5dca4
-  Commit date    : 2026-08-28 07:37:35 -0400
-  Commit message : add all images of food
+  Commit (full)  : 845e993a0b5ec4ef495e5b7b4e010df2c246c349
+  Commit (short) : 845e993
+  Commit date    : 2026-08-28 07:56:59 -0400
+  Commit message : add css styling
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
   Files included : 369
   Excluded path  : docs/llm/
@@ -28,7 +28,7 @@ REPOSITORY METADATA
 
 GIT WORKING TREE STATUS (first 20 lines)
 ═════════════════════════════════════════════════════════════════════════════════
-  (clean — no uncommitted changes)
+ M src/styles/global.css
 
 ################################################################################
 # FILE: export.sh  [THIS SCRIPT — included for full context]
@@ -15625,15 +15625,15 @@ ${cards}
   File name:             home.ts
   Relative path:         src/pages/home.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/pages/home.ts
-  Size:                  1.5 KiB (1568 bytes)
-  Last modified:         2026-07-09 21:33:45.000000000 -0400
+  Size:                  19.2 KiB (19695 bytes)
+  Last modified:         2026-08-28 07:54:50.405652680 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
   Inode:                 20354406
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               ee812090780e3b66792b419eda1f5146926dfc1f65e98b70367ffc39bb2ddc22
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               939d2cf3197048bd27e5bf075c738047a79780110e2878cff3ff02f93f0a5f60
+  Last git commit:       845e993 2026-08-28 07:56:59 -0400 add css styling
 
 --- CONTENT ---
 import { renderPostCard } from '../components/postCard';
@@ -15664,6 +15664,226 @@ themes: light · dark · solarized
 <h2 id="latest-heading" class="section-heading">Latest posts</h2>
 ${cards}
 <p class="more"><a href="/blog/">All posts →</a></p>
+
+<section class="food-photos">
+  <img src="/images/food/IMG_20260814_124517771_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_124524458_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_124529627_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_124548753_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_124556833_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_125518896_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_125522013_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_125524744_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_125529968_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_125542788_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_155508288_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_155511072_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_155516939_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_155519390_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_155523770_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_160350210_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_160846998_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_160849855_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_160852511_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_160855730_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_160859412_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_164138366_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_164140291_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_164144323_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_164146928_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_164149836_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_164153566_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_164157321_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_164200441_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_164202578_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_164205226_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_164219113_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_164221820_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_164314029_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_164320161_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_164322369_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260814_164324406.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_120432948_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_120439762_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_120443899_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_120450436_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_120453210_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_120837921_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_120842110_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_120848098_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_120851457_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_120854378_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_132109394_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_155557542_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_155559148_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_155601252.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_155604044_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_155607607_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_155611145_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_155614357_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_155616094_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_155617741.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260815_155619589_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_114841503_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_114844230_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_114847098_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_114850942_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_114854863_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_114857279_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_114858933_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_114901346_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_114903268.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_114905583_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_120017956_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_120021340_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_120622628_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_120626563_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_120633967_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_120636911_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_120640551_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_120643754_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_120646640_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_131505164_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_131938635_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_132005590_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_164246046_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_164250599_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_164254217_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_164258871_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260816_164305040_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_123439944_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_123444119_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_123450714_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_123503071_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_123505833_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_123508432_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_123510898_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_123513475_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_123515834_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_123518160.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_123520387.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_123533317_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_123539512_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_123553756_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_123557370_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_123602000_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_124233639_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_124639865_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_124658842_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_124701897_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_124704928_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_124744700_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_170842777_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_170847438_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_170851239_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_170854736_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_170859298_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_170903739_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_170911667_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_171029793_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_171033226_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_171037372_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_171039775_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260817_171042711_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_122025969_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_122028949_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_122032764_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_122037677_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_122043070_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_123002661_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_123036562_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_123038947_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_123432071_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_123434493_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_123436566.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_123448673_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_123454012_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_123457320_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_123501644_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_142058770_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_142101592_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_142103906_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_142105717.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_142107865_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_165456267_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_165458507_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_165501591_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_165508880_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260818_165511780_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_120232028_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_120236510_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_120240789_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_120245514_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_120250196_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_122235209_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_122237290_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_122251136_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_122257426_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_122301313_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_122305371_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_163824160_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_163827290_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_163833142_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_163840132_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_163845780.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_164038283_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_164043151_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_164058796_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_164133208_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_165252073_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_165253816_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_165256373_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_165258956.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260819_165302564_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_120847843_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_120852447_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_120856981_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_120902201_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_120908394_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_120914958_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_120917491_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_120920570_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_120922798_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_120924821_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_120927038_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_120929627_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_123034961_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_123038224_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_123045346_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_123048526.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_123052243.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_123200393_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_123204129_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_123208794_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_123212900_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_123216128_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_135542634_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_135620649_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_170328260_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_170332915_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_170335821_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_170347705_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_170350571_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260820_170849140_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_122649372_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_124213142_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_124225982_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_124229926_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_124233805_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_124238046_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_130353748_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_164208097_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_164210533_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_164213274_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_164216010_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_164218576_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_164223755.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_164226158.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_164228027_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_164230455_HDR.jpg" alt = "" loading="lazy" />
+  <img src="/images/food/IMG_20260821_164232956.jpg" alt = "" loading="lazy" />
+</section>
+
 </section>`;
   return renderDocument(
     context,
@@ -16677,15 +16897,15 @@ export function kphotoSsg(): Plugin {
   File name:             global.css
   Relative path:         src/styles/global.css
   Absolute path:         /home/kushal/src/ts/kphoto/src/styles/global.css
-  Size:                  7.3 KiB (7573 bytes)
-  Last modified:         2026-07-10 09:12:23.000000000 -0400
+  Size:                  7.4 KiB (7653 bytes)
+  Last modified:         2026-08-28 08:01:04.805397934 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
   Inode:                 20461590
   Hard links:            1
   MIME type:             text/html
-  SHA-256:               46ce20887082770759564ebe3a645466de934b5f1e3f59c1ba15e93bb0f18eb3
-  Last git commit:       3e63220 2026-07-10 14:39:22 -0400 add claude changes
+  SHA-256:               920aec9b610621d81c1c6836e2c708da73eee5c9c7c092fe3c19f8006ead567f
+  Last git commit:       845e993 2026-08-28 07:56:59 -0400 add css styling
 
 --- CONTENT ---
 /*
@@ -17102,6 +17322,11 @@ kp-theme-picker {
 .prose img {
   border-radius: 0.5rem;
   border: 1px solid var(--border);
+}
+
+.food-photos img {
+  border-radius: 1em;
+  border: 20px solid var(--border);
 }
 
 
@@ -17572,9 +17797,9 @@ packageExtensions:
 # DUMP SUMMARY
 ################################################################################
   Files dumped   : 369
-  Total size     : 487.2 MiB (510906029 bytes)
+  Total size     : 487.2 MiB (510924236 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-08-28T07:38:58-04:00
+  Completed at   : 2026-08-28T08:01:59-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
