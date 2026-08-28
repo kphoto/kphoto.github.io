@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-08-28T08:01:49-04:00
+  Generated at   : 2026-08-28T08:14:32-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,10 +17,10 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : 845e993a0b5ec4ef495e5b7b4e010df2c246c349
-  Commit (short) : 845e993
-  Commit date    : 2026-08-28 07:56:59 -0400
-  Commit message : add css styling
+  Commit (full)  : b873dd4f90b38530ec172e8f929043d032efa1ee
+  Commit (short) : b873dd4
+  Commit date    : 2026-08-28 08:13:17 -0400
+  Commit message : use 1.62
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
   Files included : 369
   Excluded path  : docs/llm/
@@ -28,7 +28,7 @@ REPOSITORY METADATA
 
 GIT WORKING TREE STATUS (first 20 lines)
 ═════════════════════════════════════════════════════════════════════════════════
- M src/styles/global.css
+  (clean — no uncommitted changes)
 
 ################################################################################
 # FILE: export.sh  [THIS SCRIPT — included for full context]
@@ -1075,14 +1075,14 @@ log "all checks passed ✔"
   Relative path:         compose.yaml
   Absolute path:         /home/kushal/src/ts/kphoto/compose.yaml
   Size:                  1.6 KiB (1706 bytes)
-  Last modified:         2026-07-10 08:37:51.000000000 -0400
+  Last modified:         2026-08-28 08:12:18.447038165 -0400
   Permissions:           -rw-rw-r--
   Owner:                 kushal:kushal
   Inode:                 20383629
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               2c8a2d9296ca5592a6dd63522daf02cd34db745cf326eb4961a4df1e725c6822
-  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
+  SHA-256:               31c840cf48830efeccf094dd8a3f29afc4ad1fda0e3565fca5dbda5b3af7ea4c
+  Last git commit:       b873dd4 2026-08-28 08:13:17 -0400 use 1.62
 
 --- CONTENT ---
 # Containerised workflows via podman compose (docker compose also works).
@@ -1104,7 +1104,7 @@ log "all checks passed ✔"
 # classic yarn with the Yarn 4 version pinned in package.json.
 
 x-base: &base
-  image: mcr.microsoft.com/playwright:v1.61.1-noble
+  image: mcr.microsoft.com/playwright:v1.62.1-noble
   init: true
   ipc: host
   working_dir: /work
@@ -3751,14 +3751,14 @@ option effective and adopted.
   Relative path:         docs/adr/0017-containerised-e2e-playwright-image.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0017-containerised-e2e-playwright-image.md
   Size:                  2.8 KiB (2944 bytes)
-  Last modified:         2026-07-10 08:37:51.000000000 -0400
+  Last modified:         2026-08-28 08:12:53.586306426 -0400
   Permissions:           -rw-rw-r--
   Owner:                 kushal:kushal
   Inode:                 20383633
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               cb7e6839fef81d4a6b9fc198d4fd9f04dcc953668d0e4459f58bc1038b9f6200
-  Last git commit:       ba244cb 2026-07-10 08:48:06 -0400 add claude changes
+  SHA-256:               8bdb8247908293ef1c60d92192b40b2acf240943a3117e31c31806a3d5f28613
+  Last git commit:       b873dd4 2026-08-28 08:13:17 -0400 use 1.62
 
 --- CONTENT ---
 # 17. End-to-end tests run in the official Playwright container
@@ -3783,7 +3783,7 @@ claims about different environments.
 ## Decision
 
 Run the e2e suite inside the **official Playwright image**, pinned in
-`compose.yaml` as `mcr.microsoft.com/playwright:v1.61.1-noble`, which bakes
+`compose.yaml` as `mcr.microsoft.com/playwright:v1.62.1-noble`, which bakes
 in the browsers and OS dependencies matching that exact library version plus
 Node 24 (satisfying `engines`). Specifics:
 
@@ -5036,14 +5036,14 @@ jobs:
   Relative path:         .github/workflows/verify.yml
   Absolute path:         /home/kushal/src/ts/kphoto/.github/workflows/verify.yml
   Size:                  2.0 KiB (2138 bytes)
-  Last modified:         2026-07-10 09:12:46.000000000 -0400
+  Last modified:         2026-08-28 08:12:32.456650415 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
   Inode:                 20461594
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               d4b4a1d5ae2b8186a4e89b4b48dc2a4c49c43e5ebbaabe1d17bcf88a426ef978
-  Last git commit:       3e63220 2026-07-10 14:39:22 -0400 add claude changes
+  SHA-256:               a3bb5bc34103734d1d7a9bc1a900660a304e8ab8e55d8ef9d76872b59cc55c85
+  Last git commit:       b873dd4 2026-08-28 08:13:17 -0400 use 1.62
 
 --- CONTENT ---
 # Reusable verification suite. Deliberately slim: every step just calls a
@@ -5096,7 +5096,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       # Must match devDependencies["@playwright/test"] — see ADR 0017.
-      image: mcr.microsoft.com/playwright:v1.61.1-noble
+      image: mcr.microsoft.com/playwright:v1.62.1-noble
       options: --init --ipc=host
     env:
       # GitHub points $HOME at /github/home, which the container's root user
@@ -5858,15 +5858,15 @@ For more information on this, and how to apply and follow the GNU AGPL, see
   File name:             package.json
   Relative path:         package.json
   Absolute path:         /home/kushal/src/ts/kphoto/package.json
-  Size:                  1.0 KiB (1101 bytes)
-  Last modified:         2026-07-13 16:03:19.000000000 -0400
+  Size:                  1.0 KiB (1083 bytes)
+  Last modified:         2026-08-28 08:10:04.899529562 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
   Inode:                 20816866
   Hard links:            1
   MIME type:             application/json
-  SHA-256:               d727126ffe6e6c66071b45ff24c7f7952ed156ff798ea1ca74b8d97d7e671867
-  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
+  SHA-256:               eefbd5f1800c9e4c53c3ec4ce6063c6f67190b8d1c6007b9c32c47e4003360cd
+  Last git commit:       b2a1af2 2026-08-28 08:10:22 -0400 use 6.0.3
 
 --- CONTENT ---
 {
@@ -5895,17 +5895,17 @@ For more information on this, and how to apply and follow the GNU AGPL, see
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@playwright/test": "1.61.1",
-    "@types/node": "26.1.1",
-    "@vitest/coverage-v8": "4.1.10",
-    "eslint": "10.6.0",
+    "@playwright/test": "1.62.1",
+    "@types/node": "26.3.0",
+    "@vitest/coverage-v8": "4.1.11",
+    "eslint": "10.9.1",
     "eslint-config-prettier": "10.1.8",
     "jiti": "2.7.0",
-    "prettier": "3.9.5",
-    "typescript-eslint": "8.63.0",
-    "typescript-go": "npm:typescript@7.0.2",
-    "vite": "8.1.4",
-    "vitest": "4.1.10"
+    "prettier": "3.9.6",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.68.0",
+    "vite": "8.2.2",
+    "vitest": "4.1.11"
   }
 }
 
@@ -16905,7 +16905,7 @@ export function kphotoSsg(): Plugin {
   Hard links:            1
   MIME type:             text/html
   SHA-256:               920aec9b610621d81c1c6836e2c708da73eee5c9c7c092fe3c19f8006ead567f
-  Last git commit:       845e993 2026-08-28 07:56:59 -0400 add css styling
+  Last git commit:       808693f 2026-08-28 08:05:36 -0400 upgrade packages
 
 --- CONTENT ---
 /*
@@ -17797,9 +17797,9 @@ packageExtensions:
 # DUMP SUMMARY
 ################################################################################
   Files dumped   : 369
-  Total size     : 487.2 MiB (510924236 bytes)
+  Total size     : 487.2 MiB (510924218 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-08-28T08:01:59-04:00
+  Completed at   : 2026-08-28T08:14:42-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
