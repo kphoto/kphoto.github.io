@@ -413,3 +413,8 @@ kp-theme-picker {
   border-radius: 0.5rem;
   border: 1px solid var(--border);
 }
+
+.food-photos img {
+  border-radius: 1em;
+  border: 20px solid var(--border);
+}

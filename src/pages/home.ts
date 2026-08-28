@@ -27,7 +27,7 @@ themes: light · dark · solarized
 ${cards}
 <p class="more"><a href="/blog/">All posts →</a></p>
 
-  <section class="food-photos">
+<section class="food-photos">
   <img src="/images/food/IMG_20260814_124517771_HDR.jpg" alt = "" loading="lazy" />
   <img src="/images/food/IMG_20260814_124524458_HDR.jpg" alt = "" loading="lazy" />
   <img src="/images/food/IMG_20260814_124529627_HDR.jpg" alt = "" loading="lazy" />
