@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       # Must match devDependencies["@playwright/test"] — see ADR 0017.
-      image: mcr.microsoft.com/playwright:v1.61.1-noble
+      image: mcr.microsoft.com/playwright:v1.62.1-noble
       options: --init --ipc=host
     env:
       # GitHub points $HOME at /github/home, which the container's root user

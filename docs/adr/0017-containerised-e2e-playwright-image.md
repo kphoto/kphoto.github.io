@@ -20,7 +20,7 @@ claims about different environments.
 ## Decision
 
 Run the e2e suite inside the **official Playwright image**, pinned in
-`compose.yaml` as `mcr.microsoft.com/playwright:v1.61.1-noble`, which bakes
+`compose.yaml` as `mcr.microsoft.com/playwright:v1.62.1-noble`, which bakes
 in the browsers and OS dependencies matching that exact library version plus
 Node 24 (satisfying `engines`). Specifics:
 
