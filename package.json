@@ -31,8 +31,8 @@
     "eslint-config-prettier": "10.1.8",
     "jiti": "2.7.0",
     "prettier": "3.9.6",
+    "typescript": "6.1.0",
     "typescript-eslint": "8.68.0",
-    "typescript": "^7.0.2",
     "vite": "8.2.2",
     "vitest": "4.1.11"
   }

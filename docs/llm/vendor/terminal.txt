@@ -1,75 +1,75 @@
-kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
-[08:05:49] 1/8 bootstrap
-[08:05:49] installing dependencies (yarn install --immutable)
-➤ YN0000: · Yarn 4.17.1
-➤ YN0000: ┌ Resolution step
-➤ YN0000: └ Completed
-➤ YN0000: ┌ Fetch step
-➤ YN0000: └ Completed
-➤ YN0000: ┌ Link step
-➤ YN0000: └ Completed
-➤ YN0000: · Done in 0s 320ms
-[08:05:49] bootstrap complete — try ./scripts/dev.sh
-[08:05:49] 2/8 format check
-[08:05:49] checking formatting (prettier --check)
-Checking formatting...
-All matched files use Prettier code style!
-[08:05:56] format complete
-[08:05:56] 3/8 lint
-[08:05:56] linting (eslint, zero warnings allowed)
-[08:05:59] lint complete
-[08:05:59] 4/8 typecheck
-[08:05:59] type-checking with tsc Usage Error: Couldn't find a script named "tsc".
-
-$ yarn run [--inspect] [--inspect-brk] [-T,--top-level] [-B,--binaries-only] [--require #0] <scriptName> ... (native compiler)
-command not found: tsc
-
-real	0m11.053s
-user	0m12.659s
-sys	0m1.620s
 kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time yarn install
 ➤ YN0000: · Yarn 4.17.1
 ➤ YN0000: ┌ Resolution step
+➤ YN0085: │ + typescript@patch:typescript@npm%3A7.0.2#optional!builtin<compat/typescript>::version=7.0.2&hash=3bafbf, @typescript/typescript-aix-ppc64@npm:7.0.2, and 20 more.
+➤ YN0085: │ - typescript-go@npm:0.0.1-security
+➤ YN0000: └ Completed in 0s 328ms
+➤ YN0000: ┌ Post-resolution validation
+➤ YN0060: │ typescript is listed by your project with version 7.0.2 (p8aebeb), which doesn't satisfy what typescript-eslint and other dependencies request (>=4.8.4 <6.1.0).
+➤ YN0086: │ Some peer dependencies are incorrectly met by your project; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code.
 ➤ YN0000: └ Completed
 ➤ YN0000: ┌ Fetch step
-➤ YN0000: └ Completed
+➤ YN0013: │ A package was added to the project (+ 2.45 MiB).
+➤ YN0000: └ Completed in 0s 221ms
 ➤ YN0000: ┌ Link step
-➤ YN0000: └ Completed
-➤ YN0000: · Done in 0s 275ms
+➤ YN0000: └ Completed in 0s 207ms
+➤ YN0000: · Done with warnings in 0s 787ms
 
-real	0m0.430s
-user	0m0.486s
-sys	0m0.122s
+real	0m0.957s
+user	0m0.888s
+sys	0m0.302s
 kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
-[08:06:16] 1/8 bootstrap
-[08:06:16] installing dependencies (yarn install --immutable)
+[08:08:31] 1/8 bootstrap
+[08:08:31] installing dependencies (yarn install --immutable)
 ➤ YN0000: · Yarn 4.17.1
 ➤ YN0000: ┌ Resolution step
 ➤ YN0000: └ Completed
+➤ YN0000: ┌ Post-resolution validation
+➤ YN0060: │ typescript is listed by your project with version 7.0.2 (p8aebeb), which doesn't satisfy what typescript-eslint and other dependencies request (>=4.8.4 <6.1.0).
+➤ YN0086: │ Some peer dependencies are incorrectly met by your project; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code.
+➤ YN0000: └ Completed
 ➤ YN0000: ┌ Fetch step
 ➤ YN0000: └ Completed
 ➤ YN0000: ┌ Link step
 ➤ YN0000: └ Completed
-➤ YN0000: · Done in 0s 279ms
-[08:06:16] bootstrap complete — try ./scripts/dev.sh
-[08:06:16] 2/8 format check
-[08:06:16] checking formatting (prettier --check)
+➤ YN0000: · Done with warnings in 0s 318ms
+[08:08:31] bootstrap complete — try ./scripts/dev.sh
+[08:08:31] 2/8 format check
+[08:08:31] checking formatting (prettier --check)
 Checking formatting...
 All matched files use Prettier code style!
-[08:06:22] format complete
-[08:06:22] 3/8 lint
-[08:06:22] linting (eslint, zero warnings allowed)
-[08:06:25] lint complete
-[08:06:25] 4/8 typecheck
-[08:06:25] type-checking with tsc Usage Error: Couldn't find a script named "tsc".
+[08:08:38] format complete
+[08:08:38] 3/8 lint
+[08:08:38] linting (eslint, zero warnings allowed)
+typescript-eslint does not support TS 7.0.
+Please see https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/#running-side-by-side-with-typescript-6.0 to run typescript-eslint using the TS 6 API.
+See also https://github.com/typescript-eslint/typescript-eslint/issues/10940 for tracking typescript-eslint's support for TS >=7.1
 
-$ yarn run [--inspect] [--inspect-brk] [-T,--top-level] [-B,--binaries-only] [--require #0] <scriptName> ... (native compiler)
-command not found: tsc
+Oops! Something went wrong! :(
 
-real	0m9.749s
-user	0m11.885s
-sys	0m1.354s
+ESLint: 10.9.1
+
+Error: typescript-eslint does not support TS 7.0.
+    at /home/kushal/src/ts/kphoto/node_modules/typescript-eslint/dist/index.js:52:9
+    at eval_evalModule (/home/kushal/src/ts/kphoto/node_modules/jiti/dist/jiti.cjs:1:184467)
+    at jitiRequire (/home/kushal/src/ts/kphoto/node_modules/jiti/dist/jiti.cjs:1:179335)
+    at import (/home/kushal/src/ts/kphoto/node_modules/jiti/dist/jiti.cjs:1:187724)
+    at /home/kushal/src/ts/kphoto/eslint.config.ts:4:54
+    at async Function.import (/home/kushal/src/ts/kphoto/node_modules/jiti/dist/jiti.cjs:1:187718)
+    at async loadTypeScriptConfigFileWithJiti (/home/kushal/src/ts/kphoto/node_modules/eslint/lib/config/config-loader.js:169:17)
+    at async loadConfigFile (/home/kushal/src/ts/kphoto/node_modules/eslint/lib/config/config-loader.js:265:11)
+    at async ConfigLoader.calculateConfigArray (/home/kushal/src/ts/kphoto/node_modules/eslint/lib/config/config-loader.js:588:23)
+    at async #calculateConfigArray (/home/kushal/src/ts/kphoto/node_modules/eslint/lib/config/config-loader.js:369:19)
+
+real	0m7.386s
+user	0m7.705s
+sys	0m0.974s
 kushal@fedora:~/src/ts/kphoto$ 
+
+
+
+
+
 
 
 
