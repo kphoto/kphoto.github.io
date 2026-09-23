@@ -1,6 +1,9 @@
-kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
-[08:15:33] 1/8 bootstrap
-[08:15:33] installing dependencies (yarn install --immutable)
+kushal@fedora:~/src/dotnet/network-monitor/src$ cd ~/src/ts/kphoto/; time bash check.sh
+[18:12:48] 1/8 bootstrap
+[18:12:48] installing dependencies (yarn install --immutable)
+➤ YN0088: A new stable version of Yarn is available: 4.18.0!
+➤ YN0088: Upgrade now by running yarn set version 4.18.0
+
 ➤ YN0000: · Yarn 4.17.1
 ➤ YN0000: ┌ Resolution step
 ➤ YN0000: └ Completed
@@ -8,48 +11,48 @@ kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
 ➤ YN0000: └ Completed
 ➤ YN0000: ┌ Link step
 ➤ YN0000: └ Completed
-➤ YN0000: · Done in 0s 313ms
-[08:15:33] bootstrap complete — try ./scripts/dev.sh
-[08:15:33] 2/8 format check
-[08:15:33] checking formatting (prettier --check)
+➤ YN0000: · Done in 0s 284ms
+[18:12:48] bootstrap complete — try ./scripts/dev.sh
+[18:12:48] 2/8 format check
+[18:12:48] checking formatting (prettier --check)
 Checking formatting...
 All matched files use Prettier code style!
-[08:15:40] format complete
-[08:15:40] 3/8 lint
-[08:15:40] linting (eslint, zero warnings allowed)
-[08:15:43] lint complete
-[08:15:43] 4/8 typecheck
-[08:15:44] type-checking with tsc Version 6.0.3 (native compiler)
-[08:15:45] typecheck complete
-[08:15:45] 5/8 unit tests
-[08:15:45] running unit tests with coverage (vitest)
+[18:12:55] format complete
+[18:12:55] 3/8 lint
+[18:12:55] linting (eslint, zero warnings allowed)
+[18:12:58] lint complete
+[18:12:58] 4/8 typecheck
+[18:12:58] type-checking with tsc Version 6.0.3 (native compiler)
+[18:12:59] typecheck complete
+[18:12:59] 5/8 unit tests
+[18:12:59] running unit tests with coverage (vitest)
 
  RUN  v4.1.11 /home/kushal/src/ts/kphoto
       Coverage enabled with v8
 
- ✓ src/ssg/loadContent.test.ts (2 tests) 9ms
- ✓ src/versionSync.test.ts (3 tests) 5ms
- ✓ src/lib/yaml.test.ts (11 tests) 7ms
- ✓ src/lib/dates.test.ts (11 tests) 29ms
- ✓ src/client/storage.test.ts (9 tests) 6ms
- ✓ src/lib/readingTime.test.ts (3 tests) 5ms
- ✓ src/lib/frontmatter.test.ts (4 tests) 7ms
+ ✓ src/client/storage.test.ts (9 tests) 8ms
+ ✓ src/lib/yaml.test.ts (11 tests) 9ms
+ ✓ src/ssg/loadContent.test.ts (2 tests) 12ms
+ ✓ src/versionSync.test.ts (3 tests) 4ms
+ ✓ src/lib/frontmatter.test.ts (4 tests) 6ms
  ✓ src/lib/markdown.test.ts (19 tests) 9ms
- ✓ src/lib/collections.test.ts (9 tests) 14ms
- ✓ src/client/theme.test.ts (7 tests) 7ms
- ✓ src/client/themeInit.test.ts (5 tests) 6ms
- ✓ src/lib/sitemap.test.ts (1 test) 5ms
- ✓ src/lib/content.test.ts (27 tests) 28ms
- ✓ src/components/components.test.ts (20 tests) 6ms
- ✓ src/lib/slug.test.ts (5 tests) 4ms
- ✓ src/pages/routes.test.ts (14 tests) 8ms
- ✓ src/lib/html.test.ts (3 tests) 4ms
+ ✓ src/client/themeInit.test.ts (5 tests) 4ms
+ ✓ src/client/theme.test.ts (7 tests) 6ms
+ ✓ src/lib/dates.test.ts (11 tests) 30ms
+ ✓ src/lib/collections.test.ts (9 tests) 12ms
+ ✓ src/lib/readingTime.test.ts (3 tests) 4ms
+ ✓ src/lib/sitemap.test.ts (1 test) 4ms
+ ✓ src/lib/content.test.ts (27 tests) 25ms
+ ✓ src/components/components.test.ts (20 tests) 7ms
+ ✓ src/pages/routes.test.ts (14 tests) 7ms
+ ✓ src/lib/html.test.ts (3 tests) 3ms
+ ✓ src/lib/slug.test.ts (5 tests) 3ms
  ✓ src/lib/feed.test.ts (5 tests) 3ms
 
  Test Files  18 passed (18)
       Tests  158 passed (158)
-   Start at  08:15:45
-   Duration  546ms (transform 1.26s, setup 0ms, import 1.88s, tests 162ms, environment 2ms)
+   Start at  18:13:00
+   Duration  500ms (transform 1.06s, setup 0ms, import 1.58s, tests 154ms, environment 2ms)
 
  % Coverage report from v8
 ------------------|---------|----------|---------|---------|-------------------------------------------------------
@@ -99,9 +102,9 @@ All files         |   79.72 |    71.34 |   81.25 |   79.63 |
   loadContent.ts  |   91.66 |       50 |     100 |   91.66 | 15                                                    
   vitePlugin.ts   |       0 |        0 |       0 |       0 | 14-207                                                
 ------------------|---------|----------|---------|---------|-------------------------------------------------------
-[08:15:46] unit tests complete
-[08:15:46] 6/8 build
-[08:15:46] building the static site (vite build + kphoto-ssg)
+[18:13:00] unit tests complete
+[18:13:00] 6/8 build
+[18:13:00] building the static site (vite build + kphoto-ssg)
 (!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
   - import "./src/ssg/vitePlugin" without a file extension (vite.config.ts:2:27). Add the file extension
   - import "../lib/config" without a file extension (src/ssg/vitePlugin.ts:5:28). Add the file extension
@@ -111,18 +114,20 @@ All files         |   79.72 |    71.34 |   81.25 |   79.63 |
   - import "../pages/routes" without a file extension (src/ssg/vitePlugin.ts:9:61). Add the file extension
   - import "../pages/routes" without a file extension (src/ssg/vitePlugin.ts:10:35). Add the file extension
   - import "./loadContent" without a file extension (src/ssg/vitePlugin.ts:11:34). Add the file extension
-  - import "./collections" without a file extension (src/lib/content.ts:6:8). Add the file extension
-  - import "../lib/config" without a file extension (src/pages/routes.ts:1:28). Add the file extension
   - import "../lib/types" without a file extension (src/ssg/loadContent.ts:3:35). Add the file extension
+  - import "../lib/config" without a file extension (src/pages/routes.ts:1:28). Add the file extension
+  - import "./collections" without a file extension (src/lib/content.ts:6:8). Add the file extension
   - import "./dates" without a file extension (src/lib/content.ts:7:32). Add the file extension
   - import "./frontmatter" without a file extension (src/lib/content.ts:8:36). Add the file extension
-  - import "../lib/feed" without a file extension (src/pages/routes.ts:2:31). Add the file extension
   - import "./markdown" without a file extension (src/lib/content.ts:9:32). Add the file extension
-  - import "../lib/sitemap" without a file extension (src/pages/routes.ts:3:30). Add the file extension
-  - import "../lib/types" without a file extension (src/pages/routes.ts:4:32). Add the file extension
+  - import "../lib/feed" without a file extension (src/pages/routes.ts:2:31). Add the file extension
   - import "./readingTime" without a file extension (src/lib/content.ts:10:32). Add the file extension
+  - import "../lib/sitemap" without a file extension (src/pages/routes.ts:3:30). Add the file extension
   - import "./slug" without a file extension (src/lib/content.ts:11:25). Add the file extension
+  - import "../lib/types" without a file extension (src/pages/routes.ts:4:32). Add the file extension
+  - import "./types" without a file extension (src/lib/content.ts:20:8). Add the file extension
   - import "./authors" without a file extension (src/pages/routes.ts:5:53). Add the file extension
+  - import "./yaml" without a file extension (src/lib/content.ts:21:41). Add the file extension
   - import "./blogIndex" without a file extension (src/pages/routes.ts:6:33). Add the file extension
   - import "./home" without a file extension (src/pages/routes.ts:7:28). Add the file extension
   - import "./layout" without a file extension (src/pages/routes.ts:8:50). Add the file extension
@@ -131,74 +136,72 @@ All files         |   79.72 |    71.34 |   81.25 |   79.63 |
   - import "./post" without a file extension (src/pages/routes.ts:11:28). Add the file extension
   - import "./series" without a file extension (src/pages/routes.ts:12:53). Add the file extension
   - import "./tags" without a file extension (src/pages/routes.ts:13:47). Add the file extension
-  - import "./types" without a file extension (src/lib/content.ts:20:8). Add the file extension
-  - import "./yaml" without a file extension (src/lib/content.ts:21:41). Add the file extension
-  - import "./dates" without a file extension (src/lib/collections.ts:1:37). Add the file extension
+  - import "../components/authorCard" without a file extension (src/pages/authors.ts:1:34). Add the file extension
   - import "./yaml" without a file extension (src/lib/frontmatter.ts:1:30). Add the file extension
-  - import "./html" without a file extension (src/lib/markdown.ts:1:28). Add the file extension
-  - import "./config" without a file extension (src/lib/sitemap.ts:1:33). Add the file extension
-  - import "./config" without a file extension (src/lib/feed.ts:1:33). Add the file extension
-  - import "./layout" without a file extension (src/pages/notFound.ts:1:50). Add the file extension
   - import "../client/themeInit" without a file extension (src/pages/layout.ts:1:38). Add the file extension
   - import "../lib/html" without a file extension (src/pages/markdownPage.ts:1:28). Add the file extension
   - import "../components/authorCard" without a file extension (src/pages/post.ts:1:34). Add the file extension
-  - import "../components/postCard" without a file extension (src/pages/tags.ts:1:32). Add the file extension
-  - import "../components/authorCard" without a file extension (src/pages/authors.ts:1:34). Add the file extension
-  - import "../components/postCard" without a file extension (src/pages/home.ts:1:32). Add the file extension
-  - import "../components/postCard" without a file extension (src/pages/blogIndex.ts:1:32). Add the file extension
+  - import "./config" without a file extension (src/lib/sitemap.ts:1:33). Add the file extension
   - import "../components/postCard" without a file extension (src/pages/series.ts:1:32). Add the file extension
-  - import "./slug" without a file extension (src/lib/collections.ts:2:25). Add the file extension
+  - import "../components/postCard" without a file extension (src/pages/tags.ts:1:32). Add the file extension
+  - import "./config" without a file extension (src/lib/feed.ts:1:33). Add the file extension
+  - import "./html" without a file extension (src/lib/markdown.ts:1:28). Add the file extension
+  - import "./layout" without a file extension (src/pages/notFound.ts:1:50). Add the file extension
+  - import "./dates" without a file extension (src/lib/collections.ts:1:37). Add the file extension
+  - import "../components/postCard" without a file extension (src/pages/blogIndex.ts:1:32). Add the file extension
+  - import "../components/postCard" without a file extension (src/pages/home.ts:1:32). Add the file extension
+  - import "../components/postCard" without a file extension (src/pages/authors.ts:2:32). Add the file extension
   - import "./yaml" without a file extension (src/lib/frontmatter.ts:2:27). Add the file extension
-  - import "./slug" without a file extension (src/lib/markdown.ts:2:25). Add the file extension
-  - import "./dates" without a file extension (src/lib/sitemap.ts:2:32). Add the file extension
-  - import "./dates" without a file extension (src/lib/feed.ts:2:32). Add the file extension
   - import "../components/siteFooter" without a file extension (src/pages/layout.ts:2:34). Add the file extension
   - import "../lib/types" without a file extension (src/pages/markdownPage.ts:2:35). Add the file extension
   - import "../components/postMeta" without a file extension (src/pages/post.ts:2:32). Add the file extension
-  - import "../components/postCard" without a file extension (src/pages/authors.ts:2:32). Add the file extension
-  - import "../lib/collections" without a file extension (src/pages/home.ts:2:29). Add the file extension
+  - import "./dates" without a file extension (src/lib/sitemap.ts:2:32). Add the file extension
+  - import "../lib/html" without a file extension (src/pages/series.ts:2:45). Add the file extension
+  - import "../lib/html" without a file extension (src/pages/tags.ts:2:45). Add the file extension
+  - import "./dates" without a file extension (src/lib/feed.ts:2:32). Add the file extension
+  - import "./slug" without a file extension (src/lib/markdown.ts:2:25). Add the file extension
+  - import "./slug" without a file extension (src/lib/collections.ts:2:25). Add the file extension
   - import "../lib/types" without a file extension (src/pages/blogIndex.ts:2:32). Add the file extension
-  - import "./types" without a file extension (src/lib/collections.ts:3:60). Add the file extension
-  - import "./html" without a file extension (src/lib/feed.ts:3:28). Add the file extension
+  - import "../lib/collections" without a file extension (src/pages/home.ts:2:29). Add the file extension
+  - import "../lib/html" without a file extension (src/pages/authors.ts:3:28). Add the file extension
   - import "../components/siteHeader" without a file extension (src/pages/layout.ts:3:34). Add the file extension
   - import "./layout" without a file extension (src/pages/markdownPage.ts:3:50). Add the file extension
   - import "../components/seriesNav" without a file extension (src/pages/post.ts:3:33). Add the file extension
-  - import "../lib/html" without a file extension (src/pages/authors.ts:3:28). Add the file extension
-  - import "../lib/html" without a file extension (src/pages/home.ts:3:28). Add the file extension
+  - import "../lib/types" without a file extension (src/pages/series.ts:3:50). Add the file extension
+  - import "../lib/types" without a file extension (src/pages/tags.ts:3:47). Add the file extension
+  - import "./html" without a file extension (src/lib/feed.ts:3:28). Add the file extension
+  - import "./types" without a file extension (src/lib/collections.ts:3:60). Add the file extension
   - import "./layout" without a file extension (src/pages/blogIndex.ts:3:50). Add the file extension
-  - import "./types" without a file extension (src/lib/feed.ts:4:32). Add the file extension
+  - import "../lib/html" without a file extension (src/pages/home.ts:3:28). Add the file extension
+  - import "../lib/types" without a file extension (src/pages/authors.ts:4:40). Add the file extension
   - import "../lib/config" without a file extension (src/pages/layout.ts:4:33). Add the file extension
   - import "../lib/html" without a file extension (src/pages/post.ts:4:28). Add the file extension
-  - import "../lib/types" without a file extension (src/pages/authors.ts:4:40). Add the file extension
+  - import "./layout" without a file extension (src/pages/series.ts:4:50). Add the file extension
+  - import "./layout" without a file extension (src/pages/tags.ts:4:50). Add the file extension
+  - import "./types" without a file extension (src/lib/feed.ts:4:32). Add the file extension
   - import "../lib/types" without a file extension (src/pages/home.ts:4:32). Add the file extension
+  - import "./layout" without a file extension (src/pages/authors.ts:5:50). Add the file extension
   - import "../lib/html" without a file extension (src/pages/layout.ts:5:45). Add the file extension
   - import "../lib/types" without a file extension (src/pages/post.ts:5:38). Add the file extension
-  - import "./layout" without a file extension (src/pages/authors.ts:5:50). Add the file extension
   - import "./layout" without a file extension (src/pages/home.ts:5:50). Add the file extension
   - import "./layout" without a file extension (src/pages/post.ts:6:50). Add the file extension
-  - import "../lib/html" without a file extension (src/pages/tags.ts:2:45). Add the file extension
-  - import "../lib/html" without a file extension (src/pages/series.ts:2:45). Add the file extension
   - import "../lib/dates" without a file extension (src/components/postCard.ts:1:35). Add the file extension
-  - import "../lib/html" without a file extension (src/components/authorCard.ts:1:45). Add the file extension
-  - import "../lib/config" without a file extension (src/components/siteFooter.ts:1:33). Add the file extension
   - import "../lib/html" without a file extension (src/components/siteHeader.ts:1:45). Add the file extension
-  - import "../lib/types" without a file extension (src/pages/tags.ts:3:47). Add the file extension
-  - import "../lib/types" without a file extension (src/pages/series.ts:3:50). Add the file extension
-  - import "../lib/html" without a file extension (src/components/postCard.ts:2:45). Add the file extension
-  - import "../lib/types" without a file extension (src/components/authorCard.ts:2:29). Add the file extension
-  - import "../lib/html" without a file extension (src/components/siteFooter.ts:2:45). Add the file extension
   - import "./storage" without a file extension (src/client/themeInit.ts:1:38). Add the file extension
+  - import "../lib/config" without a file extension (src/components/siteFooter.ts:1:33). Add the file extension
+  - import "../lib/html" without a file extension (src/components/authorCard.ts:1:45). Add the file extension
+  - import "../lib/html" without a file extension (src/components/postCard.ts:2:45). Add the file extension
   - import "./themePicker" without a file extension (src/components/siteHeader.ts:2:35). Add the file extension
-  - import "./layout" without a file extension (src/pages/tags.ts:4:50). Add the file extension
-  - import "./layout" without a file extension (src/pages/series.ts:4:50). Add the file extension
+  - import "../lib/html" without a file extension (src/components/siteFooter.ts:2:45). Add the file extension
+  - import "../lib/types" without a file extension (src/components/authorCard.ts:2:29). Add the file extension
   - import "../lib/slug" without a file extension (src/components/postCard.ts:3:25). Add the file extension
-  - import "../lib/types" without a file extension (src/components/postCard.ts:4:27). Add the file extension
-  - import "../lib/html" without a file extension (src/components/themePicker.ts:1:45). Add the file extension
-  - import "../lib/html" without a file extension (src/components/seriesNav.ts:1:45). Add the file extension
   - import "../lib/dates" without a file extension (src/components/postMeta.ts:1:35). Add the file extension
-  - import "../client/storage" without a file extension (src/components/themePicker.ts:2:40). Add the file extension
-  - import "../lib/types" without a file extension (src/components/seriesNav.ts:2:45). Add the file extension
+  - import "../lib/html" without a file extension (src/components/seriesNav.ts:1:45). Add the file extension
+  - import "../lib/html" without a file extension (src/components/themePicker.ts:1:45). Add the file extension
+  - import "../lib/types" without a file extension (src/components/postCard.ts:4:27). Add the file extension
   - import "../lib/html" without a file extension (src/components/postMeta.ts:2:45). Add the file extension
+  - import "../lib/types" without a file extension (src/components/seriesNav.ts:2:45). Add the file extension
+  - import "../client/storage" without a file extension (src/components/themePicker.ts:2:40). Add the file extension
   - import "../lib/slug" without a file extension (src/components/postMeta.ts:3:25). Add the file extension
   - import "../lib/types" without a file extension (src/components/postMeta.ts:4:35). Add the file extension
 Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
@@ -209,14 +212,25 @@ dist/.vite/manifest.json         0.34 kB │ gzip: 0.17 kB
 dist/assets/styles-kPO2xPQs.css  5.41 kB │ gzip: 1.76 kB
 dist/assets/client-EgueYxfX.js   1.57 kB │ gzip: 0.77 kB
 
-✓ built in 74ms
+✓ built in 60ms
 kphoto-ssg: wrote 67 pages and feeds
-[08:15:46] build complete — output in dist/
-[08:15:46] 7/8 end-to-end tests (container — see ADR 0017)
-[08:15:46] running end-to-end tests in a container (podman compose run --rm e2e)
+[18:13:01] build complete — output in dist/
+[18:13:01] 7/8 end-to-end tests (container — see ADR 0017)
+[18:13:01] running end-to-end tests in a container (podman compose run --rm e2e)
 >>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
 
-[12:15:47] building the static site (vite build + kphoto-ssg)
+Trying to pull mcr.microsoft.com/playwright:v1.62.1-noble...
+Getting image source signatures
+Copying blob 64112f4c67a2 done   | 
+Copying blob ca2678b20700 done   | 
+Copying blob 00d16ab601f6 done   | 
+Copying blob dad65d3622fa done   | 
+Copying blob 43f9c849a2a2 done   | 
+Copying blob 4d796d6a8178 done   | 
+Copying blob 782c0a3f363f done   | 
+Copying config fee853fafa done   | 
+Writing manifest to image destination
+[22:13:59] building the static site (vite build + kphoto-ssg)
 (!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
   - import "./src/ssg/vitePlugin" without a file extension (vite.config.ts:2:27). Add the file extension
   - import "../lib/config" without a file extension (src/ssg/vitePlugin.ts:5:28). Add the file extension
@@ -226,95 +240,95 @@ kphoto-ssg: wrote 67 pages and feeds
   - import "../pages/routes" without a file extension (src/ssg/vitePlugin.ts:9:61). Add the file extension
   - import "../pages/routes" without a file extension (src/ssg/vitePlugin.ts:10:35). Add the file extension
   - import "./loadContent" without a file extension (src/ssg/vitePlugin.ts:11:34). Add the file extension
-  - import "../lib/config" without a file extension (src/pages/routes.ts:1:28). Add the file extension
   - import "../lib/types" without a file extension (src/ssg/loadContent.ts:3:35). Add the file extension
   - import "./collections" without a file extension (src/lib/content.ts:6:8). Add the file extension
-  - import "../lib/feed" without a file extension (src/pages/routes.ts:2:31). Add the file extension
+  - import "../lib/config" without a file extension (src/pages/routes.ts:1:28). Add the file extension
   - import "./dates" without a file extension (src/lib/content.ts:7:32). Add the file extension
-  - import "../lib/sitemap" without a file extension (src/pages/routes.ts:3:30). Add the file extension
+  - import "../lib/feed" without a file extension (src/pages/routes.ts:2:31). Add the file extension
   - import "./frontmatter" without a file extension (src/lib/content.ts:8:36). Add the file extension
-  - import "../lib/types" without a file extension (src/pages/routes.ts:4:32). Add the file extension
+  - import "../lib/sitemap" without a file extension (src/pages/routes.ts:3:30). Add the file extension
   - import "./markdown" without a file extension (src/lib/content.ts:9:32). Add the file extension
-  - import "./authors" without a file extension (src/pages/routes.ts:5:53). Add the file extension
+  - import "../lib/types" without a file extension (src/pages/routes.ts:4:32). Add the file extension
   - import "./readingTime" without a file extension (src/lib/content.ts:10:32). Add the file extension
-  - import "./blogIndex" without a file extension (src/pages/routes.ts:6:33). Add the file extension
+  - import "./authors" without a file extension (src/pages/routes.ts:5:53). Add the file extension
   - import "./slug" without a file extension (src/lib/content.ts:11:25). Add the file extension
-  - import "./home" without a file extension (src/pages/routes.ts:7:28). Add the file extension
   - import "./types" without a file extension (src/lib/content.ts:20:8). Add the file extension
-  - import "./layout" without a file extension (src/pages/routes.ts:8:50). Add the file extension
+  - import "./blogIndex" without a file extension (src/pages/routes.ts:6:33). Add the file extension
   - import "./yaml" without a file extension (src/lib/content.ts:21:41). Add the file extension
+  - import "./home" without a file extension (src/pages/routes.ts:7:28). Add the file extension
+  - import "./layout" without a file extension (src/pages/routes.ts:8:50). Add the file extension
   - import "./markdownPage" without a file extension (src/pages/routes.ts:9:36). Add the file extension
   - import "./notFound" without a file extension (src/pages/routes.ts:10:32). Add the file extension
   - import "./post" without a file extension (src/pages/routes.ts:11:28). Add the file extension
   - import "./series" without a file extension (src/pages/routes.ts:12:53). Add the file extension
   - import "./tags" without a file extension (src/pages/routes.ts:13:47). Add the file extension
-  - import "./config" without a file extension (src/lib/sitemap.ts:1:33). Add the file extension
-  - import "../components/postCard" without a file extension (src/pages/tags.ts:1:32). Add the file extension
-  - import "../client/themeInit" without a file extension (src/pages/layout.ts:1:38). Add the file extension
-  - import "./config" without a file extension (src/lib/feed.ts:1:33). Add the file extension
-  - import "../components/postCard" without a file extension (src/pages/blogIndex.ts:1:32). Add the file extension
-  - import "../components/postCard" without a file extension (src/pages/series.ts:1:32). Add the file extension
-  - import "../components/authorCard" without a file extension (src/pages/authors.ts:1:34). Add the file extension
   - import "./dates" without a file extension (src/lib/collections.ts:1:37). Add the file extension
-  - import "./html" without a file extension (src/lib/markdown.ts:1:28). Add the file extension
   - import "./yaml" without a file extension (src/lib/frontmatter.ts:1:30). Add the file extension
-  - import "./layout" without a file extension (src/pages/notFound.ts:1:50). Add the file extension
-  - import "../components/postCard" without a file extension (src/pages/home.ts:1:32). Add the file extension
+  - import "./html" without a file extension (src/lib/markdown.ts:1:28). Add the file extension
+  - import "../components/postCard" without a file extension (src/pages/tags.ts:1:32). Add the file extension
   - import "../lib/html" without a file extension (src/pages/markdownPage.ts:1:28). Add the file extension
+  - import "../client/themeInit" without a file extension (src/pages/layout.ts:1:38). Add the file extension
+  - import "./layout" without a file extension (src/pages/notFound.ts:1:50). Add the file extension
   - import "../components/authorCard" without a file extension (src/pages/post.ts:1:34). Add the file extension
-  - import "./dates" without a file extension (src/lib/sitemap.ts:2:32). Add the file extension
-  - import "../lib/html" without a file extension (src/pages/tags.ts:2:45). Add the file extension
-  - import "../components/siteFooter" without a file extension (src/pages/layout.ts:2:34). Add the file extension
-  - import "./dates" without a file extension (src/lib/feed.ts:2:32). Add the file extension
-  - import "../lib/types" without a file extension (src/pages/blogIndex.ts:2:32). Add the file extension
-  - import "../lib/html" without a file extension (src/pages/series.ts:2:45). Add the file extension
-  - import "../components/postCard" without a file extension (src/pages/authors.ts:2:32). Add the file extension
+  - import "../components/postCard" without a file extension (src/pages/blogIndex.ts:1:32). Add the file extension
+  - import "./config" without a file extension (src/lib/feed.ts:1:33). Add the file extension
+  - import "../components/postCard" without a file extension (src/pages/series.ts:1:32). Add the file extension
+  - import "../components/postCard" without a file extension (src/pages/home.ts:1:32). Add the file extension
+  - import "./config" without a file extension (src/lib/sitemap.ts:1:33). Add the file extension
+  - import "../components/authorCard" without a file extension (src/pages/authors.ts:1:34). Add the file extension
   - import "./slug" without a file extension (src/lib/collections.ts:2:25). Add the file extension
-  - import "./slug" without a file extension (src/lib/markdown.ts:2:25). Add the file extension
   - import "./yaml" without a file extension (src/lib/frontmatter.ts:2:27). Add the file extension
-  - import "../lib/collections" without a file extension (src/pages/home.ts:2:29). Add the file extension
+  - import "./slug" without a file extension (src/lib/markdown.ts:2:25). Add the file extension
+  - import "../lib/html" without a file extension (src/pages/tags.ts:2:45). Add the file extension
   - import "../lib/types" without a file extension (src/pages/markdownPage.ts:2:35). Add the file extension
+  - import "../components/siteFooter" without a file extension (src/pages/layout.ts:2:34). Add the file extension
   - import "../components/postMeta" without a file extension (src/pages/post.ts:2:32). Add the file extension
-  - import "../lib/types" without a file extension (src/pages/tags.ts:3:47). Add the file extension
-  - import "../components/siteHeader" without a file extension (src/pages/layout.ts:3:34). Add the file extension
-  - import "./html" without a file extension (src/lib/feed.ts:3:28). Add the file extension
-  - import "./layout" without a file extension (src/pages/blogIndex.ts:3:50). Add the file extension
-  - import "../lib/types" without a file extension (src/pages/series.ts:3:50). Add the file extension
-  - import "../lib/html" without a file extension (src/pages/authors.ts:3:28). Add the file extension
+  - import "../lib/types" without a file extension (src/pages/blogIndex.ts:2:32). Add the file extension
+  - import "./dates" without a file extension (src/lib/feed.ts:2:32). Add the file extension
+  - import "../lib/html" without a file extension (src/pages/series.ts:2:45). Add the file extension
+  - import "../lib/collections" without a file extension (src/pages/home.ts:2:29). Add the file extension
+  - import "./dates" without a file extension (src/lib/sitemap.ts:2:32). Add the file extension
+  - import "../components/postCard" without a file extension (src/pages/authors.ts:2:32). Add the file extension
   - import "./types" without a file extension (src/lib/collections.ts:3:60). Add the file extension
-  - import "../lib/html" without a file extension (src/pages/home.ts:3:28). Add the file extension
+  - import "../lib/types" without a file extension (src/pages/tags.ts:3:47). Add the file extension
   - import "./layout" without a file extension (src/pages/markdownPage.ts:3:50). Add the file extension
+  - import "../components/siteHeader" without a file extension (src/pages/layout.ts:3:34). Add the file extension
   - import "../components/seriesNav" without a file extension (src/pages/post.ts:3:33). Add the file extension
+  - import "./layout" without a file extension (src/pages/blogIndex.ts:3:50). Add the file extension
+  - import "./html" without a file extension (src/lib/feed.ts:3:28). Add the file extension
+  - import "../lib/types" without a file extension (src/pages/series.ts:3:50). Add the file extension
+  - import "../lib/html" without a file extension (src/pages/home.ts:3:28). Add the file extension
+  - import "../lib/html" without a file extension (src/pages/authors.ts:3:28). Add the file extension
   - import "./layout" without a file extension (src/pages/tags.ts:4:50). Add the file extension
   - import "../lib/config" without a file extension (src/pages/layout.ts:4:33). Add the file extension
-  - import "./types" without a file extension (src/lib/feed.ts:4:32). Add the file extension
-  - import "./layout" without a file extension (src/pages/series.ts:4:50). Add the file extension
-  - import "../lib/types" without a file extension (src/pages/authors.ts:4:40). Add the file extension
-  - import "../lib/types" without a file extension (src/pages/home.ts:4:32). Add the file extension
   - import "../lib/html" without a file extension (src/pages/post.ts:4:28). Add the file extension
+  - import "./types" without a file extension (src/lib/feed.ts:4:32). Add the file extension
+  - import "../lib/types" without a file extension (src/pages/home.ts:4:32). Add the file extension
+  - import "../lib/types" without a file extension (src/pages/authors.ts:4:40). Add the file extension
   - import "../lib/html" without a file extension (src/pages/layout.ts:5:45). Add the file extension
-  - import "./layout" without a file extension (src/pages/authors.ts:5:50). Add the file extension
-  - import "./layout" without a file extension (src/pages/home.ts:5:50). Add the file extension
   - import "../lib/types" without a file extension (src/pages/post.ts:5:38). Add the file extension
-  - import "../lib/html" without a file extension (src/components/authorCard.ts:1:45). Add the file extension
-  - import "../lib/types" without a file extension (src/components/authorCard.ts:2:29). Add the file extension
+  - import "./layout" without a file extension (src/pages/series.ts:4:50). Add the file extension
+  - import "./layout" without a file extension (src/pages/home.ts:5:50). Add the file extension
   - import "./layout" without a file extension (src/pages/post.ts:6:50). Add the file extension
+  - import "./layout" without a file extension (src/pages/authors.ts:5:50). Add the file extension
   - import "../lib/dates" without a file extension (src/components/postCard.ts:1:35). Add the file extension
-  - import "../lib/html" without a file extension (src/components/postCard.ts:2:45). Add the file extension
-  - import "../lib/slug" without a file extension (src/components/postCard.ts:3:25). Add the file extension
-  - import "../lib/types" without a file extension (src/components/postCard.ts:4:27). Add the file extension
+  - import "../lib/config" without a file extension (src/components/siteFooter.ts:1:33). Add the file extension
+  - import "./storage" without a file extension (src/client/themeInit.ts:1:38). Add the file extension
+  - import "../lib/html" without a file extension (src/components/siteHeader.ts:1:45). Add the file extension
   - import "../lib/html" without a file extension (src/components/seriesNav.ts:1:45). Add the file extension
   - import "../lib/dates" without a file extension (src/components/postMeta.ts:1:35). Add the file extension
-  - import "../lib/types" without a file extension (src/components/seriesNav.ts:2:45). Add the file extension
-  - import "../lib/html" without a file extension (src/components/postMeta.ts:2:45). Add the file extension
-  - import "./storage" without a file extension (src/client/themeInit.ts:1:38). Add the file extension
-  - import "../lib/config" without a file extension (src/components/siteFooter.ts:1:33). Add the file extension
-  - import "../lib/html" without a file extension (src/components/siteHeader.ts:1:45). Add the file extension
-  - import "../lib/slug" without a file extension (src/components/postMeta.ts:3:25). Add the file extension
+  - import "../lib/html" without a file extension (src/components/authorCard.ts:1:45). Add the file extension
+  - import "../lib/html" without a file extension (src/components/postCard.ts:2:45). Add the file extension
   - import "../lib/html" without a file extension (src/components/siteFooter.ts:2:45). Add the file extension
   - import "./themePicker" without a file extension (src/components/siteHeader.ts:2:35). Add the file extension
-  - import "../lib/types" without a file extension (src/components/postMeta.ts:4:35). Add the file extension
+  - import "../lib/types" without a file extension (src/components/seriesNav.ts:2:45). Add the file extension
+  - import "../lib/html" without a file extension (src/components/postMeta.ts:2:45). Add the file extension
+  - import "../lib/types" without a file extension (src/components/authorCard.ts:2:29). Add the file extension
+  - import "../lib/slug" without a file extension (src/components/postCard.ts:3:25). Add the file extension
+  - import "../lib/slug" without a file extension (src/components/postMeta.ts:3:25). Add the file extension
   - import "../lib/html" without a file extension (src/components/themePicker.ts:1:45). Add the file extension
+  - import "../lib/types" without a file extension (src/components/postCard.ts:4:27). Add the file extension
+  - import "../lib/types" without a file extension (src/components/postMeta.ts:4:35). Add the file extension
   - import "../client/storage" without a file extension (src/components/themePicker.ts:2:40). Add the file extension
 Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
 vite v8.2.2 building client environment for production...
@@ -324,11 +338,11 @@ dist/.vite/manifest.json         0.34 kB │ gzip: 0.17 kB
 dist/assets/styles-kPO2xPQs.css  5.41 kB │ gzip: 1.76 kB
 dist/assets/client-EgueYxfX.js   1.57 kB │ gzip: 0.77 kB
 
-✓ built in 63ms
+✓ built in 43ms
 kphoto-ssg: wrote 67 pages and feeds
-[12:15:48] build complete — output in dist/
-[12:15:48] using browsers preinstalled at /ms-playwright
-[12:15:48] running end-to-end tests (playwright)
+[22:14:01] build complete — output in dist/
+[22:14:01] using browsers preinstalled at /ms-playwright
+[22:14:01] running end-to-end tests (playwright)
 [WebServer] (!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
 [WebServer]   - import "./src/ssg/vitePlugin" without a file extension (vite.config.ts:2:27). Add the file extension
 [WebServer]   - import "../lib/config" without a file extension (src/ssg/vitePlugin.ts:5:28). Add the file extension
@@ -350,81 +364,81 @@ kphoto-ssg: wrote 67 pages and feeds
 [WebServer]   - import "./authors" without a file extension (src/pages/routes.ts:5:53). Add the file extension
 [WebServer]   - import "./readingTime" without a file extension (src/lib/content.ts:10:32). Add the file extension
 [WebServer]   - import "./blogIndex" without a file extension (src/pages/routes.ts:6:33). Add the file extension
-[WebServer]   - import "./home" without a file extension (src/pages/routes.ts:7:28). Add the file extension
 [WebServer]   - import "./slug" without a file extension (src/lib/content.ts:11:25). Add the file extension
-[WebServer]   - import "./layout" without a file extension (src/pages/routes.ts:8:50). Add the file extension
 [WebServer]   - import "./types" without a file extension (src/lib/content.ts:20:8). Add the file extension
-[WebServer]   - import "./markdownPage" without a file extension (src/pages/routes.ts:9:36). Add the file extension
+[WebServer]   - import "./home" without a file extension (src/pages/routes.ts:7:28). Add the file extension
+[WebServer]   - import "./layout" without a file extension (src/pages/routes.ts:8:50). Add the file extension
 [WebServer]   - import "./yaml" without a file extension (src/lib/content.ts:21:41). Add the file extension
+[WebServer]   - import "./markdownPage" without a file extension (src/pages/routes.ts:9:36). Add the file extension
 [WebServer]   - import "./notFound" without a file extension (src/pages/routes.ts:10:32). Add the file extension
 [WebServer]   - import "./post" without a file extension (src/pages/routes.ts:11:28). Add the file extension
 [WebServer]   - import "./series" without a file extension (src/pages/routes.ts:12:53). Add the file extension
 [WebServer]   - import "./tags" without a file extension (src/pages/routes.ts:13:47). Add the file extension
-[WebServer]   - import "./dates" without a file extension (src/lib/collections.ts:1:37). Add the file extension
-[WebServer]   - import "./yaml" without a file extension (src/lib/frontmatter.ts:1:30). Add the file extension
-[WebServer]   - import "../components/postCard" without a file extension (src/pages/tags.ts:1:32). Add the file extension
-[WebServer]   - import "./html" without a file extension (src/lib/markdown.ts:1:28). Add the file extension
 [WebServer]   - import "./config" without a file extension (src/lib/feed.ts:1:33). Add the file extension
-[WebServer]   - import "../components/postCard" without a file extension (src/pages/blogIndex.ts:1:32). Add the file extension
-[WebServer]   - import "../client/themeInit" without a file extension (src/pages/layout.ts:1:38). Add the file extension
-[WebServer]   - import "./config" without a file extension (src/lib/sitemap.ts:1:33). Add the file extension
-[WebServer]   - import "../lib/html" without a file extension (src/pages/markdownPage.ts:1:28). Add the file extension
-[WebServer]   - import "../components/authorCard" without a file extension (src/pages/post.ts:1:34). Add the file extension
-[WebServer]   - import "../components/postCard" without a file extension (src/pages/series.ts:1:32). Add the file extension
 [WebServer]   - import "./layout" without a file extension (src/pages/notFound.ts:1:50). Add the file extension
+[WebServer]   - import "../components/postCard" without a file extension (src/pages/series.ts:1:32). Add the file extension
+[WebServer]   - import "../lib/html" without a file extension (src/pages/markdownPage.ts:1:28). Add the file extension
+[WebServer]   - import "../client/themeInit" without a file extension (src/pages/layout.ts:1:38). Add the file extension
+[WebServer]   - import "../components/authorCard" without a file extension (src/pages/post.ts:1:34). Add the file extension
 [WebServer]   - import "../components/authorCard" without a file extension (src/pages/authors.ts:1:34). Add the file extension
+[WebServer]   - import "../components/postCard" without a file extension (src/pages/tags.ts:1:32). Add the file extension
 [WebServer]   - import "../components/postCard" without a file extension (src/pages/home.ts:1:32). Add the file extension
-[WebServer]   - import "./slug" without a file extension (src/lib/collections.ts:2:25). Add the file extension
-[WebServer]   - import "./yaml" without a file extension (src/lib/frontmatter.ts:2:27). Add the file extension
-[WebServer]   - import "../lib/html" without a file extension (src/pages/tags.ts:2:45). Add the file extension
-[WebServer]   - import "./slug" without a file extension (src/lib/markdown.ts:2:25). Add the file extension
+[WebServer]   - import "../components/postCard" without a file extension (src/pages/blogIndex.ts:1:32). Add the file extension
+[WebServer]   - import "./config" without a file extension (src/lib/sitemap.ts:1:33). Add the file extension
+[WebServer]   - import "./yaml" without a file extension (src/lib/frontmatter.ts:1:30). Add the file extension
+[WebServer]   - import "./dates" without a file extension (src/lib/collections.ts:1:37). Add the file extension
+[WebServer]   - import "./html" without a file extension (src/lib/markdown.ts:1:28). Add the file extension
 [WebServer]   - import "./dates" without a file extension (src/lib/feed.ts:2:32). Add the file extension
-[WebServer]   - import "../lib/types" without a file extension (src/pages/blogIndex.ts:2:32). Add the file extension
-[WebServer]   - import "../components/siteFooter" without a file extension (src/pages/layout.ts:2:34). Add the file extension
-[WebServer]   - import "./dates" without a file extension (src/lib/sitemap.ts:2:32). Add the file extension
-[WebServer]   - import "../lib/types" without a file extension (src/pages/markdownPage.ts:2:35). Add the file extension
-[WebServer]   - import "../components/postMeta" without a file extension (src/pages/post.ts:2:32). Add the file extension
 [WebServer]   - import "../lib/html" without a file extension (src/pages/series.ts:2:45). Add the file extension
+[WebServer]   - import "../lib/types" without a file extension (src/pages/markdownPage.ts:2:35). Add the file extension
+[WebServer]   - import "../components/siteFooter" without a file extension (src/pages/layout.ts:2:34). Add the file extension
+[WebServer]   - import "../components/postMeta" without a file extension (src/pages/post.ts:2:32). Add the file extension
 [WebServer]   - import "../components/postCard" without a file extension (src/pages/authors.ts:2:32). Add the file extension
+[WebServer]   - import "../lib/html" without a file extension (src/pages/tags.ts:2:45). Add the file extension
 [WebServer]   - import "../lib/collections" without a file extension (src/pages/home.ts:2:29). Add the file extension
-[WebServer]   - import "./types" without a file extension (src/lib/collections.ts:3:60). Add the file extension
-[WebServer]   - import "../lib/types" without a file extension (src/pages/tags.ts:3:47). Add the file extension
+[WebServer]   - import "../lib/types" without a file extension (src/pages/blogIndex.ts:2:32). Add the file extension
+[WebServer]   - import "./dates" without a file extension (src/lib/sitemap.ts:2:32). Add the file extension
+[WebServer]   - import "./yaml" without a file extension (src/lib/frontmatter.ts:2:27). Add the file extension
+[WebServer]   - import "./slug" without a file extension (src/lib/collections.ts:2:25). Add the file extension
+[WebServer]   - import "./slug" without a file extension (src/lib/markdown.ts:2:25). Add the file extension
 [WebServer]   - import "./html" without a file extension (src/lib/feed.ts:3:28). Add the file extension
-[WebServer]   - import "./layout" without a file extension (src/pages/blogIndex.ts:3:50). Add the file extension
-[WebServer]   - import "../components/siteHeader" without a file extension (src/pages/layout.ts:3:34). Add the file extension
-[WebServer]   - import "./layout" without a file extension (src/pages/markdownPage.ts:3:50). Add the file extension
-[WebServer]   - import "../components/seriesNav" without a file extension (src/pages/post.ts:3:33). Add the file extension
 [WebServer]   - import "../lib/types" without a file extension (src/pages/series.ts:3:50). Add the file extension
+[WebServer]   - import "./layout" without a file extension (src/pages/markdownPage.ts:3:50). Add the file extension
+[WebServer]   - import "../components/siteHeader" without a file extension (src/pages/layout.ts:3:34). Add the file extension
+[WebServer]   - import "../components/seriesNav" without a file extension (src/pages/post.ts:3:33). Add the file extension
 [WebServer]   - import "../lib/html" without a file extension (src/pages/authors.ts:3:28). Add the file extension
+[WebServer]   - import "../lib/types" without a file extension (src/pages/tags.ts:3:47). Add the file extension
 [WebServer]   - import "../lib/html" without a file extension (src/pages/home.ts:3:28). Add the file extension
-[WebServer]   - import "./layout" without a file extension (src/pages/tags.ts:4:50). Add the file extension
+[WebServer]   - import "./layout" without a file extension (src/pages/blogIndex.ts:3:50). Add the file extension
+[WebServer]   - import "./types" without a file extension (src/lib/collections.ts:3:60). Add the file extension
 [WebServer]   - import "./types" without a file extension (src/lib/feed.ts:4:32). Add the file extension
+[WebServer]   - import "./layout" without a file extension (src/pages/series.ts:4:50). Add the file extension
 [WebServer]   - import "../lib/config" without a file extension (src/pages/layout.ts:4:33). Add the file extension
 [WebServer]   - import "../lib/html" without a file extension (src/pages/post.ts:4:28). Add the file extension
-[WebServer]   - import "./layout" without a file extension (src/pages/series.ts:4:50). Add the file extension
 [WebServer]   - import "../lib/types" without a file extension (src/pages/authors.ts:4:40). Add the file extension
+[WebServer]   - import "./layout" without a file extension (src/pages/tags.ts:4:50). Add the file extension
 [WebServer]   - import "../lib/types" without a file extension (src/pages/home.ts:4:32). Add the file extension
 [WebServer]   - import "../lib/html" without a file extension (src/pages/layout.ts:5:45). Add the file extension
 [WebServer]   - import "../lib/types" without a file extension (src/pages/post.ts:5:38). Add the file extension
 [WebServer]   - import "./layout" without a file extension (src/pages/authors.ts:5:50). Add the file extension
 [WebServer]   - import "./layout" without a file extension (src/pages/home.ts:5:50). Add the file extension
-[WebServer]   - import "../lib/dates" without a file extension (src/components/postCard.ts:1:35). Add the file extension
 [WebServer]   - import "./layout" without a file extension (src/pages/post.ts:6:50). Add the file extension
-[WebServer]   - import "../lib/html" without a file extension (src/components/postCard.ts:2:45). Add the file extension
+[WebServer]   - import "../lib/dates" without a file extension (src/components/postCard.ts:1:35). Add the file extension
+[WebServer]   - import "./storage" without a file extension (src/client/themeInit.ts:1:38). Add the file extension
 [WebServer]   - import "../lib/html" without a file extension (src/components/siteHeader.ts:1:45). Add the file extension
 [WebServer]   - import "../lib/html" without a file extension (src/components/authorCard.ts:1:45). Add the file extension
 [WebServer]   - import "../lib/config" without a file extension (src/components/siteFooter.ts:1:33). Add the file extension
-[WebServer]   - import "./storage" without a file extension (src/client/themeInit.ts:1:38). Add the file extension
-[WebServer]   - import "../lib/slug" without a file extension (src/components/postCard.ts:3:25). Add the file extension
+[WebServer]   - import "../lib/html" without a file extension (src/components/postCard.ts:2:45). Add the file extension
 [WebServer]   - import "./themePicker" without a file extension (src/components/siteHeader.ts:2:35). Add the file extension
 [WebServer]   - import "../lib/types" without a file extension (src/components/authorCard.ts:2:29). Add the file extension
 [WebServer]   - import "../lib/html" without a file extension (src/components/siteFooter.ts:2:45). Add the file extension
-[WebServer]   - import "../lib/types" without a file extension (src/components/postCard.ts:4:27). Add the file extension
-[WebServer]   - import "../lib/dates" without a file extension (src/components/postMeta.ts:1:35). Add the file extension
+[WebServer]   - import "../lib/slug" without a file extension (src/components/postCard.ts:3:25). Add the file extension
 [WebServer]   - import "../lib/html" without a file extension (src/components/seriesNav.ts:1:45). Add the file extension
+[WebServer]   - import "../lib/dates" without a file extension (src/components/postMeta.ts:1:35). Add the file extension
 [WebServer]   - import "../lib/html" without a file extension (src/components/themePicker.ts:1:45). Add the file extension
-[WebServer]   - import "../lib/html" without a file extension (src/components/postMeta.ts:2:45). Add the file extension
+[WebServer]   - import "../lib/types" without a file extension (src/components/postCard.ts:4:27). Add the file extension
 [WebServer]   - import "../lib/types" without a file extension (src/components/seriesNav.ts:2:45). Add the file extension
+[WebServer]   - import "../lib/html" without a file extension (src/components/postMeta.ts:2:45). Add the file extension
 [WebServer]   - import "../client/storage" without a file extension (src/components/themePicker.ts:2:40). Add the file extension
 [WebServer]   - import "../lib/slug" without a file extension (src/components/postMeta.ts:3:25). Add the file extension
 [WebServer]   - import "../lib/types" without a file extension (src/components/postMeta.ts:4:35). Add the file extension
@@ -432,61 +446,61 @@ kphoto-ssg: wrote 67 pages and feeds
 
 Running 48 tests using 8 workers
 
-  ✓   1 [chromium] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (695ms)
-  ✓   2 [chromium] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (1.0s)
-  ✓   3 [chromium] › tests/e2e/site.spec.ts:57:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (684ms)
-  ✓   4 [chromium] › tests/e2e/site.spec.ts:33:3 › header navigation › marks the current section with aria-current (654ms)
-  ✓   5 [chromium] › tests/e2e/site.spec.ts:81:3 › series › a middle episode links to its neighbours (789ms)
-  ✓   6 [chromium] › tests/e2e/site.spec.ts:91:3 › theming › the picker applies a theme and it survives a reload (963ms)
-  ✓   7 [chromium] › tests/e2e/site.spec.ts:39:3 › header navigation › reaches every section from the header (1.6s)
-  ✓   8 [chromium] › tests/e2e/site.spec.ts:67:3 › series › series page lists episodes in ascending order (638ms)
-  ✓   9 [chromium] › tests/e2e/site.spec.ts:105:3 › theming › system follows the OS colour scheme (479ms)
-  ✓  10 [chromium] › tests/e2e/site.spec.ts:115:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (416ms)
-  ✓  11 [chromium] › tests/e2e/site.spec.ts:121:3 › resilience and accessibility › the skip link jumps to the main content (496ms)
-  ✓  12 [chromium] › tests/e2e/site.spec.ts:131:3 › resilience and accessibility › every page advertises the Atom feed (367ms)
-  ✓  13 [firefox] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (1.4s)
-  ✓  14 [firefox] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (1.7s)
-  ✓  15 [firefox] › tests/e2e/site.spec.ts:33:3 › header navigation › marks the current section with aria-current (906ms)
-  ✓  16 [firefox] › tests/e2e/site.spec.ts:57:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (935ms)
-  ✓  17 [firefox] › tests/e2e/site.spec.ts:39:3 › header navigation › reaches every section from the header (2.5s)
-  ✓  18 [firefox] › tests/e2e/site.spec.ts:67:3 › series › series page lists episodes in ascending order (1.1s)
-  ✓  19 [firefox] › tests/e2e/site.spec.ts:81:3 › series › a middle episode links to its neighbours (1.4s)
+  ✓   1 [chromium] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (444ms)
+  ✓   2 [chromium] › tests/e2e/site.spec.ts:67:3 › series › series page lists episodes in ascending order (409ms)
+  ✓   3 [chromium] › tests/e2e/site.spec.ts:91:3 › theming › the picker applies a theme and it survives a reload (836ms)
+  ✓   4 [chromium] › tests/e2e/site.spec.ts:57:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (419ms)
+  ✓   5 [chromium] › tests/e2e/site.spec.ts:39:3 › header navigation › reaches every section from the header (1.3s)
+  ✓   6 [chromium] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (758ms)
+  ✓   7 [chromium] › tests/e2e/site.spec.ts:81:3 › series › a middle episode links to its neighbours (438ms)
+  ✓   8 [chromium] › tests/e2e/site.spec.ts:33:3 › header navigation › marks the current section with aria-current (353ms)
+  ✓   9 [chromium] › tests/e2e/site.spec.ts:105:3 › theming › system follows the OS colour scheme (408ms)
+  ✓  10 [chromium] › tests/e2e/site.spec.ts:115:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (301ms)
+  ✓  11 [chromium] › tests/e2e/site.spec.ts:121:3 › resilience and accessibility › the skip link jumps to the main content (436ms)
+  ✓  12 [chromium] › tests/e2e/site.spec.ts:131:3 › resilience and accessibility › every page advertises the Atom feed (288ms)
+  ✓  13 [firefox] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (855ms)
+  ✓  14 [firefox] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (1.1s)
+  ✓  15 [firefox] › tests/e2e/site.spec.ts:57:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (1.1s)
+  ✓  16 [firefox] › tests/e2e/site.spec.ts:39:3 › header navigation › reaches every section from the header (2.3s)
+  ✓  17 [firefox] › tests/e2e/site.spec.ts:33:3 › header navigation › marks the current section with aria-current (1.3s)
+  ✓  18 [firefox] › tests/e2e/site.spec.ts:67:3 › series › series page lists episodes in ascending order (965ms)
+  ✓  19 [firefox] › tests/e2e/site.spec.ts:81:3 › series › a middle episode links to its neighbours (1.3s)
   ✓  20 [firefox] › tests/e2e/site.spec.ts:91:3 › theming › the picker applies a theme and it survives a reload (1.4s)
-  ✓  21 [firefox] › tests/e2e/site.spec.ts:105:3 › theming › system follows the OS colour scheme (370ms)
-  ✓  22 [firefox] › tests/e2e/site.spec.ts:115:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (481ms)
-  ✓  23 [firefox] › tests/e2e/site.spec.ts:121:3 › resilience and accessibility › the skip link jumps to the main content (687ms)
-  ✓  24 [firefox] › tests/e2e/site.spec.ts:131:3 › resilience and accessibility › every page advertises the Atom feed (415ms)
-  ✓  25 [webkit] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (463ms)
-  ✓  26 [webkit] › tests/e2e/site.spec.ts:33:3 › header navigation › marks the current section with aria-current (468ms)
-  ✓  27 [webkit] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (1.1s)
-  ✓  28 [webkit] › tests/e2e/site.spec.ts:39:3 › header navigation › reaches every section from the header (1.5s)
-  ✓  29 [webkit] › tests/e2e/site.spec.ts:57:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (595ms)
-  ✓  30 [webkit] › tests/e2e/site.spec.ts:67:3 › series › series page lists episodes in ascending order (537ms)
-  ✓  31 [webkit] › tests/e2e/site.spec.ts:91:3 › theming › the picker applies a theme and it survives a reload (675ms)
-  ✓  32 [webkit] › tests/e2e/site.spec.ts:105:3 › theming › system follows the OS colour scheme (692ms)
-  ✓  33 [webkit] › tests/e2e/site.spec.ts:115:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (527ms)
-  ✓  34 [webkit] › tests/e2e/site.spec.ts:81:3 › series › a middle episode links to its neighbours (596ms)
-  ✓  35 [webkit] › tests/e2e/site.spec.ts:121:3 › resilience and accessibility › the skip link jumps to the main content (492ms)
-  ✓  36 [webkit] › tests/e2e/site.spec.ts:131:3 › resilience and accessibility › every page advertises the Atom feed (465ms)
-  ✓  37 [mobile-chrome] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (521ms)
-  ✓  38 [mobile-chrome] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (366ms)
-  ✓  39 [mobile-chrome] › tests/e2e/site.spec.ts:39:3 › header navigation › reaches every section from the header (1.1s)
-  ✓  40 [mobile-chrome] › tests/e2e/site.spec.ts:57:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (419ms)
-  ✓  41 [mobile-chrome] › tests/e2e/site.spec.ts:67:3 › series › series page lists episodes in ascending order (469ms)
-  ✓  42 [mobile-chrome] › tests/e2e/site.spec.ts:81:3 › series › a middle episode links to its neighbours (455ms)
-  ✓  43 [mobile-chrome] › tests/e2e/site.spec.ts:105:3 › theming › system follows the OS colour scheme (345ms)
-  ✓  44 [mobile-chrome] › tests/e2e/site.spec.ts:33:3 › header navigation › marks the current section with aria-current (318ms)
-  ✓  45 [mobile-chrome] › tests/e2e/site.spec.ts:115:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (258ms)
-  ✓  46 [mobile-chrome] › tests/e2e/site.spec.ts:91:3 › theming › the picker applies a theme and it survives a reload (448ms)
-  ✓  47 [mobile-chrome] › tests/e2e/site.spec.ts:121:3 › resilience and accessibility › the skip link jumps to the main content (294ms)
-  ✓  48 [mobile-chrome] › tests/e2e/site.spec.ts:131:3 › resilience and accessibility › every page advertises the Atom feed (271ms)
+  ✓  21 [firefox] › tests/e2e/site.spec.ts:105:3 › theming › system follows the OS colour scheme (318ms)
+  ✓  22 [firefox] › tests/e2e/site.spec.ts:115:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (489ms)
+  ✓  23 [firefox] › tests/e2e/site.spec.ts:121:3 › resilience and accessibility › the skip link jumps to the main content (547ms)
+  ✓  24 [firefox] › tests/e2e/site.spec.ts:131:3 › resilience and accessibility › every page advertises the Atom feed (376ms)
+  ✓  25 [webkit] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (535ms)
+  ✓  26 [webkit] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (1.1s)
+  ✓  27 [webkit] › tests/e2e/site.spec.ts:33:3 › header navigation › marks the current section with aria-current (546ms)
+  ✓  28 [webkit] › tests/e2e/site.spec.ts:39:3 › header navigation › reaches every section from the header (1.7s)
+  ✓  29 [webkit] › tests/e2e/site.spec.ts:57:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (417ms)
+  ✓  30 [webkit] › tests/e2e/site.spec.ts:67:3 › series › series page lists episodes in ascending order (517ms)
+  ✓  31 [webkit] › tests/e2e/site.spec.ts:105:3 › theming › system follows the OS colour scheme (676ms)
+  ✓  32 [webkit] › tests/e2e/site.spec.ts:115:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (446ms)
+  ✓  33 [webkit] › tests/e2e/site.spec.ts:121:3 › resilience and accessibility › the skip link jumps to the main content (515ms)
+  ✓  34 [webkit] › tests/e2e/site.spec.ts:81:3 › series › a middle episode links to its neighbours (663ms)
+  ✓  35 [webkit] › tests/e2e/site.spec.ts:91:3 › theming › the picker applies a theme and it survives a reload (605ms)
+  ✓  36 [webkit] › tests/e2e/site.spec.ts:131:3 › resilience and accessibility › every page advertises the Atom feed (439ms)
+  ✓  37 [mobile-chrome] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (404ms)
+  ✓  38 [mobile-chrome] › tests/e2e/site.spec.ts:33:3 › header navigation › marks the current section with aria-current (425ms)
+  ✓  39 [mobile-chrome] › tests/e2e/site.spec.ts:39:3 › header navigation › reaches every section from the header (1.2s)
+  ✓  40 [mobile-chrome] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (657ms)
+  ✓  41 [mobile-chrome] › tests/e2e/site.spec.ts:57:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (455ms)
+  ✓  42 [mobile-chrome] › tests/e2e/site.spec.ts:81:3 › series › a middle episode links to its neighbours (396ms)
+  ✓  43 [mobile-chrome] › tests/e2e/site.spec.ts:67:3 › series › series page lists episodes in ascending order (395ms)
+  ✓  44 [mobile-chrome] › tests/e2e/site.spec.ts:105:3 › theming › system follows the OS colour scheme (460ms)
+  ✓  45 [mobile-chrome] › tests/e2e/site.spec.ts:115:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (276ms)
+  ✓  46 [mobile-chrome] › tests/e2e/site.spec.ts:91:3 › theming › the picker applies a theme and it survives a reload (449ms)
+  ✓  47 [mobile-chrome] › tests/e2e/site.spec.ts:121:3 › resilience and accessibility › the skip link jumps to the main content (360ms)
+  ✓  48 [mobile-chrome] › tests/e2e/site.spec.ts:131:3 › resilience and accessibility › every page advertises the Atom feed (208ms)
 
-  48 passed (10.4s)
-[12:15:59] end-to-end tests complete
-[08:15:59] 8/8 export repository dump
-[08:16:11] all checks passed ✔
+  48 passed (9.7s)
+[22:14:11] end-to-end tests complete
+[18:14:11] 8/8 export repository dump
+[18:14:23] all checks passed ✔
 
-real	0m38.175s
-user	0m25.305s
-sys	0m10.281s
+real	1m35.797s
+user	0m50.907s
+sys	0m17.070s
 kushal@fedora:~/src/ts/kphoto$ 

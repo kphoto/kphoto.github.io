@@ -7,19 +7,19 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-08-28T08:16:01-04:00
+  Generated at   : 2026-09-23T18:14:14-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
-  OS             : Linux 7.1.10-200.fc44.x86_64 x86_64
+  OS             : Linux 7.2.7-200.fc44.x86_64 x86_64
 
 REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : 9e86442a1866ea09c12b16f4962c69e833805572
-  Commit (short) : 9e86442
-  Commit date    : 2026-08-28 08:15:26 -0400
+  Commit (full)  : ea4082e50da5fe9f6f36dd016169c386298db74b
+  Commit (short) : ea4082e
+  Commit date    : 2026-08-28 08:16:22 -0400
   Commit message : run dump
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
   Files included : 369
@@ -28,7 +28,7 @@ REPOSITORY METADATA
 
 GIT WORKING TREE STATUS (first 20 lines)
 ═════════════════════════════════════════════════════════════════════════════════
-  (clean — no uncommitted changes)
+?? docs/llm/vendor/claude-007.md
 
 ################################################################################
 # FILE: export.sh  [THIS SCRIPT — included for full context]
@@ -17799,7 +17799,7 @@ packageExtensions:
   Files dumped   : 369
   Total size     : 487.2 MiB (510924218 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-08-28T08:16:11-04:00
+  Completed at   : 2026-09-23T18:14:23-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
