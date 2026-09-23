@@ -50,7 +50,7 @@ export const siteConfig: SiteConfig = {
     // Supabase project "colorado" (us-east-2).
     projectUrl: 'https://wgtvebsxazxfapjtujce.supabase.co',
     // Paste the project's sb_publishable_… key here to switch live stats on.
-    publishableKey: '',
+    publishableKey: 'sb_publishable_WS-YNzbiQffEQ0NS0DIy_w_2Vw6Uw-J',
   },
 };
 
