@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-09-23T18:19:37-04:00
+  Generated at   : 2026-09-23T19:01:53-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,12 +17,12 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : bd5aab8acacd68f8baed1eb23ebd2e187a5c1608
-  Commit (short) : bd5aab8
-  Commit date    : 2026-09-23 18:19:04 -0400
-  Commit message : run prettier
+  Commit (full)  : 21980b8b52087f7abf6049bd5b2bb42204f74d6b
+  Commit (short) : 21980b8
+  Commit date    : 2026-09-23 19:00:36 -0400
+  Commit message : add claude response
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
-  Files included : 369
+  Files included : 392
   Excluded path  : docs/llm/
   Excluded files : yarn.lock, .pnp.cjs, .pnp.loader.mjs
 
@@ -430,7 +430,7 @@ FOOTER
 mv -f "$TMP_FILE" "$OUTPUT_FILE"
 
 ################################################################################
-# FILE TREE  (all 369 included files)
+# FILE TREE  (all 392 included files)
 ################################################################################
 .
 .
@@ -496,10 +496,18 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── 0018-motion-gated-view-transitions.md
 │   │   ├── 0019-ci-container-home-override.md
 │   │   ├── 0020-repo-root-from-script-location.md
-│   │   └── 0021-scheduled-publishing-and-daily-rebuild.md
+│   │   ├── 0021-scheduled-publishing-and-daily-rebuild.md
+│   │   ├── 0022-optional-live-statistics-backend.md
+│   │   ├── 0023-live-statistics-privacy-model.md
+│   │   ├── 0024-ephemeral-live-statistics-schema.md
+│   │   └── 0025-visibility-gated-polling-with-circuit-breaker.md
 │   ├── architecture.md
 │   ├── content-authoring.md
-│   └── README.md
+│   ├── live-stats.md
+│   ├── README.md
+│   └── supabase
+│       ├── live-stats.sql
+│       └── live-stats-teardown.sql
 ├── .editorconfig
 ├── eslint.config.ts
 ├── export.sh
@@ -755,6 +763,17 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   └── typecheck.sh
 ├── src
 │   ├── client
+│   │   ├── browser.ts
+│   │   ├── circuitBreaker.test.ts
+│   │   ├── circuitBreaker.ts
+│   │   ├── livePoller.test.ts
+│   │   ├── livePoller.ts
+│   │   ├── liveStatsApi.test.ts
+│   │   ├── liveStatsApi.ts
+│   │   ├── liveStatsElements.ts
+│   │   ├── liveStats.test.ts
+│   │   ├── liveStats.ts
+│   │   ├── liveTestDoubles.ts
 │   │   ├── main.ts
 │   │   ├── storage.test.ts
 │   │   ├── storage.ts
@@ -765,6 +784,7 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   ├── components
 │   │   ├── authorCard.ts
 │   │   ├── components.test.ts
+│   │   ├── liveStats.ts
 │   │   ├── postCard.ts
 │   │   ├── postMeta.ts
 │   │   ├── seriesNav.ts
@@ -774,6 +794,7 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   ├── lib
 │   │   ├── collections.test.ts
 │   │   ├── collections.ts
+│   │   ├── config.test.ts
 │   │   ├── config.ts
 │   │   ├── content.test.ts
 │   │   ├── content.ts
@@ -802,6 +823,7 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── blogIndex.ts
 │   │   ├── home.ts
 │   │   ├── layout.ts
+│   │   ├── live.ts
 │   │   ├── markdownPage.ts
 │   │   ├── notFound.ts
 │   │   ├── post.ts
@@ -818,6 +840,8 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   └── versionSync.test.ts
 ├── tests
 │   └── e2e
+│       ├── fixtures.ts
+│       ├── live.spec.ts
 │       └── site.spec.ts
 ├── tsconfig.json
 ├── vite.config.ts
@@ -836,15 +860,15 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   File name:             CHANGELOG.md
   Relative path:         CHANGELOG.md
   Absolute path:         /home/kushal/src/ts/kphoto/CHANGELOG.md
-  Size:                  7.7 KiB (7923 bytes)
-  Last modified:         2026-07-13 17:20:30.000000000 -0400
+  Size:                  11.0 KiB (11279 bytes)
+  Last modified:         2026-09-23 18:56:27.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20816857
+  Inode:                 64313679
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               2f1c32f7f4f18fecc643da43a25f5e3b8193d4a833c0363fbca4cc494e21e6d8
-  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
+  SHA-256:               34275643a13aac9702de12e901f1b2d0a33868918d554e1ecc50ffb079215767
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
 
 --- CONTENT ---
 # Changelog
@@ -857,6 +881,65 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
+- Optional live statistics backed by the free-tier Supabase project
+  "colorado" (ADRs 0022–0025):
+  - The footer shows readers on the site and on this page right now, plus
+    page views in the last 24 hours.
+  - New `/live/` page with site totals, the 25 busiest pages and a
+    plain-language account of what is collected.
+  - The feature is strictly non-blocking:
+    - hidden until a request succeeds;
+    - 5 s timeouts;
+    - a circuit breaker persisted in localStorage
+      (`kphoto:live-stats:retry-after:v1`) that stops every page trying for
+      ten minutes after three failures, or immediately on a 4xx such as a
+      bad key, missing functions or the free tier's 402.
+  - Privacy by construction:
+    - an in-memory per-page-view UUID;
+    - no IPs, cookies or stored identifiers;
+    - per-minute view counters deleted after 25 hours;
+    - visits counted only on the production origin, and never under
+      automation or Global Privacy Control.
+  - The client talks to PostgREST with plain `fetch` — no Supabase SDK, still
+    zero runtime `dependencies`.
+  - Off until `siteConfig.liveStats.publishableKey` is set.
+- `docs/supabase/live-stats.sql` — an idempotent schema to paste into the
+  Supabase SQL editor. It creates:
+  - a private `kphoto_stats` schema with two `UNLOGGED` tables;
+  - four `SECURITY DEFINER` RPC functions granted to `anon` only;
+  - fair-use caps;
+  - pg_cron retention jobs, including pruning pg_cron's own run log.
+
+  It was verified on PostgreSQL 16 with pg_cron and against PostgREST 14.18.
+  `docs/supabase/live-stats-teardown.sql` removes it all.
+
+- `docs/live-stats.md` runbook: switching on, checking with curl, free-tier
+  costs, recovery, switching off.
+- New client modules with injected dependencies and unit tests:
+  - `src/client/liveStats.ts` (validation, tracking policy, formatting);
+  - `liveStatsApi.ts`;
+  - `circuitBreaker.ts`;
+  - `livePoller.ts`;
+  - `liveTestDoubles.ts` (manual clock, scheduler and lifecycle fakes).
+
+  The DOM glue is in `browser.ts` and `liveStatsElements.ts`. There is a
+  server component, `src/components/liveStats.ts`, and a page,
+  `src/pages/live.ts`. `liveStatsEnabled()` in `src/lib/config.ts`.
+
+- Unit tests grow from 158 to 285.
+- `tests/e2e/fixtures.ts`: every e2e test now runs with any `*.supabase.co`
+  request aborted, so the whole suite proves the site works with the backend
+  down.
+- New e2e test asserting pages load nothing from any foreign origin.
+- `tests/e2e/live.spec.ts` covers:
+  - the footer line;
+  - apikey-only authentication;
+  - that automated browsers never write;
+  - the breaker persisting across pages;
+  - the board rendering and dropping unsafe paths;
+  - the unavailable and empty states;
+  - the switched-off build.
 
 - Scheduled publishing (ADR 0021): a post dated in the future is validated
   on every build but excluded from the site — pages, feed and sitemap — until
@@ -882,6 +965,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   (the compose services use this to bind `0.0.0.0`).
 
 ### Changed
+
+- `renderSiteFooter(config, buildYear, currentPath)` takes the current page
+  path (for the live line). The never-throwing localStorage wrapper moved from
+  `main.ts` to `src/client/browser.ts` as `browserStore`.
+- The client bundle grows from 0.77 kB to 3.70 kB gzipped (ADR 0022 records
+  why a lazily loaded chunk was tried and rejected).
+- ADR 0004 amended: one sanctioned foreign origin for live statistics.
+- ADR 0010 amended: the e2e suite runs with the backend unreachable.
+- ADR 0013 amended: a second, non-settings localStorage key.
+- About page: live statistics, and what the browser stores.
 
 - The home-page e2e scenarios are content-agnostic (ADR 0010 amendment):
   "navigates from a post card to the post" derives the expected URL and
@@ -2641,15 +2734,15 @@ Every episode in _Photography Fundamentals_ has pointed at the same idea from a 
   File name:             about.md
   Relative path:         content/pages/about.md
   Absolute path:         /home/kushal/src/ts/kphoto/content/pages/about.md
-  Size:                  1.0 KiB (1042 bytes)
-  Last modified:         2026-07-09 21:37:55.000000000 -0400
+  Size:                  1.6 KiB (1732 bytes)
+  Last modified:         2026-09-23 18:56:26.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354447
+  Inode:                 64313683
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               21b7fdfc64aaf01d559cb4e71d3919567e3e0f4ea53c376fbb3711a1ef9c6fa0
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               e2594336152b801ae3c6b5d034821cad1fa43c28a2941e817a75b955e9742579
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
 
 --- CONTENT ---
 ---
@@ -2658,7 +2751,8 @@ title: About
 
 kphoto is a demonstration of what is possible with **TypeScript 7 and the
 modern web** — a complete blog with no runtime dependencies, no framework and
-no external resources of any kind.
+no external resources, apart from one optional statistics API the site never
+waits for.
 
 ## What "nothing added" means here
 
@@ -2669,6 +2763,19 @@ no external resources of any kind.
   declarative shadow DOM
 - theming, view transitions and persistence use only what evergreen browsers
   ship today
+
+## Live statistics, without tracking
+
+The footer can show how many people are reading right now, and
+[the live page](/live/) lists what was read today. No IP addresses, cookies
+or stored identifiers are involved, nothing is kept longer than 25 hours,
+and visits are not counted if your browser sends Global Privacy Control. If
+the statistics server is ever unreachable, the figures quietly disappear and
+nothing else changes. [The live page](/live/) spells out exactly what is
+collected.
+
+This site stores two things in your browser's local storage: your theme,
+and, only if the statistics server was unreachable, when to try it again.
 
 ## Built in the open, with AI
 
@@ -2875,15 +2982,15 @@ unknown paths, which the generator produces.
   File name:             0004-zero-runtime-dependencies.md
   Relative path:         docs/adr/0004-zero-runtime-dependencies.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0004-zero-runtime-dependencies.md
-  Size:                  1.4 KiB (1453 bytes)
-  Last modified:         2026-07-10 03:07:32.000000000 -0400
+  Size:                  1.9 KiB (1978 bytes)
+  Last modified:         2026-09-23 18:55:39.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354500
+  Inode:                 64313687
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               17140e0a6a880160287c4003443afedf89f7502eaa97e21fc99c4ccc386c8336
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               03f154179a42cd7bbdb540863f8397d0bba15a20f1674fe00229175876f58b9b
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
 
 --- CONTENT ---
 # 4. Zero runtime dependencies; hand-rolled parsers and generator
@@ -2922,6 +3029,15 @@ test suite is the real dependency. Exotic markdown/YAML features are
 unsupported by design — the validators reject them loudly rather than
 half-supporting them. Build tooling (Vite, Vitest, Playwright, ESLint,
 TypeScript) remains, as devDependencies only.
+
+## Amendment (2026-09-23): one optional foreign origin for live statistics
+
+"The deployed site makes requests only to its own origin" now has exactly one
+sanctioned exception: when `siteConfig.liveStats` is configured, the
+live-statistics code may call that one Supabase project's PostgREST API
+(ADR 0022). It does so with plain `fetch` — no SDK, still no `dependencies`
+section — and the site behaves identically when that origin is unreachable.
+The e2e test "pages load nothing from any other origin" guards the rule.
 
 
 ################################################################################
@@ -3259,15 +3375,15 @@ sitemap.
   File name:             0010-test-strategy.md
   Relative path:         docs/adr/0010-test-strategy.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0010-test-strategy.md
-  Size:                  2.8 KiB (2891 bytes)
-  Last modified:         2026-07-13 17:20:58.000000000 -0400
+  Size:                  3.5 KiB (3622 bytes)
+  Last modified:         2026-09-23 18:55:39.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20816862
+  Inode:                 64313688
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               50037cdc3baa9cacd01b9859d7296f8247feeb4a56a0806d7b5b49b36b0baea3
-  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
+  SHA-256:               aa48753454a59672c2ebec8297ecc781a0e625ef9fd0e11f7dd8b8d7681cf23d
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
 
 --- CONTENT ---
 # 10. Test strategy: co-located Vitest units, Playwright against preview
@@ -3330,6 +3446,18 @@ URL shape and the title round-trip; the card count comes from
 pin specific posts (the duplicate-title pair, the three-episode series) may
 keep doing so — those posts exist _as fixtures for those behaviours_ and are
 past-dated, so the publishing clock can never hide them.
+
+## Amendment (2026-09-23): the whole e2e suite runs with the backend down
+
+`tests/e2e/fixtures.ts` provides the `test` every spec imports. Its automatic
+fixture aborts every request to `*.supabase.co`, so each existing scenario also
+proves the site works with the live-statistics backend unreachable (ADR 0022).
+Scenarios that need data override it with `page.route` and canned PostgREST
+responses — no test ever reaches a real Supabase project, and Playwright's
+`navigator.webdriver` keeps even a misconfigured run from counting visits
+(ADR 0023). `live.spec.ts` skips its "switched on" or "switched off" half
+according to `liveStatsEnabled(siteConfig)`, so it runs meaningfully in either
+state of the committed configuration.
 
 
 ################################################################################
@@ -3463,15 +3591,15 @@ suite is where it surfaces.
   File name:             0013-localstorage-settings-store.md
   Relative path:         docs/adr/0013-localstorage-settings-store.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0013-localstorage-settings-store.md
-  Size:                  1.6 KiB (1720 bytes)
-  Last modified:         2026-07-10 03:07:32.000000000 -0400
+  Size:                  2.2 KiB (2297 bytes)
+  Last modified:         2026-09-23 18:55:39.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354494
+  Inode:                 64313689
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               74eec8168de3705b96597f4dc26262980151c7cfa1189543475525490291fe5b
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               fd81d7a465501f87c0741e93aeb0c79b14a79af6ec5825166eeb268172e3a1bc
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
 
 --- CONTENT ---
 # 13. One versioned localStorage key behind a validated settings store
@@ -3513,6 +3641,16 @@ degrade to the default instead of breaking the page. Private-browsing users
 get working theming for the session that silently forgets. The single-key
 design makes "what does this site store?" answerable in one sentence — which
 the About page does.
+
+## Amendment (2026-09-23): a second, non-settings key
+
+The circuit breaker for live statistics (ADR 0025) stores one number —
+a "retry after" epoch timestamp — under `kphoto:live-stats:retry-after:v1`.
+It is operational state, not a user setting, so it lives outside the settings
+object and outside `SettingsStore`, behind the same never-throwing
+`KeyValueStore` (now exported from `src/client/browser.ts`). It identifies no
+one. The full answer to "what does this site store?" is now: your theme, and,
+if the live-statistics server was unreachable, when to try it again.
 
 
 ################################################################################
@@ -4165,6 +4303,321 @@ the production path always passes today's date.
 
 
 ################################################################################
+# FILE: docs/adr/0022-optional-live-statistics-backend.md
+################################################################################
+
+--- METADATA ---
+  File name:             0022-optional-live-statistics-backend.md
+  Relative path:         docs/adr/0022-optional-live-statistics-backend.md
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0022-optional-live-statistics-backend.md
+  Size:                  3.2 KiB (3321 bytes)
+  Last modified:         2026-09-23 18:56:27.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313706
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               b6fe769f0f98ca553e5d3cf0b35b75e796e3dcf39d5a7eec67dfd5d70289fd2b
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+# 22. Optional live statistics from Supabase, strictly non-blocking
+
+Date: 2026-09-23
+
+## Status
+
+Accepted. Amends ADR 0004 (the "own origin only" rule).
+
+## Context
+
+The site should show live readership — who is reading right now, what was read
+today — which a static site cannot know on its own. A free Supabase project
+("colorado", ref `wgtvebsxazxfapjtujce`, us-east-2) can hold the counters. But
+a free project pauses after a week without traffic, can hit its quotas (Supabase
+then answers every request with HTTP 402), and the account itself may lapse. None
+of that is allowed to affect the site: kphoto.github.io must keep working exactly
+as it does today, whatever state the backend is in.
+
+## Decision
+
+Live statistics are a **progressive enhancement with no failure mode visible to
+readers**:
+
+- **Off unless configured.** `siteConfig.liveStats` holds the project URL and the
+  _publishable_ key. `liveStatsEnabled()` requires an https URL and a non-blank key
+  (and refuses an `sb_secret_…` key pasted by mistake). When it is off, no live
+  markup is rendered and no request is ever made. `/live/` still exists and says the
+  feature is off, which keeps the sitemap and links stable.
+- **Hidden until proven.** The footer's live line ships with `hidden` and is revealed
+  only after a successful response. A backend that is down, slow, paused or deleted
+  is therefore indistinguishable from the feature not existing. Timeouts, retries and
+  back-off are specified in ADR 0025.
+- **Plain `fetch` against PostgREST.** The browser calls four RPC functions
+  (`kp_heartbeat`, `kp_leave`, `kp_summary`, `kp_board`) at
+  `/rest/v1/rpc/…`. There is no `@supabase/supabase-js`, so `package.json` still has no
+  `dependencies`. The key travels only in the `apikey` header: Supabase's new keys are
+  not JWTs and are rejected in `Authorization: Bearer`. Requests send no cookies and no
+  referrer.
+- **The schema lives in this repository and is applied by hand.** It is applied by
+  pasting `docs/supabase/live-stats.sql` into the Supabase SQL editor; there is no
+  second repository and no Supabase CLI. The file is idempotent, so re-running it is the
+  migration story; `live-stats-teardown.sql` removes everything. See ADR 0024.
+- **One sanctioned exception to ADR 0004.** Pages may now make requests to exactly one
+  foreign origin, the configured Supabase project, and only from the live-statistics
+  code. The e2e test "pages load nothing from any other origin" enforces that nothing
+  else ever does.
+
+## Consequences
+
+The feature costs nothing when absent and nothing when broken. The client grows from
+0.77 kB to 3.70 kB gzipped, all in the one existing module. A lazily loaded chunk was
+tried and rejected: Vite 8 still wraps dynamic imports in its preload helper even with
+`modulePreload: false`, and the shared browser module was hoisted into the entry
+anyway. The saving was about 1 kB, at the price of a second request and more moving
+parts.
+
+The numbers are for interest, not for decisions. Anyone can call the public functions
+and inflate counts; the fair-use caps in ADR 0024 bound storage, not honesty.
+
+Enabling the feature is a one-line commit (paste the publishable key). Disabling it is
+the same line emptied, or the teardown script, or doing nothing at all and letting the
+project pause.
+
+
+################################################################################
+# FILE: docs/adr/0023-live-statistics-privacy-model.md
+################################################################################
+
+--- METADATA ---
+  File name:             0023-live-statistics-privacy-model.md
+  Relative path:         docs/adr/0023-live-statistics-privacy-model.md
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0023-live-statistics-privacy-model.md
+  Size:                  2.5 KiB (2583 bytes)
+  Last modified:         2026-09-23 18:56:27.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313707
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               63d95e884686530361fe5d55442144f697a321dfd6af30eb6294a220d4075e31
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+# 23. Live statistics privacy model: no IPs, no identifiers on the device
+
+Date: 2026-09-23
+
+## Status
+
+Accepted
+
+## Context
+
+Counting "people here now" needs some way to tell one open tab from another. The
+requirements rule out raw IP addresses and any personally identifiable information, and
+there is no authentication. Browser storage could hold a visitor id, but a persistent
+identifier on the device is exactly what cookie-consent law and ordinary decency both
+object to.
+
+## Decision
+
+- **Per-page-view identifier in memory only.** Each page load creates a random UUID with
+  `crypto.randomUUID()`. It is never written to cookies or to any storage, and it is
+  never reused: the next page gets a new one.
+- **Presence is short-lived.** While the tab is visible it checks in every 30 s. When the
+  tab is hidden or unloaded, it sends `kp_leave` with `keepalive`. If that request is
+  lost, the server stops counting the tab 90 s after its last check-in, and pg_cron
+  deletes the row within five minutes (ADR 0024).
+- **Views are aggregate from the start.** A page view is only `+1` on a per-path,
+  per-UTC-minute counter. No row ever links a view to a visitor, and counters are deleted
+  after 25 hours.
+- **The database cannot hold personal data.** The tables have no column for an IP
+  address, user agent, referrer or account. PostgREST sees the caller's IP, as every web
+  server does, but nothing stores it.
+- **The path comes from the page, not the URL bar.** The server-rendered `data-path` is
+  sent, never `location.pathname`, so the 404 page reports `/404.html` rather than
+  whatever URL someone typed. Paths are validated identically on both ends
+  (`isSafePath` and `kphoto_stats.valid_path`).
+- **Counting is opt-out by default.** A visit is counted (`track` mode) only when all of
+  these hold:
+  - the page is on the production origin (`siteConfig.url`);
+  - `navigator.webdriver` is false;
+  - the browser does not send Global Privacy Control.
+
+  Every other visitor gets read-only `observe` mode. That covers the dev server,
+  `vite preview`, forks, Playwright and GPC users, who still see the numbers but add none.
+
+- `/live/` explains all of this in plain language.
+
+## Consequences
+
+"Here now" counts tabs rather than people: two open tabs count twice. Opening a page in a
+background tab counts nothing until it is first shown. Local development and the e2e suite
+can never pollute production numbers. Nothing here needs a consent banner, because
+nothing is stored on the device except the breaker's retry-after time (ADR 0025), which
+identifies no one.
+
+
+################################################################################
+# FILE: docs/adr/0024-ephemeral-live-statistics-schema.md
+################################################################################
+
+--- METADATA ---
+  File name:             0024-ephemeral-live-statistics-schema.md
+  Relative path:         docs/adr/0024-ephemeral-live-statistics-schema.md
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0024-ephemeral-live-statistics-schema.md
+  Size:                  2.9 KiB (3039 bytes)
+  Last modified:         2026-09-23 18:56:28.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313708
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               c1c8758e39520cd56c83f74f607fd26748d399b89978757aa1d0a03b261b9e3b
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+# 24. Ephemeral live-statistics schema sized for the Supabase free tier
+
+Date: 2026-09-23
+
+## Status
+
+Accepted
+
+## Context
+
+The free tier gives 500 MB of database, 5 GB of egress a month, and pauses projects
+after a week without activity. The requirement is real-time data only, not an archive.
+The schema also has to be safe to expose to an anonymous, unauthenticated API.
+
+## Decision
+
+`docs/supabase/live-stats.sql` (idempotent; verified on PostgreSQL 16 with pg_cron and
+against PostgREST 14.18 before commit) creates:
+
+- **A private schema, `kphoto_stats`,** which is not in the Data API's exposed schemas.
+  It has every privilege revoked from `public`, `anon` and `authenticated`, and RLS
+  enabled with no policies as defence in depth.
+- **Two `UNLOGGED` tables.** Being unlogged means no WAL: writes are cheap and nothing
+  lingers in archives. A crash truncating them is acceptable for data this ephemeral.
+  - `presence (viewer_id uuid pk, path, last_seen)` has one row per visible tab and is
+    counted as "here now" while `last_seen` is within 90 s.
+  - `page_views (path, minute, views)` holds per-minute counters. The rolling windows are
+    exactly the last 60 and 1440 minute buckets.
+- **Four `SECURITY DEFINER` functions in `public` with `search_path = ''`** and every
+  reference schema-qualified. They are the only surface, and `EXECUTE` is granted to
+  `anon` alone (Supabase's default privileges would otherwise also grant `authenticated`).
+  - `kp_heartbeat` is `VOLATILE`, called with POST.
+  - `kp_leave` is `VOLATILE`, called with POST.
+  - `kp_summary` is `STABLE`, called with GET; PostgREST refuses writes over GET with 405.
+  - `kp_board` is `STABLE`, called with GET.
+
+  Invalid input raises SQLSTATE 22023, which PostgREST maps to HTTP 400.
+
+- **Fair-use caps.** There are at most 10 000 tracked tabs, and at most 500 distinct
+  paths per minute bucket. The second cap bounds `page_views` at 720 000 rows (about
+  70 MB) even under deliberate abuse with fabricated paths.
+- **Retention by pg_cron,** via three named jobs that upsert on re-run:
+  - presence rows older than 5 minutes are deleted every minute;
+  - counters older than 25 hours are deleted every 10 minutes;
+  - `cron.job_run_details` is pruned hourly, for these jobs only. pg_cron never trims its
+    run log on its own, and a once-a-minute job would otherwise add about 1 440 rows a day
+    forever.
+
+## Consequences
+
+Normal use needs kilobytes; the worst case stays an order of magnitude inside the 500 MB
+limit. Responses are about 100 bytes, so egress is negligible. The read functions filter by
+time themselves, so the numbers stay correct even if pg_cron stops. Only storage depends on
+the jobs.
+
+Real visitors' requests are the activity that keeps the project from pausing. A week
+without readers lets it pause, which ADR 0022 already treats as a non-event. No keep-alive
+ping was added.
+
+Schema changes are made by editing the file and re-running it in the SQL editor. Drops and
+renames need a matching line in the teardown script.
+
+
+################################################################################
+# FILE: docs/adr/0025-visibility-gated-polling-with-circuit-breaker.md
+################################################################################
+
+--- METADATA ---
+  File name:             0025-visibility-gated-polling-with-circuit-breaker.md
+  Relative path:         docs/adr/0025-visibility-gated-polling-with-circuit-breaker.md
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0025-visibility-gated-polling-with-circuit-breaker.md
+  Size:                  2.7 KiB (2846 bytes)
+  Last modified:         2026-09-23 18:56:28.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313709
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               c0b39be845bdb325257d8363e66dd45cd9212290cd56b28fc460ce5668935af6
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+# 25. Visibility-gated polling with a persisted circuit breaker
+
+Date: 2026-09-23
+
+## Status
+
+Accepted
+
+## Context
+
+"Live" can mean pushed updates (Supabase Realtime over WebSocket) or polling. Realtime
+needs the SDK or a hand-written Phoenix-channel client, a socket per tab, and counts
+against the free tier's 200-connection and message quotas. Whichever transport is used,
+a dead backend must not cost readers anything: no hung requests, no retry storms, no
+error UI.
+
+## Decision
+
+- **Polling over plain `fetch`.** The footer polls every 30 s (`HEARTBEAT_INTERVAL_MS`)
+  and `/live/` every 20 s. `LivePoller` (`src/client/livePoller.ts`) runs one request at a
+  time, and only while `document.visibilityState` is `visible`. Hiding the tab cancels
+  the timer and sends `kp_leave`. Returning to it re-polls promptly, but never sooner than
+  5 s after the previous request. A back/forward-cache restore counts as a new view.
+- **The new-view flag survives failure.** `newView` stays true until a request succeeds,
+  so a failed first heartbeat is retried as the view it was meant to count, and never
+  counted twice.
+- **Every request is bounded** by `AbortSignal.timeout(5000)`.
+- **Failures are classified by `LiveStatsApi`:**
+  - network errors, timeouts, 5xx and 408 are _retryable_;
+  - every other 4xx, and any unparseable or wrong-shaped body, is _permanent_. That
+    covers 400, a bad or revoked key (401/403), an exhausted free-tier quota (402),
+    missing functions (404), 405 and 429.
+- **`CircuitBreaker`** (`src/client/circuitBreaker.ts`) opens on the third consecutive
+  retryable failure, or at once on a permanent one. It writes a retry-after timestamp to
+  `localStorage` (`kphoto:live-stats:retry-after:v1`, ten minutes ahead), so every page on
+  that browser skips live statistics until then. A paused project costs a visitor at most
+  three failed requests per ten minutes, not one per page view.
+- **Rendering bugs are not backend failures.** An exception thrown by the render callback
+  is rethrown via `queueMicrotask`, so it surfaces normally without tripping the breaker.
+- **All dependencies are injected** (clock, scheduler, lifecycle, storage, `fetch`,
+  timeout signal), so the logic is unit-tested with manual fakes (`liveTestDoubles.ts`)
+  and mutation-checked. The DOM glue in `liveStatsElements.ts` and `browser.ts` is
+  covered end to end instead.
+
+## Consequences
+
+Figures can lag by up to one interval, which is fine for a blog. A tab costs about two
+small requests a minute while visible and nothing while hidden. After an outage, a
+browser picks the feature back up within ten minutes, with no code change.
+
+Assistive technology is not spammed:
+
+- the footer line has no live region;
+- the board's `role="status"` element changes only on connection-state transitions, never
+  on each refresh (ADR 0015).
+
+
+################################################################################
 # FILE: docs/architecture.md
 ################################################################################
 
@@ -4172,15 +4625,15 @@ the production path always passes today's date.
   File name:             architecture.md
   Relative path:         docs/architecture.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/architecture.md
-  Size:                  3.2 KiB (3329 bytes)
-  Last modified:         2026-07-13 17:19:47.000000000 -0400
+  Size:                  4.6 KiB (4782 bytes)
+  Last modified:         2026-09-23 18:56:01.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20816864
+  Inode:                 64313690
   Hard links:            1
-  MIME type:             text/html
-  SHA-256:               e041f2062abc49d5d934de57eacc5002a951b5832e452edcb88ce20394019e2a
-  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
+  MIME type:             text/plain
+  SHA-256:               65055c848dff665f91d58dda88d50a7c84d1a79ea4334b9733b7e24615b106ae
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
 
 --- CONTENT ---
 # Architecture
@@ -4211,7 +4664,15 @@ src/client/      the only code that runs in the browser
   storage.ts       versioned, validated localStorage settings
   theme.ts         ThemeController with injected host/media/settings
   themeInit.ts     builds the inline pre-paint script
+  liveStats.ts     live-stats types, validation, tracking policy, formatting
+  liveStatsApi.ts  PostgREST client (injected fetch + timeout signal)
+  circuitBreaker.ts  persisted back-off shared by every page
+  livePoller.ts    visibility-gated polling loop (injected clock/timers/lifecycle)
+  browser.ts       the real localStorage, clock, timers and lifecycle
+  liveStatsElements.ts  upgrades <kp-live-stats> and <kp-live-board>
   main.ts          wires real browser APIs in; upgrades the theme picker
+
+docs/supabase/   SQL applied by hand in the Supabase SQL editor (ADR 0024)
 ```
 
 ## Data flow
@@ -4241,7 +4702,22 @@ pure functions of (model, context). `ThemeController` receives
 `{ settings, host, media }` interfaces, so unit tests flip the OS colour
 scheme with a fake instead of jsdom. `SettingsStore` wraps a two-method
 `KeyValueStore`, so a throwing store (private browsing) is a test case, not a
-crash.
+crash. The live-statistics client takes the same approach further: `fetch`,
+the timeout signal, the clock, timers and page-lifecycle events are all
+interfaces, with manual fakes in `src/client/liveTestDoubles.ts`.
+
+## Optional live statistics
+
+When `siteConfig.liveStats` carries a publishable key, the footer renders a
+hidden `<kp-live-stats>` line and `/live/` renders a `<kp-live-board>`, each
+with its connection details in `data-*` attributes. In the browser, a
+`LivePoller` calls one of four PostgREST functions on a Supabase project
+while the tab is visible, and reveals the element only after a success
+(ADR 0022). Only real visitors on the production origin send heartbeats;
+everyone else reads (ADR 0023). Failures feed a `CircuitBreaker` persisted
+in localStorage, so a dead backend is abandoned site-wide for ten minutes
+(ADR 0025). The database keeps nothing older than 25 hours (ADR 0024).
+Operations are in [live-stats.md](live-stats.md).
 
 ## Styling model
 
@@ -4377,6 +4853,99 @@ rules. Raw HTML is always escaped and shown as text, never executed.
 
 
 ################################################################################
+# FILE: docs/live-stats.md
+################################################################################
+
+--- METADATA ---
+  File name:             live-stats.md
+  Relative path:         docs/live-stats.md
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/live-stats.md
+  Size:                  3.3 KiB (3431 bytes)
+  Last modified:         2026-09-23 18:56:01.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313710
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               77b3b31e770663e962bda27f2269370ab1abef90df7cba6c71d2cc2518bf450f
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+# Live statistics runbook
+
+Everything needed to switch live statistics on, check them, and remove them.
+The why is in ADRs [0022](adr/0022-optional-live-statistics-backend.md) to
+[0025](adr/0025-visibility-gated-polling-with-circuit-breaker.md). If any step
+here goes wrong, the site is unaffected: the live figures simply don't appear.
+
+## Switching it on (once)
+
+1. **Create the schema.** In the Supabase dashboard for project _colorado_, open
+   **SQL Editor**, paste all of
+   [`docs/supabase/live-stats.sql`](supabase/live-stats.sql) and press **Run**.
+   It is idempotent, so running it again after an edit is safe.
+2. **Check the Data API is on.** Go to **Project Settings → Data API**. `public` must
+   be among the exposed schemas (it is by default). Do _not_ add `kphoto_stats`.
+3. **Copy the publishable key.** It is under **Project Settings → API Keys**, in the
+   **Publishable key** row, and looks like `sb_publishable_…`. Never use a
+   `sb_secret_…` key; `liveStatsEnabled()` refuses one anyway.
+4. **Paste it** into `publishableKey` in `src/lib/config.ts`, then run
+   `./check.sh` and push. The key is public by design: it can only call the four
+   `kp_*` functions.
+
+## Checking it from a terminal
+
+```bash
+KEY=sb_publishable_...   # the key from step 3
+URL=https://wgtvebsxazxfapjtujce.supabase.co/rest/v1/rpc
+
+curl -s "$URL/kp_board" -H "apikey: $KEY"
+# → {"pages": [...], "siteNow": 0, "siteViews1h": 0, "siteViews24h": 0}
+
+curl -s "$URL/kp_summary?p_path=%2F" -H "apikey: $KEY"
+# → {"pageNow": 0, "siteNow": 0, ...}
+```
+
+A `404` with code `PGRST202` means the SQL has not been applied yet, or PostgREST has
+not reloaded. Re-run the file; its last line asks PostgREST to reload. A `401` means
+the key is wrong. Only real visits from `https://kphoto.github.io` write data. Local
+dev, `vite preview`, the e2e suite and Global Privacy Control users only read.
+
+To confirm the cleanup jobs run, use **Integrations → Cron**, or in SQL:
+
+```sql
+select j.jobname, d.status, d.start_time
+from cron.job_run_details d join cron.job j using (jobid)
+where j.jobname like 'kphoto-stats-%'
+order by d.start_time desc limit 10;
+```
+
+## What it costs on the free tier
+
+| Resource      | Use                                                               |
+| ------------- | ----------------------------------------------------------------- |
+| Database      | Kilobytes normally; at most ~70 MB under abuse (fair-use caps)    |
+| Egress        | ~100-byte responses; two per visible tab per minute               |
+| Realtime      | None: polling, not WebSockets                                     |
+| Pausing       | Real visits are activity; a week with no readers pauses it (fine) |
+| Quota reached | Supabase returns 402; the site trips its breaker and hides it     |
+
+## If the project pauses or disappears
+
+Nothing to do for the site. Each browser tries at most three times, then stays
+quiet for ten minutes at a time. To bring the numbers back, restore the project in
+the dashboard; browsers resume on their own. If the project is gone for good,
+create a new one, re-run the SQL, and update `projectUrl` and `publishableKey`.
+
+## Switching it off
+
+Either clear `publishableKey` in `src/lib/config.ts` (no markup and no requests,
+from the next deploy), or run
+[`docs/supabase/live-stats-teardown.sql`](supabase/live-stats-teardown.sql) to
+remove every table, function and cron job. Doing both is cleanest.
+
+
+################################################################################
 # FILE: docs/README.md
 ################################################################################
 
@@ -4384,15 +4953,15 @@ rules. Raw HTML is always escaped and shown as text, never executed.
   File name:             README.md
   Relative path:         docs/README.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/README.md
-  Size:                  583 B (583 bytes)
-  Last modified:         2026-07-09 21:56:34.000000000 -0400
+  Size:                  769 B (769 bytes)
+  Last modified:         2026-09-23 18:56:01.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354483
+  Inode:                 64313685
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               65eb7711d61a787fd7d4ddfd0f7ee9b00a0445fd7ee25c6aefba8894f899b6c8
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               386fee0bd2371019167e37891fda01a60ea18e52c23b156c6032ae02bad7a3e5
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
 
 --- CONTENT ---
 # Documentation
@@ -4401,12 +4970,404 @@ rules. Raw HTML is always escaped and shown as text, never executed.
   shaped the way it is.
 - [content-authoring.md](content-authoring.md) — how to write posts, authors
   and pages, and every rule the build enforces.
+- [live-stats.md](live-stats.md) — runbook for the optional Supabase-backed
+  live statistics: switching on, checking, costs, switching off. The SQL
+  lives in [supabase/](supabase/).
 - [adr/](adr/) — architecture decision records, one decision per file. Start
   with [0001](adr/0001-record-architecture-decisions.md).
 
 The repository README covers setup, scripts and the AI/LLM assistance
 disclosure. `docs/llm/dump.txt` is a machine-generated dump of every tracked
 file (regenerated by `./export.sh`; do not edit).
+
+
+################################################################################
+# FILE: docs/supabase/live-stats.sql
+################################################################################
+
+--- METADATA ---
+  File name:             live-stats.sql
+  Relative path:         docs/supabase/live-stats.sql
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/supabase/live-stats.sql
+  Size:                  11.8 KiB (12110 bytes)
+  Last modified:         2026-09-23 18:29:34.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313713
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               ab47c7f275adc96b4ae7c184841239aa7f61fce083a6604149332263a0acf8f3
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+-- =============================================================================
+-- kphoto live statistics — database side (ADRs 0022–0025)
+--
+-- Target  : Supabase project "colorado" (ref wgtvebsxazxfapjtujce, us-east-2)
+-- Apply   : Dashboard → SQL Editor → paste this whole file → Run.
+-- Re-run  : Safe. Every statement is idempotent (create … if not exists,
+--           create or replace, named cron jobs that upsert), so editing this
+--           file and running it again is the whole migration story.
+-- Remove  : docs/supabase/live-stats-teardown.sql
+--
+-- What it stores — and nothing else:
+--   kphoto_stats.presence    one row per open, visible browser tab: a random
+--                            UUID the tab generated in memory, the page path,
+--                            and when it last checked in. Deleted within
+--                            minutes of the tab going quiet.
+--   kphoto_stats.page_views  a counter per (page path, UTC minute). Deleted
+--                            after 25 hours.
+-- No IP addresses, no user agents, no referrers, no cookies, no accounts.
+--
+-- The browser can only reach the four public.kp_* functions below. The tables
+-- live in a schema the Data API does not expose, have row-level security on
+-- with no policies, and have every privilege revoked from anon/authenticated.
+--
+-- Timing contract with src/client/liveStats.ts (keep in sync):
+--   the client checks in every 30 s (HEARTBEAT_INTERVAL_MS) while visible;
+--   a tab counts as "here now" for 90 s after its last check-in (3 missed
+--   heartbeats), so a lost "leave" request self-corrects within 90 s.
+-- =============================================================================
+
+begin;
+
+-- pg_cron is available on every Supabase plan, including Free.
+create extension if not exists pg_cron;
+
+-- -----------------------------------------------------------------------------
+-- Private schema: not listed in the Data API's exposed schemas.
+-- -----------------------------------------------------------------------------
+create schema if not exists kphoto_stats;
+revoke all on schema kphoto_stats from public;
+revoke all on schema kphoto_stats from anon, authenticated;
+
+-- UNLOGGED: no write-ahead log, so writes are cheap and nothing lingers in
+-- WAL archives. The trade-off — contents are truncated after a crash — is a
+-- feature here: this data is meant to be ephemeral (ADR 0024).
+create unlogged table if not exists kphoto_stats.presence (
+  viewer_id uuid primary key,
+  path      text not null,
+  last_seen timestamptz not null default now()
+);
+create index if not exists presence_last_seen_idx on kphoto_stats.presence (last_seen);
+
+create unlogged table if not exists kphoto_stats.page_views (
+  path   text not null,
+  minute timestamptz not null,
+  views  integer not null default 0 check (views >= 0),
+  primary key (path, minute)
+);
+create index if not exists page_views_minute_idx on kphoto_stats.page_views (minute);
+
+alter table kphoto_stats.presence enable row level security;
+alter table kphoto_stats.page_views enable row level security;
+revoke all on table kphoto_stats.presence from public, anon, authenticated;
+revoke all on table kphoto_stats.page_views from public, anon, authenticated;
+
+-- -----------------------------------------------------------------------------
+-- Internal helpers (not callable by the browser: anon has no schema usage).
+-- -----------------------------------------------------------------------------
+
+-- Same rule as isSafePath() in src/client/liveStats.ts: a site-absolute path
+-- of URL-safe characters, at most 200 long, never protocol-relative.
+create or replace function kphoto_stats.valid_path(p_path text)
+returns boolean
+language sql
+immutable
+parallel safe
+set search_path = ''
+as $$
+  select p_path is not null
+     and length(p_path) between 1 and 200
+     and p_path ~ '^/[A-Za-z0-9._~/-]*$'
+     and p_path !~ '^//'
+$$;
+
+-- A tab is "here now" if it checked in within the last 90 seconds.
+create or replace function kphoto_stats.active_cutoff()
+returns timestamptz
+language sql
+stable
+set search_path = ''
+as $$ select now() - interval '90 seconds' $$;
+
+-- First minute bucket of the rolling last hour (60 buckets incl. this one).
+create or replace function kphoto_stats.hour_start()
+returns timestamptz
+language sql
+stable
+set search_path = ''
+as $$ select date_trunc('minute', now()) - interval '59 minutes' $$;
+
+-- First minute bucket of the rolling last 24 hours (1440 buckets).
+create or replace function kphoto_stats.day_start()
+returns timestamptz
+language sql
+stable
+set search_path = ''
+as $$ select date_trunc('minute', now()) - interval '1439 minutes' $$;
+
+create or replace function kphoto_stats.site_totals()
+returns jsonb
+language sql
+stable
+set search_path = ''
+as $$
+  select jsonb_build_object(
+    'siteNow',
+      (select count(*) from kphoto_stats.presence
+        where last_seen > kphoto_stats.active_cutoff()),
+    'siteViews1h',
+      (select coalesce(sum(views), 0) from kphoto_stats.page_views
+        where minute >= kphoto_stats.hour_start()),
+    'siteViews24h',
+      (select coalesce(sum(views), 0) from kphoto_stats.page_views
+        where minute >= kphoto_stats.day_start())
+  )
+$$;
+
+create or replace function kphoto_stats.page_summary(p_path text)
+returns jsonb
+language sql
+stable
+set search_path = ''
+as $$
+  select kphoto_stats.site_totals() || jsonb_build_object(
+    'pageNow',
+      (select count(*) from kphoto_stats.presence
+        where path = p_path and last_seen > kphoto_stats.active_cutoff()),
+    'pageViews24h',
+      (select coalesce(sum(views), 0) from kphoto_stats.page_views
+        where path = p_path and minute >= kphoto_stats.day_start())
+  )
+$$;
+
+revoke all on all functions in schema kphoto_stats from public, anon, authenticated;
+
+-- -----------------------------------------------------------------------------
+-- Public API — the only surface PostgREST exposes (POST/GET /rest/v1/rpc/…).
+-- SECURITY DEFINER with an empty search_path: callers get exactly these
+-- operations and nothing else, and every object reference is schema-qualified.
+-- -----------------------------------------------------------------------------
+
+-- Check in a visible tab; optionally count a page view; return the summary
+-- for that page. Called by the site only from the production origin.
+create or replace function public.kp_heartbeat(
+  p_viewer uuid,
+  p_path text,
+  p_new_view boolean default false
+)
+returns jsonb
+language plpgsql
+volatile
+security definer
+set search_path = ''
+as $$
+declare
+  v_minute timestamptz := date_trunc('minute', now());
+begin
+  if p_viewer is null or not kphoto_stats.valid_path(p_path) then
+    raise exception using
+      errcode = '22023',
+      message = 'kphoto_stats: invalid viewer or path';
+  end if;
+
+  -- Fair-use guard: at most 10 000 tracked tabs at once. Existing tabs keep
+  -- checking in; a flood of fabricated UUIDs cannot grow the table further.
+  if exists (select 1 from kphoto_stats.presence where viewer_id = p_viewer)
+     or (select count(*) from kphoto_stats.presence) < 10000 then
+    insert into kphoto_stats.presence as pr (viewer_id, path, last_seen)
+    values (p_viewer, p_path, now())
+    on conflict (viewer_id) do update
+      set path = excluded.path, last_seen = excluded.last_seen;
+  end if;
+
+  -- Fair-use guard: at most 500 distinct paths per minute bucket, which caps
+  -- page_views at 720 000 rows (~70 MB) even under deliberate abuse.
+  if coalesce(p_new_view, false) then
+    if exists (select 1 from kphoto_stats.page_views
+                where path = p_path and minute = v_minute)
+       or (select count(*) from kphoto_stats.page_views
+            where minute = v_minute) < 500 then
+      insert into kphoto_stats.page_views as pv (path, minute, views)
+      values (p_path, v_minute, 1)
+      on conflict (path, minute) do update set views = pv.views + 1;
+    end if;
+  end if;
+
+  return kphoto_stats.page_summary(p_path);
+end;
+$$;
+
+-- A tab was hidden or closed: stop counting it as here now. Best-effort from
+-- the browser side; the 90-second cutoff covers requests that never arrive.
+create or replace function public.kp_leave(p_viewer uuid)
+returns void
+language sql
+volatile
+security definer
+set search_path = ''
+as $$
+  delete from kphoto_stats.presence where viewer_id = p_viewer
+$$;
+
+-- Read-only summary for one page (GET). Used on non-production origins, by
+-- automated browsers and by visitors who send Global Privacy Control.
+create or replace function public.kp_summary(p_path text)
+returns jsonb
+language plpgsql
+stable
+security definer
+set search_path = ''
+as $$
+begin
+  if not kphoto_stats.valid_path(p_path) then
+    raise exception using
+      errcode = '22023',
+      message = 'kphoto_stats: invalid path';
+  end if;
+  return kphoto_stats.page_summary(p_path);
+end;
+$$;
+
+-- Read-only board for /live/ (GET): site totals plus the 25 busiest pages.
+create or replace function public.kp_board()
+returns jsonb
+language sql
+stable
+security definer
+set search_path = ''
+as $$
+  with active as (
+    select path, count(*) as viewers
+    from kphoto_stats.presence
+    where last_seen > kphoto_stats.active_cutoff()
+    group by path
+  ),
+  recent as (
+    select path,
+           coalesce(sum(views) filter (where minute >= kphoto_stats.hour_start()), 0) as views_1h,
+           sum(views) as views_24h
+    from kphoto_stats.page_views
+    where minute >= kphoto_stats.day_start()
+    group by path
+  ),
+  ranked as (
+    select path,
+           coalesce(a.viewers, 0) as viewers,
+           coalesce(r.views_1h, 0) as views_1h,
+           coalesce(r.views_24h, 0) as views_24h
+    from active a
+    full join recent r using (path)
+    order by viewers desc, views_1h desc, views_24h desc, path
+    limit 25
+  )
+  select kphoto_stats.site_totals() || jsonb_build_object(
+    'pages',
+    coalesce(
+      (select jsonb_agg(
+                jsonb_build_object(
+                  'path', path,
+                  'now', viewers,
+                  'views1h', views_1h,
+                  'views24h', views_24h)
+                order by viewers desc, views_1h desc, views_24h desc, path)
+         from ranked),
+      '[]'::jsonb)
+  )
+$$;
+
+-- Supabase's default privileges grant EXECUTE on new public functions to
+-- anon, authenticated and service_role. Narrow that to exactly anon.
+revoke all on function public.kp_heartbeat(uuid, text, boolean) from public, anon, authenticated;
+revoke all on function public.kp_leave(uuid) from public, anon, authenticated;
+revoke all on function public.kp_summary(text) from public, anon, authenticated;
+revoke all on function public.kp_board() from public, anon, authenticated;
+grant execute on function public.kp_heartbeat(uuid, text, boolean) to anon;
+grant execute on function public.kp_leave(uuid) to anon;
+grant execute on function public.kp_summary(text) to anon;
+grant execute on function public.kp_board() to anon;
+
+-- -----------------------------------------------------------------------------
+-- Retention — the reason the free tier's 500 MB is never at risk.
+-- cron.schedule(name, …) upserts by name, so re-running is safe.
+-- -----------------------------------------------------------------------------
+select cron.schedule(
+  'kphoto-stats-prune-presence',
+  '* * * * *',
+  $job$delete from kphoto_stats.presence where last_seen < now() - interval '5 minutes'$job$
+);
+select cron.schedule(
+  'kphoto-stats-prune-page-views',
+  '*/10 * * * *',
+  $job$delete from kphoto_stats.page_views where minute < now() - interval '25 hours'$job$
+);
+-- pg_cron records every run in cron.job_run_details and never cleans it up
+-- on its own; a once-a-minute job would otherwise add ~1 440 rows a day
+-- forever. Keep six hours of history for our jobs only.
+select cron.schedule(
+  'kphoto-stats-prune-cron-history',
+  '23 * * * *',
+  $job$delete from cron.job_run_details
+        where end_time < now() - interval '6 hours'
+          and jobid in (select jobid from cron.job where jobname like 'kphoto-stats-%')$job$
+);
+
+commit;
+
+-- Ask PostgREST to pick up the new functions right away.
+notify pgrst, 'reload schema';
+
+
+################################################################################
+# FILE: docs/supabase/live-stats-teardown.sql
+################################################################################
+
+--- METADATA ---
+  File name:             live-stats-teardown.sql
+  Relative path:         docs/supabase/live-stats-teardown.sql
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/supabase/live-stats-teardown.sql
+  Size:                  1.0 KiB (1070 bytes)
+  Last modified:         2026-09-23 18:29:39.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313712
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               4e8459eade61172b05f1f0e2b1f5909b7d299989c7474db324ea387d559be889
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+-- =============================================================================
+-- kphoto live statistics — complete removal (ADR 0024)
+--
+-- Apply: Dashboard → SQL Editor → paste → Run. Safe to run more than once.
+-- The site keeps working afterwards: the client treats the missing functions
+-- as "unavailable" and hides the live figures (ADR 0022). To stop the site
+-- from even trying, also empty `publishableKey` in src/lib/config.ts.
+-- pg_cron itself is left installed in case anything else uses it.
+-- =============================================================================
+
+begin;
+
+select cron.unschedule(jobname)
+from cron.job
+where jobname in (
+  'kphoto-stats-prune-presence',
+  'kphoto-stats-prune-page-views',
+  'kphoto-stats-prune-cron-history'
+);
+
+drop function if exists public.kp_heartbeat(uuid, text, boolean);
+drop function if exists public.kp_leave(uuid);
+drop function if exists public.kp_summary(text);
+drop function if exists public.kp_board();
+
+drop schema if exists kphoto_stats cascade;
+
+commit;
+
+notify pgrst, 'reload schema';
 
 
 ################################################################################
@@ -10683,15 +11644,15 @@ yarn.lock
   File name:             README.md
   Relative path:         README.md
   Absolute path:         /home/kushal/src/ts/kphoto/README.md
-  Size:                  8.1 KiB (8366 bytes)
-  Last modified:         2026-07-13 17:20:01.000000000 -0400
+  Size:                  9.8 KiB (10048 bytes)
+  Last modified:         2026-09-23 18:56:26.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20816858
+  Inode:                 64313680
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               fd5008ef60bf8ca6d05789acdc77a1bc77e33f055aea7ce1f6c3373b391bd32e
-  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
+  SHA-256:               541f4cd03624ab5f4b6d202e0f0bff853f08cd14bd2439b5d53f5d98ecf9c6b2
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
 
 --- CONTENT ---
 # kphoto
@@ -10699,10 +11660,11 @@ yarn.lock
 **A demonstration of what is possible with TypeScript 7 and the modern web.**
 
 A complete blog — markdown posts, tags, series, authors, five themes, an Atom
-feed — with **zero runtime dependencies**. No framework, no CSS library, no
-markdown or YAML package, no external resources of any kind. Everything the
-browser receives was written in this repository and compiled by the
-TypeScript 7 **native compiler**.
+feed, optional live readership statistics — with **zero runtime
+dependencies**. No framework, no CSS library, no markdown or YAML package, no
+SDK, no external resources beyond one optional, non-blocking statistics API.
+Everything the browser receives was written in this repository and compiled
+by the TypeScript 7 **native compiler**.
 
 Live site: **<https://kphoto.github.io>** · License: **AGPL-3.0-or-later**
 
@@ -10734,6 +11696,8 @@ file and one small hand-written script. That required writing from scratch:
 - a static site generator as a Vite plugin (`src/ssg/vitePlugin.ts`)
 - web components scoped with declarative shadow DOM (`src/components/`)
 - a theme system persisted in localStorage with a pre-paint script (`src/client/`)
+- a live-statistics client — PostgREST over plain `fetch`, visibility-gated
+  polling, a persisted circuit breaker — instead of the Supabase SDK
 
 ## Quick start (Fedora 43 and friends)
 
@@ -10819,6 +11783,37 @@ optionally `series` + `episode`. Authors live in `content/authors/*.yml`;
 standalone pages in `content/pages/*.md`. Every rule is validated at build
 time with file-scoped error messages — see
 [docs/content-authoring.md](docs/content-authoring.md).
+
+## Live statistics (optional, never blocking)
+
+The footer can show how many people are reading right now, and
+[`/live/`](https://kphoto.github.io/live/) shows the busiest pages of the
+last 24 hours. The numbers come from a free-tier Supabase project, reached
+with plain `fetch`. The feature is built so that it **cannot break the
+site**:
+
+- nothing is shown until a request succeeds;
+- every request times out after 5 s;
+- after repeated failures every page on that browser stops trying for
+  ten minutes.
+
+A paused, over-quota or deleted project looks exactly like the feature not
+existing. The e2e suite runs every test with the backend unreachable.
+
+Privacy is designed in rather than promised:
+
+- no IP addresses, cookies or stored identifiers — each open tab uses a
+  random id held in memory;
+- views are kept only as per-minute counts, deleted after 25 hours;
+- visits are never counted for automated browsers, for browsers sending
+  Global Privacy Control, or anywhere but the production origin.
+
+It is off until `publishableKey` is set in `src/lib/config.ts`. The database
+side is one idempotent SQL file,
+[`docs/supabase/live-stats.sql`](docs/supabase/live-stats.sql), pasted into
+the Supabase SQL editor. Setup, costs and removal are in
+[docs/live-stats.md](docs/live-stats.md); the decisions are in ADRs
+[0022](docs/adr/0022-optional-live-statistics-backend.md)–[0025](docs/adr/0025-visibility-gated-polling-with-circuit-breaker.md).
 
 ## Architecture in one paragraph
 
@@ -11292,28 +12287,36 @@ log "typecheck complete"
 
 
 ################################################################################
-# FILE: src/client/main.ts
+# FILE: src/client/browser.ts
 ################################################################################
 
 --- METADATA ---
-  File name:             main.ts
-  Relative path:         src/client/main.ts
-  Absolute path:         /home/kushal/src/ts/kphoto/src/client/main.ts
-  Size:                  1.7 KiB (1776 bytes)
-  Last modified:         2026-07-09 21:39:03.000000000 -0400
+  File name:             browser.ts
+  Relative path:         src/client/browser.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/client/browser.ts
+  Size:                  1.7 KiB (1787 bytes)
+  Last modified:         2026-09-23 18:35:44.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354399
+  Inode:                 64313714
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               204a45043bcef298d89b2bbca0b6dbe9b99500bf6cd1b757bdd315615c63aa34
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               0e6059c6ea10813d1609bb9ce84d404773df4ce1a441f7fe6a3342734d371682
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
 
 --- CONTENT ---
-import { isThemeName, SettingsStore, type ThemeName } from './storage';
-import { isDarkTheme, ThemeController, type ConcreteTheme } from './theme';
+/**
+ * Real browser implementations of the small interfaces the client logic
+ * depends on (dependency inversion: everything else receives these, so unit
+ * tests pass fakes instead). This file is the only place that touches
+ * `localStorage`, timers and page-lifecycle events.
+ */
+import type { Clock } from './circuitBreaker';
+import type { PageLifecycle, Schedule } from './livePoller';
+import type { KeyValueStore } from './storage';
 
-const browserStore = {
+/** localStorage that never throws (private browsing, quota, disabled storage). */
+export const browserStore: KeyValueStore = {
   get(key: string): string | null {
     try {
       return localStorage.getItem(key);
@@ -11325,10 +12328,2083 @@ const browserStore = {
     try {
       localStorage.setItem(key, value);
     } catch {
-      // Storage can be unavailable; theming still works for this page view.
+      // Storage can be unavailable; callers degrade to per-page behaviour.
     }
   },
 };
+
+export const browserClock: Clock = {
+  now: () => Date.now(),
+};
+
+export const browserSchedule: Schedule = (callback, delayMs) => {
+  const handle = window.setTimeout(callback, delayMs);
+  return () => {
+    window.clearTimeout(handle);
+  };
+};
+
+export const browserLifecycle: PageLifecycle = {
+  isVisible: () => document.visibilityState === 'visible',
+  onVisibilityChange: (listener) => {
+    document.addEventListener('visibilitychange', listener);
+  },
+  onPageHide: (listener) => {
+    window.addEventListener('pagehide', listener);
+  },
+  onPageShow: (listener) => {
+    window.addEventListener('pageshow', (event) => {
+      listener(event.persisted);
+    });
+  },
+};
+
+/** `navigator.globalPrivacyControl` where the browser exposes it. */
+export function sendsGlobalPrivacyControl(): boolean {
+  return 'globalPrivacyControl' in navigator && navigator.globalPrivacyControl === true;
+}
+
+
+################################################################################
+# FILE: src/client/circuitBreaker.test.ts
+################################################################################
+
+--- METADATA ---
+  File name:             circuitBreaker.test.ts
+  Relative path:         src/client/circuitBreaker.test.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/client/circuitBreaker.test.ts
+  Size:                  2.4 KiB (2465 bytes)
+  Last modified:         2026-09-23 18:41:39.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313715
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               d945f67210befdc1dc88788ad91334da04126e9ec0622c1b8c1812237cfe0de1
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+import { describe, expect, it } from 'vitest';
+import { CircuitBreaker } from './circuitBreaker';
+import { ManualClock, MemoryStore } from './liveTestDoubles';
+import type { KeyValueStore } from './storage';
+
+const KEY = 'test:retry-after';
+
+function setup(store: KeyValueStore = new MemoryStore()) {
+  const clock = new ManualClock(10_000);
+  const breaker = new CircuitBreaker({ store, clock, key: KEY, maxFailures: 3, cooldownMs: 600 });
+  return { breaker, clock, store };
+}
+
+describe('CircuitBreaker', () => {
+  it('starts closed', () => {
+    expect(setup().breaker.isOpen()).toBe(false);
+  });
+
+  it('opens on the third consecutive retryable failure', () => {
+    const { breaker } = setup();
+    expect(breaker.recordFailure(true)).toBe(false);
+    expect(breaker.recordFailure(true)).toBe(false);
+    expect(breaker.isOpen()).toBe(false);
+    expect(breaker.recordFailure(true)).toBe(true);
+    expect(breaker.isOpen()).toBe(true);
+  });
+
+  it('opens immediately on a non-retryable failure', () => {
+    const { breaker } = setup();
+    expect(breaker.recordFailure(false)).toBe(true);
+    expect(breaker.isOpen()).toBe(true);
+  });
+
+  it('forgets earlier failures after a success', () => {
+    const { breaker } = setup();
+    breaker.recordFailure(true);
+    breaker.recordFailure(true);
+    breaker.recordSuccess();
+    expect(breaker.recordFailure(true)).toBe(false);
+    expect(breaker.recordFailure(true)).toBe(false);
+    expect(breaker.isOpen()).toBe(false);
+  });
+
+  it('persists the retry-after time and closes once it passes', () => {
+    const { breaker, clock, store } = setup();
+    breaker.recordFailure(false);
+    expect(store.get(KEY)).toBe('10600');
+    clock.current = 10_599;
+    expect(breaker.isOpen()).toBe(true);
+    clock.current = 10_600;
+    expect(breaker.isOpen()).toBe(false);
+  });
+
+  it('is shared through storage: another page sees it open', () => {
+    const store = new MemoryStore();
+    setup(store).breaker.recordFailure(false);
+    expect(setup(store).breaker.isOpen()).toBe(true);
+  });
+
+  it('ignores garbage in storage', () => {
+    const store = new MemoryStore();
+    store.set(KEY, 'not-a-number');
+    expect(setup(store).breaker.isOpen()).toBe(false);
+  });
+
+  it('still trips for this page when storage is unavailable', () => {
+    const broken: KeyValueStore = { get: () => null, set: () => undefined };
+    const { breaker } = setup(broken);
+    expect(breaker.recordFailure(false)).toBe(true);
+  });
+});
+
+
+################################################################################
+# FILE: src/client/circuitBreaker.ts
+################################################################################
+
+--- METADATA ---
+  File name:             circuitBreaker.ts
+  Relative path:         src/client/circuitBreaker.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/client/circuitBreaker.ts
+  Size:                  1.8 KiB (1916 bytes)
+  Last modified:         2026-09-23 18:34:33.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313716
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               ee01699e742e1edf54ed2ce23e7363261c22ce915516bfc7205ddcaae7b053c4
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+import type { KeyValueStore } from './storage';
+
+/** Wall-clock reader; injected so tests control time. */
+export interface Clock {
+  now(): number;
+}
+
+export interface CircuitBreakerOptions {
+  readonly store: KeyValueStore;
+  readonly clock: Clock;
+  /** localStorage key holding the "retry after" epoch milliseconds. */
+  readonly key: string;
+  /** Consecutive retryable failures that open the breaker. */
+  readonly maxFailures: number;
+  /** How long the breaker stays open once tripped. */
+  readonly cooldownMs: number;
+}
+
+/**
+ * Stops the site from hammering a backend that is down (ADR 0025). The open
+ * state is persisted, so once a page trips it, every page on this browser
+ * skips live statistics for the cool-down — a paused Supabase project costs a
+ * visitor at most a handful of failed requests, not one per page view.
+ * A non-retryable failure (bad key, missing functions, quota exhausted) trips
+ * it immediately.
+ */
+export class CircuitBreaker {
+  readonly #options: CircuitBreakerOptions;
+  #failures = 0;
+
+  constructor(options: CircuitBreakerOptions) {
+    this.#options = options;
+  }
+
+  /** True while requests should not be attempted. */
+  isOpen(): boolean {
+    const raw = this.#options.store.get(this.#options.key);
+    if (raw === null) {
+      return false;
+    }
+    const retryAfter = Number(raw);
+    return Number.isFinite(retryAfter) && this.#options.clock.now() < retryAfter;
+  }
+
+  recordSuccess(): void {
+    this.#failures = 0;
+  }
+
+  /** Records a failure; returns true when this failure opened the breaker. */
+  recordFailure(retryable: boolean): boolean {
+    this.#failures += 1;
+    if (retryable && this.#failures < this.#options.maxFailures) {
+      return false;
+    }
+    this.#failures = 0;
+    const retryAfter = this.#options.clock.now() + this.#options.cooldownMs;
+    this.#options.store.set(this.#options.key, String(retryAfter));
+    return true;
+  }
+}
+
+
+################################################################################
+# FILE: src/client/livePoller.test.ts
+################################################################################
+
+--- METADATA ---
+  File name:             livePoller.test.ts
+  Relative path:         src/client/livePoller.test.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/client/livePoller.test.ts
+  Size:                  10.4 KiB (10728 bytes)
+  Last modified:         2026-09-23 18:42:14.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313717
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               090f401aceb1e4913c3e69c511536a7a50bdf60e6ccbdd2955e793acddff7b5b
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+import { describe, expect, it } from 'vitest';
+import { CircuitBreaker } from './circuitBreaker';
+import { LivePoller, type PollContext } from './livePoller';
+import { isRetryable, LiveStatsRequestError } from './liveStatsApi';
+import { FakeLifecycle, flush, ManualClock, ManualScheduler, MemoryStore } from './liveTestDoubles';
+
+const INTERVAL = 30_000;
+const MIN_GAP = 5_000;
+
+type Outcome = 'ok' | 'network' | 'fatal';
+
+function setup(options: { visible?: boolean; store?: MemoryStore; away?: boolean } = {}) {
+  const clock = new ManualClock();
+  const scheduler = new ManualScheduler(clock);
+  const lifecycle = new FakeLifecycle();
+  lifecycle.visible = options.visible ?? true;
+  const store = options.store ?? new MemoryStore();
+  const breaker = new CircuitBreaker({
+    store,
+    clock,
+    key: 'k',
+    maxFailures: 3,
+    cooldownMs: 600_000,
+  });
+  const contexts: PollContext[] = [];
+  const data: number[] = [];
+  const failures: boolean[] = [];
+  let aways = 0;
+  const outcomes: Outcome[] = [];
+  let pending: (() => void) | null = null;
+  let hold = false;
+
+  const poller = new LivePoller<number>({
+    task: (context) => {
+      contexts.push(context);
+      const outcome = outcomes.shift() ?? 'ok';
+      const settle = (): Promise<number> =>
+        outcome === 'ok'
+          ? Promise.resolve(contexts.length)
+          : Promise.reject(
+              outcome === 'network'
+                ? new TypeError('Failed to fetch')
+                : new LiveStatsRequestError('HTTP 404', 404, false),
+            );
+      if (!hold) {
+        return settle();
+      }
+      return new Promise<number>((resolve, reject) => {
+        pending = () => {
+          settle().then(resolve, reject);
+        };
+      });
+    },
+    onData: (value) => data.push(value),
+    onFailure: (tripped) => failures.push(tripped),
+    onAway:
+      options.away === false
+        ? null
+        : () => {
+            aways += 1;
+          },
+    isRetryable,
+    intervalMs: INTERVAL,
+    minGapMs: MIN_GAP,
+    schedule: scheduler.schedule,
+    lifecycle,
+    clock,
+    breaker,
+  });
+
+  return {
+    poller,
+    clock,
+    scheduler,
+    lifecycle,
+    store,
+    contexts,
+    data,
+    failures,
+    outcomes,
+    aways: () => aways,
+    holdRequests: () => {
+      hold = true;
+    },
+    release: async () => {
+      const release = pending;
+      pending = null;
+      release?.();
+      await flush();
+    },
+    async tickAfter(ms: number) {
+      scheduler.advance(ms);
+      await flush();
+    },
+  };
+}
+
+describe('LivePoller start-up', () => {
+  it('polls immediately when visible, then every interval', async () => {
+    const t = setup();
+    t.poller.start();
+    await flush();
+    expect(t.contexts).toHaveLength(1);
+    expect(t.data).toEqual([1]);
+    expect(t.scheduler.pendingDelays()).toEqual([INTERVAL]);
+    await t.tickAfter(INTERVAL);
+    expect(t.contexts).toHaveLength(2);
+  });
+
+  it('does nothing while a background tab stays hidden', async () => {
+    const t = setup({ visible: false });
+    t.poller.start();
+    await t.tickAfter(10 * INTERVAL);
+    expect(t.contexts).toHaveLength(0);
+  });
+
+  it('starts once a hidden tab becomes visible', async () => {
+    const t = setup({ visible: false });
+    t.poller.start();
+    t.lifecycle.setVisible(true);
+    await t.tickAfter(0);
+    expect(t.contexts).toHaveLength(1);
+  });
+
+  it('never starts while the persisted breaker is open', async () => {
+    const store = new MemoryStore();
+    store.set('k', String(Number.MAX_SAFE_INTEGER));
+    const t = setup({ store });
+    t.poller.start();
+    await t.tickAfter(10 * INTERVAL);
+    expect(t.contexts).toHaveLength(0);
+    expect(t.failures).toEqual([true]);
+  });
+});
+
+describe('LivePoller new-view flag', () => {
+  it('is true for the first request only', async () => {
+    const t = setup();
+    t.poller.start();
+    await flush();
+    await t.tickAfter(INTERVAL);
+    expect(t.contexts.map((c) => c.newView)).toEqual([true, false]);
+  });
+
+  it('stays true until a request succeeds, so a failed view is retried as a view', async () => {
+    const t = setup();
+    t.outcomes.push('network');
+    t.poller.start();
+    await flush();
+    await t.tickAfter(INTERVAL);
+    await t.tickAfter(INTERVAL);
+    expect(t.contexts.map((c) => c.newView)).toEqual([true, true, false]);
+  });
+
+  it('is true again after a back/forward-cache restore', async () => {
+    const t = setup();
+    t.poller.start();
+    await flush();
+    t.lifecycle.hide();
+    await t.tickAfter(60_000);
+    t.lifecycle.show(true);
+    await t.tickAfter(0);
+    expect(t.contexts.map((c) => c.newView)).toEqual([true, true]);
+  });
+
+  it('ignores an ordinary (non-restored) pageshow', async () => {
+    const t = setup();
+    t.poller.start();
+    await flush();
+    t.lifecycle.show(false);
+    await t.tickAfter(MIN_GAP);
+    expect(t.contexts).toHaveLength(1);
+  });
+});
+
+describe('LivePoller visibility', () => {
+  it('stops polling and reports away when hidden', async () => {
+    const t = setup();
+    t.poller.start();
+    await flush();
+    t.lifecycle.setVisible(false);
+    expect(t.aways()).toBe(1);
+    expect(t.scheduler.pendingDelays()).toEqual([]);
+    await t.tickAfter(10 * INTERVAL);
+    expect(t.contexts).toHaveLength(1);
+  });
+
+  it('reports away on pagehide', async () => {
+    const t = setup();
+    t.poller.start();
+    await flush();
+    t.lifecycle.hide();
+    expect(t.aways()).toBe(1);
+  });
+
+  it('tolerates a null away handler', async () => {
+    const t = setup({ away: false });
+    t.poller.start();
+    await flush();
+    expect(() => {
+      t.lifecycle.setVisible(false);
+    }).not.toThrow();
+  });
+
+  it('re-polls promptly on return, but never faster than the minimum gap', async () => {
+    const t = setup();
+    t.poller.start();
+    await flush();
+    await t.tickAfter(1_000);
+    t.lifecycle.setVisible(false);
+    t.lifecycle.setVisible(true);
+    expect(t.scheduler.pendingDelays()).toEqual([MIN_GAP - 1_000]);
+    await t.tickAfter(MIN_GAP - 1_000);
+    expect(t.contexts).toHaveLength(2);
+  });
+
+  it('re-polls immediately after a long absence', async () => {
+    const t = setup();
+    t.poller.start();
+    await flush();
+    t.lifecycle.setVisible(false);
+    await t.tickAfter(5 * 60_000);
+    t.lifecycle.setVisible(true);
+    expect(t.scheduler.pendingDelays()).toEqual([0]);
+  });
+
+  it('does not stack a second timer when already scheduled', async () => {
+    const t = setup();
+    t.poller.start();
+    await flush();
+    t.lifecycle.setVisible(true);
+    expect(t.scheduler.pendingDelays()).toEqual([INTERVAL]);
+  });
+
+  it('never runs two requests at once', async () => {
+    const t = setup();
+    t.holdRequests();
+    t.poller.start();
+    await flush();
+    t.lifecycle.setVisible(false);
+    t.lifecycle.setVisible(true);
+    await t.tickAfter(INTERVAL);
+    expect(t.contexts).toHaveLength(1);
+    await t.release();
+    expect(t.scheduler.pendingDelays()).toEqual([INTERVAL]);
+  });
+
+  it('does not reschedule if the tab was hidden while a request was in flight', async () => {
+    const t = setup();
+    t.holdRequests();
+    t.poller.start();
+    await flush();
+    t.lifecycle.setVisible(false);
+    await t.release();
+    expect(t.scheduler.pendingDelays()).toEqual([]);
+  });
+});
+
+describe('LivePoller failures', () => {
+  it('keeps trying after isolated network failures', async () => {
+    const t = setup();
+    t.outcomes.push('network', 'network', 'ok', 'network');
+    t.poller.start();
+    await flush();
+    for (let i = 0; i < 3; i += 1) {
+      await t.tickAfter(INTERVAL);
+    }
+    expect(t.failures).toEqual([false, false, false]);
+    expect(t.data).toHaveLength(1);
+    expect(t.scheduler.pendingDelays()).toEqual([INTERVAL]);
+  });
+
+  it('stops for good on the third consecutive failure and persists it', async () => {
+    const t = setup();
+    t.outcomes.push('network', 'network', 'network');
+    t.poller.start();
+    await flush();
+    await t.tickAfter(INTERVAL);
+    await t.tickAfter(INTERVAL);
+    expect(t.failures).toEqual([false, false, true]);
+    expect(t.scheduler.pendingDelays()).toEqual([]);
+    expect(t.store.get('k')).not.toBeNull();
+    await t.tickAfter(10 * INTERVAL);
+    expect(t.contexts).toHaveLength(3);
+  });
+
+  it('stops immediately on a permanent failure', async () => {
+    const t = setup();
+    t.outcomes.push('fatal');
+    t.poller.start();
+    await flush();
+    expect(t.failures).toEqual([true]);
+    expect(t.scheduler.pendingDelays()).toEqual([]);
+  });
+
+  it('sends no away notice once stopped', async () => {
+    const t = setup();
+    t.outcomes.push('fatal');
+    t.poller.start();
+    await flush();
+    t.lifecycle.setVisible(false);
+    t.lifecycle.hide();
+    expect(t.aways()).toBe(0);
+  });
+
+  it('does not resume after being stopped', async () => {
+    const t = setup();
+    t.outcomes.push('fatal');
+    t.poller.start();
+    await flush();
+    t.lifecycle.setVisible(false);
+    t.lifecycle.setVisible(true);
+    t.lifecycle.show(true);
+    await t.tickAfter(10 * INTERVAL);
+    expect(t.contexts).toHaveLength(1);
+  });
+
+  it('stops when another page opened the breaker meanwhile', async () => {
+    const t = setup();
+    t.poller.start();
+    await flush();
+    t.store.set('k', String(Number.MAX_SAFE_INTEGER));
+    await t.tickAfter(INTERVAL);
+    expect(t.contexts).toHaveLength(1);
+    expect(t.failures).toEqual([true]);
+  });
+});
+
+describe('LivePoller rendering errors', () => {
+  it('rethrows outside the request instead of counting a backend failure', async () => {
+    const clock = new ManualClock();
+    const scheduler = new ManualScheduler(clock);
+    const failures: boolean[] = [];
+    const thrown: unknown[] = [];
+    const original = globalThis.queueMicrotask;
+    globalThis.queueMicrotask = (callback) => {
+      try {
+        callback();
+      } catch (error) {
+        thrown.push(error);
+      }
+    };
+    try {
+      new LivePoller<number>({
+        task: () => Promise.resolve(1),
+        onData: () => {
+          throw new Error('render bug');
+        },
+        onFailure: (tripped) => failures.push(tripped),
+        onAway: null,
+        isRetryable,
+        intervalMs: INTERVAL,
+        minGapMs: MIN_GAP,
+        schedule: scheduler.schedule,
+        lifecycle: new FakeLifecycle(),
+        clock,
+        breaker: new CircuitBreaker({
+          store: new MemoryStore(),
+          clock,
+          key: 'k',
+          maxFailures: 1,
+          cooldownMs: 1,
+        }),
+      }).start();
+      await flush();
+    } finally {
+      globalThis.queueMicrotask = original;
+    }
+    expect(failures).toEqual([]);
+    expect(thrown).toEqual([new Error('render bug')]);
+    expect(scheduler.pendingDelays()).toEqual([INTERVAL]);
+  });
+});
+
+
+################################################################################
+# FILE: src/client/livePoller.ts
+################################################################################
+
+--- METADATA ---
+  File name:             livePoller.ts
+  Relative path:         src/client/livePoller.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/client/livePoller.ts
+  Size:                  4.6 KiB (4773 bytes)
+  Last modified:         2026-09-23 18:42:28.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313718
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               e3c3636eb1af317b70f48839779400ea1b1aceb67c01d82328c70f5ab1e3fed6
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+import type { CircuitBreaker, Clock } from './circuitBreaker';
+
+/** Schedules a callback; returns a function that cancels it. */
+export type Schedule = (callback: () => void, delayMs: number) => () => void;
+
+/** The page lifecycle signals the poller reacts to; injected for tests. */
+export interface PageLifecycle {
+  isVisible(): boolean;
+  onVisibilityChange(listener: () => void): void;
+  /** The page is being unloaded or frozen into the back/forward cache. */
+  onPageHide(listener: () => void): void;
+  /** The page was shown; `restored` is true for a back/forward-cache restore. */
+  onPageShow(listener: (restored: boolean) => void): void;
+}
+
+export interface PollContext {
+  /**
+   * True until a request for this page view has succeeded — so a heartbeat
+   * that failed is retried as the view it was meant to count.
+   */
+  readonly newView: boolean;
+}
+
+export interface LivePollerOptions<T> {
+  readonly task: (context: PollContext) => Promise<T>;
+  readonly onData: (value: T) => void;
+  /** Called after every failure; `tripped` means polling has stopped. */
+  readonly onFailure: (tripped: boolean) => void;
+  /** Called when the tab stops being "here" (hidden or unloading), or null. */
+  readonly onAway: (() => void) | null;
+  readonly isRetryable: (error: unknown) => boolean;
+  readonly intervalMs: number;
+  readonly minGapMs: number;
+  readonly schedule: Schedule;
+  readonly lifecycle: PageLifecycle;
+  readonly clock: Clock;
+  readonly breaker: CircuitBreaker;
+}
+
+/**
+ * Polls only while the tab is visible, one request at a time, and gives up
+ * through the shared circuit breaker (ADR 0025). Nothing here can block the
+ * page: the task is always async, every failure is caught, and the only
+ * outputs are the two callbacks.
+ */
+export class LivePoller<T> {
+  readonly #options: LivePollerOptions<T>;
+  #cancel: (() => void) | null = null;
+  #inFlight = false;
+  #stopped = false;
+  #newView = true;
+  #lastStartedAt = Number.NEGATIVE_INFINITY;
+
+  constructor(options: LivePollerOptions<T>) {
+    this.#options = options;
+  }
+
+  start(): void {
+    const { lifecycle } = this.#options;
+    if (this.#options.breaker.isOpen()) {
+      this.#stop();
+      this.#options.onFailure(true);
+      return;
+    }
+    lifecycle.onVisibilityChange(() => {
+      if (lifecycle.isVisible()) {
+        this.#resume();
+      } else {
+        this.#away();
+      }
+    });
+    lifecycle.onPageHide(() => {
+      this.#away();
+    });
+    lifecycle.onPageShow((restored) => {
+      if (restored) {
+        // Coming back from the back/forward cache is a fresh view.
+        this.#newView = true;
+        this.#resume();
+      }
+    });
+    if (lifecycle.isVisible()) {
+      void this.#tick();
+    }
+  }
+
+  /** Stops for good; used when the breaker trips. */
+  #stop(): void {
+    this.#stopped = true;
+    this.#clearTimer();
+  }
+
+  #clearTimer(): void {
+    this.#cancel?.();
+    this.#cancel = null;
+  }
+
+  #away(): void {
+    this.#clearTimer();
+    if (!this.#stopped) {
+      this.#options.onAway?.();
+    }
+  }
+
+  #resume(): void {
+    if (this.#stopped || this.#inFlight || this.#cancel !== null) {
+      return;
+    }
+    const sinceLast = this.#options.clock.now() - this.#lastStartedAt;
+    const wait = Math.max(0, this.#options.minGapMs - sinceLast);
+    this.#scheduleIn(wait);
+  }
+
+  #scheduleIn(delayMs: number): void {
+    this.#clearTimer();
+    this.#cancel = this.#options.schedule(() => {
+      this.#cancel = null;
+      void this.#tick();
+    }, delayMs);
+  }
+
+  /**
+   * A rendering bug must not look like a backend failure (and trip the
+   * breaker), nor be swallowed: rethrow it outside the request's promise so
+   * it surfaces as an ordinary uncaught error.
+   */
+  #deliver(value: T): void {
+    try {
+      this.#options.onData(value);
+    } catch (error) {
+      queueMicrotask(() => {
+        throw error;
+      });
+    }
+  }
+
+  async #tick(): Promise<void> {
+    const { breaker, lifecycle } = this.#options;
+    if (this.#stopped || this.#inFlight || !lifecycle.isVisible()) {
+      return;
+    }
+    if (breaker.isOpen()) {
+      this.#stop();
+      this.#options.onFailure(true);
+      return;
+    }
+    this.#inFlight = true;
+    this.#lastStartedAt = this.#options.clock.now();
+    let tripped = false;
+    try {
+      const value = await this.#options.task({ newView: this.#newView });
+      this.#newView = false;
+      breaker.recordSuccess();
+      this.#deliver(value);
+    } catch (error) {
+      tripped = breaker.recordFailure(this.#options.isRetryable(error));
+      if (tripped) {
+        this.#stop();
+      }
+      this.#options.onFailure(tripped);
+    } finally {
+      this.#inFlight = false;
+    }
+    if (!tripped && lifecycle.isVisible()) {
+      this.#scheduleIn(this.#options.intervalMs);
+    }
+  }
+}
+
+
+################################################################################
+# FILE: src/client/liveStatsApi.test.ts
+################################################################################
+
+--- METADATA ---
+  File name:             liveStatsApi.test.ts
+  Relative path:         src/client/liveStatsApi.test.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/client/liveStatsApi.test.ts
+  Size:                  7.3 KiB (7555 bytes)
+  Last modified:         2026-09-23 18:44:02.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313721
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               f8a87dca24e3bc12bea1a15e21a50a5515bffe01eaf8b55dafa8b985458bc2d0
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+import { describe, expect, it } from 'vitest';
+import { REQUEST_TIMEOUT_MS } from './liveStats';
+import { isRetryable, LiveStatsApi, LiveStatsRequestError, type FetchLike } from './liveStatsApi';
+
+interface Call {
+  readonly url: string;
+  readonly init: RequestInit;
+}
+
+const summaryJson = { siteNow: 2, siteViews1h: 3, siteViews24h: 4, pageNow: 1, pageViews24h: 5 };
+
+function setup(respond: (call: Call) => Response | Promise<Response>) {
+  const calls: Call[] = [];
+  const timeouts: number[] = [];
+  const signal = new AbortController().signal;
+  const fetch: FetchLike = (url, init) => {
+    const call = { url, init };
+    calls.push(call);
+    return Promise.resolve(respond(call));
+  };
+  const api = new LiveStatsApi({
+    projectUrl: 'https://ref.supabase.co',
+    publishableKey: 'sb_publishable_k',
+    fetch,
+    timeoutSignal: (ms) => {
+      timeouts.push(ms);
+      return signal;
+    },
+  });
+  return { api, calls, timeouts, signal };
+}
+
+const json = (body: unknown, status = 200): Response =>
+  new Response(JSON.stringify(body), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+/** The JSON body a call sent (every POST here sends a JSON string). */
+function bodyOf(call: Call | undefined): unknown {
+  const body = call?.init.body;
+  if (typeof body !== 'string') {
+    throw new Error('expected a JSON string body');
+  }
+  return JSON.parse(body);
+}
+
+function headersOf(call: Call | undefined): Record<string, string> {
+  return (call?.init.headers ?? {}) as Record<string, string>;
+}
+
+describe('LiveStatsApi requests', () => {
+  it('heartbeat POSTs the viewer, path and view flag to kp_heartbeat', async () => {
+    const { api, calls } = setup(() => json(summaryJson));
+    await expect(api.heartbeat('uuid-1', '/blog/a/', true)).resolves.toEqual(summaryJson);
+    const [call] = calls;
+    expect(call?.url).toBe('https://ref.supabase.co/rest/v1/rpc/kp_heartbeat');
+    expect(call?.init.method).toBe('POST');
+    expect(bodyOf(call)).toEqual({
+      p_viewer: 'uuid-1',
+      p_path: '/blog/a/',
+      p_new_view: true,
+    });
+    expect(headersOf(call)['Content-Type']).toBe('application/json');
+  });
+
+  it('summary GETs kp_summary with the path URL-encoded', async () => {
+    const { api, calls } = setup(() => json(summaryJson));
+    await api.summary('/blog/a/');
+    expect(calls[0]?.url).toBe(
+      'https://ref.supabase.co/rest/v1/rpc/kp_summary?p_path=%2Fblog%2Fa%2F',
+    );
+    expect(calls[0]?.init.method).toBe('GET');
+    expect(calls[0]?.init.body).toBeUndefined();
+    expect(headersOf(calls[0])['Content-Type']).toBeUndefined();
+  });
+
+  it('board GETs kp_board and validates the rows', async () => {
+    const { api, calls } = setup(() =>
+      json({
+        siteNow: 1,
+        siteViews1h: 1,
+        siteViews24h: 1,
+        pages: [{ path: '/a/', now: 1, views1h: 1, views24h: 1 }],
+      }),
+    );
+    const board = await api.board();
+    expect(calls[0]?.url).toBe('https://ref.supabase.co/rest/v1/rpc/kp_board');
+    expect(board.pages).toHaveLength(1);
+  });
+
+  it('sends the publishable key as apikey only — never as a bearer token', async () => {
+    const { api, calls } = setup(() => json(summaryJson));
+    await api.summary('/');
+    const headers = headersOf(calls[0]);
+    expect(headers.apikey).toBe('sb_publishable_k');
+    expect(headers.Authorization).toBeUndefined();
+    expect(headers.Accept).toBe('application/json');
+  });
+
+  it('sends no cookies, no referrer and bypasses the HTTP cache', async () => {
+    const { api, calls } = setup(() => json(summaryJson));
+    await api.summary('/');
+    expect(calls[0]?.init.credentials).toBe('omit');
+    expect(calls[0]?.init.referrerPolicy).toBe('no-referrer');
+    expect(calls[0]?.init.cache).toBe('no-store');
+  });
+
+  it('bounds every request with the default timeout signal', async () => {
+    const { api, calls, timeouts, signal } = setup(() => json(summaryJson));
+    await api.summary('/');
+    expect(timeouts).toEqual([REQUEST_TIMEOUT_MS]);
+    expect(calls[0]?.init.signal).toBe(signal);
+  });
+
+  it('honours a custom timeout', async () => {
+    const timeouts: number[] = [];
+    const api = new LiveStatsApi({
+      projectUrl: 'https://ref.supabase.co',
+      publishableKey: 'k',
+      fetch: () => Promise.resolve(json(summaryJson)),
+      timeoutSignal: (ms) => {
+        timeouts.push(ms);
+        return new AbortController().signal;
+      },
+      timeoutMs: 1234,
+    });
+    await api.summary('/');
+    expect(timeouts).toEqual([1234]);
+  });
+});
+
+describe('LiveStatsApi.leave', () => {
+  it('POSTs kp_leave with keepalive so it can outlive the page', async () => {
+    const { api, calls } = setup(() => new Response(null, { status: 204 }));
+    await api.leave('uuid-1');
+    expect(calls[0]?.url).toBe('https://ref.supabase.co/rest/v1/rpc/kp_leave');
+    expect(calls[0]?.init.keepalive).toBe(true);
+    expect(bodyOf(calls[0])).toEqual({ p_viewer: 'uuid-1' });
+  });
+
+  it('never rejects, whatever happens', async () => {
+    const failing = setup(() => {
+      throw new TypeError('Failed to fetch');
+    });
+    await expect(failing.api.leave('x')).resolves.toBeUndefined();
+    const erroring = setup(() => json({}, 500));
+    await expect(erroring.api.leave('x')).resolves.toBeUndefined();
+  });
+
+  it('is the only call that uses keepalive', async () => {
+    const { api, calls } = setup(() => json(summaryJson));
+    await api.heartbeat('u', '/', false);
+    expect(calls[0]?.init.keepalive).toBeUndefined();
+  });
+});
+
+describe('LiveStatsApi errors', () => {
+  async function failureOf(response: Response): Promise<LiveStatsRequestError> {
+    const { api } = setup(() => response);
+    try {
+      await api.summary('/');
+    } catch (error) {
+      if (error instanceof LiveStatsRequestError) {
+        return error;
+      }
+      throw error;
+    }
+    throw new Error('expected a failure');
+  }
+
+  it.each([500, 502, 503, 504, 540, 408])('HTTP %i is retryable', async (status) => {
+    const error = await failureOf(json({}, status));
+    expect(error.status).toBe(status);
+    expect(error.retryable).toBe(true);
+    expect(isRetryable(error)).toBe(true);
+  });
+
+  // 400 invalid input, 401/403 bad or revoked key, 402 free-tier quota
+  // exhausted, 404 functions missing (never applied, or torn down), 405 a
+  // write over GET, 429 rate limited: none of these fixes itself in 30 s.
+  it.each([400, 401, 402, 403, 404, 405, 429])('HTTP %i is not retryable', async (status) => {
+    const error = await failureOf(json({ code: 'x' }, status));
+    expect(error.retryable).toBe(false);
+    expect(isRetryable(error)).toBe(false);
+  });
+
+  it('treats a non-JSON body as a permanent failure', async () => {
+    const error = await failureOf(new Response('<html>oops</html>', { status: 200 }));
+    expect(error.retryable).toBe(false);
+    expect(error.message).toContain('not JSON');
+  });
+
+  it('treats a wrong-shaped body as a permanent failure', async () => {
+    const error = await failureOf(json({ siteNow: 'lots' }));
+    expect(error.retryable).toBe(false);
+    expect(error.message).toContain('unexpected response shape');
+  });
+
+  it('lets transport errors through, which count as retryable', async () => {
+    const { api } = setup(() => {
+      throw new TypeError('Failed to fetch');
+    });
+    const error: unknown = await api.summary('/').catch((caught: unknown) => caught);
+    expect(error).toBeInstanceOf(TypeError);
+    expect(isRetryable(error)).toBe(true);
+    expect(isRetryable(new DOMException('timed out', 'TimeoutError'))).toBe(true);
+  });
+});
+
+
+################################################################################
+# FILE: src/client/liveStatsApi.ts
+################################################################################
+
+--- METADATA ---
+  File name:             liveStatsApi.ts
+  Relative path:         src/client/liveStatsApi.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/client/liveStatsApi.ts
+  Size:                  5.3 KiB (5486 bytes)
+  Last modified:         2026-09-23 18:42:31.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313722
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               77a3775d1b987e0a74d3378e8ed08882860c74707f97a23fd61fb35e72d0e437
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+import {
+  parseBoard,
+  parseSummary,
+  REQUEST_TIMEOUT_MS,
+  type LiveBoard,
+  type LiveSummary,
+} from './liveStats';
+
+/** The slice of `fetch` the client needs; tests pass a fake. */
+export type FetchLike = (url: string, init: RequestInit) => Promise<Response>;
+
+/** Builds an abort signal that fires after `ms`; tests pass a fake. */
+export type TimeoutSignalFactory = (ms: number) => AbortSignal;
+
+export interface LiveStatsApiOptions {
+  /** `https://<ref>.supabase.co`, no trailing slash. */
+  readonly projectUrl: string;
+  /** The publishable key — sent as `apikey`, never as a bearer token. */
+  readonly publishableKey: string;
+  readonly fetch: FetchLike;
+  readonly timeoutSignal: TimeoutSignalFactory;
+  readonly timeoutMs?: number;
+}
+
+/**
+ * A failed request. `retryable` separates "try again on the next tick"
+ * (network errors, timeouts, 5xx — e.g. a paused or restarting project) from
+ * "stop now" (4xx — a bad or revoked key, missing functions, the free tier's
+ * 402 once a quota is exhausted, or a response we cannot parse).
+ */
+export class LiveStatsRequestError extends Error {
+  override readonly name = 'LiveStatsRequestError';
+  readonly status: number | null;
+  readonly retryable: boolean;
+
+  constructor(message: string, status: number | null, retryable: boolean) {
+    super(message);
+    this.status = status;
+    this.retryable = retryable;
+  }
+}
+
+/** Anything that is not a classified request error is a transport failure. */
+export function isRetryable(error: unknown): boolean {
+  return error instanceof LiveStatsRequestError ? error.retryable : true;
+}
+
+interface RpcCall {
+  readonly method: 'GET' | 'POST';
+  readonly name: string;
+  readonly query?: Readonly<Record<string, string>>;
+  readonly body?: Readonly<Record<string, unknown>>;
+  readonly keepalive?: boolean;
+}
+
+/**
+ * Talks to the four PostgREST functions from `docs/supabase/live-stats.sql`
+ * with nothing but `fetch`: no SDK, no WebSocket, no runtime dependency
+ * (ADR 0022). Reads use GET (the functions are STABLE); writes use POST.
+ */
+export class LiveStatsApi {
+  readonly #base: string;
+  readonly #key: string;
+  readonly #fetch: FetchLike;
+  readonly #timeoutSignal: TimeoutSignalFactory;
+  readonly #timeoutMs: number;
+
+  constructor(options: LiveStatsApiOptions) {
+    this.#base = `${options.projectUrl}/rest/v1/rpc/`;
+    this.#key = options.publishableKey;
+    this.#fetch = options.fetch;
+    this.#timeoutSignal = options.timeoutSignal;
+    this.#timeoutMs = options.timeoutMs ?? REQUEST_TIMEOUT_MS;
+  }
+
+  /** Checks this tab in (counting a view when `newView`); returns the page summary. */
+  async heartbeat(viewerId: string, path: string, newView: boolean): Promise<LiveSummary> {
+    const json = await this.#json({
+      method: 'POST',
+      name: 'kp_heartbeat',
+      body: { p_viewer: viewerId, p_path: path, p_new_view: newView },
+    });
+    return this.#parse(parseSummary, json);
+  }
+
+  /** Reads the page summary without counting anything. */
+  async summary(path: string): Promise<LiveSummary> {
+    const json = await this.#json({ method: 'GET', name: 'kp_summary', query: { p_path: path } });
+    return this.#parse(parseSummary, json);
+  }
+
+  /** Reads the `/live/` board. */
+  async board(): Promise<LiveBoard> {
+    const json = await this.#json({ method: 'GET', name: 'kp_board' });
+    return this.#parse(parseBoard, json);
+  }
+
+  /**
+   * Tells the server this tab is gone. Fire-and-forget: it never rejects, and
+   * `keepalive` lets it outlive the page. If it is lost anyway, the tab simply
+   * stops counting 90 s after its last heartbeat.
+   */
+  async leave(viewerId: string): Promise<void> {
+    try {
+      await this.#send({
+        method: 'POST',
+        name: 'kp_leave',
+        body: { p_viewer: viewerId },
+        keepalive: true,
+      });
+    } catch {
+      // Best effort by design.
+    }
+  }
+
+  #parse<T>(parser: (value: unknown) => T, json: unknown): T {
+    try {
+      return parser(json);
+    } catch (error) {
+      throw new LiveStatsRequestError(
+        `unexpected response shape: ${error instanceof Error ? error.message : 'unknown'}`,
+        null,
+        false,
+      );
+    }
+  }
+
+  async #json(call: RpcCall): Promise<unknown> {
+    const response = await this.#send(call);
+    try {
+      return (await response.json()) as unknown;
+    } catch {
+      throw new LiveStatsRequestError(
+        `${call.name}: response was not JSON`,
+        response.status,
+        false,
+      );
+    }
+  }
+
+  async #send(call: RpcCall): Promise<Response> {
+    const query = call.query === undefined ? '' : `?${new URLSearchParams(call.query).toString()}`;
+    const headers: Record<string, string> = { apikey: this.#key, Accept: 'application/json' };
+    const init: RequestInit = {
+      method: call.method,
+      headers,
+      cache: 'no-store',
+      credentials: 'omit',
+      referrerPolicy: 'no-referrer',
+      signal: this.#timeoutSignal(this.#timeoutMs),
+    };
+    if (call.body !== undefined) {
+      headers['Content-Type'] = 'application/json';
+      init.body = JSON.stringify(call.body);
+    }
+    if (call.keepalive === true) {
+      init.keepalive = true;
+    }
+    const response = await this.#fetch(`${this.#base}${call.name}${query}`, init);
+    if (!response.ok) {
+      throw new LiveStatsRequestError(
+        `${call.name}: HTTP ${String(response.status)}`,
+        response.status,
+        response.status >= 500 || response.status === 408,
+      );
+    }
+    return response;
+  }
+}
+
+
+################################################################################
+# FILE: src/client/liveStatsElements.ts
+################################################################################
+
+--- METADATA ---
+  File name:             liveStatsElements.ts
+  Relative path:         src/client/liveStatsElements.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/client/liveStatsElements.ts
+  Size:                  6.2 KiB (6448 bytes)
+  Last modified:         2026-09-23 18:40:15.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313723
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               f94109d3659e2b0b842155a3c73a6bbf1f29fcda1e03420795fdf6e6fd58f6a9
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+/**
+ * Upgrades the server-rendered `<kp-live-stats>` (footer) and
+ * `<kp-live-board>` (`/live/`) with behaviour. This is thin DOM glue: every
+ * decision — tracking policy, polling, back-off, validation, formatting — is
+ * made by the unit-tested modules it wires together (ADRs 0022–0025).
+ */
+import {
+  browserClock,
+  browserLifecycle,
+  browserSchedule,
+  browserStore,
+  sendsGlobalPrivacyControl,
+} from './browser';
+import { CircuitBreaker } from './circuitBreaker';
+import { LivePoller } from './livePoller';
+import {
+  BOARD_INTERVAL_MS,
+  boardRowViews,
+  BREAKER_COOLDOWN_MS,
+  BREAKER_KEY,
+  chooseTrackingMode,
+  describeSummary,
+  describeTotals,
+  HEARTBEAT_INTERVAL_MS,
+  isSafePath,
+  makeCountFormatter,
+  MAX_CONSECUTIVE_FAILURES,
+  MIN_POLL_GAP_MS,
+  type LiveBoard,
+} from './liveStats';
+import { isRetryable, LiveStatsApi } from './liveStatsApi';
+
+/** One breaker per page, shared by every element, persisted across pages. */
+const breaker = new CircuitBreaker({
+  store: browserStore,
+  clock: browserClock,
+  key: BREAKER_KEY,
+  maxFailures: MAX_CONSECUTIVE_FAILURES,
+  cooldownMs: BREAKER_COOLDOWN_MS,
+});
+
+const pollerEnvironment = {
+  isRetryable,
+  minGapMs: MIN_POLL_GAP_MS,
+  schedule: browserSchedule,
+  lifecycle: browserLifecycle,
+  clock: browserClock,
+  breaker,
+} as const;
+
+interface Connection {
+  readonly api: LiveStatsApi;
+  readonly siteOrigin: string;
+  readonly locale: string;
+}
+
+function readConnection(element: HTMLElement): Connection | null {
+  const { projectUrl, publishableKey, siteOrigin, locale } = element.dataset;
+  if (
+    projectUrl === undefined ||
+    publishableKey === undefined ||
+    publishableKey === '' ||
+    siteOrigin === undefined
+  ) {
+    return null;
+  }
+  return {
+    api: new LiveStatsApi({
+      projectUrl,
+      publishableKey,
+      fetch: (url, init) => fetch(url, init),
+      timeoutSignal: (ms) => AbortSignal.timeout(ms),
+    }),
+    siteOrigin,
+    locale: locale ?? 'en',
+  };
+}
+
+class LiveStatsElement extends HTMLElement {
+  connectedCallback(): void {
+    const panel = this.shadowRoot?.querySelector('p');
+    const text = this.shadowRoot?.querySelector('.text');
+    const connection = readConnection(this);
+    const path = this.dataset.path;
+    if (!panel || !text || connection === null || !isSafePath(path)) {
+      return;
+    }
+    const { api } = connection;
+    const format = makeCountFormatter(connection.locale);
+    const mode = chooseTrackingMode({
+      pageOrigin: location.origin,
+      siteOrigin: connection.siteOrigin,
+      webdriver: navigator.webdriver,
+      globalPrivacyControl: sendsGlobalPrivacyControl(),
+    });
+    // Lives only in this page's memory: never stored, never reused (ADR 0023).
+    const viewerId = crypto.randomUUID();
+
+    new LivePoller({
+      ...pollerEnvironment,
+      intervalMs: HEARTBEAT_INTERVAL_MS,
+      task: ({ newView }) =>
+        mode === 'track' ? api.heartbeat(viewerId, path, newView) : api.summary(path),
+      onData: (summary) => {
+        text.textContent = describeSummary(summary, format);
+        panel.hidden = false;
+      },
+      onFailure: () => {
+        panel.hidden = true;
+      },
+      onAway:
+        mode === 'track'
+          ? () => {
+              void api.leave(viewerId);
+            }
+          : null,
+    }).start();
+  }
+}
+
+class LiveBoardElement extends HTMLElement {
+  connectedCallback(): void {
+    const root = this.shadowRoot;
+    const status = root?.querySelector<HTMLElement>('.status');
+    const board = root?.querySelector<HTMLElement>('.board');
+    const tbody = root?.querySelector('tbody');
+    const values = root ? [...root.querySelectorAll('dd')] : [];
+    const updated = root?.querySelector('time');
+    const connection = readConnection(this);
+    if (!status || !board || !tbody || !updated || connection === null) {
+      return;
+    }
+    const format = makeCountFormatter(connection.locale);
+    const clock = new Intl.DateTimeFormat(connection.locale, { timeStyle: 'medium' });
+    let hasData = false;
+
+    const setStatus = (message: string | null): void => {
+      // Only write on change, so the live region announces transitions only.
+      const next = message ?? '';
+      if (status.textContent !== next) {
+        status.textContent = next;
+      }
+      status.hidden = message === null;
+    };
+
+    const render = (data: LiveBoard): void => {
+      describeTotals(data, format).forEach(([, value], index) => {
+        const cell = values[index];
+        if (cell) {
+          cell.textContent = value;
+        }
+      });
+      const rows = boardRowViews(data, format).map((row) => {
+        const tr = document.createElement('tr');
+        const page = document.createElement('td');
+        const link = document.createElement('a');
+        link.href = row.path;
+        link.textContent = row.path;
+        page.append(link);
+        tr.append(page);
+        for (const value of row.cells) {
+          const td = document.createElement('td');
+          td.textContent = value;
+          tr.append(td);
+        }
+        return tr;
+      });
+      if (rows.length === 0) {
+        const tr = document.createElement('tr');
+        const td = document.createElement('td');
+        td.colSpan = 4;
+        td.className = 'empty';
+        td.textContent = 'No page views in the last 24 hours yet.';
+        tr.append(td);
+        rows.push(tr);
+      }
+      tbody.replaceChildren(...rows);
+      const now = new Date();
+      updated.dateTime = now.toISOString();
+      updated.textContent = clock.format(now);
+    };
+
+    new LivePoller({
+      ...pollerEnvironment,
+      intervalMs: BOARD_INTERVAL_MS,
+      task: () => connection.api.board(),
+      onData: (data) => {
+        render(data);
+        hasData = true;
+        board.hidden = false;
+        setStatus(null);
+      },
+      onFailure: (tripped) => {
+        if (tripped) {
+          board.hidden = true;
+          setStatus(
+            'Live statistics are unavailable right now. The rest of the site is unaffected.',
+          );
+        } else {
+          setStatus(hasData ? 'Reconnecting…' : 'Still trying to reach live statistics…');
+        }
+      },
+      onAway: null,
+    }).start();
+  }
+}
+
+/** Registers both elements; safe to call on pages that have neither. */
+export function defineLiveStatsElements(): void {
+  customElements.define('kp-live-stats', LiveStatsElement);
+  customElements.define('kp-live-board', LiveBoardElement);
+}
+
+
+################################################################################
+# FILE: src/client/liveStats.test.ts
+################################################################################
+
+--- METADATA ---
+  File name:             liveStats.test.ts
+  Relative path:         src/client/liveStats.test.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/client/liveStats.test.ts
+  Size:                  5.9 KiB (6119 bytes)
+  Last modified:         2026-09-23 18:40:55.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313719
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               7d65c4d4aab9b1e25d940db97248286dc1ea94aa4090d018677b53865bdcbb16
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+import { describe, expect, it } from 'vitest';
+import {
+  boardRowViews,
+  chooseTrackingMode,
+  describeSummary,
+  describeTotals,
+  HEARTBEAT_INTERVAL_MS,
+  isSafePath,
+  LiveStatsShapeError,
+  makeCountFormatter,
+  MIN_POLL_GAP_MS,
+  parseBoard,
+  parseSummary,
+  REQUEST_TIMEOUT_MS,
+  type LiveSummary,
+} from './liveStats';
+
+const summary: LiveSummary = {
+  siteNow: 3,
+  siteViews1h: 12,
+  siteViews24h: 1234,
+  pageNow: 1,
+  pageViews24h: 40,
+};
+
+const format = makeCountFormatter('en');
+
+describe('timing constants', () => {
+  it('keep a tab counted across two missed heartbeats (server cutoff is 90 s)', () => {
+    expect(HEARTBEAT_INTERVAL_MS * 3).toBe(90_000);
+  });
+
+  it('never let a request outlive the gap between polls', () => {
+    expect(REQUEST_TIMEOUT_MS).toBeLessThanOrEqual(MIN_POLL_GAP_MS);
+  });
+});
+
+describe('isSafePath', () => {
+  it.each(['/', '/blog/2026-03-22-good-morning/', '/404.html', '/tags/a_b~c.d/'])(
+    'accepts %s',
+    (path) => {
+      expect(isSafePath(path)).toBe(true);
+    },
+  );
+
+  it.each([
+    '',
+    'blog/',
+    '//evil.example/',
+    'javascript:alert(1)',
+    '/a b/',
+    '/<script>/',
+    '/über/',
+    '/?q=1',
+    '/#x',
+    `/${'a'.repeat(200)}`,
+  ])('rejects %j', (path) => {
+    expect(isSafePath(path)).toBe(false);
+  });
+
+  it('accepts exactly 200 characters, like the SQL rule', () => {
+    expect(isSafePath(`/${'a'.repeat(199)}`)).toBe(true);
+  });
+
+  it('rejects non-strings', () => {
+    expect(isSafePath(undefined)).toBe(false);
+    expect(isSafePath(42)).toBe(false);
+  });
+});
+
+describe('parseSummary', () => {
+  it('accepts the documented shape and ignores extra keys', () => {
+    expect(parseSummary({ ...summary, extra: 'ignored' })).toEqual(summary);
+  });
+
+  it.each([
+    ['null', null],
+    ['an array', [summary]],
+    ['a string', 'nope'],
+    ['a missing field', { ...summary, pageNow: undefined }],
+    ['a negative count', { ...summary, siteNow: -1 }],
+    ['a fractional count', { ...summary, siteNow: 1.5 }],
+    ['a numeric string', { ...summary, siteNow: '3' }],
+    ['an unsafe integer', { ...summary, siteNow: 2 ** 60 }],
+  ])('rejects %s', (_label, value) => {
+    expect(() => parseSummary(value)).toThrow(LiveStatsShapeError);
+  });
+});
+
+describe('parseBoard', () => {
+  const row = { path: '/blog/a/', now: 2, views1h: 5, views24h: 9 };
+  const totals = { siteNow: 2, siteViews1h: 5, siteViews24h: 9 };
+
+  it('accepts the documented shape', () => {
+    expect(parseBoard({ ...totals, pages: [row] })).toEqual({ ...totals, pages: [row] });
+  });
+
+  it('accepts an empty board', () => {
+    expect(parseBoard({ ...totals, pages: [] }).pages).toEqual([]);
+  });
+
+  it('drops rows whose path could not safely become a link', () => {
+    const board = parseBoard({
+      ...totals,
+      pages: [{ ...row, path: 'javascript:alert(1)' }, row, { ...row, path: '//x/' }],
+    });
+    expect(board.pages).toEqual([row]);
+  });
+
+  it('keeps the server order', () => {
+    const second = { ...row, path: '/b/' };
+    expect(parseBoard({ ...totals, pages: [second, row] }).pages.map((r) => r.path)).toEqual([
+      '/b/',
+      '/blog/a/',
+    ]);
+  });
+
+  it.each([
+    ['a missing pages array', totals],
+    ['pages that is not an array', { ...totals, pages: {} }],
+    ['a row that is not an object', { ...totals, pages: [7] }],
+    ['a row with a bad count', { ...totals, pages: [{ ...row, now: -2 }] }],
+    ['missing totals', { pages: [] }],
+  ])('rejects %s', (_label, value) => {
+    expect(() => parseBoard(value)).toThrow(LiveStatsShapeError);
+  });
+});
+
+describe('chooseTrackingMode', () => {
+  const production = {
+    pageOrigin: 'https://kphoto.github.io',
+    siteOrigin: 'https://kphoto.github.io',
+    webdriver: false,
+    globalPrivacyControl: false,
+  };
+
+  it('tracks a real visitor on the production origin', () => {
+    expect(chooseTrackingMode(production)).toBe('track');
+  });
+
+  it('only observes on any other origin (dev server, preview, forks)', () => {
+    expect(chooseTrackingMode({ ...production, pageOrigin: 'http://localhost:5173' })).toBe(
+      'observe',
+    );
+    expect(chooseTrackingMode({ ...production, pageOrigin: 'https://kphoto.github.io.evil' })).toBe(
+      'observe',
+    );
+  });
+
+  it('only observes under automation', () => {
+    expect(chooseTrackingMode({ ...production, webdriver: true })).toBe('observe');
+  });
+
+  it('honours Global Privacy Control', () => {
+    expect(chooseTrackingMode({ ...production, globalPrivacyControl: true })).toBe('observe');
+  });
+});
+
+describe('makeCountFormatter', () => {
+  it('groups thousands for the locale', () => {
+    expect(format(1234567)).toBe('1,234,567');
+    expect(makeCountFormatter('de')(1234567)).toBe('1.234.567');
+  });
+});
+
+describe('describeSummary', () => {
+  it('reads naturally with plural counts', () => {
+    expect(describeSummary(summary, format)).toBe(
+      '3 readers on the site right now, 1 on this page · 1,234 page views in the last 24 hours',
+    );
+  });
+
+  it('uses the singular for exactly one', () => {
+    const text = describeSummary({ ...summary, siteNow: 1, siteViews24h: 1 }, format);
+    expect(text).toContain('1 reader on the site');
+    expect(text).toContain('1 page view in the last');
+  });
+
+  it('uses the plural for zero', () => {
+    const text = describeSummary({ ...summary, siteNow: 0, siteViews24h: 0 }, format);
+    expect(text).toContain('0 readers');
+    expect(text).toContain('0 page views');
+  });
+});
+
+describe('describeTotals', () => {
+  it('labels the totals in display order', () => {
+    expect(describeTotals(summary, format)).toEqual([
+      ['Here right now', '3'],
+      ['Views, last hour', '12'],
+      ['Views, last 24 hours', '1,234'],
+    ]);
+  });
+});
+
+describe('boardRowViews', () => {
+  it('formats every cell and keeps the path for the link', () => {
+    expect(
+      boardRowViews(
+        {
+          siteNow: 0,
+          siteViews1h: 0,
+          siteViews24h: 0,
+          pages: [{ path: '/a/', now: 1, views1h: 1000, views24h: 20000 }],
+        },
+        format,
+      ),
+    ).toEqual([{ path: '/a/', cells: ['1', '1,000', '20,000'] }]);
+  });
+});
+
+
+################################################################################
+# FILE: src/client/liveStats.ts
+################################################################################
+
+--- METADATA ---
+  File name:             liveStats.ts
+  Relative path:         src/client/liveStats.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/client/liveStats.ts
+  Size:                  7.0 KiB (7183 bytes)
+  Last modified:         2026-09-23 18:33:54.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313720
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               c9e7bacaf35e53e8a1b60eab154f867d15ac802b238789d0ccc3c59971e4e9ec
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+/**
+ * Live statistics — the pure part (ADRs 0022–0025). Types, response
+ * validation, the tracking policy and text formatting live here with no DOM,
+ * no network and no clock, so every rule is unit-tested directly.
+ */
+
+/**
+ * How often a visible tab checks in. The database counts a tab as "here now"
+ * for 90 s after its last check-in (`kphoto_stats.active_cutoff()` in
+ * `docs/supabase/live-stats.sql`) — three missed heartbeats. Keep in sync.
+ */
+export const HEARTBEAT_INTERVAL_MS = 30_000;
+
+/** How often `/live/` refreshes its board. */
+export const BOARD_INTERVAL_MS = 20_000;
+
+/** Every request is abandoned after this long; the page never waits on it. */
+export const REQUEST_TIMEOUT_MS = 5_000;
+
+/** Consecutive failures that open the circuit breaker (ADR 0025). */
+export const MAX_CONSECUTIVE_FAILURES = 3;
+
+/** How long an open breaker keeps every page on this browser from trying. */
+export const BREAKER_COOLDOWN_MS = 10 * 60_000;
+
+/** Returning to a tab never re-polls faster than this. */
+export const MIN_POLL_GAP_MS = 5_000;
+
+/** localStorage key holding the breaker's "retry after" epoch milliseconds. */
+export const BREAKER_KEY = 'kphoto:live-stats:retry-after:v1';
+
+export interface LiveSiteTotals {
+  /** Tabs anywhere on the site that checked in within the last 90 s. */
+  readonly siteNow: number;
+  /** Page views across the site in the rolling last hour. */
+  readonly siteViews1h: number;
+  /** Page views across the site in the rolling last 24 hours. */
+  readonly siteViews24h: number;
+}
+
+export interface LiveSummary extends LiveSiteTotals {
+  /** Tabs on this page that checked in within the last 90 s. */
+  readonly pageNow: number;
+  /** Views of this page in the rolling last 24 hours. */
+  readonly pageViews24h: number;
+}
+
+export interface LivePageRow {
+  readonly path: string;
+  readonly now: number;
+  readonly views1h: number;
+  readonly views24h: number;
+}
+
+export interface LiveBoard extends LiveSiteTotals {
+  /** The busiest pages, already ordered by the database. */
+  readonly pages: readonly LivePageRow[];
+}
+
+/** Raised when a response does not have the documented shape. */
+export class LiveStatsShapeError extends Error {
+  override readonly name = 'LiveStatsShapeError';
+}
+
+/**
+ * The same rule as `kphoto_stats.valid_path()` in SQL: a site-absolute path
+ * of URL-safe characters, at most 200 long, never protocol-relative. Paths
+ * from the server are re-checked with this before they become links.
+ */
+export function isSafePath(value: unknown): value is string {
+  return (
+    typeof value === 'string' &&
+    value.length <= 200 &&
+    /^\/[A-Za-z0-9._~/-]*$/.test(value) &&
+    !value.startsWith('//')
+  );
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function count(record: Record<string, unknown>, key: string): number {
+  const value = record[key];
+  if (typeof value !== 'number' || !Number.isSafeInteger(value) || value < 0) {
+    throw new LiveStatsShapeError(`expected a non-negative integer "${key}"`);
+  }
+  return value;
+}
+
+function record(value: unknown): Record<string, unknown> {
+  if (!isRecord(value)) {
+    throw new LiveStatsShapeError('expected a JSON object');
+  }
+  return value;
+}
+
+function parseTotals(input: Record<string, unknown>): LiveSiteTotals {
+  return {
+    siteNow: count(input, 'siteNow'),
+    siteViews1h: count(input, 'siteViews1h'),
+    siteViews24h: count(input, 'siteViews24h'),
+  };
+}
+
+/** Validates a `kp_heartbeat` / `kp_summary` response. */
+export function parseSummary(value: unknown): LiveSummary {
+  const input = record(value);
+  return {
+    ...parseTotals(input),
+    pageNow: count(input, 'pageNow'),
+    pageViews24h: count(input, 'pageViews24h'),
+  };
+}
+
+/** Validates a `kp_board` response; rows with unsafe paths are dropped. */
+export function parseBoard(value: unknown): LiveBoard {
+  const input = record(value);
+  const pages = input.pages;
+  if (!Array.isArray(pages)) {
+    throw new LiveStatsShapeError('expected a "pages" array');
+  }
+  const rows: LivePageRow[] = [];
+  for (const entry of pages as unknown[]) {
+    const row = record(entry);
+    if (!isSafePath(row.path)) {
+      continue;
+    }
+    rows.push({
+      path: row.path,
+      now: count(row, 'now'),
+      views1h: count(row, 'views1h'),
+      views24h: count(row, 'views24h'),
+    });
+  }
+  return { ...parseTotals(input), pages: rows };
+}
+
+/**
+ * `track` sends heartbeats (and so counts the visit); `observe` only reads.
+ * A visit counts only on the production origin, and never for automated
+ * browsers or visitors who send Global Privacy Control (ADR 0023).
+ */
+export type TrackingMode = 'track' | 'observe';
+
+export interface TrackingEnvironment {
+  /** `location.origin` of the page being viewed. */
+  readonly pageOrigin: string;
+  /** The deployed site's origin (`siteConfig.url`). */
+  readonly siteOrigin: string;
+  /** `navigator.webdriver` — true under Playwright and other automation. */
+  readonly webdriver: boolean;
+  /** `navigator.globalPrivacyControl`, where the browser exposes it. */
+  readonly globalPrivacyControl: boolean;
+}
+
+export function chooseTrackingMode(environment: TrackingEnvironment): TrackingMode {
+  const production = environment.pageOrigin === environment.siteOrigin;
+  return production && !environment.webdriver && !environment.globalPrivacyControl
+    ? 'track'
+    : 'observe';
+}
+
+/** Formats integers for display; injected so tests pin the locale. */
+export type CountFormatter = (value: number) => string;
+
+export function makeCountFormatter(locale: string): CountFormatter {
+  const format = new Intl.NumberFormat(locale, { maximumFractionDigits: 0 });
+  return (value) => format.format(value);
+}
+
+function plural(value: number, one: string, many: string): string {
+  return value === 1 ? one : many;
+}
+
+/** The footer's one-line summary, e.g. "3 readers on the site right now…". */
+export function describeSummary(summary: LiveSummary, format: CountFormatter): string {
+  const readers = `${format(summary.siteNow)} ${plural(summary.siteNow, 'reader', 'readers')}`;
+  const views = `${format(summary.siteViews24h)} page ${plural(summary.siteViews24h, 'view', 'views')}`;
+  return `${readers} on the site right now, ${format(summary.pageNow)} on this page · ${views} in the last 24 hours`;
+}
+
+/** The `/live/` headline figures, in display order. */
+export function describeTotals(
+  totals: LiveSiteTotals,
+  format: CountFormatter,
+): readonly (readonly [label: string, value: string])[] {
+  return [
+    ['Here right now', format(totals.siteNow)],
+    ['Views, last hour', format(totals.siteViews1h)],
+    ['Views, last 24 hours', format(totals.siteViews24h)],
+  ];
+}
+
+/** One `/live/` table row as display strings (the path doubles as the href). */
+export interface BoardRowView {
+  readonly path: string;
+  readonly cells: readonly [now: string, views1h: string, views24h: string];
+}
+
+export function boardRowViews(board: LiveBoard, format: CountFormatter): BoardRowView[] {
+  return board.pages.map((row) => ({
+    path: row.path,
+    cells: [format(row.now), format(row.views1h), format(row.views24h)],
+  }));
+}
+
+
+################################################################################
+# FILE: src/client/liveTestDoubles.ts
+################################################################################
+
+--- METADATA ---
+  File name:             liveTestDoubles.ts
+  Relative path:         src/client/liveTestDoubles.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/client/liveTestDoubles.ts
+  Size:                  3.0 KiB (3125 bytes)
+  Last modified:         2026-09-23 18:42:14.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313724
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               b680ac3797733a33c58aa4501e08312721a14548bc9b2f5c17c2b70b4fbbf7f2
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+/**
+ * Test doubles for the live-statistics client: a manual clock, a manual
+ * scheduler and a scriptable page lifecycle. Test-only (imported only by
+ * *.test.ts), in the same spirit as src/lib/testFixtures.ts.
+ */
+import type { Clock } from './circuitBreaker';
+import type { PageLifecycle, Schedule } from './livePoller';
+import type { KeyValueStore } from './storage';
+
+export class MemoryStore implements KeyValueStore {
+  readonly values = new Map<string, string>();
+
+  get(key: string): string | null {
+    return this.values.get(key) ?? null;
+  }
+
+  set(key: string, value: string): void {
+    this.values.set(key, value);
+  }
+}
+
+export class ManualClock implements Clock {
+  current: number;
+
+  constructor(start = 1_000_000) {
+    this.current = start;
+  }
+
+  now(): number {
+    return this.current;
+  }
+}
+
+interface Timer {
+  readonly at: number;
+  readonly callback: () => void;
+  cancelled: boolean;
+}
+
+/** Timers fire only when a test advances time. */
+export class ManualScheduler {
+  readonly #clock: ManualClock;
+  readonly #timers: Timer[] = [];
+
+  constructor(clock: ManualClock) {
+    this.#clock = clock;
+  }
+
+  readonly schedule: Schedule = (callback, delayMs) => {
+    const timer: Timer = { at: this.#clock.now() + delayMs, callback, cancelled: false };
+    this.#timers.push(timer);
+    return () => {
+      timer.cancelled = true;
+    };
+  };
+
+  /** Pending (not cancelled, not yet fired) timers' delays from now. */
+  pendingDelays(): number[] {
+    return this.#timers
+      .filter((timer) => !timer.cancelled)
+      .map((timer) => timer.at - this.#clock.now());
+  }
+
+  /** Moves time forward, firing due timers in order. */
+  advance(ms: number): void {
+    const target = this.#clock.now() + ms;
+    for (;;) {
+      const due = this.#timers
+        .filter((timer) => !timer.cancelled && timer.at <= target)
+        .sort((a, b) => a.at - b.at)[0];
+      if (!due) {
+        break;
+      }
+      due.cancelled = true;
+      this.#clock.current = due.at;
+      due.callback();
+    }
+    this.#clock.current = target;
+  }
+}
+
+export class FakeLifecycle implements PageLifecycle {
+  visible = true;
+  readonly #visibility: (() => void)[] = [];
+  readonly #hide: (() => void)[] = [];
+  readonly #show: ((restored: boolean) => void)[] = [];
+
+  isVisible(): boolean {
+    return this.visible;
+  }
+
+  onVisibilityChange(listener: () => void): void {
+    this.#visibility.push(listener);
+  }
+
+  onPageHide(listener: () => void): void {
+    this.#hide.push(listener);
+  }
+
+  onPageShow(listener: (restored: boolean) => void): void {
+    this.#show.push(listener);
+  }
+
+  setVisible(visible: boolean): void {
+    this.visible = visible;
+    for (const listener of this.#visibility) {
+      listener();
+    }
+  }
+
+  hide(): void {
+    for (const listener of this.#hide) {
+      listener();
+    }
+  }
+
+  show(restored: boolean): void {
+    for (const listener of this.#show) {
+      listener(restored);
+    }
+  }
+}
+
+/** Lets pending promise callbacks (the poller's awaited task) run. */
+export async function flush(): Promise<void> {
+  for (let i = 0; i < 5; i += 1) {
+    await Promise.resolve();
+  }
+}
+
+
+################################################################################
+# FILE: src/client/main.ts
+################################################################################
+
+--- METADATA ---
+  File name:             main.ts
+  Relative path:         src/client/main.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/client/main.ts
+  Size:                  1.6 KiB (1738 bytes)
+  Last modified:         2026-09-23 18:45:09.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313693
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               c0f4139171d35a3ad58fccf6878ebb0713c604dc2966759f2d2652041f7a2894
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+import { browserStore } from './browser';
+import { defineLiveStatsElements } from './liveStatsElements';
+import { isThemeName, SettingsStore, type ThemeName } from './storage';
+import { isDarkTheme, ThemeController, type ConcreteTheme } from './theme';
 
 const documentHost = {
   applyTheme(concrete: ConcreteTheme): void {
@@ -11373,6 +14449,11 @@ class ThemePickerElement extends HTMLElement {
 }
 
 customElements.define('kp-theme-picker', ThemePickerElement);
+
+// Optional and never blocking (ADR 0022): with the backend down, or the
+// feature switched off, these elements stay hidden or are absent and nothing
+// else on the page changes.
+defineLiveStatsElements();
 
 export type { ThemeName };
 
@@ -12041,15 +15122,15 @@ ${contact}
   File name:             components.test.ts
   Relative path:         src/components/components.test.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/components/components.test.ts
-  Size:                  6.2 KiB (6394 bytes)
-  Last modified:         2026-07-09 21:53:05.000000000 -0400
+  Size:                  9.3 KiB (9595 bytes)
+  Last modified:         2026-09-23 18:44:19.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354360
+  Inode:                 64313695
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               a928bda37e2a3a93f41525bacecd37afeeba1ea1429604d05cc8e3400d273d4a
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               1ffcffaf65580f190a5a7d719d7cba645d66754cbabd7ac225ac50d31b4a8192
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
 
 --- CONTENT ---
 import { describe, expect, it } from 'vitest';
@@ -12061,22 +15142,38 @@ import { renderSeriesNav } from './seriesNav';
 import { NAV_ITEMS, renderSiteHeader } from './siteHeader';
 import { renderSiteFooter } from './siteFooter';
 import { renderThemePicker } from './themePicker';
-import { siteConfig } from '../lib/config';
+import { siteConfig, type SiteConfig } from '../lib/config';
 import { THEMES } from '../client/storage';
+import { renderLiveBoard, renderLiveStats } from './liveStats';
+
+/** siteConfig with live statistics switched on (the committed key may be empty). */
+const liveConfig: SiteConfig = {
+  ...siteConfig,
+  liveStats: {
+    projectUrl: 'https://example-ref.supabase.co',
+    publishableKey: 'sb_publishable_test"<key>',
+  },
+};
+const offConfig: SiteConfig = {
+  ...siteConfig,
+  liveStats: { ...siteConfig.liveStats, publishableKey: '' },
+};
 
 describe('declarative shadow DOM contract', () => {
   const post = makePost({ slug: '2026-03-22-good-morning', date: '2026-03-22' });
   const renders: [string, string][] = [
     ['kp-theme-picker', renderThemePicker()],
     ['kp-header', renderSiteHeader('/blog/')],
-    ['kp-footer', renderSiteFooter(siteConfig, 2026)],
+    ['kp-footer', renderSiteFooter(siteConfig, 2026, '/')],
+    ['kp-live-stats', renderLiveStats(liveConfig, '/blog/')],
+    ['kp-live-board', renderLiveBoard(liveConfig)],
     ['kp-post-card', renderPostCard(post)],
     ['kp-post-meta', renderPostMeta(post, makeAuthor({ id: 'kphoto-team' }))],
     ['kp-author-card', renderAuthorCard(makeAuthor({ id: 'kphoto-team', name: 'kphoto team' }), 2)],
   ];
 
   it.each(renders)('%s ships an open shadow root with scoped styles', (tag, html) => {
-    expect(html).toContain(`<${tag}>`);
+    expect(html).toMatch(new RegExp(`<${tag}[ >]`));
     expect(html).toContain('<template shadowrootmode="open">');
     expect(html).toContain('<style>');
     expect(html).toContain(`</${tag}>`);
@@ -12113,7 +15210,7 @@ describe('renderSiteHeader', () => {
 });
 
 describe('renderSiteFooter', () => {
-  const html = renderSiteFooter(siteConfig, 2026);
+  const html = renderSiteFooter(siteConfig, 2026, '/');
 
   it('highlights the GitHub repository', () => {
     expect(html).toContain(`href="${siteConfig.repoUrl}"`);
@@ -12125,6 +15222,73 @@ describe('renderSiteFooter', () => {
     expect(html).toContain('AI/LLM assistance');
     expect(html).toContain('href="/feed.xml"');
     expect(html).toContain('© 2026');
+  });
+});
+
+describe('renderSiteFooter with live statistics', () => {
+  it('carries the live line for the current page when switched on', () => {
+    const html = renderSiteFooter(liveConfig, 2026, '/blog/2026-03-22-good-morning/');
+    expect(html).toContain('<kp-live-stats ');
+    expect(html).toContain('data-path="/blog/2026-03-22-good-morning/"');
+  });
+
+  it('is unchanged when switched off', () => {
+    expect(renderSiteFooter(offConfig, 2026, '/')).not.toContain('kp-live-stats');
+  });
+});
+
+describe('renderLiveStats', () => {
+  const html = renderLiveStats(liveConfig, '/tags/css/');
+
+  it('passes connection details as escaped data attributes', () => {
+    expect(html).toContain('data-project-url="https://example-ref.supabase.co"');
+    expect(html).toContain('data-publishable-key="sb_publishable_test&quot;&lt;key&gt;"');
+    expect(html).toContain(`data-site-origin="${siteConfig.url}"`);
+    expect(html).toContain(`data-locale="${siteConfig.language}"`);
+    expect(html).toContain('data-path="/tags/css/"');
+  });
+
+  it('ships hidden, so a dead backend leaves no trace', () => {
+    expect(html).toContain('<p hidden>');
+    expect(html).toContain('[hidden] { display: none !important; }');
+  });
+
+  it('does not re-announce numbers to assistive technology', () => {
+    expect(html).not.toContain('aria-live');
+    expect(html).not.toContain('role="status"');
+  });
+
+  it('keeps its pulse behind the reduced-motion gate and links to /live/', () => {
+    expect(html).toMatch(/@media \(prefers-reduced-motion: no-preference\)[^}]*animation/);
+    expect(html).toContain('href="/live/"');
+  });
+
+  it('renders nothing when switched off', () => {
+    expect(renderLiveStats(offConfig, '/')).toBe('');
+  });
+});
+
+describe('renderLiveBoard', () => {
+  const html = renderLiveBoard(liveConfig);
+
+  it('starts in the connecting state with the board hidden', () => {
+    expect(html).toContain('<p class="status" role="status">Connecting to live statistics…</p>');
+    expect(html).toContain('<div class="board" hidden>');
+  });
+
+  it('labels the three totals with placeholders', () => {
+    expect(html).toContain('<dt>Here right now</dt><dd>—</dd>');
+    expect(html).toContain('<dt>Views, last hour</dt><dd>—</dd>');
+    expect(html).toContain('<dt>Views, last 24 hours</dt><dd>—</dd>');
+  });
+
+  it('has an accessible table with column headers', () => {
+    expect(html).toContain('<caption>Busiest pages</caption>');
+    expect(html.match(/<th scope="col">/g)).toHaveLength(4);
+  });
+
+  it('renders nothing when switched off', () => {
+    expect(renderLiveBoard(offConfig)).toBe('');
   });
 });
 
@@ -12234,6 +15398,199 @@ describe('renderAuthorCard', () => {
     expect(renderAuthorCard(makeAuthor({ id: 'a' }), 1)).toContain('1 post');
   });
 });
+
+
+################################################################################
+# FILE: src/components/liveStats.ts
+################################################################################
+
+--- METADATA ---
+  File name:             liveStats.ts
+  Relative path:         src/components/liveStats.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/components/liveStats.ts
+  Size:                  4.7 KiB (4817 bytes)
+  Last modified:         2026-09-23 18:35:17.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313725
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               507b4c270a6a1e38d9258007ea61b33f4312e0869170a67356ab1419dc573885
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+import { describeTotals } from '../client/liveStats';
+import { liveStatsEnabled, type SiteConfig } from '../lib/config';
+import { escapeAttribute, escapeHtml } from '../lib/html';
+
+/** Connection details the client reads back from `data-*` attributes. */
+function connectionAttributes(config: SiteConfig): string {
+  return [
+    `data-project-url="${escapeAttribute(config.liveStats.projectUrl)}"`,
+    `data-publishable-key="${escapeAttribute(config.liveStats.publishableKey)}"`,
+    `data-site-origin="${escapeAttribute(config.url)}"`,
+    `data-locale="${escapeAttribute(config.language)}"`,
+  ].join(' ');
+}
+
+/**
+ * The footer's live line (ADR 0022). It ships `hidden` and stays hidden until
+ * a request succeeds, so with the backend down — or JavaScript off — the
+ * footer is exactly what it was before the feature existed. It deliberately
+ * has no `aria-live`: re-announcing numbers every 30 s would be noise
+ * (ADR 0015). Renders nothing when live statistics are switched off.
+ */
+export function renderLiveStats(config: SiteConfig, currentPath: string): string {
+  if (!liveStatsEnabled(config)) {
+    return '';
+  }
+  return `<kp-live-stats ${connectionAttributes(config)} data-path="${escapeAttribute(currentPath)}">
+<template shadowrootmode="open">
+<style>
+:host { display: block; }
+[hidden] { display: none !important; }
+p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.5rem;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.dot {
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: 50%;
+  background: var(--accent);
+  align-self: center;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .dot { animation: kp-pulse 2.4s ease-in-out infinite; }
+  @keyframes kp-pulse { 50% { opacity: 0.35; } }
+}
+strong { color: var(--text); font-weight: 600; }
+a { color: inherit; }
+a:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+</style>
+<p hidden><span class="dot" aria-hidden="true"></span><strong>Live</strong> <span class="text"></span> <a href="/live/">Live stats →</a></p>
+</template>
+</kp-live-stats>`;
+}
+
+const PLACEHOLDER_TOTALS = describeTotals(
+  { siteNow: 0, siteViews1h: 0, siteViews24h: 0 },
+  () => '—',
+);
+
+/**
+ * The `/live/` board: headline totals and the busiest pages. The status line
+ * is the only live region, and it only changes when the connection state
+ * changes (connecting → shown → unavailable), never on each refresh.
+ */
+export function renderLiveBoard(config: SiteConfig): string {
+  if (!liveStatsEnabled(config)) {
+    return '';
+  }
+  const totals = PLACEHOLDER_TOTALS.map(
+    ([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`,
+  ).join('');
+  return `<kp-live-board ${connectionAttributes(config)}>
+<template shadowrootmode="open">
+<style>
+:host { display: block; }
+[hidden] { display: none !important; }
+.status {
+  margin: 0 0 1.5rem;
+  color: var(--muted);
+}
+.totals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.75rem;
+  margin: 0 0 2rem;
+}
+.totals div {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  background: var(--surface);
+}
+dt {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+dd {
+  margin: 0.35rem 0 0;
+  font-size: 2rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+.table-wrap { overflow-x: auto; }
+table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+caption {
+  text-align: start;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  padding-block-end: 0.5rem;
+}
+th, td {
+  padding: 0.5rem 0.75rem;
+  border-block-end: 1px solid var(--border);
+  text-align: end;
+}
+th:first-child, td:first-child {
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+th {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+td a { color: var(--text); }
+td a:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.empty { text-align: start; color: var(--muted); }
+.updated {
+  margin: 1rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+</style>
+<p class="status" role="status">Connecting to live statistics…</p>
+<div class="board" hidden>
+<dl class="totals">${totals}</dl>
+<div class="table-wrap">
+<table>
+<caption>Busiest pages</caption>
+<thead><tr><th scope="col">Page</th><th scope="col">Here now</th><th scope="col">Views, 1 h</th><th scope="col">Views, 24 h</th></tr></thead>
+<tbody></tbody>
+</table>
+</div>
+<p class="updated">Updated <time></time></p>
+</div>
+</template>
+</kp-live-board>`;
+}
 
 
 ################################################################################
@@ -12538,28 +15895,35 @@ a:focus-visible {
   File name:             siteFooter.ts
   Relative path:         src/components/siteFooter.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/components/siteFooter.ts
-  Size:                  2.7 KiB (2843 bytes)
-  Last modified:         2026-07-09 21:32:20.000000000 -0400
+  Size:                  3.0 KiB (3074 bytes)
+  Last modified:         2026-09-23 18:44:19.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354357
+  Inode:                 64313696
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               022d87297d2952687ddfc9f10774241cd3d016416d1d0343be500dca852b9092
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               a2fdf339429851cc92575d1962d77fa4a27ceecbb4d289acd859a388e9896233
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
 
 --- CONTENT ---
 import type { SiteConfig } from '../lib/config';
 import { escapeAttribute, escapeHtml } from '../lib/html';
+import { renderLiveStats } from './liveStats';
 
 const GITHUB_ICON_PATH =
   'M9.356 1.85C5.05 1.85 1.57 5.356 1.57 9.694a7.84 7.84 0 0 0 5.324 7.44c.387.079.528-.168.528-.376 0-.182-.013-.805-.013-1.454-2.165.467-2.616-.935-2.616-.935-.349-.91-.864-1.143-.864-1.143-.71-.48.051-.48.051-.48.787.051 1.2.805 1.2.805.695 1.194 1.817.857 2.268.649.064-.507.27-.857.49-1.052-1.728-.182-3.545-.857-3.545-3.87 0-.857.31-1.558.8-2.104-.078-.195-.349-1 .077-2.078 0 0 .657-.208 2.14.805a7.5 7.5 0 0 1 1.946-.26c.657 0 1.328.092 1.946.26 1.483-1.013 2.14-.805 2.14-.805.426 1.078.155 1.883.078 2.078.502.546.799 1.247.799 2.104 0 3.013-1.818 3.675-3.558 3.87.284.247.528.714.528 1.454 0 1.052-.012 1.896-.012 2.156 0 .208.142.455.528.377a7.84 7.84 0 0 0 5.324-7.441c.013-4.338-3.48-7.844-7.786-7.844Z';
 
 /**
  * Site footer. Highlights the GitHub repository (the project is the source),
- * and states the license and the AI-assistance disclosure on every page.
+ * and states the license and the AI-assistance disclosure on every page. When
+ * live statistics are on, it also carries the (initially hidden) live line
+ * for `currentPath` (ADR 0022).
  */
-export function renderSiteFooter(config: SiteConfig, buildYear: number): string {
+export function renderSiteFooter(
+  config: SiteConfig,
+  buildYear: number,
+  currentPath: string,
+): string {
   return `<kp-footer>
 <template shadowrootmode="open">
 <style>
@@ -12625,6 +15989,7 @@ footer {
 <svg viewBox="0 0 19 19" aria-hidden="true"><path fill-rule="evenodd" d="${GITHUB_ICON_PATH}"/></svg>
 <span><strong>${escapeHtml(config.title)} on GitHub</strong><span>Every line of this site — source, tests and CI — is public.</span></span>
 </a>
+${renderLiveStats(config, currentPath)}
 <p class="meta">© ${String(buildYear)} · <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL-3.0-or-later</a> · Built with TypeScript 7 and zero runtime dependencies · Developed with substantial AI/LLM assistance · <a href="/feed.xml">Atom feed</a></p>
 </footer>
 </template>
@@ -13047,6 +16412,69 @@ export function groupPostsByAuthor(
 
 
 ################################################################################
+# FILE: src/lib/config.test.ts
+################################################################################
+
+--- METADATA ---
+  File name:             config.test.ts
+  Relative path:         src/lib/config.test.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/lib/config.test.ts
+  Size:                  1.6 KiB (1727 bytes)
+  Last modified:         2026-09-23 18:42:54.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313726
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               20ece99efc0ab8c14f85ae0e23140e476b2a9ce149e926e03dba1a20356cf198
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+import { describe, expect, it } from 'vitest';
+import { liveStatsEnabled, siteConfig, type SiteConfig } from './config';
+
+function withLiveStats(projectUrl: string, publishableKey: string): SiteConfig {
+  return { ...siteConfig, liveStats: { projectUrl, publishableKey } };
+}
+
+describe('siteConfig', () => {
+  it('points live statistics at the colorado Supabase project', () => {
+    expect(siteConfig.liveStats.projectUrl).toBe('https://wgtvebsxazxfapjtujce.supabase.co');
+  });
+
+  it('never ships a secret key', () => {
+    expect(siteConfig.liveStats.publishableKey.startsWith('sb_secret_')).toBe(false);
+  });
+});
+
+describe('liveStatsEnabled', () => {
+  it('is on with an https project URL and a publishable key', () => {
+    expect(liveStatsEnabled(withLiveStats('https://abc.supabase.co', 'sb_publishable_xyz'))).toBe(
+      true,
+    );
+  });
+
+  it('is off without a key, including a blank one', () => {
+    expect(liveStatsEnabled(withLiveStats('https://abc.supabase.co', ''))).toBe(false);
+    expect(liveStatsEnabled(withLiveStats('https://abc.supabase.co', '   '))).toBe(false);
+  });
+
+  it('is off for insecure, malformed or trailing-slash project URLs', () => {
+    expect(liveStatsEnabled(withLiveStats('http://abc.supabase.co', 'k'))).toBe(false);
+    expect(liveStatsEnabled(withLiveStats('https://abc.supabase.co/', 'k'))).toBe(false);
+    expect(liveStatsEnabled(withLiveStats('', 'k'))).toBe(false);
+    expect(liveStatsEnabled(withLiveStats('https://abc.supabase.co/rest', 'k'))).toBe(false);
+  });
+
+  it('refuses to run with a secret key even if one is pasted by mistake', () => {
+    expect(liveStatsEnabled(withLiveStats('https://abc.supabase.co', 'sb_secret_oops'))).toBe(
+      false,
+    );
+  });
+});
+
+
+################################################################################
 # FILE: src/lib/config.ts
 ################################################################################
 
@@ -13054,17 +16482,34 @@ export function groupPostsByAuthor(
   File name:             config.ts
   Relative path:         src/lib/config.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/lib/config.ts
-  Size:                  1.0 KiB (1024 bytes)
-  Last modified:         2026-07-13 16:03:54.000000000 -0400
+  Size:                  2.5 KiB (2600 bytes)
+  Last modified:         2026-09-23 18:54:38.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20816869
+  Inode:                 64313698
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               1f5d9a2eef6f83ac13195fa74c0a920356fdb119ab2f80aee2cf1f2a905dcd1a
-  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
+  SHA-256:               fea29bf3aef430481642aa168e087c303e6df2e8d9c7e2cf7423d749e196a914
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
 
 --- CONTENT ---
+/**
+ * Optional live statistics backend (ADR 0022). Both values are public by
+ * design: a Supabase project URL and its *publishable* key, which only grants
+ * what the database's `anon` role may do — here, calling the four `kp_*`
+ * functions in `docs/supabase/live-stats.sql`. Never put a secret key here.
+ */
+export interface LiveStatsConfig {
+  /** `https://<project-ref>.supabase.co`, without a trailing slash. */
+  readonly projectUrl: string;
+  /**
+   * The project's publishable key (`sb_publishable_…`, Dashboard → Settings →
+   * API Keys). An empty string switches the feature off: no markup, no
+   * requests, and `/live/` explains that live statistics are off.
+   */
+  readonly publishableKey: string;
+}
+
 /**
  * Central site configuration. Everything that identifies the site lives here so
  * templates, feeds and tests share a single source of truth.
@@ -13084,6 +16529,8 @@ export interface SiteConfig {
    * date (ADR 0021).
    */
   readonly timeZone: string;
+  /** Live statistics backend; see {@link LiveStatsConfig} and ADR 0022. */
+  readonly liveStats: LiveStatsConfig;
 }
 
 export const siteConfig: SiteConfig = {
@@ -13094,7 +16541,27 @@ export const siteConfig: SiteConfig = {
   language: 'en',
   postsOnHome: 5,
   timeZone: 'America/New_York',
+  liveStats: {
+    // Supabase project "colorado" (us-east-2).
+    projectUrl: 'https://wgtvebsxazxfapjtujce.supabase.co',
+    // Paste the project's sb_publishable_… key here to switch live stats on.
+    publishableKey: '',
+  },
 };
+
+/**
+ * True when the build should ship live statistics at all: an https project
+ * URL without a trailing slash and a non-blank publishable key. Anything else
+ * renders the site exactly as it was before the feature existed.
+ */
+export function liveStatsEnabled(config: SiteConfig): boolean {
+  const { projectUrl, publishableKey } = config.liveStats;
+  return (
+    /^https:\/\/[a-z0-9.-]+$/i.test(projectUrl) &&
+    publishableKey.trim() !== '' &&
+    !publishableKey.startsWith('sb_secret_')
+  );
+}
 
 
 ################################################################################
@@ -15901,15 +19368,15 @@ ${cards}
   File name:             layout.ts
   Relative path:         src/pages/layout.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/pages/layout.ts
-  Size:                  2.4 KiB (2478 bytes)
-  Last modified:         2026-07-09 21:33:26.000000000 -0400
+  Size:                  2.4 KiB (2489 bytes)
+  Last modified:         2026-09-23 18:44:19.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354412
+  Inode:                 64313700
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               fd1f6fea8f7304f0c8e1ac169e67cbed453e309acb134f37acc24d1bd77cd200
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               cc20d8e91e6c565cd7774c6f4dfb401b140f6ca0200034682d35d8869a89ce18
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
 
 --- CONTENT ---
 import { buildThemeInitScript } from '../client/themeInit';
@@ -15968,10 +19435,70 @@ ${renderSiteHeader(meta.path)}
 <main id="main" tabindex="-1">
 ${mainHtml}
 </main>
-${renderSiteFooter(config, context.buildYear)}
+${renderSiteFooter(config, context.buildYear, meta.path)}
 </body>
 </html>
 `;
+}
+
+
+################################################################################
+# FILE: src/pages/live.ts
+################################################################################
+
+--- METADATA ---
+  File name:             live.ts
+  Relative path:         src/pages/live.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/pages/live.ts
+  Size:                  2.5 KiB (2623 bytes)
+  Last modified:         2026-09-23 18:35:44.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313727
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               a1aba746bb6a01b26f4b81409d6dca072c82962cedbcb9a1a08774f83d3afe19
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+import { renderLiveBoard } from '../components/liveStats';
+import { liveStatsEnabled } from '../lib/config';
+import { escapeAttribute } from '../lib/html';
+import { renderDocument, type PageContext } from './layout';
+
+/**
+ * `/live/`: live readership, plus a plain-language account of exactly what is
+ * collected. The page always exists (stable sitemap, stable links); what it
+ * shows depends on whether this build has live statistics switched on and,
+ * at runtime, on whether the backend answers (ADR 0022).
+ */
+export function renderLivePage(context: PageContext): string {
+  const enabled = liveStatsEnabled(context.config);
+  const board = enabled
+    ? `${renderLiveBoard(context.config)}
+<noscript><p>Live statistics need JavaScript. Everything else on this site works without it.</p></noscript>`
+    : '<p class="lede">Live statistics are switched off in this build. Everything else on the site works exactly the same.</p>';
+  const main = `<header class="page-header">
+<p class="eyebrow">Live</p>
+<h1>Live statistics</h1>
+<p class="lede">Who is reading right now, and what was read in the last day. Nothing older than 25 hours exists anywhere.</p>
+</header>
+${board}
+<section class="prose" aria-labelledby="live-privacy">
+<h2 id="live-privacy">What is collected</h2>
+<p>While a page is open and visible, your browser checks in every 30 seconds with three things: a random identifier it made up when the page loaded (held only in memory — never in a cookie or in storage), the page's path, and whether this is a new page view. Hiding or closing the tab removes the identifier straight away; if that message is lost, it stops counting 90 seconds later and is deleted within minutes.</p>
+<p>Page views are kept only as a count per page per minute, and those counts are deleted after 25 hours. No IP address, browser details, referrer or account is stored — the database has nowhere to put them.</p>
+<p>Visits are not counted at all if your browser sends <a href="https://globalprivacycontrol.org/">Global Privacy Control</a>, or for automated browsers. The numbers come from an optional free-tier <a href="https://supabase.com/">Supabase</a> database; if it is ever unavailable, the live figures simply disappear and the rest of the site is unaffected. The whole design, including the database schema, is in the <a href="${escapeAttribute(context.config.repoUrl)}">public repository</a>.</p>
+</section>`;
+  return renderDocument(
+    context,
+    {
+      title: 'Live statistics',
+      description: 'Live, privacy-preserving readership statistics for this site.',
+      path: '/live/',
+    },
+    main,
+  );
 }
 
 
@@ -16121,18 +19648,19 @@ ${authorCard}
   File name:             routes.test.ts
   Relative path:         src/pages/routes.test.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/pages/routes.test.ts
-  Size:                  6.2 KiB (6381 bytes)
-  Last modified:         2026-07-09 21:47:48.000000000 -0400
+  Size:                  8.0 KiB (8207 bytes)
+  Last modified:         2026-09-23 18:44:19.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354411
+  Inode:                 64313701
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               dc14660922f8070db51419c8629ac516e78e60d0b51b2149e0c3679355fa67d1
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               ae222eaebd60f26e78159e010e8deb3e6d0c8117914ebe58def76b84ca26467f
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
 
 --- CONTENT ---
 import { describe, expect, it } from 'vitest';
+import type { SiteConfig } from '../lib/config';
 import { loadSiteModel } from '../lib/content';
 import { postFile } from '../lib/testFixtures';
 import { outputFileFor, renderSite, siteConfig, type PageContext } from './routes';
@@ -16214,6 +19742,7 @@ describe('renderSite', () => {
         '/authors/casey-rivers/',
         '/about/',
         '/contact/',
+        '/live/',
         '/404.html',
         '/feed.xml',
         '/sitemap.xml',
@@ -16303,6 +19832,50 @@ describe('renderSite', () => {
   });
 });
 
+describe('the /live/ page', () => {
+  const withKey = (publishableKey: string): PageContext => ({
+    ...context,
+    config: {
+      ...siteConfig,
+      liveStats: { projectUrl: 'https://ref.supabase.co', publishableKey },
+    } satisfies SiteConfig,
+  });
+  const on = renderSite(model, withKey('sb_publishable_test')).find((f) => f.path === '/live/');
+  const off = renderSite(model, withKey('')).find((f) => f.path === '/live/');
+
+  it('is in the sitemap either way', () => {
+    expect(byPath.get('/sitemap.xml')?.body).toContain(`<loc>${siteConfig.url}/live/</loc>`);
+  });
+
+  it('shows the board and a noscript note when switched on', () => {
+    expect(on?.body).toContain('<kp-live-board ');
+    expect(on?.body).toContain('<noscript>');
+    expect(on?.body).toContain('<h1>Live statistics</h1>');
+  });
+
+  it('says plainly that live statistics are off otherwise', () => {
+    expect(off?.body).not.toContain('<kp-live-board');
+    expect(off?.body).toContain('switched off in this build');
+  });
+
+  it('explains what is and is not collected', () => {
+    for (const body of [on?.body, off?.body]) {
+      expect(body).toContain('What is collected');
+      expect(body).toContain('No IP address');
+      expect(body).toContain('Global Privacy Control');
+      expect(body).toContain('deleted after 25 hours');
+    }
+  });
+
+  it('puts the live line in every footer only when switched on', () => {
+    const pages = renderSite(model, withKey('sb_publishable_test'));
+    const about = pages.find((f) => f.path === '/about/')?.body ?? '';
+    expect(about).toContain('data-path="/about/"');
+    const missing = renderSite(model, withKey('')).find((f) => f.path === '/about/')?.body ?? '';
+    expect(missing).not.toContain('kp-live-stats');
+  });
+});
+
 describe('outputFileFor', () => {
   it('maps trailing-slash routes to index.html files', () => {
     expect(outputFileFor('/')).toBe('index.html');
@@ -16326,15 +19899,15 @@ describe('outputFileFor', () => {
   File name:             routes.ts
   Relative path:         src/pages/routes.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/pages/routes.ts
-  Size:                  2.8 KiB (2896 bytes)
-  Last modified:         2026-07-09 21:34:28.000000000 -0400
+  Size:                  2.9 KiB (3003 bytes)
+  Last modified:         2026-09-23 18:44:19.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20354408
+  Inode:                 64313702
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               068b8012078237ce5de33f5573a6d27177e662d2234bf742eb5e1068cde34c55
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               dcf7ea0444dc2001b8fda9f636a64a3fa10ccb40cc46526192a48478adb1c3e1
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
 
 --- CONTENT ---
 import { siteConfig } from '../lib/config';
@@ -16345,6 +19918,7 @@ import { renderAuthorIndex, renderAuthorPage } from './authors';
 import { renderBlogIndex } from './blogIndex';
 import { renderHome } from './home';
 import { renderDocument, type PageContext } from './layout';
+import { renderLivePage } from './live';
 import { renderMarkdownPage } from './markdownPage';
 import { renderNotFound } from './notFound';
 import { renderPost } from './post';
@@ -16358,7 +19932,7 @@ export interface RenderedFile {
   readonly contentType: 'text/html' | 'application/xml';
 }
 
-/** Renders every page, the 404 page, the Atom feed and the sitemap. */
+/** Renders every page, `/live/`, the 404 page, the Atom feed and the sitemap. */
 export function renderSite(model: SiteModel, context: PageContext): RenderedFile[] {
   const html = (path: string, body: string): RenderedFile => ({
     path,
@@ -16393,6 +19967,8 @@ export function renderSite(model: SiteModel, context: PageContext): RenderedFile
   for (const page of model.pages.values()) {
     files.push(html(`/${page.slug}/`, renderMarkdownPage(page, context)));
   }
+
+  files.push(html('/live/', renderLivePage(context)));
 
   files.push(html('/404.html', renderNotFound(context)));
 
@@ -17391,6 +20967,224 @@ describe('playwright version pins', () => {
 
 
 ################################################################################
+# FILE: tests/e2e/fixtures.ts
+################################################################################
+
+--- METADATA ---
+  File name:             fixtures.ts
+  Relative path:         tests/e2e/fixtures.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/tests/e2e/fixtures.ts
+  Size:                  1.0 KiB (1092 bytes)
+  Last modified:         2026-09-23 18:51:17.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313728
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               09bebb099479ebcb07fc2401759069026e06a8d6f2f7dce0ee77969dcd9a8963
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+import { test as base, expect, type Page, type Request } from '@playwright/test';
+
+/** Any Supabase project's API. */
+export const SUPABASE = /^https:\/\/[a-z0-9-]+\.supabase\.co\//;
+
+/**
+ * Every test starts with the live-statistics backend unreachable (ADR 0022):
+ * the whole suite therefore doubles as proof that the site works with
+ * Supabase down, paused or gone. Tests that need data install their own
+ * `page.route` for SUPABASE, which takes precedence over this context route.
+ */
+export const test = base.extend<{ unreachableBackend: undefined }>({
+  unreachableBackend: [
+    async ({ context }, use) => {
+      await context.route(SUPABASE, (route) => route.abort('internetdisconnected'));
+      await use(undefined);
+    },
+    { auto: true },
+  ],
+});
+
+/** Records every request the page makes to a Supabase project. */
+export function recordBackendRequests(page: Page): Request[] {
+  const requests: Request[] = [];
+  page.on('request', (request) => {
+    if (SUPABASE.test(request.url())) {
+      requests.push(request);
+    }
+  });
+  return requests;
+}
+
+export { expect };
+
+
+################################################################################
+# FILE: tests/e2e/live.spec.ts
+################################################################################
+
+--- METADATA ---
+  File name:             live.spec.ts
+  Relative path:         tests/e2e/live.spec.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/tests/e2e/live.spec.ts
+  Size:                  5.9 KiB (6052 bytes)
+  Last modified:         2026-09-23 18:56:28.000000000 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 64313729
+  Hard links:            1
+  MIME type:             application/javascript
+  SHA-256:               771d4c748b3f298839b262240d6d487ca106d9332ac1c6aef1bcfc78e393516c
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+
+--- CONTENT ---
+import type { Page, Route } from '@playwright/test';
+import { BREAKER_KEY } from '../../src/client/liveStats';
+import { liveStatsEnabled, siteConfig } from '../../src/lib/config';
+import { expect, recordBackendRequests, SUPABASE, test } from './fixtures';
+
+const enabled = liveStatsEnabled(siteConfig);
+
+const summary = { siteNow: 3, siteViews1h: 12, siteViews24h: 1234, pageNow: 1, pageViews24h: 40 };
+const board = {
+  siteNow: 3,
+  siteViews1h: 12,
+  siteViews24h: 1234,
+  pages: [
+    { path: '/blog/', now: 2, views1h: 7, views24h: 900 },
+    { path: 'javascript:alert(1)', now: 9, views1h: 9, views24h: 9 },
+    { path: '/about/', now: 1, views1h: 5, views24h: 334 },
+  ],
+};
+
+/** Answers every Supabase RPC with `respond(functionName)`. */
+async function mockBackend(
+  page: Page,
+  respond: (fn: string, route: Route) => { status: number; body?: unknown },
+): Promise<void> {
+  await page.route(SUPABASE, async (route) => {
+    const fn = new URL(route.request().url()).pathname.split('/').pop() ?? '';
+    const { status, body } = respond(fn, route);
+    await route.fulfill({
+      status,
+      contentType: 'application/json',
+      body: body === undefined ? '' : JSON.stringify(body),
+    });
+  });
+}
+
+const liveLine = (page: Page) => page.locator('kp-live-stats p');
+
+test.describe('live statistics switched off', () => {
+  test.skip(enabled, 'this build has live statistics switched on');
+
+  test('no live markup and no requests anywhere', async ({ page }) => {
+    const requests = recordBackendRequests(page);
+    await page.goto('/');
+    await expect(page.locator('kp-footer')).toBeVisible();
+    await expect(page.locator('kp-live-stats')).toHaveCount(0);
+    await page.goto('/live/');
+    await expect(page.getByText('switched off in this build')).toBeVisible();
+    expect(requests).toEqual([]);
+  });
+});
+
+test.describe('live statistics switched on', () => {
+  test.skip(!enabled, 'this build has live statistics switched off (no publishable key)');
+
+  test('the footer shows live numbers from a read-only summary', async ({ page }) => {
+    const requests = recordBackendRequests(page);
+    await mockBackend(page, () => ({ status: 200, body: summary }));
+    await page.goto('/about/');
+    await expect(liveLine(page)).toBeVisible();
+    await expect(liveLine(page)).toContainText(
+      '3 readers on the site right now, 1 on this page · 1,234 page views in the last 24 hours',
+    );
+    await expect(page.locator('kp-live-stats').getByRole('link')).toHaveAttribute('href', '/live/');
+
+    const [first] = requests;
+    expect(first?.method()).toBe('GET');
+    expect(first?.url()).toContain('/rest/v1/rpc/kp_summary?p_path=%2Fabout%2F');
+    const headers = await first?.allHeaders();
+    expect(headers?.apikey).toBe(siteConfig.liveStats.publishableKey);
+    expect(headers?.authorization).toBeUndefined();
+  });
+
+  test('automated browsers never count a visit', async ({ page }) => {
+    const requests = recordBackendRequests(page);
+    await mockBackend(page, () => ({ status: 200, body: summary }));
+    await page.goto('/blog/');
+    await expect(liveLine(page)).toBeVisible();
+    expect(requests.map((request) => request.url())).not.toContainEqual(
+      expect.stringContaining('kp_heartbeat'),
+    );
+  });
+
+  test('an unreachable backend leaves the page exactly as it was', async ({ page }) => {
+    // No page.route: the fixture's "backend unreachable" applies.
+    await page.goto('/about/');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('About');
+    await expect(page.locator('kp-footer').getByText('on GitHub')).toBeVisible();
+    await expect(liveLine(page)).toBeHidden();
+  });
+
+  test('a permanent failure trips the breaker for every later page', async ({ page }) => {
+    await mockBackend(page, () => ({ status: 404, body: { code: 'PGRST202' } }));
+    await page.goto('/about/');
+    await expect
+      .poll(() => page.evaluate((key) => localStorage.getItem(key), BREAKER_KEY))
+      .not.toBeNull();
+    await expect(liveLine(page)).toBeHidden();
+
+    const requests = recordBackendRequests(page);
+    await page.goto('/blog/');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Blog');
+    await page.waitForLoadState('networkidle');
+    expect(requests).toEqual([]);
+  });
+
+  test('/live/ renders totals and the busiest pages, dropping unsafe paths', async ({ page }) => {
+    await mockBackend(page, (fn) =>
+      fn === 'kp_board' ? { status: 200, body: board } : { status: 200, body: summary },
+    );
+    await page.goto('/live/');
+    const liveBoard = page.locator('kp-live-board');
+    await expect(liveBoard.locator('dd').first()).toHaveText('3');
+    await expect(liveBoard.locator('dd').nth(2)).toHaveText('1,234');
+    const rows = liveBoard.locator('tbody tr');
+    await expect(rows).toHaveCount(2);
+    await expect(rows.nth(0).getByRole('link')).toHaveAttribute('href', '/blog/');
+    await expect(rows.nth(0)).toContainText('900');
+    await expect(rows.nth(1).getByRole('link')).toHaveAttribute('href', '/about/');
+    await expect(liveBoard.locator('.status')).toBeHidden();
+  });
+
+  test('/live/ says so, calmly, when the backend is gone', async ({ page }) => {
+    await mockBackend(page, () => ({ status: 402 }));
+    await page.goto('/live/');
+    await expect(page.locator('kp-live-board').getByRole('status')).toHaveText(
+      'Live statistics are unavailable right now. The rest of the site is unaffected.',
+    );
+    await expect(page.locator('kp-live-board table')).toBeHidden();
+    await expect(page.getByRole('heading', { name: 'What is collected' })).toBeVisible();
+  });
+
+  test('/live/ shows an empty state for a quiet day', async ({ page }) => {
+    await mockBackend(page, (fn) =>
+      fn === 'kp_board'
+        ? { status: 200, body: { siteNow: 0, siteViews1h: 0, siteViews24h: 0, pages: [] } }
+        : { status: 200, body: summary },
+    );
+    await page.goto('/live/');
+    await expect(page.locator('kp-live-board tbody')).toContainText(
+      'No page views in the last 24 hours yet.',
+    );
+  });
+});
+
+
+################################################################################
 # FILE: tests/e2e/site.spec.ts
 ################################################################################
 
@@ -17398,18 +21192,18 @@ describe('playwright version pins', () => {
   File name:             site.spec.ts
   Relative path:         tests/e2e/site.spec.ts
   Absolute path:         /home/kushal/src/ts/kphoto/tests/e2e/site.spec.ts
-  Size:                  5.6 KiB (5780 bytes)
-  Last modified:         2026-07-13 16:06:30.000000000 -0400
+  Size:                  6.3 KiB (6523 bytes)
+  Last modified:         2026-09-23 18:51:17.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 20816878
+  Inode:                 64313705
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               b1da47328bf13288c9dd3ee5ac23927c0dc302a11340ebe47f290082df34a799
-  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
+  SHA-256:               599987b263ec2edc9fc54e8a8f77ad3f8c75ccb2fe7126fc897fb5d26f057976
+  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
 
 --- CONTENT ---
-import { expect, test } from '@playwright/test';
+import { expect, SUPABASE, test } from './fixtures';
 import { siteConfig } from '../../src/lib/config';
 
 test.describe('home page', () => {
@@ -17544,6 +21338,25 @@ test.describe('resilience and accessibility', () => {
     await expect(
       page.locator('link[rel="alternate"][type="application/atom+xml"]'),
     ).toHaveAttribute('href', '/feed.xml');
+  });
+});
+
+test.describe('own origin only', () => {
+  test('pages load nothing from any other origin', async ({ page, baseURL }) => {
+    const foreign: string[] = [];
+    page.on('request', (request) => {
+      const url = request.url();
+      // The optional live-statistics backend is the one sanctioned exception
+      // (ADR 0022); every test sees it unreachable, courtesy of fixtures.ts.
+      if (!url.startsWith(baseURL ?? '') && !url.startsWith('data:') && !SUPABASE.test(url)) {
+        foreign.push(url);
+      }
+    });
+    for (const path of ['/', '/blog/', '/about/', '/live/']) {
+      await page.goto(path);
+      await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    }
+    expect(foreign).toEqual([]);
   });
 });
 
@@ -17787,10 +21600,10 @@ packageExtensions:
 ################################################################################
 # DUMP SUMMARY
 ################################################################################
-  Files dumped   : 369
-  Total size     : 487.2 MiB (510923422 bytes)
+  Files dumped   : 392
+  Total size     : 487.3 MiB (511042575 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-09-23T18:19:47-04:00
+  Completed at   : 2026-09-23T19:02:03-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
