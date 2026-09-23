@@ -503,4 +503,175 @@ Running 48 tests using 8 workers
 real	1m35.797s
 user	0m50.907s
 sys	0m17.070s
+kushal@fedora:~/src/ts/kphoto$ time yarn set version 4.18.0
+➤ YN0000: Done in 0s 5ms
+
+real	0m0.151s
+user	0m0.152s
+sys	0m0.046s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
+[18:17:37] 1/8 bootstrap
+[18:17:37] installing dependencies (yarn install --immutable)
+! Corepack is about to download https://repo.yarnpkg.com/4.18.0/packages/yarnpkg-cli/bin/yarn.js
+? Do you want to continue? [Y/n] 
+
+➤ YN0000: · Yarn 4.18.0
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done in 0s 291ms
+[18:17:43] bootstrap complete — try ./scripts/dev.sh
+[18:17:43] 2/8 format check
+[18:17:43] checking formatting (prettier --check)
+Checking formatting...
+[warn] .yarnrc.yml
+[warn] Code style issues found in the above file. Run Prettier with --write to fix.
+
+real	0m12.168s
+user	0m7.555s
+sys	0m0.926s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh --write
+[error] unknown argument: --write (supported: --no-e2e, --e2e-host)
+
+real	0m0.008s
+user	0m0.002s
+sys	0m0.006s
+kushal@fedora:~/src/ts/kphoto$ time yarn run format
+.github/workflows/ci.yml 8ms (unchanged)
+.github/workflows/deploy.yml 7ms (unchanged)
+.github/workflows/verify.yml 9ms (unchanged)
+.prettierrc.json 9ms (unchanged)
+.vscode/extensions.json 1ms (unchanged)
+.vscode/settings.json 1ms (unchanged)
+.yarnrc.yml 3ms
+CHANGELOG.md 50ms (unchanged)
+compose.yaml 3ms (unchanged)
+content/authors/casey-rivers.yml 1ms (unchanged)
+content/authors/kphoto-team.yml 1ms (unchanged)
+content/authors/kushal.yml 1ms (unchanged)
+content/blog/2026-03-22-good-morning.md 3ms (unchanged)
+content/blog/2026-04-01-good-morning.md 4ms (unchanged)
+content/blog/2026-05-05-typescript-7-native-compiler.md 5ms (unchanged)
+content/blog/2026-05-12-a-markdown-renderer-from-scratch.md 24ms (unchanged)
+content/blog/2026-05-19-scoped-styles-with-declarative-shadow-dom.md 27ms (unchanged)
+content/blog/2026-06-10-five-themes-one-localstorage-key.md 8ms (unchanged)
+content/blog/2026-07-01-what-this-site-is.md 6ms (unchanged)
+content/blog/2026-07-10-welcome.md 4ms (unchanged)
+content/blog/2026-07-13-light-the-foundation-of-every-photograph.md 5ms (unchanged)
+content/blog/2026-07-14-the-exposure-triangle.md 3ms (unchanged)
+content/blog/2026-07-15-reading-your-histogram.md 6ms (unchanged)
+content/blog/2026-07-16-composition-basics-that-never-expire.md 4ms (unchanged)
+content/blog/2026-07-17-leading-lines-framing-and-negative-space.md 5ms (unchanged)
+content/blog/2026-07-18-depth-of-field-and-selective-focus.md 9ms (unchanged)
+content/blog/2026-07-19-freezing-and-blurring-motion.md 8ms (unchanged)
+content/blog/2026-07-20-white-balance-and-color-temperature.md 3ms (unchanged)
+content/blog/2026-07-21-understanding-dynamic-range.md 3ms (unchanged)
+content/blog/2026-07-22-golden-hour-and-blue-hour.md 3ms (unchanged)
+content/blog/2026-07-23-portraits-working-with-people.md 5ms (unchanged)
+content/blog/2026-07-24-landscapes-patience-and-scale.md 3ms (unchanged)
+content/blog/2026-07-25-street-photography-ethics-and-instinct.md 3ms (unchanged)
+content/blog/2026-07-26-macro-photography-seeing-small-worlds.md 3ms (unchanged)
+content/blog/2026-07-27-seeing-in-black-and-white.md 4ms (unchanged)
+content/blog/2026-07-28-raw-versus-jpeg-and-why-it-still-matters.md 3ms (unchanged)
+content/blog/2026-07-29-a-philosophy-for-editing-photographs.md 4ms (unchanged)
+content/blog/2026-07-30-finding-your-own-style.md 6ms (unchanged)
+content/blog/2026-07-31-sharing-your-work-ethically.md 3ms (unchanged)
+content/blog/2026-08-01-how-to-keep-getting-better.md 3ms (unchanged)
+content/pages/about.md 3ms (unchanged)
+content/pages/contact.md 2ms (unchanged)
+docs/adr/0001-record-architecture-decisions.md 2ms (unchanged)
+docs/adr/0002-agpl-license-and-dependency-policy.md 2ms (unchanged)
+docs/adr/0003-static-site-on-github-pages.md 2ms (unchanged)
+docs/adr/0004-zero-runtime-dependencies.md 2ms (unchanged)
+docs/adr/0005-vite-with-custom-ssg-plugin.md 3ms (unchanged)
+docs/adr/0006-dual-typescript-toolchain.md 4ms (unchanged)
+docs/adr/0007-declarative-shadow-dom-components.md 2ms (unchanged)
+docs/adr/0008-theming-and-contrast.md 3ms (unchanged)
+docs/adr/0009-content-model-and-url-scheme.md 4ms (unchanged)
+docs/adr/0010-test-strategy.md 6ms (unchanged)
+docs/adr/0011-slim-ci-and-pages-deploy.md 4ms (unchanged)
+docs/adr/0012-evergreen-browser-baseline.md 2ms (unchanged)
+docs/adr/0013-localstorage-settings-store.md 2ms (unchanged)
+docs/adr/0014-yarn-and-dependency-policy.md 3ms (unchanged)
+docs/adr/0015-accessibility-commitments.md 3ms (unchanged)
+docs/adr/0016-chromium-new-headless-channel.md 9ms (unchanged)
+docs/adr/0017-containerised-e2e-playwright-image.md 6ms (unchanged)
+docs/adr/0018-motion-gated-view-transitions.md 9ms (unchanged)
+docs/adr/0019-ci-container-home-override.md 3ms (unchanged)
+docs/adr/0020-repo-root-from-script-location.md 4ms (unchanged)
+docs/adr/0021-scheduled-publishing-and-daily-rebuild.md 4ms (unchanged)
+docs/architecture.md 4ms (unchanged)
+docs/content-authoring.md 10ms (unchanged)
+docs/README.md 2ms (unchanged)
+eslint.config.ts 6ms (unchanged)
+package.json 2ms (unchanged)
+playwright.config.ts 7ms (unchanged)
+README.md 17ms (unchanged)
+src/client/main.ts 11ms (unchanged)
+src/client/storage.test.ts 11ms (unchanged)
+src/client/storage.ts 7ms (unchanged)
+src/client/theme.test.ts 9ms (unchanged)
+src/client/theme.ts 5ms (unchanged)
+src/client/themeInit.test.ts 6ms (unchanged)
+src/client/themeInit.ts 2ms (unchanged)
+src/components/authorCard.ts 7ms (unchanged)
+src/components/components.test.ts 12ms (unchanged)
+src/components/postCard.ts 3ms (unchanged)
+src/components/postMeta.ts 2ms (unchanged)
+src/components/seriesNav.ts 2ms (unchanged)
+src/components/siteFooter.ts 1ms (unchanged)
+src/components/siteHeader.ts 2ms (unchanged)
+src/components/themePicker.ts 1ms (unchanged)
+src/lib/collections.test.ts 6ms (unchanged)
+src/lib/collections.ts 5ms (unchanged)
+src/lib/config.ts 1ms (unchanged)
+src/lib/content.test.ts 15ms (unchanged)
+src/lib/content.ts 18ms (unchanged)
+src/lib/dates.test.ts 5ms (unchanged)
+src/lib/dates.ts 5ms (unchanged)
+src/lib/feed.test.ts 3ms (unchanged)
+src/lib/feed.ts 3ms (unchanged)
+src/lib/frontmatter.test.ts 1ms (unchanged)
+src/lib/frontmatter.ts 2ms (unchanged)
+src/lib/html.test.ts 1ms (unchanged)
+src/lib/html.ts 1ms (unchanged)
+src/lib/markdown.test.ts 4ms (unchanged)
+src/lib/markdown.ts 12ms (unchanged)
+src/lib/readingTime.test.ts 2ms (unchanged)
+src/lib/readingTime.ts 1ms (unchanged)
+src/lib/sitemap.test.ts 1ms (unchanged)
+src/lib/sitemap.ts 1ms (unchanged)
+src/lib/slug.test.ts 1ms (unchanged)
+src/lib/slug.ts 1ms (unchanged)
+src/lib/testFixtures.ts 2ms (unchanged)
+src/lib/types.ts 2ms (unchanged)
+src/lib/yaml.test.ts 2ms (unchanged)
+src/lib/yaml.ts 8ms (unchanged)
+src/pages/authors.ts 3ms (unchanged)
+src/pages/blogIndex.ts 1ms (unchanged)
+src/pages/home.ts 2ms (unchanged)
+src/pages/layout.ts 2ms (unchanged)
+src/pages/markdownPage.ts 1ms (unchanged)
+src/pages/notFound.ts 1ms (unchanged)
+src/pages/post.ts 3ms (unchanged)
+src/pages/routes.test.ts 6ms (unchanged)
+src/pages/routes.ts 7ms (unchanged)
+src/pages/series.ts 6ms (unchanged)
+src/pages/tags.ts 5ms (unchanged)
+src/ssg/loadContent.test.ts 5ms (unchanged)
+src/ssg/loadContent.ts 4ms (unchanged)
+src/ssg/vitePlugin.ts 15ms (unchanged)
+src/styles/global.css 24ms (unchanged)
+src/versionSync.test.ts 4ms (unchanged)
+tests/e2e/site.spec.ts 10ms (unchanged)
+tsconfig.json 1ms (unchanged)
+vite.config.ts 1ms (unchanged)
+vitest.config.ts 1ms (unchanged)
+
+real	0m6.580s
+user	0m6.888s
+sys	0m0.721s
 kushal@fedora:~/src/ts/kphoto$ 
