@@ -1,22 +1,7 @@
+import { browserStore } from './browser';
+import { defineLiveStatsElements } from './liveStatsElements';
 import { isThemeName, SettingsStore, type ThemeName } from './storage';
 import { isDarkTheme, ThemeController, type ConcreteTheme } from './theme';
-
-const browserStore = {
-  get(key: string): string | null {
-    try {
-      return localStorage.getItem(key);
-    } catch {
-      return null;
-    }
-  },
-  set(key: string, value: string): void {
-    try {
-      localStorage.setItem(key, value);
-    } catch {
-      // Storage can be unavailable; theming still works for this page view.
-    }
-  },
-};
 
 const documentHost = {
   applyTheme(concrete: ConcreteTheme): void {
@@ -61,5 +46,10 @@ class ThemePickerElement extends HTMLElement {
 }
 
 customElements.define('kp-theme-picker', ThemePickerElement);
+
+// Optional and never blocking (ADR 0022): with the backend down, or the
+// feature switched off, these elements stay hidden or are absent and nothing
+// else on the page changes.
+defineLiveStatsElements();
 
 export type { ThemeName };

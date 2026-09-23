@@ -58,3 +58,15 @@ URL shape and the title round-trip; the card count comes from
 pin specific posts (the duplicate-title pair, the three-episode series) may
 keep doing so — those posts exist _as fixtures for those behaviours_ and are
 past-dated, so the publishing clock can never hide them.
+
+## Amendment (2026-09-23): the whole e2e suite runs with the backend down
+
+`tests/e2e/fixtures.ts` provides the `test` every spec imports. Its automatic
+fixture aborts every request to `*.supabase.co`, so each existing scenario also
+proves the site works with the live-statistics backend unreachable (ADR 0022).
+Scenarios that need data override it with `page.route` and canned PostgREST
+responses — no test ever reaches a real Supabase project, and Playwright's
+`navigator.webdriver` keeps even a misconfigured run from counting visits
+(ADR 0023). `live.spec.ts` skips its "switched on" or "switched off" half
+according to `liveStatsEnabled(siteConfig)`, so it runs meaningfully in either
+state of the committed configuration.

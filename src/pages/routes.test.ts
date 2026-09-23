@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import type { SiteConfig } from '../lib/config';
 import { loadSiteModel } from '../lib/content';
 import { postFile } from '../lib/testFixtures';
 import { outputFileFor, renderSite, siteConfig, type PageContext } from './routes';
@@ -80,6 +81,7 @@ describe('renderSite', () => {
         '/authors/casey-rivers/',
         '/about/',
         '/contact/',
+        '/live/',
         '/404.html',
         '/feed.xml',
         '/sitemap.xml',
@@ -166,6 +168,50 @@ describe('renderSite', () => {
     expect(sitemap).not.toContain('404.html');
     expect(sitemap).not.toContain('feed.xml');
     expect(sitemap).toContain('<lastmod>2026-05-12T00:00:00Z</lastmod>');
+  });
+});
+
+describe('the /live/ page', () => {
+  const withKey = (publishableKey: string): PageContext => ({
+    ...context,
+    config: {
+      ...siteConfig,
+      liveStats: { projectUrl: 'https://ref.supabase.co', publishableKey },
+    } satisfies SiteConfig,
+  });
+  const on = renderSite(model, withKey('sb_publishable_test')).find((f) => f.path === '/live/');
+  const off = renderSite(model, withKey('')).find((f) => f.path === '/live/');
+
+  it('is in the sitemap either way', () => {
+    expect(byPath.get('/sitemap.xml')?.body).toContain(`<loc>${siteConfig.url}/live/</loc>`);
+  });
+
+  it('shows the board and a noscript note when switched on', () => {
+    expect(on?.body).toContain('<kp-live-board ');
+    expect(on?.body).toContain('<noscript>');
+    expect(on?.body).toContain('<h1>Live statistics</h1>');
+  });
+
+  it('says plainly that live statistics are off otherwise', () => {
+    expect(off?.body).not.toContain('<kp-live-board');
+    expect(off?.body).toContain('switched off in this build');
+  });
+
+  it('explains what is and is not collected', () => {
+    for (const body of [on?.body, off?.body]) {
+      expect(body).toContain('What is collected');
+      expect(body).toContain('No IP address');
+      expect(body).toContain('Global Privacy Control');
+      expect(body).toContain('deleted after 25 hours');
+    }
+  });
+
+  it('puts the live line in every footer only when switched on', () => {
+    const pages = renderSite(model, withKey('sb_publishable_test'));
+    const about = pages.find((f) => f.path === '/about/')?.body ?? '';
+    expect(about).toContain('data-path="/about/"');
+    const missing = renderSite(model, withKey('')).find((f) => f.path === '/about/')?.body ?? '';
+    expect(missing).not.toContain('kp-live-stats');
   });
 });
 

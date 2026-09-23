@@ -4,6 +4,9 @@
   shaped the way it is.
 - [content-authoring.md](content-authoring.md) — how to write posts, authors
   and pages, and every rule the build enforces.
+- [live-stats.md](live-stats.md) — runbook for the optional Supabase-backed
+  live statistics: switching on, checking, costs, switching off. The SQL
+  lives in [supabase/](supabase/).
 - [adr/](adr/) — architecture decision records, one decision per file. Start
   with [0001](adr/0001-record-architecture-decisions.md).
 

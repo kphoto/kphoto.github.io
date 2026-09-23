@@ -9,6 +9,65 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Optional live statistics backed by the free-tier Supabase project
+  "colorado" (ADRs 0022–0025):
+  - The footer shows readers on the site and on this page right now, plus
+    page views in the last 24 hours.
+  - New `/live/` page with site totals, the 25 busiest pages and a
+    plain-language account of what is collected.
+  - The feature is strictly non-blocking:
+    - hidden until a request succeeds;
+    - 5 s timeouts;
+    - a circuit breaker persisted in localStorage
+      (`kphoto:live-stats:retry-after:v1`) that stops every page trying for
+      ten minutes after three failures, or immediately on a 4xx such as a
+      bad key, missing functions or the free tier's 402.
+  - Privacy by construction:
+    - an in-memory per-page-view UUID;
+    - no IPs, cookies or stored identifiers;
+    - per-minute view counters deleted after 25 hours;
+    - visits counted only on the production origin, and never under
+      automation or Global Privacy Control.
+  - The client talks to PostgREST with plain `fetch` — no Supabase SDK, still
+    zero runtime `dependencies`.
+  - Off until `siteConfig.liveStats.publishableKey` is set.
+- `docs/supabase/live-stats.sql` — an idempotent schema to paste into the
+  Supabase SQL editor. It creates:
+  - a private `kphoto_stats` schema with two `UNLOGGED` tables;
+  - four `SECURITY DEFINER` RPC functions granted to `anon` only;
+  - fair-use caps;
+  - pg_cron retention jobs, including pruning pg_cron's own run log.
+
+  It was verified on PostgreSQL 16 with pg_cron and against PostgREST 14.18.
+  `docs/supabase/live-stats-teardown.sql` removes it all.
+
+- `docs/live-stats.md` runbook: switching on, checking with curl, free-tier
+  costs, recovery, switching off.
+- New client modules with injected dependencies and unit tests:
+  - `src/client/liveStats.ts` (validation, tracking policy, formatting);
+  - `liveStatsApi.ts`;
+  - `circuitBreaker.ts`;
+  - `livePoller.ts`;
+  - `liveTestDoubles.ts` (manual clock, scheduler and lifecycle fakes).
+
+  The DOM glue is in `browser.ts` and `liveStatsElements.ts`. There is a
+  server component, `src/components/liveStats.ts`, and a page,
+  `src/pages/live.ts`. `liveStatsEnabled()` in `src/lib/config.ts`.
+
+- Unit tests grow from 158 to 285.
+- `tests/e2e/fixtures.ts`: every e2e test now runs with any `*.supabase.co`
+  request aborted, so the whole suite proves the site works with the backend
+  down.
+- New e2e test asserting pages load nothing from any foreign origin.
+- `tests/e2e/live.spec.ts` covers:
+  - the footer line;
+  - apikey-only authentication;
+  - that automated browsers never write;
+  - the breaker persisting across pages;
+  - the board rendering and dropping unsafe paths;
+  - the unavailable and empty states;
+  - the switched-off build.
+
 - Scheduled publishing (ADR 0021): a post dated in the future is validated
   on every build but excluded from the site — pages, feed and sitemap — until
   its date arrives in the site's time zone (`siteConfig.timeZone`, new). The
@@ -33,6 +92,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   (the compose services use this to bind `0.0.0.0`).
 
 ### Changed
+
+- `renderSiteFooter(config, buildYear, currentPath)` takes the current page
+  path (for the live line). The never-throwing localStorage wrapper moved from
+  `main.ts` to `src/client/browser.ts` as `browserStore`.
+- The client bundle grows from 0.77 kB to 3.70 kB gzipped (ADR 0022 records
+  why a lazily loaded chunk was tried and rejected).
+- ADR 0004 amended: one sanctioned foreign origin for live statistics.
+- ADR 0010 amended: the e2e suite runs with the backend unreachable.
+- ADR 0013 amended: a second, non-settings localStorage key.
+- About page: live statistics, and what the browser stores.
 
 - The home-page e2e scenarios are content-agnostic (ADR 0010 amendment):
   "navigates from a post card to the post" derives the expected URL and

@@ -34,3 +34,12 @@ test suite is the real dependency. Exotic markdown/YAML features are
 unsupported by design — the validators reject them loudly rather than
 half-supporting them. Build tooling (Vite, Vitest, Playwright, ESLint,
 TypeScript) remains, as devDependencies only.
+
+## Amendment (2026-09-23): one optional foreign origin for live statistics
+
+"The deployed site makes requests only to its own origin" now has exactly one
+sanctioned exception: when `siteConfig.liveStats` is configured, the
+live-statistics code may call that one Supabase project's PostgREST API
+(ADR 0022). It does so with plain `fetch` — no SDK, still no `dependencies`
+section — and the site behaves identically when that origin is unreachable.
+The e2e test "pages load nothing from any other origin" guards the rule.

@@ -1,4 +1,21 @@
 /**
+ * Optional live statistics backend (ADR 0022). Both values are public by
+ * design: a Supabase project URL and its *publishable* key, which only grants
+ * what the database's `anon` role may do — here, calling the four `kp_*`
+ * functions in `docs/supabase/live-stats.sql`. Never put a secret key here.
+ */
+export interface LiveStatsConfig {
+  /** `https://<project-ref>.supabase.co`, without a trailing slash. */
+  readonly projectUrl: string;
+  /**
+   * The project's publishable key (`sb_publishable_…`, Dashboard → Settings →
+   * API Keys). An empty string switches the feature off: no markup, no
+   * requests, and `/live/` explains that live statistics are off.
+   */
+  readonly publishableKey: string;
+}
+
+/**
  * Central site configuration. Everything that identifies the site lives here so
  * templates, feeds and tests share a single source of truth.
  */
@@ -17,6 +34,8 @@ export interface SiteConfig {
    * date (ADR 0021).
    */
   readonly timeZone: string;
+  /** Live statistics backend; see {@link LiveStatsConfig} and ADR 0022. */
+  readonly liveStats: LiveStatsConfig;
 }
 
 export const siteConfig: SiteConfig = {
@@ -27,4 +46,24 @@ export const siteConfig: SiteConfig = {
   language: 'en',
   postsOnHome: 5,
   timeZone: 'America/New_York',
+  liveStats: {
+    // Supabase project "colorado" (us-east-2).
+    projectUrl: 'https://wgtvebsxazxfapjtujce.supabase.co',
+    // Paste the project's sb_publishable_… key here to switch live stats on.
+    publishableKey: '',
+  },
 };
+
+/**
+ * True when the build should ship live statistics at all: an https project
+ * URL without a trailing slash and a non-blank publishable key. Anything else
+ * renders the site exactly as it was before the feature existed.
+ */
+export function liveStatsEnabled(config: SiteConfig): boolean {
+  const { projectUrl, publishableKey } = config.liveStats;
+  return (
+    /^https:\/\/[a-z0-9.-]+$/i.test(projectUrl) &&
+    publishableKey.trim() !== '' &&
+    !publishableKey.startsWith('sb_secret_')
+  );
+}

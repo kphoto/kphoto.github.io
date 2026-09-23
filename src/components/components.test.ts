@@ -7,22 +7,38 @@ import { renderSeriesNav } from './seriesNav';
 import { NAV_ITEMS, renderSiteHeader } from './siteHeader';
 import { renderSiteFooter } from './siteFooter';
 import { renderThemePicker } from './themePicker';
-import { siteConfig } from '../lib/config';
+import { siteConfig, type SiteConfig } from '../lib/config';
 import { THEMES } from '../client/storage';
+import { renderLiveBoard, renderLiveStats } from './liveStats';
+
+/** siteConfig with live statistics switched on (the committed key may be empty). */
+const liveConfig: SiteConfig = {
+  ...siteConfig,
+  liveStats: {
+    projectUrl: 'https://example-ref.supabase.co',
+    publishableKey: 'sb_publishable_test"<key>',
+  },
+};
+const offConfig: SiteConfig = {
+  ...siteConfig,
+  liveStats: { ...siteConfig.liveStats, publishableKey: '' },
+};
 
 describe('declarative shadow DOM contract', () => {
   const post = makePost({ slug: '2026-03-22-good-morning', date: '2026-03-22' });
   const renders: [string, string][] = [
     ['kp-theme-picker', renderThemePicker()],
     ['kp-header', renderSiteHeader('/blog/')],
-    ['kp-footer', renderSiteFooter(siteConfig, 2026)],
+    ['kp-footer', renderSiteFooter(siteConfig, 2026, '/')],
+    ['kp-live-stats', renderLiveStats(liveConfig, '/blog/')],
+    ['kp-live-board', renderLiveBoard(liveConfig)],
     ['kp-post-card', renderPostCard(post)],
     ['kp-post-meta', renderPostMeta(post, makeAuthor({ id: 'kphoto-team' }))],
     ['kp-author-card', renderAuthorCard(makeAuthor({ id: 'kphoto-team', name: 'kphoto team' }), 2)],
   ];
 
   it.each(renders)('%s ships an open shadow root with scoped styles', (tag, html) => {
-    expect(html).toContain(`<${tag}>`);
+    expect(html).toMatch(new RegExp(`<${tag}[ >]`));
     expect(html).toContain('<template shadowrootmode="open">');
     expect(html).toContain('<style>');
     expect(html).toContain(`</${tag}>`);
@@ -59,7 +75,7 @@ describe('renderSiteHeader', () => {
 });
 
 describe('renderSiteFooter', () => {
-  const html = renderSiteFooter(siteConfig, 2026);
+  const html = renderSiteFooter(siteConfig, 2026, '/');
 
   it('highlights the GitHub repository', () => {
     expect(html).toContain(`href="${siteConfig.repoUrl}"`);
@@ -71,6 +87,73 @@ describe('renderSiteFooter', () => {
     expect(html).toContain('AI/LLM assistance');
     expect(html).toContain('href="/feed.xml"');
     expect(html).toContain('© 2026');
+  });
+});
+
+describe('renderSiteFooter with live statistics', () => {
+  it('carries the live line for the current page when switched on', () => {
+    const html = renderSiteFooter(liveConfig, 2026, '/blog/2026-03-22-good-morning/');
+    expect(html).toContain('<kp-live-stats ');
+    expect(html).toContain('data-path="/blog/2026-03-22-good-morning/"');
+  });
+
+  it('is unchanged when switched off', () => {
+    expect(renderSiteFooter(offConfig, 2026, '/')).not.toContain('kp-live-stats');
+  });
+});
+
+describe('renderLiveStats', () => {
+  const html = renderLiveStats(liveConfig, '/tags/css/');
+
+  it('passes connection details as escaped data attributes', () => {
+    expect(html).toContain('data-project-url="https://example-ref.supabase.co"');
+    expect(html).toContain('data-publishable-key="sb_publishable_test&quot;&lt;key&gt;"');
+    expect(html).toContain(`data-site-origin="${siteConfig.url}"`);
+    expect(html).toContain(`data-locale="${siteConfig.language}"`);
+    expect(html).toContain('data-path="/tags/css/"');
+  });
+
+  it('ships hidden, so a dead backend leaves no trace', () => {
+    expect(html).toContain('<p hidden>');
+    expect(html).toContain('[hidden] { display: none !important; }');
+  });
+
+  it('does not re-announce numbers to assistive technology', () => {
+    expect(html).not.toContain('aria-live');
+    expect(html).not.toContain('role="status"');
+  });
+
+  it('keeps its pulse behind the reduced-motion gate and links to /live/', () => {
+    expect(html).toMatch(/@media \(prefers-reduced-motion: no-preference\)[^}]*animation/);
+    expect(html).toContain('href="/live/"');
+  });
+
+  it('renders nothing when switched off', () => {
+    expect(renderLiveStats(offConfig, '/')).toBe('');
+  });
+});
+
+describe('renderLiveBoard', () => {
+  const html = renderLiveBoard(liveConfig);
+
+  it('starts in the connecting state with the board hidden', () => {
+    expect(html).toContain('<p class="status" role="status">Connecting to live statistics…</p>');
+    expect(html).toContain('<div class="board" hidden>');
+  });
+
+  it('labels the three totals with placeholders', () => {
+    expect(html).toContain('<dt>Here right now</dt><dd>—</dd>');
+    expect(html).toContain('<dt>Views, last hour</dt><dd>—</dd>');
+    expect(html).toContain('<dt>Views, last 24 hours</dt><dd>—</dd>');
+  });
+
+  it('has an accessible table with column headers', () => {
+    expect(html).toContain('<caption>Busiest pages</caption>');
+    expect(html.match(/<th scope="col">/g)).toHaveLength(4);
+  });
+
+  it('renders nothing when switched off', () => {
+    expect(renderLiveBoard(offConfig)).toBe('');
   });
 });
 

@@ -54,7 +54,7 @@ ${renderSiteHeader(meta.path)}
 <main id="main" tabindex="-1">
 ${mainHtml}
 </main>
-${renderSiteFooter(config, context.buildYear)}
+${renderSiteFooter(config, context.buildYear, meta.path)}
 </body>
 </html>
 `;

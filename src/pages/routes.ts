@@ -6,6 +6,7 @@ import { renderAuthorIndex, renderAuthorPage } from './authors';
 import { renderBlogIndex } from './blogIndex';
 import { renderHome } from './home';
 import { renderDocument, type PageContext } from './layout';
+import { renderLivePage } from './live';
 import { renderMarkdownPage } from './markdownPage';
 import { renderNotFound } from './notFound';
 import { renderPost } from './post';
@@ -19,7 +20,7 @@ export interface RenderedFile {
   readonly contentType: 'text/html' | 'application/xml';
 }
 
-/** Renders every page, the 404 page, the Atom feed and the sitemap. */
+/** Renders every page, `/live/`, the 404 page, the Atom feed and the sitemap. */
 export function renderSite(model: SiteModel, context: PageContext): RenderedFile[] {
   const html = (path: string, body: string): RenderedFile => ({
     path,
@@ -54,6 +55,8 @@ export function renderSite(model: SiteModel, context: PageContext): RenderedFile
   for (const page of model.pages.values()) {
     files.push(html(`/${page.slug}/`, renderMarkdownPage(page, context)));
   }
+
+  files.push(html('/live/', renderLivePage(context)));
 
   files.push(html('/404.html', renderNotFound(context)));
 

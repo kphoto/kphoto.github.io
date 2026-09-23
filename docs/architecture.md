@@ -26,7 +26,15 @@ src/client/      the only code that runs in the browser
   storage.ts       versioned, validated localStorage settings
   theme.ts         ThemeController with injected host/media/settings
   themeInit.ts     builds the inline pre-paint script
+  liveStats.ts     live-stats types, validation, tracking policy, formatting
+  liveStatsApi.ts  PostgREST client (injected fetch + timeout signal)
+  circuitBreaker.ts  persisted back-off shared by every page
+  livePoller.ts    visibility-gated polling loop (injected clock/timers/lifecycle)
+  browser.ts       the real localStorage, clock, timers and lifecycle
+  liveStatsElements.ts  upgrades <kp-live-stats> and <kp-live-board>
   main.ts          wires real browser APIs in; upgrades the theme picker
+
+docs/supabase/   SQL applied by hand in the Supabase SQL editor (ADR 0024)
 ```
 
 ## Data flow
@@ -56,7 +64,22 @@ pure functions of (model, context). `ThemeController` receives
 `{ settings, host, media }` interfaces, so unit tests flip the OS colour
 scheme with a fake instead of jsdom. `SettingsStore` wraps a two-method
 `KeyValueStore`, so a throwing store (private browsing) is a test case, not a
-crash.
+crash. The live-statistics client takes the same approach further: `fetch`,
+the timeout signal, the clock, timers and page-lifecycle events are all
+interfaces, with manual fakes in `src/client/liveTestDoubles.ts`.
+
+## Optional live statistics
+
+When `siteConfig.liveStats` carries a publishable key, the footer renders a
+hidden `<kp-live-stats>` line and `/live/` renders a `<kp-live-board>`, each
+with its connection details in `data-*` attributes. In the browser, a
+`LivePoller` calls one of four PostgREST functions on a Supabase project
+while the tab is visible, and reveals the element only after a success
+(ADR 0022). Only real visitors on the production origin send heartbeats;
+everyone else reads (ADR 0023). Failures feed a `CircuitBreaker` persisted
+in localStorage, so a dead backend is abandoned site-wide for ten minutes
+(ADR 0025). The database keeps nothing older than 25 hours (ADR 0024).
+Operations are in [live-stats.md](live-stats.md).
 
 ## Styling model
 

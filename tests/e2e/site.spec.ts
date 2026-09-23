@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, SUPABASE, test } from './fixtures';
 import { siteConfig } from '../../src/lib/config';
 
 test.describe('home page', () => {
@@ -133,5 +133,24 @@ test.describe('resilience and accessibility', () => {
     await expect(
       page.locator('link[rel="alternate"][type="application/atom+xml"]'),
     ).toHaveAttribute('href', '/feed.xml');
+  });
+});
+
+test.describe('own origin only', () => {
+  test('pages load nothing from any other origin', async ({ page, baseURL }) => {
+    const foreign: string[] = [];
+    page.on('request', (request) => {
+      const url = request.url();
+      // The optional live-statistics backend is the one sanctioned exception
+      // (ADR 0022); every test sees it unreachable, courtesy of fixtures.ts.
+      if (!url.startsWith(baseURL ?? '') && !url.startsWith('data:') && !SUPABASE.test(url)) {
+        foreign.push(url);
+      }
+    });
+    for (const path of ['/', '/blog/', '/about/', '/live/']) {
+      await page.goto(path);
+      await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    }
+    expect(foreign).toEqual([]);
   });
 });

@@ -3,10 +3,11 @@
 **A demonstration of what is possible with TypeScript 7 and the modern web.**
 
 A complete blog — markdown posts, tags, series, authors, five themes, an Atom
-feed — with **zero runtime dependencies**. No framework, no CSS library, no
-markdown or YAML package, no external resources of any kind. Everything the
-browser receives was written in this repository and compiled by the
-TypeScript 7 **native compiler**.
+feed, optional live readership statistics — with **zero runtime
+dependencies**. No framework, no CSS library, no markdown or YAML package, no
+SDK, no external resources beyond one optional, non-blocking statistics API.
+Everything the browser receives was written in this repository and compiled
+by the TypeScript 7 **native compiler**.
 
 Live site: **<https://kphoto.github.io>** · License: **AGPL-3.0-or-later**
 
@@ -38,6 +39,8 @@ file and one small hand-written script. That required writing from scratch:
 - a static site generator as a Vite plugin (`src/ssg/vitePlugin.ts`)
 - web components scoped with declarative shadow DOM (`src/components/`)
 - a theme system persisted in localStorage with a pre-paint script (`src/client/`)
+- a live-statistics client — PostgREST over plain `fetch`, visibility-gated
+  polling, a persisted circuit breaker — instead of the Supabase SDK
 
 ## Quick start (Fedora 43 and friends)
 
@@ -123,6 +126,37 @@ optionally `series` + `episode`. Authors live in `content/authors/*.yml`;
 standalone pages in `content/pages/*.md`. Every rule is validated at build
 time with file-scoped error messages — see
 [docs/content-authoring.md](docs/content-authoring.md).
+
+## Live statistics (optional, never blocking)
+
+The footer can show how many people are reading right now, and
+[`/live/`](https://kphoto.github.io/live/) shows the busiest pages of the
+last 24 hours. The numbers come from a free-tier Supabase project, reached
+with plain `fetch`. The feature is built so that it **cannot break the
+site**:
+
+- nothing is shown until a request succeeds;
+- every request times out after 5 s;
+- after repeated failures every page on that browser stops trying for
+  ten minutes.
+
+A paused, over-quota or deleted project looks exactly like the feature not
+existing. The e2e suite runs every test with the backend unreachable.
+
+Privacy is designed in rather than promised:
+
+- no IP addresses, cookies or stored identifiers — each open tab uses a
+  random id held in memory;
+- views are kept only as per-minute counts, deleted after 25 hours;
+- visits are never counted for automated browsers, for browsers sending
+  Global Privacy Control, or anywhere but the production origin.
+
+It is off until `publishableKey` is set in `src/lib/config.ts`. The database
+side is one idempotent SQL file,
+[`docs/supabase/live-stats.sql`](docs/supabase/live-stats.sql), pasted into
+the Supabase SQL editor. Setup, costs and removal are in
+[docs/live-stats.md](docs/live-stats.md); the decisions are in ADRs
+[0022](docs/adr/0022-optional-live-statistics-backend.md)–[0025](docs/adr/0025-visibility-gated-polling-with-circuit-breaker.md).
 
 ## Architecture in one paragraph
 

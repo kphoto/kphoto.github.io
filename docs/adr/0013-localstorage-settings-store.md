@@ -37,3 +37,13 @@ degrade to the default instead of breaking the page. Private-browsing users
 get working theming for the session that silently forgets. The single-key
 design makes "what does this site store?" answerable in one sentence — which
 the About page does.
+
+## Amendment (2026-09-23): a second, non-settings key
+
+The circuit breaker for live statistics (ADR 0025) stores one number —
+a "retry after" epoch timestamp — under `kphoto:live-stats:retry-after:v1`.
+It is operational state, not a user setting, so it lives outside the settings
+object and outside `SettingsStore`, behind the same never-throwing
+`KeyValueStore` (now exported from `src/client/browser.ts`). It identifies no
+one. The full answer to "what does this site store?" is now: your theme, and,
+if the live-statistics server was unreachable, when to try it again.
