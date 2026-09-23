@@ -5,7 +5,7 @@
   "description": "A demonstration of what is possible with TypeScript 7 and the modern web — a zero-runtime-dependency static blog.",
   "license": "AGPL-3.0-or-later",
   "type": "module",
-  "packageManager": "yarn@4.17.1",
+  "packageManager": "yarn@4.18.0",
   "engines": {
     "node": ">=24"
   },
