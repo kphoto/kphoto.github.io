@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-09-23T19:01:53-04:00
+  Generated at   : 2026-09-23T19:07:42-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,10 +17,10 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : 21980b8b52087f7abf6049bd5b2bb42204f74d6b
-  Commit (short) : 21980b8
-  Commit date    : 2026-09-23 19:00:36 -0400
-  Commit message : add claude response
+  Commit (full)  : 7431468b564d8737fe8cd83bd485461134a990c0
+  Commit (short) : 7431468
+  Commit date    : 2026-09-23 19:06:56 -0400
+  Commit message : add key
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
   Files included : 392
   Excluded path  : docs/llm/
@@ -16482,15 +16482,15 @@ describe('liveStatsEnabled', () => {
   File name:             config.ts
   Relative path:         src/lib/config.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/lib/config.ts
-  Size:                  2.5 KiB (2600 bytes)
-  Last modified:         2026-09-23 18:54:38.000000000 -0400
+  Size:                  2.5 KiB (2646 bytes)
+  Last modified:         2026-09-23 19:06:51.025851597 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
   Inode:                 64313698
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               fea29bf3aef430481642aa168e087c303e6df2e8d9c7e2cf7423d749e196a914
-  Last git commit:       21980b8 2026-09-23 19:00:36 -0400 add claude response
+  SHA-256:               1b1491d67f747d8f2b7305fdc901a620a29f0e1f117545b7ea8dc95fddff6461
+  Last git commit:       7431468 2026-09-23 19:06:56 -0400 add key
 
 --- CONTENT ---
 /**
@@ -16545,7 +16545,7 @@ export const siteConfig: SiteConfig = {
     // Supabase project "colorado" (us-east-2).
     projectUrl: 'https://wgtvebsxazxfapjtujce.supabase.co',
     // Paste the project's sb_publishable_… key here to switch live stats on.
-    publishableKey: '',
+    publishableKey: 'sb_publishable_WS-YNzbiQffEQ0NS0DIy_w_2Vw6Uw-J',
   },
 };
 
@@ -21601,9 +21601,9 @@ packageExtensions:
 # DUMP SUMMARY
 ################################################################################
   Files dumped   : 392
-  Total size     : 487.3 MiB (511042575 bytes)
+  Total size     : 487.3 MiB (511042621 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-09-23T19:02:03-04:00
+  Completed at   : 2026-09-23T19:07:53-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
