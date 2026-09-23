@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-09-23T18:14:14-04:00
+  Generated at   : 2026-09-23T18:19:37-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,10 +17,10 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : ea4082e50da5fe9f6f36dd016169c386298db74b
-  Commit (short) : ea4082e
-  Commit date    : 2026-08-28 08:16:22 -0400
-  Commit message : run dump
+  Commit (full)  : bd5aab8acacd68f8baed1eb23ebd2e187a5c1608
+  Commit (short) : bd5aab8
+  Commit date    : 2026-09-23 18:19:04 -0400
+  Commit message : run prettier
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
   Files included : 369
   Excluded path  : docs/llm/
@@ -28,7 +28,7 @@ REPOSITORY METADATA
 
 GIT WORKING TREE STATUS (first 20 lines)
 ═════════════════════════════════════════════════════════════════════════════════
-?? docs/llm/vendor/claude-007.md
+  (clean — no uncommitted changes)
 
 ################################################################################
 # FILE: export.sh  [THIS SCRIPT — included for full context]
@@ -5859,14 +5859,14 @@ For more information on this, and how to apply and follow the GNU AGPL, see
   Relative path:         package.json
   Absolute path:         /home/kushal/src/ts/kphoto/package.json
   Size:                  1.0 KiB (1083 bytes)
-  Last modified:         2026-08-28 08:10:04.899529562 -0400
+  Last modified:         2026-09-23 18:17:20.588730236 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
   Inode:                 20816866
   Hard links:            1
   MIME type:             application/json
-  SHA-256:               eefbd5f1800c9e4c53c3ec4ce6063c6f67190b8d1c6007b9c32c47e4003360cd
-  Last git commit:       b2a1af2 2026-08-28 08:10:22 -0400 use 6.0.3
+  SHA-256:               76f2690e91cfdea93528b67594b3561ba918cad982dcdf8e7f533cd55f62951f
+  Last git commit:       b650273 2026-09-23 18:17:33 -0400 update yarn
 
 --- CONTENT ---
 {
@@ -5876,7 +5876,7 @@ For more information on this, and how to apply and follow the GNU AGPL, see
   "description": "A demonstration of what is possible with TypeScript 7 and the modern web — a zero-runtime-dependency static blog.",
   "license": "AGPL-3.0-or-later",
   "type": "module",
-  "packageManager": "yarn@4.17.1",
+  "packageManager": "yarn@4.18.0",
   "engines": {
     "node": ">=24"
   },
@@ -17740,66 +17740,57 @@ export default defineConfig({
   File name:             .yarnrc.yml
   Relative path:         .yarnrc.yml
   Absolute path:         /home/kushal/src/ts/kphoto/.yarnrc.yml
-  Size:                  1.4 KiB (1496 bytes)
-  Last modified:         2026-07-13 16:03:16.000000000 -0400
+  Size:                  700 B (700 bytes)
+  Last modified:         2026-09-23 18:18:32.875062570 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
   Inode:                 20816856
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               6c7a4b3da3a056d0e2beb280637759566091a824b4bbf30413820c91ae600eb0
-  Last git commit:       5c83b7c 2026-07-13 17:26:49 -0400 add claude changes
+  SHA-256:               05cf462a537ab0ef8299fc7cc1fe5d8de5acacfe5db892597d30fd8b29b18c16
+  Last git commit:       bd5aab8 2026-09-23 18:19:04 -0400 run prettier
 
 --- CONTENT ---
-# Yarn 4 configuration — see docs/adr/0014-yarn-and-dependency-policy.md
-nodeLinker: node-modules
 enableGlobalCache: true
 
-# Supply-chain quarantine (ADR 0014): refuse versions published more recently
-# than 4320 minutes (72 hours). "Latest" means latest past this gate.
+nodeLinker: node-modules
+
 npmMinimalAgeGate: 4320
 
-# typescript-eslint (and its dependency ts-api-utils) still require TypeScript's
-# classic JS API, which typescript@7 no longer ships. These extensions give that
-# tool realm a nested typescript@6.0.3 while the project itself compiles with the
-# native typescript@7. The `typescript-eslint` meta package and
-# `@typescript-eslint/utils` carry the same fallback so their `typescript` peer
-# edge is satisfied without a workspace-level typescript (which would collide
-# with the native compiler's `tsc` bin). See docs/adr/0006-dual-typescript-toolchain.md
 packageExtensions:
-  'typescript-eslint@*':
-    dependencies:
-      typescript: '6.0.3'
   '@typescript-eslint/eslint-plugin@*':
     dependencies:
-      typescript: '6.0.3'
+      typescript: 6.0.3
   '@typescript-eslint/parser@*':
     dependencies:
-      typescript: '6.0.3'
+      typescript: 6.0.3
   '@typescript-eslint/project-service@*':
     dependencies:
-      typescript: '6.0.3'
+      typescript: 6.0.3
   '@typescript-eslint/type-utils@*':
     dependencies:
-      typescript: '6.0.3'
+      typescript: 6.0.3
   '@typescript-eslint/typescript-estree@*':
     dependencies:
-      typescript: '6.0.3'
+      typescript: 6.0.3
   '@typescript-eslint/utils@*':
     dependencies:
-      typescript: '6.0.3'
-  'ts-api-utils@*':
+      typescript: 6.0.3
+  ts-api-utils@*:
     dependencies:
-      typescript: '6.0.3'
+      typescript: 6.0.3
+  typescript-eslint@*:
+    dependencies:
+      typescript: 6.0.3
 
 
 ################################################################################
 # DUMP SUMMARY
 ################################################################################
   Files dumped   : 369
-  Total size     : 487.2 MiB (510924218 bytes)
+  Total size     : 487.2 MiB (510923422 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-09-23T18:14:23-04:00
+  Completed at   : 2026-09-23T18:19:47-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
