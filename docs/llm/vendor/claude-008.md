@@ -11,3 +11,4 @@ No bespoke sed/patch scripts — full files only for anything that changes
 Docs updated alongside code changes
 Low verbosity, no code comments
 also please update all documentation 
+also switch over completely to typescript 7 and prepare for typescript 7.1 
