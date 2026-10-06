@@ -2,7 +2,7 @@ import { mkdtemp, mkdir, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { readContentInput } from './loadContent';
+import { readContentInput } from './loadContent.ts';
 
 describe('readContentInput', () => {
   it('reads blog, authors and pages by file name', async () => {

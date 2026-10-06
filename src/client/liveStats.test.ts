@@ -1,9 +1,14 @@
 import { describe, expect, it } from 'vitest';
+import { en } from '../i18n/messages/en.ts';
+import { es } from '../i18n/messages/es.ts';
 import {
   boardRowViews,
   chooseTrackingMode,
   describeSummary,
-  describeTotals,
+  LIVE_MESSAGE_KEYS,
+  parseLiveMessages,
+  totalsValues,
+  type LiveMessages,
   HEARTBEAT_INTERVAL_MS,
   isSafePath,
   LiveStatsShapeError,
@@ -13,7 +18,7 @@ import {
   parseSummary,
   REQUEST_TIMEOUT_MS,
   type LiveSummary,
-} from './liveStats';
+} from './liveStats.ts';
 
 const summary: LiveSummary = {
   siteNow: 3,
@@ -163,33 +168,56 @@ describe('makeCountFormatter', () => {
   });
 });
 
+const messages = Object.fromEntries(
+  Object.entries(LIVE_MESSAGE_KEYS).map(([name, key]) => [name, en[key]]),
+) as unknown as LiveMessages;
+
 describe('describeSummary', () => {
   it('reads naturally with plural counts', () => {
-    expect(describeSummary(summary, format)).toBe(
+    expect(describeSummary(summary, messages, 'en')).toBe(
       '3 readers on the site right now, 1 on this page · 1,234 page views in the last 24 hours',
     );
   });
 
   it('uses the singular for exactly one', () => {
-    const text = describeSummary({ ...summary, siteNow: 1, siteViews24h: 1 }, format);
+    const text = describeSummary({ ...summary, siteNow: 1, siteViews24h: 1 }, messages, 'en');
     expect(text).toContain('1 reader on the site');
     expect(text).toContain('1 page view in the last');
   });
 
   it('uses the plural for zero', () => {
-    const text = describeSummary({ ...summary, siteNow: 0, siteViews24h: 0 }, format);
+    const text = describeSummary({ ...summary, siteNow: 0, siteViews24h: 0 }, messages, 'en');
     expect(text).toContain('0 readers');
     expect(text).toContain('0 page views');
   });
+
+  it('follows the locale for plurals and digit grouping', () => {
+    const spanish = Object.fromEntries(
+      Object.entries(LIVE_MESSAGE_KEYS).map(([name, key]) => [name, es[key]]),
+    ) as unknown as LiveMessages;
+    expect(describeSummary({ ...summary, siteNow: 1 }, spanish, 'es')).toBe(
+      '1 lector en el sitio ahora mismo, 1 en esta página · 1234 visitas en las últimas 24 horas',
+    );
+  });
 });
 
-describe('describeTotals', () => {
-  it('labels the totals in display order', () => {
-    expect(describeTotals(summary, format)).toEqual([
-      ['Here right now', '3'],
-      ['Views, last hour', '12'],
-      ['Views, last 24 hours', '1,234'],
-    ]);
+describe('parseLiveMessages', () => {
+  it('round-trips the messages the server renders', () => {
+    expect(parseLiveMessages(JSON.stringify(messages))).toEqual(messages);
+  });
+
+  it('rejects missing, malformed or incomplete input', () => {
+    expect(parseLiveMessages(undefined)).toBeNull();
+    expect(parseLiveMessages('{broken')).toBeNull();
+    expect(parseLiveMessages('[]')).toBeNull();
+    expect(parseLiveMessages(JSON.stringify({ ...messages, readers: 3 }))).toBeNull();
+    expect(parseLiveMessages(JSON.stringify({ ...messages, views: { one: 'x' } }))).toBeNull();
+  });
+});
+
+describe('totalsValues', () => {
+  it('formats the totals in display order', () => {
+    expect(totalsValues(summary, format)).toEqual(['3', '12', '1,234']);
   });
 });
 

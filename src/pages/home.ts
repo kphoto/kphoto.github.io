@@ -1,33 +1,11 @@
-import { renderPostCard } from '../components/postCard';
-import { latestPosts } from '../lib/collections';
-import { escapeHtml } from '../lib/html';
-import type { SiteModel } from '../lib/types';
-import { renderDocument, type PageContext } from './layout';
+import { renderPostCard } from '../components/postCard.ts';
+import { postIn } from '../i18n/localizedContent.ts';
+import { latestPosts } from '../lib/collections.ts';
+import { escapeHtml } from '../lib/html.ts';
+import type { SiteModel } from '../lib/types.ts';
+import { renderDocument, type PageContext } from './layout.ts';
 
-/**
- * Home page: the hero renders the site's own "frontmatter" — the format that
- * powers every post is the most characteristic thing in this site's world —
- * followed by the latest posts.
- */
-export function renderHome(model: SiteModel, context: PageContext): string {
-  const posts = latestPosts([...model.posts], context.config.postsOnHome);
-  const cards = posts.map((post) => renderPostCard(post, 2)).join('\n');
-  const main = `<section class="hero">
-<pre class="hero-frontmatter" aria-hidden="true"><code>---
-title:  ${escapeHtml(context.config.title)}
-stack:  TypeScript 7 · zero runtime dependencies
-build:  vite · vitest · playwright
-themes: light · dark · solarized
----</code></pre>
-<h1>The modern web, hand-rolled.</h1>
-<p class="lede">${escapeHtml(context.config.description)} Every post is a markdown file; every parser, component and theme on this site is written from scratch — no framework, no runtime dependencies.</p>
-</section>
-<section class="post-list" aria-labelledby="latest-heading">
-<h2 id="latest-heading" class="section-heading">Latest posts</h2>
-${cards}
-<p class="more"><a href="/blog/">All posts →</a></p>
-
-<section class="food-photos">
+const FOOD_PHOTOS = `<section class="food-photos">
   <img src="/images/food/IMG_20260814_124517771_HDR.jpg" alt = "" loading="lazy" />
   <img src="/images/food/IMG_20260814_124524458_HDR.jpg" alt = "" loading="lazy" />
   <img src="/images/food/IMG_20260814_124529627_HDR.jpg" alt = "" loading="lazy" />
@@ -244,12 +222,41 @@ ${cards}
   <img src="/images/food/IMG_20260821_164228027_HDR.jpg" alt = "" loading="lazy" />
   <img src="/images/food/IMG_20260821_164230455_HDR.jpg" alt = "" loading="lazy" />
   <img src="/images/food/IMG_20260821_164232956.jpg" alt = "" loading="lazy" />
+</section>`;
+
+export function renderHome(model: SiteModel, context: PageContext): string {
+  const { t } = context;
+  const posts = latestPosts([...model.posts], context.config.postsOnHome);
+  const cards = posts
+    .map((post) => renderPostCard(postIn(post, t.locale.code), context, 2))
+    .join('\n');
+  const description = t.text('site.description');
+  const main = `<section class="hero">
+<pre class="hero-frontmatter" aria-hidden="true"><code>---
+title:  ${escapeHtml(context.config.title)}
+stack:  TypeScript 7 · zero runtime dependencies
+build:  vite · vitest · playwright
+themes: light · dark · solarized
+---</code></pre>
+<h1>${t.html('home.title')}</h1>
+<p class="lede">${t.html('home.lede', { description })}</p>
 </section>
+<section class="post-list" aria-labelledby="latest-heading">
+<h2 id="latest-heading" class="section-heading">${t.html('home.latest')}</h2>
+${cards}
+<p class="more"><a href="${escapeHtml(context.href('/blog/'))}">${t.html('home.allPosts')}</a></p>
+
+${FOOD_PHOTOS}
 
 </section>`;
   return renderDocument(
     context,
-    { title: context.config.title, description: context.config.description, path: '/' },
+    {
+      title: context.config.title,
+      description,
+      path: context.href('/'),
+      alternates: context.everyLocale('/'),
+    },
     main,
   );
 }

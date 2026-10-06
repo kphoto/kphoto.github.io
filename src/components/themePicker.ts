@@ -1,22 +1,20 @@
-import { escapeAttribute, escapeHtml } from '../lib/html';
-import { THEMES, type ThemeName } from '../client/storage';
+import { escapeAttribute, escapeHtml } from '../lib/html.ts';
+import { THEMES, type ThemeName } from '../client/storage.ts';
+import type { MessageKey } from '../i18n/messages/index.ts';
+import type { Translator } from '../i18n/translator.ts';
 
-const THEME_LABELS: Readonly<Record<ThemeName, string>> = {
-  system: 'System',
-  light: 'Light',
-  dark: 'Dark',
-  'solarized-light': 'Solarized Light',
-  'solarized-dark': 'Solarized Dark',
+export const THEME_LABEL_KEYS: Readonly<Record<ThemeName, MessageKey>> = {
+  system: 'theme.system',
+  light: 'theme.light',
+  dark: 'theme.dark',
+  'solarized-light': 'theme.solarizedLight',
+  'solarized-dark': 'theme.solarizedDark',
 };
 
-/**
- * Server-rendered theme picker. The markup ships as declarative shadow DOM so
- * its styles are scoped; `src/client/main.ts` upgrades it with behaviour.
- */
-export function renderThemePicker(): string {
+export function renderThemePicker(t: Translator): string {
   const options = THEMES.map(
     (theme) =>
-      `<option value="${escapeAttribute(theme)}">${escapeHtml(THEME_LABELS[theme])}</option>`,
+      `<option value="${escapeAttribute(theme)}">${escapeHtml(t.text(THEME_LABEL_KEYS[theme]))}</option>`,
   ).join('');
   return `<kp-theme-picker>
 <template shadowrootmode="open">
@@ -46,7 +44,7 @@ select:focus-visible {
   outline-offset: 2px;
 }
 </style>
-<label class="visually-hidden" for="theme-select">Theme</label>
+<label class="visually-hidden" for="theme-select">${t.html('theme.label')}</label>
 <select id="theme-select" autocomplete="off">${options}</select>
 </template>
 </kp-theme-picker>`;

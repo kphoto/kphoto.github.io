@@ -1,6 +1,6 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { ContentInput } from '../lib/types';
+import type { ContentInput } from '../lib/types.ts';
 
 async function readDirectory(directory: string): Promise<Record<string, string>> {
   let entries;
@@ -19,7 +19,6 @@ async function readDirectory(directory: string): Promise<Record<string, string>>
   return record;
 }
 
-/** Reads the raw content tree; parsing and validation stay pure elsewhere. */
 export async function readContentInput(rootDir: string): Promise<ContentInput> {
   const contentDir = path.join(rootDir, 'content');
   const [blog, authors, pages] = await Promise.all([

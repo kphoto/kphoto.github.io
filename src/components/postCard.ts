@@ -1,24 +1,34 @@
-import { formatDisplayDate } from '../lib/dates';
-import { escapeAttribute, escapeHtml } from '../lib/html';
-import { slugify } from '../lib/slug';
-import type { Post } from '../lib/types';
+import type { LocalizedPost } from '../i18n/localizedContent.ts';
+import { escapeAttribute, escapeHtml } from '../lib/html.ts';
+import { slugify } from '../lib/slug.ts';
+import type { RenderContext } from './context.ts';
 
-/**
- * A post as it appears in every list view. The mono "machine line" eyebrow
- * (date · episode · reading time) surfaces the data that makes each post
- * unique; the summary and tags are always shown, as the content rules require.
- */
-export function renderPostCard(post: Post, headingLevel: 2 | 3 = 2): string {
-  const tag = `h${String(headingLevel)}`;
-  const episode = post.series
-    ? ` · <a class="series" href="/series/${escapeAttribute(post.series.slug)}/">${escapeHtml(post.series.name)}</a> <span class="ep">ep ${String(post.series.episode)}</span>`
-    : '';
-  const tagLinks = post.tags
+export function renderTagLinks(tags: readonly string[], context: RenderContext): string {
+  return tags
     .map(
       (name) =>
-        `<li><a href="/tags/${escapeAttribute(slugify(name))}/">${escapeHtml(name)}</a></li>`,
+        `<li><a href="${escapeAttribute(context.href(`/tags/${slugify(name)}/`))}">${escapeHtml(name)}</a></li>`,
     )
     .join('');
+}
+
+export function renderPostCard(
+  view: LocalizedPost,
+  context: RenderContext,
+  headingLevel: 2 | 3 = 2,
+): string {
+  const { t } = context;
+  const post = view.post;
+  const tag = `h${String(headingLevel)}`;
+  const episode = post.series
+    ? ` · <a class="series" href="${escapeAttribute(context.href(`/series/${post.series.slug}/`))}">${escapeHtml(post.series.name)}</a> <span class="ep">${t.html('post.episode', { episode: post.series.episode })}</span>`
+    : '';
+  const foreign = view.language !== t.locale.code;
+  const lang = foreign ? ` lang="${escapeAttribute(view.language)}"` : '';
+  const badge = foreign
+    ? ` · <span class="language">${t.html('post.inLanguage', { language: t.localeName(view.language) })}</span>`
+    : '';
+  const tagLinks = renderTagLinks(post.tags, context);
   return `<kp-post-card>
 <template shadowrootmode="open">
 <style>
@@ -37,6 +47,9 @@ article {
 }
 .machine a {
   color: inherit;
+}
+.machine .language {
+  color: var(--text);
 }
 .machine .ep {
   color: var(--accent-strong);
@@ -87,10 +100,10 @@ a:focus-visible {
 }
 </style>
 <article>
-<p class="machine"><time datetime="${escapeAttribute(post.date)}">${escapeHtml(formatDisplayDate(post.date))}</time>${episode} · ${String(post.readingMinutes)} min read</p>
-<${tag}><a href="${escapeAttribute(post.url)}">${escapeHtml(post.title)}</a></${tag}>
-<p class="summary">${escapeHtml(post.summary)}</p>
-<ul class="tags" aria-label="Tags">${tagLinks}</ul>
+<p class="machine"><time datetime="${escapeAttribute(post.date)}">${escapeHtml(t.date(post.date))}</time>${episode} · ${t.html('post.readingTime', { count: view.readingMinutes })}${badge}</p>
+<${tag}${lang}><a href="${escapeAttribute(view.url)}"${foreign ? ` hreflang="${escapeAttribute(view.language)}"` : ''}>${escapeHtml(view.title)}</a></${tag}>
+<p class="summary"${lang}>${escapeHtml(view.summary)}</p>
+<ul class="tags" aria-label="${escapeAttribute(t.text('post.tags'))}">${tagLinks}</ul>
 </article>
 </template>
 </kp-post-card>`;

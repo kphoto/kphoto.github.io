@@ -5,8 +5,8 @@ import {
   parseAuthor,
   parseMarkdownPage,
   parsePost,
-} from './content';
-import { postFile } from './testFixtures';
+} from './content.ts';
+import { postFile } from './testFixtures.ts';
 
 const GOOD_POST = postFile(
   [
@@ -348,5 +348,100 @@ describe('loadSiteModel scheduled publishing (ADR 0021)', () => {
 
   it('rejects a malformed cutoff date', () => {
     expect(() => loadSiteModel(input, 'someday')).toThrow(/valid YYYY-MM-DD/);
+  });
+});
+
+describe('translations', () => {
+  const bilingual = { defaultLocale: 'en', locales: ['en', 'es'] };
+  const base = {
+    blog: { '2026-03-22-good-morning.md': GOOD_POST },
+    authors: { 'kphoto-team.yml': GOOD_AUTHOR },
+    pages: { 'about.md': postFile('title: About') },
+  };
+  const spanishPost = postFile('title: ¡Buenos días!\nsummary: Hola', '\nHola.\n');
+
+  it('attaches post and page translations to their originals', () => {
+    const model = loadSiteModel(
+      {
+        ...base,
+        blog: { ...base.blog, '2026-03-22-good-morning.es.md': spanishPost },
+        pages: { ...base.pages, 'about.es.md': postFile('title: Acerca de') },
+      },
+      undefined,
+      bilingual,
+    );
+    const translation = model.posts[0]?.translations.get('es');
+    expect(translation?.title).toBe('¡Buenos días!');
+    expect(translation?.url).toBe('/es/blog/2026-03-22-good-morning/');
+    expect(model.pages.get('about')?.translations.get('es')?.title).toBe('Acerca de');
+  });
+
+  it('places a post written in another language under that locale', () => {
+    const post = parsePost(
+      '2026-03-22-hola.md',
+      postFile('title: Hola\ndate: 2026-03-22\nauthor: a\nsummary: s\ntags:\n  - x\nlang: es'),
+      bilingual,
+    );
+    expect(post.language).toBe('es');
+    expect(post.url).toBe('/es/blog/2026-03-22-hola/');
+  });
+
+  it('rejects a lang the site does not build', () => {
+    expect(() =>
+      parsePost(
+        '2026-03-22-hola.md',
+        postFile('title: Hola\ndate: 2026-03-22\nauthor: a\nsummary: s\ntags:\n  - x\nlang: fr'),
+        bilingual,
+      ),
+    ).toThrow(/not one of the site locales/);
+  });
+
+  it('reports orphaned, redundant, unknown-locale and over-specified translations', () => {
+    const attempt = () =>
+      loadSiteModel(
+        {
+          ...base,
+          blog: {
+            ...base.blog,
+            '2026-01-01-missing.es.md': spanishPost,
+            '2026-03-22-good-morning.en.md': spanishPost,
+            '2026-03-22-good-morning.fr.md': spanishPost,
+            '2026-03-22-good-morning.es.md': postFile('title: T\nsummary: S\ntags:\n  - x'),
+          },
+          pages: {
+            ...base.pages,
+            'missing.es.md': postFile('title: X'),
+            'about.en.md': postFile('title: X'),
+            'about.fr.md': postFile('title: X'),
+          },
+        },
+        undefined,
+        bilingual,
+      );
+    expect(attempt).toThrow(ContentValidationError);
+    try {
+      attempt();
+    } catch (error) {
+      const messages = (error as ContentValidationError).issues.map((issue) => issue.message);
+      expect(messages).toEqual(
+        expect.arrayContaining([
+          expect.stringContaining('translation of a missing post'),
+          expect.stringContaining('already the language of the original post'),
+          expect.stringContaining('locale "fr" is not one of the site locales'),
+          expect.stringContaining('unknown key "tags"'),
+          expect.stringContaining('translation of a missing page'),
+          expect.stringContaining('already the language of the original page'),
+        ]),
+      );
+    }
+  });
+
+  it('ignores the locale suffix rules on a single-locale site by rejecting it', () => {
+    expect(() =>
+      loadSiteModel({
+        ...base,
+        blog: { ...base.blog, '2026-03-22-good-morning.es.md': spanishPost },
+      }),
+    ).toThrow(/not one of the site locales/);
   });
 });

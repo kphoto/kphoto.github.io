@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { readingMinutes } from './readingTime';
+import { readingMinutes } from './readingTime.ts';
 
 describe('readingMinutes', () => {
   it('never reports less than one minute', () => {

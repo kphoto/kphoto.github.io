@@ -2,15 +2,18 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import path from 'node:path';
 import type { Plugin, ResolvedConfig, ViteDevServer } from 'vite';
-import { siteConfig } from '../lib/config';
-import { ContentValidationError, loadSiteModel } from '../lib/content';
-import { isoDateInTimeZone } from '../lib/dates';
-import { escapeHtml } from '../lib/html';
-import { outputFileFor, renderSite, type PageContext } from '../pages/routes';
-import type { RenderedFile } from '../pages/routes';
-import { readContentInput } from './loadContent';
+import { catalogs } from '../i18n/messages/index.ts';
+import { validateLocaleSettings } from '../i18n/locales.ts';
+import { resolveBuildInfo } from '../lib/buildInfo.ts';
+import { contentLocales, siteConfig } from '../lib/config.ts';
+import { ContentValidationError, loadSiteModel } from '../lib/content.ts';
+import { isoDateInTimeZone } from '../lib/dates.ts';
+import { escapeHtml } from '../lib/html.ts';
+import { outputFileFor, renderSite, type SiteContext } from '../pages/routes.ts';
+import type { RenderedFile } from '../pages/routes.ts';
+import { nodeGitReader } from './git.ts';
+import { readContentInput } from './loadContent.ts';
 
-/** Asset URLs used by the dev server; the build swaps in hashed files. */
 const DEV_ASSETS = {
   scriptSrc: '/src/client/main.ts',
   styleHref: '/src/styles/global.css',
@@ -20,11 +23,6 @@ interface ManifestChunk {
   readonly file: string;
 }
 
-/**
- * The publish cutoff for one render: today's date in the site's time zone, or
- * no cutoff at all when `KPHOTO_SHOW_FUTURE=1` asks the dev server to preview
- * scheduled posts (ADR 0021).
- */
 function publishedThrough(now: Date): string | undefined {
   if (process.env.KPHOTO_SHOW_FUTURE === '1') {
     return undefined;
@@ -34,15 +32,19 @@ function publishedThrough(now: Date): string | undefined {
 
 async function renderCurrentSite(
   rootDir: string,
-  assets: PageContext['assets'],
+  assets: SiteContext['assets'],
 ): Promise<RenderedFile[]> {
-  // One clock read per render; everything below it is pure. The dev server
-  // renders per request, so a scheduled post flips live at midnight in the
-  // site's time zone without a restart.
   const now = new Date();
   const input = await readContentInput(rootDir);
-  const model = loadSiteModel(input, publishedThrough(now));
-  return renderSite(model, { config: siteConfig, assets, buildYear: now.getUTCFullYear() });
+  validateLocaleSettings(siteConfig);
+  const model = loadSiteModel(input, publishedThrough(now), contentLocales(siteConfig));
+  return renderSite(model, {
+    config: siteConfig,
+    assets,
+    buildYear: now.getUTCFullYear(),
+    build: resolveBuildInfo(process.env, nodeGitReader(rootDir)),
+    catalogs,
+  });
 }
 
 function send(
@@ -108,15 +110,6 @@ function devMiddleware(server: ViteDevServer, rootDir: string) {
   };
 }
 
-/**
- * Turns Vite into this site's static site generator:
- *
- * - dev: renders every route on request from the current content, injects the
- *   Vite client for HMR, and full-reloads when anything under content/ changes
- * - build: after Vite bundles the client entry and the stylesheet, reads the
- *   manifest for the hashed asset names and writes every HTML page, the 404
- *   page, feed.xml and sitemap.xml into the output directory
- */
 export function kphotoSsg(): Plugin {
   let resolved: ResolvedConfig | undefined;
   return {

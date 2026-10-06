@@ -3,29 +3,32 @@ import {
   groupPostsBySeries,
   groupPostsByTag,
   sortPostsByDateDesc,
-} from './collections';
-import { isValidIsoDate } from './dates';
-import { extractFrontmatter } from './frontmatter';
-import { renderMarkdown } from './markdown';
-import { readingMinutes } from './readingTime';
-import { slugify } from './slug';
-import type {
-  Author,
-  AuthorSocials,
-  ContentInput,
-  MarkdownPage,
-  Post,
-  SeriesMembership,
-  SiteModel,
-} from './types';
-import { parseYaml, type YamlMap } from './yaml';
+} from './collections.ts';
+import { isValidIsoDate } from './dates.ts';
+import { extractFrontmatter } from './frontmatter.ts';
+import { renderMarkdown } from './markdown.ts';
+import { readingMinutes } from './readingTime.ts';
+import { slugify } from './slug.ts';
+import {
+  SINGLE_LOCALE,
+  type Author,
+  type AuthorSocials,
+  type ContentInput,
+  type ContentLocales,
+  type MarkdownPage,
+  type PageTranslation,
+  type Post,
+  type PostTranslation,
+  type SeriesMembership,
+  type SiteModel,
+} from './types.ts';
+import { parseYaml, type YamlMap } from './yaml.ts';
 
 export interface ContentIssue {
   readonly file: string;
   readonly message: string;
 }
 
-/** Carries every content problem found in one pass so authors fix them together. */
 export class ContentValidationError extends Error {
   readonly issues: readonly ContentIssue[];
 
@@ -79,9 +82,29 @@ function rejectUnknownKeys(data: YamlMap, allowed: readonly string[]): void {
 }
 
 const POST_FILE_PATTERN = /^(\d{4}-\d{2}-\d{2})-([a-z0-9-]+)\.md$/;
+const POST_TRANSLATION_PATTERN =
+  /^(\d{4}-\d{2}-\d{2}-[a-z0-9-]+)\.([a-z]{2,3}(?:-[a-z0-9]{2,8})*)\.md$/;
+const PAGE_TRANSLATION_PATTERN = /^([a-z0-9-]+)\.([a-z]{2,3}(?:-[a-z0-9]{2,8})*)\.md$/;
 
-/** Parses one blog post file; the date-stamped file name defines the slug. */
-export function parsePost(fileName: string, raw: string): Post {
+export function blogPath(slug: string, language: string, locales: ContentLocales): string {
+  return language === locales.defaultLocale ? `/blog/${slug}/` : `/${language}/blog/${slug}/`;
+}
+
+function readLanguage(data: YamlMap, locales: ContentLocales): string {
+  const language = readOptionalString(data, 'lang') ?? locales.defaultLocale;
+  if (!locales.locales.includes(language)) {
+    throw new Error(
+      `"lang" value "${language}" is not one of the site locales (${locales.locales.join(', ')})`,
+    );
+  }
+  return language;
+}
+
+export function parsePost(
+  fileName: string,
+  raw: string,
+  locales: ContentLocales = SINGLE_LOCALE,
+): Post {
   const fileMatch = POST_FILE_PATTERN.exec(fileName);
   if (!fileMatch) {
     throw new Error(
@@ -94,7 +117,16 @@ export function parsePost(fileName: string, raw: string): Post {
   }
 
   const { data, body } = extractFrontmatter(raw);
-  rejectUnknownKeys(data, ['title', 'date', 'author', 'summary', 'tags', 'series', 'episode']);
+  rejectUnknownKeys(data, [
+    'title',
+    'date',
+    'author',
+    'summary',
+    'tags',
+    'series',
+    'episode',
+    'lang',
+  ]);
 
   const title = readString(data, 'title');
   const date = readString(data, 'date');
@@ -107,6 +139,7 @@ export function parsePost(fileName: string, raw: string): Post {
   const author = readString(data, 'author');
   const summary = readString(data, 'summary');
   const tags = readStringList(data, 'tags');
+  const language = readLanguage(data, locales);
 
   const seriesName = readOptionalString(data, 'series');
   const episodeValue = data.episode;
@@ -128,7 +161,8 @@ export function parsePost(fileName: string, raw: string): Post {
   const slug = fileName.slice(0, -'.md'.length);
   return {
     slug,
-    url: `/blog/${slug}/`,
+    url: blogPath(slug, language, locales),
+    language,
     title,
     date,
     author,
@@ -138,6 +172,45 @@ export function parsePost(fileName: string, raw: string): Post {
     html: rendered.html,
     headings: rendered.headings,
     readingMinutes: readingMinutes(body),
+    translations: new Map(),
+  };
+}
+
+export interface ParsedPostTranslation {
+  readonly slug: string;
+  readonly translation: PostTranslation;
+}
+
+export function parsePostTranslation(
+  fileName: string,
+  raw: string,
+  locales: ContentLocales = SINGLE_LOCALE,
+): ParsedPostTranslation {
+  const match = POST_TRANSLATION_PATTERN.exec(fileName);
+  if (!match) {
+    throw new Error('translation file names must look like YYYY-MM-DD-name.<locale>.md');
+  }
+  const slug = match[1] ?? '';
+  const locale = match[2] ?? '';
+  if (!locales.locales.includes(locale)) {
+    throw new Error(
+      `locale "${locale}" is not one of the site locales (${locales.locales.join(', ')})`,
+    );
+  }
+  const { data, body } = extractFrontmatter(raw);
+  rejectUnknownKeys(data, ['title', 'summary']);
+  const rendered = renderMarkdown(body);
+  return {
+    slug,
+    translation: {
+      locale,
+      url: blogPath(slug, locale, locales),
+      title: readString(data, 'title'),
+      summary: readString(data, 'summary'),
+      html: rendered.html,
+      headings: rendered.headings,
+      readingMinutes: readingMinutes(body),
+    },
   };
 }
 
@@ -161,7 +234,6 @@ function readSocials(data: YamlMap): AuthorSocials | undefined {
   return socials;
 }
 
-/** Parses one author file; the file name defines the author id. */
 export function parseAuthor(fileName: string, raw: string): Author {
   const fileMatch = AUTHOR_FILE_PATTERN.exec(fileName);
   if (!fileMatch) {
@@ -190,8 +262,11 @@ export function parseAuthor(fileName: string, raw: string): Author {
 
 const PAGE_FILE_PATTERN = /^([a-z0-9-]+)\.md$/;
 
-/** Parses one standalone markdown page (about, contact, …). */
-export function parseMarkdownPage(fileName: string, raw: string): MarkdownPage {
+export function parseMarkdownPage(
+  fileName: string,
+  raw: string,
+  locales: ContentLocales = SINGLE_LOCALE,
+): MarkdownPage {
   const fileMatch = PAGE_FILE_PATTERN.exec(fileName);
   if (!fileMatch) {
     throw new Error(
@@ -203,25 +278,60 @@ export function parseMarkdownPage(fileName: string, raw: string): MarkdownPage {
   rejectUnknownKeys(data, ['title']);
   const title = readString(data, 'title');
   const rendered = renderMarkdown(body);
-  return { slug, title, html: rendered.html, headings: rendered.headings };
+  return {
+    slug,
+    language: locales.defaultLocale,
+    title,
+    html: rendered.html,
+    headings: rendered.headings,
+    translations: new Map(),
+  };
+}
+
+export interface ParsedPageTranslation {
+  readonly slug: string;
+  readonly translation: PageTranslation;
+}
+
+export function parsePageTranslation(
+  fileName: string,
+  raw: string,
+  locales: ContentLocales = SINGLE_LOCALE,
+): ParsedPageTranslation {
+  const match = PAGE_TRANSLATION_PATTERN.exec(fileName);
+  if (!match) {
+    throw new Error('page translation file names must look like page-name.<locale>.md');
+  }
+  const slug = match[1] ?? '';
+  const locale = match[2] ?? '';
+  if (!locales.locales.includes(locale)) {
+    throw new Error(
+      `locale "${locale}" is not one of the site locales (${locales.locales.join(', ')})`,
+    );
+  }
+  const { data, body } = extractFrontmatter(raw);
+  rejectUnknownKeys(data, ['title']);
+  const rendered = renderMarkdown(body);
+  return {
+    slug,
+    translation: {
+      locale,
+      title: readString(data, 'title'),
+      html: rendered.html,
+      headings: rendered.headings,
+    },
+  };
 }
 
 function sortedEntries(record: Readonly<Record<string, string>>): [string, string][] {
   return Object.entries(record).sort(([a], [b]) => a.localeCompare(b));
 }
 
-/**
- * Builds the whole {@link SiteModel} from raw file contents, validating
- * everything and aggregating problems into one {@link ContentValidationError}.
- *
- * When `publishedThrough` (a `YYYY-MM-DD` date) is given, posts dated after it
- * are validated but excluded from the model — the scheduled-publishing rule of
- * ADR 0021. Every derived view (home, indexes, tags, series, authors, feed,
- * sitemap) is built from the published posts only, so nothing ever links to an
- * unpublished URL. Omitting the cutoff includes every post, which is how the
- * dev server previews the future under `KPHOTO_SHOW_FUTURE=1`.
- */
-export function loadSiteModel(input: ContentInput, publishedThrough?: string): SiteModel {
+export function loadSiteModel(
+  input: ContentInput,
+  publishedThrough?: string,
+  locales: ContentLocales = SINGLE_LOCALE,
+): SiteModel {
   if (publishedThrough !== undefined && !isValidIsoDate(publishedThrough)) {
     throw new Error(`publishedThrough "${publishedThrough}" is not a valid YYYY-MM-DD date`);
   }
@@ -237,23 +347,85 @@ export function loadSiteModel(input: ContentInput, publishedThrough?: string): S
     }
   }
 
-  const posts: Post[] = [];
+  const postsBySlug = new Map<string, Post>();
+  const postTranslations: [string, ParsedPostTranslation][] = [];
   for (const [fileName, raw] of sortedEntries(input.blog)) {
     try {
-      posts.push(parsePost(fileName, raw));
+      if (POST_TRANSLATION_PATTERN.test(fileName)) {
+        postTranslations.push([fileName, parsePostTranslation(fileName, raw, locales)]);
+      } else {
+        const post = parsePost(fileName, raw, locales);
+        postsBySlug.set(post.slug, post);
+      }
     } catch (error) {
       issues.push({ file: `content/blog/${fileName}`, message: describe(error) });
     }
   }
 
-  const pages = new Map<string, MarkdownPage>();
+  const postTranslationMaps = new Map<string, Map<string, PostTranslation>>();
+  for (const [fileName, { slug, translation }] of postTranslations) {
+    const original = postsBySlug.get(slug);
+    if (!original) {
+      issues.push({
+        file: `content/blog/${fileName}`,
+        message: `translation of a missing post (expected content/blog/${slug}.md)`,
+      });
+      continue;
+    }
+    if (original.language === translation.locale) {
+      issues.push({
+        file: `content/blog/${fileName}`,
+        message: `"${translation.locale}" is already the language of the original post`,
+      });
+      continue;
+    }
+    const map = postTranslationMaps.get(slug) ?? new Map<string, PostTranslation>();
+    map.set(translation.locale, translation);
+    postTranslationMaps.set(slug, map);
+  }
+  const posts: Post[] = [...postsBySlug.values()].map((post) => ({
+    ...post,
+    translations: postTranslationMaps.get(post.slug) ?? new Map(),
+  }));
+
+  const pagesBySlug = new Map<string, MarkdownPage>();
+  const pageTranslations: [string, ParsedPageTranslation][] = [];
   for (const [fileName, raw] of sortedEntries(input.pages)) {
     try {
-      const page = parseMarkdownPage(fileName, raw);
-      pages.set(page.slug, page);
+      if (PAGE_TRANSLATION_PATTERN.test(fileName)) {
+        pageTranslations.push([fileName, parsePageTranslation(fileName, raw, locales)]);
+      } else {
+        const page = parseMarkdownPage(fileName, raw, locales);
+        pagesBySlug.set(page.slug, page);
+      }
     } catch (error) {
       issues.push({ file: `content/pages/${fileName}`, message: describe(error) });
     }
+  }
+  const pageTranslationMaps = new Map<string, Map<string, PageTranslation>>();
+  for (const [fileName, { slug, translation }] of pageTranslations) {
+    const original = pagesBySlug.get(slug);
+    if (!original) {
+      issues.push({
+        file: `content/pages/${fileName}`,
+        message: `translation of a missing page (expected content/pages/${slug}.md)`,
+      });
+      continue;
+    }
+    if (original.language === translation.locale) {
+      issues.push({
+        file: `content/pages/${fileName}`,
+        message: `"${translation.locale}" is already the language of the original page`,
+      });
+      continue;
+    }
+    const map = pageTranslationMaps.get(slug) ?? new Map<string, PageTranslation>();
+    map.set(translation.locale, translation);
+    pageTranslationMaps.set(slug, map);
+  }
+  const pages = new Map<string, MarkdownPage>();
+  for (const [slug, page] of pagesBySlug) {
+    pages.set(slug, { ...page, translations: pageTranslationMaps.get(slug) ?? new Map() });
   }
 
   for (const post of posts) {
@@ -296,7 +468,6 @@ export function loadSiteModel(input: ContentInput, publishedThrough?: string): S
     throw new ContentValidationError(issues);
   }
 
-  // ISO dates compare correctly as strings, the same idiom the sort uses.
   const published =
     publishedThrough === undefined ? posts : posts.filter((post) => post.date <= publishedThrough);
 

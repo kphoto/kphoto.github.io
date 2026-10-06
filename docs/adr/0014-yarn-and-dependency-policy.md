@@ -26,8 +26,8 @@ defeats most of them at near-zero cost.
   _latest that has been public for 72 hours_. At the time of writing that
   holds vite at **8.1.3** (8.1.4 was hours old) and prettier at **3.9.4**
   (3.9.5 likewise); both will be picked up by the next routine `yarn up`.
-- `.yarnrc.yml` also carries the `packageExtensions` block from ADR 0006 —
-  policy and mechanism live in one file.
+- `.yarnrc.yml` carried a `packageExtensions` block from ADR 0006 until
+  2026-10-06; see the amendment below.
 
 ## Consequences
 
@@ -36,3 +36,9 @@ means the repository is occasionally one patch release behind the absolute
 newest, by design; the README's "always latest" promise is formally "latest
 past the gate". Corepack needs enabling once per machine
 (`sudo corepack enable`), which `scripts/bootstrap.sh` checks and explains.
+
+## Amendment (2026-10-06)
+
+The `packageExtensions` block is gone: ADR 0031 replaces it with the
+official `@typescript/typescript6` alias. `.yarnrc.yml` now holds only the
+linker, the global cache and the 72-hour age gate.

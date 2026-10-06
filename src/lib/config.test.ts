@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { liveStatsEnabled, siteConfig, type SiteConfig } from './config';
+import { liveStatsEnabled, siteConfig, type SiteConfig } from './config.ts';
 
 function withLiveStats(projectUrl: string, publishableKey: string): SiteConfig {
   return { ...siteConfig, liveStats: { projectUrl, publishableKey } };

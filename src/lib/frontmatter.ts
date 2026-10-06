@@ -1,17 +1,12 @@
-import type { YamlMap } from './yaml';
-import { parseYaml } from './yaml';
+import type { YamlMap } from './yaml.ts';
+import { parseYaml } from './yaml.ts';
 
 export interface FrontmatterDocument {
-  /** Parsed YAML frontmatter. */
   readonly data: YamlMap;
-  /** Everything after the closing `---`, unmodified. */
+
   readonly body: string;
 }
 
-/**
- * Splits a markdown source file into YAML frontmatter and body. The file must
- * start with `---` on its very first line and contain a closing `---` line.
- */
 export function extractFrontmatter(source: string): FrontmatterDocument {
   const normalized = source.replace(/^\uFEFF/, '');
   const lines = normalized.split('\n');

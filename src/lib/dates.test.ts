@@ -6,7 +6,7 @@ import {
   isValidIsoDate,
   parseIsoDate,
   toUtcTimestamp,
-} from './dates';
+} from './dates.ts';
 
 describe('parseIsoDate', () => {
   it('parses a valid date', () => {
@@ -26,10 +26,10 @@ describe('parseIsoDate', () => {
   });
 
   it('knows leap years', () => {
-    expect(isValidIsoDate('2024-02-29')).toBe(true); // divisible by 4
-    expect(isValidIsoDate('2026-02-29')).toBe(false); // common year
-    expect(isValidIsoDate('2000-02-29')).toBe(true); // divisible by 400
-    expect(isValidIsoDate('1900-02-29')).toBe(false); // divisible by 100 only
+    expect(isValidIsoDate('2024-02-29')).toBe(true);
+    expect(isValidIsoDate('2026-02-29')).toBe(false);
+    expect(isValidIsoDate('2000-02-29')).toBe(true);
+    expect(isValidIsoDate('1900-02-29')).toBe(false);
   });
 });
 
@@ -63,7 +63,6 @@ describe('toUtcTimestamp', () => {
 
 describe('isoDateInTimeZone', () => {
   it('maps one instant to different calendar dates across zones', () => {
-    // 03:30 UTC on July 14 is still 23:30 on July 13 in New York.
     const instant = new Date('2026-07-14T03:30:00Z');
     expect(isoDateInTimeZone(instant, 'America/New_York')).toBe('2026-07-13');
     expect(isoDateInTimeZone(instant, 'UTC')).toBe('2026-07-14');
@@ -71,7 +70,6 @@ describe('isoDateInTimeZone', () => {
   });
 
   it('handles the winter offset too', () => {
-    // 04:30 UTC on January 2 is 23:30 on January 1 in New York (EST).
     const instant = new Date('2026-01-02T04:30:00Z');
     expect(isoDateInTimeZone(instant, 'America/New_York')).toBe('2026-01-01');
   });

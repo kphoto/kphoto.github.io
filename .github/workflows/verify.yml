@@ -1,10 +1,3 @@
-# Reusable verification suite. Deliberately slim: every step just calls a
-# script from scripts/, so CI runs exactly what ./check.sh runs locally.
-#
-# Two jobs: "checks" runs the fast host gates; "e2e" runs the Playwright
-# suite inside the official Playwright image — the same image compose.yaml
-# uses locally (ADR 0017). The image tag must match @playwright/test in
-# package.json; src/versionSync.test.ts enforces this.
 name: verify
 
 on:
@@ -35,8 +28,11 @@ jobs:
       - name: Lint
         run: ./scripts/lint.sh
 
-      - name: Typecheck (TypeScript 7 native compiler)
+      - name: Typecheck (TypeScript 7)
         run: ./scripts/typecheck.sh
+
+      - name: Typecheck (TypeScript 7.1 preview)
+        run: ./scripts/typecheck-next.sh
 
       - name: Unit tests
         run: ./scripts/test-unit.sh
@@ -47,14 +43,9 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     container:
-      # Must match devDependencies["@playwright/test"] — see ADR 0017.
-      image: mcr.microsoft.com/playwright:v1.62.1-noble
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
       options: --init --ipc=host
     env:
-      # GitHub points $HOME at /github/home, which the container's root user
-      # does not own; Firefox refuses to launch under a $HOME it does not
-      # own. Pointing HOME back at root's own home directory is Playwright's
-      # documented workaround for container jobs — see ADR 0019.
       HOME: /root
     steps:
       - name: Check out

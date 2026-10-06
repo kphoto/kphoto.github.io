@@ -1,18 +1,13 @@
-/**
- * Upgrades the server-rendered `<kp-live-stats>` (footer) and
- * `<kp-live-board>` (`/live/`) with behaviour. This is thin DOM glue: every
- * decision — tracking policy, polling, back-off, validation, formatting — is
- * made by the unit-tested modules it wires together (ADRs 0022–0025).
- */
+import { formatMessage } from '../i18n/format.ts';
 import {
   browserClock,
   browserLifecycle,
   browserSchedule,
   browserStore,
   sendsGlobalPrivacyControl,
-} from './browser';
-import { CircuitBreaker } from './circuitBreaker';
-import { LivePoller } from './livePoller';
+} from './browser.ts';
+import { CircuitBreaker } from './circuitBreaker.ts';
+import { LivePoller } from './livePoller.ts';
 import {
   BOARD_INTERVAL_MS,
   boardRowViews,
@@ -20,17 +15,18 @@ import {
   BREAKER_KEY,
   chooseTrackingMode,
   describeSummary,
-  describeTotals,
+  parseLiveMessages,
+  totalsValues,
+  type LiveMessages,
   HEARTBEAT_INTERVAL_MS,
   isSafePath,
   makeCountFormatter,
   MAX_CONSECUTIVE_FAILURES,
   MIN_POLL_GAP_MS,
   type LiveBoard,
-} from './liveStats';
-import { isRetryable, LiveStatsApi } from './liveStatsApi';
+} from './liveStats.ts';
+import { isRetryable, LiveStatsApi } from './liveStatsApi.ts';
 
-/** One breaker per page, shared by every element, persisted across pages. */
 const breaker = new CircuitBreaker({
   store: browserStore,
   clock: browserClock,
@@ -52,15 +48,18 @@ interface Connection {
   readonly api: LiveStatsApi;
   readonly siteOrigin: string;
   readonly locale: string;
+  readonly messages: LiveMessages;
 }
 
 function readConnection(element: HTMLElement): Connection | null {
   const { projectUrl, publishableKey, siteOrigin, locale } = element.dataset;
+  const messages = parseLiveMessages(element.dataset.messages);
   if (
     projectUrl === undefined ||
     publishableKey === undefined ||
     publishableKey === '' ||
-    siteOrigin === undefined
+    siteOrigin === undefined ||
+    messages === null
   ) {
     return null;
   }
@@ -73,6 +72,7 @@ function readConnection(element: HTMLElement): Connection | null {
     }),
     siteOrigin,
     locale: locale ?? 'en',
+    messages,
   };
 }
 
@@ -86,14 +86,13 @@ class LiveStatsElement extends HTMLElement {
       return;
     }
     const { api } = connection;
-    const format = makeCountFormatter(connection.locale);
     const mode = chooseTrackingMode({
       pageOrigin: location.origin,
       siteOrigin: connection.siteOrigin,
       webdriver: navigator.webdriver,
       globalPrivacyControl: sendsGlobalPrivacyControl(),
     });
-    // Lives only in this page's memory: never stored, never reused (ADR 0023).
+
     const viewerId = crypto.randomUUID();
 
     new LivePoller({
@@ -102,7 +101,7 @@ class LiveStatsElement extends HTMLElement {
       task: ({ newView }) =>
         mode === 'track' ? api.heartbeat(viewerId, path, newView) : api.summary(path),
       onData: (summary) => {
-        text.textContent = describeSummary(summary, format);
+        text.textContent = describeSummary(summary, connection.messages, connection.locale);
         panel.hidden = false;
       },
       onFailure: () => {
@@ -135,7 +134,6 @@ class LiveBoardElement extends HTMLElement {
     let hasData = false;
 
     const setStatus = (message: string | null): void => {
-      // Only write on change, so the live region announces transitions only.
       const next = message ?? '';
       if (status.textContent !== next) {
         status.textContent = next;
@@ -144,7 +142,7 @@ class LiveBoardElement extends HTMLElement {
     };
 
     const render = (data: LiveBoard): void => {
-      describeTotals(data, format).forEach(([, value], index) => {
+      totalsValues(data, format).forEach((value, index) => {
         const cell = values[index];
         if (cell) {
           cell.textContent = value;
@@ -170,7 +168,7 @@ class LiveBoardElement extends HTMLElement {
         const td = document.createElement('td');
         td.colSpan = 4;
         td.className = 'empty';
-        td.textContent = 'No page views in the last 24 hours yet.';
+        td.textContent = formatMessage(connection.locale, connection.messages.empty);
         tr.append(td);
         rows.push(tr);
       }
@@ -193,11 +191,14 @@ class LiveBoardElement extends HTMLElement {
       onFailure: (tripped) => {
         if (tripped) {
           board.hidden = true;
-          setStatus(
-            'Live statistics are unavailable right now. The rest of the site is unaffected.',
-          );
+          setStatus(formatMessage(connection.locale, connection.messages.unavailable));
         } else {
-          setStatus(hasData ? 'Reconnecting…' : 'Still trying to reach live statistics…');
+          setStatus(
+            formatMessage(
+              connection.locale,
+              hasData ? connection.messages.reconnecting : connection.messages.stillTrying,
+            ),
+          );
         }
       },
       onAway: null,
@@ -205,7 +206,6 @@ class LiveBoardElement extends HTMLElement {
   }
 }
 
-/** Registers both elements; safe to call on pages that have neither. */
 export function defineLiveStatsElements(): void {
   customElements.define('kp-live-stats', LiveStatsElement);
   customElements.define('kp-live-board', LiveBoardElement);

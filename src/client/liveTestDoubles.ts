@@ -1,11 +1,6 @@
-/**
- * Test doubles for the live-statistics client: a manual clock, a manual
- * scheduler and a scriptable page lifecycle. Test-only (imported only by
- * *.test.ts), in the same spirit as src/lib/testFixtures.ts.
- */
-import type { Clock } from './circuitBreaker';
-import type { PageLifecycle, Schedule } from './livePoller';
-import type { KeyValueStore } from './storage';
+import type { Clock } from './circuitBreaker.ts';
+import type { PageLifecycle, Schedule } from './livePoller.ts';
+import type { KeyValueStore } from './storage.ts';
 
 export class MemoryStore implements KeyValueStore {
   readonly values = new Map<string, string>();
@@ -37,7 +32,6 @@ interface Timer {
   cancelled: boolean;
 }
 
-/** Timers fire only when a test advances time. */
 export class ManualScheduler {
   readonly #clock: ManualClock;
   readonly #timers: Timer[] = [];
@@ -54,14 +48,12 @@ export class ManualScheduler {
     };
   };
 
-  /** Pending (not cancelled, not yet fired) timers' delays from now. */
   pendingDelays(): number[] {
     return this.#timers
       .filter((timer) => !timer.cancelled)
       .map((timer) => timer.at - this.#clock.now());
   }
 
-  /** Moves time forward, firing due timers in order. */
   advance(ms: number): void {
     const target = this.#clock.now() + ms;
     for (;;) {
@@ -121,7 +113,6 @@ export class FakeLifecycle implements PageLifecycle {
   }
 }
 
-/** Lets pending promise callbacks (the poller's awaited task) run. */
 export async function flush(): Promise<void> {
   for (let i = 0; i < 5; i += 1) {
     await Promise.resolve();

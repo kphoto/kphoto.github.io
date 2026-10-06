@@ -1,7 +1,8 @@
-import { browserStore } from './browser';
-import { defineLiveStatsElements } from './liveStatsElements';
-import { isThemeName, SettingsStore, type ThemeName } from './storage';
-import { isDarkTheme, ThemeController, type ConcreteTheme } from './theme';
+import { browserStore } from './browser.ts';
+import { chooseSuggestion } from './locale.ts';
+import { defineLiveStatsElements } from './liveStatsElements.ts';
+import { isThemeName, SettingsStore, type ThemeName } from './storage.ts';
+import { isDarkTheme, ThemeController, type ConcreteTheme } from './theme.ts';
 
 const documentHost = {
   applyTheme(concrete: ConcreteTheme): void {
@@ -10,10 +11,12 @@ const documentHost = {
   },
 };
 
+const settings = new SettingsStore(browserStore);
+
 const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
 const themeController = new ThemeController({
-  settings: new SettingsStore(browserStore),
+  settings,
   host: documentHost,
   media: {
     prefersDark: () => colorSchemeQuery.matches,
@@ -25,10 +28,6 @@ const themeController = new ThemeController({
 
 themeController.start();
 
-/**
- * Upgrades the server-rendered theme picker (declarative shadow DOM) with
- * behaviour: reflect the stored choice and persist changes.
- */
 class ThemePickerElement extends HTMLElement {
   connectedCallback(): void {
     const select = this.shadowRoot?.querySelector('select');
@@ -47,9 +46,36 @@ class ThemePickerElement extends HTMLElement {
 
 customElements.define('kp-theme-picker', ThemePickerElement);
 
-// Optional and never blocking (ADR 0022): with the backend down, or the
-// feature switched off, these elements stay hidden or are absent and nothing
-// else on the page changes.
+class LanguageSwitcherElement extends HTMLElement {
+  connectedCallback(): void {
+    const root = this.shadowRoot;
+    const pageLocale = this.dataset.locale;
+    if (!root || pageLocale === undefined) {
+      return;
+    }
+    for (const link of root.querySelectorAll<HTMLAnchorElement>('a[data-locale]')) {
+      link.addEventListener('click', () => {
+        const locale = link.dataset.locale;
+        if (locale !== undefined) {
+          settings.write({ locale });
+        }
+      });
+    }
+    const suggestions = [...root.querySelectorAll<HTMLElement>('.suggest[data-locale]')];
+    const suggested = chooseSuggestion({
+      pageLocale,
+      available: suggestions.map((element) => element.dataset.locale ?? ''),
+      preferred: settings.read().locale,
+      browserLanguages: navigator.languages,
+    });
+    for (const element of suggestions) {
+      element.hidden = element.dataset.locale !== suggested;
+    }
+  }
+}
+
+customElements.define('kp-language-switcher', LanguageSwitcherElement);
+
 defineLiveStatsElements();
 
 export type { ThemeName };

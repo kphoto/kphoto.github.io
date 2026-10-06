@@ -4,7 +4,7 @@ Date: 2026-07-09
 
 ## Status
 
-Accepted
+Superseded by [ADR 0031](0031-typescript-7-only-compiler.md)
 
 ## Context
 

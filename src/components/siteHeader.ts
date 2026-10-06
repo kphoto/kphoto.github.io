@@ -1,35 +1,55 @@
-import { escapeAttribute, escapeHtml } from '../lib/html';
-import { renderThemePicker } from './themePicker';
+import type { Alternate } from '../i18n/localizedContent.ts';
+import type { MessageKey } from '../i18n/messages/index.ts';
+import type { Translator } from '../i18n/translator.ts';
+import { escapeAttribute, escapeHtml } from '../lib/html.ts';
+import type { RenderContext } from './context.ts';
+import { renderLanguageSwitcher } from './languageSwitcher.ts';
+import { renderThemePicker } from './themePicker.ts';
 
 export interface NavItem {
   readonly href: string;
   readonly label: string;
 }
 
-export const NAV_ITEMS: readonly NavItem[] = [
-  { href: '/blog/', label: 'Blog' },
-  { href: '/tags/', label: 'Tags' },
-  { href: '/series/', label: 'Series' },
-  { href: '/authors/', label: 'Authors' },
-  { href: '/about/', label: 'About' },
-  { href: '/contact/', label: 'Contact' },
+export interface HeaderContext extends RenderContext {
+  pageHref(slug: string): string;
+  translatorFor(code: string): Translator;
+}
+
+export const NAV_KEYS: readonly (readonly [MessageKey, string])[] = [
+  ['nav.blog', '/blog/'],
+  ['nav.tags', '/tags/'],
+  ['nav.series', '/series/'],
+  ['nav.authors', '/authors/'],
+  ['nav.about', 'about'],
+  ['nav.contact', 'contact'],
 ];
+
+export function navItems(context: HeaderContext): NavItem[] {
+  return NAV_KEYS.map(([key, target]) => ({
+    label: context.t.text(key),
+    href: target.startsWith('/') ? context.href(target) : context.pageHref(target),
+  }));
+}
 
 function isCurrent(currentPath: string, item: NavItem): boolean {
   return currentPath === item.href || currentPath.startsWith(item.href);
 }
 
-/**
- * Site header: mono wordmark with a one-blink cursor (the site's small
- * signature), main navigation and the theme picker. Declarative shadow DOM
- * keeps every style scoped to the component.
- */
-export function renderSiteHeader(currentPath: string): string {
-  const links = NAV_ITEMS.map((item) => {
-    const current = isCurrent(currentPath, item) ? ' aria-current="page"' : '';
-    return `<a href="${escapeAttribute(item.href)}"${current}>${escapeHtml(item.label)}</a>`;
-  }).join('');
-  const homeCurrent = currentPath === '/' ? ' aria-current="page"' : '';
+export function renderSiteHeader(
+  context: HeaderContext,
+  currentPath: string,
+  alternates: readonly Alternate[],
+): string {
+  const { t } = context;
+  const home = context.href('/');
+  const links = navItems(context)
+    .map((item) => {
+      const current = isCurrent(currentPath, item) ? ' aria-current="page"' : '';
+      return `<a href="${escapeAttribute(item.href)}"${current}>${escapeHtml(item.label)}</a>`;
+    })
+    .join('');
+  const homeCurrent = currentPath === home ? ' aria-current="page"' : '';
   return `<kp-header>
 <template shadowrootmode="open">
 <style>
@@ -102,9 +122,10 @@ nav a:focus-visible {
 }
 </style>
 <header>
-<a class="wordmark" href="/"${homeCurrent}>kphoto<span class="cursor" aria-hidden="true"></span></a>
-<nav aria-label="Main">${links}</nav>
-${renderThemePicker()}
+<a class="wordmark" href="${escapeAttribute(home)}"${homeCurrent}>${escapeHtml(context.config.title)}<span class="cursor" aria-hidden="true"></span></a>
+<nav aria-label="${escapeAttribute(t.text('nav.label'))}">${links}</nav>
+${renderLanguageSwitcher(context, alternates)}
+${renderThemePicker(t)}
 </header>
 </template>
 </kp-header>`;

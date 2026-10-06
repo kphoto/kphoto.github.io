@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { kphotoSsg } from './src/ssg/vitePlugin';
+import { kphotoSsg } from './src/ssg/vitePlugin.ts';
 
 export default defineConfig({
   appType: 'custom',

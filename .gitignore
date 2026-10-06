@@ -1,20 +1,13 @@
-# Dependencies
 node_modules/
 
-# Build output
 dist/
 
-# Test artifacts
 coverage/
 playwright-report/
 test-results/
 
-# Yarn (node-modules linker: only the lockfile and .yarnrc.yml are committed)
 .yarn/
 
-# Editors and OS noise
 .idea/
 *.swp
 .DS_Store
-
-# NOTE: docs/llm/ is intentionally tracked (LLM context dumps live there).

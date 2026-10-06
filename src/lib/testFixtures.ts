@@ -1,10 +1,10 @@
-import type { Author, Post } from './types';
+import type { Author, Post } from './types.ts';
 
-/** Builds a minimal valid post for tests; override any field. */
 export function makePost(overrides: Partial<Post> & Pick<Post, 'slug' | 'date'>): Post {
   const base: Post = {
     slug: overrides.slug,
     url: `/blog/${overrides.slug}/`,
+    language: 'en',
     title: 'A post',
     date: overrides.date,
     author: 'kphoto-team',
@@ -13,6 +13,7 @@ export function makePost(overrides: Partial<Post> & Pick<Post, 'slug' | 'date'>)
     html: '<p>Body.</p>',
     headings: [],
     readingMinutes: 1,
+    translations: new Map(),
   };
   return { ...base, ...overrides };
 }
@@ -21,7 +22,6 @@ export function makeAuthor(overrides: Partial<Author> & Pick<Author, 'id'>): Aut
   return { name: 'Someone', ...overrides };
 }
 
-/** A minimal valid post file body for content-parsing tests. */
 export function postFile(frontmatter: string, body = '\nHello.\n'): string {
   return `---\n${frontmatter}\n---\n${body}`;
 }

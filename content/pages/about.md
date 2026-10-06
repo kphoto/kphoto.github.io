@@ -27,8 +27,15 @@ the statistics server is ever unreachable, the figures quietly disappear and
 nothing else changes. [The live page](/live/) spells out exactly what is
 collected.
 
-This site stores two things in your browser's local storage: your theme,
-and, only if the statistics server was unreachable, when to try it again.
+This site stores three things in your browser's local storage: your theme,
+the language you last picked, and, only if the statistics server was
+unreachable, when to try it again.
+
+## In more than one language
+
+Pages and posts can be translated one file at a time. Anything not yet
+translated stays readable in its original language and is clearly marked.
+The Spanish translations are machine-assisted (AI).
 
 ## Built in the open, with AI
 

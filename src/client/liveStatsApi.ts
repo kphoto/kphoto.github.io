@@ -4,30 +4,21 @@ import {
   REQUEST_TIMEOUT_MS,
   type LiveBoard,
   type LiveSummary,
-} from './liveStats';
+} from './liveStats.ts';
 
-/** The slice of `fetch` the client needs; tests pass a fake. */
 export type FetchLike = (url: string, init: RequestInit) => Promise<Response>;
 
-/** Builds an abort signal that fires after `ms`; tests pass a fake. */
 export type TimeoutSignalFactory = (ms: number) => AbortSignal;
 
 export interface LiveStatsApiOptions {
-  /** `https://<ref>.supabase.co`, no trailing slash. */
   readonly projectUrl: string;
-  /** The publishable key — sent as `apikey`, never as a bearer token. */
+
   readonly publishableKey: string;
   readonly fetch: FetchLike;
   readonly timeoutSignal: TimeoutSignalFactory;
   readonly timeoutMs?: number;
 }
 
-/**
- * A failed request. `retryable` separates "try again on the next tick"
- * (network errors, timeouts, 5xx — e.g. a paused or restarting project) from
- * "stop now" (4xx — a bad or revoked key, missing functions, the free tier's
- * 402 once a quota is exhausted, or a response we cannot parse).
- */
 export class LiveStatsRequestError extends Error {
   override readonly name = 'LiveStatsRequestError';
   readonly status: number | null;
@@ -40,7 +31,6 @@ export class LiveStatsRequestError extends Error {
   }
 }
 
-/** Anything that is not a classified request error is a transport failure. */
 export function isRetryable(error: unknown): boolean {
   return error instanceof LiveStatsRequestError ? error.retryable : true;
 }
@@ -53,11 +43,6 @@ interface RpcCall {
   readonly keepalive?: boolean;
 }
 
-/**
- * Talks to the four PostgREST functions from `docs/supabase/live-stats.sql`
- * with nothing but `fetch`: no SDK, no WebSocket, no runtime dependency
- * (ADR 0022). Reads use GET (the functions are STABLE); writes use POST.
- */
 export class LiveStatsApi {
   readonly #base: string;
   readonly #key: string;
@@ -73,7 +58,6 @@ export class LiveStatsApi {
     this.#timeoutMs = options.timeoutMs ?? REQUEST_TIMEOUT_MS;
   }
 
-  /** Checks this tab in (counting a view when `newView`); returns the page summary. */
   async heartbeat(viewerId: string, path: string, newView: boolean): Promise<LiveSummary> {
     const json = await this.#json({
       method: 'POST',
@@ -83,23 +67,16 @@ export class LiveStatsApi {
     return this.#parse(parseSummary, json);
   }
 
-  /** Reads the page summary without counting anything. */
   async summary(path: string): Promise<LiveSummary> {
     const json = await this.#json({ method: 'GET', name: 'kp_summary', query: { p_path: path } });
     return this.#parse(parseSummary, json);
   }
 
-  /** Reads the `/live/` board. */
   async board(): Promise<LiveBoard> {
     const json = await this.#json({ method: 'GET', name: 'kp_board' });
     return this.#parse(parseBoard, json);
   }
 
-  /**
-   * Tells the server this tab is gone. Fire-and-forget: it never rejects, and
-   * `keepalive` lets it outlive the page. If it is lost anyway, the tab simply
-   * stops counting 90 s after its last heartbeat.
-   */
   async leave(viewerId: string): Promise<void> {
     try {
       await this.#send({
@@ -108,9 +85,7 @@ export class LiveStatsApi {
         body: { p_viewer: viewerId },
         keepalive: true,
       });
-    } catch {
-      // Best effort by design.
-    }
+    } catch {}
   }
 
   #parse<T>(parser: (value: unknown) => T, json: unknown): T {

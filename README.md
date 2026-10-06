@@ -3,7 +3,7 @@
 **A demonstration of what is possible with TypeScript 7 and the modern web.**
 
 A complete blog — markdown posts, tags, series, authors, five themes, an Atom
-feed, optional live readership statistics — with **zero runtime
+feed, more than one language, optional live readership statistics — with **zero runtime
 dependencies**. No framework, no CSS library, no markdown or YAML package, no
 SDK, no external resources beyond one optional, non-blocking statistics API.
 Everything the browser receives was written in this repository and compiled
@@ -19,7 +19,8 @@ Live site: **<https://kphoto.github.io>** · License: **AGPL-3.0-or-later**
 majority of the source code, tests, styles, content, scripts, workflows and
 documentation in this repository — including this README — was written by
 large language models (Anthropic's Claude) working under human direction and
-review. Prompts set the requirements and constraints; the models wrote and
+review. The Spanish interface text and translations are AI-written too.
+Prompts set the requirements and constraints; the models wrote and
 iterated on the implementation; a human reviews, runs `./check.sh`, and
 commits. The same disclosure appears in the footer of every page on the site.
 If you are evaluating this repository — as a reader, contributor, employer or
@@ -39,6 +40,8 @@ file and one small hand-written script. That required writing from scratch:
 - a static site generator as a Vite plugin (`src/ssg/vitePlugin.ts`)
 - web components scoped with declarative shadow DOM (`src/components/`)
 - a theme system persisted in localStorage with a pre-paint script (`src/client/`)
+- internationalization: typed message catalogs, `Intl` plurals and dates,
+  locale-prefixed routes, hreflang alternates (`src/i18n/`)
 - a live-statistics client — PostgREST over plain `fetch`, visibility-gated
   polling, a persisted circuit breaker — instead of the Supabase SDK
 
@@ -74,6 +77,7 @@ these same scripts, so local and CI behaviour cannot drift.
 | `./scripts/format.sh`             | Prettier write mode (`--check` to verify only)               |
 | `./scripts/lint.sh`               | ESLint, type-aware rules, zero warnings allowed              |
 | `./scripts/typecheck.sh`          | `tsc --noEmit` with the TypeScript 7 native compiler         |
+| `./scripts/typecheck-next.sh`     | Same with the pinned TypeScript 7.1 preview                  |
 | `./scripts/test-unit.sh`          | Vitest unit suite with V8 coverage                           |
 | `./scripts/build.sh`              | Static build into `dist/` (pages + feed + sitemap)           |
 | `./scripts/test-e2e.sh`           | Playwright suite against a preview of `dist/`                |
@@ -122,7 +126,9 @@ site — pages, feed and sitemap alike — until its date arrives in the site's
 time zone, at which point the daily rebuild publishes it
 ([ADR 0021](docs/adr/0021-scheduled-publishing-and-daily-rebuild.md)).
 Frontmatter carries `title`, `date`, `author`, `summary`, a `tags` list, and
-optionally `series` + `episode`. Authors live in `content/authors/*.yml`;
+optionally `series` + `episode` and `lang`. A translation is a sibling file,
+`YYYY-MM-DD-name.es.md`, with only `title`, `summary` and the body — nothing
+is written twice. Authors live in `content/authors/*.yml`;
 standalone pages in `content/pages/*.md`. Every rule is validated at build
 time with file-scoped error messages — see
 [docs/content-authoring.md](docs/content-authoring.md).
@@ -158,24 +164,48 @@ the Supabase SQL editor. Setup, costs and removal are in
 [docs/live-stats.md](docs/live-stats.md); the decisions are in ADRs
 [0022](docs/adr/0022-optional-live-statistics-backend.md)–[0025](docs/adr/0025-visibility-gated-polling-with-circuit-breaker.md).
 
+## Languages
+
+English is the default and keeps every existing URL; Spanish lives under
+`/es/`. Interface text comes from typed catalogs in `src/i18n/messages/`
+(missing keys fall back to English, marked `lang="en"`). Untranslated posts
+stay listed in every language and link to the original. The switcher
+remembers your choice in localStorage and suggests, never redirects. How to
+add a language: [docs/i18n.md](docs/i18n.md); decisions: ADRs 0026–0029.
+
+## Build provenance
+
+Every footer links the exact commit it was built from: `GITHUB_SHA` in
+Actions, `git rev-parse HEAD` locally (flagged when the tree has local
+changes) — [ADR 0030](docs/adr/0030-build-provenance-in-footer.md).
+
+## No comments
+
+The codebase has no comments; ESLint and a unit test enforce it
+([ADR 0033](docs/adr/0033-no-comments.md)). Rationale lives in `docs/`.
+
 ## Architecture in one paragraph
 
 `src/lib/` is pure logic (parsers, model, feed, sitemap) with no I/O;
 `src/components/` and `src/pages/` render strings from that model;
 `src/ssg/` is the only code that touches the filesystem and Vite;
-`src/client/` is the only code that runs in the browser. Time (the footer
+`src/client/` is the only code that runs in the browser; `src/i18n/` is
+pure and shared by both sides. Time (the footer
 year and the publish cutoff) and storage (localStorage) are injected, so
 every layer is unit-testable with fakes. The longer version is in [docs/architecture.md](docs/architecture.md),
 and every non-obvious decision has an ADR in [docs/adr/](docs/adr/).
 
 ## Toolchain
 
-TypeScript **7.0** (native compiler) for type-checking, with a side-by-side
-TypeScript **6.0** install that exists only so typescript-eslint can keep
-using the classic compiler API — the how and why is
-[ADR 0006](docs/adr/0006-dual-typescript-toolchain.md). Vite 8, Vitest 4,
-Playwright 1.61, ESLint 10 + typescript-eslint 8 (strict type-checked),
-Prettier 3, Yarn 4 via corepack, Node 24. Dependencies are exact-pinned;
+TypeScript **7.0** (native compiler) for every type-check and the editor,
+plus a pinned **7.1** preview gate. typescript-eslint cannot load TypeScript
+7 until 7.1's API ships, so the package named `typescript` is the official
+`@typescript/typescript6` API facade, used by the linter alone
+([ADR 0031](docs/adr/0031-typescript-7-only-compiler.md),
+[ADR 0032](docs/adr/0032-explicit-ts-extensions-and-7-1-gate.md)). VS Code:
+install the recommended _TypeScript (Native Preview)_ extension. Vite 8,
+Vitest 5, Playwright 1.63, ESLint 10 + typescript-eslint 8 (strict
+type-checked), Prettier 3, Yarn 4 via corepack, Node 24. Dependencies are exact-pinned;
 deviations from "absolute latest" are quarantine holds documented in
 [ADR 0014](docs/adr/0014-yarn-and-dependency-policy.md).
 

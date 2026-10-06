@@ -1,5 +1,6 @@
-import { escapeAttribute, escapeHtml } from '../lib/html';
-import type { Author } from '../lib/types';
+import { escapeAttribute, escapeHtml } from '../lib/html.ts';
+import type { Author } from '../lib/types.ts';
+import type { RenderContext } from './context.ts';
 
 const SOCIAL_URLS: Readonly<Record<string, (handle: string) => string>> = {
   github: (handle) => `https://github.com/${handle}`,
@@ -12,10 +13,10 @@ function socialUrl(network: string, handle: string): string | undefined {
   return build ? build(handle) : undefined;
 }
 
-/** An author as shown on the authors index and on their detail page. */
 export function renderAuthorCard(
   author: Author,
   postCount: number,
+  context: RenderContext,
   headingLevel: 1 | 2 = 2,
 ): string {
   const tag = `h${String(headingLevel)}`;
@@ -35,7 +36,7 @@ export function renderAuthorCard(
     })
     .join('');
   const contact = email !== '' || socials !== '' ? `<p class="contact">${email}${socials}</p>` : '';
-  const posts = ` · ${String(postCount)} ${postCount === 1 ? 'post' : 'posts'}`;
+  const posts = ` · ${context.t.html('author.postCount', { count: postCount })}`;
   return `<kp-author-card>
 <template shadowrootmode="open">
 <style>
@@ -99,7 +100,7 @@ a:focus-visible {
 </style>
 <article>
 ${avatar}
-<${tag}><a href="/authors/${escapeAttribute(author.id)}/">${escapeHtml(author.name)}</a><span class="count">${posts}</span></${tag}>
+<${tag}><a href="${escapeAttribute(context.href(`/authors/${author.id}/`))}">${escapeHtml(author.name)}</a><span class="count">${posts}</span></${tag}>
 ${bio}
 ${contact}
 </article>

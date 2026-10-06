@@ -1,32 +1,26 @@
-import type { CircuitBreaker, Clock } from './circuitBreaker';
+import type { CircuitBreaker, Clock } from './circuitBreaker.ts';
 
-/** Schedules a callback; returns a function that cancels it. */
 export type Schedule = (callback: () => void, delayMs: number) => () => void;
 
-/** The page lifecycle signals the poller reacts to; injected for tests. */
 export interface PageLifecycle {
   isVisible(): boolean;
   onVisibilityChange(listener: () => void): void;
-  /** The page is being unloaded or frozen into the back/forward cache. */
+
   onPageHide(listener: () => void): void;
-  /** The page was shown; `restored` is true for a back/forward-cache restore. */
+
   onPageShow(listener: (restored: boolean) => void): void;
 }
 
 export interface PollContext {
-  /**
-   * True until a request for this page view has succeeded — so a heartbeat
-   * that failed is retried as the view it was meant to count.
-   */
   readonly newView: boolean;
 }
 
 export interface LivePollerOptions<T> {
   readonly task: (context: PollContext) => Promise<T>;
   readonly onData: (value: T) => void;
-  /** Called after every failure; `tripped` means polling has stopped. */
+
   readonly onFailure: (tripped: boolean) => void;
-  /** Called when the tab stops being "here" (hidden or unloading), or null. */
+
   readonly onAway: (() => void) | null;
   readonly isRetryable: (error: unknown) => boolean;
   readonly intervalMs: number;
@@ -37,12 +31,6 @@ export interface LivePollerOptions<T> {
   readonly breaker: CircuitBreaker;
 }
 
-/**
- * Polls only while the tab is visible, one request at a time, and gives up
- * through the shared circuit breaker (ADR 0025). Nothing here can block the
- * page: the task is always async, every failure is caught, and the only
- * outputs are the two callbacks.
- */
 export class LivePoller<T> {
   readonly #options: LivePollerOptions<T>;
   #cancel: (() => void) | null = null;
@@ -74,7 +62,6 @@ export class LivePoller<T> {
     });
     lifecycle.onPageShow((restored) => {
       if (restored) {
-        // Coming back from the back/forward cache is a fresh view.
         this.#newView = true;
         this.#resume();
       }
@@ -84,7 +71,6 @@ export class LivePoller<T> {
     }
   }
 
-  /** Stops for good; used when the breaker trips. */
   #stop(): void {
     this.#stopped = true;
     this.#clearTimer();
@@ -119,11 +105,6 @@ export class LivePoller<T> {
     }, delayMs);
   }
 
-  /**
-   * A rendering bug must not look like a backend failure (and trip the
-   * breaker), nor be swallowed: rethrow it outside the request's promise so
-   * it surfaces as an ordinary uncaught error.
-   */
   #deliver(value: T): void {
     try {
       this.#options.onData(value);

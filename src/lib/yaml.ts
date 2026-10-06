@@ -1,18 +1,3 @@
-/**
- * A deliberately small, hand-rolled YAML parser covering exactly the subset
- * this site's content uses (see docs/adr/0004-zero-runtime-dependencies.md):
- *
- * - mappings with unquoted keys (`title: Good morning!`)
- * - nested mappings through indentation (`socials:` followed by deeper keys)
- * - block lists of scalars (`- introductions`)
- * - scalars: plain strings, single/double quoted strings, integers, floats,
- *   booleans and null (`~`/`null`/empty)
- * - full-line comments starting with `#`
- *
- * Anything outside that subset fails loudly with a line number instead of
- * guessing, which keeps content errors easy to fix.
- */
-
 export type YamlValue = string | number | boolean | null | YamlValue[] | YamlMap;
 
 export interface YamlMap {
@@ -200,7 +185,6 @@ function parseBlock(lines: readonly SourceLine[], start: number, indent: number)
   return isListItem(first) ? parseList(lines, start, indent) : parseMap(lines, start, indent);
 }
 
-/** Parses a YAML document whose top level is a mapping. */
 export function parseYaml(source: string): YamlMap {
   const lines = toSourceLines(source);
   const first = lines[0];

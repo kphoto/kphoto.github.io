@@ -1,6 +1,7 @@
+import { runInNewContext } from 'node:vm';
 import { describe, expect, it } from 'vitest';
-import { SETTINGS_KEY } from './storage';
-import { buildThemeInitScript } from './themeInit';
+import { SETTINGS_KEY } from './storage.ts';
+import { buildThemeInitScript } from './themeInit.ts';
 
 describe('buildThemeInitScript', () => {
   const script = buildThemeInitScript();
@@ -33,13 +34,8 @@ describe('buildThemeInitScript', () => {
         window: { matchMedia: () => ({ matches: prefersDark }) },
         document: { documentElement: { dataset, style: { colorScheme: '' } } },
       };
-      // eslint-disable-next-line @typescript-eslint/no-implied-eval
-      const fn = new Function('localStorage', 'window', 'document', script) as (
-        localStorage: unknown,
-        window: unknown,
-        document: unknown,
-      ) => void;
-      fn(sandbox.localStorage, sandbox.window, sandbox.document);
+
+      runInNewContext(script, sandbox);
       return dataset;
     };
     expect(run('{"theme":"solarized-dark"}', false).theme).toBe('solarized-dark');

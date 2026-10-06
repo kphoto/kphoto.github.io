@@ -1,85 +1,117 @@
-import { siteConfig } from '../lib/config';
-import { buildAtomFeed } from '../lib/feed';
-import { buildSitemap } from '../lib/sitemap';
-import type { SiteModel } from '../lib/types';
-import { renderAuthorIndex, renderAuthorPage } from './authors';
-import { renderBlogIndex } from './blogIndex';
-import { renderHome } from './home';
-import { renderDocument, type PageContext } from './layout';
-import { renderLivePage } from './live';
-import { renderMarkdownPage } from './markdownPage';
-import { renderNotFound } from './notFound';
-import { renderPost } from './post';
-import { renderSeriesIndex, renderSeriesPage } from './series';
-import { renderTagIndex, renderTagPage } from './tags';
+import { localizePath } from '../i18n/locales.ts';
+import type { Alternate } from '../i18n/localizedContent.ts';
+import { hasPageIn, hasPostIn, postAlternates, postIn } from '../i18n/localizedContent.ts';
+import { buildAtomFeed } from '../lib/feed.ts';
+import { buildSitemap } from '../lib/sitemap.ts';
+import type { SiteModel } from '../lib/types.ts';
+import { renderAuthorIndex, renderAuthorPage } from './authors.ts';
+import { renderBlogIndex } from './blogIndex.ts';
+import { renderHome } from './home.ts';
+import { createPageContext, type PageContext, type SiteContext } from './layout.ts';
+import { renderLivePage } from './live.ts';
+import { renderMarkdownPage } from './markdownPage.ts';
+import { renderNotFound } from './notFound.ts';
+import { renderPost } from './post.ts';
+import { renderSeriesIndex, renderSeriesPage } from './series.ts';
+import { renderTagIndex, renderTagPage } from './tags.ts';
 
-/** One output file: an HTML page (path ends with `/`) or a top-level file. */
 export interface RenderedFile {
   readonly path: string;
   readonly body: string;
   readonly contentType: 'text/html' | 'application/xml';
+  readonly alternates: readonly Alternate[];
 }
 
-/** Renders every page, `/live/`, the 404 page, the Atom feed and the sitemap. */
-export function renderSite(model: SiteModel, context: PageContext): RenderedFile[] {
-  const html = (path: string, body: string): RenderedFile => ({
-    path,
-    body,
-    contentType: 'text/html',
-  });
+function renderLocale(model: SiteModel, context: PageContext): RenderedFile[] {
+  const code = context.t.locale.code;
+  const files: RenderedFile[] = [];
+  const html = (path: string, body: string, alternates = context.everyLocale(path)): void => {
+    files.push({
+      path: context.href(path),
+      body,
+      contentType: 'text/html',
+      alternates,
+    });
+  };
 
-  const files: RenderedFile[] = [
-    html('/', renderHome(model, context)),
-    html('/blog/', renderBlogIndex(model, context)),
-  ];
+  html('/', renderHome(model, context));
+  html('/blog/', renderBlogIndex(model, context));
 
   for (const post of model.posts) {
-    files.push(html(post.url, renderPost(post, model, context)));
+    if (hasPostIn(post, code)) {
+      files.push({
+        path: postIn(post, code).url,
+        body: renderPost(post, model, context),
+        contentType: 'text/html',
+        alternates: postAlternates(post),
+      });
+    }
   }
 
-  files.push(html('/tags/', renderTagIndex(model, context)));
+  html('/tags/', renderTagIndex(model, context));
   for (const tag of model.tags.values()) {
-    files.push(html(`/tags/${tag.slug}/`, renderTagPage(tag, context)));
+    html(`/tags/${tag.slug}/`, renderTagPage(tag, context));
   }
 
-  files.push(html('/series/', renderSeriesIndex(model, context)));
+  html('/series/', renderSeriesIndex(model, context));
   for (const series of model.series.values()) {
-    files.push(html(`/series/${series.slug}/`, renderSeriesPage(series, context)));
+    html(`/series/${series.slug}/`, renderSeriesPage(series, context));
   }
 
-  files.push(html('/authors/', renderAuthorIndex(model, context)));
+  html('/authors/', renderAuthorIndex(model, context));
   for (const author of model.authors.values()) {
-    files.push(html(`/authors/${author.id}/`, renderAuthorPage(author, model, context)));
+    html(`/authors/${author.id}/`, renderAuthorPage(author, model, context));
   }
 
   for (const page of model.pages.values()) {
-    files.push(html(`/${page.slug}/`, renderMarkdownPage(page, context)));
+    if (hasPageIn(page, code)) {
+      const alternates = context.config.locales
+        .filter((locale) => hasPageIn(page, locale.code))
+        .map((locale) => ({
+          locale: locale.code,
+          path: localizePath(context.config, locale.code, `/${page.slug}/`),
+        }));
+      html(`/${page.slug}/`, renderMarkdownPage(page, context), alternates);
+    }
   }
 
-  files.push(html('/live/', renderLivePage(context)));
+  html('/live/', renderLivePage(context));
 
-  files.push(html('/404.html', renderNotFound(context)));
-
-  const htmlPaths = files.filter((file) => file.path.endsWith('/')).map((file) => file.path);
-  const lastModified = model.posts[0]?.date ?? '1970-01-01';
   files.push({
-    path: '/feed.xml',
-    body: buildAtomFeed(model, context.config),
+    path: context.href('/feed.xml'),
+    body: buildAtomFeed(model, context),
     contentType: 'application/xml',
+    alternates: [],
   });
-  files.push({
-    path: '/sitemap.xml',
-    body: buildSitemap(htmlPaths, context.config, lastModified),
-    contentType: 'application/xml',
-  });
-
   return files;
 }
 
-/** Maps a route path to its on-disk file inside the build output. */
+export function renderSite(model: SiteModel, site: SiteContext): RenderedFile[] {
+  const files: RenderedFile[] = [];
+  for (const locale of site.config.locales) {
+    files.push(...renderLocale(model, createPageContext(site, locale.code, model.pages)));
+  }
+  const fallback = createPageContext(site, site.config.defaultLocale, model.pages);
+  files.push({
+    path: '/404.html',
+    body: renderNotFound(fallback),
+    contentType: 'text/html',
+    alternates: [],
+  });
+  const entries = files
+    .filter((file) => file.path.endsWith('/'))
+    .map((file) => ({ path: file.path, alternates: file.alternates }));
+  files.push({
+    path: '/sitemap.xml',
+    body: buildSitemap(entries, site.config, model.posts[0]?.date ?? '1970-01-01'),
+    contentType: 'application/xml',
+    alternates: [],
+  });
+  return files;
+}
+
 export function outputFileFor(path: string): string {
   return path.endsWith('/') ? `${path.slice(1)}index.html` : path.slice(1);
 }
 
-export { renderDocument, siteConfig };
-export type { PageContext };
+export type { PageContext, SiteContext };

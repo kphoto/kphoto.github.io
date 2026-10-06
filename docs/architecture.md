@@ -14,12 +14,20 @@ src/lib/         pure logic — no I/O, no DOM, no Date.now()
   collections.ts   ordering rules (dates desc, episodes asc, tags alpha)
   feed.ts / sitemap.ts / dates.ts / slug.ts / readingTime.ts / html.ts
 
+src/i18n/        pure, shared by build and browser
+  locales.ts       locale settings, prefixes, path helpers
+  format.ts        plural selection, interpolation, Intl numbers
+  translator.ts    per-locale Translator with per-key fallback
+  localizedContent.ts  a post or page as seen from one locale; alternates
+  messages/        en.ts (source of truth), es.ts, index.ts
+
 src/components/  render-to-string web components (declarative shadow DOM)
 src/pages/       full pages composed from components; routes.ts renders
                  the whole site into a list of { path, body } files
 
 src/ssg/         the only code that touches Node APIs and Vite
   loadContent.ts   reads content/ into plain records
+  git.ts           the only git call (build provenance)
   vitePlugin.ts    dev middleware, preview middleware, build output
 
 src/client/      the only code that runs in the browser
@@ -32,7 +40,9 @@ src/client/      the only code that runs in the browser
   livePoller.ts    visibility-gated polling loop (injected clock/timers/lifecycle)
   browser.ts       the real localStorage, clock, timers and lifecycle
   liveStatsElements.ts  upgrades <kp-live-stats> and <kp-live-board>
+  locale.ts        chooseSuggestion: stored choice, then navigator.languages
   main.ts          wires real browser APIs in; upgrades the theme picker
+                   and the language switcher
 
 docs/supabase/   SQL applied by hand in the Supabase SQL editor (ADR 0024)
 ```
@@ -47,8 +57,11 @@ docs/supabase/   SQL applied by hand in the Supabase SQL editor (ADR 0024)
    site's time zone, computed once per render in the plugin — so every
    derived collection, the feed and the sitemap see published posts only
    (ADR 0021).
-3. `renderSite` turns the model into `{ path, body, contentType }` files:
-   every page, `404.html`, `feed.xml`, `sitemap.xml`.
+3. `renderSite` renders the model once per locale through a `PageContext`
+   (translator, `href()` for the locale prefix, build info) into
+   `{ path, body, contentType, alternates }` files: every page and feed per
+   locale, then one `404.html` and one `sitemap.xml` with hreflang
+   alternates (ADRs 0026–0028).
 4. In dev, the Vite plugin runs steps 1–3 per request (content is always
    fresh) and injects the Vite client; changes under `content/` full-reload.
 5. In build, Vite bundles `src/client/main.ts` and `src/styles/global.css`,
@@ -57,7 +70,9 @@ docs/supabase/   SQL applied by hand in the Supabase SQL editor (ADR 0024)
 
 ## Dependency inversion in practice
 
-Anything impure is injected at the edge. The plugin reads the clock once per
+Anything impure is injected at the edge. Build provenance is
+`resolveBuildInfo(env, gitReader)`; the only git call sits in `src/ssg/git.ts`.
+The plugin reads the clock once per
 render and passes it down as data: the build year rides in `PageContext` and
 today's date becomes the publish cutoff for `loadSiteModel`, so renders are
 pure functions of (model, context). `ThemeController` receives

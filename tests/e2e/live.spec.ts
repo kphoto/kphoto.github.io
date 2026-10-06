@@ -1,7 +1,7 @@
 import type { Page, Route } from '@playwright/test';
-import { BREAKER_KEY } from '../../src/client/liveStats';
-import { liveStatsEnabled, siteConfig } from '../../src/lib/config';
-import { expect, recordBackendRequests, SUPABASE, test } from './fixtures';
+import { BREAKER_KEY } from '../../src/client/liveStats.ts';
+import { liveStatsEnabled, siteConfig } from '../../src/lib/config.ts';
+import { expect, recordBackendRequests, SUPABASE, test } from './fixtures.ts';
 
 const enabled = liveStatsEnabled(siteConfig);
 
@@ -17,7 +17,6 @@ const board = {
   ],
 };
 
-/** Answers every Supabase RPC with `respond(functionName)`. */
 async function mockBackend(
   page: Page,
   respond: (fn: string, route: Route) => { status: number; body?: unknown },
@@ -81,7 +80,6 @@ test.describe('live statistics switched on', () => {
   });
 
   test('an unreachable backend leaves the page exactly as it was', async ({ page }) => {
-    // No page.route: the fixture's "backend unreachable" applies.
     await page.goto('/about/');
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('About');
     await expect(page.locator('kp-footer').getByText('on GitHub')).toBeVisible();

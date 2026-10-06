@@ -1,16 +1,29 @@
-import { renderDocument, type PageContext } from './layout';
+import { rawHtml } from '../i18n/safeHtml.ts';
+import { escapeAttribute } from '../lib/html.ts';
+import { renderDocument, type PageContext } from './layout.ts';
 
-/** The 404 page GitHub Pages serves for unknown paths. */
 export function renderNotFound(context: PageContext): string {
+  const { t } = context;
+  const home = rawHtml(
+    `<a href="${escapeAttribute(context.href('/'))}">${t.html('notFound.home')}</a>`,
+  );
+  const browse = rawHtml(
+    `<a href="${escapeAttribute(context.href('/blog/'))}">${t.html('notFound.browse')}</a>`,
+  );
   const main = `<header class="page-header">
-<p class="eyebrow">404</p>
-<h1>Nothing at this address.</h1>
-<p class="lede">The page may have moved, or the URL may have a typo. Post URLs start with their date, like <code>/blog/2026-03-22-good-morning/</code>.</p>
-<p class="lede"><a href="/">Go to the home page</a> or <a href="/blog/">browse all posts</a>.</p>
+<p class="eyebrow">${t.html('notFound.eyebrow')}</p>
+<h1>${t.html('notFound.heading')}</h1>
+<p class="lede">${t.html('notFound.lede', { example: rawHtml('<code>/blog/2026-03-22-good-morning/</code>') })}</p>
+<p class="lede">${t.html('notFound.actions', { home, browse })}</p>
 </header>`;
   return renderDocument(
     context,
-    { title: 'Page not found', description: 'This page does not exist.', path: '/404.html' },
+    {
+      title: t.text('notFound.title'),
+      description: t.text('notFound.description'),
+      path: '/404.html',
+      alternates: [],
+    },
     main,
   );
 }

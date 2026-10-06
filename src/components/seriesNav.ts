@@ -1,11 +1,25 @@
-import { escapeAttribute, escapeHtml } from '../lib/html';
-import type { Post, SeriesCollection } from '../lib/types';
+import { postIn } from '../i18n/localizedContent.ts';
+import { rawHtml } from '../i18n/safeHtml.ts';
+import { escapeAttribute, escapeHtml } from '../lib/html.ts';
+import type { Post, SeriesCollection } from '../lib/types.ts';
+import type { RenderContext } from './context.ts';
 
-/**
- * Series navigation for a post that belongs to a series: "Part N of M",
- * a link to the series page, and previous/next episode links.
- */
-export function renderSeriesNav(post: Post, series: SeriesCollection): string {
+function neighbourLink(post: Post, rel: 'prev' | 'next', context: RenderContext): string {
+  const view = postIn(post, context.t.locale.code);
+  const lang =
+    view.language === context.t.locale.code ? '' : ` lang="${escapeAttribute(view.language)}"`;
+  const title = `<span${lang}>${escapeHtml(view.title)}</span>`;
+  return rel === 'prev'
+    ? `<a class="prev" href="${escapeAttribute(view.url)}" rel="prev"><span aria-hidden="true">←</span> ${title}</a>`
+    : `<a class="next" href="${escapeAttribute(view.url)}" rel="next">${title} <span aria-hidden="true">→</span></a>`;
+}
+
+export function renderSeriesNav(
+  post: Post,
+  series: SeriesCollection,
+  context: RenderContext,
+): string {
+  const { t } = context;
   const membership = post.series;
   if (!membership) {
     return '';
@@ -13,12 +27,11 @@ export function renderSeriesNav(post: Post, series: SeriesCollection): string {
   const index = series.posts.findIndex((candidate) => candidate.slug === post.slug);
   const previous = index > 0 ? series.posts[index - 1] : undefined;
   const next = index >= 0 ? series.posts[index + 1] : undefined;
-  const previousHtml = previous
-    ? `<a class="prev" href="${escapeAttribute(previous.url)}" rel="prev"><span aria-hidden="true">←</span> ${escapeHtml(previous.title)}</a>`
-    : '<span></span>';
-  const nextHtml = next
-    ? `<a class="next" href="${escapeAttribute(next.url)}" rel="next">${escapeHtml(next.title)} <span aria-hidden="true">→</span></a>`
-    : '<span></span>';
+  const previousHtml = previous ? neighbourLink(previous, 'prev', context) : '<span></span>';
+  const nextHtml = next ? neighbourLink(next, 'next', context) : '<span></span>';
+  const seriesLink = rawHtml(
+    `<a href="${escapeAttribute(context.href(`/series/${series.slug}/`))}">${escapeHtml(series.name)}</a>`,
+  );
   return `<kp-series-nav>
 <template shadowrootmode="open">
 <style>
@@ -61,8 +74,8 @@ a:focus-visible {
   outline-offset: 2px;
 }
 </style>
-<nav aria-label="Series">
-<p class="which">Part ${String(membership.episode)} of ${String(series.posts.length)} in <a href="/series/${escapeAttribute(series.slug)}/">${escapeHtml(series.name)}</a></p>
+<nav aria-label="${escapeAttribute(t.text('series.nav'))}">
+<p class="which">${t.html('series.position', { episode: membership.episode, total: series.posts.length, series: seriesLink })}</p>
 <div class="steps">${previousHtml}${nextHtml}</div>
 </nav>
 </template>

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { CircuitBreaker } from './circuitBreaker';
-import { ManualClock, MemoryStore } from './liveTestDoubles';
-import type { KeyValueStore } from './storage';
+import { CircuitBreaker } from './circuitBreaker.ts';
+import { ManualClock, MemoryStore } from './liveTestDoubles.ts';
+import type { KeyValueStore } from './storage.ts';
 
 const KEY = 'test:retry-after';
 

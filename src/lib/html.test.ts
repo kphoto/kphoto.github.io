@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { escapeAttribute, escapeHtml } from './html';
+import { escapeAttribute, escapeHtml } from './html.ts';
 
 describe('escapeHtml', () => {
   it('escapes every HTML special character', () => {

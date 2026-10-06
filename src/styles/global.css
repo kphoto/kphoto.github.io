@@ -1,14 +1,3 @@
-/*
- * kphoto global stylesheet.
- *
- * Design tokens live on :root and per-theme [data-theme] blocks; they pierce
- * every component's shadow DOM, so this file plus each component's scoped
- * <style> is the entire styling story. All text/background pairs below were
- * verified against WCAG AA (4.5:1) — see docs/adr/0008-theming.md.
- */
-
-/* ---------- tokens ---------- */
-
 :root {
   color-scheme: light;
 
@@ -66,23 +55,11 @@
   --focus: #deb043;
 }
 
-/* ---------- cross-document view transitions (MPA) ---------- */
-
-/*
- * The opt-in itself is motion-gated (ADR 0018). Under
- * `prefers-reduced-motion: reduce` the page never opts in, so the browser
- * takes no snapshot and runs none of the transition machinery — stronger
- * than the previous approach of zeroing the ::view-transition-* animations,
- * which still engaged the capture/reveal pipeline. The Playwright suite
- * emulates reduced motion and therefore navigates without transitions.
- */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition {
     navigation: auto;
   }
 }
-
-/* ---------- base ---------- */
 
 *,
 *::before,
@@ -141,8 +118,6 @@ code {
   padding: 0.08em 0.35em;
 }
 
-/* Undefined-at-parse-time custom elements default to inline; make the
-   layout components behave as blocks before (and without) JavaScript. */
 kp-header,
 kp-footer,
 kp-post-card,
@@ -155,8 +130,6 @@ kp-author-card {
 kp-theme-picker {
   display: inline-block;
 }
-
-/* ---------- skip link ---------- */
 
 .skip-link {
   position: absolute;
@@ -174,8 +147,6 @@ kp-theme-picker {
 .skip-link:focus {
   transform: none;
 }
-
-/* ---------- shared page furniture ---------- */
 
 .page-header {
   margin-block-end: 2rem;
@@ -272,8 +243,6 @@ kp-theme-picker {
   gap: 1rem;
 }
 
-/* ---------- home hero ---------- */
-
 .hero {
   padding-block: 1.5rem 2.5rem;
   border-block-end: 1px solid var(--border);
@@ -310,8 +279,6 @@ kp-theme-picker {
   letter-spacing: -0.025em;
 }
 
-/* ---------- post page ---------- */
-
 .post .page-header {
   margin-block-end: 1.5rem;
 }
@@ -329,8 +296,6 @@ kp-theme-picker {
   display: grid;
   gap: 0.75rem;
 }
-
-/* ---------- prose (rendered markdown) ---------- */
 
 .prose {
   font-size: 1.02rem;

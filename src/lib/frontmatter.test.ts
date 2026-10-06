@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { extractFrontmatter } from './frontmatter';
+import { extractFrontmatter } from './frontmatter.ts';
 
 describe('extractFrontmatter', () => {
   it('splits data from body', () => {

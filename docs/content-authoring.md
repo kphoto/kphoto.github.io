@@ -34,6 +34,8 @@ Rules the build enforces:
 - `summary` is required (it is shown in lists and in the feed)
 - `tags` needs at least one entry; tags are shown on lists and detail pages
 - unknown keys are rejected (catches typos like `sereis:`)
+- optional `lang: es` marks a post not written in the default language; it
+  then lives at `/es/blog/…`
 
 ### Scheduled publishing
 
@@ -87,6 +89,22 @@ socials: # optional; github/bluesky/mastodon become links
 Standalone pages like About and Contact. Frontmatter is just `title:`; the
 page publishes at `/name/`. Adding a page does **not** add it to the header —
 navigation is deliberate, in `src/components/siteHeader.ts`.
+
+## Translations
+
+Write a post once; translate it only if you want to.
+
+- Post: `content/blog/2026-03-22-good-morning.es.md` next to the original,
+  published at `/es/blog/2026-03-22-good-morning/`.
+- Page: `content/pages/about.es.md`, published at `/es/about/`.
+- A post translation allows only `title` and `summary` (both required) and
+  the body; date, author, tags, series and episode come from the original.
+  A page translation allows only `title`.
+- The locale must be listed in `siteConfig.locales`. A translation without an
+  original, or into the original's own language, fails the build.
+- Untranslated posts still appear in every language's lists, marked with
+  their language, linking to the original. Untranslated pages link to the
+  original from the navigation.
 
 ## Markdown subset
 

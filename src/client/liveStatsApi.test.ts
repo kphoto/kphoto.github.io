@@ -1,6 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { REQUEST_TIMEOUT_MS } from './liveStats';
-import { isRetryable, LiveStatsApi, LiveStatsRequestError, type FetchLike } from './liveStatsApi';
+import { REQUEST_TIMEOUT_MS } from './liveStats.ts';
+import {
+  isRetryable,
+  LiveStatsApi,
+  LiveStatsRequestError,
+  type FetchLike,
+} from './liveStatsApi.ts';
 
 interface Call {
   readonly url: string;
@@ -36,7 +41,6 @@ const json = (body: unknown, status = 200): Response =>
     headers: { 'Content-Type': 'application/json' },
   });
 
-/** The JSON body a call sent (every POST here sends a JSON string). */
 function bodyOf(call: Call | undefined): unknown {
   const body = call?.init.body;
   if (typeof body !== 'string') {
@@ -176,9 +180,6 @@ describe('LiveStatsApi errors', () => {
     expect(isRetryable(error)).toBe(true);
   });
 
-  // 400 invalid input, 401/403 bad or revoked key, 402 free-tier quota
-  // exhausted, 404 functions missing (never applied, or torn down), 405 a
-  // write over GET, 429 rate limited: none of these fixes itself in 30 s.
   it.each([400, 401, 402, 403, 404, 405, 429])('HTTP %i is not retryable', async (status) => {
     const error = await failureOf(json({ code: 'x' }, status));
     expect(error.retryable).toBe(false);

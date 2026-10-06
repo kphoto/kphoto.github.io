@@ -47,3 +47,9 @@ object and outside `SettingsStore`, behind the same never-throwing
 `KeyValueStore` (now exported from `src/client/browser.ts`). It identifies no
 one. The full answer to "what does this site store?" is now: your theme, and,
 if the live-statistics server was unreachable, when to try it again.
+
+## Amendment (2026-10-06)
+
+The same `kphoto:settings:v1` value gains an optional `locale` (ADR 0029).
+Readers validate it as a lower-case BCP 47 code and drop it otherwise, keeping
+the theme; no version bump is needed because older values simply lack it.

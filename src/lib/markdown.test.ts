@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { renderMarkdown, sanitizeUrl } from './markdown';
+import { renderMarkdown, sanitizeUrl } from './markdown.ts';
 
 describe('sanitizeUrl', () => {
   it('allows http, https, mailto and relative URLs', () => {

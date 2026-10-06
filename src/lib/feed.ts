@@ -1,30 +1,34 @@
-import type { SiteConfig } from './config';
-import { toUtcTimestamp } from './dates';
-import { escapeHtml } from './html';
-import type { SiteModel } from './types';
+import type { RenderContext } from '../components/context.ts';
+import { postIn } from '../i18n/localizedContent.ts';
+import { toUtcTimestamp } from './dates.ts';
+import { escapeAttribute, escapeHtml } from './html.ts';
+import type { SiteModel } from './types.ts';
 
-/** Builds the Atom feed for every post, newest first. */
-export function buildAtomFeed(model: SiteModel, config: SiteConfig): string {
+export function buildAtomFeed(model: SiteModel, context: RenderContext): string {
+  const { config, t } = context;
+  const locale = t.locale.code;
   const updated = toUtcTimestamp(model.posts[0]?.date ?? '1970-01-01');
   const entries = model.posts
     .map((post) => {
-      const url = `${config.url}${post.url}`;
+      const view = postIn(post, locale);
+      const url = `${config.url}${view.url}`;
+      const lang = view.language === locale ? '' : ` xml:lang="${escapeAttribute(view.language)}"`;
       const authorName = model.authors.get(post.author)?.name ?? post.author;
       const categories = post.tags
         .map((tag) => `    <category term="${escapeHtml(tag)}" />`)
         .join('\n');
       return [
-        '  <entry>',
-        `    <title>${escapeHtml(post.title)}</title>`,
+        `  <entry${lang}>`,
+        `    <title>${escapeHtml(view.title)}</title>`,
         `    <link href="${url}" />`,
         `    <id>${url}</id>`,
         `    <updated>${toUtcTimestamp(post.date)}</updated>`,
         '    <author>',
         `      <name>${escapeHtml(authorName)}</name>`,
         '    </author>',
-        `    <summary>${escapeHtml(post.summary)}</summary>`,
+        `    <summary>${escapeHtml(view.summary)}</summary>`,
         categories,
-        `    <content type="html">${escapeHtml(post.html)}</content>`,
+        `    <content type="html">${escapeHtml(view.html)}</content>`,
         '  </entry>',
       ]
         .filter((line) => line !== '')
@@ -34,12 +38,12 @@ export function buildAtomFeed(model: SiteModel, config: SiteConfig): string {
 
   return [
     '<?xml version="1.0" encoding="utf-8"?>',
-    '<feed xmlns="http://www.w3.org/2005/Atom">',
+    `<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="${escapeAttribute(locale)}">`,
     `  <title>${escapeHtml(config.title)}</title>`,
-    `  <subtitle>${escapeHtml(config.description)}</subtitle>`,
-    `  <link href="${config.url}/" />`,
-    `  <link rel="self" href="${config.url}/feed.xml" />`,
-    `  <id>${config.url}/</id>`,
+    `  <subtitle>${escapeHtml(t.text('site.description'))}</subtitle>`,
+    `  <link href="${config.url}${context.href('/')}" />`,
+    `  <link rel="self" href="${config.url}${context.href('/feed.xml')}" />`,
+    `  <id>${config.url}${context.href('/')}</id>`,
     `  <updated>${updated}</updated>`,
     entries,
     '</feed>',

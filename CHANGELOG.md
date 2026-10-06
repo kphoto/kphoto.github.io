@@ -9,6 +9,57 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Languages (ADRs 0026–0029, `docs/i18n.md`):
+  - Spanish under `/es/`; English keeps every existing URL.
+  - Typed catalogs `src/i18n/messages/{en,es}.ts` with per-key fallback
+    marked `lang`, `Intl` plurals, numbers, dates and language names.
+  - Sibling translation files `*.es.md` for posts and pages; optional `lang`
+    frontmatter for posts written in another language.
+  - Untranslated posts listed everywhere with a language badge, linking to
+    the original; translated posts link back to theirs.
+  - `<html lang dir>`, hreflang + `x-default` alternates, per-locale Atom
+    feeds with `xml:lang`, sitemap `xhtml:link` alternates.
+  - `<kp-language-switcher>`: endonym links, choice stored as `locale` in
+    `kphoto:settings:v1`, "Read this page in …" suggestion from the stored
+    choice or `navigator.languages`; no redirects.
+  - Live statistics text localized via a `data-messages` attribute.
+  - Spanish translations of the interface, About, Contact and
+    `2026-03-22-good-morning` (AI-written).
+- Build provenance: the footer links the commit the site was built from
+  (`GITHUB_SHA`, else git with a "with local changes" flag) — ADR 0030.
+- TypeScript 7.1 preview gate: `typescript-native-next`,
+  `scripts/typecheck-next.sh`, a `check.sh` step and a CI step — ADR 0032.
+- `kphoto/no-comments` ESLint rule, `noInlineConfig`, and
+  `src/repoHygiene.test.ts` — ADR 0033.
+- E2E: `tests/e2e/i18n.spec.ts` (language declaration, switching and memory,
+  browser-language suggestion, localized navigation and feed, commit link).
+- Unit tests for i18n, build info, locale suggestion, translations, settings.
+
+### Changed
+
+- TypeScript 7.0.2 is the only compiler; `typescript` is now the official
+  `@typescript/typescript6` facade used by typescript-eslint alone, replacing
+  the `packageExtensions` block (ADR 0031 supersedes ADR 0006).
+- VS Code uses the TypeScript native-preview extension
+  (`js/ts.experimental.useTsgo`, `js/ts.tsdk.path`).
+- Every relative import has an explicit `.ts` extension; minimal
+  `tsconfig.json` (`module: preserve`, `allowImportingTsExtensions`, defaults
+  dropped). Vite's native config loader warnings are gone.
+- Every comment removed from TypeScript, CSS, shell, YAML, SQL and ignore
+  files (`export.sh` exempt).
+- `SiteConfig`: `language` and `description` replaced by `defaultLocale`,
+  `locales` and the `site.description` message.
+- Components and pages take a `RenderContext`/`PageContext` with a
+  translator and locale-aware `href()`.
+- Dependencies: Vitest 5.0.3, @vitest/coverage-v8 5.0.3, ESLint 10.12.0,
+  typescript-eslint 8.71.0, Vite 8.3.2, Playwright 1.63.0 (image
+  `v1.63.0-noble`), Prettier 3.9.9, @types/node 26.6.4, Yarn 4.18.1.
+- The theme-init test evaluates the script with `node:vm`.
+
+## [0.1.0]
+
+### Added
+
 - Optional live statistics backed by the free-tier Supabase project
   "colorado" (ADRs 0022–0025):
   - The footer shows readers on the site and on this page right now, plus

@@ -1,8 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { CircuitBreaker } from './circuitBreaker';
-import { LivePoller, type PollContext } from './livePoller';
-import { isRetryable, LiveStatsRequestError } from './liveStatsApi';
-import { FakeLifecycle, flush, ManualClock, ManualScheduler, MemoryStore } from './liveTestDoubles';
+import { CircuitBreaker } from './circuitBreaker.ts';
+import { LivePoller, type PollContext } from './livePoller.ts';
+import { isRetryable, LiveStatsRequestError } from './liveStatsApi.ts';
+import {
+  FakeLifecycle,
+  flush,
+  ManualClock,
+  ManualScheduler,
+  MemoryStore,
+} from './liveTestDoubles.ts';
 
 const INTERVAL = 30_000;
 const MIN_GAP = 5_000;

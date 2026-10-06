@@ -1,5 +1,5 @@
-import { expect, SUPABASE, test } from './fixtures';
-import { siteConfig } from '../../src/lib/config';
+import { expect, SUPABASE, test } from './fixtures.ts';
+import { siteConfig } from '../../src/lib/config.ts';
 
 test.describe('home page', () => {
   test('shows the hero and the latest posts', async ({ page }) => {
@@ -15,9 +15,7 @@ test.describe('home page', () => {
 
   test('navigates from a post card to the post', async ({ page }) => {
     await page.goto('/');
-    // Content-agnostic on purpose (ADR 0010): the newest published post
-    // changes every time an episode goes live, so the test derives the
-    // expected URL and title from the first card instead of naming one.
+
     const link = page.locator('kp-post-card').first().locator('h2 a');
     const href = (await link.getAttribute('href')) ?? '';
     const title = ((await link.textContent()) ?? '').trim();
@@ -141,8 +139,7 @@ test.describe('own origin only', () => {
     const foreign: string[] = [];
     page.on('request', (request) => {
       const url = request.url();
-      // The optional live-statistics backend is the one sanctioned exception
-      // (ADR 0022); every test sees it unreachable, courtesy of fixtures.ts.
+
       if (!url.startsWith(baseURL ?? '') && !url.startsWith('data:') && !SUPABASE.test(url)) {
         foreign.push(url);
       }

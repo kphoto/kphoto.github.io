@@ -5,7 +5,7 @@ import {
   SETTINGS_KEY,
   SettingsStore,
   type KeyValueStore,
-} from './storage';
+} from './storage.ts';
 
 function memoryStore(initial: Record<string, string> = {}): KeyValueStore & {
   data: Map<string, string>;
@@ -80,5 +80,24 @@ describe('SettingsStore', () => {
     });
     expect(store.read()).toEqual(DEFAULT_SETTINGS);
     expect(store.write({ theme: 'dark' })).toEqual({ theme: 'dark' });
+  });
+
+  it('remembers a language choice next to the theme', () => {
+    const store = new SettingsStore(memoryStore());
+    store.write({ theme: 'dark' });
+    store.write({ locale: 'es' });
+    expect(store.read()).toEqual({ theme: 'dark', locale: 'es' });
+  });
+
+  it('drops an invalid stored language but keeps the theme', () => {
+    const backing = memoryStore();
+    backing.set(SETTINGS_KEY, JSON.stringify({ theme: 'light', locale: 'Español' }));
+    expect(new SettingsStore(backing).read()).toEqual({ theme: 'light' });
+  });
+
+  it('keeps a valid language when the theme is unknown', () => {
+    const backing = memoryStore();
+    backing.set(SETTINGS_KEY, JSON.stringify({ theme: 'neon', locale: 'es' }));
+    expect(new SettingsStore(backing).read()).toEqual({ theme: 'system', locale: 'es' });
   });
 });

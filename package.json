@@ -1,11 +1,11 @@
 {
   "name": "kphoto",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A demonstration of what is possible with TypeScript 7 and the modern web — a zero-runtime-dependency static blog.",
   "license": "AGPL-3.0-or-later",
   "type": "module",
-  "packageManager": "yarn@4.18.0",
+  "packageManager": "yarn@4.18.1",
   "engines": {
     "node": ">=24"
   },
@@ -13,7 +13,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "node node_modules/typescript-native/bin/tsc --noEmit",
+    "typecheck:next": "node node_modules/typescript-native-next/bin/tsc --noEmit",
     "lint": "eslint . --max-warnings 0",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -24,16 +25,18 @@
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@playwright/test": "1.62.1",
-    "@types/node": "26.3.0",
-    "@vitest/coverage-v8": "4.1.11",
-    "eslint": "10.9.1",
+    "@playwright/test": "1.63.0",
+    "@types/node": "26.6.4",
+    "@vitest/coverage-v8": "5.0.3",
+    "eslint": "10.12.0",
     "eslint-config-prettier": "10.1.8",
     "jiti": "2.7.0",
-    "prettier": "3.9.6",
-    "typescript": "6.0.3",
-    "typescript-eslint": "8.68.0",
-    "vite": "8.2.2",
-    "vitest": "4.1.11"
+    "prettier": "3.9.9",
+    "typescript": "npm:@typescript/typescript6@6.0.2",
+    "typescript-eslint": "8.71.0",
+    "typescript-native": "npm:typescript@7.0.2",
+    "typescript-native-next": "npm:typescript@7.1.0-dev.20261003.1",
+    "vite": "8.3.2",
+    "vitest": "5.0.3"
   }
 }

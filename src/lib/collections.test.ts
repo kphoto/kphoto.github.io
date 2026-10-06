@@ -5,8 +5,8 @@ import {
   groupPostsByTag,
   latestPosts,
   sortPostsByDateDesc,
-} from './collections';
-import { makePost } from './testFixtures';
+} from './collections.ts';
+import { makePost } from './testFixtures.ts';
 
 const march = makePost({ slug: '2026-03-22-good-morning', date: '2026-03-22' });
 const april = makePost({ slug: '2026-04-01-good-morning', date: '2026-04-01' });

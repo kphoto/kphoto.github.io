@@ -2,13 +2,6 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 
-/**
- * Playwright only guarantees that its bundled browsers work with the matching
- * library version, so the container image pinned in compose.yaml and in the
- * CI workflow must stay in lockstep with devDependencies["@playwright/test"]
- * (ADR 0017). This test fails the unit suite the moment any pin drifts.
- */
-
 const read = (relativeToRepoRoot: string): string =>
   readFileSync(fileURLToPath(new URL(`../${relativeToRepoRoot}`, import.meta.url)), 'utf8');
 

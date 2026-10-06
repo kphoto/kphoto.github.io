@@ -1,4 +1,3 @@
-/** A calendar date without any time or zone information. */
 export interface CalendarDate {
   readonly year: number;
   readonly month: number;
@@ -31,10 +30,6 @@ export function daysInMonth(year: number, month: number): number {
   return lengths[month - 1] ?? 0;
 }
 
-/**
- * Parses a strict `YYYY-MM-DD` string into a {@link CalendarDate}, rejecting
- * impossible dates such as `2026-02-30`. Throws on invalid input.
- */
 export function parseIsoDate(value: string): CalendarDate {
   const match = ISO_DATE_PATTERN.exec(value);
   if (!match) {
@@ -61,7 +56,6 @@ export function isValidIsoDate(value: string): boolean {
   }
 }
 
-/** Sorts ISO dates newest first; ties resolve to zero. */
 export function compareIsoDatesDesc(a: string, b: string): number {
   if (a === b) {
     return 0;
@@ -69,24 +63,17 @@ export function compareIsoDatesDesc(a: string, b: string): number {
   return a < b ? 1 : -1;
 }
 
-/** Formats an ISO date as prose, e.g. `March 22, 2026`. */
 export function formatDisplayDate(isoDate: string): string {
   const { year, month, day } = parseIsoDate(isoDate);
   const monthName = MONTH_NAMES[month - 1] ?? '';
   return `${monthName} ${String(day)}, ${String(year)}`;
 }
 
-/** Expands an ISO date to a UTC midnight timestamp for feeds and sitemaps. */
 export function toUtcTimestamp(isoDate: string): string {
   parseIsoDate(isoDate);
   return `${isoDate}T00:00:00Z`;
 }
 
-/**
- * The calendar date, as `YYYY-MM-DD`, that a given instant falls on in the
- * given IANA time zone. This is what decides whether a dated post is
- * published yet (ADR 0021): the clock is injected, the mapping is pure.
- */
 export function isoDateInTimeZone(instant: Date, timeZone: string): string {
   const formatted = new Intl.DateTimeFormat('en-CA', {
     timeZone,

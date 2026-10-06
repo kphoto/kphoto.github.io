@@ -1,4 +1,3 @@
-# Pull requests run the full verification suite (same scripts as ./check.sh).
 name: ci
 
 on:

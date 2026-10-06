@@ -1,14 +1,16 @@
-import { renderPostCard } from '../components/postCard';
-import type { SiteModel } from '../lib/types';
-import { renderDocument, type PageContext } from './layout';
+import { renderPostCard } from '../components/postCard.ts';
+import { postIn } from '../i18n/localizedContent.ts';
+import type { SiteModel } from '../lib/types.ts';
+import { renderDocument, type PageContext } from './layout.ts';
 
-/** Blog index: every post, newest first. */
 export function renderBlogIndex(model: SiteModel, context: PageContext): string {
-  const cards = model.posts.map((post) => renderPostCard(post, 2)).join('\n');
-  const count = model.posts.length;
+  const { t } = context;
+  const cards = model.posts
+    .map((post) => renderPostCard(postIn(post, t.locale.code), context, 2))
+    .join('\n');
   const main = `<header class="page-header">
-<h1>Blog</h1>
-<p class="lede">${String(count)} ${count === 1 ? 'post' : 'posts'}, newest first.</p>
+<h1>${t.html('blog.title')}</h1>
+<p class="lede">${t.html('blog.lede', { count: model.posts.length })}</p>
 </header>
 <section class="post-list">
 ${cards}
@@ -16,9 +18,10 @@ ${cards}
   return renderDocument(
     context,
     {
-      title: 'Blog',
-      description: `All posts on ${context.config.title}, newest first.`,
-      path: '/blog/',
+      title: t.text('blog.title'),
+      description: t.text('blog.description', { site: context.config.title }),
+      path: context.href('/blog/'),
+      alternates: context.everyLocale('/blog/'),
     },
     main,
   );

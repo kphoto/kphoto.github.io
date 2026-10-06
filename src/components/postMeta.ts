@@ -1,22 +1,23 @@
-import { formatDisplayDate } from '../lib/dates';
-import { escapeAttribute, escapeHtml } from '../lib/html';
-import { slugify } from '../lib/slug';
-import type { Author, Post } from '../lib/types';
+import type { LocalizedPost } from '../i18n/localizedContent.ts';
+import { escapeAttribute, escapeHtml } from '../lib/html.ts';
+import type { Author } from '../lib/types.ts';
+import type { RenderContext } from './context.ts';
+import { renderTagLinks } from './postCard.ts';
 
-/**
- * The metadata block under a post title: date, author link, reading time and
- * the post's tags (shown in the detail view as well as list views).
- */
-export function renderPostMeta(post: Post, author: Author | undefined): string {
+export function renderPostMeta(
+  view: LocalizedPost,
+  author: Author | undefined,
+  context: RenderContext,
+): string {
+  const { t } = context;
+  const post = view.post;
   const authorHtml = author
-    ? `<a href="/authors/${escapeAttribute(author.id)}/" rel="author">${escapeHtml(author.name)}</a>`
+    ? `<a href="${escapeAttribute(context.href(`/authors/${author.id}/`))}" rel="author">${escapeHtml(author.name)}</a>`
     : escapeHtml(post.author);
-  const tagLinks = post.tags
-    .map(
-      (name) =>
-        `<li><a href="/tags/${escapeAttribute(slugify(name))}/">${escapeHtml(name)}</a></li>`,
-    )
-    .join('');
+  const tagLinks = renderTagLinks(post.tags, context);
+  const original = view.translated
+    ? `<p class="line translation">${t.html('post.translatedFrom', { language: t.localeName(post.language) })} <a href="${escapeAttribute(post.url)}" hreflang="${escapeAttribute(post.language)}">${t.html('post.readOriginal')}</a></p>`
+    : '';
   return `<kp-post-meta>
 <template shadowrootmode="open">
 <style>
@@ -26,6 +27,9 @@ export function renderPostMeta(post: Post, author: Author | undefined): string {
   font-family: var(--font-mono);
   font-size: 0.8rem;
   color: var(--muted);
+}
+.translation {
+  margin-block-start: 0.35rem;
 }
 .line a {
   color: var(--accent-strong);
@@ -57,8 +61,9 @@ a:focus-visible {
   border-color: var(--accent);
 }
 </style>
-<p class="line"><time datetime="${escapeAttribute(post.date)}">${escapeHtml(formatDisplayDate(post.date))}</time> · ${authorHtml} · ${String(post.readingMinutes)} min read</p>
-<ul class="tags" aria-label="Tags">${tagLinks}</ul>
+<p class="line"><time datetime="${escapeAttribute(post.date)}">${escapeHtml(t.date(post.date))}</time> · ${authorHtml} · ${t.html('post.readingTime', { count: view.readingMinutes })}</p>
+${original}
+<ul class="tags" aria-label="${escapeAttribute(t.text('post.tags'))}">${tagLinks}</ul>
 </template>
 </kp-post-meta>`;
 }

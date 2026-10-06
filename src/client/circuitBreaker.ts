@@ -1,6 +1,5 @@
-import type { KeyValueStore } from './storage';
+import type { KeyValueStore } from './storage.ts';
 
-/** Wall-clock reader; injected so tests control time. */
 export interface Clock {
   now(): number;
 }
@@ -8,22 +7,14 @@ export interface Clock {
 export interface CircuitBreakerOptions {
   readonly store: KeyValueStore;
   readonly clock: Clock;
-  /** localStorage key holding the "retry after" epoch milliseconds. */
+
   readonly key: string;
-  /** Consecutive retryable failures that open the breaker. */
+
   readonly maxFailures: number;
-  /** How long the breaker stays open once tripped. */
+
   readonly cooldownMs: number;
 }
 
-/**
- * Stops the site from hammering a backend that is down (ADR 0025). The open
- * state is persisted, so once a page trips it, every page on this browser
- * skips live statistics for the cool-down — a paused Supabase project costs a
- * visitor at most a handful of failed requests, not one per page view.
- * A non-retryable failure (bad key, missing functions, quota exhausted) trips
- * it immediately.
- */
 export class CircuitBreaker {
   readonly #options: CircuitBreakerOptions;
   #failures = 0;
@@ -32,7 +23,6 @@ export class CircuitBreaker {
     this.#options = options;
   }
 
-  /** True while requests should not be attempted. */
   isOpen(): boolean {
     const raw = this.#options.store.get(this.#options.key);
     if (raw === null) {
@@ -46,7 +36,6 @@ export class CircuitBreaker {
     this.#failures = 0;
   }
 
-  /** Records a failure; returns true when this failure opened the breaker. */
   recordFailure(retryable: boolean): boolean {
     this.#failures += 1;
     if (retryable && this.#failures < this.#options.maxFailures) {

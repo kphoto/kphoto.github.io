@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
-# Run the Playwright end-to-end suite inside the official Playwright container
-# (compose.yaml, service "e2e") so results do not depend on the host distro.
-# Uses podman by default; set CONTAINER_ENGINE=docker to use docker instead.
-# See ADR 0017.
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# shellcheck source=scripts/lib.sh
 . "$HERE/lib.sh"
 cd "$(repo_root)"
 ENGINE="${CONTAINER_ENGINE:-podman}"

@@ -1,48 +1,57 @@
-import { renderPostCard } from '../components/postCard';
-import { escapeAttribute, escapeHtml } from '../lib/html';
-import type { SiteModel, TagCollection } from '../lib/types';
-import { renderDocument, type PageContext } from './layout';
+import { renderPostCard } from '../components/postCard.ts';
+import { postIn } from '../i18n/localizedContent.ts';
+import { escapeAttribute, escapeHtml } from '../lib/html.ts';
+import type { SiteModel, TagCollection } from '../lib/types.ts';
+import { renderDocument, type PageContext } from './layout.ts';
 
-/** Tags index: every tag with its post count, alphabetically. */
 export function renderTagIndex(model: SiteModel, context: PageContext): string {
+  const { t } = context;
   const items = [...model.tags.values()]
     .map(
       (tag) =>
-        `<li><a href="/tags/${escapeAttribute(tag.slug)}/">${escapeHtml(tag.name)}</a> <span class="count">× ${String(tag.posts.length)}</span></li>`,
+        `<li><a href="${escapeAttribute(context.href(`/tags/${tag.slug}/`))}">${escapeHtml(tag.name)}</a> <span class="count">× ${t.number(tag.posts.length)}</span></li>`,
     )
     .join('\n');
   const main = `<header class="page-header">
-<h1>Tags</h1>
-<p class="lede">Every topic on the site.</p>
+<h1>${t.html('tags.title')}</h1>
+<p class="lede">${t.html('tags.lede')}</p>
 </header>
 <ul class="index-list">
 ${items}
 </ul>`;
   return renderDocument(
     context,
-    { title: 'Tags', description: `All tags on ${context.config.title}.`, path: '/tags/' },
+    {
+      title: t.text('tags.title'),
+      description: t.text('tags.description', { site: context.config.title }),
+      path: context.href('/tags/'),
+      alternates: context.everyLocale('/tags/'),
+    },
     main,
   );
 }
 
-/** A single tag: its posts, newest first. */
 export function renderTagPage(tag: TagCollection, context: PageContext): string {
-  const cards = tag.posts.map((post) => renderPostCard(post, 2)).join('\n');
-  const count = tag.posts.length;
+  const { t } = context;
+  const cards = tag.posts
+    .map((post) => renderPostCard(postIn(post, t.locale.code), context, 2))
+    .join('\n');
   const main = `<header class="page-header">
-<p class="eyebrow">Tag</p>
+<p class="eyebrow">${t.html('tag.eyebrow')}</p>
 <h1>${escapeHtml(tag.name)}</h1>
-<p class="lede">${String(count)} ${count === 1 ? 'post' : 'posts'}, newest first.</p>
+<p class="lede">${t.html('blog.lede', { count: tag.posts.length })}</p>
 </header>
 <section class="post-list">
 ${cards}
 </section>`;
+  const path = `/tags/${tag.slug}/`;
   return renderDocument(
     context,
     {
-      title: `Tagged “${tag.name}”`,
-      description: `Posts tagged “${tag.name}” on ${context.config.title}.`,
-      path: `/tags/${tag.slug}/`,
+      title: t.text('tag.title', { tag: tag.name }),
+      description: t.text('tag.description', { tag: tag.name, site: context.config.title }),
+      path: context.href(path),
+      alternates: context.everyLocale(path),
     },
     main,
   );

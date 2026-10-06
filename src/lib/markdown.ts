@@ -1,21 +1,5 @@
-import { escapeHtml } from './html';
-import { slugify } from './slug';
-
-/**
- * A hand-rolled markdown renderer covering the subset this blog is written in
- * (see docs/adr/0004-zero-runtime-dependencies.md):
- *
- * - ATX headings `#` … `######` with slugified, de-duplicated ids
- * - paragraphs (soft line breaks join with a space)
- * - fenced code blocks with an optional language class
- * - inline code, `**strong**`, `__strong__`, `*emphasis*`, `_emphasis_`
- * - links `[text](url)` and images `![alt](url)` with URL sanitisation
- * - blockquotes (nested), unordered and ordered lists (nested), and `---` rules
- *
- * Raw HTML is escaped, never passed through, so post content cannot inject
- * markup. Tables, reference links and setext headings are intentionally not
- * supported.
- */
+import { escapeHtml } from './html.ts';
+import { slugify } from './slug.ts';
 
 export interface MarkdownHeading {
   readonly level: number;
@@ -28,10 +12,6 @@ export interface RenderedMarkdown {
   readonly headings: readonly MarkdownHeading[];
 }
 
-/**
- * Allows http(s) and mailto URLs plus anything relative; every other scheme
- * (javascript:, data:, …) collapses to `#`.
- */
 export function sanitizeUrl(url: string): string {
   const trimmed = url.trim();
   const scheme = /^([a-zA-Z][a-zA-Z0-9+.-]*):/.exec(trimmed);
@@ -42,7 +22,6 @@ export function sanitizeUrl(url: string): string {
   return name === 'https' || name === 'http' || name === 'mailto' ? trimmed : '#';
 }
 
-/** Applies inline markup to text that has already been HTML-escaped. */
 function renderInlineText(escaped: string): string {
   let out = escaped;
   out = out.replace(
@@ -61,7 +40,6 @@ function renderInlineText(escaped: string): string {
   return out;
 }
 
-/** Renders inline markdown: code spans first, then the remaining markup. */
 export function renderInline(text: string): string {
   const parts: string[] = [];
   const codePattern = /`([^`]+)`/g;
@@ -254,7 +232,6 @@ function renderBlocks(lines: readonly string[], renderer: Renderer): string {
   return html.join('\n');
 }
 
-/** Renders a markdown document to HTML and collects its headings. */
 export function renderMarkdown(source: string): RenderedMarkdown {
   const renderer: Renderer = { ids: new HeadingIds(), headings: [] };
   const html = renderBlocks(source.split('\n'), renderer);

@@ -1,29 +1,34 @@
-import { describeTotals } from '../client/liveStats';
-import { liveStatsEnabled, type SiteConfig } from '../lib/config';
-import { escapeAttribute, escapeHtml } from '../lib/html';
+import { LIVE_MESSAGE_KEYS, type LiveMessages } from '../client/liveStats.ts';
+import type { MessageValue } from '../i18n/format.ts';
+import { liveStatsEnabled } from '../lib/config.ts';
+import { escapeAttribute, escapeHtml } from '../lib/html.ts';
+import type { RenderContext } from './context.ts';
 
-/** Connection details the client reads back from `data-*` attributes. */
-function connectionAttributes(config: SiteConfig): string {
+export function liveMessages(context: RenderContext): LiveMessages {
+  const messages: Record<string, MessageValue> = {};
+  for (const [name, key] of Object.entries(LIVE_MESSAGE_KEYS)) {
+    messages[name] = context.t.resolve(key).value;
+  }
+  return messages as LiveMessages;
+}
+
+function connectionAttributes(context: RenderContext): string {
+  const { config, t } = context;
   return [
     `data-project-url="${escapeAttribute(config.liveStats.projectUrl)}"`,
     `data-publishable-key="${escapeAttribute(config.liveStats.publishableKey)}"`,
     `data-site-origin="${escapeAttribute(config.url)}"`,
-    `data-locale="${escapeAttribute(config.language)}"`,
+    `data-locale="${escapeAttribute(t.locale.code)}"`,
+    `data-messages="${escapeAttribute(JSON.stringify(liveMessages(context)))}"`,
   ].join(' ');
 }
 
-/**
- * The footer's live line (ADR 0022). It ships `hidden` and stays hidden until
- * a request succeeds, so with the backend down — or JavaScript off — the
- * footer is exactly what it was before the feature existed. It deliberately
- * has no `aria-live`: re-announcing numbers every 30 s would be noise
- * (ADR 0015). Renders nothing when live statistics are switched off.
- */
-export function renderLiveStats(config: SiteConfig, currentPath: string): string {
-  if (!liveStatsEnabled(config)) {
+export function renderLiveStats(context: RenderContext, currentPath: string): string {
+  if (!liveStatsEnabled(context.config)) {
     return '';
   }
-  return `<kp-live-stats ${connectionAttributes(config)} data-path="${escapeAttribute(currentPath)}">
+  const { t } = context;
+  return `<kp-live-stats ${connectionAttributes(context)} data-path="${escapeAttribute(currentPath)}">
 <template shadowrootmode="open">
 <style>
 :host { display: block; }
@@ -56,29 +61,20 @@ a:focus-visible {
   outline-offset: 2px;
 }
 </style>
-<p hidden><span class="dot" aria-hidden="true"></span><strong>Live</strong> <span class="text"></span> <a href="/live/">Live stats →</a></p>
+<p hidden><span class="dot" aria-hidden="true"></span><strong>${t.html('live.label')}</strong> <span class="text"></span> <a href="${escapeAttribute(context.href('/live/'))}">${t.html('live.link')}</a></p>
 </template>
 </kp-live-stats>`;
 }
 
-const PLACEHOLDER_TOTALS = describeTotals(
-  { siteNow: 0, siteViews1h: 0, siteViews24h: 0 },
-  () => '—',
-);
-
-/**
- * The `/live/` board: headline totals and the busiest pages. The status line
- * is the only live region, and it only changes when the connection state
- * changes (connecting → shown → unavailable), never on each refresh.
- */
-export function renderLiveBoard(config: SiteConfig): string {
-  if (!liveStatsEnabled(config)) {
+export function renderLiveBoard(context: RenderContext): string {
+  if (!liveStatsEnabled(context.config)) {
     return '';
   }
-  const totals = PLACEHOLDER_TOTALS.map(
-    ([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`,
-  ).join('');
-  return `<kp-live-board ${connectionAttributes(config)}>
+  const { t } = context;
+  const totals = (['live.here', 'live.views1h', 'live.views24h'] as const)
+    .map((key) => `<div><dt>${t.html(key)}</dt><dd>${escapeHtml('—')}</dd></div>`)
+    .join('');
+  return `<kp-live-board ${connectionAttributes(context)}>
 <template shadowrootmode="open">
 <style>
 :host { display: block; }
@@ -155,17 +151,17 @@ td a:focus-visible {
   color: var(--muted);
 }
 </style>
-<p class="status" role="status">Connecting to live statistics…</p>
+<p class="status" role="status">${t.html('live.connecting')}</p>
 <div class="board" hidden>
 <dl class="totals">${totals}</dl>
 <div class="table-wrap">
 <table>
-<caption>Busiest pages</caption>
-<thead><tr><th scope="col">Page</th><th scope="col">Here now</th><th scope="col">Views, 1 h</th><th scope="col">Views, 24 h</th></tr></thead>
+<caption>${t.html('live.busiest')}</caption>
+<thead><tr><th scope="col">${t.html('live.colPage')}</th><th scope="col">${t.html('live.colNow')}</th><th scope="col">${t.html('live.col1h')}</th><th scope="col">${t.html('live.col24h')}</th></tr></thead>
 <tbody></tbody>
 </table>
 </div>
-<p class="updated">Updated <time></time></p>
+<p class="updated">${t.html('live.updated')} <time></time></p>
 </div>
 </template>
 </kp-live-board>`;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { SettingsStore, type KeyValueStore, type ThemeName } from './storage';
+import { SettingsStore, type KeyValueStore, type ThemeName } from './storage.ts';
 import {
   isDarkTheme,
   resolveConcreteTheme,
@@ -7,7 +7,7 @@ import {
   type ColorSchemeMedia,
   type ConcreteTheme,
   type ThemeHost,
-} from './theme';
+} from './theme.ts';
 
 function memoryStore(): KeyValueStore {
   const data = new Map<string, string>();

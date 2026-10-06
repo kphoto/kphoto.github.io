@@ -1,14 +1,15 @@
 import { describe, expect, it } from 'vitest';
-import type { SiteConfig } from '../lib/config';
-import { loadSiteModel } from '../lib/content';
-import { postFile } from '../lib/testFixtures';
-import { outputFileFor, renderSite, siteConfig, type PageContext } from './routes';
+import { siteConfig } from '../lib/config.ts';
+import { loadSiteModel } from '../lib/content.ts';
+import { postFile } from '../lib/testFixtures.ts';
+import { outputFileFor, renderSite } from './routes.ts';
+import { makeSiteContext, withLiveStats } from './testContext.ts';
 
-const context: PageContext = {
-  config: siteConfig,
-  assets: { scriptSrc: '/assets/main-TEST.js', styleHref: '/assets/styles-TEST.css' },
-  buildYear: 2026,
+const singleLocale = {
+  ...siteConfig,
+  locales: [{ code: 'en', name: 'English', dir: 'ltr' as const }],
 };
+const context = makeSiteContext({ config: singleLocale });
 
 const model = loadSiteModel({
   blog: {
@@ -87,6 +88,11 @@ describe('renderSite', () => {
         '/sitemap.xml',
       ].sort(),
     );
+  });
+
+  it('declares no language alternates on a single-locale site', () => {
+    expect(byPath.get('/')?.body).not.toContain('hreflang');
+    expect(byPath.get('/')?.body).toContain('<html lang="en" dir="ltr"');
   });
 
   it('marks XML outputs with the XML content type', () => {
@@ -172,13 +178,10 @@ describe('renderSite', () => {
 });
 
 describe('the /live/ page', () => {
-  const withKey = (publishableKey: string): PageContext => ({
-    ...context,
-    config: {
-      ...siteConfig,
-      liveStats: { projectUrl: 'https://ref.supabase.co', publishableKey },
-    } satisfies SiteConfig,
-  });
+  const withKey = (publishableKey: string) =>
+    makeSiteContext({
+      config: { ...withLiveStats(publishableKey), locales: singleLocale.locales },
+    });
   const on = renderSite(model, withKey('sb_publishable_test')).find((f) => f.path === '/live/');
   const off = renderSite(model, withKey('')).find((f) => f.path === '/live/');
 
@@ -226,5 +229,84 @@ describe('outputFileFor', () => {
   it('keeps top-level files as-is', () => {
     expect(outputFileFor('/404.html')).toBe('404.html');
     expect(outputFileFor('/feed.xml')).toBe('feed.xml');
+  });
+});
+
+describe('renderSite with a second locale', () => {
+  const bilingual = loadSiteModel(
+    {
+      blog: {
+        '2026-03-22-good-morning.md': postFile(
+          'title: Good morning!\ndate: 2026-03-22\nauthor: kphoto-team\nsummary: Hi\ntags:\n  - introductions',
+        ),
+        '2026-03-22-good-morning.es.md': postFile('title: ¡Buenos días!\nsummary: Hola'),
+        '2026-04-01-later.md': postFile(
+          'title: Later\ndate: 2026-04-01\nauthor: kphoto-team\nsummary: Later\ntags:\n  - introductions',
+        ),
+      },
+      authors: { 'kphoto-team.yml': 'name: kphoto team' },
+      pages: {
+        'about.md': postFile('title: About'),
+        'about.es.md': postFile('title: Acerca de'),
+        'contact.md': postFile('title: Contact'),
+      },
+    },
+    undefined,
+    { defaultLocale: 'en', locales: ['en', 'es'] },
+  );
+  const rendered = renderSite(bilingual, makeSiteContext());
+  const at = new Map(rendered.map((file) => [file.path, file]));
+
+  it('mirrors every section under the locale prefix', () => {
+    for (const path of [
+      '/es/',
+      '/es/blog/',
+      '/es/tags/',
+      '/es/series/',
+      '/es/authors/',
+      '/es/live/',
+    ]) {
+      expect(at.has(path)).toBe(true);
+    }
+    expect(at.has('/es/feed.xml')).toBe(true);
+  });
+
+  it('renders only translated posts and pages in the second locale', () => {
+    expect(at.has('/es/blog/2026-03-22-good-morning/')).toBe(true);
+    expect(at.has('/es/blog/2026-04-01-later/')).toBe(false);
+    expect(at.has('/es/about/')).toBe(true);
+    expect(at.has('/es/contact/')).toBe(false);
+  });
+
+  it('keeps one 404 page and one sitemap', () => {
+    expect(rendered.filter((file) => file.path.endsWith('404.html'))).toHaveLength(1);
+    expect(rendered.filter((file) => file.path.endsWith('sitemap.xml'))).toHaveLength(1);
+  });
+
+  it('sets the document language and links alternates both ways', () => {
+    const spanish = at.get('/es/blog/2026-03-22-good-morning/')?.body ?? '';
+    expect(spanish).toContain('<html lang="es" dir="ltr"');
+    expect(spanish).toContain('<h1>¡Buenos días!</h1>');
+    expect(spanish).toContain(
+      `<link rel="alternate" hreflang="en" href="${siteConfig.url}/blog/2026-03-22-good-morning/" />`,
+    );
+    expect(spanish).toContain('hreflang="x-default"');
+    const english = at.get('/blog/2026-03-22-good-morning/')?.body ?? '';
+    expect(english).toContain(
+      `<link rel="alternate" hreflang="es" href="${siteConfig.url}/es/blog/2026-03-22-good-morning/" />`,
+    );
+    expect(at.get('/blog/2026-04-01-later/')?.body).not.toContain('hreflang="es"');
+  });
+
+  it('lists untranslated posts in the second locale, linking to the original', () => {
+    const blog = at.get('/es/blog/')?.body ?? '';
+    expect(blog).toContain('href="/blog/2026-04-01-later/" hreflang="en"');
+    expect(blog).toContain('href="/es/blog/2026-03-22-good-morning/"');
+  });
+
+  it('puts language alternates in the sitemap', () => {
+    expect(at.get('/sitemap.xml')?.body).toContain(
+      `<xhtml:link rel="alternate" hreflang="es" href="${siteConfig.url}/es/about/" />`,
+    );
   });
 });

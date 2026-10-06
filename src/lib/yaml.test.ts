@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parseYaml, YamlParseError } from './yaml';
+import { parseYaml, YamlParseError } from './yaml.ts';
 
 describe('parseYaml', () => {
   it('parses scalar key/value pairs with type inference', () => {

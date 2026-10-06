@@ -1,20 +1,6 @@
 #!/usr/bin/env bash
-# =============================================================================
-# check.sh — run everything CI runs, locally, in the same order.
-#
-# Usage:  ./check.sh             # full suite; e2e runs in a container when
-#                                # podman (or $CONTAINER_ENGINE) is available,
-#                                # matching the CI environment exactly
-#         ./check.sh --e2e-host  # force the browser tests onto the host
-#         ./check.sh --no-e2e    # skip the browser tests entirely
-#
-# Order: bootstrap → format check → lint → typecheck → unit tests → build
-#        → e2e tests → export.sh (regenerates docs/llm/dump.txt).
-# Run this before pushing; if it passes here, it passes in CI.
-# =============================================================================
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# shellcheck source=scripts/lib.sh
 . "$HERE/scripts/lib.sh"
 cd "$(repo_root)"
 
@@ -28,32 +14,34 @@ for arg in "$@"; do
   esac
 done
 
-log "1/8 bootstrap"
+log "1/9 bootstrap"
 ./scripts/bootstrap.sh
-log "2/8 format check"
+log "2/9 format check"
 ./scripts/format.sh --check
-log "3/8 lint"
+log "3/9 lint"
 ./scripts/lint.sh
-log "4/8 typecheck"
+log "4/9 typecheck (TypeScript 7)"
 ./scripts/typecheck.sh
-log "5/8 unit tests"
+log "5/9 typecheck (TypeScript 7.1 preview)"
+./scripts/typecheck-next.sh
+log "6/9 unit tests"
 ./scripts/test-unit.sh
-log "6/8 build"
+log "7/9 build"
 ./scripts/build.sh
 if (( RUN_E2E )); then
   if (( E2E_HOST )); then
-    log "7/8 end-to-end tests (host, --e2e-host)"
+    log "8/9 end-to-end tests (host, --e2e-host)"
     ./scripts/test-e2e.sh
   elif command -v "${CONTAINER_ENGINE:-podman}" >/dev/null 2>&1; then
-    log "7/8 end-to-end tests (container — see ADR 0017)"
+    log "8/9 end-to-end tests (container — see ADR 0017)"
     ./scripts/test-e2e-container.sh
   else
-    log "7/8 end-to-end tests (host — ${CONTAINER_ENGINE:-podman} not found)"
+    log "8/9 end-to-end tests (host — ${CONTAINER_ENGINE:-podman} not found)"
     ./scripts/test-e2e.sh
   fi
 else
-  log "7/8 end-to-end tests — skipped (--no-e2e)"
+  log "8/9 end-to-end tests — skipped (--no-e2e)"
 fi
-log "8/8 export repository dump"
+log "9/9 export repository dump"
 ./export.sh >/dev/null
 log "all checks passed ✔"
