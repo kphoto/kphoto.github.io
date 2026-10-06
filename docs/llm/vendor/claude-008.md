@@ -10,3 +10,4 @@ Any files to delete on updates called out explicitly
 No bespoke sed/patch scripts — full files only for anything that changes
 Docs updated alongside code changes
 Low verbosity, no code comments
+also please update all documentation 
