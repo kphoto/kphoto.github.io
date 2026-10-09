@@ -1,70 +1,48 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$HERE/lib.sh"
+. "$HERE/lib-audio.sh"
 
-DIR="."
-DELETE=false
+usage() {
+  cat <<USAGE
+Usage: $(basename "$0") [directory] [--delete]
 
-for arg in "$@"; do
-    case "$arg" in
-        --delete) DELETE=true ;;
-        *)        DIR="$arg" ;;
-    esac
+Losslessly convert every *.wav in a directory to *.flac.
+
+  directory   default: $(audio_default_dir)
+  --delete    remove each .wav after its .flac is written
+  -h, --help  show this help
+USAGE
+}
+
+encode_flac() {
+  flac --silent --best --verify -o "$2" "$1"
+}
+
+encode_ffmpeg() {
+  ffmpeg -nostdin -loglevel error -i "$1" -c:a flac -compression_level 8 -f flac "$2"
+}
+
+DIR=""
+DELETE=0
+while (( $# > 0 )); do
+  case "$1" in
+    -h | --help) usage; exit 0 ;;
+    --delete) DELETE=1 ;;
+    -*) die "unknown option: $1 (see --help)" ;;
+    *)
+      [[ -z "$DIR" ]] || die "only one directory may be given (see --help)"
+      DIR="$1"
+      ;;
+  esac
+  shift
 done
+DIR="${DIR:-$(audio_default_dir)}"
+[[ -d "$DIR" ]] || die "not a directory: $DIR"
 
-if [[ ! -d "$DIR" ]]; then
-    echo "Error: '$DIR' is not a directory." >&2
-    exit 1
-fi
+ENCODER="$(audio_pick_encoder flac ffmpeg)" ||
+  die "neither flac nor ffmpeg found; on Fedora: sudo dnf install flac"
+log "encoder: $ENCODER"
 
-# Pick an encoder
-if command -v ffmpeg >/dev/null 2>&1; then
-    ENCODER="ffmpeg"
-elif command -v flac >/dev/null 2>&1; then
-    ENCODER="flac"
-else
-    echo "Error: neither ffmpeg nor flac found." >&2
-    echo "Install one with: sudo dnf install flac   (or ffmpeg from RPM Fusion)" >&2
-    exit 1
-fi
-
-shopt -s nullglob nocaseglob
-files=("$DIR"/*.wav)
-
-if (( ${#files[@]} == 0 )); then
-    echo "No .wav files found in '$DIR'."
-    exit 0
-fi
-
-ok=0
-fail=0
-
-for wav in "${files[@]}"; do
-    flac_out="${wav%.*}.flac"
-
-    if [[ -e "$flac_out" ]]; then
-        echo "Skipping (already exists): $flac_out"
-        continue
-    fi
-
-    echo "Converting: $wav -> $flac_out"
-
-    if [[ "$ENCODER" == "ffmpeg" ]]; then
-        cmd=(ffmpeg -nostdin -loglevel error -i "$wav" -compression_level 8 "$flac_out")
-    else
-        cmd=(flac --silent --best -o "$flac_out" "$wav")
-    fi
-
-    if "${cmd[@]}"; then
-        ok=$((ok + 1))
-        if $DELETE; then
-            rm -- "$wav"
-        fi
-    else
-        echo "Failed: $wav" >&2
-        rm -f -- "$flac_out"
-        fail=$((fail + 1))
-    fi
-done
-
-echo "Done. Converted: $ok, failed: $fail"
+audio_convert_dir "$DIR" flac "$DELETE" "encode_$ENCODER"
