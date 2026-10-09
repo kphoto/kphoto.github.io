@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Ten-episode "Kitchen Fundamentals" series with Spanish translations
+  (`content/blog/2026-10-08-…` through `2026-10-17-…`, plus `*.es.md`),
+  publishing one episode per day via scheduled publishing (AI-written).
 - Languages (ADRs 0026–0029, `docs/i18n.md`):
   - Spanish under `/es/`; English keeps every existing URL.
   - Typed catalogs `src/i18n/messages/{en,es}.ts` with per-key fallback
