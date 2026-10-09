@@ -1,38 +1,38 @@
-[warm] Clean hands, clean food. [short pause] The first rule of the kitchen.
+<warm> Clean hands, clean food. <short pause> The first rule of the kitchen.
 
-[friendly] Welcome to Kitchen Fundamentals. [short pause] This is part one of a ten-part series on cooking basics.
+<friendly> Welcome to Kitchen Fundamentals. <short pause> This is part one of a ten-part series on cooking basics.
 
-[serious] Here's the short version. [short pause] Most food poisoning at home is carried by hands, not by exotic ingredients. [short pause] Wash with soap for at least twenty seconds, at the right moments. Keep sick people out of the kitchen. Tie back your hair. Cover any cuts. And use a clean spoon every time you taste. [pause] Everything else in this series builds on that.
+<serious> Here's the short version. <short pause> Most food poisoning at home is carried by hands, not by exotic ingredients. <short pause> Wash with soap for at least twenty seconds, at the right moments. Keep sick people out of the kitchen. Tie back your hair. Cover any cuts. And use a clean spoon every time you taste. <pause> Everything else in this series builds on that.
 
-[long pause]
+<long pause>
 
-[curious] So, why does hygiene come first?
+<curious> So, why does hygiene come first?
 
-Because cooking is applied biology. [short pause] Bacteria, viruses and parasites ride into your food on hands, on sneezes, on rings... [short pause] and on phone screens.
+Because cooking is applied biology. <short pause> Bacteria, viruses and parasites ride into your food on hands, on sneezes, on rings... <short pause> and on phone screens.
 
-[quietly] You can't see most of them. You can't smell them. [short pause] You can't taste them. [pause] And cooking doesn't always save you. [short pause] Salads, bread, garnishes and leftovers are often eaten without any more heat.
+<quietly> You can't see most of them. You can't smell them. <short pause> You can't taste them. <pause> And cooking doesn't always save you. <short pause> Salads, bread, garnishes and leftovers are often eaten without any more heat.
 
-[warm] The cheapest, most effective food safety tool ever invented? [short pause] Soap and running water.
+<warm> The cheapest, most effective food safety tool ever invented? <short pause> Soap and running water.
 
-[long pause]
+<long pause>
 
-[friendly] Let's talk about how to wash your hands properly.
+<friendly> Let's talk about how to wash your hands properly.
 
 First, wet your hands with clean running water. Warm or cold, either is fine.
 
-Second, lather up with soap. [short pause] Backs of your hands, between your fingers, your thumbs, and under your nails.
+Second, lather up with soap. <short pause> Backs of your hands, between your fingers, your thumbs, and under your nails.
 
-Third, scrub for at least twenty seconds. [chuckles] The classic timer? Humming a short song, twice.
+Third, scrub for at least twenty seconds. <chuckles> The classic timer? Humming a short song, twice.
 
 Fourth, rinse under running water.
 
-And fifth, dry with a clean towel or a paper towel. [short pause] Damp hands spread germs more easily than dry ones.
+And fifth, dry with a clean towel or a paper towel. <short pause> Damp hands spread germs more easily than dry ones.
 
-[pause] A quick word on hand sanitizer. [serious] It's a backup, not a replacement. It doesn't work well on greasy or visibly dirty hands, and it doesn't remove everything soap does.
+<pause> A quick word on hand sanitizer. <serious> It's a backup, not a replacement. It doesn't work well on greasy or visibly dirty hands, and it doesn't remove everything soap does.
 
-[long pause]
+<long pause>
 
-[friendly] So, when should you wash?
+<friendly> So, when should you wash?
 
 Before you start cooking, and every time you come back to the kitchen.
 
@@ -44,38 +44,38 @@ After using the bathroom, coughing, sneezing, or blowing your nose.
 
 And between tasks, especially when you switch from raw food to ready-to-eat food.
 
-[short pause] [lighthearted] If in doubt, wash. [short pause] [chuckles] It takes less time than reading this sentence twice.
+<short pause> <lighthearted> If in doubt, wash. <short pause> <chuckles> It takes less time than reading this sentence twice.
 
-[long pause]
+<long pause>
 
-[serious] Now, an important one. [short pause] Cook healthy, or don't cook.
+<serious> Now, an important one. <short pause> Cook healthy, or don't cook.
 
-If you have vomiting or diarrhea, let someone else cook. [short pause] And keep it that way for at least forty-eight hours after your symptoms stop.
+If you have vomiting or diarrhea, let someone else cook. <short pause> And keep it that way for at least forty-eight hours after your symptoms stop.
 
-[quietly] Some of the most contagious stomach viruses spread easily through food, and they survive well on surfaces. [short pause] [warm] A professional kitchen sends sick staff home. A home kitchen should do the same.
+<quietly> Some of the most contagious stomach viruses spread easily through food, and they survive well on surfaces. <short pause> <warm> A professional kitchen sends sick staff home. A home kitchen should do the same.
 
-[long pause]
+<long pause>
 
-[friendly] Finally, a few small habits that add up.
+<friendly> Finally, a few small habits that add up.
 
-Keep your hair tied back. Take your jewelry off. [short pause] Rings and watches trap food and bacteria.
+Keep your hair tied back. Take your jewelry off. <short pause> Rings and watches trap food and bacteria.
 
 Cover cuts with a waterproof dressing, ideally a brightly colored one, and add a glove on that hand.
 
 Keep one towel for your hands and a different one for dishes, and change them often.
 
-When you taste, use a clean spoon every time. [short pause] [playful] Never, ever, put the tasting spoon back in the pot.
+When you taste, use a clean spoon every time. <short pause> <playful> Never, ever, put the tasting spoon back in the pot.
 
-And your phone? [short pause] It goes everywhere your hands go. [short pause] Keep it out of the cooking area, or wash your hands after touching it.
+And your phone? <short pause> It goes everywhere your hands go. <short pause> Keep it out of the cooking area, or wash your hands after touching it.
 
-[long pause]
+<long pause>
 
-[reflective] Why does this outlast any technology?
+<reflective> Why does this outlast any technology?
 
-Appliances will get smarter. Ingredients will be delivered faster. [short pause] But food will always be prepared by someone's hands, and microbes will always be invisible.
+Appliances will get smarter. Ingredients will be delivered faster. <short pause> But food will always be prepared by someone's hands, and microbes will always be invisible.
 
-[warm] A twenty-second habit beats any gadget.
+<warm> A twenty-second habit beats any gadget.
 
-[short pause] [excited] Tomorrow, we tackle the single most important number in food safety... [short pause] the danger zone.
+<short pause> <excited> Tomorrow, we tackle the single most important number in food safety... <short pause> the danger zone.
 
-[friendly] See you then.
+<friendly> See you then.
