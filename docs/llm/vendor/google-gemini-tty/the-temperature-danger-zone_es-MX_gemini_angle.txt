@@ -1,0 +1,83 @@
+<warm> La zona de peligro. <short pause> Control de tiempo y temperatura.
+
+<friendly> Bienvenidos de nuevo a Fundamentos de la Cocina. <short pause> Esta es la segunda parte de nuestra serie de diez.
+
+<serious> Va la versión corta. <short pause> Mantén la comida fría a cuatro grados centígrados, cuarenta Fahrenheit, o menos. Y la caliente a sesenta grados, ciento cuarenta Fahrenheit, o más. <short pause> La comida que pase más de dos horas entre esas temperaturas, va a la basura. Y si hace más de treinta y dos grados, noventa Fahrenheit, el límite es de una hora. <short pause> Cocina hasta temperaturas internas seguras, medidas con un termómetro. Enfría las sobras rápido. Y recaliéntalas a setenta y cuatro grados, ciento sesenta y cinco Fahrenheit.
+
+<short pause> <curious> Entonces, ¿qué es exactamente la zona de peligro?
+
+Es el rango de temperatura de más o menos cuatro a sesenta grados centígrados. <short pause> De cuarenta a ciento cuarenta Fahrenheit. Dentro de ese rango, muchas bacterias pueden duplicarse en unos veinte minutos.
+
+<quietly> Unos cientos de células en una ensalada de pollo a mediodía... <short pause> pueden convertirse en millones para la cena.
+
+<serious> Y aquí viene lo que mucha gente no sabe. <short pause> Algunas bacterias además producen toxinas que la cocción no destruye. <short pause> Por eso, recalentar comida echada a perder no la vuelve segura.
+
+<short pause> <friendly> Sigue la regla de las dos horas.
+
+Los alimentos perecederos no deben pasar más de dos horas en total en la zona de peligro. <short pause> La compra, la preparación, el servicio y las sobras, todo cuenta.
+
+Si la temperatura ambiente o exterior supera los treinta y dos grados, el límite baja a una hora.
+
+<warm> Y ante la duda, tíralo. <short pause> El olor y el aspecto no son pruebas confiables.
+
+<short pause> <friendly> Hablemos de mantener en frío.
+
+El refrigerador debe estar a cuatro grados centígrados o menos. <short pause> Unos tres grados te dan un buen margen.
+
+El congelador, a menos dieciocho grados. <short pause> Y ojo, congelar detiene a las bacterias. <short pause> No las mata.
+
+Ten un termómetro económico para electrodomésticos en los dos. <laughs softly> Los indicadores integrados muchas veces fallan.
+
+<short pause> <friendly> Ahora, mantener en caliente.
+
+La comida que se mantiene caliente para servir debe estar a sesenta grados centígrados o más. <short pause> Sirve una olla de cocción lenta en "mantener caliente", un horno bajito, o un calentador para platos.
+
+<lighthearted> ¿Los bufés tibios? <short pause> Ahí es donde empiezan los problemas.
+
+<short pause> <serious> Sigamos con las temperaturas internas seguras. <short pause> Y la regla de oro: el color no te dice si ya está cocido.
+
+Usa un termómetro de lectura instantánea en la parte más gruesa, lejos del hueso.
+
+Aves, enteras o molidas, y rellenos, setenta y cuatro grados, ciento sesenta y cinco Fahrenheit.
+
+Carne molida de res, cerdo, cordero y ternera, setenta y un grados, ciento sesenta Fahrenheit.
+
+Cortes enteros de res, cerdo, cordero y ternera, sesenta y tres grados, ciento cuarenta y cinco Fahrenheit, y luego tres minutos de reposo.
+
+Pescados y mariscos, sesenta y tres grados, o hasta que la carne esté opaca y se separe en lascas.
+
+Platos con huevo, setenta y un grados.
+
+Y sobras y guisados, setenta y cuatro grados.
+
+<short pause> <friendly> Un truco muy útil. De vez en cuando, comprueba tu termómetro en un vaso de agua con hielo, removido durante un minuto. <short pause> Debe marcar cero grados centígrados.
+
+<short pause> <curious> ¿Y cómo enfriamos las sobras?
+
+Una olla grande de guisado caliente se enfría lento por dentro. <short pause> Puede pasar horas en la zona de peligro, incluso dentro del refrigerador.
+
+Así que repártelo en recipientes poco profundos, para que la comida no pase de unos cinco centímetros de profundidad. <short pause> Corta los asados grandes en trozos más pequeños. <short pause> Y remueve sobre un baño de hielo para acelerar el proceso.
+
+Refrigera dentro de las dos horas siguientes a la cocción. <short pause> Deja las tapas entreabiertas hasta que esté frío, y luego ciérralas.
+
+<quietly> ¿El estándar profesional? <short pause> De cincuenta y siete a veintiún grados centígrados en dos horas. <short pause> Y luego hasta cinco grados en cuatro horas más.
+
+<short pause> <friendly> Ahora, recalentar.
+
+Recalienta las sobras a setenta y cuatro grados centígrados en todo su interior. <short pause> Lleva las salsas, las sopas y los jugos de carne a un hervor fuerte.
+
+En el microondas, tapa la comida, remueve a la mitad del tiempo, y déjala reposar antes de medir la temperatura. <short pause> <playful> Es que el microondas siempre deja zonas frías.
+
+<short pause> <serious> Una palabra sobre quién necesita cuidados especiales.
+
+Las personas embarazadas, los bebés y niños pequeños, los adultos mayores y cualquier persona con el sistema inmunitario debilitado tienen más probabilidades de enfermar gravemente. <short pause> Para ellos, sé estricto con la leche y los jugos sin pasteurizar, los huevos y la carne poco cocidos, los germinados crudos, y las carnes frías que no se han recalentado hasta humear.
+
+<short pause> <reflective> ¿Por qué esto perdura más allá de cualquier tecnología?
+
+Los refrigeradores inteligentes y los termómetros de sonda van a seguir mejorando. <short pause> Pero la biología del crecimiento bacteriano no va a cambiar.
+
+<warm> Entiende la zona y podrás juzgar cualquier situación, un apagón, un día de campo, una comida donde cada quien lleva algo, sin necesidad de una aplicación.
+
+<short pause> <excited> Mañana: cómo mantener separados los alimentos crudos de los listos para comer.
+
+<friendly> ¡Nos vemos!
