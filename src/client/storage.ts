@@ -9,12 +9,26 @@ export type ThemeName = (typeof THEMES)[number];
 export interface Settings {
   readonly theme: ThemeName;
   readonly locale?: string;
+  readonly playbackRate?: number;
 }
+
+export const MIN_PLAYBACK_RATE = 0.25;
+
+export const MAX_PLAYBACK_RATE = 4;
 
 export const DEFAULT_SETTINGS: Settings = { theme: 'system' };
 
 export function isThemeName(value: unknown): value is ThemeName {
   return typeof value === 'string' && (THEMES as readonly string[]).includes(value);
+}
+
+export function isPlaybackRate(value: unknown): value is number {
+  return (
+    typeof value === 'number' &&
+    Number.isFinite(value) &&
+    value >= MIN_PLAYBACK_RATE &&
+    value <= MAX_PLAYBACK_RATE
+  );
 }
 
 export interface KeyValueStore {
@@ -29,9 +43,11 @@ function parseSettings(raw: string): Settings {
   }
   const theme: unknown = 'theme' in parsed ? parsed.theme : undefined;
   const locale: unknown = 'locale' in parsed ? parsed.locale : undefined;
+  const playbackRate: unknown = 'playbackRate' in parsed ? parsed.playbackRate : undefined;
   return {
     theme: isThemeName(theme) ? theme : DEFAULT_SETTINGS.theme,
     ...(isLocaleCode(locale) ? { locale } : {}),
+    ...(isPlaybackRate(playbackRate) ? { playbackRate } : {}),
   };
 }
 

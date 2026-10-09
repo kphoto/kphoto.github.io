@@ -9,6 +9,7 @@ tags:
   - hygiene
 series: Kitchen Fundamentals
 episode: 1
+narration: clean-hands-clean-food-en.wav
 ---
 
 **TL;DR:** Most food poisoning at home is carried by hands, not by exotic ingredients. Wash with soap for at least 20 seconds at the right moments, keep sick people out of the kitchen, tie back hair, cover cuts, and use a clean spoon every time you taste. Everything else in this series builds on that.

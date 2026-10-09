@@ -123,6 +123,7 @@ kp-footer,
 kp-post-card,
 kp-post-meta,
 kp-series-nav,
+kp-narration,
 kp-author-card {
   display: block;
 }
@@ -287,7 +288,8 @@ kp-theme-picker {
   margin-block-start: 1rem;
 }
 
-.post kp-series-nav {
+.post kp-series-nav,
+.post kp-narration {
   margin-block: 1.5rem;
 }
 

@@ -53,3 +53,9 @@ if the live-statistics server was unreachable, when to try it again.
 The same `kphoto:settings:v1` value gains an optional `locale` (ADR 0029).
 Readers validate it as a lower-case BCP 47 code and drop it otherwise, keeping
 the theme; no version bump is needed because older values simply lack it.
+
+## Amendment (2026-10-09)
+
+Settings gain an optional `playbackRate` (ADR 0035). A third key,
+`kphoto:listening:v1`, keeps where you stopped in narrated posts; it is
+progress, not a setting, so it sits outside `SettingsStore`.

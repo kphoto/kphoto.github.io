@@ -1,6 +1,7 @@
 import { browserStore } from './browser.ts';
 import { chooseSuggestion } from './locale.ts';
 import { defineLiveStatsElements } from './liveStatsElements.ts';
+import { defineNarrationElement } from './narrationElement.ts';
 import { isThemeName, SettingsStore, type ThemeName } from './storage.ts';
 import { isDarkTheme, ThemeController, type ConcreteTheme } from './theme.ts';
 
@@ -77,5 +78,7 @@ class LanguageSwitcherElement extends HTMLElement {
 customElements.define('kp-language-switcher', LanguageSwitcherElement);
 
 defineLiveStatsElements();
+
+defineNarrationElement(settings);
 
 export type { ThemeName };

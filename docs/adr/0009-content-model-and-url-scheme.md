@@ -43,3 +43,8 @@ URL (accepted for a personal blog — no redirect layer exists). Authors fix a
 whole batch of content errors per build. The tie-break rule means two
 same-day posts always render in the same order everywhere: pages, feed,
 sitemap.
+
+## Amendment (2026-10-09)
+
+Posts and post translations accept an optional `narration` file name,
+validated against `public/spoken/` (ADR 0034).

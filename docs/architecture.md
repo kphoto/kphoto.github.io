@@ -11,6 +11,7 @@ src/lib/         pure logic — no I/O, no DOM, no Date.now()
   frontmatter.ts   splits --- frontmatter --- from the body
   markdown.ts      markdown → HTML with escaping and URL sanitisation
   content.ts       parsing + validation → SiteModel (aggregated errors)
+  narration.ts     narration file names → { src, media type }
   collections.ts   ordering rules (dates desc, episodes asc, tags alpha)
   feed.ts / sitemap.ts / dates.ts / slug.ts / readingTime.ts / html.ts
 
@@ -26,7 +27,7 @@ src/pages/       full pages composed from components; routes.ts renders
                  the whole site into a list of { path, body } files
 
 src/ssg/         the only code that touches Node APIs and Vite
-  loadContent.ts   reads content/ into plain records
+  loadContent.ts   reads content/ into plain records; lists public/spoken/
   git.ts           the only git call (build provenance)
   vitePlugin.ts    dev middleware, preview middleware, build output
 
@@ -41,8 +42,10 @@ src/client/      the only code that runs in the browser
   browser.ts       the real localStorage, clock, timers and lifecycle
   liveStatsElements.ts  upgrades <kp-live-stats> and <kp-live-board>
   locale.ts        chooseSuggestion: stored choice, then navigator.languages
-  main.ts          wires real browser APIs in; upgrades the theme picker
-                   and the language switcher
+  narration.ts     remembered speed and position against a player port
+  narrationElement.ts  upgrades <kp-narration> around its <audio>
+  main.ts          wires real browser APIs in; upgrades the theme picker,
+                   the language switcher and the narration player
 
 docs/supabase/   SQL applied by hand in the Supabase SQL editor (ADR 0024)
 ```
@@ -50,7 +53,8 @@ docs/supabase/   SQL applied by hand in the Supabase SQL editor (ADR 0024)
 ## Data flow
 
 1. `readContentInput` reads `content/{blog,authors,pages}` into
-   `{ fileName: rawText }` records — the only filesystem access.
+   `{ fileName: rawText }` records and lists the recordings in
+   `public/spoken/` — the only filesystem access.
 2. `loadSiteModel` parses and cross-validates everything, collecting every
    problem into one `ContentValidationError` so authors fix a batch at once.
    It then drops posts dated after the publish cutoff — today's date in the
@@ -95,6 +99,13 @@ everyone else reads (ADR 0023). Failures feed a `CircuitBreaker` persisted
 in localStorage, so a dead backend is abandoned site-wide for ten minutes
 (ADR 0025). The database keeps nothing older than 25 hours (ADR 0024).
 Operations are in [live-stats.md](live-stats.md).
+
+## Narration
+
+A post or translation naming a recording gets a `<kp-narration>` native
+player; everything else renders as before. In the browser,
+`connectNarration` applies the remembered speed, resumes the saved position
+and keeps both current (ADRs 0034, 0035).
 
 ## Styling model
 

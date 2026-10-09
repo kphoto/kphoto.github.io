@@ -3,7 +3,7 @@
 **A demonstration of what is possible with TypeScript 7 and the modern web.**
 
 A complete blog — markdown posts, tags, series, authors, five themes, an Atom
-feed, more than one language, optional live readership statistics — with **zero runtime
+feed, more than one language, narrated posts, optional live readership statistics — with **zero runtime
 dependencies**. No framework, no CSS library, no markdown or YAML package, no
 SDK, no external resources beyond one optional, non-blocking statistics API.
 Everything the browser receives was written in this repository and compiled
@@ -20,7 +20,8 @@ majority of the source code, tests, styles, content, scripts, workflows and
 documentation in this repository — including this README — was written by
 large language models (Anthropic's Claude) working under human direction and
 review. The Spanish interface text and translations are AI-written too.
-Prompts set the requirements and constraints; the models wrote and
+The narrations in `public/spoken/` are AI-generated speech. Prompts set the
+requirements and constraints; the models wrote and
 iterated on the implementation; a human reviews, runs `./check.sh`, and
 commits. The same disclosure appears in the footer of every page on the site.
 If you are evaluating this repository — as a reader, contributor, employer or
@@ -126,12 +127,22 @@ site — pages, feed and sitemap alike — until its date arrives in the site's
 time zone, at which point the daily rebuild publishes it
 ([ADR 0021](docs/adr/0021-scheduled-publishing-and-daily-rebuild.md)).
 Frontmatter carries `title`, `date`, `author`, `summary`, a `tags` list, and
-optionally `series` + `episode` and `lang`. A translation is a sibling file,
-`YYYY-MM-DD-name.es.md`, with only `title`, `summary` and the body — nothing
-is written twice. Authors live in `content/authors/*.yml`;
+optionally `series` + `episode`, `lang` and `narration`. A translation is a
+sibling file, `YYYY-MM-DD-name.es.md`, with only `title`, `summary`, optional
+`narration` and the body — nothing is written twice. Authors live in `content/authors/*.yml`;
 standalone pages in `content/pages/*.md`. Every rule is validated at build
 time with file-scoped error messages — see
 [docs/content-authoring.md](docs/content-authoring.md).
+
+## Narrated posts
+
+A post opts in with `narration: name-en.wav`, a file in `public/spoken/`;
+each translation names its own. The page gets a native audio player, the
+card says "with audio", and every other post is untouched. Speed and
+position are remembered in localStorage. The narrations are AI-generated
+voices, and the page says so. A missing file fails the build
+([ADR 0034](docs/adr/0034-narration-audio.md),
+[ADR 0035](docs/adr/0035-remembered-listening.md)).
 
 ## Live statistics (optional, never blocking)
 

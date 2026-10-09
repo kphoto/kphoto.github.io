@@ -17,6 +17,12 @@ export interface SeriesMembership {
   readonly episode: number;
 }
 
+export interface Narration {
+  readonly file: string;
+  readonly src: string;
+  readonly type: string;
+}
+
 export interface PostTranslation {
   readonly locale: string;
   readonly url: string;
@@ -25,6 +31,7 @@ export interface PostTranslation {
   readonly html: string;
   readonly headings: readonly MarkdownHeading[];
   readonly readingMinutes: number;
+  readonly narration?: Narration;
 }
 
 export interface Post {
@@ -40,6 +47,7 @@ export interface Post {
   readonly html: string;
   readonly headings: readonly MarkdownHeading[];
   readonly readingMinutes: number;
+  readonly narration?: Narration;
   readonly translations: ReadonlyMap<string, PostTranslation>;
 }
 
@@ -84,6 +92,7 @@ export interface ContentInput {
   readonly blog: Readonly<Record<string, string>>;
   readonly authors: Readonly<Record<string, string>>;
   readonly pages: Readonly<Record<string, string>>;
+  readonly spoken?: readonly string[];
 }
 
 export interface ContentLocales {

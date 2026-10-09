@@ -1,4 +1,5 @@
 import { renderAuthorCard } from '../components/authorCard.ts';
+import { renderNarration } from '../components/narration.ts';
 import { renderPostMeta } from '../components/postMeta.ts';
 import { renderSeriesNav } from '../components/seriesNav.ts';
 import { postAlternates, postIn } from '../i18n/localizedContent.ts';
@@ -22,6 +23,7 @@ export function renderPost(post: Post, model: SiteModel, context: PageContext): 
 <p class="lede">${escapeHtml(view.summary)}</p>
 ${renderPostMeta(view, author, context)}
 </header>
+${renderNarration(view, context)}
 ${seriesNav}
 <div class="prose">
 ${view.html}

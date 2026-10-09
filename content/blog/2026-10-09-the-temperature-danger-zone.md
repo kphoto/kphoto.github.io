@@ -9,6 +9,7 @@ tags:
   - temperature
 series: Kitchen Fundamentals
 episode: 2
+narration: the-temperature-danger-zone-en.wav
 ---
 
 **TL;DR:** Keep cold food at or below 40°F (4°C) and hot food at or above 140°F (60°C). Food left in between for more than two hours — one hour above 90°F (32°C) — goes in the bin. Cook to safe internal temperatures measured with a thermometer, cool leftovers quickly, and reheat to 165°F (74°C).

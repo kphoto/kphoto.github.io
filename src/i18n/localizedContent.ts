@@ -1,5 +1,5 @@
 import type { MarkdownHeading } from '../lib/markdown.ts';
-import type { MarkdownPage, Post } from '../lib/types.ts';
+import type { MarkdownPage, Narration, Post } from '../lib/types.ts';
 
 export interface Alternate {
   readonly locale: string;
@@ -15,6 +15,7 @@ export interface LocalizedPost {
   readonly html: string;
   readonly headings: readonly MarkdownHeading[];
   readonly readingMinutes: number;
+  readonly narration?: Narration;
   readonly translated: boolean;
 }
 
@@ -34,6 +35,7 @@ export function postIn(post: Post, locale: string): LocalizedPost {
       html: translation.html,
       headings: translation.headings,
       readingMinutes: translation.readingMinutes,
+      ...(translation.narration ? { narration: translation.narration } : {}),
       translated: true,
     };
   }
@@ -46,6 +48,7 @@ export function postIn(post: Post, locale: string): LocalizedPost {
     html: post.html,
     headings: post.headings,
     readingMinutes: post.readingMinutes,
+    ...(post.narration ? { narration: post.narration } : {}),
     translated: false,
   };
 }

@@ -7,6 +7,7 @@ import {
 import { isValidIsoDate } from './dates.ts';
 import { extractFrontmatter } from './frontmatter.ts';
 import { renderMarkdown } from './markdown.ts';
+import { narrationFor, narrationLocation } from './narration.ts';
 import { readingMinutes } from './readingTime.ts';
 import { slugify } from './slug.ts';
 import {
@@ -16,6 +17,7 @@ import {
   type ContentInput,
   type ContentLocales,
   type MarkdownPage,
+  type Narration,
   type PageTranslation,
   type Post,
   type PostTranslation,
@@ -72,6 +74,11 @@ function readStringList(data: YamlMap, key: string): string[] {
   });
 }
 
+function readNarration(data: YamlMap): Narration | undefined {
+  const fileName = readOptionalString(data, 'narration');
+  return fileName === undefined ? undefined : narrationFor(fileName);
+}
+
 function rejectUnknownKeys(data: YamlMap, allowed: readonly string[]): void {
   const allowedSet = new Set(allowed);
   for (const key of Object.keys(data)) {
@@ -126,6 +133,7 @@ export function parsePost(
     'series',
     'episode',
     'lang',
+    'narration',
   ]);
 
   const title = readString(data, 'title');
@@ -140,6 +148,7 @@ export function parsePost(
   const summary = readString(data, 'summary');
   const tags = readStringList(data, 'tags');
   const language = readLanguage(data, locales);
+  const narration = readNarration(data);
 
   const seriesName = readOptionalString(data, 'series');
   const episodeValue = data.episode;
@@ -172,6 +181,7 @@ export function parsePost(
     html: rendered.html,
     headings: rendered.headings,
     readingMinutes: readingMinutes(body),
+    ...(narration ? { narration } : {}),
     translations: new Map(),
   };
 }
@@ -198,18 +208,22 @@ export function parsePostTranslation(
     );
   }
   const { data, body } = extractFrontmatter(raw);
-  rejectUnknownKeys(data, ['title', 'summary']);
+  rejectUnknownKeys(data, ['title', 'summary', 'narration']);
+  const title = readString(data, 'title');
+  const summary = readString(data, 'summary');
+  const narration = readNarration(data);
   const rendered = renderMarkdown(body);
   return {
     slug,
     translation: {
       locale,
       url: blogPath(slug, locale, locales),
-      title: readString(data, 'title'),
-      summary: readString(data, 'summary'),
+      title,
+      summary,
       html: rendered.html,
       headings: rendered.headings,
       readingMinutes: readingMinutes(body),
+      ...(narration ? { narration } : {}),
     },
   };
 }
@@ -434,6 +448,22 @@ export function loadSiteModel(
         file: `content/blog/${post.slug}.md`,
         message: `unknown author "${post.author}" (expected content/authors/${post.author}.yml)`,
       });
+    }
+  }
+
+  const spoken = new Set(input.spoken ?? []);
+  const missingNarration = (file: string, narration: Narration | undefined): void => {
+    if (narration && !spoken.has(narration.file)) {
+      issues.push({
+        file,
+        message: `narration "${narration.file}" not found (expected ${narrationLocation(narration.file)})`,
+      });
+    }
+  };
+  for (const post of posts) {
+    missingNarration(`content/blog/${post.slug}.md`, post.narration);
+    for (const translation of post.translations.values()) {
+      missingNarration(`content/blog/${post.slug}.${translation.locale}.md`, translation.narration);
     }
   }
 

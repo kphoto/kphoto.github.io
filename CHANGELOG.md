@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Narrated posts (ADRs 0034, 0035):
+  - optional `narration` frontmatter on posts and translations, naming a file
+    in `public/spoken/`; a missing file fails the build;
+  - `<kp-narration>`: captioned native player, typed source, spoken `lang`,
+    AI-voice note, no autoplay; post cards say "with audio";
+  - speed stored as `playbackRate` in `kphoto:settings:v1`; position in
+    `kphoto:listening:v1`;
+  - English and Spanish narrations for `2026-10-08-clean-hands-clean-food`
+    and `2026-10-09-the-temperature-danger-zone`;
+  - unit tests and `tests/e2e/narration.spec.ts`.
+
 - Ten-episode "Kitchen Fundamentals" series with Spanish translations
   (`content/blog/2026-10-08-…` through `2026-10-17-…`, plus `*.es.md`),
   publishing one episode per day via scheduled publishing (AI-written).

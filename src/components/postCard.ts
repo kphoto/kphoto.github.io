@@ -28,6 +28,9 @@ export function renderPostCard(
   const badge = foreign
     ? ` · <span class="language">${t.html('post.inLanguage', { language: t.localeName(view.language) })}</span>`
     : '';
+  const narrated = view.narration
+    ? ` · <span class="narrated">${t.html('post.narrated')}</span>`
+    : '';
   const tagLinks = renderTagLinks(post.tags, context);
   return `<kp-post-card>
 <template shadowrootmode="open">
@@ -51,7 +54,8 @@ article {
 .machine .language {
   color: var(--text);
 }
-.machine .ep {
+.machine .ep,
+.machine .narrated {
   color: var(--accent-strong);
 }
 h2, h3 {
@@ -100,7 +104,7 @@ a:focus-visible {
 }
 </style>
 <article>
-<p class="machine"><time datetime="${escapeAttribute(post.date)}">${escapeHtml(t.date(post.date))}</time>${episode} · ${t.html('post.readingTime', { count: view.readingMinutes })}${badge}</p>
+<p class="machine"><time datetime="${escapeAttribute(post.date)}">${escapeHtml(t.date(post.date))}</time>${episode} · ${t.html('post.readingTime', { count: view.readingMinutes })}${narrated}${badge}</p>
 <${tag}${lang}><a href="${escapeAttribute(view.url)}"${foreign ? ` hreflang="${escapeAttribute(view.language)}"` : ''}>${escapeHtml(view.title)}</a></${tag}>
 <p class="summary"${lang}>${escapeHtml(view.summary)}</p>
 <ul class="tags" aria-label="${escapeAttribute(t.text('post.tags'))}">${tagLinks}</ul>

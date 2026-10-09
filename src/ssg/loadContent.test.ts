@@ -18,8 +18,18 @@ describe('readContentInput', () => {
     expect(input.pages).toEqual({});
   });
 
-  it('returns empty records when content/ is missing entirely', async () => {
+  it('lists narration files in public/spoken by name only, sorted, skipping folders', async () => {
+    const root = await mkdtemp(path.join(tmpdir(), 'kphoto-spoken-'));
+    const spoken = path.join(root, 'public', 'spoken');
+    await mkdir(path.join(spoken, 'drafts'), { recursive: true });
+    await writeFile(path.join(spoken, 'b-es.wav'), 'RIFF', 'utf8');
+    await writeFile(path.join(spoken, 'a-en.wav'), 'RIFF', 'utf8');
+
+    expect((await readContentInput(root)).spoken).toEqual(['a-en.wav', 'b-es.wav']);
+  });
+
+  it('returns empty records when content/ and public/spoken are missing entirely', async () => {
     const root = await mkdtemp(path.join(tmpdir(), 'kphoto-empty-'));
-    expect(await readContentInput(root)).toEqual({ blog: {}, authors: {}, pages: {} });
+    expect(await readContentInput(root)).toEqual({ blog: {}, authors: {}, pages: {}, spoken: [] });
   });
 });

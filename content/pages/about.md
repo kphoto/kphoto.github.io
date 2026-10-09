@@ -27,9 +27,10 @@ the statistics server is ever unreachable, the figures quietly disappear and
 nothing else changes. [The live page](/live/) spells out exactly what is
 collected.
 
-This site stores three things in your browser's local storage: your theme,
-the language you last picked, and, only if the statistics server was
-unreachable, when to try it again.
+This site stores these things in your browser's local storage: your theme,
+the language you last picked, your listening speed and where you stopped in
+narrated posts, and, only if the statistics server was unreachable, when to
+try it again.
 
 ## In more than one language
 

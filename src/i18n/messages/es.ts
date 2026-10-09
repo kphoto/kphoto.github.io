@@ -33,6 +33,10 @@ export const es: Partial<Catalog> = {
   'post.translatedFrom': 'Traducido del {language}.',
   'post.readOriginal': 'Leer el original',
   'post.writtenBy': 'Escrito por',
+  'post.narrated': 'con audio',
+  'narration.label': 'Escucha este artículo',
+  'narration.note':
+    'Leído en voz alta por una voz generada con IA; el artículo de abajo es la transcripción.',
   'series.nav': 'Serie',
   'series.position': 'Parte {episode} de {total} de {series}',
   'author.postCount': { one: '{count} artículo', other: '{count} artículos' },

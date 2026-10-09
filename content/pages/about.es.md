@@ -27,8 +27,9 @@ direcciones IP, cookies ni identificadores guardados, nada se conserva más de
 Control. Si el servidor de estadísticas no responde, las cifras desaparecen
 discretamente y nada más cambia.
 
-Este sitio guarda tres cosas en el almacenamiento local de tu navegador: tu
-tema, el último idioma que elegiste y, solo si el servidor de estadísticas no
+Este sitio guarda estas cosas en el almacenamiento local de tu navegador: tu
+tema, el último idioma que elegiste, tu velocidad de escucha y dónde te
+quedaste en los artículos narrados y, solo si el servidor de estadísticas no
 respondió, cuándo volver a intentarlo.
 
 ## En más de un idioma

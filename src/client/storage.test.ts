@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import {
   DEFAULT_SETTINGS,
+  isPlaybackRate,
   isThemeName,
+  MAX_PLAYBACK_RATE,
+  MIN_PLAYBACK_RATE,
   SETTINGS_KEY,
   SettingsStore,
   type KeyValueStore,
@@ -31,6 +34,20 @@ describe('isThemeName', () => {
     expect(isThemeName('hotdog-stand')).toBe(false);
     expect(isThemeName(42)).toBe(false);
     expect(isThemeName(null)).toBe(false);
+  });
+});
+
+describe('isPlaybackRate', () => {
+  it('accepts every speed a native player offers', () => {
+    for (const rate of [MIN_PLAYBACK_RATE, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, MAX_PLAYBACK_RATE]) {
+      expect(isPlaybackRate(rate)).toBe(true);
+    }
+  });
+
+  it('rejects anything else', () => {
+    for (const value of [0, -1, 0.2, 4.5, Number.NaN, Infinity, '1.5', null, undefined]) {
+      expect(isPlaybackRate(value)).toBe(false);
+    }
   });
 });
 
@@ -99,5 +116,20 @@ describe('SettingsStore', () => {
     const backing = memoryStore();
     backing.set(SETTINGS_KEY, JSON.stringify({ theme: 'neon', locale: 'es' }));
     expect(new SettingsStore(backing).read()).toEqual({ theme: 'system', locale: 'es' });
+  });
+
+  it('remembers a listening speed next to the other settings', () => {
+    const store = new SettingsStore(memoryStore());
+    store.write({ theme: 'dark', locale: 'es' });
+    store.write({ playbackRate: 1.5 });
+    expect(store.read()).toEqual({ theme: 'dark', locale: 'es', playbackRate: 1.5 });
+  });
+
+  it('drops an out-of-range or foreign stored speed but keeps the rest', () => {
+    for (const playbackRate of [16, 0, '2', null]) {
+      const backing = memoryStore();
+      backing.set(SETTINGS_KEY, JSON.stringify({ theme: 'light', playbackRate }));
+      expect(new SettingsStore(backing).read()).toEqual({ theme: 'light' });
+    }
   });
 });

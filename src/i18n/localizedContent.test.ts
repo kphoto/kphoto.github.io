@@ -77,6 +77,37 @@ describe('posts in a locale', () => {
   });
 });
 
+describe('narration in a locale', () => {
+  const english = { file: 'gm-en.wav', src: '/spoken/gm-en.wav', type: 'audio/wav' };
+  const spanish = { file: 'gm-es.wav', src: '/spoken/gm-es.wav', type: 'audio/wav' };
+  const spanishOnly = post.translations.get('es');
+  const narrated = makePost({
+    slug: '2026-03-22-good-morning',
+    date: '2026-03-22',
+    narration: english,
+    translations: new Map(spanishOnly ? [['es', { ...spanishOnly, narration: spanish }]] : []),
+  });
+
+  it('gives each language its own recording', () => {
+    expect(postIn(narrated, 'en').narration).toEqual(english);
+    expect(postIn(narrated, 'es').narration).toEqual(spanish);
+  });
+
+  it('falls back to the original recording with the original text', () => {
+    expect(postIn(narrated, 'fr').narration).toEqual(english);
+  });
+
+  it('never borrows the original recording for a translation without one', () => {
+    const englishOnly = makePost({ ...post, narration: english });
+    expect(postIn(englishOnly, 'es')).not.toHaveProperty('narration');
+  });
+
+  it('stays silent for a post without a recording', () => {
+    expect(postIn(post, 'en')).not.toHaveProperty('narration');
+    expect(postIn(post, 'es')).not.toHaveProperty('narration');
+  });
+});
+
 describe('pages in a locale', () => {
   it('knows where a page exists and what it says there', () => {
     expect(hasPageIn(page, 'es')).toBe(true);

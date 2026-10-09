@@ -56,6 +56,20 @@ preview scheduled posts locally, run the dev server with the cutoff disabled:
 KPHOTO_SHOW_FUTURE=1 ./scripts/dev.sh
 ```
 
+### Narration (optional)
+
+Put the recording in `public/spoken/` and name it:
+
+```yaml
+narration: clean-hands-clean-food-en.wav
+```
+
+The post page then shows a native audio player and its card says "with
+audio". A translation names its own recording, or has none. The file name
+uses lower-case letters, digits and hyphens with `.wav`, `.mp3`, `.m4a`,
+`.ogg`, `.opus`, `.flac` or `.webm`; a missing file fails the build
+([ADR 0034](adr/0034-narration-audio.md)).
+
 ### Series (optional)
 
 A post may belong to at most one series:
@@ -97,8 +111,9 @@ Write a post once; translate it only if you want to.
 - Post: `content/blog/2026-03-22-good-morning.es.md` next to the original,
   published at `/es/blog/2026-03-22-good-morning/`.
 - Page: `content/pages/about.es.md`, published at `/es/about/`.
-- A post translation allows only `title` and `summary` (both required) and
-  the body; date, author, tags, series and episode come from the original.
+- A post translation allows only `title` and `summary` (both required),
+  optional `narration`, and the body; date, author, tags, series and episode
+  come from the original.
   A page translation allows only `title`.
 - The locale must be listed in `siteConfig.locales`. A translation without an
   original, or into the original's own language, fails the build.
