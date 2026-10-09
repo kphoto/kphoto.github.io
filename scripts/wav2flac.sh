@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
-#
-# Convert all *.wav files in a folder to *.flac
-#
-# Usage: ./wav2flac.sh [folder] [--delete]
-#   folder    Directory to scan (default: current directory)
-#   --delete  Remove the original .wav after a successful conversion
 
 set -euo pipefail
 

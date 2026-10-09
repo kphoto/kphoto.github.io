@@ -1,11 +1,4 @@
 #!/usr/bin/env bash
-#
-# Convert all *.wav files in a folder to very small speech-optimized *.opus
-#
-# Usage: ./wav2opus.sh [folder] [-b kbps] [--delete]
-#   folder    Directory to scan (default: current directory)
-#   -b kbps   Target bitrate in kbps (default: 12; try 8 for tinier, 16-24 for nicer)
-#   --delete  Remove the original .wav after a successful conversion
 
 set -euo pipefail
 

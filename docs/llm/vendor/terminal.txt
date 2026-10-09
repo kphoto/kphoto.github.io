@@ -1,198 +1,171 @@
-kushal@fedora:~/src/ts/kphoto$ cat /home/kushal/src/ts/kphoto/scripts/wav2flac.sh; time bash /home/kushal/src/ts/kphoto/scripts/wav2flac.sh /home/kushal/src/ts/kphoto/public/spoken
-#!/usr/bin/env bash
-#
-# Convert all *.wav files in a folder to *.flac
-#
-# Usage: ./wav2flac.sh [folder] [--delete]
-#   folder    Directory to scan (default: current directory)
-#   --delete  Remove the original .wav after a successful conversion
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
+[10:27:52] 1/9 bootstrap
+[10:27:52] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.18.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done in 0s 271ms
+[10:27:52] bootstrap complete — try ./scripts/dev.sh
+[10:27:52] 2/9 format check
+[10:27:52] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.18.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done in 0s 264ms
+[10:27:53] checking formatting (prettier --check)
+Checking formatting...
+All matched files use Prettier code style!
+[10:28:01] format complete
+[10:28:01] 3/9 lint
+[10:28:01] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.18.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done in 0s 246ms
+[10:28:02] linting (eslint, zero warnings allowed)
+[10:28:09] lint complete
+[10:28:09] 4/9 typecheck (TypeScript 7)
+[10:28:09] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.18.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done in 0s 254ms
+[10:28:09] type-checking with Version 7.0.2 (TypeScript 7 native compiler)
+[10:28:10] typecheck complete
+[10:28:10] 5/9 typecheck (TypeScript 7.1 preview)
+[10:28:10] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.18.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done in 0s 250ms
+[10:28:10] type-checking with Version 7.1.0-dev.20261003.1 (TypeScript 7.1 preview)
+[10:28:11] typecheck (7.1 preview) complete
+[10:28:11] 6/9 unit tests
+[10:28:11] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.18.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done in 0s 249ms
+[10:28:11] running unit tests with coverage (vitest)
 
-set -euo pipefail
+ RUN  v5.0.3 /home/kushal/src/ts/kphoto
+      Coverage enabled with v8
 
-DIR="."
-DELETE=false
+ ✓ src/lib/dates.test.ts (11 tests) 55ms
+ ✓ src/i18n/format.test.ts (10 tests) 20ms
+ ✓ src/client/narration.test.ts (27 tests) 10ms
+ ✓ src/ssg/loadContent.test.ts (3 tests) 7ms
+ ✓ src/ssg/git.test.ts (2 tests) 14ms
+ ✓ src/client/livePoller.test.ts (23 tests) 11ms
+ ✓ src/lib/collections.test.ts (9 tests) 11ms
+ ✓ src/client/liveStats.test.ts (49 tests) 17ms
+ ✓ src/client/liveStatsApi.test.ts (26 tests) 38ms
+ ✓ src/i18n/messages/messages.test.ts (4 tests) 20ms
+ ✓ src/i18n/translator.test.ts (9 tests) 14ms
+ ✓ src/lib/contentNarration.test.ts (12 tests) 33ms
+ ✓ src/lib/content.test.ts (32 tests) 45ms
+ ✓ src/client/themeInit.test.ts (5 tests) 12ms
+ ✓ src/lib/markdown.test.ts (19 tests) 9ms
+ ✓ src/client/storage.test.ts (16 tests) 10ms
+ ✓ src/lib/yaml.test.ts (11 tests) 8ms
+ ✓ src/i18n/localizedContent.test.ts (9 tests) 7ms
+ ❯ src/repoHygiene.test.ts (3 tests | 1 failed) 14ms
+   ❯ repository hygiene (ADR 0033) (3)
+     × no comments in \.(sh|ya?ml)$|^\.(gitignore|prettierignore|editorconfig)$ files 10ms
+     ✓ no comments in \.css$ files 1ms
+     ✓ no comments in \.sql$ files 1ms
+ ✓ src/i18n/locales.test.ts (9 tests) 9ms
+ ✓ src/lib/buildInfo.test.ts (5 tests) 7ms
+ ✓ src/lib/narration.test.ts (18 tests) 10ms
+ ✓ src/components/narration.test.ts (10 tests) 12ms
+ ✓ src/client/theme.test.ts (7 tests) 7ms
+ ✓ src/lib/frontmatter.test.ts (4 tests) 6ms
+ ✓ src/client/locale.test.ts (5 tests) 5ms
+ ✓ src/client/circuitBreaker.test.ts (8 tests) 7ms
+ ✓ src/components/components.test.ts (50 tests) 21ms
+ ✓ src/lib/sitemap.test.ts (2 tests) 5ms
+ ✓ src/lib/config.test.ts (6 tests) 4ms
+ ✓ src/lib/slug.test.ts (5 tests) 4ms
+ ✓ src/versionSync.test.ts (3 tests) 3ms
+ ✓ src/lib/html.test.ts (3 tests) 3ms
+ ✓ src/lib/readingTime.test.ts (3 tests) 3ms
+ ✓ src/pages/routes.test.ts (26 tests) 18ms
+ ✓ src/lib/feed.test.ts (8 tests) 5ms
 
-for arg in "$@"; do
-    case "$arg" in
-        --delete) DELETE=true ;;
-        *)        DIR="$arg" ;;
-    esac
-done
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
 
-if [[ ! -d "$DIR" ]]; then
-    echo "Error: '$DIR' is not a directory." >&2
-    exit 1
-fi
+ FAIL  src/repoHygiene.test.ts > repository hygiene (ADR 0033) > no comments in \.(sh|ya?ml)$|^\.(gitignore|prettierignore|editorconfig)$ files
+AssertionError: expected [ 'scripts/wav2flac.sh:2', …(14) ] to deeply equal []
 
-# Pick an encoder
-if command -v ffmpeg >/dev/null 2>&1; then
-    ENCODER="ffmpeg"
-elif command -v flac >/dev/null 2>&1; then
-    ENCODER="flac"
-else
-    echo "Error: neither ffmpeg nor flac found." >&2
-    echo "Install one with: sudo dnf install flac   (or ffmpeg from RPM Fusion)" >&2
-    exit 1
-fi
+- Expected
++ Received
 
-shopt -s nullglob nocaseglob
-files=("$DIR"/*.wav)
+- []
++ [
++   "scripts/wav2flac.sh:2",
++   "scripts/wav2flac.sh:3",
++   "scripts/wav2flac.sh:4",
++   "scripts/wav2flac.sh:5",
++   "scripts/wav2flac.sh:6",
++   "scripts/wav2flac.sh:7",
++   "scripts/wav2flac.sh:26",
++   "scripts/wav2opus.sh:2",
++   "scripts/wav2opus.sh:3",
++   "scripts/wav2opus.sh:4",
++   "scripts/wav2opus.sh:5",
++   "scripts/wav2opus.sh:6",
++   "scripts/wav2opus.sh:7",
++   "scripts/wav2opus.sh:8",
++   "scripts/wav2opus.sh:37",
++ ]
 
-if (( ${#files[@]} == 0 )); then
-    echo "No .wav files found in '$DIR'."
-    exit 0
-fi
+ ❯ src/repoHygiene.test.ts:47:23
+     45|         });
+     46|     }
+     47|     expect(offenders).toEqual([]);
+       |                       ^
+     48|   });
+     49| });
 
-ok=0
-fail=0
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
 
-for wav in "${files[@]}"; do
-    flac_out="${wav%.*}.flac"
 
-    if [[ -e "$flac_out" ]]; then
-        echo "Skipping (already exists): $flac_out"
-        continue
-    fi
+ Test Files  1 failed | 35 passed (36)
+      Tests  1 failed | 451 passed (452)
+   Start at  10:28:12
+   Duration  893ms (transform 62%, import 16%, worker 13%, tests 9%)
 
-    echo "Converting: $wav -> $flac_out"
+  Transform  transforming modules took 3.49s · 62% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
 
-    if [[ "$ENCODER" == "ffmpeg" ]]; then
-        cmd=(ffmpeg -nostdin -loglevel error -i "$wav" -compression_level 8 "$flac_out")
-    else
-        cmd=(flac --silent --best -o "$flac_out" "$wav")
-    fi
 
-    if "${cmd[@]}"; then
-        ok=$((ok + 1))
-        if $DELETE; then
-            rm -- "$wav"
-        fi
-    else
-        echo "Failed: $wav" >&2
-        rm -f -- "$flac_out"
-        fail=$((fail + 1))
-    fi
-done
-
-echo "Done. Converted: $ok, failed: $fail"
-Converting: /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-en.wav -> /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-en.flac
-Converting: /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-es.wav -> /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-es.flac
-Converting: /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-en.wav -> /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-en.flac
-Converting: /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-es.wav -> /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-es.flac
-Done. Converted: 4, failed: 0
-
-real	0m1.230s
-user	0m1.146s
-sys	0m0.253s
-kushal@fedora:~/src/ts/kphoto$ cat /home/kushal/src/ts/kphoto/scripts/wav2opus.sh; time bash /home/kushal/src/ts/kphoto/scripts/wav2opus.sh /home/kushal/src/ts/kphoto/public/spoken
-#!/usr/bin/env bash
-#
-# Convert all *.wav files in a folder to very small speech-optimized *.opus
-#
-# Usage: ./wav2opus.sh [folder] [-b kbps] [--delete]
-#   folder    Directory to scan (default: current directory)
-#   -b kbps   Target bitrate in kbps (default: 12; try 8 for tinier, 16-24 for nicer)
-#   --delete  Remove the original .wav after a successful conversion
-
-set -euo pipefail
-
-DIR="."
-BITRATE=12
-DELETE=false
-
-while (( $# > 0 )); do
-    case "$1" in
-        --delete) DELETE=true ;;
-        -b)
-            shift
-            if [[ -z "${1:-}" || ! "$1" =~ ^[0-9]+$ ]]; then
-                echo "Error: -b needs a numeric bitrate in kbps." >&2
-                exit 1
-            fi
-            BITRATE="$1"
-            ;;
-        *) DIR="$1" ;;
-    esac
-    shift
-done
-
-if [[ ! -d "$DIR" ]]; then
-    echo "Error: '$DIR' is not a directory." >&2
-    exit 1
-fi
-
-# Pick an encoder (opusenc preferred, ffmpeg as fallback)
-if command -v opusenc >/dev/null 2>&1; then
-    ENCODER="opusenc"
-elif command -v ffmpeg >/dev/null 2>&1; then
-    ENCODER="ffmpeg"
-else
-    echo "Error: neither opusenc nor ffmpeg found." >&2
-    echo "Install one with: sudo dnf install opus-tools   (or ffmpeg-free)" >&2
-    exit 1
-fi
-
-shopt -s nullglob nocaseglob
-files=("$DIR"/*.wav)
-
-if (( ${#files[@]} == 0 )); then
-    echo "No .wav files found in '$DIR'."
-    exit 0
-fi
-
-ok=0
-fail=0
-skipped=0
-total_in=0
-total_out=0
-
-for wav in "${files[@]}"; do
-    opus_out="${wav%.*}.opus"
-
-    if [[ -e "$opus_out" ]]; then
-        echo "Skipping (already exists): $opus_out"
-        skipped=$((skipped + 1))
-        continue
-    fi
-
-    echo "Converting: $wav -> $opus_out (${BITRATE} kbps)"
-
-    if [[ "$ENCODER" == "opusenc" ]]; then
-        cmd=(opusenc --quiet --speech --vbr --bitrate "$BITRATE" \
-             --downmix-mono --framesize 60 --comp 10 "$wav" "$opus_out")
-    else
-        cmd=(ffmpeg -nostdin -loglevel error -i "$wav" \
-             -ac 1 -ar 16000 -c:a libopus -b:a "${BITRATE}k" \
-             -vbr on -application voip -frame_duration 60 \
-             -compression_level 10 "$opus_out")
-    fi
-
-    if "${cmd[@]}"; then
-        ok=$((ok + 1))
-        total_in=$((total_in + $(stat -c %s "$wav")))
-        total_out=$((total_out + $(stat -c %s "$opus_out")))
-        if $DELETE; then
-            rm -- "$wav"
-        fi
-    else
-        echo "Failed: $wav" >&2
-        rm -f -- "$opus_out"
-        fail=$((fail + 1))
-    fi
-done
-
-echo "Done. Converted: $ok, skipped: $skipped, failed: $fail"
-if (( total_in > 0 )); then
-    echo "Size: $((total_in / 1024)) KiB -> $((total_out / 1024)) KiB"
-fi
-Converting: /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-en.wav -> /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-en.opus (12 kbps)
-Converting: /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-es.wav -> /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-es.opus (12 kbps)
-Converting: /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-en.wav -> /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-en.opus (12 kbps)
-Converting: /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-es.wav -> /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-es.opus (12 kbps)
-Done. Converted: 4, skipped: 0, failed: 0
-Size: 56572 KiB -> 1655 KiB
-
-real	0m7.020s
-user	0m7.318s
-sys	0m0.214s
+real	0m21.004s
+user	0m30.325s
+sys	0m5.587s
 kushal@fedora:~/src/ts/kphoto$ 
+
