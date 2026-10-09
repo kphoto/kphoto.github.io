@@ -1,4 +1,12 @@
-kushal@fedora:~/src/ts/kphoto$ cat /home/kushal/src/ts/kphoto/scripts/wav2flac.sh; time bash /home/kushal/src/ts/kphoto/scripts/wav2flac.sh /home/kushal/src/ts/kphoto/public/spoken
+/
+
+context is fedora linux. for each wave file *.wav in a folder please give me a script to convert it into flac
+
+Here’s a bash script that converts every .wav in a folder to .flac using ffmpeg (or flac as a fallback if you prefer the reference encoder).
+
+wav2flac.sh
+bash
+
 #!/usr/bin/env bash
 #
 # Convert all *.wav files in a folder to *.flac
@@ -75,16 +83,32 @@ for wav in "${files[@]}"; do
 done
 
 echo "Done. Converted: $ok, failed: $fail"
-Converting: /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-en.wav -> /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-en.flac
-Converting: /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-es.wav -> /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-es.flac
-Converting: /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-en.wav -> /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-en.flac
-Converting: /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-es.wav -> /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-es.flac
-Done. Converted: 4, failed: 0
 
-real	0m1.230s
-user	0m1.146s
-sys	0m0.253s
-kushal@fedora:~/src/ts/kphoto$ cat /home/kushal/src/ts/kphoto/scripts/wav2opus.sh; time bash /home/kushal/src/ts/kphoto/scripts/wav2opus.sh /home/kushal/src/ts/kphoto/public/spoken
+Usage
+bash
+
+chmod +x wav2flac.sh
+./wav2flac.sh /path/to/folder          # keep the originals
+./wav2flac.sh /path/to/folder --delete # delete .wav after successful conversion
+
+Notes
+
+    Install an encoder on Fedora with sudo dnf install flac. For ffmpeg, you need RPM Fusion enabled, or you can use ffmpeg-free from the default repos, which handles WAV and FLAC fine.
+    FLAC is lossless, so the audio is bit-identical to the WAV, just smaller.
+    It skips files that already have a matching .flac, and cleans up partial output if an encode fails.
+    The match is case-insensitive, so .WAV files are picked up too.
+
+If you want it to recurse into subfolders, replace the glob with mapfile -d '' files < <(find "$DIR" -type f -iname '*.wav' -print0) and I can give you the full updated script.
+
+can you please also give me one that converts the wav into very tiny opus files? lossy is ok file is gemini auto generated spoken text for context so smallest possible is good
+Compressing speech audio into minimal-size opus files.
+Compressing speech audio into minimal-size opus files.
+
+Here’s the full script. It targets speech: mono, 12 kbps, VoIP-tuned Opus with 60 ms frames (fewer packet headers, so smaller files). That’s very small and still clearly intelligible for TTS audio.
+
+wav2opus.sh
+bash
+
 #!/usr/bin/env bash
 #
 # Convert all *.wav files in a folder to very small speech-optimized *.opus
@@ -185,14 +209,24 @@ echo "Done. Converted: $ok, skipped: $skipped, failed: $fail"
 if (( total_in > 0 )); then
     echo "Size: $((total_in / 1024)) KiB -> $((total_out / 1024)) KiB"
 fi
-Converting: /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-en.wav -> /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-en.opus (12 kbps)
-Converting: /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-es.wav -> /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-es.opus (12 kbps)
-Converting: /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-en.wav -> /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-en.opus (12 kbps)
-Converting: /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-es.wav -> /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-es.opus (12 kbps)
-Done. Converted: 4, skipped: 0, failed: 0
-Size: 56572 KiB -> 1655 KiB
 
-real	0m7.020s
-user	0m7.318s
-sys	0m0.214s
-kushal@fedora:~/src/ts/kphoto$ 
+Usage
+bash
+
+chmod +x wav2opus.sh
+./wav2opus.sh /path/to/folder              # 12 kbps, keep originals
+./wav2opus.sh /path/to/folder -b 8         # even smaller
+./wav2opus.sh /path/to/folder -b 16 --delete
+
+Notes
+
+    Install on Fedora with sudo dnf install opus-tools. The ffmpeg-free package also supports libopus, so either works.
+    At 12 kbps, one minute of speech is roughly 90 KB. At 8 kbps it’s about 60 KB, which is still usable for clean TTS but starts to sound a bit muffled.
+    Mono is forced since TTS output has no meaningful stereo, and the .opus files play in most modern players, browsers, and Telegram/WhatsApp-style voice workflows.
+
+Claude works directly with your codebase
+
+
+Claude is AI and can make mistakes. Please double-check responses.
+Claude finished the response
+
