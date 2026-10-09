@@ -1,7 +1,7 @@
 ---
 title: La zona de peligro — Control de tiempo y temperatura
 summary: Entre 4 °C y 60 °C (40 °F y 140 °F) las bacterias se multiplican rápido. Aprende la regla de las dos horas, las temperaturas seguras de cocción y cómo enfriar y recalentar alimentos con seguridad.
-narration: the-temperature-danger-zone-es.wav
+narration: the-temperature-danger-zone-es.opus
 ---
 
 **TL;DR:** Mantén la comida fría a 4 °C (40 °F) o menos y la caliente a 60 °C (140 °F) o más. La comida que pase más de dos horas entre esas temperaturas, o una hora si hace más de 32 °C (90 °F), va a la basura. Cocina hasta temperaturas internas seguras medidas con un termómetro, enfría las sobras rápidamente y recaliéntalas a 74 °C (165 °F).

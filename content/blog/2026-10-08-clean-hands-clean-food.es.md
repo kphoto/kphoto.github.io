@@ -1,7 +1,7 @@
 ---
 title: Manos limpias, comida limpia — La primera regla de la cocina
 summary: Antes que los cuchillos, el fuego o los condimentos está el hábito que previene la mayoría de las intoxicaciones alimentarias en casa, la higiene personal. Primera parte de una serie de diez sobre los fundamentos de la cocina.
-narration: clean-hands-clean-food-es.wav
+narration: clean-hands-clean-food-es.opus
 ---
 
 **TL;DR:** La mayoría de las intoxicaciones alimentarias en casa llegan por las manos, no por ingredientes exóticos. Lávate con jabón al menos 20 segundos en los momentos clave, mantén a las personas enfermas fuera de la cocina, recógete el cabello, cubre las heridas y usa una cuchara limpia cada vez que pruebes. Todo lo demás en esta serie se apoya en esto.
