@@ -8,7 +8,8 @@ from the foundations
 something that will be relevant even as technology continues to evolve
 please and thank you 
 start date should be today october 08, 2026 
-2026-07-13 
+2026-10-08
+and then one post a day for the next ten days 
 each post should be concise and yet comprehensive 
 and please add a tl;Dr in the beginning 
 and remember to string them together with the new series tag 
