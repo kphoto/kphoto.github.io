@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-10-08T22:28:48-04:00
+  Generated at   : 2026-10-09T09:19:52-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,12 +17,12 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : 44f4755b392e036ba885481a800cb89e5b5fa6ee
-  Commit (short) : 44f4755
-  Commit date    : 2026-10-06 16:10:40 -0400
-  Commit message : run script
+  Commit (full)  : 5b5995ba9cc9c5ca3d2035d834b6416501199555
+  Commit (short) : 5b5995b
+  Commit date    : 2026-10-09 09:18:50 -0400
+  Commit message : add second post
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
-  Files included : 429
+  Files included : 453
   Excluded path  : docs/llm/
   Excluded files : yarn.lock, .pnp.cjs, .pnp.loader.mjs
 
@@ -430,7 +430,7 @@ FOOTER
 mv -f "$TMP_FILE" "$OUTPUT_FILE"
 
 ################################################################################
-# FILE TREE  (all 429 included files)
+# FILE TREE  (all 453 included files)
 ################################################################################
 .
 .
@@ -471,7 +471,27 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── 2026-07-29-a-philosophy-for-editing-photographs.md
 │   │   ├── 2026-07-30-finding-your-own-style.md
 │   │   ├── 2026-07-31-sharing-your-work-ethically.md
-│   │   └── 2026-08-01-how-to-keep-getting-better.md
+│   │   ├── 2026-08-01-how-to-keep-getting-better.md
+│   │   ├── 2026-10-08-clean-hands-clean-food.es.md
+│   │   ├── 2026-10-08-clean-hands-clean-food.md
+│   │   ├── 2026-10-09-the-temperature-danger-zone.es.md
+│   │   ├── 2026-10-09-the-temperature-danger-zone.md
+│   │   ├── 2026-10-10-stopping-cross-contamination.es.md
+│   │   ├── 2026-10-10-stopping-cross-contamination.md
+│   │   ├── 2026-10-11-cleaning-versus-sanitizing.es.md
+│   │   ├── 2026-10-11-cleaning-versus-sanitizing.md
+│   │   ├── 2026-10-12-shopping-storage-and-leftovers.es.md
+│   │   ├── 2026-10-12-shopping-storage-and-leftovers.md
+│   │   ├── 2026-10-13-knives-and-cutting-safely.es.md
+│   │   ├── 2026-10-13-knives-and-cutting-safely.md
+│   │   ├── 2026-10-14-mise-en-place-and-reading-a-recipe.es.md
+│   │   ├── 2026-10-14-mise-en-place-and-reading-a-recipe.md
+│   │   ├── 2026-10-15-how-heat-cooks-food.es.md
+│   │   ├── 2026-10-15-how-heat-cooks-food.md
+│   │   ├── 2026-10-16-seasoning-and-building-flavor.es.md
+│   │   ├── 2026-10-16-seasoning-and-building-flavor.md
+│   │   ├── 2026-10-17-kitchen-safety-and-lifelong-habits.es.md
+│   │   └── 2026-10-17-kitchen-safety-and-lifelong-habits.md
 │   └── pages
 │       ├── about.es.md
 │       ├── about.md
@@ -537,228 +557,233 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 ├── public
 │   ├── favicon.svg
 │   ├── icons.svg
-│   └── images
-│       ├── authors
-│       │   ├── casey-rivers.svg
-│       │   ├── kphoto-team.png
-│       │   └── kushal.png
-│       └── food
-│           ├── IMG_20260814_124517771_HDR.jpg
-│           ├── IMG_20260814_124524458_HDR.jpg
-│           ├── IMG_20260814_124529627_HDR.jpg
-│           ├── IMG_20260814_124548753_HDR.jpg
-│           ├── IMG_20260814_124556833_HDR.jpg
-│           ├── IMG_20260814_125518896_HDR.jpg
-│           ├── IMG_20260814_125522013_HDR.jpg
-│           ├── IMG_20260814_125524744_HDR.jpg
-│           ├── IMG_20260814_125529968_HDR.jpg
-│           ├── IMG_20260814_125542788_HDR.jpg
-│           ├── IMG_20260814_155508288_HDR.jpg
-│           ├── IMG_20260814_155511072_HDR.jpg
-│           ├── IMG_20260814_155516939_HDR.jpg
-│           ├── IMG_20260814_155519390_HDR.jpg
-│           ├── IMG_20260814_155523770_HDR.jpg
-│           ├── IMG_20260814_160350210_HDR.jpg
-│           ├── IMG_20260814_160846998_HDR.jpg
-│           ├── IMG_20260814_160849855_HDR.jpg
-│           ├── IMG_20260814_160852511_HDR.jpg
-│           ├── IMG_20260814_160855730_HDR.jpg
-│           ├── IMG_20260814_160859412_HDR.jpg
-│           ├── IMG_20260814_164138366_HDR.jpg
-│           ├── IMG_20260814_164140291_HDR.jpg
-│           ├── IMG_20260814_164144323_HDR.jpg
-│           ├── IMG_20260814_164146928_HDR.jpg
-│           ├── IMG_20260814_164149836_HDR.jpg
-│           ├── IMG_20260814_164153566_HDR.jpg
-│           ├── IMG_20260814_164157321_HDR.jpg
-│           ├── IMG_20260814_164200441_HDR.jpg
-│           ├── IMG_20260814_164202578_HDR.jpg
-│           ├── IMG_20260814_164205226_HDR.jpg
-│           ├── IMG_20260814_164219113_HDR.jpg
-│           ├── IMG_20260814_164221820_HDR.jpg
-│           ├── IMG_20260814_164314029_HDR.jpg
-│           ├── IMG_20260814_164320161_HDR.jpg
-│           ├── IMG_20260814_164322369_HDR.jpg
-│           ├── IMG_20260814_164324406.jpg
-│           ├── IMG_20260815_120432948_HDR.jpg
-│           ├── IMG_20260815_120439762_HDR.jpg
-│           ├── IMG_20260815_120443899_HDR.jpg
-│           ├── IMG_20260815_120450436_HDR.jpg
-│           ├── IMG_20260815_120453210_HDR.jpg
-│           ├── IMG_20260815_120837921_HDR.jpg
-│           ├── IMG_20260815_120842110_HDR.jpg
-│           ├── IMG_20260815_120848098_HDR.jpg
-│           ├── IMG_20260815_120851457_HDR.jpg
-│           ├── IMG_20260815_120854378_HDR.jpg
-│           ├── IMG_20260815_132109394_HDR.jpg
-│           ├── IMG_20260815_155557542_HDR.jpg
-│           ├── IMG_20260815_155559148_HDR.jpg
-│           ├── IMG_20260815_155601252.jpg
-│           ├── IMG_20260815_155604044_HDR.jpg
-│           ├── IMG_20260815_155607607_HDR.jpg
-│           ├── IMG_20260815_155611145_HDR.jpg
-│           ├── IMG_20260815_155614357_HDR.jpg
-│           ├── IMG_20260815_155616094_HDR.jpg
-│           ├── IMG_20260815_155617741.jpg
-│           ├── IMG_20260815_155619589_HDR.jpg
-│           ├── IMG_20260816_114841503_HDR.jpg
-│           ├── IMG_20260816_114844230_HDR.jpg
-│           ├── IMG_20260816_114847098_HDR.jpg
-│           ├── IMG_20260816_114850942_HDR.jpg
-│           ├── IMG_20260816_114854863_HDR.jpg
-│           ├── IMG_20260816_114857279_HDR.jpg
-│           ├── IMG_20260816_114858933_HDR.jpg
-│           ├── IMG_20260816_114901346_HDR.jpg
-│           ├── IMG_20260816_114903268.jpg
-│           ├── IMG_20260816_114905583_HDR.jpg
-│           ├── IMG_20260816_120017956_HDR.jpg
-│           ├── IMG_20260816_120021340_HDR.jpg
-│           ├── IMG_20260816_120622628_HDR.jpg
-│           ├── IMG_20260816_120626563_HDR.jpg
-│           ├── IMG_20260816_120633967_HDR.jpg
-│           ├── IMG_20260816_120636911_HDR.jpg
-│           ├── IMG_20260816_120640551_HDR.jpg
-│           ├── IMG_20260816_120643754_HDR.jpg
-│           ├── IMG_20260816_120646640_HDR.jpg
-│           ├── IMG_20260816_131505164_HDR.jpg
-│           ├── IMG_20260816_131938635_HDR.jpg
-│           ├── IMG_20260816_132005590_HDR.jpg
-│           ├── IMG_20260816_164246046_HDR.jpg
-│           ├── IMG_20260816_164250599_HDR.jpg
-│           ├── IMG_20260816_164254217_HDR.jpg
-│           ├── IMG_20260816_164258871_HDR.jpg
-│           ├── IMG_20260816_164305040_HDR.jpg
-│           ├── IMG_20260817_123439944_HDR.jpg
-│           ├── IMG_20260817_123444119_HDR.jpg
-│           ├── IMG_20260817_123450714_HDR.jpg
-│           ├── IMG_20260817_123503071_HDR.jpg
-│           ├── IMG_20260817_123505833_HDR.jpg
-│           ├── IMG_20260817_123508432_HDR.jpg
-│           ├── IMG_20260817_123510898_HDR.jpg
-│           ├── IMG_20260817_123513475_HDR.jpg
-│           ├── IMG_20260817_123515834_HDR.jpg
-│           ├── IMG_20260817_123518160.jpg
-│           ├── IMG_20260817_123520387.jpg
-│           ├── IMG_20260817_123533317_HDR.jpg
-│           ├── IMG_20260817_123539512_HDR.jpg
-│           ├── IMG_20260817_123553756_HDR.jpg
-│           ├── IMG_20260817_123557370_HDR.jpg
-│           ├── IMG_20260817_123602000_HDR.jpg
-│           ├── IMG_20260817_124233639_HDR.jpg
-│           ├── IMG_20260817_124639865_HDR.jpg
-│           ├── IMG_20260817_124658842_HDR.jpg
-│           ├── IMG_20260817_124701897_HDR.jpg
-│           ├── IMG_20260817_124704928_HDR.jpg
-│           ├── IMG_20260817_124744700_HDR.jpg
-│           ├── IMG_20260817_170842777_HDR.jpg
-│           ├── IMG_20260817_170847438_HDR.jpg
-│           ├── IMG_20260817_170851239_HDR.jpg
-│           ├── IMG_20260817_170854736_HDR.jpg
-│           ├── IMG_20260817_170859298_HDR.jpg
-│           ├── IMG_20260817_170903739_HDR.jpg
-│           ├── IMG_20260817_170911667_HDR.jpg
-│           ├── IMG_20260817_171029793_HDR.jpg
-│           ├── IMG_20260817_171033226_HDR.jpg
-│           ├── IMG_20260817_171037372_HDR.jpg
-│           ├── IMG_20260817_171039775_HDR.jpg
-│           ├── IMG_20260817_171042711_HDR.jpg
-│           ├── IMG_20260818_122025969_HDR.jpg
-│           ├── IMG_20260818_122028949_HDR.jpg
-│           ├── IMG_20260818_122032764_HDR.jpg
-│           ├── IMG_20260818_122037677_HDR.jpg
-│           ├── IMG_20260818_122043070_HDR.jpg
-│           ├── IMG_20260818_123002661_HDR.jpg
-│           ├── IMG_20260818_123036562_HDR.jpg
-│           ├── IMG_20260818_123038947_HDR.jpg
-│           ├── IMG_20260818_123432071_HDR.jpg
-│           ├── IMG_20260818_123434493_HDR.jpg
-│           ├── IMG_20260818_123436566.jpg
-│           ├── IMG_20260818_123448673_HDR.jpg
-│           ├── IMG_20260818_123454012_HDR.jpg
-│           ├── IMG_20260818_123457320_HDR.jpg
-│           ├── IMG_20260818_123501644_HDR.jpg
-│           ├── IMG_20260818_142058770_HDR.jpg
-│           ├── IMG_20260818_142101592_HDR.jpg
-│           ├── IMG_20260818_142103906_HDR.jpg
-│           ├── IMG_20260818_142105717.jpg
-│           ├── IMG_20260818_142107865_HDR.jpg
-│           ├── IMG_20260818_165456267_HDR.jpg
-│           ├── IMG_20260818_165458507_HDR.jpg
-│           ├── IMG_20260818_165501591_HDR.jpg
-│           ├── IMG_20260818_165508880_HDR.jpg
-│           ├── IMG_20260818_165511780_HDR.jpg
-│           ├── IMG_20260819_120232028_HDR.jpg
-│           ├── IMG_20260819_120236510_HDR.jpg
-│           ├── IMG_20260819_120240789_HDR.jpg
-│           ├── IMG_20260819_120245514_HDR.jpg
-│           ├── IMG_20260819_120250196_HDR.jpg
-│           ├── IMG_20260819_122235209_HDR.jpg
-│           ├── IMG_20260819_122237290_HDR.jpg
-│           ├── IMG_20260819_122251136_HDR.jpg
-│           ├── IMG_20260819_122257426_HDR.jpg
-│           ├── IMG_20260819_122301313_HDR.jpg
-│           ├── IMG_20260819_122305371_HDR.jpg
-│           ├── IMG_20260819_163824160_HDR.jpg
-│           ├── IMG_20260819_163827290_HDR.jpg
-│           ├── IMG_20260819_163833142_HDR.jpg
-│           ├── IMG_20260819_163840132_HDR.jpg
-│           ├── IMG_20260819_163845780.jpg
-│           ├── IMG_20260819_164038283_HDR.jpg
-│           ├── IMG_20260819_164043151_HDR.jpg
-│           ├── IMG_20260819_164058796_HDR.jpg
-│           ├── IMG_20260819_164133208_HDR.jpg
-│           ├── IMG_20260819_165252073_HDR.jpg
-│           ├── IMG_20260819_165253816_HDR.jpg
-│           ├── IMG_20260819_165256373_HDR.jpg
-│           ├── IMG_20260819_165258956.jpg
-│           ├── IMG_20260819_165302564_HDR.jpg
-│           ├── IMG_20260820_120847843_HDR.jpg
-│           ├── IMG_20260820_120852447_HDR.jpg
-│           ├── IMG_20260820_120856981_HDR.jpg
-│           ├── IMG_20260820_120902201_HDR.jpg
-│           ├── IMG_20260820_120908394_HDR.jpg
-│           ├── IMG_20260820_120914958_HDR.jpg
-│           ├── IMG_20260820_120917491_HDR.jpg
-│           ├── IMG_20260820_120920570_HDR.jpg
-│           ├── IMG_20260820_120922798_HDR.jpg
-│           ├── IMG_20260820_120924821_HDR.jpg
-│           ├── IMG_20260820_120927038_HDR.jpg
-│           ├── IMG_20260820_120929627_HDR.jpg
-│           ├── IMG_20260820_123034961_HDR.jpg
-│           ├── IMG_20260820_123038224_HDR.jpg
-│           ├── IMG_20260820_123045346_HDR.jpg
-│           ├── IMG_20260820_123048526.jpg
-│           ├── IMG_20260820_123052243.jpg
-│           ├── IMG_20260820_123200393_HDR.jpg
-│           ├── IMG_20260820_123204129_HDR.jpg
-│           ├── IMG_20260820_123208794_HDR.jpg
-│           ├── IMG_20260820_123212900_HDR.jpg
-│           ├── IMG_20260820_123216128_HDR.jpg
-│           ├── IMG_20260820_135542634_HDR.jpg
-│           ├── IMG_20260820_135620649_HDR.jpg
-│           ├── IMG_20260820_170328260_HDR.jpg
-│           ├── IMG_20260820_170332915_HDR.jpg
-│           ├── IMG_20260820_170335821_HDR.jpg
-│           ├── IMG_20260820_170347705_HDR.jpg
-│           ├── IMG_20260820_170350571_HDR.jpg
-│           ├── IMG_20260820_170849140_HDR.jpg
-│           ├── IMG_20260821_122649372_HDR.jpg
-│           ├── IMG_20260821_124213142_HDR.jpg
-│           ├── IMG_20260821_124225982_HDR.jpg
-│           ├── IMG_20260821_124229926_HDR.jpg
-│           ├── IMG_20260821_124233805_HDR.jpg
-│           ├── IMG_20260821_124238046_HDR.jpg
-│           ├── IMG_20260821_130353748_HDR.jpg
-│           ├── IMG_20260821_164208097_HDR.jpg
-│           ├── IMG_20260821_164210533_HDR.jpg
-│           ├── IMG_20260821_164213274_HDR.jpg
-│           ├── IMG_20260821_164216010_HDR.jpg
-│           ├── IMG_20260821_164218576_HDR.jpg
-│           ├── IMG_20260821_164223755.jpg
-│           ├── IMG_20260821_164226158.jpg
-│           ├── IMG_20260821_164228027_HDR.jpg
-│           ├── IMG_20260821_164230455_HDR.jpg
-│           └── IMG_20260821_164232956.jpg
+│   ├── images
+│   │   ├── authors
+│   │   │   ├── casey-rivers.svg
+│   │   │   ├── kphoto-team.png
+│   │   │   └── kushal.png
+│   │   └── food
+│   │       ├── IMG_20260814_124517771_HDR.jpg
+│   │       ├── IMG_20260814_124524458_HDR.jpg
+│   │       ├── IMG_20260814_124529627_HDR.jpg
+│   │       ├── IMG_20260814_124548753_HDR.jpg
+│   │       ├── IMG_20260814_124556833_HDR.jpg
+│   │       ├── IMG_20260814_125518896_HDR.jpg
+│   │       ├── IMG_20260814_125522013_HDR.jpg
+│   │       ├── IMG_20260814_125524744_HDR.jpg
+│   │       ├── IMG_20260814_125529968_HDR.jpg
+│   │       ├── IMG_20260814_125542788_HDR.jpg
+│   │       ├── IMG_20260814_155508288_HDR.jpg
+│   │       ├── IMG_20260814_155511072_HDR.jpg
+│   │       ├── IMG_20260814_155516939_HDR.jpg
+│   │       ├── IMG_20260814_155519390_HDR.jpg
+│   │       ├── IMG_20260814_155523770_HDR.jpg
+│   │       ├── IMG_20260814_160350210_HDR.jpg
+│   │       ├── IMG_20260814_160846998_HDR.jpg
+│   │       ├── IMG_20260814_160849855_HDR.jpg
+│   │       ├── IMG_20260814_160852511_HDR.jpg
+│   │       ├── IMG_20260814_160855730_HDR.jpg
+│   │       ├── IMG_20260814_160859412_HDR.jpg
+│   │       ├── IMG_20260814_164138366_HDR.jpg
+│   │       ├── IMG_20260814_164140291_HDR.jpg
+│   │       ├── IMG_20260814_164144323_HDR.jpg
+│   │       ├── IMG_20260814_164146928_HDR.jpg
+│   │       ├── IMG_20260814_164149836_HDR.jpg
+│   │       ├── IMG_20260814_164153566_HDR.jpg
+│   │       ├── IMG_20260814_164157321_HDR.jpg
+│   │       ├── IMG_20260814_164200441_HDR.jpg
+│   │       ├── IMG_20260814_164202578_HDR.jpg
+│   │       ├── IMG_20260814_164205226_HDR.jpg
+│   │       ├── IMG_20260814_164219113_HDR.jpg
+│   │       ├── IMG_20260814_164221820_HDR.jpg
+│   │       ├── IMG_20260814_164314029_HDR.jpg
+│   │       ├── IMG_20260814_164320161_HDR.jpg
+│   │       ├── IMG_20260814_164322369_HDR.jpg
+│   │       ├── IMG_20260814_164324406.jpg
+│   │       ├── IMG_20260815_120432948_HDR.jpg
+│   │       ├── IMG_20260815_120439762_HDR.jpg
+│   │       ├── IMG_20260815_120443899_HDR.jpg
+│   │       ├── IMG_20260815_120450436_HDR.jpg
+│   │       ├── IMG_20260815_120453210_HDR.jpg
+│   │       ├── IMG_20260815_120837921_HDR.jpg
+│   │       ├── IMG_20260815_120842110_HDR.jpg
+│   │       ├── IMG_20260815_120848098_HDR.jpg
+│   │       ├── IMG_20260815_120851457_HDR.jpg
+│   │       ├── IMG_20260815_120854378_HDR.jpg
+│   │       ├── IMG_20260815_132109394_HDR.jpg
+│   │       ├── IMG_20260815_155557542_HDR.jpg
+│   │       ├── IMG_20260815_155559148_HDR.jpg
+│   │       ├── IMG_20260815_155601252.jpg
+│   │       ├── IMG_20260815_155604044_HDR.jpg
+│   │       ├── IMG_20260815_155607607_HDR.jpg
+│   │       ├── IMG_20260815_155611145_HDR.jpg
+│   │       ├── IMG_20260815_155614357_HDR.jpg
+│   │       ├── IMG_20260815_155616094_HDR.jpg
+│   │       ├── IMG_20260815_155617741.jpg
+│   │       ├── IMG_20260815_155619589_HDR.jpg
+│   │       ├── IMG_20260816_114841503_HDR.jpg
+│   │       ├── IMG_20260816_114844230_HDR.jpg
+│   │       ├── IMG_20260816_114847098_HDR.jpg
+│   │       ├── IMG_20260816_114850942_HDR.jpg
+│   │       ├── IMG_20260816_114854863_HDR.jpg
+│   │       ├── IMG_20260816_114857279_HDR.jpg
+│   │       ├── IMG_20260816_114858933_HDR.jpg
+│   │       ├── IMG_20260816_114901346_HDR.jpg
+│   │       ├── IMG_20260816_114903268.jpg
+│   │       ├── IMG_20260816_114905583_HDR.jpg
+│   │       ├── IMG_20260816_120017956_HDR.jpg
+│   │       ├── IMG_20260816_120021340_HDR.jpg
+│   │       ├── IMG_20260816_120622628_HDR.jpg
+│   │       ├── IMG_20260816_120626563_HDR.jpg
+│   │       ├── IMG_20260816_120633967_HDR.jpg
+│   │       ├── IMG_20260816_120636911_HDR.jpg
+│   │       ├── IMG_20260816_120640551_HDR.jpg
+│   │       ├── IMG_20260816_120643754_HDR.jpg
+│   │       ├── IMG_20260816_120646640_HDR.jpg
+│   │       ├── IMG_20260816_131505164_HDR.jpg
+│   │       ├── IMG_20260816_131938635_HDR.jpg
+│   │       ├── IMG_20260816_132005590_HDR.jpg
+│   │       ├── IMG_20260816_164246046_HDR.jpg
+│   │       ├── IMG_20260816_164250599_HDR.jpg
+│   │       ├── IMG_20260816_164254217_HDR.jpg
+│   │       ├── IMG_20260816_164258871_HDR.jpg
+│   │       ├── IMG_20260816_164305040_HDR.jpg
+│   │       ├── IMG_20260817_123439944_HDR.jpg
+│   │       ├── IMG_20260817_123444119_HDR.jpg
+│   │       ├── IMG_20260817_123450714_HDR.jpg
+│   │       ├── IMG_20260817_123503071_HDR.jpg
+│   │       ├── IMG_20260817_123505833_HDR.jpg
+│   │       ├── IMG_20260817_123508432_HDR.jpg
+│   │       ├── IMG_20260817_123510898_HDR.jpg
+│   │       ├── IMG_20260817_123513475_HDR.jpg
+│   │       ├── IMG_20260817_123515834_HDR.jpg
+│   │       ├── IMG_20260817_123518160.jpg
+│   │       ├── IMG_20260817_123520387.jpg
+│   │       ├── IMG_20260817_123533317_HDR.jpg
+│   │       ├── IMG_20260817_123539512_HDR.jpg
+│   │       ├── IMG_20260817_123553756_HDR.jpg
+│   │       ├── IMG_20260817_123557370_HDR.jpg
+│   │       ├── IMG_20260817_123602000_HDR.jpg
+│   │       ├── IMG_20260817_124233639_HDR.jpg
+│   │       ├── IMG_20260817_124639865_HDR.jpg
+│   │       ├── IMG_20260817_124658842_HDR.jpg
+│   │       ├── IMG_20260817_124701897_HDR.jpg
+│   │       ├── IMG_20260817_124704928_HDR.jpg
+│   │       ├── IMG_20260817_124744700_HDR.jpg
+│   │       ├── IMG_20260817_170842777_HDR.jpg
+│   │       ├── IMG_20260817_170847438_HDR.jpg
+│   │       ├── IMG_20260817_170851239_HDR.jpg
+│   │       ├── IMG_20260817_170854736_HDR.jpg
+│   │       ├── IMG_20260817_170859298_HDR.jpg
+│   │       ├── IMG_20260817_170903739_HDR.jpg
+│   │       ├── IMG_20260817_170911667_HDR.jpg
+│   │       ├── IMG_20260817_171029793_HDR.jpg
+│   │       ├── IMG_20260817_171033226_HDR.jpg
+│   │       ├── IMG_20260817_171037372_HDR.jpg
+│   │       ├── IMG_20260817_171039775_HDR.jpg
+│   │       ├── IMG_20260817_171042711_HDR.jpg
+│   │       ├── IMG_20260818_122025969_HDR.jpg
+│   │       ├── IMG_20260818_122028949_HDR.jpg
+│   │       ├── IMG_20260818_122032764_HDR.jpg
+│   │       ├── IMG_20260818_122037677_HDR.jpg
+│   │       ├── IMG_20260818_122043070_HDR.jpg
+│   │       ├── IMG_20260818_123002661_HDR.jpg
+│   │       ├── IMG_20260818_123036562_HDR.jpg
+│   │       ├── IMG_20260818_123038947_HDR.jpg
+│   │       ├── IMG_20260818_123432071_HDR.jpg
+│   │       ├── IMG_20260818_123434493_HDR.jpg
+│   │       ├── IMG_20260818_123436566.jpg
+│   │       ├── IMG_20260818_123448673_HDR.jpg
+│   │       ├── IMG_20260818_123454012_HDR.jpg
+│   │       ├── IMG_20260818_123457320_HDR.jpg
+│   │       ├── IMG_20260818_123501644_HDR.jpg
+│   │       ├── IMG_20260818_142058770_HDR.jpg
+│   │       ├── IMG_20260818_142101592_HDR.jpg
+│   │       ├── IMG_20260818_142103906_HDR.jpg
+│   │       ├── IMG_20260818_142105717.jpg
+│   │       ├── IMG_20260818_142107865_HDR.jpg
+│   │       ├── IMG_20260818_165456267_HDR.jpg
+│   │       ├── IMG_20260818_165458507_HDR.jpg
+│   │       ├── IMG_20260818_165501591_HDR.jpg
+│   │       ├── IMG_20260818_165508880_HDR.jpg
+│   │       ├── IMG_20260818_165511780_HDR.jpg
+│   │       ├── IMG_20260819_120232028_HDR.jpg
+│   │       ├── IMG_20260819_120236510_HDR.jpg
+│   │       ├── IMG_20260819_120240789_HDR.jpg
+│   │       ├── IMG_20260819_120245514_HDR.jpg
+│   │       ├── IMG_20260819_120250196_HDR.jpg
+│   │       ├── IMG_20260819_122235209_HDR.jpg
+│   │       ├── IMG_20260819_122237290_HDR.jpg
+│   │       ├── IMG_20260819_122251136_HDR.jpg
+│   │       ├── IMG_20260819_122257426_HDR.jpg
+│   │       ├── IMG_20260819_122301313_HDR.jpg
+│   │       ├── IMG_20260819_122305371_HDR.jpg
+│   │       ├── IMG_20260819_163824160_HDR.jpg
+│   │       ├── IMG_20260819_163827290_HDR.jpg
+│   │       ├── IMG_20260819_163833142_HDR.jpg
+│   │       ├── IMG_20260819_163840132_HDR.jpg
+│   │       ├── IMG_20260819_163845780.jpg
+│   │       ├── IMG_20260819_164038283_HDR.jpg
+│   │       ├── IMG_20260819_164043151_HDR.jpg
+│   │       ├── IMG_20260819_164058796_HDR.jpg
+│   │       ├── IMG_20260819_164133208_HDR.jpg
+│   │       ├── IMG_20260819_165252073_HDR.jpg
+│   │       ├── IMG_20260819_165253816_HDR.jpg
+│   │       ├── IMG_20260819_165256373_HDR.jpg
+│   │       ├── IMG_20260819_165258956.jpg
+│   │       ├── IMG_20260819_165302564_HDR.jpg
+│   │       ├── IMG_20260820_120847843_HDR.jpg
+│   │       ├── IMG_20260820_120852447_HDR.jpg
+│   │       ├── IMG_20260820_120856981_HDR.jpg
+│   │       ├── IMG_20260820_120902201_HDR.jpg
+│   │       ├── IMG_20260820_120908394_HDR.jpg
+│   │       ├── IMG_20260820_120914958_HDR.jpg
+│   │       ├── IMG_20260820_120917491_HDR.jpg
+│   │       ├── IMG_20260820_120920570_HDR.jpg
+│   │       ├── IMG_20260820_120922798_HDR.jpg
+│   │       ├── IMG_20260820_120924821_HDR.jpg
+│   │       ├── IMG_20260820_120927038_HDR.jpg
+│   │       ├── IMG_20260820_120929627_HDR.jpg
+│   │       ├── IMG_20260820_123034961_HDR.jpg
+│   │       ├── IMG_20260820_123038224_HDR.jpg
+│   │       ├── IMG_20260820_123045346_HDR.jpg
+│   │       ├── IMG_20260820_123048526.jpg
+│   │       ├── IMG_20260820_123052243.jpg
+│   │       ├── IMG_20260820_123200393_HDR.jpg
+│   │       ├── IMG_20260820_123204129_HDR.jpg
+│   │       ├── IMG_20260820_123208794_HDR.jpg
+│   │       ├── IMG_20260820_123212900_HDR.jpg
+│   │       ├── IMG_20260820_123216128_HDR.jpg
+│   │       ├── IMG_20260820_135542634_HDR.jpg
+│   │       ├── IMG_20260820_135620649_HDR.jpg
+│   │       ├── IMG_20260820_170328260_HDR.jpg
+│   │       ├── IMG_20260820_170332915_HDR.jpg
+│   │       ├── IMG_20260820_170335821_HDR.jpg
+│   │       ├── IMG_20260820_170347705_HDR.jpg
+│   │       ├── IMG_20260820_170350571_HDR.jpg
+│   │       ├── IMG_20260820_170849140_HDR.jpg
+│   │       ├── IMG_20260821_122649372_HDR.jpg
+│   │       ├── IMG_20260821_124213142_HDR.jpg
+│   │       ├── IMG_20260821_124225982_HDR.jpg
+│   │       ├── IMG_20260821_124229926_HDR.jpg
+│   │       ├── IMG_20260821_124233805_HDR.jpg
+│   │       ├── IMG_20260821_124238046_HDR.jpg
+│   │       ├── IMG_20260821_130353748_HDR.jpg
+│   │       ├── IMG_20260821_164208097_HDR.jpg
+│   │       ├── IMG_20260821_164210533_HDR.jpg
+│   │       ├── IMG_20260821_164213274_HDR.jpg
+│   │       ├── IMG_20260821_164216010_HDR.jpg
+│   │       ├── IMG_20260821_164218576_HDR.jpg
+│   │       ├── IMG_20260821_164223755.jpg
+│   │       ├── IMG_20260821_164226158.jpg
+│   │       ├── IMG_20260821_164228027_HDR.jpg
+│   │       ├── IMG_20260821_164230455_HDR.jpg
+│   │       └── IMG_20260821_164232956.jpg
+│   └── spoken
+│       ├── clean-hands-clean-food-en.wav
+│       ├── clean-hands-clean-food-es.wav
+│       ├── the-temperature-danger-zone-en.wav
+│       └── the-temperature-danger-zone-es.wav
 ├── README.md
 ├── scripts
 │   ├── bootstrap.sh
@@ -899,15 +924,15 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   File name:             CHANGELOG.md
   Relative path:         CHANGELOG.md
   Absolute path:         /home/kushal/src/ts/kphoto/CHANGELOG.md
-  Size:                  13.7 KiB (14076 bytes)
-  Last modified:         2026-10-06 13:18:07.000000000 -0400
+  Size:                  13.9 KiB (14294 bytes)
+  Last modified:         2026-10-08 22:47:48.000000000 -0400
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 65421907
+  Inode:                 65567137
   Hard links:            1
   MIME type:             text/html
-  SHA-256:               2e0d2b2785c953d77775d181d91c819be4365b45c70817a7db19e3b49fd7850d
-  Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
+  SHA-256:               54ac48bf104178cbc5fb4964201db93258cd7b02a6cc88d1c6527c331cd8acdb
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
 
 --- CONTENT ---
 # Changelog
@@ -921,6 +946,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Ten-episode "Kitchen Fundamentals" series with Spanish translations
+  (`content/blog/2026-10-08-…` through `2026-10-17-…`, plus `*.es.md`),
+  publishing one episode per day via scheduled publishing (AI-written).
 - Languages (ADRs 0026–0029, `docs/i18n.md`):
   - Spanish under `/es/`; English keeps every existing URL.
   - Typed catalogs `src/i18n/messages/{en,es}.ts` with per-key fallback
@@ -2814,6 +2842,1668 @@ Deliberately limiting yourself — one focal length for a month, only black and 
 ## The thread through this whole series
 
 Every episode in _Photography Fundamentals_ has pointed at the same idea from a different angle: light, composition, and intention matter more than equipment, and none of that changes as tools improve. That's the actual foundation — not any single technique, but the habit of seeing deliberately. Keep that habit, and you'll keep improving no matter what camera ends up in your hand.
+
+
+################################################################################
+# FILE: content/blog/2026-10-08-clean-hands-clean-food.es.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-08-clean-hands-clean-food.es.md
+  Relative path:         content/blog/2026-10-08-clean-hands-clean-food.es.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-08-clean-hands-clean-food.es.md
+  Size:                  3.5 KiB (3669 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567058
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               da4b795545e2822c3d54122d10bcc08f57b0ad3a8a9ea4496e935bf7914bd48e
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Manos limpias, comida limpia — La primera regla de la cocina
+summary: Antes que los cuchillos, el fuego o los condimentos está el hábito que previene la mayoría de las intoxicaciones alimentarias en casa, la higiene personal. Primera parte de una serie de diez sobre los fundamentos de la cocina.
+---
+
+**TL;DR:** La mayoría de las intoxicaciones alimentarias en casa llegan por las manos, no por ingredientes exóticos. Lávate con jabón al menos 20 segundos en los momentos clave, mantén a las personas enfermas fuera de la cocina, recógete el cabello, cubre las heridas y usa una cuchara limpia cada vez que pruebes. Todo lo demás en esta serie se apoya en esto.
+
+## Por qué la higiene va primero
+
+Cocinar es biología aplicada. Bacterias, virus y parásitos llegan a la comida en las manos, los estornudos, los anillos y las pantallas del teléfono. La mayoría no se pueden ver, oler ni saborear, y la cocción no siempre te salva: las ensaladas, el pan, las guarniciones y las sobras a menudo se comen sin volver a calentarse. La herramienta de seguridad alimentaria más barata y eficaz jamás inventada es el agua corriente con jabón.
+
+## Cómo lavarse las manos correctamente
+
+1. Mójate las manos con agua corriente limpia, tibia o fría.
+2. Enjabónate el dorso de las manos, entre los dedos, los pulgares y debajo de las uñas.
+3. Frota durante al menos 20 segundos. Tararear dos veces una canción corta es el temporizador clásico.
+4. Enjuágate con agua corriente.
+5. Sécate con una toalla limpia o papel. Las manos húmedas propagan gérmenes con más facilidad que las secas.
+
+El gel desinfectante es un respaldo, no un sustituto. No funciona bien en manos grasosas o visiblemente sucias y no elimina todo lo que elimina el jabón.
+
+## Cuándo lavarse
+
+- Antes de empezar a cocinar y cada vez que vuelvas a la cocina.
+- Después de tocar carne, aves, mariscos o huevos crudos, o verduras sin lavar.
+- Después de tocar la basura, una mascota, el teléfono, la cara o el cabello, dinero o productos de limpieza.
+- Después de ir al baño, toser, estornudar o sonarte la nariz.
+- Entre tareas, sobre todo al pasar de alimentos crudos a alimentos listos para comer.
+
+Si dudas, lávate. Toma menos tiempo que leer esta frase dos veces.
+
+## Cocina sano, o no cocines
+
+Si tienes vómitos o diarrea, deja que otra persona cocine, y mantenlo así al menos 48 horas después de que desaparezcan los síntomas. Algunos de los virus estomacales más contagiosos se propagan fácilmente por la comida y sobreviven bien en las superficies. Una cocina profesional manda a casa al personal enfermo; una cocina doméstica debería hacer lo mismo.
+
+## Pequeños hábitos que suman
+
+- **Cabello** recogido. **Joyas** fuera: los anillos y relojes atrapan comida y bacterias.
+- **Heridas** cubiertas con un apósito impermeable, idealmente de color llamativo, más un guante en esa mano.
+- **Delantales y toallas**: usa una toalla para las manos y otra distinta para los platos, y cámbialas a menudo.
+- **Probar**: usa una cuchara limpia cada vez. Nunca vuelvas a meter en la olla la cuchara con la que probaste.
+- **Teléfonos**: van a todas partes donde van tus manos. Mantenlos fuera de la zona de cocina o lávate después de tocarlos.
+
+## Por qué esto perdura más allá de cualquier tecnología
+
+Los electrodomésticos serán más inteligentes y los ingredientes llegarán más rápido, pero la comida siempre la prepararán las manos de alguien, y los microbios siempre serán invisibles. Un hábito de veinte segundos vence a cualquier aparato. Mañana abordamos el número más importante de la seguridad alimentaria: la zona de peligro.
+
+
+################################################################################
+# FILE: content/blog/2026-10-08-clean-hands-clean-food.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-08-clean-hands-clean-food.md
+  Relative path:         content/blog/2026-10-08-clean-hands-clean-food.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-08-clean-hands-clean-food.md
+  Size:                  3.2 KiB (3298 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567057
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               80b598429fe8c6f412d067e5a4e0f0b0e47441e01be8caa6d12fe9a0f84c04e5
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Clean Hands, Clean Food — The First Rule of the Kitchen
+date: 2026-10-08
+author: kphoto-team
+summary: Before knives, heat or seasoning comes the habit that prevents most foodborne illness at home — personal hygiene. Part one of a ten-part series on cooking fundamentals.
+tags:
+  - kitchen-fundamentals
+  - food-safety
+  - hygiene
+series: Kitchen Fundamentals
+episode: 1
+---
+
+**TL;DR:** Most food poisoning at home is carried by hands, not by exotic ingredients. Wash with soap for at least 20 seconds at the right moments, keep sick people out of the kitchen, tie back hair, cover cuts, and use a clean spoon every time you taste. Everything else in this series builds on that.
+
+## Why hygiene comes first
+
+Cooking is applied biology. Bacteria, viruses and parasites ride into food on hands, sneezes, rings and phone screens. You cannot see, smell or taste most of them, and cooking does not always save you — salads, bread, garnishes and leftovers are often eaten without further heat. The cheapest, most effective food safety tool ever invented is soap and running water.
+
+## How to wash your hands properly
+
+1. Wet your hands with clean running water, warm or cold.
+2. Lather with soap — backs of hands, between fingers, thumbs, and under the nails.
+3. Scrub for at least 20 seconds. Humming a short song twice is the classic timer.
+4. Rinse under running water.
+5. Dry with a clean towel or paper towel. Damp hands spread germs more easily than dry ones.
+
+Hand sanitizer is a backup, not a replacement. It does not work well on greasy or visibly dirty hands, and it does not remove everything soap does.
+
+## When to wash
+
+- Before you start cooking, and every time you come back to the kitchen.
+- After handling raw meat, poultry, seafood, eggs, or unwashed produce.
+- After touching the bin, a pet, your phone, your face or hair, money, or cleaning chemicals.
+- After using the bathroom, coughing, sneezing, or blowing your nose.
+- Between tasks, especially when switching from raw to ready-to-eat food.
+
+If in doubt, wash. It takes less time than reading this sentence twice.
+
+## Cook healthy, or don't cook
+
+If you have vomiting or diarrhea, let someone else cook — and keep it that way for at least 48 hours after symptoms stop. Some of the most contagious stomach viruses spread easily through food and survive well on surfaces. A professional kitchen sends sick staff home; a home kitchen should do the same.
+
+## Small habits that add up
+
+- **Hair** tied back. **Jewelry** off — rings and watches trap food and bacteria.
+- **Cuts** covered with a waterproof dressing, ideally a brightly colored one, plus a glove on that hand.
+- **Aprons and towels** — keep a towel for hands and a different one for dishes, and change them often.
+- **Tasting** — use a clean spoon each time. Never put a tasting spoon back in the pot.
+- **Phones** — they go everywhere your hands go. Keep them out of the cooking area or wash after touching them.
+
+## Why this outlasts any technology
+
+Appliances will get smarter and ingredients will be delivered faster, but food will always be prepared by someone's hands, and microbes will always be invisible. A twenty-second habit beats any gadget. Tomorrow we tackle the single most important number in food safety — the danger zone.
+
+
+################################################################################
+# FILE: content/blog/2026-10-09-the-temperature-danger-zone.es.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-09-the-temperature-danger-zone.es.md
+  Relative path:         content/blog/2026-10-09-the-temperature-danger-zone.es.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-09-the-temperature-danger-zone.es.md
+  Size:                  4.3 KiB (4464 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567060
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               14132af25dc7933e1d678116ad30b24d6bdd2fabf03133cf5782d1e5af67e376
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: La zona de peligro — Control de tiempo y temperatura
+summary: Entre 4 °C y 60 °C (40 °F y 140 °F) las bacterias se multiplican rápido. Aprende la regla de las dos horas, las temperaturas seguras de cocción y cómo enfriar y recalentar alimentos con seguridad.
+---
+
+**TL;DR:** Mantén la comida fría a 4 °C (40 °F) o menos y la caliente a 60 °C (140 °F) o más. La comida que pase más de dos horas entre esas temperaturas, o una hora si hace más de 32 °C (90 °F), va a la basura. Cocina hasta temperaturas internas seguras medidas con un termómetro, enfría las sobras rápidamente y recaliéntalas a 74 °C (165 °F).
+
+## Qué es la zona de peligro
+
+La zona de peligro es el rango de temperatura de aproximadamente **4 °C a 60 °C (40 °F a 140 °F)**. Dentro de él, muchas bacterias pueden duplicarse en unos veinte minutos. Unos cientos de células en una ensalada de pollo a mediodía pueden convertirse en millones para la cena. Algunas bacterias además producen toxinas que la cocción no destruye, por eso recalentar comida en mal estado no la vuelve segura.
+
+## La regla de las dos horas
+
+- Los alimentos perecederos no deben pasar **más de dos horas** en total en la zona de peligro: compra, preparación, servicio y sobras cuentan.
+- Si la temperatura ambiente o exterior supera los **32 °C (90 °F)**, el límite es **una hora**.
+- Ante la duda, tíralo. El olor y el aspecto no son pruebas fiables.
+
+## Mantener en frío
+
+- Refrigerador a **4 °C (40 °F) o menos**; unos 3 °C (37 °F) te dan margen.
+- Congelador a **-18 °C (0 °F)**. Congelar detiene a las bacterias; no las mata.
+- Ten un termómetro económico para electrodomésticos en ambos. Los indicadores integrados suelen fallar.
+
+## Mantener en caliente
+
+La comida que se mantiene caliente para servir debe estar a **60 °C (140 °F) o más**. Sirve una olla de cocción lenta en "mantener caliente", un horno bajo o un calientaplatos. Los bufés tibios son donde empiezan los problemas.
+
+## Temperaturas internas seguras
+
+El color no indica el punto de cocción: usa un termómetro de lectura instantánea en la parte más gruesa, lejos del hueso.
+
+- Aves, enteras o molidas, y rellenos: **74 °C (165 °F)**.
+- Carne molida de res, cerdo, cordero y ternera: **71 °C (160 °F)**.
+- Cortes enteros de res, cerdo, cordero y ternera: **63 °C (145 °F)** y luego 3 minutos de reposo.
+- Pescados y mariscos: **63 °C (145 °F)**, o hasta que la carne esté opaca y se separe en lascas.
+- Platos con huevo: **71 °C (160 °F)**.
+- Sobras y guisos: **74 °C (165 °F)**.
+
+Comprueba tu termómetro de vez en cuando en un vaso de agua con hielo removido durante un minuto; debe marcar 0 °C (32 °F).
+
+## Enfriar las sobras rápido
+
+Una olla grande de guiso caliente se enfría lentamente por dentro y puede pasar horas en la zona de peligro, incluso dentro del refrigerador.
+
+- Reparte en **recipientes poco profundos** para que la comida no supere unos 5 cm (2 pulgadas) de profundidad.
+- Corta los asados grandes en trozos más pequeños.
+- Remueve sobre un baño de hielo para acelerar el proceso.
+- Refrigera dentro de las dos horas siguientes a la cocción. Deja las tapas entreabiertas hasta que esté frío y luego ciérralas.
+
+El estándar profesional: de 57 °C a 21 °C (135 °F a 70 °F) en dos horas, y luego hasta 5 °C (41 °F) en cuatro horas más.
+
+## Recalentar
+
+Recalienta las sobras a **74 °C (165 °F)** en todo su interior. Lleva salsas, sopas y jugos de carne a un hervor fuerte. En el microondas, tapa, remueve a mitad de tiempo y deja reposar antes de medir la temperatura: el microondas deja zonas frías.
+
+## Quién necesita cuidados especiales
+
+Las personas embarazadas, los bebés y niños pequeños, los adultos mayores y cualquier persona con el sistema inmunitario debilitado tienen más probabilidades de enfermar gravemente. Para ellos, sé estricto con la leche y los jugos sin pasteurizar, los huevos y la carne poco cocidos, los germinados crudos y los embutidos que no se han recalentado hasta humear.
+
+## Por qué esto perdura más allá de cualquier tecnología
+
+Los refrigeradores inteligentes y los termómetros de sonda seguirán mejorando, pero la biología del crecimiento bacteriano no cambiará. Entiende la zona y podrás juzgar cualquier situación, un corte de luz, un pícnic, una comida compartida, sin necesidad de una aplicación. Mañana: mantener separados los alimentos crudos de los listos para comer.
+
+
+################################################################################
+# FILE: content/blog/2026-10-09-the-temperature-danger-zone.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-09-the-temperature-danger-zone.md
+  Relative path:         content/blog/2026-10-09-the-temperature-danger-zone.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-09-the-temperature-danger-zone.md
+  Size:                  3.7 KiB (3871 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567059
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               e3dd67b1b0637c2ad60549df43fa22392477dd9aa645e80715edeff70d26240a
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: The Danger Zone — Time and Temperature Control
+date: 2026-10-09
+author: kphoto-team
+summary: Between 40°F and 140°F (4°C and 60°C) bacteria multiply fast. Learn the two-hour rule, safe cooking temperatures, and how to cool and reheat food safely.
+tags:
+  - kitchen-fundamentals
+  - food-safety
+  - temperature
+series: Kitchen Fundamentals
+episode: 2
+---
+
+**TL;DR:** Keep cold food at or below 40°F (4°C) and hot food at or above 140°F (60°C). Food left in between for more than two hours — one hour above 90°F (32°C) — goes in the bin. Cook to safe internal temperatures measured with a thermometer, cool leftovers quickly, and reheat to 165°F (74°C).
+
+## What the danger zone is
+
+The danger zone is the temperature range of roughly **40°F to 140°F (4°C to 60°C)**. Within it, many bacteria can double in about twenty minutes. A few hundred cells on a chicken salad at lunchtime can become millions by dinner. Some bacteria also produce toxins that cooking does not destroy, which is why reheating spoiled food does not make it safe.
+
+## The two-hour rule
+
+- Perishable food should spend **no more than two hours** in the danger zone in total — shopping, prep, serving and leftovers all count.
+- If the room or outdoor temperature is above **90°F (32°C)**, the limit is **one hour**.
+- When in doubt, throw it out. Smell and appearance are not reliable tests.
+
+## Cold holding
+
+- Refrigerator at **40°F (4°C) or below** — around 37°F (3°C) gives you a margin.
+- Freezer at **0°F (-18°C)**. Freezing pauses bacteria; it does not kill them.
+- Keep an inexpensive appliance thermometer in both. Built-in dials are often wrong.
+
+## Hot holding
+
+Food kept warm for serving should stay at **140°F (60°C) or above**. A slow cooker on "warm", a low oven, or a chafing dish works. Lukewarm buffets are where trouble starts.
+
+## Safe internal temperatures
+
+Color is not a doneness test — use an instant-read thermometer in the thickest part, away from bone.
+
+- Poultry, whole or ground, and stuffing: **165°F (74°C)**.
+- Ground beef, pork, lamb and veal: **160°F (71°C)**.
+- Whole cuts of beef, pork, lamb and veal: **145°F (63°C)**, then rest 3 minutes.
+- Fish and shellfish: **145°F (63°C)**, or until flesh is opaque and flakes.
+- Egg dishes: **160°F (71°C)**.
+- Leftovers and casseroles: **165°F (74°C)**.
+
+Check your thermometer occasionally in a glass of ice water stirred for a minute; it should read 32°F (0°C).
+
+## Cooling leftovers fast
+
+A big pot of hot stew cools slowly in the middle and can sit in the danger zone for hours, even inside the fridge.
+
+- Divide into **shallow containers** so the food is no deeper than about two inches (5 cm).
+- Cut large roasts into smaller pieces.
+- Stir over an ice bath to speed things up.
+- Refrigerate within two hours of cooking. Leave lids slightly open until cold, then seal.
+
+The professional standard: from 135°F to 70°F (57°C to 21°C) within two hours, then down to 41°F (5°C) within four more.
+
+## Reheating
+
+Reheat leftovers to **165°F (74°C)** throughout. Bring sauces, soups and gravies to a rolling boil. In a microwave, cover, stir halfway, and let it stand before checking the temperature — microwaves leave cold spots.
+
+## Who needs extra care
+
+Pregnant people, babies and young children, older adults, and anyone with a weakened immune system are more likely to become seriously ill. For them, be strict about unpasteurized milk and juice, undercooked eggs and meat, raw sprouts, and deli meats that have not been reheated until steaming.
+
+## Why this outlasts any technology
+
+Smart fridges and probe thermometers will keep improving, but the biology of bacterial growth will not. Understand the zone and you can judge any situation — a power cut, a picnic, a potluck — without an app. Tomorrow: keeping raw and ready-to-eat food apart.
+
+
+################################################################################
+# FILE: content/blog/2026-10-10-stopping-cross-contamination.es.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-10-stopping-cross-contamination.es.md
+  Relative path:         content/blog/2026-10-10-stopping-cross-contamination.es.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-10-stopping-cross-contamination.es.md
+  Size:                  4.0 KiB (4177 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567062
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               f26883aeed9b69ed613f1a344edc0aba2d1f4dfa2ff91eb6265cf9b8fa1b435d
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Cómo evitar la contaminación cruzada y el contacto cruzado con alérgenos
+summary: Jugos de carne cruda en la tabla de la ensalada, un cuchillo que tocó cacahuates, un pollo enjuagado que salpica el fregadero. Cómo viajan los gérmenes y los alérgenos, y los sistemas sencillos que los detienen.
+---
+
+**TL;DR:** Mantén la carne, las aves, los mariscos y los huevos crudos lejos de todo lo que no se vaya a cocinar de nuevo. Usa tablas separadas o un orden de trabajo estricto, guarda la carne cruda en el estante inferior, no enjuagues el pollo crudo y lávate las manos y los utensilios entre tareas. Los alérgenos siguen los mismos caminos, pero el calor no los elimina.
+
+## Cómo viaja la contaminación
+
+La contaminación cruzada es el paso de microbios dañinos de un alimento o superficie a otro. Las vías habituales:
+
+- **De alimento a alimento**: el pollo crudo gotea sobre la lechuga en el refrigerador.
+- **De superficie a alimento**: una tabla usada para pescado crudo se usa luego para cortar pan.
+- **De manos a alimento**: tocar hamburguesas crudas y luego el pan.
+- **De utensilios a alimento**: las pinzas con que pusiste la carne cruda en la parrilla se usan para servir la carne cocida.
+
+El peligro es mayor con los alimentos listos para comer: ensaladas, fruta, pan, queso, sobras cocidas. Nada va a eliminar los gérmenes de ellos después.
+
+## Separación práctica
+
+- **Tablas**: usa una para carne, aves y mariscos crudos, y otra para verduras y alimentos listos para comer. Los colores ayudan, pero cualquier sistema que sigas siempre funciona.
+- **Orden de trabajo**: si solo tienes una tabla, prepara primero las verduras y los alimentos listos para comer, las proteínas crudas al final, y luego lava todo.
+- **Platos y pinzas**: nunca vuelvas a poner comida cocida en un plato que tuvo comida cruda. Usa uno limpio.
+- **Marinadas**: marina en el refrigerador. Si quieres usar parte como salsa, sepárala antes de añadir la carne cruda, o hierve la marinada usada antes de servirla.
+- **Compras**: empaca la carne cruda por separado y evita que gotee sobre otros productos.
+
+## La jerarquía del refrigerador
+
+Guarda los alimentos de modo que lo que pueda gotear solo caiga sobre algo que se cocinará a mayor temperatura:
+
+1. Arriba: alimentos listos para comer, sobras, lácteos.
+2. En medio: verduras y alimentos que se cocinarán suavemente.
+3. Abajo: carne, aves y mariscos crudos, en una bandeja o recipiente cerrado.
+
+## No enjuagues las aves crudas
+
+Lavar pollo o pavo crudo rocía bacterias por el fregadero, la encimera y los alimentos cercanos, hasta a un brazo de distancia. No hace la carne más segura; cocinarla a 74 °C (165 °F) sí. Sécala con papel de cocina si hace falta y luego lávate las manos.
+
+## Frutas y verduras
+
+Enjuaga frutas y verduras con agua corriente justo antes de usarlas, incluso las que vayas a pelar: el cuchillo arrastra la suciedad de la superficie hacia la pulpa. Frota con un cepillo los productos firmes como melones y papas. No uses jabón ni cloro; la recomendación es agua sola. Las hojas verdes en bolsa ya lavadas no necesitan otro lavado.
+
+## Contacto cruzado con alérgenos
+
+Para alguien con alergia alimentaria, una traza puede causar una reacción grave. A diferencia de las bacterias, **las proteínas alergénicas no se destruyen al cocinar**.
+
+- Pregunta por alergias antes de cocinar para otros y toma en serio cada respuesta.
+- Prepara primero el plato sin el alérgeno, con utensilios limpios, y cúbrelo.
+- Lava tablas, cuchillos y manos con agua y jabón. Pasar un trapo no basta.
+- Ojo con el aceite compartido, las tostadoras, la mantequilla y las cucharas de servir.
+- Lee cada etiqueta, cada vez. Las recetas de los productos cambian.
+- Si no estás seguro de que un plato sea seguro, dilo. La honestidad protege a las personas.
+
+## Por qué esto perdura más allá de cualquier tecnología
+
+Las cocinas tendrán superficies y aparatos nuevos, pero la contaminación siempre se moverá igual: por contacto, goteo y salpicadura. Aprende a ver esos caminos y podrás trabajar con seguridad en cualquier cocina. Mañana: la diferencia entre limpiar y desinfectar.
+
+
+################################################################################
+# FILE: content/blog/2026-10-10-stopping-cross-contamination.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-10-stopping-cross-contamination.md
+  Relative path:         content/blog/2026-10-10-stopping-cross-contamination.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-10-stopping-cross-contamination.md
+  Size:                  3.6 KiB (3771 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567061
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               7dc556c44d099c1219dbbb448376ef914ccc18877ff43322a09757557813bdfa
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Stopping Cross-Contamination and Allergen Cross-Contact
+date: 2026-10-10
+author: kphoto-team
+summary: Raw meat juices on a salad board, a knife that touched peanuts, a rinsed chicken splashing the sink. How germs and allergens travel, and the simple systems that stop them.
+tags:
+  - kitchen-fundamentals
+  - food-safety
+  - allergens
+series: Kitchen Fundamentals
+episode: 3
+---
+
+**TL;DR:** Keep raw meat, poultry, seafood and eggs away from anything that will not be cooked again. Use separate boards or a strict order of work, store raw meat on the bottom shelf, don't rinse raw chicken, and wash hands and tools between tasks. Allergens follow the same paths, but heat does not remove them.
+
+## How contamination travels
+
+Cross-contamination is the transfer of harmful microbes from one food or surface to another. The usual routes:
+
+- **Food to food** — raw chicken drips onto lettuce in the fridge.
+- **Surface to food** — a board used for raw fish is then used for slicing bread.
+- **Hands to food** — touching raw burger patties, then the bun.
+- **Tools to food** — tongs used to place raw meat on the grill are used to serve the cooked meat.
+
+The danger is greatest with ready-to-eat foods: salads, fruit, bread, cheese, cooked leftovers. Nothing is going to cook the germs off them later.
+
+## Practical separation
+
+- **Boards** — use one for raw meat, poultry and seafood, and another for produce and ready-to-eat food. Color-coding helps, but any system you follow every time works.
+- **Order of work** — if you only have one board, prepare vegetables and ready-to-eat foods first, raw proteins last, then wash everything.
+- **Plates and tongs** — never put cooked food back on a plate that held raw food. Grab a clean one.
+- **Marinades** — marinate in the fridge. If you want to use some as a sauce, set it aside before the raw meat goes in, or boil used marinade before serving.
+- **Shopping** — bag raw meat separately, and keep it from leaking onto other groceries.
+
+## The refrigerator hierarchy
+
+Store food so that anything that might drip only lands on something that will be cooked hotter:
+
+1. Top: ready-to-eat foods, leftovers, dairy.
+2. Middle: produce and items that will be cooked gently.
+3. Bottom: raw meat, poultry and seafood, in a tray or sealed container.
+
+## Don't rinse raw poultry
+
+Washing raw chicken or turkey sprays bacteria across the sink, counter and nearby food — up to an arm's length away. It does not make the meat safer; cooking to 165°F (74°C) does. Pat it dry with paper towels if needed, then wash your hands.
+
+## Produce
+
+Rinse fruits and vegetables under running water just before using them, even ones you will peel — a knife carries surface dirt into the flesh. Scrub firm produce such as melons and potatoes with a brush. Skip soap and bleach; plain water is the recommendation. Pre-washed bagged greens do not need rewashing.
+
+## Allergen cross-contact
+
+For someone with a food allergy, a trace can cause a severe reaction. Unlike bacteria, **allergen proteins are not destroyed by cooking**.
+
+- Ask about allergies before you cook for others, and take every answer seriously.
+- Prepare the allergen-free dish first, with clean tools, and cover it.
+- Wash boards, knives and hands with soap and water. Wiping is not enough.
+- Watch shared oil, toasters, butter, and serving spoons.
+- Read every label, every time. Recipes change.
+- If you are not sure a dish is safe, say so. Honesty protects people.
+
+## Why this outlasts any technology
+
+Kitchens will gain new surfaces and gadgets, but contamination will always move the same way: by touch, drip and splash. Learn to see those paths and you can work safely in any kitchen. Tomorrow: the difference between cleaning and sanitizing.
+
+
+################################################################################
+# FILE: content/blog/2026-10-11-cleaning-versus-sanitizing.es.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-11-cleaning-versus-sanitizing.es.md
+  Relative path:         content/blog/2026-10-11-cleaning-versus-sanitizing.es.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-11-cleaning-versus-sanitizing.es.md
+  Size:                  3.8 KiB (3922 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567064
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               0eda7dcd43db430a29fcb2b7eaad418155274b8032d784a565b51afbe1c8fd41
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Limpiar frente a desinfectar — Mantener segura la cocina misma
+summary: Limpiar quita la suciedad que ves, desinfectar reduce los gérmenes que no ves. Cómo hacer ambas cosas y cómo manejar esponjas, trapos, refrigeradores y plagas.
+---
+
+**TL;DR:** Primero limpia con agua caliente y jabón, luego desinfecta las superficies que tocan la comida. Los desinfectantes solo funcionan sobre superficies ya limpias y solo si se les da tiempo de contacto. Cambia las esponjas a menudo, los trapos a diario, limpia sobre la marcha y nunca mezcles productos de limpieza.
+
+## Dos trabajos distintos
+
+- **Limpiar** elimina restos de comida, grasa y suciedad con jabón, agua y fricción. De paso también elimina muchos gérmenes.
+- **Desinfectar** reduce los microbios restantes a niveles seguros, con calor o con un producto químico.
+
+El orden importa. La grasa y las migas protegen a las bacterias y neutralizan muchos desinfectantes. Limpia, enjuaga y después desinfecta.
+
+## Una rutina sencilla para superficies en contacto con alimentos
+
+1. Retira los restos.
+2. Lava con agua caliente y jabón.
+3. Enjuaga con agua limpia.
+4. Desinfecta: el ciclo caliente del lavavajillas, un desinfectante para cocinas usado según su etiqueta, o una solución diluida de cloro.
+5. Deja secar al aire. Los trapos pueden devolver los gérmenes.
+
+Una solución casera común es **1 cucharada de cloro doméstico sin perfume por galón de agua** (unos 15 ml por 4 litros). Déjala actuar unos minutos antes de dejar secar al aire. Prepárala fresca, porque pierde fuerza con el tiempo. Revisa la etiqueta de tu producto; las concentraciones varían.
+
+## Nunca mezcles productos químicos
+
+El cloro combinado con amoníaco o con ácidos, incluidos algunos limpiadores de inodoro y el vinagre, puede liberar gases tóxicos. Usa un producto a la vez, enjuaga entre uno y otro, ventila la habitación y guarda los productos lejos de la comida, en sus envases originales etiquetados.
+
+## Esponjas, paños y toallas
+
+La esponja de la cocina suele ser el objeto más sucio de la casa. Se mantiene húmeda, tibia y llena de comida.
+
+- Escúrrela y déjala secar entre usos.
+- Cámbiala a menudo; una vez por semana es un hábito razonable.
+- Usa paños que puedas lavar en caliente y cámbialos a diario.
+- Ten toallas separadas para las manos, los platos y los derrames.
+
+## Limpia sobre la marcha
+
+Los cocineros profesionales limpian su puesto constantemente. Llena el fregadero con agua caliente y jabón antes de empezar, mete los utensilios a medida que terminas con ellos y limpia los derrames al instante. Terminas la comida con una cocina manejable, y los jugos crudos nunca tienen oportunidad de extenderse.
+
+## Puntos de mucho contacto que se olvidan
+
+Las manijas del refrigerador, las llaves del grifo, las perillas de la estufa, los interruptores de luz, el teclado del microondas, el abrelatas y el borde del bote de basura. Límpialos con regularidad: se tocan con manos sucias de carne cruda más de lo que crees.
+
+## El refrigerador
+
+- Limpia los derrames en cuanto ocurren, sobre todo los jugos de carne cruda.
+- Cada semana revisa las fechas y tira lo que ya pasó su momento.
+- Lava periódicamente estantes y cajones con agua tibia y jabón.
+- No lo sobrecargues: el aire frío necesita circular.
+
+## Plagas
+
+Los insectos y roedores transmiten enfermedades. Guarda los alimentos secos en recipientes herméticos, saca la basura a menudo, repara las fugas, mantén el suelo sin migas y sella las rendijas. Si ves excrementos, desecha los alimentos afectados y limpia y desinfecta a fondo.
+
+## Por qué esto perdura más allá de cualquier tecnología
+
+Las superficies autolimpiables y los recubrimientos antimicrobianos vendrán y se irán. El jabón, la fricción, el tiempo de contacto y las superficies secas seguirán siendo la forma de limpiar una cocina. Mañana: comprar, almacenar, descongelar y las sobras.
+
+
+################################################################################
+# FILE: content/blog/2026-10-11-cleaning-versus-sanitizing.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-11-cleaning-versus-sanitizing.md
+  Relative path:         content/blog/2026-10-11-cleaning-versus-sanitizing.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-11-cleaning-versus-sanitizing.md
+  Size:                  3.3 KiB (3481 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567063
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               20d1717f2b7c0b217522c1d95f03c0358de3670d5f6b75cdb8009b60aa61844b
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Cleaning Versus Sanitizing — Keeping the Kitchen Itself Safe
+date: 2026-10-11
+author: kphoto-team
+summary: Clean removes the dirt you can see, sanitize reduces the germs you can't. How to do both, and how to manage sponges, towels, fridges, and pests.
+tags:
+  - kitchen-fundamentals
+  - food-safety
+  - cleaning
+series: Kitchen Fundamentals
+episode: 4
+---
+
+**TL;DR:** Clean first with hot soapy water, then sanitize surfaces that touch food. Sanitizers work only on surfaces that are already clean, and only if given contact time. Replace sponges often, swap towels daily, clean as you go, and never mix cleaning chemicals.
+
+## Two different jobs
+
+- **Cleaning** removes food residue, grease and dirt using soap, water and friction. It also removes many germs along the way.
+- **Sanitizing** reduces the remaining microbes to safe levels, using heat or a chemical.
+
+The order matters. Grease and crumbs shield bacteria and neutralize many sanitizers. Clean, rinse, then sanitize.
+
+## A simple routine for food-contact surfaces
+
+1. Scrape off debris.
+2. Wash with hot soapy water.
+3. Rinse with clean water.
+4. Sanitize — a dishwasher's hot cycle, a commercial kitchen sanitizer used according to its label, or a dilute bleach solution.
+5. Air-dry. Towels can put germs straight back.
+
+A common home bleach solution is **1 tablespoon of unscented household bleach per gallon of water** (about 15 ml per 4 liters). Leave it on for a few minutes before air-drying. Make it fresh, since it weakens over time. Check the label of your product; strengths vary.
+
+## Never mix chemicals
+
+Bleach combined with ammonia or with acids, including some toilet cleaners and vinegar, can release toxic gases. Use one product at a time, rinse between them, keep the room ventilated, and store chemicals away from food, in their original labeled containers.
+
+## Sponges, cloths and towels
+
+The kitchen sponge is often the dirtiest object in the house. It stays damp, warm and full of food.
+
+- Squeeze it out and let it dry between uses.
+- Replace it often — weekly is a reasonable habit.
+- Use cloths you can launder hot, and swap them daily.
+- Keep separate towels for hands, dishes and spills.
+
+## Clean as you go
+
+Professional cooks wipe their station constantly. Fill the sink with hot soapy water before you start, drop tools in as you finish with them, and wipe spills immediately. You end the meal with a manageable kitchen, and raw juices never get the chance to spread.
+
+## High-touch spots people forget
+
+Fridge handles, tap handles, knobs on the stove, light switches, the microwave keypad, can openers, and the rim of the bin. Clean them regularly — they are touched with raw-meat hands more often than you think.
+
+## The refrigerator
+
+- Wipe spills when they happen, especially raw meat juices.
+- Every week, check dates and throw out anything past its time.
+- Clean the shelves and drawers with warm soapy water periodically.
+- Do not overcrowd it — cold air needs to circulate.
+
+## Pests
+
+Insects and rodents carry disease. Store dry goods in sealed containers, take out the trash often, fix leaks, keep crumbs off the floor, and seal gaps. If you see droppings, discard affected food and clean and sanitize thoroughly.
+
+## Why this outlasts any technology
+
+Self-cleaning surfaces and antimicrobial coatings will come and go. Soap, friction, contact time and dry surfaces will still be how a kitchen gets clean. Tomorrow: shopping, storing, thawing and leftovers.
+
+
+################################################################################
+# FILE: content/blog/2026-10-12-shopping-storage-and-leftovers.es.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-12-shopping-storage-and-leftovers.es.md
+  Relative path:         content/blog/2026-10-12-shopping-storage-and-leftovers.es.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-12-shopping-storage-and-leftovers.es.md
+  Size:                  4.3 KiB (4495 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567066
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               ed38aaa9b6e2db7e0c7f82fb634bd71f974f75aaa9d30bf4298dc142c61b7371
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Compras, almacenamiento, descongelación y sobras
+summary: La seguridad alimentaria empieza en la tienda y termina en la basura. Compra lo frío al final, almacena por orden de llegada, descongela sin usar la encimera y reconoce cuándo las sobras ya cumplieron su ciclo.
+---
+
+**TL;DR:** Toma los alimentos fríos y congelados al final y refrigéralos en menos de dos horas. Etiqueta y fecha todo, usa primero lo más antiguo, nunca descongeles sobre la encimera y come las sobras refrigeradas en un plazo de tres a cuatro días. El congelador detiene el reloj; no lo reinicia.
+
+## En la tienda
+
+- Compra primero los productos no perecederos y al final los refrigerados y congelados.
+- Evita latas abolladas en la costura o hinchadas, envases rotos y huevos agrietados.
+- Empaca la carne cruda separada de las frutas y verduras.
+- Ve directo a casa. En días calurosos, lleva una bolsa térmica.
+
+## Leer las fechas de las etiquetas
+
+- **Fecha de caducidad** o **consumir antes de**: una fecha de seguridad en alimentos muy perecederos. Respétala.
+- **Consumo preferente** o **mejor antes de**: una fecha de calidad. El alimento suele ser seguro después si se guardó bien, pero puede ser menos agradable.
+- **Vender antes de**: para la rotación de inventario de la tienda, no para ti.
+
+Las etiquetas varían según el país. Cuando una etiqueta y tus sentidos no coinciden sobre un alimento perecedero, opta por la precaución.
+
+## Almacenar los alimentos
+
+- **Primero en entrar, primero en salir**: pon las compras nuevas detrás de las más antiguas.
+- **Etiqueta y fecha** las sobras y todo lo que porciones o congeles. La cinta adhesiva y un marcador nunca pasan de moda.
+- Mantén el refrigerador a 4 °C (40 °F) o menos y el congelador a -18 °C (0 °F).
+- Refrigera la fruta cortada, el arroz cocido, las verduras cocidas y los frascos abiertos que así lo indiquen.
+- Guarda papas, cebollas y ajos en un lugar fresco, oscuro y seco, pero no juntos, porque las cebollas aceleran que las papas broten.
+- El pan se conserva mejor a temperatura ambiente o congelado que en el refrigerador, donde se pone duro más rápido.
+
+## Descongelar con seguridad
+
+Nunca descongeles carne, aves o mariscos sobre la encimera. El exterior queda en la zona de peligro mientras el centro sigue congelado.
+
+- **En el refrigerador**: lo más lento y seguro. Calcula aproximadamente un día por cada 2 kg (4 a 5 libras) de pavo entero, menos para piezas pequeñas. Lo descongelado así se puede volver a congelar.
+- **En agua fría**: dentro de una bolsa hermética, sumergida, cambiando el agua cada 30 minutos. Cocina de inmediato después.
+- **En el microondas**: cocina de inmediato después, porque algunas partes pueden empezar a cocinarse.
+- **Cocinar desde congelado**: es seguro; solo tarda alrededor de un 50 % más.
+
+## Sobras
+
+- Refrigéralas en menos de dos horas, en recipientes poco profundos.
+- Cómelas en **tres a cuatro días**, o congélalas.
+- Recaliéntalas a 74 °C (165 °F).
+- Las sobras congeladas son seguras indefinidamente a -18 °C (0 °F), pero la calidad se pierde. La mayoría están mejor en unos pocos meses.
+
+## Alimentos que merecen respeto especial
+
+- **Arroz cocido**: puede contener esporas de una bacteria productora de toxinas que sobreviven a la cocción. Enfríalo rápido, refrigéralo pronto y recaliéntalo solo una vez.
+- **Ajo o hierbas en aceite**: las versiones caseras pueden favorecer el botulismo. Mantenlas refrigeradas y úsalas en pocos días, o congélalas.
+- **Conservas caseras**: los alimentos poco ácidos como verduras, carne y frijoles deben envasarse en olla a presión siguiendo una receta probada. Desecha cualquier lata o frasco hinchado, que gotee, que salpique al abrirlo o que huela raro, sin probarlo.
+- **Frijoles rojos crudos**: contienen una toxina natural. Remójalos y hiérvelos con fuerza al menos 10 minutos antes de cocinarlos lentamente; una olla de cocción lenta sola puede no calentarse lo suficiente.
+
+## Ante la duda, tíralo
+
+El moho en alimentos blandos, un olor agrio, una textura viscosa o una antigüedad desconocida son razones para desechar. Los patógenos a menudo no dan ninguna señal, por eso las fechas y el reloj importan más que tu nariz.
+
+## Por qué esto perdura más allá de cualquier tecnología
+
+Los envases, las entregas y la refrigeración seguirán mejorando. El tiempo, la temperatura y el etiquetado siguen siendo la base de un almacenamiento seguro. Mañana tomamos un cuchillo.
+
+
+################################################################################
+# FILE: content/blog/2026-10-12-shopping-storage-and-leftovers.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-12-shopping-storage-and-leftovers.md
+  Relative path:         content/blog/2026-10-12-shopping-storage-and-leftovers.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-12-shopping-storage-and-leftovers.md
+  Size:                  3.7 KiB (3844 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567065
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               66caadcfcf7c488d7d2481518fdea1cdb81a64320ad789b40d20eab27cda71b2
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Shopping, Storage, Thawing and Leftovers
+date: 2026-10-12
+author: kphoto-team
+summary: Food safety starts at the store and ends in the bin. Shop cold-last, store first-in first-out, thaw without the counter, and know when leftovers have had their day.
+tags:
+  - kitchen-fundamentals
+  - food-safety
+  - storage
+series: Kitchen Fundamentals
+episode: 5
+---
+
+**TL;DR:** Pick up cold and frozen food last and refrigerate it within two hours. Label and date everything, use oldest first, never thaw on the counter, and eat refrigerated leftovers within three to four days. The freezer stops the clock; it does not reset it.
+
+## At the store
+
+- Shop for shelf-stable goods first, chilled and frozen goods last.
+- Skip dented-at-the-seam or bulging cans, torn packaging, and cracked eggs.
+- Bag raw meat separately from produce.
+- Go straight home. On hot days, bring a cooler bag.
+
+## Reading date labels
+
+- **Use by** — a safety date on highly perishable foods. Respect it.
+- **Best before** or **best by** — a quality date. The food is usually safe afterward if stored properly, but may be less pleasant.
+- **Sell by** — for the store's stock rotation, not for you.
+
+Labels vary by country. When a label and your senses disagree on a perishable food, side with caution.
+
+## Storing food
+
+- **First in, first out** — put new purchases behind older ones.
+- **Label and date** leftovers and anything you portion or freeze. Masking tape and a marker never go out of date.
+- Keep the fridge at 40°F (4°C) or below, and the freezer at 0°F (-18°C).
+- Refrigerate cut fruit, cooked rice, cooked vegetables, and opened jars that say so.
+- Store potatoes, onions and garlic somewhere cool, dark and dry — but not together, as onions speed up sprouting.
+- Bread keeps better at room temperature or frozen than in the fridge, where it goes stale faster.
+
+## Thawing safely
+
+Never thaw meat, poultry or seafood on the counter. The outside sits in the danger zone while the middle is still frozen.
+
+- **In the refrigerator** — slowest and safest. Allow about a day for every 4 to 5 pounds (about 2 kg) of whole turkey, less for smaller items. Food thawed this way can be refrozen.
+- **In cold water** — sealed in a leak-proof bag, submerged, water changed every 30 minutes. Cook immediately after.
+- **In the microwave** — cook immediately after, because parts may start to cook.
+- **Cooking from frozen** — safe; it just takes about 50% longer.
+
+## Leftovers
+
+- Refrigerate within two hours, in shallow containers.
+- Eat within **three to four days**, or freeze.
+- Reheat to 165°F (74°C).
+- Frozen leftovers stay safe indefinitely at 0°F (-18°C), but quality fades. Most are best within a few months.
+
+## Foods that need special respect
+
+- **Cooked rice** — can carry spores of a toxin-producing bacterium that survive cooking. Cool it quickly, refrigerate promptly, and reheat only once.
+- **Garlic or herbs in oil** — homemade versions can support botulism. Keep them refrigerated and use within a few days, or freeze.
+- **Home canning** — low-acid foods such as vegetables, meat and beans must be pressure-canned using a tested recipe. Discard any can or jar that bulges, leaks, spurts, or smells off — without tasting.
+- **Raw red kidney beans** — contain a natural toxin. Soak and boil hard for at least 10 minutes before slow cooking; a slow cooker alone may not get hot enough.
+
+## When in doubt, throw it out
+
+Mold on soft foods, a sour smell, a slimy texture, or an unknown age are all reasons to discard. Pathogens often give no warning at all, which is why the dates and the clock matter more than your nose.
+
+## Why this outlasts any technology
+
+Packaging, delivery and refrigeration will keep improving. Time, temperature and labeling remain the backbone of safe storage. Tomorrow we pick up a knife.
+
+
+################################################################################
+# FILE: content/blog/2026-10-13-knives-and-cutting-safely.es.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-13-knives-and-cutting-safely.es.md
+  Relative path:         content/blog/2026-10-13-knives-and-cutting-safely.es.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-13-knives-and-cutting-safely.es.md
+  Size:                  3.9 KiB (4067 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567068
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               8f213d6e8d852d0a8c3bcb69345675545ed02b4ae46287418d1cb33a433c98dc
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Cuchillos y cómo cortar con seguridad
+summary: Tres cuchillos cubren casi todo, un filo afilado es más seguro que uno sin filo, y una tabla firme junto con el agarre en garra protege tus dedos. Las técnicas de corte que todo cocinero necesita.
+---
+
+**TL;DR:** Ten un cuchillo de chef, un cuchillo mondador y un cuchillo de sierra. Mantenlos afilados, fija la tabla con un paño húmedo, sujeta la comida con la mano en garra y corta con el lado plano hacia abajo. Nunca atrapes un cuchillo que cae, nunca lo dejes dentro del fregadero, y lávalo y sécalo enseguida.
+
+## Los únicos tres cuchillos que necesitas
+
+- **Cuchillo de chef** (20 a 25 cm u 8 a 10 pulgadas): hace cerca del 90 % del trabajo, picar, rebanar, cortar fino.
+- **Cuchillo mondador**: pequeño, para pelar, recortar y trabajar en la mano.
+- **Cuchillo de sierra**: para el pan, los tomates y todo lo que es duro por fuera y blando por dentro.
+
+Elige por comodidad y equilibrio, no por la cantidad de piezas del juego.
+
+## Afilado es más seguro
+
+Un cuchillo sin filo necesita más fuerza, resbala sobre la piel del tomate y las capas de la cebolla, y va adonde no quieres. Un cuchillo afilado va adonde lo guías.
+
+- **Asentar** el filo con una chaira lo realinea. Hazlo a menudo.
+- **Afilar** con una piedra de afilar o un buen afilador quita metal para crear un filo nuevo. Hazlo cuando asentar ya no devuelva el corte.
+- Pruébalo con una hoja de papel o la piel de un tomate: un cuchillo afilado corta sin rasgar.
+
+## Prepara un puesto estable
+
+- Pon un paño húmedo o una alfombrilla antideslizante bajo la tabla para que no se mueva.
+- Usa tablas de madera o plástico. El vidrio, la piedra y los platos destruyen el filo y hacen que el cuchillo resbale.
+- Date espacio. Despeja el desorden antes de empezar.
+
+## El agarre y la garra
+
+- **Mano del cuchillo**: pellizca la hoja justo delante del mango entre el pulgar y el costado del índice, y rodea el mango con los demás dedos. Esto da control.
+- **Mano guía**: dobla las yemas de los dedos hacia dentro como una garra, con los nudillos hacia delante. El costado de la hoja se apoya en los nudillos y las yemas quedan protegidas detrás.
+- **Estabilidad**: corta primero por la mitad los alimentos redondos para que se asienten planos. Una cebolla que rueda es como ocurren los accidentes.
+- **Movimiento**: deja que el cuchillo trabaje con un movimiento hacia delante o de balanceo, no presionando hacia abajo.
+
+## Los cortes básicos
+
+- **Rebanar**: piezas planas y uniformes.
+- **Cubos**: pequeños, medianos y grandes miden aproximadamente 6, 12 y 20 mm (¼, ½ y ¾ de pulgada).
+- **Picar fino**: trozos muy pequeños, para ajo, hierbas y chalotas.
+- **Juliana**: bastoncitos delgados.
+- **Chiffonade**: apila hojas, enróllalas apretadas y córtalas en tiras finas.
+
+Las piezas uniformes se cocinan de forma uniforme. Esa es la verdadera razón de que existan los cortes.
+
+## Reglas de seguridad con cuchillos
+
+- **Nunca intentes atrapar un cuchillo que cae.** Da un paso atrás y déjalo caer.
+- Nunca dejes un cuchillo en un fregadero con agua jabonosa donde nadie lo vea.
+- Llévalo con la punta hacia abajo, el filo hacia atrás y pegado al costado, y avisa "cuchillo detrás" en una cocina compartida.
+- Usa el lomo, no el filo, para arrastrar la comida por la tabla.
+- Lava los cuchillos a mano, sécalos enseguida y guárdalos en un bloque, en una barra magnética o con protector, nunca sueltos en un cajón.
+
+## Si te cortas
+
+Enjuaga con agua limpia, aplica presión firme con un paño limpio, levanta la mano y cubre con un apósito impermeable. Busca atención médica si el corte es profundo, no deja de sangrar o queda abierto. Desecha cualquier alimento que tenga sangre.
+
+## Por qué esto perdura más allá de cualquier tecnología
+
+Los procesadores de alimentos y los aparatos seguirán prometiendo reemplazar al cuchillo. Nunca lo consiguen del todo. Un buen cuchillo y unas manos firmes están entre las habilidades más duraderas de un cocinero. Mañana: organizarse antes de encender el fuego.
+
+
+################################################################################
+# FILE: content/blog/2026-10-13-knives-and-cutting-safely.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-13-knives-and-cutting-safely.md
+  Relative path:         content/blog/2026-10-13-knives-and-cutting-safely.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-13-knives-and-cutting-safely.md
+  Size:                  3.6 KiB (3707 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567067
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               212866552ab97137003fea0b54d148310bbd88e4c87d70a48aa32a853338e855
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Knives and Cutting Safely
+date: 2026-10-13
+author: kphoto-team
+summary: Three knives cover almost everything, a sharp edge is safer than a dull one, and a steady board plus the claw grip protects your fingers. The cutting skills every cook needs.
+tags:
+  - kitchen-fundamentals
+  - knife-skills
+  - kitchen-safety
+series: Kitchen Fundamentals
+episode: 6
+---
+
+**TL;DR:** Own a chef's knife, a paring knife and a serrated knife. Keep them sharp, anchor your board with a damp towel, hold food with a curled claw, and cut flat sides down. Never catch a falling knife, never leave one in a sink, and wash and dry it right away.
+
+## The only three knives you need
+
+- **Chef's knife** (20–25 cm or 8–10 inches) — does about 90% of the work: chopping, slicing, mincing.
+- **Paring knife** — small, for peeling, trimming and in-hand work.
+- **Serrated knife** — for bread, tomatoes, and anything with a hard outside and soft inside.
+
+Buy for comfort and balance, not for the number of pieces in a block.
+
+## Sharp is safer
+
+A dull knife needs more force, skids off tomato skins and onion layers, and goes where you don't want it to. A sharp knife goes where you guide it.
+
+- **Honing** with a steel realigns the edge. Do it often.
+- **Sharpening** with a whetstone or a good sharpener removes metal to create a new edge. Do it when honing no longer brings the bite back.
+- Test with a sheet of paper or a tomato skin: a sharp knife slices without tearing.
+
+## Set up a stable station
+
+- Put a damp towel or a non-slip mat under the board so it cannot slide.
+- Use wood or plastic boards. Glass, stone and plates destroy edges and let the knife skate.
+- Give yourself space. Clear clutter before you start.
+
+## The grip and the claw
+
+- **Knife hand** — pinch the blade just in front of the handle between thumb and the side of the index finger; wrap the other fingers around the handle. This gives control.
+- **Guide hand** — curl your fingertips under like a claw, with the knuckles forward. The flat of the blade rests against the knuckles, and the fingertips stay safely behind.
+- **Stability** — cut round foods in half first so they sit flat. A rolling onion is how accidents happen.
+- **Motion** — let the knife do the work with a forward or rocking motion, not downward pressure.
+
+## The basic cuts
+
+- **Slice** — even, flat pieces.
+- **Dice** — cubes; small, medium and large are roughly 6, 12 and 20 mm (¼, ½, ¾ inch).
+- **Mince** — very fine pieces, for garlic, herbs and shallots.
+- **Julienne** — thin matchsticks.
+- **Chiffonade** — stack leaves, roll tightly, and slice into ribbons.
+
+Even pieces cook evenly. That is the real reason the cuts exist.
+
+## Knife safety rules
+
+- **Never try to catch a falling knife.** Step back and let it fall.
+- Never leave a knife in a sink of soapy water where nobody can see it.
+- Carry it pointing down, blade turned back, close to your side, and say "knife behind" in a shared kitchen.
+- Use the spine, not the edge, to scrape food across the board.
+- Wash knives by hand, dry immediately, and store them in a block, on a magnetic strip, or with a blade guard — never loose in a drawer.
+
+## If you cut yourself
+
+Rinse with clean water, apply firm pressure with a clean cloth, raise the hand, and cover with a waterproof dressing. Seek medical care for deep cuts, cuts that won't stop bleeding, or anything that gapes. Discard any food that has blood on it.
+
+## Why this outlasts any technology
+
+Food processors and gadgets will keep promising to replace the knife. They never quite do. A good knife and steady hands are among the most durable skills a cook can have. Tomorrow: getting organized before the heat goes on.
+
+
+################################################################################
+# FILE: content/blog/2026-10-14-mise-en-place-and-reading-a-recipe.es.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-14-mise-en-place-and-reading-a-recipe.es.md
+  Relative path:         content/blog/2026-10-14-mise-en-place-and-reading-a-recipe.es.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-14-mise-en-place-and-reading-a-recipe.es.md
+  Size:                  3.7 KiB (3859 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567070
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               8865fe1236949398837422edd1167a40003fcb994c4afc868aa2679d3f9d9c31
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Mise en place y cómo leer una receta
+summary: Todo en su lugar. Lee la receta dos veces, prepara antes de calentar, mide con cuidado y organiza tu espacio para que cocinar sea tranquilo en lugar de caótico.
+---
+
+**TL;DR:** Lee la receta completa antes de empezar, reúne y prepara todos los ingredientes y utensilios, y luego cocina. Mide por peso cuando la precisión importa, precalienta a propósito, mantén separados los alimentos crudos de los listos para comer y limpia sobre la marcha. Cocinar con calma es cocinar con seguridad.
+
+## Qué significa mise en place
+
+_Mise en place_ es francés y significa "poner en su lugar". En las cocinas profesionales quiere decir que cada ingrediente está lavado, medido y cortado, y cada utensilio está a mano, antes de calentar la primera sartén. En casa significa que nunca dejas de remover para picar una cebolla mientras se quema el ajo.
+
+## Lee la receta dos veces
+
+La primera lectura te dice qué vas a preparar. La segunda te dice qué te puede tomar por sorpresa:
+
+- **Tiempo oculto**: marinar toda la noche, enfriar una masa, dejar la mantequilla a temperatura ambiente, remojar frijoles.
+- **Pasos ocultos**: "1 cebolla, en cubos" significa que cortar va antes de empezar a cocinar.
+- **Utensilios**: un tamaño de molde concreto, un termómetro, una licuadora.
+- **Orden**: qué se añade y cuándo, y qué se puede preparar con antelación.
+
+Si una receta usa un término que no conoces, búscalo antes de encender la estufa.
+
+## Medir
+
+- **El peso gana al volumen** en repostería. Una taza de harina puede variar mucho según cómo se llene; 125 gramos siempre son 125 gramos. Una báscula de cocina es una de las mejores herramientas económicas que puedes tener.
+- Si tienes que usar volumen, echa la harina a cucharadas en la taza y nivélala. No la aprietes a menos que se indique.
+- Las medidas de líquidos se leen a la altura de los ojos.
+- Cocinar perdona; la repostería es química y premia la precisión.
+
+## Prepara tu puesto
+
+1. Despeja y limpia la encimera.
+2. Lávate las manos.
+3. Coloca una tabla con un paño húmedo debajo, un recipiente para desperdicios y un paño para limpiar.
+4. Prepara los ingredientes en pequeños recipientes o montoncitos, agrupados según cuándo se añaden.
+5. Mantén las proteínas crudas en su propia zona, en su propia tabla, preparadas al final.
+6. Precalienta el horno o la sartén en el momento justo: ni tan pronto que se queme, ni tan tarde que tengas que esperar.
+
+## Precalentar importa
+
+La comida que entra en una sartén fría se cuece al vapor y se pega en lugar de dorarse. Un horno bien precalentado da a los horneados el golpe de calor que necesitan para subir. Deja que la sartén se caliente hasta que el aceite brille antes de añadir la comida para sellarla, y espera a que el horno alcance la temperatura; un termómetro de horno revela qué tan preciso es tu indicador.
+
+## Piensa en tiempo, no solo en pasos
+
+Trabaja hacia atrás desde la hora en que quieres comer. Empieza por lo que tarda más. Las salsas de cocción larga, el arroz y los asados van primero; las verduras rápidas y las guarniciones, al final. Escribe el plan para las comidas grandes.
+
+## Prueba y ajusta
+
+Las recetas están escritas para una estufa promedio, ingredientes promedio y un paladar promedio. Los tuyos serán distintos. Prueba en cada etapa con una cuchara limpia y confía en lo que tus sentidos te dicen sobre el punto de cocción, además del reloj.
+
+## Por qué esto perdura más allá de cualquier tecnología
+
+Las aplicaciones de recetas, los asistentes de voz y los hornos inteligentes cambiarán la forma en que te llegan las instrucciones. Leerlas con atención, prepararte antes de empezar y organizar tu espacio siempre será lo que separa el caos del control. Mañana: cómo el calor cocina realmente los alimentos.
+
+
+################################################################################
+# FILE: content/blog/2026-10-14-mise-en-place-and-reading-a-recipe.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-14-mise-en-place-and-reading-a-recipe.md
+  Relative path:         content/blog/2026-10-14-mise-en-place-and-reading-a-recipe.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-14-mise-en-place-and-reading-a-recipe.md
+  Size:                  3.3 KiB (3407 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567069
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               a8ce5e6f648ee947a578fc0b980c05a618cfeec4feab354501620af8c1801e04
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Mise en Place and Reading a Recipe
+date: 2026-10-14
+author: kphoto-team
+summary: Everything in its place. Read the recipe twice, prepare before you heat, measure with care, and organize your space so cooking becomes calm instead of chaotic.
+tags:
+  - kitchen-fundamentals
+  - organization
+  - technique
+series: Kitchen Fundamentals
+episode: 7
+---
+
+**TL;DR:** Read the whole recipe before you start, gather and prepare every ingredient and tool, then cook. Measure by weight when precision matters, preheat on purpose, keep raw and ready-to-eat items separated, and clean as you go. Calm cooking is safe cooking.
+
+## What mise en place means
+
+_Mise en place_ is French for "putting in place". In professional kitchens it means every ingredient is washed, measured and cut, and every tool is within reach, before the first pan is heated. At home it means you never stop stirring to chop an onion while the garlic burns.
+
+## Read the recipe twice
+
+The first read tells you what you are making. The second read tells you what will catch you out:
+
+- **Hidden time** — marinating overnight, chilling dough, bringing butter to room temperature, soaking beans.
+- **Hidden steps** — "1 onion, diced" means dicing comes before the cooking starts.
+- **Equipment** — a specific pan size, a thermometer, a blender.
+- **Order** — what goes in when, and what can be prepared in advance.
+
+If a recipe uses a term you don't know, look it up before the stove is on.
+
+## Measuring
+
+- **Weight beats volume** for baking. A cup of flour can vary greatly depending on how it is scooped; 125 grams is always 125 grams. A kitchen scale is one of the best inexpensive tools you can own.
+- Spoon flour into a cup and level it if you must use volume. Don't pack it unless told to.
+- Liquid measures are read at eye level.
+- Cooking forgives; baking is chemistry and rewards precision.
+
+## Set up your station
+
+1. Clear and clean the counter.
+2. Wash your hands.
+3. Lay out a board with a damp towel under it, a bowl for scraps, and a towel for wiping.
+4. Prepare ingredients into small bowls or piles, grouped by when they are added.
+5. Keep raw proteins in their own area, on their own board, prepared last.
+6. Preheat the oven or pan at the right moment — not so early it scorches, not so late you wait.
+
+## Preheating matters
+
+Food added to a cold pan steams and sticks instead of searing. A properly preheated oven gives baked goods the burst of heat they need to rise. Let the pan heat until oil shimmers before adding food for a sear, and wait for the oven to reach temperature — an oven thermometer reveals how accurate your dial is.
+
+## Think in time, not just steps
+
+Work backwards from when you want to eat. Start with whatever takes longest. Long-simmering sauces, rice and roasts go first; quick vegetables and garnishes go last. Write the timeline down for big meals.
+
+## Taste and adjust
+
+Recipes are written for an average stove, average ingredients and an average palate. Yours will differ. Taste at each stage with a clean spoon, and trust what your senses tell you about doneness alongside the clock.
+
+## Why this outlasts any technology
+
+Recipe apps, voice assistants and smart ovens will change how instructions reach you. Reading them carefully, preparing before you begin, and organizing your space will always be what separates chaos from control. Tomorrow: how heat actually cooks food.
+
+
+################################################################################
+# FILE: content/blog/2026-10-15-how-heat-cooks-food.es.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-15-how-heat-cooks-food.es.md
+  Relative path:         content/blog/2026-10-15-how-heat-cooks-food.es.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-15-how-heat-cooks-food.es.md
+  Size:                  4.3 KiB (4505 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567072
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               307c78cc682f28d6b000ba233c8e945cea45f46efc0280c6cf35d5bf66f18755
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Cómo el calor cocina los alimentos
+summary: Cada método de cocción es una forma de llevar calor a la comida. Entiende la conducción, la convección y la radiación, el calor seco frente al húmedo, el dorado y la cocción residual, y todas las recetas cobrarán sentido.
+---
+
+**TL;DR:** El calor se transmite por conducción, convección y radiación. El calor seco (sellar, asar, freír) dora y crea sabor; el calor húmedo (hervir, cocer al vapor, brasear) es suave y ablanda. No llenes demasiado la sartén, deja reposar la carne después de cocinarla y comprueba el punto con un termómetro.
+
+## Tres formas en que viaja el calor
+
+- **Conducción**: contacto directo. Una sartén caliente calienta el filete que la toca; el exterior del filete calienta el interior.
+- **Convección**: el aire o un líquido en movimiento transporta el calor. Agua hirviendo, un horno de convección, la fritura profunda.
+- **Radiación**: energía que viaja por el espacio. Un gratinador, las brasas, una tostadora. El horno de microondas usa otro tipo de energía electromagnética que calienta el agua dentro de la comida.
+
+La mayoría de los métodos combinan más de una. Reconocer cuál domina te ayuda a predecir cómo se comportará la comida.
+
+## Métodos de calor seco
+
+No se usa agua para transmitir el calor, así que la temperatura puede subir muy por encima del punto de ebullición.
+
+- **Saltear**: fuego alto, piezas pequeñas, poca grasa, movimiento constante.
+- **Sellar**: sartén muy caliente, la comida quieta para que forme una costra.
+- **Asar y hornear**: aire caliente que rodea la comida en el horno.
+- **Parrilla y gratinador**: calor radiante intenso desde abajo o desde arriba.
+- **Freír en abundante o poco aceite**: grasa caliente, que es calor seco aunque sea un líquido.
+
+## Métodos de calor húmedo
+
+El agua y el vapor no superan unos 100 °C (212 °F) a nivel del mar, así que estos métodos son más suaves.
+
+- **Hervir**: burbujas vigorosas; para pasta y verduras resistentes.
+- **Hervir a fuego lento**: burbujas pequeñas y perezosas; para caldos, sopas y la mayoría de las salsas.
+- **Escalfar**: agua apenas en movimiento; para huevos, pescado y fruta.
+- **Al vapor**: la comida encima del agua, no dentro. Conserva nutrientes y textura.
+- **Brasear y guisar**: primero dorar, luego cocinar lentamente, parcial o totalmente cubierto de líquido. Ideal para cortes duros y económicos, cuyo tejido conectivo se convierte en gelatina con el tiempo.
+
+## Dorar es sabor
+
+Cuando los alimentos ricos en proteínas y azúcares se calientan y se secan, la **reacción de Maillard** crea cientos de compuestos de sabor nuevos: la corteza del pan, el sellado de la carne, los frutos secos tostados. La **caramelización** es el azúcar descomponiéndose por sí solo, como en las cebollas cocinadas lentamente hasta un marrón profundo.
+
+Para dorar bien:
+
+- Seca la comida. El agua de la superficie debe evaporarse antes de que empiece el dorado.
+- Precalienta la sartén.
+- **No llenes demasiado la sartén.** Demasiada comida baja la temperatura y suelta vapor, así que la comida se guisa en lugar de dorarse. Cocina por tandas.
+- Déjala quieta hasta que se despegue sola de la sartén.
+
+## Cocción residual y reposo
+
+Las piezas grandes de carne siguen cocinándose después de retirarlas del fuego, a medida que el calor pasa del exterior caliente hacia dentro, a menudo varios grados. Retíralas un poco antes de la temperatura deseada y déjalas reposar. El reposo también permite que los jugos se asienten, y queda menos en la tabla.
+
+## El punto de cocción
+
+Los tiempos de las recetas son estimaciones. El grosor, la temperatura inicial, el material de la sartén y tu estufa cambian el resultado. Un termómetro de lectura instantánea convierte la suposición en certeza, y para la carne, las aves y los huevos también es tu control de seguridad.
+
+## Grasas y punto de humo
+
+Toda grasa empieza a humear a cierta temperatura. El aceite que humea sabe acre y es un paso hacia un incendio. Para sellar a fuego alto, elige aceites refinados con punto de humo más alto; reserva la mantequilla y el aceite de oliva extra virgen para fuego medio o para terminar.
+
+## Por qué esto perdura más allá de cualquier tecnología
+
+Las placas de inducción, los hornos mixtos y aparatos aún por inventar hacen las mismas tres cosas: conducen, convectan e irradian calor. Entiende la física y podrás cocinar en cualquier cosa. Mañana: sazonar y construir sabor.
+
+
+################################################################################
+# FILE: content/blog/2026-10-15-how-heat-cooks-food.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-15-how-heat-cooks-food.md
+  Relative path:         content/blog/2026-10-15-how-heat-cooks-food.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-15-how-heat-cooks-food.md
+  Size:                  3.8 KiB (3909 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567071
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               1b84458044362e9167241f4633a87245276a5da43f8b43f072256b0f6008d4cc
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: How Heat Cooks Food
+date: 2026-10-15
+author: kphoto-team
+summary: Every cooking method is a way of moving heat into food. Understand conduction, convection and radiation, dry versus moist heat, browning and carryover cooking, and every recipe makes sense.
+tags:
+  - kitchen-fundamentals
+  - technique
+  - temperature
+series: Kitchen Fundamentals
+episode: 8
+---
+
+**TL;DR:** Heat moves by conduction, convection and radiation. Dry heat (searing, roasting, frying) browns and builds flavor; moist heat (boiling, steaming, braising) is gentle and tenderizes. Don't crowd the pan, rest meat after cooking, and judge doneness with a thermometer.
+
+## Three ways heat travels
+
+- **Conduction** — direct contact. A hot pan heats the steak touching it; the outside of the steak heats the inside.
+- **Convection** — moving air or liquid carries heat. Boiling water, a convection oven, deep frying.
+- **Radiation** — energy that travels through space. A broiler, glowing coals, a toaster. Microwave ovens use a different kind of electromagnetic energy that heats the water inside food.
+
+Most methods combine more than one. Recognizing which dominates helps you predict how food will behave.
+
+## Dry-heat methods
+
+No water used for transferring heat, so temperatures can climb well above boiling.
+
+- **Sauté and stir-fry** — high heat, small pieces, little fat, constant motion.
+- **Sear** — very hot pan, food left alone to form a crust.
+- **Roast and bake** — surrounding hot air in an oven.
+- **Grill and broil** — intense radiant heat from below or above.
+- **Deep and shallow frying** — hot fat, which is dry heat despite being a liquid.
+
+## Moist-heat methods
+
+Water and steam can't exceed about 212°F (100°C) at sea level, so these methods are gentler.
+
+- **Boil** — vigorous bubbles; for pasta and sturdy vegetables.
+- **Simmer** — small, lazy bubbles; for stocks, soups, and most sauces.
+- **Poach** — barely moving water; for eggs, fish, and fruit.
+- **Steam** — food above, not in, the water. Keeps nutrients and texture.
+- **Braise and stew** — brown first, then cook slowly, partly or fully covered in liquid. Ideal for tough, cheap cuts, whose connective tissue turns to gelatin over time.
+
+## Browning is flavor
+
+When protein- and sugar-rich foods get hot and dry, the **Maillard reaction** creates hundreds of new flavor compounds — the crust on bread, the sear on meat, toasted nuts. **Caramelization** is sugar breaking down on its own, as in onions cooked slowly to a deep brown.
+
+To brown well:
+
+- Pat food dry. Surface water must evaporate before browning can begin.
+- Preheat the pan.
+- **Don't crowd the pan.** Too much food drops the temperature and releases steam, so food stews instead of searing. Cook in batches.
+- Leave it alone until it releases from the pan on its own.
+
+## Carryover cooking and resting
+
+Large pieces of meat keep cooking after you take them off the heat as heat moves from the hot exterior inward — often by several degrees. Remove them a little before the target temperature and let them rest. Resting also lets juices settle, so less ends up on the board.
+
+## Doneness
+
+Times in recipes are estimates. Thickness, starting temperature, pan material and your stove all change the result. An instant-read thermometer turns guessing into knowing, and for meat, poultry and eggs it is also your safety check.
+
+## Fat and smoke points
+
+Every fat starts to smoke at some temperature. Smoking oil tastes acrid and is a step toward a fire. For high-heat searing, choose refined oils with higher smoke points; save butter and extra-virgin olive oil for moderate heat or finishing.
+
+## Why this outlasts any technology
+
+Induction hobs, combi ovens and devices yet to be invented all do the same three things: conduct, convect and radiate heat. Understand the physics and you can cook on anything. Tomorrow: seasoning and building flavor.
+
+
+################################################################################
+# FILE: content/blog/2026-10-16-seasoning-and-building-flavor.es.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-16-seasoning-and-building-flavor.es.md
+  Relative path:         content/blog/2026-10-16-seasoning-and-building-flavor.es.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-16-seasoning-and-building-flavor.es.md
+  Size:                  4.1 KiB (4208 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567074
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               5818b02877518b97777bc7c901c7843d5f50b14c3f25087dc1c4a9590a7a94e8
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Sazonar y construir sabor
+summary: La sal, el ácido, la grasa, el dulzor, el amargor y el picante son las palancas detrás de todo gran plato. Aprende a sazonar por capas, probar sobre la marcha y arreglar un plato que no convence.
+---
+
+**TL;DR:** Sazona por capas, no solo al final. La sal intensifica los sabores, el ácido los ilumina, la grasa los transporta y un poco de dulzor o amargor crea equilibrio. Prueba con una cuchara limpia en cada etapa, y cuando algo sepa plano, recurre a la sal o al ácido antes que a nada más.
+
+## Gusto frente a sabor
+
+Tu lengua detecta unos pocos gustos básicos: **salado, ácido, dulce, amargo y umami** (sabroso). El sabor es mucho más amplio: es el gusto más el aroma, la textura y la temperatura. Por eso la comida parece insípida cuando estás resfriado. La buena cocina equilibra los gustos básicos y construye el aroma encima.
+
+## Sal
+
+La sal es el condimento más importante de la cocina. No solo hace que la comida sepa salada; reduce el amargor y hace más vivos los demás sabores.
+
+- **Sazona temprano y durante toda la cocción.** La sal añadida al cocinar penetra; la que se espolvorea al final queda en la superficie.
+- **Sala bien el agua de la pasta**, porque es la única oportunidad de sazonar la pasta misma.
+- **Sala la carne con antelación**: incluso 40 minutos, o hasta un día en el refrigerador, sazona más a fondo y ayuda al dorado.
+- **Usa siempre la misma sal** para aprender su fuerza. Las distintas sales varían mucho en lo salada que resulta una cucharada.
+- Añade poco a poco. Siempre puedes añadir más; no puedes quitarla.
+
+## Ácido
+
+Limón, lima, vinagre, vino, tomate, yogur. El ácido ilumina, corta la pesadez y despierta un plato que sabe denso o apagado. Un chorrito de cítrico o de vinagre al final es el arreglo profesional más común.
+
+## Grasa
+
+La grasa transporta el sabor, da riqueza y textura, y muchos compuestos aromáticos se disuelven en ella. La mantequilla, los aceites, la crema, los frutos secos y el queso aportan. Muy poca y la comida queda seca y pobre; demasiada y queda grasosa: equilibra con ácido.
+
+## Dulce, amargo, umami y picante
+
+- **El dulzor** suaviza la acidez y el picante. Una pizca de azúcar en una salsa de tomate es un truco antiguo.
+- **El amargor**, del café, las hojas verdes oscuras, los bordes tostados o el cacao, aporta profundidad en dosis pequeñas.
+- **El umami** proviene de los quesos curados, los hongos, el tomate, la salsa de soya, la salsa de pescado y la carne cocinada lentamente. Hace que la comida sepa sabrosa y completa.
+- **El picante** de los chiles, la pimienta o la mostaza aporta emoción. Añádelo de a poco; el picante aumenta mientras el plato se cocina y reposa.
+
+## Aromáticos y especias
+
+- **Las verduras aromáticas**, cebolla, ajo, apio, zanahoria, pimiento, jengibre, cocinadas suavemente en grasa al principio, forman la base de innumerables cocinas.
+- **Las especias enteras** mejoran si se tuestan en una sartén seca hasta que suelten aroma y luego se muelen.
+- **Las especias molidas** despiertan si se fríen brevemente en aceite.
+- **Las hierbas secas** van al principio; **las hierbas frescas y tiernas** como el perejil, el cilantro y la albahaca, al final.
+- Las especias pierden fuerza. Compra en poca cantidad y guárdalas lejos del calor y la luz.
+
+## Probar y corregir
+
+Prueba en cada etapa, siempre con una cuchara limpia. Cuando un plato no convence:
+
+- **Insípido**: añade sal primero.
+- **Pesado o apagado**: añade ácido.
+- **Demasiado salado**: diluye con más ingredientes sin sal o líquido, o equilibra con ácido y grasa.
+- **Demasiado ácido**: añade un poco de dulzor o grasa.
+- **Demasiado picante**: añade lácteos, grasa, dulzor o más de la base.
+- **Le falta profundidad**: añade umami, o dora algo.
+
+## Por qué esto perdura más allá de cualquier tecnología
+
+Los ingredientes viajarán más lejos y las recetas se generarán más rápido, pero la lengua humana no está cambiando. Aprende a probar y equilibrar, y podrás cocinar cualquier cocina, con cualquier ingrediente, por el resto de tu vida. Mañana: seguridad, fuego y los hábitos que forman a un cocinero para toda la vida.
+
+
+################################################################################
+# FILE: content/blog/2026-10-16-seasoning-and-building-flavor.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-16-seasoning-and-building-flavor.md
+  Relative path:         content/blog/2026-10-16-seasoning-and-building-flavor.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-16-seasoning-and-building-flavor.md
+  Size:                  3.7 KiB (3830 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567073
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               4efea638f71867a0063b5fd50cfefa9763e7cc277e6dc4003eb02a691faedcbc
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Seasoning and Building Flavor
+date: 2026-10-16
+author: kphoto-team
+summary: Salt, acid, fat, sweetness, bitterness and heat are the levers behind every great dish. Learn to season in layers, taste as you go, and fix a dish that falls flat.
+tags:
+  - kitchen-fundamentals
+  - flavor
+  - technique
+series: Kitchen Fundamentals
+episode: 9
+---
+
+**TL;DR:** Season in layers, not just at the end. Salt makes flavors louder, acid makes them brighter, fat carries them, and a little sweetness or bitterness creates balance. Taste with a clean spoon at every stage, and when something is flat, reach for salt or acid before anything else.
+
+## Taste versus flavor
+
+Your tongue detects a handful of basic tastes — **salty, sour, sweet, bitter and umami** (savory). Flavor is much bigger: it is taste plus aroma, texture and temperature. That's why food seems bland when you have a cold. Good cooking balances the basic tastes and builds aroma on top.
+
+## Salt
+
+Salt is the most important seasoning in the kitchen. It does not just make food salty; it suppresses bitterness and makes other flavors more vivid.
+
+- **Season early and throughout.** Salt added during cooking penetrates; salt sprinkled at the end sits on the surface.
+- **Salt pasta water** generously, since it's the only chance to season the pasta itself.
+- **Salt meat ahead** — even 40 minutes, or up to a day in the fridge, seasons deeper and helps browning.
+- **Use one salt consistently** so you learn its strength. Different salts vary widely in how salty a spoonful is.
+- Add a little at a time. You can always add more; you can't take it out.
+
+## Acid
+
+Lemon, lime, vinegar, wine, tomatoes, yogurt. Acid brightens, cuts richness, and wakes up a dish that tastes heavy or muddy. A squeeze of citrus or a splash of vinegar at the end is the most common professional fix.
+
+## Fat
+
+Fat carries flavor, gives richness and texture, and many aromatic compounds dissolve in it. Butter, oils, cream, nuts and cheese all contribute. Too little and food is dry and thin; too much and it is greasy — balance with acid.
+
+## Sweet, bitter, umami and heat
+
+- **Sweetness** rounds off acidity and heat. A pinch of sugar in a tomato sauce is an old trick.
+- **Bitterness** — coffee, dark greens, charred edges, cocoa — adds depth in small doses.
+- **Umami** comes from aged cheese, mushrooms, tomatoes, soy sauce, fish sauce, and slow-cooked meat. It makes food taste savory and complete.
+- **Heat** from chilies, pepper or mustard adds excitement. Add gradually; heat builds as a dish cooks and sits.
+
+## Aromatics and spices
+
+- **Aromatic vegetables** — onions, garlic, celery, carrots, peppers, ginger — gently cooked in fat at the start form the base of countless cuisines.
+- **Whole spices** benefit from toasting in a dry pan until fragrant, then grinding.
+- **Ground spices** bloom when briefly fried in oil.
+- **Dried herbs** go in early; **fresh, tender herbs** like parsley, cilantro and basil go in at the end.
+- Spices fade. Buy small amounts and store them away from heat and light.
+
+## Tasting and fixing
+
+Taste at every stage, always with a clean spoon. When a dish falls flat:
+
+- **Bland** — add salt first.
+- **Heavy or dull** — add acid.
+- **Too salty** — dilute with more unsalted ingredients or liquid, or balance with acid and fat.
+- **Too sour** — add a little sweetness or fat.
+- **Too spicy** — add dairy, fat, sweetness or more of the base.
+- **Missing depth** — add umami, or brown something.
+
+## Why this outlasts any technology
+
+Ingredients will travel farther and recipes will be generated faster, but the human tongue isn't changing. Learn to taste and balance, and you will be able to cook any cuisine, with any ingredients, for the rest of your life. Tomorrow: safety, fire, and the habits that make a lifelong cook.
+
+
+################################################################################
+# FILE: content/blog/2026-10-17-kitchen-safety-and-lifelong-habits.es.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-17-kitchen-safety-and-lifelong-habits.es.md
+  Relative path:         content/blog/2026-10-17-kitchen-safety-and-lifelong-habits.es.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-17-kitchen-safety-and-lifelong-habits.es.md
+  Size:                  4.2 KiB (4392 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567076
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               50f0b9d5876812e12d3a0609ff578e8bc96150f668a3b1cfcfd4cd3bc11d0d3c
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Seguridad en la cocina y hábitos para toda la vida
+summary: Incendios, quemaduras, resbalones y escaldaduras, cómo responder cuando algo sale mal, y los hábitos diarios que convierten las lecciones de esta serie en algo natural. La última parte de Kitchen Fundamentals.
+---
+
+**TL;DR:** Nunca dejes la cocción sin vigilancia, nunca eches agua a un fuego de grasa, gira los mangos de las ollas hacia dentro y enfría las quemaduras con agua corriente. Ten un extintor y aprende a usarlo. Luego convierte la serie en hábito: lavar, separar, cocinar, enfriar, limpiar, cada vez.
+
+## Fuego
+
+Cocinar es una de las principales causas de incendios en el hogar, y la cocción sin vigilancia es la culpable más común.
+
+- **Quédate con ella.** Si sales de la cocina, apaga el fuego.
+- Mantén trapos, papel, guantes de horno y cortinas lejos de los quemadores.
+- Usa mangas ajustadas. Los puños sueltos atrapan las llamas.
+- Limpia con regularidad la grasa acumulada en la estufa, el horno y la campana.
+
+## Si hay un fuego de grasa
+
+- **Nunca uses agua.** Se convierte al instante en vapor y lanza grasa ardiendo por toda la habitación.
+- Apaga el fuego.
+- Desliza una tapa o una bandeja de horno sobre la sartén y déjala ahí hasta que se enfríe por completo.
+- Para un fuego muy pequeño, el bicarbonato de sodio o la sal pueden sofocarlo. Nunca harina: puede inflamarse.
+- Si el fuego es en el horno o el microondas, mantén la puerta cerrada y apágalo.
+- Si el fuego no se apaga en segundos o se extiende, **saca a todos y llama a los servicios de emergencia**.
+
+Ten un extintor apto para fuegos de cocina al alcance, fuera de la zona inmediata de cocción, y lee sus instrucciones antes de necesitarlas.
+
+## Quemaduras y escaldaduras
+
+- Gira los mangos de las ollas hacia dentro para que no se golpeen ni los agarren los niños.
+- Usa guantes de horno secos. La tela mojada conduce el calor directo a tu mano.
+- Levanta las tapas alejándolas de ti para que el vapor salga en la otra dirección.
+- Introduce la comida en el aceite caliente con suavidad, alejándola de tu cuerpo. Sécala antes: el agua hace que el aceite salpique.
+
+**Primeros auxilios:** enfría la quemadura con agua corriente fresca durante 20 minutos. Nada de hielo, mantequilla ni pomadas. Quita anillos y objetos ajustados antes de que empiece la hinchazón. Cubre sin apretar con film plástico limpio o un apósito limpio que no suelte pelusa. Busca atención médica para quemaduras grandes, profundas o con ampollas, quemaduras en la cara, las manos o los genitales, quemaduras químicas o eléctricas, y cualquier quemadura en un niño o un adulto mayor.
+
+## Resbalones, niños y electricidad
+
+- Limpia los derrames del suelo de inmediato.
+- Mantén a los niños fuera de la zona de cocción o dales tareas seguras y supervisadas.
+- Mantén los cables lejos del agua y de las superficies calientes, y sécate las manos antes de tocar los enchufes.
+- Guarda lo pesado abajo y usa un escalón firme, no una silla.
+
+## Los hábitos que lo unen todo
+
+Si no recuerdas nada más de esta serie, recuerda estas cinco palabras:
+
+1. **Limpiar**: manos, superficies y utensilios, a menudo y bien.
+2. **Separar**: lo crudo lejos de lo listo para comer; los alérgenos lejos de la comida de los demás.
+3. **Cocinar**: hasta temperaturas internas seguras, comprobadas con un termómetro.
+4. **Enfriar**: pronto, y nunca dejes que la comida se quede en la zona de peligro.
+5. **Respetar**: el cuchillo, la llama, el aceite caliente y a las personas a quienes alimentas.
+
+## Convertirte en mejor cocinero
+
+- Cocina el mismo plato varias veces. La repetición enseña más que la variedad.
+- Toma notas: qué cambiaste y qué pasó.
+- Aprende unas pocas técnicas fiables en lugar de muchas recetas. Las técnicas se transfieren; las recetas no.
+- Cocina para otras personas. Sus reacciones son una opinión honesta.
+- Equivócate a propósito de vez en cuando. Dora de más algo para ver dónde está el límite.
+
+## Por qué esto perdura más allá de cualquier tecnología
+
+Las herramientas cambiarán, las entregas serán más rápidas y las máquinas cocinarán más de nuestra comida. Pero quien entienda la higiene, la temperatura, la contaminación, el calor y el sabor siempre podrá alimentarse a sí mismo y a las personas que quiere, con seguridad y bien. Gracias por seguir Kitchen Fundamentals.
+
+
+################################################################################
+# FILE: content/blog/2026-10-17-kitchen-safety-and-lifelong-habits.md
+################################################################################
+
+--- METADATA ---
+  File name:             2026-10-17-kitchen-safety-and-lifelong-habits.md
+  Relative path:         content/blog/2026-10-17-kitchen-safety-and-lifelong-habits.md
+  Absolute path:         /home/kushal/src/ts/kphoto/content/blog/2026-10-17-kitchen-safety-and-lifelong-habits.md
+  Size:                  3.8 KiB (3908 bytes)
+  Last modified:         2026-10-09 02:48:30.000000000 -0400
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 65567075
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               3cec97df6166a9c8c2413d7794547fcf81217468603e3742a3960e073900e633
+  Last git commit:       995cbd4 2026-10-08 22:50:21 -0400 add claude articles
+
+--- CONTENT ---
+---
+title: Kitchen Safety and Lifelong Habits
+date: 2026-10-17
+author: kphoto-team
+summary: Fires, burns, slips and scalds, how to respond when things go wrong, and the daily habits that turn the lessons of this series into second nature. The final part of Kitchen Fundamentals.
+tags:
+  - kitchen-fundamentals
+  - kitchen-safety
+  - habits
+series: Kitchen Fundamentals
+episode: 10
+---
+
+**TL;DR:** Never leave cooking unattended, never put water on a grease fire, turn pan handles inward, and cool burns under running water. Keep a fire extinguisher and know how to use it. Then make the series a habit — wash, separate, cook, chill, clean — every single time.
+
+## Fire
+
+Cooking is a leading cause of home fires, and unattended cooking is the most common culprit.
+
+- **Stay with it.** If you leave the kitchen, turn the heat off.
+- Keep towels, paper, oven mitts and curtains away from burners.
+- Wear close-fitting sleeves. Loose cuffs catch flames.
+- Clean grease buildup from the stove, oven and hood regularly.
+
+## If there's a grease fire
+
+- **Never use water.** It turns instantly to steam and throws burning fat across the room.
+- Turn off the heat.
+- Slide a lid or a baking sheet over the pan and leave it there until fully cool.
+- For a very small fire, baking soda or salt can smother it. Never flour — it can ignite.
+- For an oven or microwave fire, keep the door closed and turn it off.
+- If the fire isn't out in seconds or is spreading, **get everyone out and call emergency services**.
+
+Keep a fire extinguisher rated for kitchen fires within reach, outside the immediate cooking area, and read its instructions before you need them.
+
+## Burns and scalds
+
+- Turn pot handles inward so they can't be knocked or grabbed by children.
+- Use dry oven mitts. Wet cloth conducts heat straight to your hand.
+- Lift lids away from you so steam escapes in the other direction.
+- Lower food into hot oil gently, away from your body. Dry it first — water makes oil spit.
+
+**First aid:** cool a burn under cool running water for 20 minutes. No ice, butter, or ointments. Remove rings and tight items before swelling starts. Cover loosely with clean plastic wrap or a clean, non-fluffy dressing. Seek medical care for large, deep, or blistering burns, burns to the face, hands or genitals, chemical or electrical burns, and any burn on a child or older adult.
+
+## Slips, children and electricity
+
+- Wipe up spills from the floor immediately.
+- Keep children out of the cooking zone or assign them safe, supervised jobs.
+- Keep cords away from water and hot surfaces, and dry your hands before touching plugs.
+- Store heavy items low and use a sturdy step, not a chair.
+
+## The habits that tie it all together
+
+If you remember nothing else from this series, remember these five words:
+
+1. **Clean** — hands, surfaces and tools, often and properly.
+2. **Separate** — raw away from ready-to-eat; allergens away from everyone else's food.
+3. **Cook** — to safe internal temperatures, checked with a thermometer.
+4. **Chill** — promptly, and never let food linger in the danger zone.
+5. **Respect** — the knife, the flame, the hot oil, and the people you feed.
+
+## Becoming a better cook
+
+- Cook the same dish several times. Repetition teaches more than variety.
+- Take notes — what you changed, and what happened.
+- Learn a few reliable techniques rather than many recipes. Techniques transfer; recipes don't.
+- Cook for other people. Their reactions are honest feedback.
+- Make mistakes on purpose sometimes. Overbrown something to see where the line is.
+
+## Why this outlasts any technology
+
+Tools will change, delivery will get faster, and machines will cook more of our food. But anyone who understands hygiene, temperature, contamination, heat and flavor will always be able to feed themselves and the people they love — safely and well. Thank you for following Kitchen Fundamentals.
 
 
 ################################################################################
@@ -12270,6 +13960,90 @@ yarn.lock
 
 --- CONTENT ---
 [Binary file — content omitted. Size: 4.6 MiB, SHA-256: 30216bf330c0f971c3cb12a535d085c15a84e794f1829de2c0bc18864bf7acd0]
+
+################################################################################
+# FILE: public/spoken/clean-hands-clean-food-en.wav
+################################################################################
+
+--- METADATA ---
+  File name:             clean-hands-clean-food-en.wav
+  Relative path:         public/spoken/clean-hands-clean-food-en.wav
+  Absolute path:         /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-en.wav
+  Size:                  10.6 MiB (11197484 bytes)
+  Last modified:         2026-10-09 09:01:30.280969342 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 65580295
+  Hard links:            1
+  MIME type:             audio/x-wav
+  SHA-256:               8abcad565a451874a342e35f756f56696ff4971d1bac95b1591a3f5f314b765a
+  Last git commit:       8fdb538 2026-10-09 09:05:07 -0400 add wave files
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 10.6 MiB, SHA-256: 8abcad565a451874a342e35f756f56696ff4971d1bac95b1591a3f5f314b765a]
+
+################################################################################
+# FILE: public/spoken/clean-hands-clean-food-es.wav
+################################################################################
+
+--- METADATA ---
+  File name:             clean-hands-clean-food-es.wav
+  Relative path:         public/spoken/clean-hands-clean-food-es.wav
+  Absolute path:         /home/kushal/src/ts/kphoto/public/spoken/clean-hands-clean-food-es.wav
+  Size:                  12.0 MiB (12608684 bytes)
+  Last modified:         2026-10-09 09:04:19.488036284 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 65580365
+  Hard links:            1
+  MIME type:             audio/x-wav
+  SHA-256:               dcbf091b101a7aa5f5bae470af0c7a9bc22c113f3db4f1227db775b5f1cef342
+  Last git commit:       8fdb538 2026-10-09 09:05:07 -0400 add wave files
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 12.0 MiB, SHA-256: dcbf091b101a7aa5f5bae470af0c7a9bc22c113f3db4f1227db775b5f1cef342]
+
+################################################################################
+# FILE: public/spoken/the-temperature-danger-zone-en.wav
+################################################################################
+
+--- METADATA ---
+  File name:             the-temperature-danger-zone-en.wav
+  Relative path:         public/spoken/the-temperature-danger-zone-en.wav
+  Absolute path:         /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-en.wav
+  Size:                  15.8 MiB (16575404 bytes)
+  Last modified:         2026-10-09 09:09:29.047032502 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 65580570
+  Hard links:            1
+  MIME type:             audio/x-wav
+  SHA-256:               728573cbe0ecb7140df34e6d46f3e9ce3b18405cb52092751f19283149c601f6
+  Last git commit:       5b5995b 2026-10-09 09:18:50 -0400 add second post
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 15.8 MiB, SHA-256: 728573cbe0ecb7140df34e6d46f3e9ce3b18405cb52092751f19283149c601f6]
+
+################################################################################
+# FILE: public/spoken/the-temperature-danger-zone-es.wav
+################################################################################
+
+--- METADATA ---
+  File name:             the-temperature-danger-zone-es.wav
+  Relative path:         public/spoken/the-temperature-danger-zone-es.wav
+  Absolute path:         /home/kushal/src/ts/kphoto/public/spoken/the-temperature-danger-zone-es.wav
+  Size:                  16.7 MiB (17548844 bytes)
+  Last modified:         2026-10-09 09:12:39.900318578 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 65580684
+  Hard links:            1
+  MIME type:             audio/x-wav
+  SHA-256:               881f894d3ecafcd39b32db502a6b0b9f030e9eabfd7a7b00ea6281061e6c8d0f
+  Last git commit:       5b5995b 2026-10-09 09:18:50 -0400 add second post
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 16.7 MiB, SHA-256: 881f894d3ecafcd39b32db502a6b0b9f030e9eabfd7a7b00ea6281061e6c8d0f]
 
 ################################################################################
 # FILE: README.md
@@ -24800,10 +26574,10 @@ npmMinimalAgeGate: 4320
 ################################################################################
 # DUMP SUMMARY
 ################################################################################
-  Files dumped   : 429
-  Total size     : 487.4 MiB (511118096 bytes)
+  Files dumped   : 453
+  Total size     : 542.7 MiB (569127514 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-10-08T22:28:59-04:00
+  Completed at   : 2026-10-09T09:20:04-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
