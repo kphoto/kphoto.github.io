@@ -1,6 +1,6 @@
 kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
-[09:19:09] 1/9 bootstrap
-[09:19:09] installing dependencies (yarn install --immutable)
+[09:47:00] 1/9 bootstrap
+[09:47:00] installing dependencies (yarn install --immutable)
 ➤ YN0000: · Yarn 4.18.1
 ➤ YN0000: ┌ Resolution step
 ➤ YN0000: └ Completed
@@ -8,67 +8,116 @@ kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
 ➤ YN0000: └ Completed
 ➤ YN0000: ┌ Link step
 ➤ YN0000: └ Completed
-➤ YN0000: · Done in 0s 308ms
-[09:19:09] bootstrap complete — try ./scripts/dev.sh
-[09:19:09] 2/9 format check
-[09:19:09] checking formatting (prettier --check)
+➤ YN0000: · Done in 0s 301ms
+[09:47:01] bootstrap complete — try ./scripts/dev.sh
+[09:47:01] 2/9 format check
+[09:47:01] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.18.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done in 0s 262ms
+[09:47:02] checking formatting (prettier --check)
 Checking formatting...
 All matched files use Prettier code style!
-[09:19:18] format complete
-[09:19:18] 3/9 lint
-[09:19:18] linting (eslint, zero warnings allowed)
-[09:19:25] lint complete
-[09:19:25] 4/9 typecheck (TypeScript 7)
-[09:19:25] type-checking with Version 7.0.2 (TypeScript 7 native compiler)
-[09:19:25] typecheck complete
-[09:19:25] 5/9 typecheck (TypeScript 7.1 preview)
-[09:19:25] type-checking with Version 7.1.0-dev.20261003.1 (TypeScript 7.1 preview)
-[09:19:25] typecheck (7.1 preview) complete
-[09:19:25] 6/9 unit tests
-[09:19:25] running unit tests with coverage (vitest)
+[09:47:10] format complete
+[09:47:10] 3/9 lint
+[09:47:10] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.18.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done in 0s 272ms
+[09:47:11] linting (eslint, zero warnings allowed)
+[09:47:17] lint complete
+[09:47:17] 4/9 typecheck (TypeScript 7)
+[09:47:18] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.18.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done in 0s 289ms
+[09:47:18] type-checking with Version 7.0.2 (TypeScript 7 native compiler)
+[09:47:19] typecheck complete
+[09:47:19] 5/9 typecheck (TypeScript 7.1 preview)
+[09:47:19] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.18.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done in 0s 245ms
+[09:47:19] type-checking with Version 7.1.0-dev.20261003.1 (TypeScript 7.1 preview)
+[09:47:19] typecheck (7.1 preview) complete
+[09:47:19] 6/9 unit tests
+[09:47:20] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.18.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done in 0s 247ms
+[09:47:20] running unit tests with coverage (vitest)
 
  RUN  v5.0.3 /home/kushal/src/ts/kphoto
       Coverage enabled with v8
 
- ✓ src/lib/yaml.test.ts (11 tests) 8ms
- ✓ src/lib/dates.test.ts (11 tests) 22ms
- ✓ src/i18n/format.test.ts (10 tests) 31ms
- ✓ src/client/storage.test.ts (12 tests) 8ms
- ✓ src/ssg/git.test.ts (2 tests) 14ms
+ ✓ src/client/storage.test.ts (16 tests) 10ms
+ ✓ src/client/narration.test.ts (27 tests) 15ms
+ ✓ src/i18n/format.test.ts (10 tests) 40ms
+ ✓ src/lib/dates.test.ts (11 tests) 39ms
+ ✓ src/ssg/git.test.ts (2 tests) 17ms
+ ✓ src/client/livePoller.test.ts (23 tests) 14ms
+ ✓ src/client/liveStats.test.ts (49 tests) 12ms
+ ✓ src/i18n/messages/messages.test.ts (4 tests) 13ms
+ ✓ src/i18n/translator.test.ts (9 tests) 12ms
+ ✓ src/client/liveStatsApi.test.ts (26 tests) 38ms
+ ✓ src/lib/contentNarration.test.ts (12 tests) 29ms
+ ✓ src/lib/content.test.ts (32 tests) 36ms
+ ✓ src/lib/collections.test.ts (9 tests) 15ms
+ ✓ src/lib/frontmatter.test.ts (4 tests) 6ms
+ ✓ src/i18n/locales.test.ts (9 tests) 8ms
  ✓ src/lib/markdown.test.ts (19 tests) 10ms
- ✓ src/client/liveStats.test.ts (49 tests) 13ms
- ✓ src/client/liveStatsApi.test.ts (26 tests) 36ms
- ✓ src/lib/collections.test.ts (9 tests) 13ms
- ✓ src/i18n/messages/messages.test.ts (4 tests) 14ms
- ✓ src/client/livePoller.test.ts (23 tests) 18ms
- ✓ src/i18n/translator.test.ts (9 tests) 16ms
- ✓ src/lib/content.test.ts (32 tests) 40ms
- ✓ src/i18n/locales.test.ts (9 tests) 11ms
- ✓ src/lib/frontmatter.test.ts (4 tests) 7ms
- ✓ src/ssg/loadContent.test.ts (2 tests) 10ms
- ✓ src/repoHygiene.test.ts (3 tests) 7ms
- ✓ src/i18n/localizedContent.test.ts (5 tests) 7ms
- ✓ src/client/themeInit.test.ts (5 tests) 7ms
- ✓ src/client/theme.test.ts (7 tests) 6ms
- ✓ src/client/circuitBreaker.test.ts (8 tests) 5ms
+ ✓ src/components/narration.test.ts (10 tests) 10ms
+ ✓ src/lib/yaml.test.ts (11 tests) 9ms
+ ✓ src/ssg/loadContent.test.ts (3 tests) 11ms
+ ✓ src/i18n/localizedContent.test.ts (9 tests) 8ms
  ✓ src/lib/buildInfo.test.ts (5 tests) 7ms
- ✓ src/lib/config.test.ts (6 tests) 6ms
+ ✓ src/components/components.test.ts (50 tests) 20ms
  ✓ src/client/locale.test.ts (5 tests) 7ms
- ✓ src/lib/sitemap.test.ts (2 tests) 6ms
- ✓ src/components/components.test.ts (50 tests) 17ms
- ✓ src/lib/slug.test.ts (5 tests) 4ms
+ ✓ src/repoHygiene.test.ts (3 tests) 8ms
+ ✓ src/client/themeInit.test.ts (5 tests) 10ms
+ ✓ src/client/theme.test.ts (7 tests) 7ms
+ ✓ src/lib/config.test.ts (6 tests) 5ms
+ ✓ src/client/circuitBreaker.test.ts (8 tests) 6ms
+ ✓ src/lib/sitemap.test.ts (2 tests) 5ms
+ ✓ src/lib/narration.test.ts (18 tests) 7ms
  ✓ src/versionSync.test.ts (3 tests) 4ms
- ✓ src/lib/readingTime.test.ts (3 tests) 4ms
+ ✓ src/lib/slug.test.ts (5 tests) 4ms
+ ✓ src/lib/readingTime.test.ts (3 tests) 3ms
  ✓ src/lib/feed.test.ts (8 tests) 4ms
- ✓ src/lib/html.test.ts (3 tests) 3ms
- ✓ src/pages/routes.test.ts (26 tests) 16ms
+ ✓ src/lib/html.test.ts (3 tests) 4ms
+ ✓ src/pages/routes.test.ts (26 tests) 21ms
 
- Test Files  32 passed (32)
-      Tests  376 passed (376)
-   Start at  09:19:26
-   Duration  752ms (transform 59%, import 17%, worker 15%, tests 9%)
+ Test Files  36 passed (36)
+      Tests  452 passed (452)
+   Start at  09:47:21
+   Duration  819ms (transform 56%, import 19%, worker 15%, tests 10%)
 
-  Transform  transforming modules took 2.62s · 59% of tracked time, re-done on every run
+  Transform  transforming modules took 2.72s · 56% of tracked time, re-done on every run
              persist transforms across runs with fsModuleCache: true
              learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
 
@@ -76,8 +125,8 @@ All matched files use Prettier code style!
 -----------------------|---------|----------|---------|---------|------------------------------------------------------
 File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                    
 -----------------------|---------|----------|---------|---------|------------------------------------------------------
-All files              |   80.71 |     75.5 |   81.89 |   80.64 |                                                      
- client                |   66.25 |    68.44 |    68.9 |   65.75 |                                                      
+All files              |   81.14 |    76.99 |   81.03 |   81.05 |                                                      
+ client                |   68.49 |    73.22 |   68.02 |    67.9 |                                                      
   browser.ts           |       0 |        0 |       0 |       0 | 5-47                                                 
   circuitBreaker.ts    |     100 |      100 |     100 |     100 |                                                      
   livePoller.ts        |   98.46 |    96.42 |     100 |   98.46 | 121                                                  
@@ -86,22 +135,25 @@ All files              |   80.71 |     75.5 |   81.89 |   80.64 |
   liveStatsElements.ts |       0 |        0 |       0 |       0 | 30-211                                               
   liveTestDoubles.ts   |   97.72 |      100 |   95.23 |   97.67 | 62                                                   
   locale.ts            |     100 |    94.44 |     100 |     100 | 20                                                   
-  main.ts              |       0 |        0 |       0 |       0 | 7-79                                                 
+  main.ts              |       0 |        0 |       0 |       0 | 8-82                                                 
+  narration.ts         |     100 |      100 |     100 |     100 |                                                      
+  narrationElement.ts  |       0 |        0 |       0 |       0 | 6-39                                                 
   storage.ts           |     100 |      100 |     100 |     100 |                                                      
   theme.ts             |     100 |      100 |     100 |     100 |                                                      
   themeInit.ts         |     100 |      100 |     100 |     100 |                                                      
- components            |   98.14 |    94.11 |   94.44 |   98.07 |                                                      
+ components            |   98.24 |    94.44 |   94.59 |   98.18 |                                                      
   authorCard.ts        |    87.5 |    88.23 |   66.66 |    87.5 | 7-8                                                  
   context.ts           |       0 |        0 |       0 |       0 |                                                      
   languageSwitcher.ts  |     100 |     87.5 |     100 |     100 | 34                                                   
   liveStats.ts         |     100 |      100 |     100 |     100 |                                                      
+  narration.ts         |     100 |      100 |     100 |     100 |                                                      
   postCard.ts          |     100 |      100 |     100 |     100 |                                                      
   postMeta.ts          |     100 |      100 |     100 |     100 |                                                      
   seriesNav.ts         |     100 |    92.85 |     100 |     100 | 29                                                   
   siteFooter.ts        |     100 |      100 |     100 |     100 |                                                      
   siteHeader.ts        |     100 |      100 |     100 |     100 |                                                      
   themePicker.ts       |     100 |      100 |     100 |     100 |                                                      
- i18n                  |   98.94 |    94.18 |   97.29 |    98.9 |                                                      
+ i18n                  |   98.94 |    94.44 |   97.29 |    98.9 |                                                      
   format.ts            |     100 |    96.29 |     100 |     100 | 36                                                   
   locales.ts           |     100 |      100 |     100 |     100 |                                                      
   localizedContent.ts  |     100 |      100 |     100 |     100 |                                                      
@@ -111,16 +163,17 @@ All files              |   80.71 |     75.5 |   81.89 |   80.64 |
   en.ts                |     100 |      100 |     100 |     100 |                                                      
   es.ts                |     100 |      100 |     100 |     100 |                                                      
   index.ts             |     100 |      100 |     100 |     100 |                                                      
- lib                   |   92.78 |     80.8 |   95.45 |   93.14 |                                                      
+ lib                   |   93.11 |     81.4 |   95.69 |   93.46 |                                                      
   buildInfo.ts         |     100 |      100 |     100 |     100 |                                                      
   collections.ts       |   97.05 |    78.57 |   88.88 |     100 | 41-56                                                
   config.ts            |   66.66 |      100 |   33.33 |      80 | 49                                                   
-  content.ts           |   96.03 |     88.4 |     100 |   95.95 | 57,69,134,191,225,230,272,303                        
+  content.ts           |   96.29 |    89.33 |     100 |   96.22 | 59,71,142,201,239,244,286,317                        
   dates.ts             |   96.87 |       88 |     100 |   96.87 | 85                                                   
   feed.ts              |     100 |    66.66 |     100 |     100 | 10,16                                                
   frontmatter.ts       |     100 |     87.5 |     100 |     100 | 13                                                   
   html.ts              |     100 |       50 |     100 |     100 | 10                                                   
   markdown.ts          |   91.17 |    68.68 |   93.33 |   91.85 | 114,123-136,149                                      
+  narration.ts         |     100 |    83.33 |     100 |     100 | 24                                                   
   readingTime.ts       |     100 |      100 |     100 |     100 |                                                      
   sitemap.ts           |     100 |      100 |     100 |     100 |                                                      
   slug.ts              |     100 |      100 |     100 |     100 |                                                      
@@ -135,165 +188,206 @@ All files              |   80.71 |     75.5 |   81.89 |   80.64 |
   live.ts              |     100 |      100 |     100 |     100 |                                                      
   markdownPage.ts      |     100 |      100 |     100 |     100 |                                                      
   notFound.ts          |     100 |      100 |     100 |     100 |                                                      
-  post.ts              |     100 |       70 |     100 |     100 | 15-16                                                
+  post.ts              |     100 |       70 |     100 |     100 | 16-17                                                
   routes.ts            |     100 |    88.88 |     100 |     100 | 106                                                  
   series.ts            |     100 |      100 |     100 |     100 |                                                      
   tags.ts              |     100 |      100 |     100 |     100 |                                                      
   testContext.ts       |     100 |      100 |     100 |     100 |                                                      
- ssg                   |   14.91 |     5.45 |      24 |   15.17 |                                                      
+ ssg                   |   16.52 |     3.77 |   32.14 |   16.81 |                                                      
   git.ts               |     100 |      100 |     100 |     100 |                                                      
-  loadContent.ts       |   91.66 |       50 |     100 |   91.66 | 15                                                   
+  loadContent.ts       |     100 |      100 |     100 |     100 |                                                      
   vitePlugin.ts        |       0 |        0 |       0 |       0 | 17-200                                               
 -----------------------|---------|----------|---------|---------|------------------------------------------------------
-[09:19:27] unit tests complete
-[09:19:27] 7/9 build
-[09:19:27] building the static site (vite build + kphoto-ssg)
+[09:47:21] unit tests complete
+[09:47:21] 7/9 build
+[09:47:21] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.18.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done in 0s 250ms
+[09:47:22] building the static site (vite build + kphoto-ssg)
 vite v8.3.2 building client environment for production...
-✓ 14 modules transformed.
+✓ 16 modules transformed.
 computing gzip size...
-dist/.vite/manifest.json          0.34 kB │ gzip: 0.18 kB
-dist/assets/styles-kPO2xPQs.css   5.41 kB │ gzip: 1.76 kB
-dist/assets/client-CB2RqZD5.js   11.14 kB │ gzip: 4.32 kB
+dist/.vite/manifest.json          0.34 kB │ gzip: 0.17 kB
+dist/assets/styles-CLKzjTyM.css   5.44 kB │ gzip: 1.77 kB
+dist/assets/client-CdaQQiN2.js   13.13 kB │ gzip: 5.04 kB
 
-✓ built in 78ms
+✓ built in 72ms
 kphoto-ssg: wrote 121 pages and feeds
-[09:19:27] build complete — output in dist/
-[09:19:27] 8/9 end-to-end tests (container — see ADR 0017)
-[09:19:27] running end-to-end tests in a container (podman compose run --rm e2e)
+[09:47:23] build complete — output in dist/
+[09:47:23] 8/9 end-to-end tests (container — see ADR 0017)
+[09:47:23] running end-to-end tests in a container (podman compose run --rm e2e)
 >>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
 
-[13:19:28] building the static site (vite build + kphoto-ssg)
+[13:47:23] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.18.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0066: │ typescript@patch:@typescript/typescript6@npm%3A6.0.2#optional!builtin<compat/typescript>::version=6.0.2&hash=5786d5: ENOENT: no such file or directory, lstat '/node_modules/typescript/lib/_tsc.js'
+➤ YN0013: │ 175 packages were added to the project (+ 183.42 MiB).
+➤ YN0000: └ Completed in 2s 312ms
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done with warnings in 2s 441ms
+[13:47:26] building the static site (vite build + kphoto-ssg)
 vite v8.3.2 building client environment for production...
-✓ 14 modules transformed.
+✓ 16 modules transformed.
 computing gzip size...
-dist/.vite/manifest.json          0.34 kB │ gzip: 0.18 kB
-dist/assets/styles-kPO2xPQs.css   5.41 kB │ gzip: 1.76 kB
-dist/assets/client-CB2RqZD5.js   11.14 kB │ gzip: 4.32 kB
+dist/.vite/manifest.json          0.34 kB │ gzip: 0.17 kB
+dist/assets/styles-CLKzjTyM.css   5.44 kB │ gzip: 1.77 kB
+dist/assets/client-CdaQQiN2.js   13.13 kB │ gzip: 5.04 kB
 
-✓ built in 63ms
+✓ built in 76ms
 kphoto-ssg: wrote 121 pages and feeds
-[13:19:30] build complete — output in dist/
-[13:19:30] using browsers preinstalled at /ms-playwright
-[13:19:30] running end-to-end tests (playwright)
+[13:47:28] build complete — output in dist/
+[13:47:28] installing dependencies (yarn install --immutable)
+➤ YN0000: · Yarn 4.18.1
+➤ YN0000: ┌ Resolution step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Fetch step
+➤ YN0000: └ Completed
+➤ YN0000: ┌ Link step
+➤ YN0000: └ Completed
+➤ YN0000: · Done in 0s 266ms
+[13:47:29] using browsers preinstalled at /ms-playwright
+[13:47:29] running end-to-end tests (playwright)
 
-Running 108 tests using 8 workers
+Running 120 tests using 8 workers
 
   -    1 [chromium] › tests/e2e/live.spec.ts:40:3 › live statistics switched off › no live markup and no requests anywhere
-  ✓    2 [chromium] › tests/e2e/i18n.spec.ts:25:3 › languages › switching language changes the page language and is remembered (1.5s)
-  ✓    3 [chromium] › tests/e2e/i18n.spec.ts:78:3 › build provenance › the footer links the commit the site was built from (896ms)
-  ✓    4 [chromium] › tests/e2e/live.spec.ts:72:3 › live statistics switched on › automated browsers never count a visit (1.0s)
-  ✓    5 [chromium] › tests/e2e/i18n.spec.ts:49:3 › languages › the localized home page links its own sections (1.4s)
-  ✓    6 [chromium] › tests/e2e/i18n.spec.ts:68:3 › languages from the browser › suggests the reader language when the page exists in it (948ms)
-  ✓    7 [chromium] › tests/e2e/i18n.spec.ts:44:3 › languages › a reader already in their language sees no suggestion (1.0s)
-  ✓    8 [chromium] › tests/e2e/live.spec.ts:54:3 › live statistics switched on › the footer shows live numbers from a read-only summary (1.0s)
-  ✓    9 [chromium] › tests/e2e/i18n.spec.ts:16:3 › languages › the document declares its language and its alternates (991ms)
-  ✓   10 [chromium] › tests/e2e/live.spec.ts:82:3 › live statistics switched on › an unreachable backend leaves the page exactly as it was (663ms)
-  ✓   11 [chromium] › tests/e2e/live.spec.ts:120:3 › live statistics switched on › /live/ says so, calmly, when the backend is gone (612ms)
-  ✓   12 [chromium] › tests/e2e/live.spec.ts:104:3 › live statistics switched on › /live/ renders totals and the busiest pages, dropping unsafe paths (643ms)
-  ✓   13 [chromium] › tests/e2e/live.spec.ts:89:3 › live statistics switched on › a permanent failure trips the breaker for every later page (1.3s)
-  ✓   14 [chromium] › tests/e2e/live.spec.ts:130:3 › live statistics switched on › /live/ shows an empty state for a quiet day (561ms)
-  ✓   15 [chromium] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (678ms)
-  ✓   16 [chromium] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (743ms)
-  ✓   17 [chromium] › tests/e2e/site.spec.ts:31:3 › header navigation › marks the current section with aria-current (580ms)
-  ✓   18 [chromium] › tests/e2e/site.spec.ts:65:3 › series › series page lists episodes in ascending order (437ms)
-  ✓   19 [chromium] › tests/e2e/site.spec.ts:37:3 › header navigation › reaches every section from the header (1.5s)
-  ✓   20 [chromium] › tests/e2e/site.spec.ts:55:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (507ms)
-  ✓   21 [chromium] › tests/e2e/site.spec.ts:79:3 › series › a middle episode links to its neighbours (491ms)
-  ✓   22 [chromium] › tests/e2e/site.spec.ts:89:3 › theming › the picker applies a theme and it survives a reload (865ms)
-  ✓   23 [chromium] › tests/e2e/site.spec.ts:103:3 › theming › system follows the OS colour scheme (504ms)
-  ✓   24 [chromium] › tests/e2e/site.spec.ts:113:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (396ms)
-  ✓   25 [chromium] › tests/e2e/site.spec.ts:119:3 › resilience and accessibility › the skip link jumps to the main content (608ms)
-  ✓   26 [chromium] › tests/e2e/site.spec.ts:129:3 › resilience and accessibility › every page advertises the Atom feed (519ms)
-  ✓   27 [chromium] › tests/e2e/site.spec.ts:138:3 › own origin only › pages load nothing from any other origin (837ms)
-  -   28 [firefox] › tests/e2e/live.spec.ts:40:3 › live statistics switched off › no live markup and no requests anywhere
-  ✓   29 [firefox] › tests/e2e/i18n.spec.ts:16:3 › languages › the document declares its language and its alternates (1.1s)
-  ✓   30 [firefox] › tests/e2e/i18n.spec.ts:25:3 › languages › switching language changes the page language and is remembered (2.0s)
-  ✓   31 [firefox] › tests/e2e/i18n.spec.ts:44:3 › languages › a reader already in their language sees no suggestion (1.5s)
-  ✓   32 [firefox] › tests/e2e/i18n.spec.ts:49:3 › languages › the localized home page links its own sections (946ms)
-  ✓   33 [firefox] › tests/e2e/i18n.spec.ts:68:3 › languages from the browser › suggests the reader language when the page exists in it (1.7s)
-  ✓   34 [firefox] › tests/e2e/i18n.spec.ts:78:3 › build provenance › the footer links the commit the site was built from (1.3s)
-  ✓   35 [firefox] › tests/e2e/live.spec.ts:54:3 › live statistics switched on › the footer shows live numbers from a read-only summary (1.6s)
-  ✓   36 [firefox] › tests/e2e/live.spec.ts:72:3 › live statistics switched on › automated browsers never count a visit (839ms)
-  ✓   37 [firefox] › tests/e2e/live.spec.ts:82:3 › live statistics switched on › an unreachable backend leaves the page exactly as it was (556ms)
-  ✓   38 [firefox] › tests/e2e/live.spec.ts:89:3 › live statistics switched on › a permanent failure trips the breaker for every later page (1.0s)
-  ✓   39 [firefox] › tests/e2e/live.spec.ts:104:3 › live statistics switched on › /live/ renders totals and the busiest pages, dropping unsafe paths (499ms)
-  ✓   40 [firefox] › tests/e2e/live.spec.ts:120:3 › live statistics switched on › /live/ says so, calmly, when the backend is gone (700ms)
-  ✓   41 [firefox] › tests/e2e/live.spec.ts:130:3 › live statistics switched on › /live/ shows an empty state for a quiet day (481ms)
-  ✓   42 [firefox] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (522ms)
-  ✓   43 [firefox] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (1.1s)
-  ✓   44 [firefox] › tests/e2e/site.spec.ts:31:3 › header navigation › marks the current section with aria-current (501ms)
-  ✓   45 [firefox] › tests/e2e/site.spec.ts:37:3 › header navigation › reaches every section from the header (1.7s)
-  ✓   46 [firefox] › tests/e2e/site.spec.ts:55:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (603ms)
-  ✓   47 [firefox] › tests/e2e/site.spec.ts:65:3 › series › series page lists episodes in ascending order (825ms)
-  ✓   48 [firefox] › tests/e2e/site.spec.ts:79:3 › series › a middle episode links to its neighbours (553ms)
-  ✓   49 [firefox] › tests/e2e/site.spec.ts:89:3 › theming › the picker applies a theme and it survives a reload (678ms)
-  ✓   50 [firefox] › tests/e2e/site.spec.ts:103:3 › theming › system follows the OS colour scheme (623ms)
-  ✓   51 [firefox] › tests/e2e/site.spec.ts:113:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (515ms)
-  ✓   52 [firefox] › tests/e2e/site.spec.ts:119:3 › resilience and accessibility › the skip link jumps to the main content (565ms)
-  ✓   53 [firefox] › tests/e2e/site.spec.ts:129:3 › resilience and accessibility › every page advertises the Atom feed (473ms)
-  ✓   54 [firefox] › tests/e2e/site.spec.ts:138:3 › own origin only › pages load nothing from any other origin (704ms)
-  -   55 [webkit] › tests/e2e/live.spec.ts:40:3 › live statistics switched off › no live markup and no requests anywhere
-  ✓   56 [webkit] › tests/e2e/i18n.spec.ts:16:3 › languages › the document declares its language and its alternates (667ms)
-  ✓   57 [webkit] › tests/e2e/i18n.spec.ts:44:3 › languages › a reader already in their language sees no suggestion (641ms)
-  ✓   58 [webkit] › tests/e2e/i18n.spec.ts:25:3 › languages › switching language changes the page language and is remembered (1.7s)
-  ✓   59 [webkit] › tests/e2e/i18n.spec.ts:68:3 › languages from the browser › suggests the reader language when the page exists in it (644ms)
-  ✓   60 [webkit] › tests/e2e/i18n.spec.ts:49:3 › languages › the localized home page links its own sections (1.0s)
-  ✓   61 [webkit] › tests/e2e/i18n.spec.ts:78:3 › build provenance › the footer links the commit the site was built from (660ms)
-  ✓   62 [webkit] › tests/e2e/live.spec.ts:54:3 › live statistics switched on › the footer shows live numbers from a read-only summary (666ms)
-  ✓   63 [webkit] › tests/e2e/live.spec.ts:72:3 › live statistics switched on › automated browsers never count a visit (620ms)
-  ✓   64 [webkit] › tests/e2e/live.spec.ts:82:3 › live statistics switched on › an unreachable backend leaves the page exactly as it was (788ms)
-  ✓   65 [webkit] › tests/e2e/live.spec.ts:89:3 › live statistics switched on › a permanent failure trips the breaker for every later page (1.3s)
-  ✓   66 [webkit] › tests/e2e/live.spec.ts:120:3 › live statistics switched on › /live/ says so, calmly, when the backend is gone (747ms)
-  ✓   67 [webkit] › tests/e2e/live.spec.ts:104:3 › live statistics switched on › /live/ renders totals and the busiest pages, dropping unsafe paths (806ms)
-  ✓   68 [webkit] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (759ms)
-  ✓   69 [webkit] › tests/e2e/live.spec.ts:130:3 › live statistics switched on › /live/ shows an empty state for a quiet day (773ms)
-  ✓   70 [webkit] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (702ms)
-  ✓   71 [webkit] › tests/e2e/site.spec.ts:31:3 › header navigation › marks the current section with aria-current (427ms)
-  ✓   72 [webkit] › tests/e2e/site.spec.ts:37:3 › header navigation › reaches every section from the header (1.4s)
-  ✓   73 [webkit] › tests/e2e/site.spec.ts:55:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (432ms)
-  ✓   74 [webkit] › tests/e2e/site.spec.ts:65:3 › series › series page lists episodes in ascending order (429ms)
-  ✓   75 [webkit] › tests/e2e/site.spec.ts:79:3 › series › a middle episode links to its neighbours (480ms)
-  ✓   76 [webkit] › tests/e2e/site.spec.ts:89:3 › theming › the picker applies a theme and it survives a reload (574ms)
-  ✓   77 [webkit] › tests/e2e/site.spec.ts:103:3 › theming › system follows the OS colour scheme (623ms)
-  ✓   78 [webkit] › tests/e2e/site.spec.ts:113:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (408ms)
-  ✓   79 [webkit] › tests/e2e/site.spec.ts:129:3 › resilience and accessibility › every page advertises the Atom feed (411ms)
-  ✓   80 [webkit] › tests/e2e/site.spec.ts:119:3 › resilience and accessibility › the skip link jumps to the main content (453ms)
-  ✓   81 [webkit] › tests/e2e/site.spec.ts:138:3 › own origin only › pages load nothing from any other origin (767ms)
-  ✓   82 [mobile-chrome] › tests/e2e/i18n.spec.ts:16:3 › languages › the document declares its language and its alternates (587ms)
-  -   83 [mobile-chrome] › tests/e2e/live.spec.ts:40:3 › live statistics switched off › no live markup and no requests anywhere
-  ✓   84 [mobile-chrome] › tests/e2e/i18n.spec.ts:25:3 › languages › switching language changes the page language and is remembered (1.2s)
-  ✓   85 [mobile-chrome] › tests/e2e/i18n.spec.ts:44:3 › languages › a reader already in their language sees no suggestion (659ms)
-  ✓   86 [mobile-chrome] › tests/e2e/i18n.spec.ts:49:3 › languages › the localized home page links its own sections (969ms)
-  ✓   87 [mobile-chrome] › tests/e2e/i18n.spec.ts:78:3 › build provenance › the footer links the commit the site was built from (764ms)
-  ✓   88 [mobile-chrome] › tests/e2e/i18n.spec.ts:68:3 › languages from the browser › suggests the reader language when the page exists in it (705ms)
-  ✓   89 [mobile-chrome] › tests/e2e/live.spec.ts:54:3 › live statistics switched on › the footer shows live numbers from a read-only summary (759ms)
-  ✓   90 [mobile-chrome] › tests/e2e/live.spec.ts:72:3 › live statistics switched on › automated browsers never count a visit (710ms)
-  ✓   91 [mobile-chrome] › tests/e2e/live.spec.ts:82:3 › live statistics switched on › an unreachable backend leaves the page exactly as it was (547ms)
-  ✓   92 [mobile-chrome] › tests/e2e/live.spec.ts:89:3 › live statistics switched on › a permanent failure trips the breaker for every later page (1.5s)
-  ✓   93 [mobile-chrome] › tests/e2e/live.spec.ts:104:3 › live statistics switched on › /live/ renders totals and the busiest pages, dropping unsafe paths (569ms)
-  ✓   94 [mobile-chrome] › tests/e2e/live.spec.ts:120:3 › live statistics switched on › /live/ says so, calmly, when the backend is gone (471ms)
-  ✓   95 [mobile-chrome] › tests/e2e/live.spec.ts:130:3 › live statistics switched on › /live/ shows an empty state for a quiet day (584ms)
-  ✓   96 [mobile-chrome] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (507ms)
-  ✓   97 [mobile-chrome] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (916ms)
-  ✓   98 [mobile-chrome] › tests/e2e/site.spec.ts:31:3 › header navigation › marks the current section with aria-current (526ms)
-  ✓   99 [mobile-chrome] › tests/e2e/site.spec.ts:37:3 › header navigation › reaches every section from the header (1.4s)
-  ✓  100 [mobile-chrome] › tests/e2e/site.spec.ts:55:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (417ms)
-  ✓  101 [mobile-chrome] › tests/e2e/site.spec.ts:65:3 › series › series page lists episodes in ascending order (516ms)
-  ✓  102 [mobile-chrome] › tests/e2e/site.spec.ts:79:3 › series › a middle episode links to its neighbours (638ms)
-  ✓  103 [mobile-chrome] › tests/e2e/site.spec.ts:89:3 › theming › the picker applies a theme and it survives a reload (791ms)
-  ✓  104 [mobile-chrome] › tests/e2e/site.spec.ts:103:3 › theming › system follows the OS colour scheme (532ms)
-  ✓  105 [mobile-chrome] › tests/e2e/site.spec.ts:113:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (449ms)
-  ✓  106 [mobile-chrome] › tests/e2e/site.spec.ts:119:3 › resilience and accessibility › the skip link jumps to the main content (519ms)
-  ✓  107 [mobile-chrome] › tests/e2e/site.spec.ts:129:3 › resilience and accessibility › every page advertises the Atom feed (438ms)
-  ✓  108 [mobile-chrome] › tests/e2e/site.spec.ts:138:3 › own origin only › pages load nothing from any other origin (627ms)
+  ✓    2 [chromium] › tests/e2e/i18n.spec.ts:16:3 › languages › the document declares its language and its alternates (942ms)
+  ✓    3 [chromium] › tests/e2e/i18n.spec.ts:68:3 › languages from the browser › suggests the reader language when the page exists in it (917ms)
+  ✓    4 [chromium] › tests/e2e/i18n.spec.ts:49:3 › languages › the localized home page links its own sections (1.5s)
+  ✓    5 [chromium] › tests/e2e/i18n.spec.ts:25:3 › languages › switching language changes the page language and is remembered (1.7s)
+  ✓    6 [chromium] › tests/e2e/i18n.spec.ts:78:3 › build provenance › the footer links the commit the site was built from (928ms)
+  ✓    7 [chromium] › tests/e2e/i18n.spec.ts:44:3 › languages › a reader already in their language sees no suggestion (841ms)
+  ✓    8 [chromium] › tests/e2e/live.spec.ts:54:3 › live statistics switched on › the footer shows live numbers from a read-only summary (917ms)
+  ✓    9 [chromium] › tests/e2e/live.spec.ts:72:3 › live statistics switched on › automated browsers never count a visit (837ms)
+  ✓   10 [chromium] › tests/e2e/live.spec.ts:89:3 › live statistics switched on › a permanent failure trips the breaker for every later page (1.4s)
+  ✓   11 [chromium] › tests/e2e/live.spec.ts:82:3 › live statistics switched on › an unreachable backend leaves the page exactly as it was (466ms)
+  ✓   12 [chromium] › tests/e2e/live.spec.ts:104:3 › live statistics switched on › /live/ renders totals and the busiest pages, dropping unsafe paths (644ms)
+  ✓   13 [chromium] › tests/e2e/live.spec.ts:120:3 › live statistics switched on › /live/ says so, calmly, when the backend is gone (601ms)
+  ✓   14 [chromium] › tests/e2e/narration.spec.ts:17:3 › narration › a narrated post offers a native player that streams its recording inline (985ms)
+  ✓   15 [chromium] › tests/e2e/live.spec.ts:130:3 › live statistics switched on › /live/ shows an empty state for a quiet day (621ms)
+  ✓   16 [chromium] › tests/e2e/narration.spec.ts:42:3 › narration › a post without the badge has no player (740ms)
+  ✓   17 [chromium] › tests/e2e/narration.spec.ts:48:3 › narration › the listening speed is remembered across visits (998ms)
+  ✓   18 [chromium] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (636ms)
+  ✓   19 [chromium] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (951ms)
+  ✓   20 [chromium] › tests/e2e/site.spec.ts:31:3 › header navigation › marks the current section with aria-current (614ms)
+  ✓   21 [chromium] › tests/e2e/site.spec.ts:37:3 › header navigation › reaches every section from the header (1.8s)
+  ✓   22 [chromium] › tests/e2e/site.spec.ts:55:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (648ms)
+  ✓   23 [chromium] › tests/e2e/site.spec.ts:65:3 › series › series page lists episodes in ascending order (532ms)
+  ✓   24 [chromium] › tests/e2e/site.spec.ts:79:3 › series › a middle episode links to its neighbours (535ms)
+  ✓   25 [chromium] › tests/e2e/site.spec.ts:89:3 › theming › the picker applies a theme and it survives a reload (901ms)
+  ✓   26 [chromium] › tests/e2e/site.spec.ts:103:3 › theming › system follows the OS colour scheme (650ms)
+  ✓   27 [chromium] › tests/e2e/site.spec.ts:113:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (464ms)
+  ✓   28 [chromium] › tests/e2e/site.spec.ts:119:3 › resilience and accessibility › the skip link jumps to the main content (593ms)
+  ✓   29 [chromium] › tests/e2e/site.spec.ts:129:3 › resilience and accessibility › every page advertises the Atom feed (650ms)
+  ✓   30 [chromium] › tests/e2e/site.spec.ts:138:3 › own origin only › pages load nothing from any other origin (845ms)
+  -   31 [firefox] › tests/e2e/live.spec.ts:40:3 › live statistics switched off › no live markup and no requests anywhere
+  ✓   32 [firefox] › tests/e2e/i18n.spec.ts:16:3 › languages › the document declares its language and its alternates (1.4s)
+  ✓   33 [firefox] › tests/e2e/i18n.spec.ts:25:3 › languages › switching language changes the page language and is remembered (1.2s)
+  ✓   34 [firefox] › tests/e2e/i18n.spec.ts:44:3 › languages › a reader already in their language sees no suggestion (1.7s)
+  ✓   35 [firefox] › tests/e2e/i18n.spec.ts:68:3 › languages from the browser › suggests the reader language when the page exists in it (1.9s)
+  ✓   36 [firefox] › tests/e2e/i18n.spec.ts:49:3 › languages › the localized home page links its own sections (2.1s)
+  ✓   37 [firefox] › tests/e2e/i18n.spec.ts:78:3 › build provenance › the footer links the commit the site was built from (901ms)
+  ✓   38 [firefox] › tests/e2e/live.spec.ts:54:3 › live statistics switched on › the footer shows live numbers from a read-only summary (1.5s)
+  ✓   39 [firefox] › tests/e2e/live.spec.ts:72:3 › live statistics switched on › automated browsers never count a visit (1.1s)
+  ✓   40 [firefox] › tests/e2e/live.spec.ts:82:3 › live statistics switched on › an unreachable backend leaves the page exactly as it was (496ms)
+  ✓   41 [firefox] › tests/e2e/live.spec.ts:89:3 › live statistics switched on › a permanent failure trips the breaker for every later page (1.1s)
+  ✓   42 [firefox] › tests/e2e/live.spec.ts:104:3 › live statistics switched on › /live/ renders totals and the busiest pages, dropping unsafe paths (666ms)
+  ✓   43 [firefox] › tests/e2e/live.spec.ts:120:3 › live statistics switched on › /live/ says so, calmly, when the backend is gone (682ms)
+  ✓   44 [firefox] › tests/e2e/live.spec.ts:130:3 › live statistics switched on › /live/ shows an empty state for a quiet day (509ms)
+  ✓   45 [firefox] › tests/e2e/narration.spec.ts:17:3 › narration › a narrated post offers a native player that streams its recording inline (1.0s)
+  ✓   46 [firefox] › tests/e2e/narration.spec.ts:42:3 › narration › a post without the badge has no player (753ms)
+  ✓   47 [firefox] › tests/e2e/narration.spec.ts:48:3 › narration › the listening speed is remembered across visits (1.1s)
+  ✓   48 [firefox] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (845ms)
+  ✓   49 [firefox] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (927ms)
+  ✓   50 [firefox] › tests/e2e/site.spec.ts:31:3 › header navigation › marks the current section with aria-current (483ms)
+  ✓   51 [firefox] › tests/e2e/site.spec.ts:37:3 › header navigation › reaches every section from the header (1.7s)
+  ✓   52 [firefox] › tests/e2e/site.spec.ts:55:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (532ms)
+  ✓   53 [firefox] › tests/e2e/site.spec.ts:65:3 › series › series page lists episodes in ascending order (554ms)
+  ✓   54 [firefox] › tests/e2e/site.spec.ts:79:3 › series › a middle episode links to its neighbours (608ms)
+  ✓   55 [firefox] › tests/e2e/site.spec.ts:89:3 › theming › the picker applies a theme and it survives a reload (726ms)
+  ✓   56 [firefox] › tests/e2e/site.spec.ts:103:3 › theming › system follows the OS colour scheme (519ms)
+  ✓   57 [firefox] › tests/e2e/site.spec.ts:113:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (485ms)
+  ✓   58 [firefox] › tests/e2e/site.spec.ts:119:3 › resilience and accessibility › the skip link jumps to the main content (523ms)
+  ✓   59 [firefox] › tests/e2e/site.spec.ts:129:3 › resilience and accessibility › every page advertises the Atom feed (601ms)
+  ✓   60 [firefox] › tests/e2e/site.spec.ts:138:3 › own origin only › pages load nothing from any other origin (733ms)
+  -   61 [webkit] › tests/e2e/live.spec.ts:40:3 › live statistics switched off › no live markup and no requests anywhere
+  ✓   62 [webkit] › tests/e2e/i18n.spec.ts:16:3 › languages › the document declares its language and its alternates (687ms)
+  ✓   63 [webkit] › tests/e2e/i18n.spec.ts:25:3 › languages › switching language changes the page language and is remembered (1.5s)
+  ✓   64 [webkit] › tests/e2e/i18n.spec.ts:49:3 › languages › the localized home page links its own sections (974ms)
+  ✓   65 [webkit] › tests/e2e/i18n.spec.ts:44:3 › languages › a reader already in their language sees no suggestion (687ms)
+  ✓   66 [webkit] › tests/e2e/i18n.spec.ts:68:3 › languages from the browser › suggests the reader language when the page exists in it (674ms)
+  ✓   67 [webkit] › tests/e2e/i18n.spec.ts:78:3 › build provenance › the footer links the commit the site was built from (688ms)
+  ✓   68 [webkit] › tests/e2e/live.spec.ts:54:3 › live statistics switched on › the footer shows live numbers from a read-only summary (651ms)
+  ✓   69 [webkit] › tests/e2e/live.spec.ts:72:3 › live statistics switched on › automated browsers never count a visit (658ms)
+  ✓   70 [webkit] › tests/e2e/live.spec.ts:82:3 › live statistics switched on › an unreachable backend leaves the page exactly as it was (616ms)
+  ✓   71 [webkit] › tests/e2e/live.spec.ts:89:3 › live statistics switched on › a permanent failure trips the breaker for every later page (1.2s)
+  ✓   72 [webkit] › tests/e2e/live.spec.ts:104:3 › live statistics switched on › /live/ renders totals and the busiest pages, dropping unsafe paths (744ms)
+  ✓   73 [webkit] › tests/e2e/live.spec.ts:120:3 › live statistics switched on › /live/ says so, calmly, when the backend is gone (561ms)
+  ✓   74 [webkit] › tests/e2e/narration.spec.ts:17:3 › narration › a narrated post offers a native player that streams its recording inline (1.3s)
+  ✓   75 [webkit] › tests/e2e/live.spec.ts:130:3 › live statistics switched on › /live/ shows an empty state for a quiet day (565ms)
+  ✓   76 [webkit] › tests/e2e/narration.spec.ts:42:3 › narration › a post without the badge has no player (681ms)
+  ✓   77 [webkit] › tests/e2e/narration.spec.ts:48:3 › narration › the listening speed is remembered across visits (1.6s)
+  ✓   78 [webkit] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (533ms)
+  ✓   79 [webkit] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (921ms)
+  ✓   80 [webkit] › tests/e2e/site.spec.ts:31:3 › header navigation › marks the current section with aria-current (473ms)
+  ✓   81 [webkit] › tests/e2e/site.spec.ts:37:3 › header navigation › reaches every section from the header (1.5s)
+  ✓   82 [webkit] › tests/e2e/site.spec.ts:55:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (512ms)
+  ✓   83 [webkit] › tests/e2e/site.spec.ts:65:3 › series › series page lists episodes in ascending order (480ms)
+  ✓   84 [webkit] › tests/e2e/site.spec.ts:79:3 › series › a middle episode links to its neighbours (558ms)
+  ✓   85 [webkit] › tests/e2e/site.spec.ts:89:3 › theming › the picker applies a theme and it survives a reload (706ms)
+  ✓   86 [webkit] › tests/e2e/site.spec.ts:103:3 › theming › system follows the OS colour scheme (603ms)
+  ✓   87 [webkit] › tests/e2e/site.spec.ts:113:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (464ms)
+  ✓   88 [webkit] › tests/e2e/site.spec.ts:119:3 › resilience and accessibility › the skip link jumps to the main content (516ms)
+  ✓   89 [webkit] › tests/e2e/site.spec.ts:129:3 › resilience and accessibility › every page advertises the Atom feed (481ms)
+  ✓   90 [webkit] › tests/e2e/site.spec.ts:138:3 › own origin only › pages load nothing from any other origin (693ms)
+  -   91 [mobile-chrome] › tests/e2e/live.spec.ts:40:3 › live statistics switched off › no live markup and no requests anywhere
+  ✓   92 [mobile-chrome] › tests/e2e/i18n.spec.ts:16:3 › languages › the document declares its language and its alternates (576ms)
+  ✓   93 [mobile-chrome] › tests/e2e/i18n.spec.ts:25:3 › languages › switching language changes the page language and is remembered (1.2s)
+  ✓   94 [mobile-chrome] › tests/e2e/i18n.spec.ts:44:3 › languages › a reader already in their language sees no suggestion (611ms)
+  ✓   95 [mobile-chrome] › tests/e2e/i18n.spec.ts:49:3 › languages › the localized home page links its own sections (896ms)
+  ✓   96 [mobile-chrome] › tests/e2e/i18n.spec.ts:68:3 › languages from the browser › suggests the reader language when the page exists in it (643ms)
+  ✓   97 [mobile-chrome] › tests/e2e/i18n.spec.ts:78:3 › build provenance › the footer links the commit the site was built from (690ms)
+  ✓   98 [mobile-chrome] › tests/e2e/live.spec.ts:54:3 › live statistics switched on › the footer shows live numbers from a read-only summary (801ms)
+  ✓   99 [mobile-chrome] › tests/e2e/live.spec.ts:72:3 › live statistics switched on › automated browsers never count a visit (663ms)
+  ✓  100 [mobile-chrome] › tests/e2e/live.spec.ts:82:3 › live statistics switched on › an unreachable backend leaves the page exactly as it was (737ms)
+  ✓  101 [mobile-chrome] › tests/e2e/live.spec.ts:89:3 › live statistics switched on › a permanent failure trips the breaker for every later page (1.1s)
+  ✓  102 [mobile-chrome] › tests/e2e/live.spec.ts:104:3 › live statistics switched on › /live/ renders totals and the busiest pages, dropping unsafe paths (618ms)
+  ✓  103 [mobile-chrome] › tests/e2e/live.spec.ts:120:3 › live statistics switched on › /live/ says so, calmly, when the backend is gone (436ms)
+  ✓  104 [mobile-chrome] › tests/e2e/live.spec.ts:130:3 › live statistics switched on › /live/ shows an empty state for a quiet day (425ms)
+  ✓  105 [mobile-chrome] › tests/e2e/narration.spec.ts:17:3 › narration › a narrated post offers a native player that streams its recording inline (1.0s)
+  ✓  106 [mobile-chrome] › tests/e2e/narration.spec.ts:42:3 › narration › a post without the badge has no player (570ms)
+  ✓  107 [mobile-chrome] › tests/e2e/narration.spec.ts:48:3 › narration › the listening speed is remembered across visits (1.0s)
+  ✓  108 [mobile-chrome] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (468ms)
+  ✓  109 [mobile-chrome] › tests/e2e/site.spec.ts:31:3 › header navigation › marks the current section with aria-current (538ms)
+  ✓  110 [mobile-chrome] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (823ms)
+  ✓  111 [mobile-chrome] › tests/e2e/site.spec.ts:37:3 › header navigation › reaches every section from the header (1.6s)
+  ✓  112 [mobile-chrome] › tests/e2e/site.spec.ts:55:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (573ms)
+  ✓  113 [mobile-chrome] › tests/e2e/site.spec.ts:65:3 › series › series page lists episodes in ascending order (528ms)
+  ✓  114 [mobile-chrome] › tests/e2e/site.spec.ts:79:3 › series › a middle episode links to its neighbours (578ms)
+  ✓  115 [mobile-chrome] › tests/e2e/site.spec.ts:89:3 › theming › the picker applies a theme and it survives a reload (757ms)
+  ✓  116 [mobile-chrome] › tests/e2e/site.spec.ts:103:3 › theming › system follows the OS colour scheme (485ms)
+  ✓  117 [mobile-chrome] › tests/e2e/site.spec.ts:113:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (459ms)
+  ✓  118 [mobile-chrome] › tests/e2e/site.spec.ts:129:3 › resilience and accessibility › every page advertises the Atom feed (511ms)
+  ✓  119 [mobile-chrome] › tests/e2e/site.spec.ts:119:3 › resilience and accessibility › the skip link jumps to the main content (531ms)
+  ✓  120 [mobile-chrome] › tests/e2e/site.spec.ts:138:3 › own origin only › pages load nothing from any other origin (727ms)
 
   4 skipped
-  104 passed (18.1s)
-[13:19:49] end-to-end tests complete
-[09:19:49] 9/9 export repository dump
-[09:20:04] all checks passed ✔
+  116 passed (19.5s)
+[13:47:49] end-to-end tests complete
+[09:47:49] 9/9 export repository dump
+[09:48:04] all checks passed ✔
 
-real	0m55.314s
-user	0m35.107s
-sys	0m13.902s
+real	1m4.081s
+user	0m39.501s
+sys	0m15.091s
 kushal@fedora:~/src/ts/kphoto$ 
