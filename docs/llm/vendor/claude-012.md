@@ -1,3 +1,19 @@
+00
+29
+
+So I just found out about this website. 
+`https://flappingairplanes.com/`
+The content is not so interesting 
+but I want to learn more about the flapping airplane. 
+Can you please build a new page that not only demonstrates the animation
+but also teaches how the animation works in a web browser? 
+I think this isn't possible from within a blog post so it will have to be a new page completely. 
+I have verified at least one of the images loads 
+`https://kphoto.github.io/images/flapping-airplanes/frame_001.png`
+so I think all the other images will load as well. 
+I have added all the context you need in the attached file. 
+the dump and the terminal text files in the project are up to date as well. 
+
 ```bash
 kushal@fedora:~/src/dotnet/HelloXUnit$ cat /home/kushal/src/bash/scratch.sh; time bash /home/kushal/src/bash/scratch.sh
 #!/usr/bin/env bash
