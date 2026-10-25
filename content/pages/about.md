@@ -29,8 +29,9 @@ collected.
 
 This site stores these things in your browser's local storage: your theme,
 the language you last picked, your listening speed and where you stopped in
-narrated posts, and, only if the statistics server was unreachable, when to
-try it again.
+narrated posts, the speed and drawing technique you chose in
+[the flapping-airplane lab](/labs/flapping-airplane/), and, only if the
+statistics server was unreachable, when to try it again.
 
 ## In more than one language
 

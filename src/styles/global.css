@@ -9,6 +9,8 @@
   --accent: #c08a00;
   --accent-strong: #7d5300;
   --focus: #7d5300;
+  --ink-filter: grayscale(1) brightness(1.08) contrast(1.6);
+  --ink-blend: multiply;
 
   --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-mono:
@@ -29,6 +31,8 @@
   --accent: #f2b544;
   --accent-strong: #f2b544;
   --focus: #f2b544;
+  --ink-filter: grayscale(1) brightness(1.08) contrast(1.6) invert(1);
+  --ink-blend: screen;
 }
 
 [data-theme='solarized-light'] {
@@ -53,6 +57,8 @@
   --accent: #deb043;
   --accent-strong: #deb043;
   --focus: #deb043;
+  --ink-filter: grayscale(1) brightness(1.08) contrast(1.6) invert(1);
+  --ink-blend: screen;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -124,6 +130,7 @@ kp-post-card,
 kp-post-meta,
 kp-series-nav,
 kp-narration,
+kp-flipbook,
 kp-author-card {
   display: block;
 }
@@ -384,4 +391,53 @@ kp-theme-picker {
 .food-photos img {
   border-radius: 1em;
   border: 20px solid var(--border);
+}
+
+.lab-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+
+.lab-list li {
+  padding-block: 0.9rem;
+  border-block-end: 1px solid var(--border);
+}
+
+.lab-list a {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.lab-list a:hover {
+  color: var(--accent-strong);
+  text-decoration: underline;
+}
+
+.lab-list p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.lab kp-flipbook {
+  margin-block-end: 1.25rem;
+}
+
+.lab-credit,
+.lab-disclaimer {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.lab-disclaimer {
+  margin-block-end: 2rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--border);
+  border-inline-start: 3px solid var(--accent);
+  border-radius: 0 0.4rem 0.4rem 0;
+  background: var(--surface);
 }

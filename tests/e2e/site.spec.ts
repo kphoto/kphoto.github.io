@@ -41,6 +41,7 @@ test.describe('header navigation', () => {
       ['Tags', '/tags/', 'Tags'],
       ['Series', '/series/', 'Series'],
       ['Authors', '/authors/', 'Authors'],
+      ['Labs', '/labs/', 'Labs'],
       ['About', '/about/', 'About'],
       ['Contact', '/contact/', 'Contact'],
     ] as const) {
@@ -144,7 +145,7 @@ test.describe('own origin only', () => {
         foreign.push(url);
       }
     });
-    for (const path of ['/', '/blog/', '/about/', '/live/']) {
+    for (const path of ['/', '/blog/', '/about/', '/live/', '/labs/flapping-airplane/']) {
       await page.goto(path);
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     }

@@ -27,3 +27,9 @@ Anyone deploying a modified version of the site must publish their changes.
 Dependency additions require a license check; all current devDependencies
 are MIT/Apache-2.0/ISC. The footer of every page and the README state the
 license.
+
+## Amendment (2026-10-25)
+
+`public/images/flapping-airplanes/` holds third-party drawings that are not
+AGPL-licensed. They are kept for education and demonstration only, under the
+terms in ADR 0038.

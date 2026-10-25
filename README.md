@@ -3,8 +3,8 @@
 **A demonstration of what is possible with TypeScript 7 and the modern web.**
 
 A complete blog — markdown posts, tags, series, authors, five themes, an Atom
-feed, more than one language, narrated posts, optional live readership statistics — with **zero runtime
-dependencies**. No framework, no CSS library, no markdown or YAML package, no
+feed, two languages, narrated posts, interactive labs and optional live
+readership statistics — with **zero runtime dependencies**. No framework, no CSS library, no markdown or YAML package, no
 SDK, no external resources beyond one optional, non-blocking statistics API.
 Everything the browser receives was written in this repository and compiled
 by the TypeScript 7 **native compiler**.
@@ -45,6 +45,8 @@ file and one small hand-written script. That required writing from scratch:
   locale-prefixed routes, hreflang alternates (`src/i18n/`)
 - a live-statistics client — PostgREST over plain `fetch`, visibility-gated
   polling, a persisted circuit breaker — instead of the Supabase SDK
+- an animation explainer that plays the same flipbook with `<img>`, canvas
+  and pure CSS, instead of React and WebGL
 
 ## Quick start (Fedora 43 and friends)
 
@@ -144,6 +146,36 @@ voices, and the page says so. A missing file fails the build
 ([ADR 0034](docs/adr/0034-narration-audio.md),
 [ADR 0035](docs/adr/0035-remembered-listening.md)).
 
+## Labs: how the flapping airplane flies
+
+[`/labs/flapping-airplane/`](https://kphoto.github.io/labs/flapping-airplane/)
+takes apart the animation on flappingairplanes.com. It turns out to be a
+flipbook: 28 drawings, shown 12 times a second, with the frame picked by
+`floor(t × fps) mod 28`. The page plays them and teaches each step:
+
+- **controls** — play/pause, single-frame steps, a frame scrubber, 1–60 fps,
+  and a live readout of `t`, `t × fps`, the frame index and its file name;
+- **three techniques** — swap an `<img>` source, paint `ImageBitmap`s on a
+  canvas, or let CSS `@keyframes` with `step-end` do it; the CSS version
+  plays with JavaScript off, and script steers it through the Web
+  Animations API;
+- **the original's extras** explained — the WebGL fluid simulation is
+  described, and its scroll tilt (up to 14°) and fade are reproduced on a
+  "Climb" slider with the same curves;
+- **polite by default** — preloaded and decoded before the first flap,
+  paused off-screen, paused at start under reduced motion, and the ink
+  recoloured for every theme with two CSS tokens.
+
+Speed, technique and play state are remembered in `kphoto:flipbook:v1`.
+Decisions: ADRs [0036](docs/adr/0036-labs-section.md)–[0038](docs/adr/0038-third-party-demonstration-assets.md).
+
+> **Image disclaimer.** The drawings in `public/images/flapping-airplanes/`
+> belong to [Flapping Airplanes](https://flappingairplanes.com/). They are
+> used here for educational and demonstration purposes only, are **not**
+> covered by this repository's AGPL license, and this project is not
+> affiliated with or endorsed by Flapping Airplanes. Do not reuse them
+> without the rights holder's permission; they will be removed on request.
+
 ## Live statistics (optional, never blocking)
 
 The footer can show how many people are reading right now, and
@@ -201,9 +233,9 @@ The codebase has no comments; ESLint and a unit test enforce it
 `src/components/` and `src/pages/` render strings from that model;
 `src/ssg/` is the only code that touches the filesystem and Vite;
 `src/client/` is the only code that runs in the browser; `src/i18n/` is
-pure and shared by both sides. Time (the footer
-year and the publish cutoff) and storage (localStorage) are injected, so
-every layer is unit-testable with fakes. The longer version is in [docs/architecture.md](docs/architecture.md),
+pure and shared by both sides. Time (the footer year, the publish cutoff,
+the flipbook clock) and storage (localStorage) are injected, so every layer
+is unit-testable with fakes. The longer version is in [docs/architecture.md](docs/architecture.md),
 and every non-obvious decision has an ADR in [docs/adr/](docs/adr/).
 
 ## Toolchain
@@ -233,3 +265,7 @@ repository setting **Pages → Source** must be **GitHub Actions**.
 
 [AGPL-3.0-or-later](LICENSE). All dependencies are free software with
 AGPL-compatible licenses ([ADR 0002](docs/adr/0002-agpl-license-and-dependency-policy.md)).
+The one exception is content, not code: the Flapping Airplanes drawings in
+`public/images/flapping-airplanes/` are third-party and used for
+demonstration only (see the disclaimer above and
+[ADR 0038](docs/adr/0038-third-party-demonstration-assets.md)).

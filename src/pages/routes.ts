@@ -8,6 +8,7 @@ import { renderAuthorIndex, renderAuthorPage } from './authors.ts';
 import { renderBlogIndex } from './blogIndex.ts';
 import { renderHome } from './home.ts';
 import { createPageContext, type PageContext, type SiteContext } from './layout.ts';
+import { labPath, renderFlappingAirplaneLab, renderLabIndex } from './labs.ts';
 import { renderLivePage } from './live.ts';
 import { renderMarkdownPage } from './markdownPage.ts';
 import { renderNotFound } from './notFound.ts';
@@ -74,6 +75,9 @@ function renderLocale(model: SiteModel, context: PageContext): RenderedFile[] {
       html(`/${page.slug}/`, renderMarkdownPage(page, context), alternates);
     }
   }
+
+  html('/labs/', renderLabIndex(context));
+  html(labPath('flapping-airplane'), renderFlappingAirplaneLab(context));
 
   html('/live/', renderLivePage(context));
 

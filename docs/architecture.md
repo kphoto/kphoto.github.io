@@ -12,6 +12,7 @@ src/lib/         pure logic — no I/O, no DOM, no Date.now()
   markdown.ts      markdown → HTML with escaping and URL sanitisation
   content.ts       parsing + validation → SiteModel (aggregated errors)
   narration.ts     narration file names → { src, media type }
+  flipbook.ts      frame files, FlipbookTimeline, climb curves, CSS keyframes
   collections.ts   ordering rules (dates desc, episodes asc, tags alpha)
   feed.ts / sitemap.ts / dates.ts / slug.ts / readingTime.ts / html.ts
 
@@ -44,6 +45,9 @@ src/client/      the only code that runs in the browser
   locale.ts        chooseSuggestion: stored choice, then navigator.languages
   narration.ts     remembered speed and position against a player port
   narrationElement.ts  upgrades <kp-narration> around its <audio>
+  flipbookPreferences.ts  kphoto:flipbook:v1 and the starting state
+  flipbookController.ts   DOM-free flipbook against surface and panel ports
+  flipbookElement.ts      upgrades <kp-flipbook>: preload, rAF loop, surfaces
   main.ts          wires real browser APIs in; upgrades the theme picker,
                    the language switcher and the narration player
 
@@ -107,10 +111,21 @@ player; everything else renders as before. In the browser,
 `connectNarration` applies the remembered speed, resumes the saved position
 and keeps both current (ADRs 0034, 0035).
 
+## Labs
+
+`/labs/` lists interactive explainers; each is a render function in
+`src/pages/labs.ts` (ADR 0036). The flapping-airplane lab renders a
+`<kp-flipbook>` whose CSS-only surface plays without script. In the browser,
+`FlipbookController` maps time to a frame through `FlipbookTimeline` and
+paints it with one of three surfaces — `<img>`, canvas or CSS steered by the
+Web Animations API (ADR 0037). Its drawings are third-party and used for
+demonstration only (ADR 0038).
+
 ## Styling model
 
 `src/styles/global.css` owns design tokens (`--bg`, `--text`, `--accent`, …)
-per theme on `<html data-theme>`, plus layout and prose styles for light-DOM
+per theme on `<html data-theme>` (including `--ink-filter` and
+`--ink-blend` for drawings on paper), plus layout and prose styles for light-DOM
 content. Every component carries its own `<style>` inside a declarative
 shadow root; tokens inherit through the shadow boundary, so themes recolour
 components without any selector piercing. See ADR 0007 and ADR 0008.

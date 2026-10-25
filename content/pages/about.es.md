@@ -29,8 +29,10 @@ discretamente y nada más cambia.
 
 Este sitio guarda estas cosas en el almacenamiento local de tu navegador: tu
 tema, el último idioma que elegiste, tu velocidad de escucha y dónde te
-quedaste en los artículos narrados y, solo si el servidor de estadísticas no
-respondió, cuándo volver a intentarlo.
+quedaste en los artículos narrados, la velocidad y la técnica de dibujo que
+elegiste en [el laboratorio del avión que aletea](/es/labs/flapping-airplane/)
+y, solo si el servidor de estadísticas no respondió, cuándo volver a
+intentarlo.
 
 ## En más de un idioma
 

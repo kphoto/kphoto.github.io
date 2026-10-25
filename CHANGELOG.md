@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Labs (ADRs 0036–0038):
+  - `/labs/` index and a "Labs" header link, in English and Spanish;
+  - `/labs/flapping-airplane/`: an interactive explainer of the
+    flappingairplanes.com animation — 28 drawings, play/pause, single-frame
+    steps, frame scrubber, 1–60 fps, `<img>` / canvas / CSS-only rendering,
+    a "Climb" slider using the original tilt and fade curves, a live
+    `t × fps → frame` readout and a filmstrip;
+  - `<kp-flipbook>`: scoped styles, CSS-only playback without JavaScript,
+    reduced-motion start paused, off-screen loop pause; preferences in
+    `kphoto:flipbook:v1`;
+  - `src/lib/flipbook.ts`, `src/client/flipbook{Preferences,Controller,Element}.ts`,
+    `src/components/flipbook.ts`, `src/pages/labs.ts`;
+  - theme tokens `--ink-filter` and `--ink-blend`;
+  - visible disclaimer: the drawings belong to Flapping Airplanes and are
+    used for educational and demonstration purposes only;
+  - unit tests and `tests/e2e/labs.spec.ts`.
+
 - Narrated posts (ADRs 0034, 0035):
   - optional `narration` frontmatter on posts and translations, naming a file
     in `public/spoken/`; a missing file fails the build;

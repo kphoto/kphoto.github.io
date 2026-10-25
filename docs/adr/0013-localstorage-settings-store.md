@@ -59,3 +59,10 @@ the theme; no version bump is needed because older values simply lack it.
 Settings gain an optional `playbackRate` (ADR 0035). A third key,
 `kphoto:listening:v1`, keeps where you stopped in narrated posts; it is
 progress, not a setting, so it sits outside `SettingsStore`.
+
+## Amendment (2026-10-25)
+
+A fourth key, `kphoto:flipbook:v1`, holds the flapping-airplane lab's frame
+rate, drawing technique and last play/pause choice (ADR 0037). It belongs to
+one page, so it stays out of `SettingsStore`; `FlipbookPreferenceStore`
+validates each field and drops what it does not recognise.

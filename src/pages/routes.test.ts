@@ -82,6 +82,8 @@ describe('renderSite', () => {
         '/authors/casey-rivers/',
         '/about/',
         '/contact/',
+        '/labs/',
+        '/labs/flapping-airplane/',
         '/live/',
         '/404.html',
         '/feed.xml',

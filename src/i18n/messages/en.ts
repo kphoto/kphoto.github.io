@@ -8,6 +8,7 @@ export const en = {
   'nav.tags': 'Tags',
   'nav.series': 'Series',
   'nav.authors': 'Authors',
+  'nav.labs': 'Labs',
   'nav.about': 'About',
   'nav.contact': 'Contact',
   'theme.label': 'Theme',
@@ -114,4 +115,85 @@ export const en = {
   'live.stillTrying': 'Still trying to reach live statistics…',
   'live.reconnecting': 'Reconnecting…',
   'live.empty': 'No page views in the last 24 hours yet.',
+  'labs.title': 'Labs',
+  'labs.lede': 'Interactive pages that take one idea from the web apart and show how it works.',
+  'labs.description': 'Interactive explainers on {site}.',
+  'lab.eyebrow': 'Lab',
+  'lab.flapping.title': 'How the flapping airplane flies',
+  'lab.flapping.summary':
+    'A flipbook of hand-drawn frames, and the clock, preloading and three drawing techniques that make it fly.',
+  'lab.flapping.description':
+    'An interactive explainer of the flapping airplane animation: frames, timing, preloading, image, canvas and CSS rendering.',
+  'lab.flapping.lede':
+    'The airplane on flappingairplanes.com looks alive, but it is a flipbook: {count} drawings shown one after another, {fps} times a second. The same drawings run below. Pause them, step through them, change the speed and switch how they are drawn; each section explains one piece.',
+  'lab.flapping.credit':
+    'Drawings and animation idea by Flapping Airplanes ({site}). Everything else on this page is written from scratch, without React, WebGL or any library.',
+  'lab.flapping.disclaimer':
+    'Disclaimer: these images belong to Flapping Airplanes and are used here for educational and demonstration purposes only. They are not covered by this site’s AGPL license, and this page is not affiliated with or endorsed by Flapping Airplanes.',
+  'lab.flapping.codeLabel': 'Code example',
+  'lab.flapping.flipbookHeading': 'It is a flipbook',
+  'lab.flapping.flipbook1':
+    'There is no physics in the wings. Someone drew the airplane {count} times, each drawing a little further through one flap, and saved them as {files}. Shown quickly in order, your eye fills in the motion, the same trick as a paper flipbook or a film reel.',
+  'lab.flapping.flipbook2':
+    'Press the step buttons and watch the file name change. The filmstrip under the controls is the whole animation laid flat.',
+  'lab.flapping.clockHeading': 'Time decides the frame',
+  'lab.flapping.clock1':
+    'The page never counts screen refreshes. It asks how long the animation has been running and turns that into a frame number:',
+  'lab.flapping.clock2':
+    'The original does exactly this with {fps} frames per second. Because the answer depends only on elapsed time, the airplane flaps at the same speed on a 60 Hz laptop and a 144 Hz monitor; a faster screen simply shows each drawing a few more times. The readout above shows the numbers live.',
+  'lab.flapping.loopHeading': 'One loop, driven by the display',
+  'lab.flapping.loop1':
+    '{raf} runs a function just before the browser paints. It pauses by itself in background tabs, so a hidden flipbook costs nothing.',
+  'lab.flapping.loop2':
+    'This page also stops the loop when the flipbook scrolls out of view, using an {observer}, and only touches the picture when the frame number actually changes.',
+  'lab.flapping.preloadHeading': 'Load every drawing before the first flap',
+  'lab.flapping.preload1':
+    'If a drawing is still downloading when its turn comes, the airplane stutters or blinks. So every drawing is requested up front and decoded before playback starts:',
+  'lab.flapping.preload2':
+    '{decode} resolves once the pixels are ready to paint, so switching to that drawing later never waits for the network or the decoder. The status line above the controls says when all {count} are ready.',
+  'lab.flapping.drawHeading': 'Three ways to put a drawing on screen',
+  'lab.flapping.draw1':
+    'Use “Draw with” to switch technique. The motion should look identical, which is the point.',
+  'lab.flapping.drawImage':
+    'Image: change the {src} of a single {img}. The simplest version, and with decoded drawings it is instant.',
+  'lab.flapping.drawCanvas':
+    'Canvas: paint an {bitmap} into a 2D {canvas} with {drawImage}. More code, but the same surface could mix in anything else you draw.',
+  'lab.flapping.drawCss':
+    'CSS: a {keyframes} rule with one stop per drawing and {steps} timing, so the background jumps from drawing to drawing instead of fading. It plays even with JavaScript switched off; here, script only steers it through the {waapi}, because every CSS animation is also an {animation} object.',
+  'lab.flapping.inkHeading': 'Ink on any paper',
+  'lab.flapping.ink1':
+    'The drawings are black ink on cream paper. A {filter} pushes the paper to pure white and the ink to pure black; then {multiply} lets the page colour replace the white. Dark themes add {invert} and blend with {screen}, so the airplane becomes light ink on a dark page. Pick a theme in the header to see it change.',
+  'lab.flapping.originalHeading': 'What the original adds',
+  'lab.flapping.original1':
+    'flappingairplanes.com wraps the same flipbook in much more: React, the regl WebGL library, a fluid simulation that streams around the airplane and follows your pointer, and a step that turns each drawing into a mask, where every pixel darker than a threshold counts as airplane, so the air flows around its silhouette.',
+  'lab.flapping.original2':
+    'It also climbs as you scroll: over the first 60 % of a screen the airplane tilts up by as much as {degrees}°, then fades out between 48 % and 66 %. The Climb slider uses the same two curves, a straight line for the tilt and a smoothstep for the fade.',
+  'lab.flapping.original3':
+    'None of that is needed for the flapping itself, which is why this page stops at the flipbook.',
+  'lab.flapping.politeHeading': 'A polite animation',
+  'lab.flapping.polite1':
+    'If your system asks for {reduced}, the flipbook starts paused. Your speed, drawing technique and whether you last pressed play or pause stay in this browser’s localStorage under {key}, so the page remembers them next time.',
+  'flipbook.stageLabel': 'A hand-drawn airplane flapping its wings, one drawing at a time',
+  'flipbook.caption':
+    'Drawings © Flapping Airplanes, used for demonstration purposes only. Played back by this page.',
+  'flipbook.noscript':
+    'Without JavaScript the drawings still play with CSS alone; the controls need JavaScript.',
+  'flipbook.loading': 'Loading drawings…',
+  'flipbook.ready': 'Ready: all {count} drawings are decoded.',
+  'flipbook.failed': 'Some drawings could not be loaded. Reload the page to try again.',
+  'flipbook.previous': 'Previous frame',
+  'flipbook.next': 'Next frame',
+  'flipbook.play': 'Play',
+  'flipbook.pause': 'Pause',
+  'flipbook.frame': 'Frame',
+  'flipbook.fps': 'Frames per second',
+  'flipbook.climb': 'Climb',
+  'flipbook.renderer': 'Draw with',
+  'flipbook.rendererImage': 'Image',
+  'flipbook.rendererCanvas': 'Canvas',
+  'flipbook.rendererCss': 'CSS only',
+  'flipbook.time': 't (seconds)',
+  'flipbook.product': 't × fps',
+  'flipbook.index': 'Index, mod {count}',
+  'flipbook.file': 'File',
 } as const satisfies Readonly<Record<string, MessageValue>>;

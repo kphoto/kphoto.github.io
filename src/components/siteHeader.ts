@@ -21,6 +21,7 @@ export const NAV_KEYS: readonly (readonly [MessageKey, string])[] = [
   ['nav.tags', '/tags/'],
   ['nav.series', '/series/'],
   ['nav.authors', '/authors/'],
+  ['nav.labs', '/labs/'],
   ['nav.about', 'about'],
   ['nav.contact', 'contact'],
 ];

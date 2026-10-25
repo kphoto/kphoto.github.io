@@ -1,4 +1,5 @@
 import { browserStore } from './browser.ts';
+import { defineFlipbookElement } from './flipbookElement.ts';
 import { chooseSuggestion } from './locale.ts';
 import { defineLiveStatsElements } from './liveStatsElements.ts';
 import { defineNarrationElement } from './narrationElement.ts';
@@ -80,5 +81,7 @@ customElements.define('kp-language-switcher', LanguageSwitcherElement);
 defineLiveStatsElements();
 
 defineNarrationElement(settings);
+
+defineFlipbookElement();
 
 export type { ThemeName };
