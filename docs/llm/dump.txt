@@ -7,22 +7,22 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-10-09T10:44:13-04:00
+  Generated at   : 2026-10-25T14:13:30-04:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
-  OS             : Linux 7.2.8-200.fc44.x86_64 x86_64
+  OS             : Linux 7.2.11-200.fc44.x86_64 x86_64
 
 REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : fe881018ce4d20b0719e093cd6eb9c9eaee9f8e1
-  Commit (short) : fe88101
-  Commit date    : 2026-10-09 10:43:16 -0400
-  Commit message : switch out to use opus
+  Commit (full)  : 2cb64470708e8b4f79aa8b0ecb4559c4d6578f8a
+  Commit (short) : 2cb6447
+  Commit date    : 2026-10-25 14:12:07 -0400
+  Commit message : add flapping air planes
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
-  Files included : 475
+  Files included : 506
   Excluded path  : docs/llm/
   Excluded files : yarn.lock, .pnp.cjs, .pnp.loader.mjs
 
@@ -430,7 +430,7 @@ FOOTER
 mv -f "$TMP_FILE" "$OUTPUT_FILE"
 
 ################################################################################
-# FILE TREE  (all 475 included files)
+# FILE TREE  (all 506 included files)
 ################################################################################
 .
 .
@@ -564,6 +564,38 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   │   ├── casey-rivers.svg
 │   │   │   ├── kphoto-team.png
 │   │   │   └── kushal.png
+│   │   ├── flapping-airplanes
+│   │   │   ├── frame_001.png
+│   │   │   ├── frame_002.png
+│   │   │   ├── frame_003.png
+│   │   │   ├── frame_004.png
+│   │   │   ├── frame_005.png
+│   │   │   ├── frame_006.png
+│   │   │   ├── frame_007.png
+│   │   │   ├── frame_008.png
+│   │   │   ├── frame_009.png
+│   │   │   ├── frame_010.png
+│   │   │   ├── frame_011.png
+│   │   │   ├── frame_012.png
+│   │   │   ├── frame_013.png
+│   │   │   ├── frame_014.png
+│   │   │   ├── frame_015.png
+│   │   │   ├── frame_016.png
+│   │   │   ├── frame_017.png
+│   │   │   ├── frame_018.png
+│   │   │   ├── frame_019.png
+│   │   │   ├── frame_020.png
+│   │   │   ├── frame_021.png
+│   │   │   ├── frame_022.png
+│   │   │   ├── frame_023.png
+│   │   │   ├── frame_024.png
+│   │   │   ├── frame_025.png
+│   │   │   ├── frame_026.png
+│   │   │   ├── frame_027.png
+│   │   │   ├── frame_028.png
+│   │   │   ├── ground.png
+│   │   │   ├── logo_fluid_sim.png
+│   │   │   └── logo.png
 │   │   └── food
 │   │       ├── IMG_20260814_124517771_HDR.jpg
 │   │       ├── IMG_20260814_124524458_HDR.jpg
@@ -9612,6 +9644,657 @@ yarn.lock
 
 --- CONTENT ---
 [Binary file — content omitted. Size: 2.9 MiB, SHA-256: 9361084b8a2d305b6b1c918b4d222091dfb50464bd6a20681830e9b6ca1930d1]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_001.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_001.png
+  Relative path:         public/images/flapping-airplanes/frame_001.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_001.png
+  Size:                  161.1 KiB (165043 bytes)
+  Last modified:         2026-10-25 14:02:25.831487695 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043680
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               45876f6488f65f433f77a47ffb63ad69de78f9cd2f3761154f07b9f0eaae8a58
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 161.1 KiB, SHA-256: 45876f6488f65f433f77a47ffb63ad69de78f9cd2f3761154f07b9f0eaae8a58]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_002.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_002.png
+  Relative path:         public/images/flapping-airplanes/frame_002.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_002.png
+  Size:                  165.2 KiB (169251 bytes)
+  Last modified:         2026-10-25 14:02:31.033292407 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043683
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               8988af65112b117f85303e64a9a9a968c2504bc63937bb74629a8ba9b9194747
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 165.2 KiB, SHA-256: 8988af65112b117f85303e64a9a9a968c2504bc63937bb74629a8ba9b9194747]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_003.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_003.png
+  Relative path:         public/images/flapping-airplanes/frame_003.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_003.png
+  Size:                  165.8 KiB (169861 bytes)
+  Last modified:         2026-10-25 14:02:36.203600883 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043684
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               da17f630d91af75e2746cd76c2d74fc4bbd690575ee086c295c42b885e147683
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 165.8 KiB, SHA-256: da17f630d91af75e2746cd76c2d74fc4bbd690575ee086c295c42b885e147683]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_004.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_004.png
+  Relative path:         public/images/flapping-airplanes/frame_004.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_004.png
+  Size:                  165.8 KiB (169849 bytes)
+  Last modified:         2026-10-25 14:02:41.408254484 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043687
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               b929eeede3a2e85ce3cc9686e387c03d74e8164e60297e84fad9aa0ce7052cf3
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 165.8 KiB, SHA-256: b929eeede3a2e85ce3cc9686e387c03d74e8164e60297e84fad9aa0ce7052cf3]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_005.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_005.png
+  Relative path:         public/images/flapping-airplanes/frame_005.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_005.png
+  Size:                  164.9 KiB (168889 bytes)
+  Last modified:         2026-10-25 14:02:46.576400487 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043689
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               48793ebfc9a5f8712f4cb26c4669c459123886c72f15f814770ad91498b0cf77
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 164.9 KiB, SHA-256: 48793ebfc9a5f8712f4cb26c4669c459123886c72f15f814770ad91498b0cf77]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_006.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_006.png
+  Relative path:         public/images/flapping-airplanes/frame_006.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_006.png
+  Size:                  164.6 KiB (168583 bytes)
+  Last modified:         2026-10-25 14:02:51.716325778 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043692
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               eb83c574c4250043ba5ec53ff060e88945085165becba64c8d2a0d1bab6668f9
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 164.6 KiB, SHA-256: eb83c574c4250043ba5ec53ff060e88945085165becba64c8d2a0d1bab6668f9]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_007.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_007.png
+  Relative path:         public/images/flapping-airplanes/frame_007.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_007.png
+  Size:                  165.8 KiB (169798 bytes)
+  Last modified:         2026-10-25 14:02:56.893197883 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043694
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               9bab84d889031b0352b2e588c5e2f0425018f0c62c6b161443368898e4659f7e
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 165.8 KiB, SHA-256: 9bab84d889031b0352b2e588c5e2f0425018f0c62c6b161443368898e4659f7e]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_008.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_008.png
+  Relative path:         public/images/flapping-airplanes/frame_008.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_008.png
+  Size:                  162.1 KiB (166038 bytes)
+  Last modified:         2026-10-25 14:03:02.061178993 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043698
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               7a1e16d629fc9ccb9092f3125d77742eaf8d7651896fbeb5e84aa6547c4133e6
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 162.1 KiB, SHA-256: 7a1e16d629fc9ccb9092f3125d77742eaf8d7651896fbeb5e84aa6547c4133e6]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_009.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_009.png
+  Relative path:         public/images/flapping-airplanes/frame_009.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_009.png
+  Size:                  163.1 KiB (167040 bytes)
+  Last modified:         2026-10-25 14:03:07.220520458 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043701
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               b6c198a8fae639378607f29f5aeac2d459a98847617f6792f3c646c384cc1bbb
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 163.1 KiB, SHA-256: b6c198a8fae639378607f29f5aeac2d459a98847617f6792f3c646c384cc1bbb]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_010.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_010.png
+  Relative path:         public/images/flapping-airplanes/frame_010.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_010.png
+  Size:                  165.2 KiB (169255 bytes)
+  Last modified:         2026-10-25 14:03:12.398366863 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043704
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               6caf0fc75dc815b2921026f0312c232ec6c235d4bc199338be5cd4c6f053c368
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 165.2 KiB, SHA-256: 6caf0fc75dc815b2921026f0312c232ec6c235d4bc199338be5cd4c6f053c368]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_011.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_011.png
+  Relative path:         public/images/flapping-airplanes/frame_011.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_011.png
+  Size:                  161.5 KiB (165450 bytes)
+  Last modified:         2026-10-25 14:03:17.601981192 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043707
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               dbbaa8586a21c83953549021a3a45bc77f3992999cd37bc479b0d9929d85b02b
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 161.5 KiB, SHA-256: dbbaa8586a21c83953549021a3a45bc77f3992999cd37bc479b0d9929d85b02b]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_012.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_012.png
+  Relative path:         public/images/flapping-airplanes/frame_012.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_012.png
+  Size:                  163.7 KiB (167681 bytes)
+  Last modified:         2026-10-25 14:03:22.783103250 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043709
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               acbe1137409dbf19a0e994277a9e08563a976812020308b482397fca1624d264
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 163.7 KiB, SHA-256: acbe1137409dbf19a0e994277a9e08563a976812020308b482397fca1624d264]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_013.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_013.png
+  Relative path:         public/images/flapping-airplanes/frame_013.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_013.png
+  Size:                  159.0 KiB (162901 bytes)
+  Last modified:         2026-10-25 14:03:27.961482373 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043710
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               172a0b348e855b0faa8ecbadb114868ff0ab3fef1e692bb941b1cef0e28fdf16
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 159.0 KiB, SHA-256: 172a0b348e855b0faa8ecbadb114868ff0ab3fef1e692bb941b1cef0e28fdf16]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_014.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_014.png
+  Relative path:         public/images/flapping-airplanes/frame_014.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_014.png
+  Size:                  164.2 KiB (168209 bytes)
+  Last modified:         2026-10-25 14:03:33.117216197 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043711
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               b8a24bd6c9495b75016f59e421503dec107ffc688b71eb9546a958c607f09ab9
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 164.2 KiB, SHA-256: b8a24bd6c9495b75016f59e421503dec107ffc688b71eb9546a958c607f09ab9]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_015.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_015.png
+  Relative path:         public/images/flapping-airplanes/frame_015.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_015.png
+  Size:                  166.6 KiB (170686 bytes)
+  Last modified:         2026-10-25 14:03:38.314370178 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043712
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               8c00e313a1aa517a9e3c861cdcc65dbd331c710ead95992204de3b756c77a936
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 166.6 KiB, SHA-256: 8c00e313a1aa517a9e3c861cdcc65dbd331c710ead95992204de3b756c77a936]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_016.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_016.png
+  Relative path:         public/images/flapping-airplanes/frame_016.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_016.png
+  Size:                  164.3 KiB (168340 bytes)
+  Last modified:         2026-10-25 14:03:43.499991021 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043713
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               a92c67a28a6b9a28306b77bf6ed15414d580b866a8ef02ef213fc5860c8ab4f9
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 164.3 KiB, SHA-256: a92c67a28a6b9a28306b77bf6ed15414d580b866a8ef02ef213fc5860c8ab4f9]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_017.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_017.png
+  Relative path:         public/images/flapping-airplanes/frame_017.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_017.png
+  Size:                  162.9 KiB (166881 bytes)
+  Last modified:         2026-10-25 14:03:48.864007919 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043714
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               dc0121c39d800b5066db7ff0d11e9703664f68c3e2403c3e1b0418e44cee7547
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 162.9 KiB, SHA-256: dc0121c39d800b5066db7ff0d11e9703664f68c3e2403c3e1b0418e44cee7547]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_018.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_018.png
+  Relative path:         public/images/flapping-airplanes/frame_018.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_018.png
+  Size:                  164.9 KiB (168949 bytes)
+  Last modified:         2026-10-25 14:03:54.289891837 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043715
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               155bdf68731c3be09b37b05bf1ce5d54e59446d2765a8ceebc54f1d1f01b72ae
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 164.9 KiB, SHA-256: 155bdf68731c3be09b37b05bf1ce5d54e59446d2765a8ceebc54f1d1f01b72ae]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_019.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_019.png
+  Relative path:         public/images/flapping-airplanes/frame_019.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_019.png
+  Size:                  165.3 KiB (169349 bytes)
+  Last modified:         2026-10-25 14:03:59.967064333 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043716
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               8bea26ef221987391063385ae517eb8a08c59283bf11286f9698d00e98dd59b9
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 165.3 KiB, SHA-256: 8bea26ef221987391063385ae517eb8a08c59283bf11286f9698d00e98dd59b9]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_020.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_020.png
+  Relative path:         public/images/flapping-airplanes/frame_020.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_020.png
+  Size:                  160.3 KiB (164169 bytes)
+  Last modified:         2026-10-25 14:04:05.133833664 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043719
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               1cb838fb7c2f44735fc122e60740e9911476ca21f11f49ba5652774475f5da7f
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 160.3 KiB, SHA-256: 1cb838fb7c2f44735fc122e60740e9911476ca21f11f49ba5652774475f5da7f]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_021.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_021.png
+  Relative path:         public/images/flapping-airplanes/frame_021.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_021.png
+  Size:                  165.7 KiB (169746 bytes)
+  Last modified:         2026-10-25 14:04:10.342238885 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043720
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               42df44d8c48f65342beb494f8814367c14182055beda7e03e3c615e23e251c1c
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 165.7 KiB, SHA-256: 42df44d8c48f65342beb494f8814367c14182055beda7e03e3c615e23e251c1c]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_022.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_022.png
+  Relative path:         public/images/flapping-airplanes/frame_022.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_022.png
+  Size:                  165.5 KiB (169550 bytes)
+  Last modified:         2026-10-25 14:04:15.521612289 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043721
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               d037f960fb7c0a3985adb4f4906cfded9b1ff8cb87d32d732160d480c5ffbd29
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 165.5 KiB, SHA-256: d037f960fb7c0a3985adb4f4906cfded9b1ff8cb87d32d732160d480c5ffbd29]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_023.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_023.png
+  Relative path:         public/images/flapping-airplanes/frame_023.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_023.png
+  Size:                  165.4 KiB (169401 bytes)
+  Last modified:         2026-10-25 14:04:20.701615212 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043725
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               ded4b2b439819fb40bd84cf3926080e5db85bd9f8724e5c28ec5926da86e6156
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 165.4 KiB, SHA-256: ded4b2b439819fb40bd84cf3926080e5db85bd9f8724e5c28ec5926da86e6156]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_024.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_024.png
+  Relative path:         public/images/flapping-airplanes/frame_024.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_024.png
+  Size:                  165.2 KiB (169167 bytes)
+  Last modified:         2026-10-25 14:04:25.868872658 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043728
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               a6f60ee4b65f5795fef68452e8487abfb591f519fc875aab58c1e6653befa9c3
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 165.2 KiB, SHA-256: a6f60ee4b65f5795fef68452e8487abfb591f519fc875aab58c1e6653befa9c3]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_025.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_025.png
+  Relative path:         public/images/flapping-airplanes/frame_025.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_025.png
+  Size:                  163.6 KiB (167528 bytes)
+  Last modified:         2026-10-25 14:04:31.065944013 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043729
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               6c6bdef8fc10313ae794830e38a9ede334c2bc71ce22e830c0d730611d76f38d
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 163.6 KiB, SHA-256: 6c6bdef8fc10313ae794830e38a9ede334c2bc71ce22e830c0d730611d76f38d]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_026.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_026.png
+  Relative path:         public/images/flapping-airplanes/frame_026.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_026.png
+  Size:                  166.2 KiB (170202 bytes)
+  Last modified:         2026-10-25 14:04:36.245480712 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043730
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               03816bcf966dabd2a9fecf504a0d2ac8eaf5ca83d1c1a51c7a1a374eee154726
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 166.2 KiB, SHA-256: 03816bcf966dabd2a9fecf504a0d2ac8eaf5ca83d1c1a51c7a1a374eee154726]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_027.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_027.png
+  Relative path:         public/images/flapping-airplanes/frame_027.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_027.png
+  Size:                  166.0 KiB (170024 bytes)
+  Last modified:         2026-10-25 14:04:41.444255068 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043733
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               6a99700c96196f90744587ce56be429b50b76a855d9a3c9bb3448f05499d75c0
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 166.0 KiB, SHA-256: 6a99700c96196f90744587ce56be429b50b76a855d9a3c9bb3448f05499d75c0]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/frame_028.png
+################################################################################
+
+--- METADATA ---
+  File name:             frame_028.png
+  Relative path:         public/images/flapping-airplanes/frame_028.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/frame_028.png
+  Size:                  165.8 KiB (169861 bytes)
+  Last modified:         2026-10-25 14:04:46.616855318 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043735
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               14526547d9164a494ae188b49e47a1ca3eec080e6989d1d460bbc2617a1cfb07
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 165.8 KiB, SHA-256: 14526547d9164a494ae188b49e47a1ca3eec080e6989d1d460bbc2617a1cfb07]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/ground.png
+################################################################################
+
+--- METADATA ---
+  File name:             ground.png
+  Relative path:         public/images/flapping-airplanes/ground.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/ground.png
+  Size:                  295.3 KiB (302445 bytes)
+  Last modified:         2026-10-25 14:07:04.697292107 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043853
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               1fe8f090295f65c022b62fe59fc85806500881ff7f170f591d76b8c883b42bb2
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 295.3 KiB, SHA-256: 1fe8f090295f65c022b62fe59fc85806500881ff7f170f591d76b8c883b42bb2]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/logo_fluid_sim.png
+################################################################################
+
+--- METADATA ---
+  File name:             logo_fluid_sim.png
+  Relative path:         public/images/flapping-airplanes/logo_fluid_sim.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/logo_fluid_sim.png
+  Size:                  2.7 KiB (2802 bytes)
+  Last modified:         2026-10-25 14:07:19.628184962 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043917
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               8aced794cc3044e5ef7e6dbac2ef29e043a770671de0bc809fb8f450c8bb3521
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 2.7 KiB, SHA-256: 8aced794cc3044e5ef7e6dbac2ef29e043a770671de0bc809fb8f450c8bb3521]
+
+################################################################################
+# FILE: public/images/flapping-airplanes/logo.png
+################################################################################
+
+--- METADATA ---
+  File name:             logo.png
+  Relative path:         public/images/flapping-airplanes/logo.png
+  Absolute path:         /home/kushal/src/ts/kphoto/public/images/flapping-airplanes/logo.png
+  Size:                  251.8 KiB (257921 bytes)
+  Last modified:         2026-10-25 14:07:39.251342291 -0400
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 68043927
+  Hard links:            1
+  MIME type:             image/png
+  SHA-256:               62dc26c3e512b9a7643227eb613c8e8db23462dd79a8c21bb7d43615da4c2728
+  Last git commit:       2cb6447 2026-10-25 14:12:07 -0400 add flapping air planes
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 251.8 KiB, SHA-256: 62dc26c3e512b9a7643227eb613c8e8db23462dd79a8c21bb7d43615da4c2728]
 
 ################################################################################
 # FILE: public/images/food/IMG_20260814_124517771_HDR.jpg
@@ -28526,10 +29209,10 @@ npmMinimalAgeGate: 4320
 ################################################################################
 # DUMP SUMMARY
 ################################################################################
-  Files dumped   : 475
-  Total size     : 571.7 MiB (599559388 bytes)
+  Files dumped   : 506
+  Total size     : 576.8 MiB (604834257 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-10-09T10:44:26-04:00
+  Completed at   : 2026-10-25T14:13:44-04:00
 ################################################################################
 # END OF DUMP
 ################################################################################
