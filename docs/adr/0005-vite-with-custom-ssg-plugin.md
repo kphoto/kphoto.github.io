@@ -37,3 +37,8 @@ The generator is ~200 lines we fully understand. Rendering is per-request in
 dev (always fresh, plenty fast at this scale). Vite major upgrades touch one
 plugin file. The preview middleware exists because of `appType: 'custom'`;
 without it `vite preview` serves only raw assets.
+
+## Amendment (2026-10-25)
+
+Vite 8.3.5 deprecates `build.rollupOptions`; the entries move to
+`build.rolldownOptions` unchanged. The manifest and output are identical.

@@ -82,9 +82,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `locales` and the `site.description` message.
 - Components and pages take a `RenderContext`/`PageContext` with a
   translator and locale-aware `href()`.
-- Dependencies: Vitest 5.0.3, @vitest/coverage-v8 5.0.3, ESLint 10.12.0,
-  typescript-eslint 8.71.0, Vite 8.3.2, Playwright 1.63.0 (image
-  `v1.63.0-noble`), Prettier 3.9.9, @types/node 26.6.4, Yarn 4.18.1.
+- Dependencies: Vitest 5.0.5, @vitest/coverage-v8 5.0.5, ESLint 10.13.0,
+  typescript-eslint 8.72.0, Vite 8.3.5, Playwright 1.64.1 (image
+  `v1.64.1-noble`), Prettier 3.9.10, @types/node 26.6.5, Yarn 4.18.1.
+- TypeScript 7.1 preview gate moves from the `7.1.0-dev.20261003.1` nightly
+  to `7.1.0-beta` (ADR 0032 amendment).
+- `vite.config.ts` uses `build.rolldownOptions`; `rollupOptions` is
+  deprecated in Vite 8.3.5 (ADR 0005 amendment).
+- GitHub Actions: `actions/setup-node` v6 → v7.
 - The theme-init test evaluates the script with `node:vm`.
 
 ## [0.1.0]

@@ -25,18 +25,18 @@
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@playwright/test": "1.63.0",
-    "@types/node": "26.6.4",
-    "@vitest/coverage-v8": "5.0.3",
-    "eslint": "10.12.0",
+    "@playwright/test": "1.64.1",
+    "@types/node": "26.6.5",
+    "@vitest/coverage-v8": "5.0.5",
+    "eslint": "10.13.0",
     "eslint-config-prettier": "10.1.8",
     "jiti": "2.7.0",
-    "prettier": "3.9.9",
+    "prettier": "3.9.10",
     "typescript": "npm:@typescript/typescript6@6.0.2",
-    "typescript-eslint": "8.71.0",
+    "typescript-eslint": "8.72.0",
     "typescript-native": "npm:typescript@7.0.2",
-    "typescript-native-next": "npm:typescript@7.1.0-dev.20261003.1",
-    "vite": "8.3.2",
-    "vitest": "5.0.3"
+    "typescript-native-next": "npm:typescript@7.1.0-beta",
+    "vite": "8.3.5",
+    "vitest": "5.0.5"
   }
 }

@@ -29,6 +29,15 @@ researcher — please weigh it with that provenance in mind.
 
 ---
 
+**Contents:** [Zero runtime dependencies](#what-zero-runtime-dependencies-means) ·
+[Quick start](#quick-start-fedora-43-and-friends) · [Scripts](#scripts) ·
+[E2E in a container](#end-to-end-tests-in-a-container) ·
+[Writing content](#writing-content) · [Narrated posts](#narrated-posts) ·
+[Labs](#labs-how-the-flapping-airplane-flies) ·
+[Live statistics](#live-statistics-optional-never-blocking) ·
+[Languages](#languages) · [Architecture](#architecture-in-one-paragraph) ·
+[Toolchain](#toolchain) · [Deployment](#deployment) · [License](#license)
+
 ## What "zero runtime dependencies" means
 
 `package.json` has a `devDependencies` section and **no `dependencies`
@@ -240,17 +249,42 @@ and every non-obvious decision has an ADR in [docs/adr/](docs/adr/).
 
 ## Toolchain
 
-TypeScript **7.0** (native compiler) for every type-check and the editor,
-plus a pinned **7.1** preview gate. typescript-eslint cannot load TypeScript
-7 until 7.1's API ships, so the package named `typescript` is the official
-`@typescript/typescript6` API facade, used by the linter alone
-([ADR 0031](docs/adr/0031-typescript-7-only-compiler.md),
-[ADR 0032](docs/adr/0032-explicit-ts-extensions-and-7-1-gate.md)). VS Code:
-install the recommended _TypeScript (Native Preview)_ extension. Vite 8,
-Vitest 5, Playwright 1.63, ESLint 10 + typescript-eslint 8 (strict
-type-checked), Prettier 3, Yarn 4 via corepack, Node 24. Dependencies are exact-pinned;
-deviations from "absolute latest" are quarantine holds documented in
-[ADR 0014](docs/adr/0014-yarn-and-dependency-policy.md).
+| Tool                         | Version                                 | Role                                            |
+| ---------------------------- | --------------------------------------- | ----------------------------------------------- |
+| TypeScript (native compiler) | 7.0.2                                   | Every type-check and the editor                 |
+| TypeScript 7.1 preview gate  | 7.1.0-beta                              | Second type-check so 7.1 never surprises us     |
+| `@typescript/typescript6`    | 6.0.2                                   | API facade for typescript-eslint only           |
+| Vite                         | 8.3.5                                   | Dev server, bundler (Rolldown), SSG plugin host |
+| Vitest + coverage-v8         | 5.0.5                                   | Unit tests with V8 coverage                     |
+| Playwright                   | 1.64.1                                  | E2E in the `v1.64.1-noble` image                |
+| ESLint + typescript-eslint   | 10.13.0 / 8.72.0                        | Strict type-checked linting, zero warnings      |
+| Prettier                     | 3.9.10                                  | Formatting                                      |
+| Yarn (corepack)              | 4.18.1                                  | Package manager, 72-hour minimal-age gate       |
+| Node                         | 24 LTS                                  | Build runtime only                              |
+| GitHub Actions               | checkout v7, setup-node v7, Pages v6/v5 | CI and deployment                               |
+
+typescript-eslint cannot load TypeScript 7 until 7.1's API ships, so the
+package named `typescript` is the official `@typescript/typescript6` facade,
+used by the linter alone
+([ADR 0031](docs/adr/0031-typescript-7-only-compiler.md)). The 7.1 gate pins
+the newest 7.1 milestone past the quarantine
+([ADR 0032](docs/adr/0032-explicit-ts-extensions-and-7-1-gate.md)). VS Code:
+install the recommended _TypeScript (Native Preview)_ extension.
+
+Dependencies are exact-pinned and `yarn.lock` is committed. "Latest" means
+latest that has been public for 72 hours
+([ADR 0014](docs/adr/0014-yarn-and-dependency-policy.md)). To upgrade:
+
+```bash
+npx npm-check-updates          # respects npmMinimalAgeGate from .yarnrc.yml
+yarn up <package>@<version>    # one deliberate bump at a time
+./check.sh
+```
+
+The `npm:` aliases (`typescript-native`, `typescript-native-next`,
+`typescript`) are not reported by npm-check-updates; check
+`npm view typescript dist-tags` by hand. When `@playwright/test` moves, the
+image tag in `compose.yaml` and `.github/workflows/verify.yml` moves with it.
 
 ## Deployment
 

@@ -26,3 +26,9 @@ extensions too. TypeScript 7.1 is in development and should not surprise us.
 
 `vite build --configLoader native` works today. The 7.1 pin is bumped
 deliberately and folds into the main compiler when 7.1 is stable.
+
+## Amendment (2026-10-25)
+
+`typescript-native-next` pins the newest 7.1 milestone (beta, then rc) that
+clears the 72-hour gate, and falls back to a nightly only when no milestone
+exists. It now pins `7.1.0-beta`; the code type-checks under it unchanged.

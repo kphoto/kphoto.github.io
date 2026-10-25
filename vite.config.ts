@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [kphotoSsg()],
   build: {
     manifest: true,
-    rollupOptions: {
+    rolldownOptions: {
       input: {
         client: 'src/client/main.ts',
         styles: 'src/styles/global.css',
