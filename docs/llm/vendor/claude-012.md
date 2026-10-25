@@ -13,6 +13,23 @@ I have verified at least one of the images loads
 so I think all the other images will load as well. 
 I have added all the context you need in the attached file. 
 the dump and the terminal text files in the project are up to date as well. 
+this repository is public and available free of cost 
+at https://github.com/kphoto/kphoto.github.io
+replace the readme file with a better version when delivering changes 
+always make sure this readme is up to date with the latest code changes where possible 
+Use your best judgment
+If only a few files (under five or there about) need to change, give me the full path of the files that need to change and the FULL file 
+if there are a lot of files that need to change 
+    Delivery
+    Whole project as one tar.gz, unambiguous file placement
+    ONLY files that change need to be included in the tar zip
+    as I will put it on top of the existing repository
+    Any files to delete on updates called out explicitly
+No bespoke sed/patch scripts — full files only for anything that changes
+Docs updated alongside code changes
+Low verbosity, no code comments
+I can't emphasize this 
+NO CODE COMMENTS 
 
 ```bash
 kushal@fedora:~/src/dotnet/HelloXUnit$ cat /home/kushal/src/bash/scratch.sh; time bash /home/kushal/src/bash/scratch.sh
