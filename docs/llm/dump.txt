@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-11-06T13:25:22-05:00
+  Generated at   : 2026-11-06T13:48:22-05:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,12 +17,12 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : e837ab18d055b791f64d5d97cd80b4bb1ab3ad3b
-  Commit (short) : e837ab1
-  Commit date    : 2026-11-06 13:23:40 -0500
-  Commit message : add logs
+  Commit (full)  : 47784855b5774fc927f6e21f8f7c91c7cc56e049
+  Commit (short) : 4778485
+  Commit date    : 2026-11-06 13:48:13 -0500
+  Commit message : run scripts
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
-  Files included : 523
+  Files included : 527
   Excluded path  : docs/llm/
   Excluded files : yarn.lock, .pnp.cjs, .pnp.loader.mjs
 
@@ -430,7 +430,7 @@ FOOTER
 mv -f "$TMP_FILE" "$OUTPUT_FILE"
 
 ################################################################################
-# FILE TREE  (all 523 included files)
+# FILE TREE  (all 527 included files)
 ################################################################################
 .
 .
@@ -536,7 +536,10 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── 0035-remembered-listening.md
 │   │   ├── 0036-labs-section.md
 │   │   ├── 0037-time-based-flipbook-three-renderers.md
-│   │   └── 0038-third-party-demonstration-assets.md
+│   │   ├── 0038-third-party-demonstration-assets.md
+│   │   ├── 0039-yarn-without-bundled-corepack.md
+│   │   ├── 0040-playwright-image-pinned-by-digest.md
+│   │   └── 0041-node-version-file.md
 │   ├── architecture.md
 │   ├── content-authoring.md
 │   ├── i18n.md
@@ -555,6 +558,7 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │       └── verify.yml
 ├── .gitignore
 ├── LICENSE
+├── .node-version
 ├── package.json
 ├── playwright.config.ts
 ├── .prettierignore
@@ -995,15 +999,15 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   File name:             CHANGELOG.md
   Relative path:         CHANGELOG.md
   Absolute path:         /home/kushal/src/ts/kphoto/CHANGELOG.md
-  Size:                  15.7 KiB (16136 bytes)
-  Last modified:         2026-10-25 15:15:17.000000000 -0400
+  Size:                  16.7 KiB (17141 bytes)
+  Last modified:         2026-11-06 13:37:44.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68085383
+  Inode:                 69727809
   Hard links:            1
   MIME type:             text/html
-  SHA-256:               70e36154bab59660d5a56727bae9ede8a155bdc6cb56a7f07ec54cae802b8968
-  Last git commit:       26b5469 2026-10-25 15:23:55 -0400 add claude response
+  SHA-256:               b05dda230988932448eb2010f531e7994bad6db43d78604c39a37c29acc12db3
+  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
 
 --- CONTENT ---
 # Changelog
@@ -1099,6 +1103,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   deprecated in Vite 8.3.5 (ADR 0005 amendment).
 - GitHub Actions: `actions/setup-node` v6 → v7.
 - The theme-init test evaluates the script with `node:vm`.
+- CI runner-hosted jobs use Node 26 LTS from the new `.node-version`; the
+  e2e job uses the image's Node and no longer runs `actions/setup-node`
+  (ADR 0041). Yarn and corepack downloads are cached with `actions/cache`
+  v6.
+
+### Fixed
+
+- `verify / e2e` failed with `corepack: not found`: the
+  `v1.64.1-noble` image was republished with Node 26, which no longer
+  bundles corepack. `scripts/lib.sh` now installs a pinned corepack
+  (0.36.0) into `~/.cache/kphoto` and shims the `packageManager` Yarn first
+  on `PATH`, also shadowing the image's classic Yarn; no workflow,
+  compose service or README step runs `corepack enable` any more
+  (ADR 0039).
+- Local runs did not catch it because podman reused its older copy of the
+  same tag. The image is now pinned by tag and digest in `compose.yaml` and
+  `verify.yml` (ADR 0040).
+- `src/versionSync.test.ts` guards the digest pin, identical images, exact
+  corepack and Yarn pins, the absence of direct corepack calls and the
+  `.node-version` contract.
 
 ## [0.1.0]
 
@@ -1377,52 +1401,47 @@ log "all checks passed ✔"
   File name:             compose.yaml
   Relative path:         compose.yaml
   Absolute path:         /home/kushal/src/ts/kphoto/compose.yaml
-  Size:                  716 B (716 bytes)
-  Last modified:         2026-11-06 13:22:47.594237214 -0500
+  Size:                  673 B (673 bytes)
+  Last modified:         2026-11-06 13:35:21.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68085385
+  Inode:                 69727811
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               15cd701ef8d07ee777b4557dae5b38ff03d2258735d6a7bdc466388ab193c8d4
-  Last git commit:       e837ab1 2026-11-06 13:23:40 -0500 add logs
+  SHA-256:               6db23a3df951aa2cb7b23f22a160328b42c24102dbe8e823770666e612ab8fad
+  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
 
 --- CONTENT ---
 x-base: &base
-  image: mcr.microsoft.com/playwright:v1.64.1-noble
+  image: mcr.microsoft.com/playwright:v1.64.1-noble@sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f
   init: true
   ipc: host
   working_dir: /work
   volumes:
     - .:/work:Z
     - yarn-cache:/root/.yarn
-  environment:
-    COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
+    - tool-cache:/root/.cache
 
 services:
   e2e:
     <<: *base
-    command: ['bash', '-c', 'corepack enable && ./scripts/build.sh && ./scripts/test-e2e.sh']
+    command: ['bash', '-c', './scripts/build.sh && ./scripts/test-e2e.sh']
 
   dev:
     <<: *base
-    command: ['bash', '-c', 'corepack enable && ./scripts/dev.sh --host 0.0.0.0']
+    command: ['./scripts/dev.sh', '--host', '0.0.0.0']
     ports:
       - '5173:5173'
 
   preview:
     <<: *base
-    command:
-      [
-        'bash',
-        '-c',
-        'corepack enable && ./scripts/preview.sh --host 0.0.0.0 --port 4173 --strictPort',
-      ]
+    command: ['./scripts/preview.sh', '--host', '0.0.0.0', '--port', '4173', '--strictPort']
     ports:
       - '4173:4173'
 
 volumes:
   yarn-cache:
+  tool-cache:
 
 
 ################################################################################
@@ -5490,15 +5509,15 @@ state of the committed configuration.
   File name:             0011-slim-ci-and-pages-deploy.md
   Relative path:         docs/adr/0011-slim-ci-and-pages-deploy.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0011-slim-ci-and-pages-deploy.md
-  Size:                  1.8 KiB (1844 bytes)
-  Last modified:         2026-10-09 09:26:45.000000000 -0400
+  Size:                  2.1 KiB (2235 bytes)
+  Last modified:         2026-11-06 13:37:27.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 65597891
+  Inode:                 69727814
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               bc61db5cdaaaa5c4fad2cc2fd221a8c6aa5e29ef3aa8b42bad9c8c8e5fdac8cb
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               b6397dd35500bdcdca9f58fab750f563aac15cf4f0ecbf97f74763afcaa58e81
+  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
 
 --- CONTENT ---
 # 11. Slim GitHub Actions: workflows only call scripts/; deploy on every push
@@ -5545,6 +5564,14 @@ coverage artifacts are uploaded from CI; failures are read from logs, and
 anything deeper is reproduced locally with the same scripts. The deploy job
 rebuilds rather than reusing the verify job's artifact — a few extra seconds
 buys workflow-level decoupling.
+
+## Amendment (2026-11-06)
+
+The allowed workflow steps are now `actions/checkout`, `actions/setup-node`
+(runner-hosted jobs only, version from `.node-version`), `actions/cache`
+and `./scripts/*.sh`. There is no `corepack enable` step and no setup-node
+yarn cache: the scripts provide Yarn themselves (ADR 0039), and the e2e job
+runs on the Node of its digest-pinned image (ADRs 0040, 0041).
 
 
 ################################################################################
@@ -5702,15 +5729,15 @@ validates each field and drops what it does not recognise.
   File name:             0014-yarn-and-dependency-policy.md
   Relative path:         docs/adr/0014-yarn-and-dependency-policy.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0014-yarn-and-dependency-policy.md
-  Size:                  1.8 KiB (1847 bytes)
-  Last modified:         2026-10-09 09:26:45.000000000 -0400
+  Size:                  2.0 KiB (2114 bytes)
+  Last modified:         2026-11-06 13:37:27.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 65597894
+  Inode:                 69727815
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               8b65d2cb41a891343ab0100faf51b5e70617abe1c0d8e9448cc68e141ea94bcf
-  Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
+  SHA-256:               6d044a36d6abc8e372a1646e217d53ff5ffbbb18a8674910ee878c329f47d223
+  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
 
 --- CONTENT ---
 # 14. Yarn 4 via corepack, exact pins, and the minimal-age quarantine
@@ -5757,6 +5784,13 @@ past the gate". Corepack needs enabling once per machine
 The `packageExtensions` block is gone: ADR 0031 replaces it with the
 official `@typescript/typescript6` alias. `.yarnrc.yml` now holds only the
 linker, the global cache and the 72-hour age gate.
+
+## Amendment (2026-11-06)
+
+Node 25+ no longer bundles corepack, so "provided by corepack" now means a
+corepack version pinned in `scripts/lib.sh` and installed by the scripts
+into the user cache (ADR 0039). `sudo corepack enable` is no longer needed
+on any machine.
 
 
 ################################################################################
@@ -5935,15 +5969,15 @@ option effective and adopted.
   File name:             0017-containerised-e2e-playwright-image.md
   Relative path:         docs/adr/0017-containerised-e2e-playwright-image.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0017-containerised-e2e-playwright-image.md
-  Size:                  2.8 KiB (2944 bytes)
-  Last modified:         2026-10-09 09:26:45.000000000 -0400
+  Size:                  3.3 KiB (3457 bytes)
+  Last modified:         2026-11-06 13:37:27.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 65597897
+  Inode:                 69727816
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               8bdb8247908293ef1c60d92192b40b2acf240943a3117e31c31806a3d5f28613
-  Last git commit:       b873dd4 2026-08-28 08:13:17 -0400 use 1.62
+  SHA-256:               5f69d3efe9f9ab13040d5d9c28ceecc9299eb3641fc8535466a968cfe1c9d8ec
+  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
 
 --- CONTENT ---
 # 17. End-to-end tests run in the official Playwright container
@@ -6003,6 +6037,17 @@ for environments without one. Rootless podman maps container root back to
 the invoking user, so `node_modules/` and `dist/` written through the bind
 mount stay owned by the developer; rootful docker would leave root-owned
 files (use rootless, or chown afterwards).
+
+## Amendment (2026-11-06)
+
+- The image is referenced by tag **and digest** in both files (ADR 0040).
+  A tag-only reference let a stale local copy hide a republished image.
+- The image now ships Node 26 without corepack. The container commands call
+  the scripts directly; `scripts/lib.sh` provides the pinned Yarn
+  (ADR 0039). A second named volume keeps `/root/.cache`, where the pinned
+  corepack and the Yarn it downloads live.
+- The CI e2e job uses the image's Node instead of installing one
+  (ADR 0041).
 
 
 ################################################################################
@@ -6132,15 +6177,15 @@ reintroduce coverage without touching the site.
   File name:             0019-ci-container-home-override.md
   Relative path:         docs/adr/0019-ci-container-home-override.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0019-ci-container-home-override.md
-  Size:                  2.1 KiB (2232 bytes)
-  Last modified:         2026-10-09 09:26:45.000000000 -0400
+  Size:                  2.6 KiB (2672 bytes)
+  Last modified:         2026-11-06 13:37:32.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 65597899
+  Inode:                 69727817
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               7acc6e2e1b6dd22ac805a191713fc413f05540c2ab4ed1076230ec88cb2a15d0
-  Last git commit:       3e63220 2026-07-10 14:39:22 -0400 add claude changes
+  SHA-256:               5e55033ca5339eefebc4e2111676cdc48df7cee5f54c45f1c517f0138bfa0478
+  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
 
 --- CONTENT ---
 # 19. The CI e2e container job pins HOME=/root for Firefox
@@ -6196,6 +6241,15 @@ this job, which costs nothing — the job container is ephemeral and nothing
 in this repository persists state there. If a future job ever runs as a
 non-root user, this override must be revisited together with the corepack
 step (see the `--user 1001` note above).
+
+## Amendment (2026-11-06)
+
+The `corepack enable` step is gone (ADR 0039); the pinned corepack now
+lives under `$HOME/.cache`, so a future non-root job needs only a writable
+`$HOME`. The override stays job-level so `actions/cache` and the scripts
+agree on `~`. The `open /root/.docker/config.json: permission denied`
+warning in the job log comes from the runner's host-side `docker exec`
+calls seeing the overridden `HOME`; it is harmless.
 
 
 ################################################################################
@@ -7366,6 +7420,204 @@ resources, so hotlinking is not an option.
 
 Anyone reusing this repository must not assume the drawings are free to
 reuse. Removing them breaks only the lab's flipbook, not the rest of the site.
+
+
+################################################################################
+# FILE: docs/adr/0039-yarn-without-bundled-corepack.md
+################################################################################
+
+--- METADATA ---
+  File name:             0039-yarn-without-bundled-corepack.md
+  Relative path:         docs/adr/0039-yarn-without-bundled-corepack.md
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0039-yarn-without-bundled-corepack.md
+  Size:                  2.8 KiB (2934 bytes)
+  Last modified:         2026-11-06 13:37:18.000000000 -0500
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 69727818
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               20e7513c299aab264360a71c813cf1dc325e06534cd9c2d4335e9359fe262a39
+  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
+
+--- CONTENT ---
+# 39. Scripts provision a pinned corepack; Node's bundled one is never used
+
+Date: 2026-11-06
+
+## Status
+
+Accepted. Amends ADRs 0011, 0014, 0017 and 0019.
+
+## Context
+
+Node.js 25 and later no longer ship corepack. On 2026-11-01 Microsoft
+republished `mcr.microsoft.com/playwright:v1.64.1-noble` under the same tag
+with Node 26.13.0 (previously Node 24), and the `verify / e2e` job stopped
+at its first step, `corepack enable`, with `corepack: not found` (exit 127).
+The `checks` and `deploy` jobs still worked only because the runner image's
+preinstalled Node happened to bundle corepack — the same failure waiting
+for the runner image to move.
+
+The image also ships classic Yarn 1 at `/usr/bin/yarn` (`npm install -g
+yarn`). `scripts/lib.sh` skipped corepack whenever any `yarn` was on
+`PATH`, so on such an image classic Yarn would have been picked instead of
+the pinned Yarn 4.
+
+Alternatives considered:
+
+- `npm install -g corepack` — collides with the image's yarn shim
+  (`EEXIST`), needs root on Fedora, and differs between machines.
+- Committing `.yarn/releases/yarn-*.cjs` with `yarnPath` — a 3 MB generated
+  blob in the repository and in every `docs/llm/dump.txt`.
+- Pinning the image to its old Node 24 digest — moves backwards and only
+  postpones the problem to the next Playwright release.
+
+## Decision
+
+- `scripts/lib.sh` pins `KPHOTO_COREPACK_VERSION` (0.36.0) and
+  `ensure_node` calls `ensure_yarn`, which installs exactly that corepack
+  with npm into `${XDG_CACHE_HOME:-~/.cache}/kphoto/corepack-<version>`,
+  creates a `yarn` shim there with `corepack enable --install-directory`
+  and puts that directory first on `PATH`. The pinned corepack then runs
+  the Yarn named in `package.json#packageManager`.
+- The install happens once per machine and corepack version; later runs
+  only prepend `PATH`. No root, no global install, and any other `yarn`
+  (classic, distro, global corepack) is shadowed.
+- `COREPACK_ENABLE_DOWNLOAD_PROMPT=0` is exported by `lib.sh`, so no
+  workflow or compose file needs it.
+- Workflows and `compose.yaml` never mention corepack commands; they call
+  scripts. `actions/setup-node` no longer caches yarn (it needs a yarn
+  before the scripts run); an `actions/cache` step caches
+  `~/.yarn/berry/cache`, `~/.cache/kphoto` and `~/.cache/node/corepack`
+  instead. `compose.yaml` keeps the same directories in named volumes.
+- `src/versionSync.test.ts` fails if a workflow, `compose.yaml` or
+  `lib.sh` calls `corepack enable|prepare|install|use` directly, if a
+  workflow uses setup-node's yarn cache, or if either pin is not exact.
+
+## Consequences
+
+The same function provides Yarn on Fedora, in the Playwright container and
+on the Actions runner, regardless of Node version or what else is
+installed. The first run on a machine needs the npm registry (it already
+needed it for Yarn itself). Upgrading corepack is a one-line change in
+`lib.sh`, kept current like any other pin.
+
+
+################################################################################
+# FILE: docs/adr/0040-playwright-image-pinned-by-digest.md
+################################################################################
+
+--- METADATA ---
+  File name:             0040-playwright-image-pinned-by-digest.md
+  Relative path:         docs/adr/0040-playwright-image-pinned-by-digest.md
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0040-playwright-image-pinned-by-digest.md
+  Size:                  1.5 KiB (1610 bytes)
+  Last modified:         2026-11-06 13:37:18.000000000 -0500
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 69727819
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               d883156f5abc25d0a5c7d49ad786b1fe3005dfce272aff21eb6bff318fa83641
+  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
+
+--- CONTENT ---
+# 40. The Playwright image is pinned by tag and digest
+
+Date: 2026-11-06
+
+## Status
+
+Accepted. Amends ADR 0017.
+
+## Context
+
+`compose.yaml` and the CI `e2e` job named the image by tag only. Tags are
+mutable: `v1.64.1-noble` was republished on 2026-11-01 with a different
+Node major (ADR 0039). GitHub Actions pulled the new image
+(`sha256:2f05f8a7…`); podman kept the copy it had pulled earlier
+(`sha256:47b510dd…`, Node 24) because a tag that is present locally is not
+pulled again. `./check.sh` passed locally while CI failed — the two were no
+longer the same environment, which is the whole point of ADR 0017.
+
+## Decision
+
+Both files reference the image as
+`mcr.microsoft.com/playwright:v<version>-noble@sha256:<digest>`. The tag
+stays for readability and for the version check; the digest decides what
+runs. Podman, Docker and Actions all resolve the digest and pull it if it is
+missing, so a stale local tag can no longer be used.
+
+`src/versionSync.test.ts` requires every reference to carry a digest,
+requires the tag version to equal `@playwright/test`, and requires
+`compose.yaml` and `verify.yml` to name the identical reference.
+
+## Consequences
+
+A republished tag changes nothing until someone updates the digest
+deliberately, and then it changes locally and in CI in the same commit.
+Upgrading Playwright now means bumping the dependency and both image
+references to the new tag and its digest
+(`podman pull mcr.microsoft.com/playwright:v<version>-noble` prints it).
+Security rebuilds of the same tag are picked up only by such an update; the
+image runs tests only, never the deployed site.
+
+
+################################################################################
+# FILE: docs/adr/0041-node-version-file.md
+################################################################################
+
+--- METADATA ---
+  File name:             0041-node-version-file.md
+  Relative path:         docs/adr/0041-node-version-file.md
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0041-node-version-file.md
+  Size:                  1.3 KiB (1345 bytes)
+  Last modified:         2026-11-06 13:37:18.000000000 -0500
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 69727820
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               aad8c1d5ef2874fe3751c689b740c8eae4d9a4f007747df82303a949faa6d93a
+  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
+
+--- CONTENT ---
+# 41. One Node version file for CI; the e2e job uses the image's Node
+
+Date: 2026-11-06
+
+## Status
+
+Accepted. Amends ADR 0011.
+
+## Context
+
+The workflows hardcoded `node-version: 24` three times, and the e2e job
+installed Node 24 with `actions/setup-node` inside an image that already
+carries the Node it was built and tested with. Node 26 has been the active
+LTS since October 2026, and the Playwright image now ships it.
+
+## Decision
+
+- `.node-version` holds the Node major for runner-hosted jobs (`26`).
+  `checks` and `deploy` use `actions/setup-node` with
+  `node-version-file: .node-version`; version managers such as fnm and nvm
+  read the same file locally.
+- The `e2e` job has no setup-node step and runs on the image's Node, the
+  same Node the local container uses.
+- `package.json#engines` stays `>=24` and `scripts/lib.sh` keeps that
+  floor, so a host with Node 24 LTS still works.
+- `src/versionSync.test.ts` fails if a workflow names a `node-version`
+  directly, if setup-node is used without `.node-version`, or if
+  `.node-version` falls below the engines floor.
+
+## Consequences
+
+Moving CI to a new Node LTS is one edit. The e2e Node follows the image
+digest (ADR 0040), so it changes only when the image does. CI exercises
+Node 26 while a developer may still run Node 24 on the host; both are
+supported by the engines range.
 
 
 ################################################################################
@@ -8747,15 +8999,15 @@ jobs:
   File name:             deploy.yml
   Relative path:         .github/workflows/deploy.yml
   Absolute path:         /home/kushal/src/ts/kphoto/.github/workflows/deploy.yml
-  Size:                  1.0 KiB (1103 bytes)
-  Last modified:         2026-10-25 15:14:23.000000000 -0400
+  Size:                  1.2 KiB (1327 bytes)
+  Last modified:         2026-11-06 13:35:16.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68085381
+  Inode:                 69727807
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               e14ef4a8e92dcff479056e69e541c5473aa53990bc524ac2a66ad1cdd5367734
-  Last git commit:       26b5469 2026-10-25 15:23:55 -0400 add claude response
+  SHA-256:               94188519d9d205455cf9b5d46b14412bd19fd698b160d47adaa2b1a9aaf05495
+  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
 
 --- CONTENT ---
 name: deploy
@@ -8788,14 +9040,19 @@ jobs:
       - name: Check out
         uses: actions/checkout@v7
 
-      - name: Enable corepack (yarn)
-        run: corepack enable
-
-      - name: Set up Node 24
+      - name: Set up Node
         uses: actions/setup-node@v7
         with:
-          node-version: 24
-          cache: yarn
+          node-version-file: .node-version
+
+      - name: Cache yarn and corepack
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.yarn/berry/cache
+            ~/.cache/kphoto
+            ~/.cache/node/corepack
+          key: deploy-${{ runner.os }}-${{ hashFiles('yarn.lock', 'package.json', 'scripts/lib.sh') }}
 
       - name: Bootstrap
         run: ./scripts/bootstrap.sh
@@ -8824,15 +9081,15 @@ jobs:
   File name:             verify.yml
   Relative path:         .github/workflows/verify.yml
   Absolute path:         /home/kushal/src/ts/kphoto/.github/workflows/verify.yml
-  Size:                  1.3 KiB (1419 bytes)
-  Last modified:         2026-11-06 13:22:43.305083793 -0500
+  Size:                  1.7 KiB (1816 bytes)
+  Last modified:         2026-11-06 13:35:16.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68085382
+  Inode:                 69727808
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               58fed3c7d380d876e0011a366e91de97cf6740406b8a8a0b4f51d197a845865e
-  Last git commit:       e837ab1 2026-11-06 13:23:40 -0500 add logs
+  SHA-256:               52acd8af5548aaf537a62ef82b9e32991c502f5703de49a37122a88a975da477
+  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
 
 --- CONTENT ---
 name: verify
@@ -8847,14 +9104,19 @@ jobs:
       - name: Check out
         uses: actions/checkout@v7
 
-      - name: Enable corepack (yarn)
-        run: corepack enable
-
-      - name: Set up Node 24
+      - name: Set up Node
         uses: actions/setup-node@v7
         with:
-          node-version: 24
-          cache: yarn
+          node-version-file: .node-version
+
+      - name: Cache yarn and corepack
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.yarn/berry/cache
+            ~/.cache/kphoto
+            ~/.cache/node/corepack
+          key: checks-${{ runner.os }}-${{ hashFiles('yarn.lock', 'package.json', 'scripts/lib.sh') }}
 
       - name: Bootstrap
         run: ./scripts/bootstrap.sh
@@ -8880,7 +9142,7 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      image: mcr.microsoft.com/playwright:v1.64.1-noble@sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f
       options: --init --ipc=host
     env:
       HOME: /root
@@ -8888,14 +9150,14 @@ jobs:
       - name: Check out
         uses: actions/checkout@v7
 
-      - name: Enable corepack (yarn)
-        run: corepack enable
-
-      - name: Set up Node 24
-        uses: actions/setup-node@v7
+      - name: Cache yarn and corepack
+        uses: actions/cache@v6
         with:
-          node-version: 24
-          cache: yarn
+          path: |
+            ~/.yarn/berry/cache
+            ~/.cache/kphoto
+            ~/.cache/node/corepack
+          key: e2e-${{ runner.os }}-${{ hashFiles('yarn.lock', 'package.json', 'scripts/lib.sh') }}
 
       - name: Bootstrap
         run: ./scripts/bootstrap.sh
@@ -9621,6 +9883,28 @@ specific requirements.
 if any, to sign a "copyright disclaimer" for the program, if necessary.
 For more information on this, and how to apply and follow the GNU AGPL, see
 <https://www.gnu.org/licenses/>.
+
+
+################################################################################
+# FILE: .node-version
+################################################################################
+
+--- METADATA ---
+  File name:             .node-version
+  Relative path:         .node-version
+  Absolute path:         /home/kushal/src/ts/kphoto/.node-version
+  Size:                  3 B (3 bytes)
+  Last modified:         2026-11-06 13:35:08.000000000 -0500
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 69727804
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               20d2add851bf39edcc6b5e830930f962db7e19dffa2cab8610eed551eda6c302
+  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
+
+--- CONTENT ---
+26
 
 
 ################################################################################
@@ -15385,15 +15669,15 @@ yarn.lock
   File name:             README.md
   Relative path:         README.md
   Absolute path:         /home/kushal/src/ts/kphoto/README.md
-  Size:                  16.4 KiB (16828 bytes)
-  Last modified:         2026-10-25 15:15:32.000000000 -0400
+  Size:                  17.5 KiB (17976 bytes)
+  Last modified:         2026-11-06 13:37:59.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68085384
+  Inode:                 69727810
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               257c4c7c95eca7895f8b0cfac01dda2bc1257abf19fd15695b9341149998f578
-  Last git commit:       26b5469 2026-10-25 15:23:55 -0400 add claude response
+  SHA-256:               b6b082713836fa4e73ee57b85ae4ea343c6c8febd86c98681a018d8f3c8da9e6
+  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
 
 --- CONTENT ---
 # kphoto
@@ -15458,12 +15742,11 @@ file and one small hand-written script. That required writing from scratch:
 ## Quick start (Fedora 43 and friends)
 
 ```bash
-sudo dnf install nodejs        # Node 24+ ships corepack
-sudo corepack enable           # provides yarn 4 (pinned in package.json)
+sudo dnf install nodejs nodejs-npm   # Node 24 or newer; no corepack or yarn needed
 
 git clone https://github.com/kphoto/kphoto.github.io.git
 cd kphoto.github.io
-./scripts/bootstrap.sh         # yarn install --immutable
+./scripts/bootstrap.sh         # pinned corepack + yarn 4, then yarn install --immutable
 ./scripts/dev.sh               # http://localhost:5173 — edit content/, it reloads
 ```
 
@@ -15480,22 +15763,22 @@ Before pushing, run everything CI runs:
 Every script works from any directory and does exactly one thing. CI calls
 these same scripts, so local and CI behaviour cannot drift.
 
-| Script                            | What it does                                                 |
-| --------------------------------- | ------------------------------------------------------------ |
-| `./scripts/bootstrap.sh`          | Verify Node 24+, enable corepack, `yarn install --immutable` |
-| `./scripts/dev.sh`                | Dev server; every route renders live from `content/`         |
-| `./scripts/format.sh`             | Prettier write mode (`--check` to verify only)               |
-| `./scripts/lint.sh`               | ESLint, type-aware rules, zero warnings allowed              |
-| `./scripts/typecheck.sh`          | `tsc --noEmit` with the TypeScript 7 native compiler         |
-| `./scripts/typecheck-next.sh`     | Same with the pinned TypeScript 7.1 preview                  |
-| `./scripts/test-unit.sh`          | Vitest unit suite with V8 coverage                           |
-| `./scripts/build.sh`              | Static build into `dist/` (pages + feed + sitemap)           |
-| `./scripts/test-e2e.sh`           | Playwright suite against a preview of `dist/`                |
-| `./scripts/test-e2e-container.sh` | Same suite inside the official Playwright image (podman)     |
-| `./scripts/preview.sh`            | Serve `dist/` the way GitHub Pages will                      |
-| `./scripts/clean.sh`              | Remove build and test artifacts                              |
-| `./check.sh`                      | All of the above in CI order, then `./export.sh`             |
-| `./export.sh`                     | Dump all tracked files to `docs/llm/dump.txt` for LLM use    |
+| Script                            | What it does                                              |
+| --------------------------------- | --------------------------------------------------------- |
+| `./scripts/bootstrap.sh`          | Verify Node 24+, provide pinned Yarn, `yarn install`      |
+| `./scripts/dev.sh`                | Dev server; every route renders live from `content/`      |
+| `./scripts/format.sh`             | Prettier write mode (`--check` to verify only)            |
+| `./scripts/lint.sh`               | ESLint, type-aware rules, zero warnings allowed           |
+| `./scripts/typecheck.sh`          | `tsc --noEmit` with the TypeScript 7 native compiler      |
+| `./scripts/typecheck-next.sh`     | Same with the pinned TypeScript 7.1 preview               |
+| `./scripts/test-unit.sh`          | Vitest unit suite with V8 coverage                        |
+| `./scripts/build.sh`              | Static build into `dist/` (pages + feed + sitemap)        |
+| `./scripts/test-e2e.sh`           | Playwright suite against a preview of `dist/`             |
+| `./scripts/test-e2e-container.sh` | Same suite inside the official Playwright image (podman)  |
+| `./scripts/preview.sh`            | Serve `dist/` the way GitHub Pages will                   |
+| `./scripts/clean.sh`              | Remove build and test artifacts                           |
+| `./check.sh`                      | All of the above in CI order, then `./export.sh`          |
+| `./export.sh`                     | Dump all tracked files to `docs/llm/dump.txt` for LLM use |
 
 ## End-to-end tests in a container
 
@@ -15512,8 +15795,11 @@ podman compose up preview                # containerised built site on :4173
 ```
 
 Docker works too: `CONTAINER_ENGINE=docker ./scripts/test-e2e-container.sh`.
-The image tag in `compose.yaml` and `.github/workflows/verify.yml` must match
-`@playwright/test` in `package.json` exactly; the unit suite
+`compose.yaml` and `.github/workflows/verify.yml` name the image by tag
+**and digest**, so a stale local copy of a republished tag can never stand in
+for what CI runs ([ADR 0040](docs/adr/0040-playwright-image-pinned-by-digest.md)).
+The tag must match `@playwright/test` in `package.json` exactly and both
+files must name the identical reference; the unit suite
 (`src/versionSync.test.ts`) fails the moment they drift. The chromium
 projects run the real Chromium build in "new headless" mode instead of the
 Chrome Headless Shell
@@ -15647,19 +15933,20 @@ and every non-obvious decision has an ADR in [docs/adr/](docs/adr/).
 
 ## Toolchain
 
-| Tool                         | Version                                 | Role                                            |
-| ---------------------------- | --------------------------------------- | ----------------------------------------------- |
-| TypeScript (native compiler) | 7.0.2                                   | Every type-check and the editor                 |
-| TypeScript 7.1 preview gate  | 7.1.0-beta                              | Second type-check so 7.1 never surprises us     |
-| `@typescript/typescript6`    | 6.0.2                                   | API facade for typescript-eslint only           |
-| Vite                         | 8.3.5                                   | Dev server, bundler (Rolldown), SSG plugin host |
-| Vitest + coverage-v8         | 5.0.5                                   | Unit tests with V8 coverage                     |
-| Playwright                   | 1.64.1                                  | E2E in the `v1.64.1-noble` image                |
-| ESLint + typescript-eslint   | 10.13.0 / 8.72.0                        | Strict type-checked linting, zero warnings      |
-| Prettier                     | 3.9.10                                  | Formatting                                      |
-| Yarn (corepack)              | 4.18.1                                  | Package manager, 72-hour minimal-age gate       |
-| Node                         | 24 LTS                                  | Build runtime only                              |
-| GitHub Actions               | checkout v7, setup-node v7, Pages v6/v5 | CI and deployment                               |
+| Tool                         | Version                                           | Role                                             |
+| ---------------------------- | ------------------------------------------------- | ------------------------------------------------ |
+| TypeScript (native compiler) | 7.0.2                                             | Every type-check and the editor                  |
+| TypeScript 7.1 preview gate  | 7.1.0-beta                                        | Second type-check so 7.1 never surprises us      |
+| `@typescript/typescript6`    | 6.0.2                                             | API facade for typescript-eslint only            |
+| Vite                         | 8.3.5                                             | Dev server, bundler (Rolldown), SSG plugin host  |
+| Vitest + coverage-v8         | 5.0.5                                             | Unit tests with V8 coverage                      |
+| Playwright                   | 1.64.1                                            | E2E in the `v1.64.1-noble` image                 |
+| ESLint + typescript-eslint   | 10.13.0 / 8.72.0                                  | Strict type-checked linting, zero warnings       |
+| Prettier                     | 3.9.10                                            | Formatting                                       |
+| Yarn                         | 4.18.1                                            | Package manager, 72-hour minimal-age gate        |
+| corepack                     | 0.36.0                                            | Pinned in `scripts/lib.sh`, runs the pinned Yarn |
+| Node                         | 26 LTS in CI (`.node-version`), ≥ 24              | Build runtime only                               |
+| GitHub Actions               | checkout v7, setup-node v7, cache v6, Pages v6/v5 | CI and deployment                                |
 
 typescript-eslint cannot load TypeScript 7 until 7.1's API ships, so the
 package named `typescript` is the official `@typescript/typescript6` facade,
@@ -15682,7 +15969,20 @@ yarn up <package>@<version>    # one deliberate bump at a time
 The `npm:` aliases (`typescript-native`, `typescript-native-next`,
 `typescript`) are not reported by npm-check-updates; check
 `npm view typescript dist-tags` by hand. When `@playwright/test` moves, the
-image tag in `compose.yaml` and `.github/workflows/verify.yml` moves with it.
+image tag and digest in `compose.yaml` and `.github/workflows/verify.yml`
+move with it (`podman pull mcr.microsoft.com/playwright:v<version>-noble`
+prints the digest).
+
+### Yarn without a bundled corepack
+
+Node 25 and later no longer ship corepack, and the Playwright image carries
+classic Yarn 1. The scripts therefore never rely on whatever `yarn` or
+`corepack` a machine has: `scripts/lib.sh` installs corepack 0.36.0 into
+`~/.cache/kphoto/` once, puts a `yarn` shim for the `packageManager` version
+first on `PATH`, and every script, CI step and container service goes
+through it ([ADR 0039](docs/adr/0039-yarn-without-bundled-corepack.md)).
+CI's runner-hosted jobs take Node from `.node-version`; the e2e job uses the
+image's Node ([ADR 0041](docs/adr/0041-node-version-file.md)).
 
 ## Deployment
 
@@ -15963,18 +16263,21 @@ audio_convert_dir() {
   File name:             lib.sh
   Relative path:         scripts/lib.sh
   Absolute path:         /home/kushal/src/ts/kphoto/scripts/lib.sh
-  Size:                  884 B (884 bytes)
-  Last modified:         2026-10-09 09:26:47.000000000 -0400
+  Size:                  1.6 KiB (1696 bytes)
+  Last modified:         2026-11-06 13:35:08.000000000 -0500
   Permissions:           -rwxr-xr-x
   Owner:                 kushal:kushal
-  Inode:                 65597936
+  Inode:                 69727822
   Hard links:            1
   MIME type:             text/x-shellscript
-  SHA-256:               f9ea0f123f11e37ef5ce06b9ed844e984d0b72fb6ffdaa1402158a1d02ba3682
-  Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
+  SHA-256:               27864564cafa7d0b3878e930967f443101a8fe17c83c3275fd254f29ad7b3b10
+  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
 
 --- CONTENT ---
 #!/usr/bin/env bash
+
+KPHOTO_COREPACK_VERSION=0.36.0
+export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
 log() { printf '\033[1;34m[%s]\033[0m %s\n' "$(date +%H:%M:%S)" "$*"; }
 die() { printf '\033[1;31m[error]\033[0m %s\n' "$*" >&2; exit 1; }
@@ -15983,15 +16286,36 @@ repo_root() {
   (cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)
 }
 
+tools_dir() {
+  printf '%s/kphoto/corepack-%s\n' "${XDG_CACHE_HOME:-$HOME/.cache}" "$KPHOTO_COREPACK_VERSION"
+}
+
 ensure_node() {
-  command -v node >/dev/null 2>&1 || die "node not found; on Fedora: sudo dnf install nodejs"
+  command -v node >/dev/null 2>&1 || die "node not found; on Fedora: sudo dnf install nodejs nodejs-npm"
   local major
   major="$(node -p 'process.versions.node.split(".")[0]')"
   (( major >= 24 )) || die "node >= 24 required, found $(node --version)"
-  if ! command -v yarn >/dev/null 2>&1; then
-    log "enabling corepack to provide yarn"
-    corepack enable 2>/dev/null || die "corepack enable failed; try: sudo corepack enable"
+  ensure_yarn
+}
+
+ensure_yarn() {
+  local dir
+  dir="$(tools_dir)"
+  if [[ ! -x "$dir/bin/yarn" ]]; then
+    command -v npm >/dev/null 2>&1 || die "npm not found; on Fedora: sudo dnf install nodejs-npm"
+    log "installing corepack $KPHOTO_COREPACK_VERSION into $dir"
+    rm -rf "$dir"
+    mkdir -p "$dir/bin"
+    npm install --prefix "$dir" --no-save --no-audit --no-fund --no-update-notifier --loglevel=error \
+      "corepack@$KPHOTO_COREPACK_VERSION" >/dev/null \
+      || die "could not install corepack $KPHOTO_COREPACK_VERSION from the npm registry"
+    "$dir/node_modules/.bin/corepack" enable --install-directory "$dir/bin" yarn \
+      || die "corepack could not create the yarn shim in $dir/bin"
   fi
+  case ":$PATH:" in
+    *":$dir/bin:"*) ;;
+    *) export PATH="$dir/bin:$PATH" ;;
+  esac
 }
 
 ensure_deps() {
@@ -31185,15 +31509,15 @@ kp-theme-picker {
   File name:             versionSync.test.ts
   Relative path:         src/versionSync.test.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/versionSync.test.ts
-  Size:                  1.1 KiB (1164 bytes)
-  Last modified:         2026-10-09 09:26:47.000000000 -0400
+  Size:                  3.2 KiB (3283 bytes)
+  Last modified:         2026-11-06 13:36:51.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 65598053
+  Inode:                 69727824
   Hard links:            1
   MIME type:             application/javascript
-  SHA-256:               93ae456f0476df4fad89fec2cd48bab95dc3d3f2318943f9a11a48e97ac5020b
-  Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
+  SHA-256:               e297c7d5278c152cb1d17dfddec4e1c5fd3230ab62463b1f013fa0c85bfaa234
+  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
 
 --- CONTENT ---
 import { readFileSync } from 'node:fs';
@@ -31203,30 +31527,97 @@ import { describe, expect, it } from 'vitest';
 const read = (relativeToRepoRoot: string): string =>
   readFileSync(fileURLToPath(new URL(`../${relativeToRepoRoot}`, import.meta.url)), 'utf8');
 
-const imagePattern = /mcr\.microsoft\.com\/playwright:v(\d+\.\d+\.\d+)-noble/g;
+const imagePattern = /mcr\.microsoft\.com\/playwright:[^\s'"]+/g;
+const pinnedImage =
+  /^mcr\.microsoft\.com\/playwright:v(\d+\.\d+\.\d+)-noble@(sha256:[0-9a-f]{64})$/;
 
-const imageVersions = (source: string): string[] =>
-  [...source.matchAll(imagePattern)].map((match) => match[1] ?? '');
+const images = (source: string): string[] => source.match(imagePattern) ?? [];
 
-describe('playwright version pins', () => {
-  const packageJson = JSON.parse(read('package.json')) as {
-    devDependencies?: Record<string, string>;
-  };
+const IMAGE_FILES = ['compose.yaml', '.github/workflows/verify.yml'] as const;
+const WORKFLOWS = [
+  '.github/workflows/ci.yml',
+  '.github/workflows/verify.yml',
+  '.github/workflows/deploy.yml',
+] as const;
+
+const packageJson = JSON.parse(read('package.json')) as {
+  packageManager?: string;
+  engines?: Record<string, string>;
+  devDependencies?: Record<string, string>;
+};
+
+describe('playwright image pins (ADR 0040)', () => {
   const declared = packageJson.devDependencies?.['@playwright/test'];
 
   it('declares @playwright/test as an exact version', () => {
     expect(declared).toMatch(/^\d+\.\d+\.\d+$/);
   });
 
-  for (const file of ['compose.yaml', '.github/workflows/verify.yml']) {
-    it(`pins the matching container image in ${file}`, () => {
-      const versions = imageVersions(read(file));
-      expect(versions.length).toBeGreaterThan(0);
-      for (const version of versions) {
-        expect(version).toBe(declared);
+  for (const file of IMAGE_FILES) {
+    it(`pins the image in ${file} by matching tag and digest`, () => {
+      const found = images(read(file));
+      expect(found.length).toBeGreaterThan(0);
+      for (const image of found) {
+        const match = pinnedImage.exec(image);
+        expect(match, image).not.toBeNull();
+        expect(match?.[1]).toBe(declared);
       }
     });
   }
+
+  it('uses one and the same image everywhere', () => {
+    const all = new Set(IMAGE_FILES.flatMap((file) => images(read(file))));
+    expect(all.size).toBe(1);
+  });
+});
+
+describe('package manager provisioning (ADR 0039)', () => {
+  const lib = read('scripts/lib.sh');
+
+  it('pins yarn exactly in packageManager', () => {
+    expect(packageJson.packageManager).toMatch(/^yarn@\d+\.\d+\.\d+$/);
+  });
+
+  it('pins corepack exactly in scripts/lib.sh', () => {
+    expect(lib).toMatch(/^KPHOTO_COREPACK_VERSION=\d+\.\d+\.\d+$/m);
+  });
+
+  it('never relies on a corepack bundled with node', () => {
+    const bundled = /(^|[\s'"&;])corepack\s+(enable|prepare|install|use)\b/m;
+    for (const file of [...WORKFLOWS, 'compose.yaml', 'scripts/lib.sh']) {
+      expect(read(file), file).not.toMatch(bundled);
+    }
+  });
+
+  it('leaves yarn to the scripts in every workflow', () => {
+    for (const file of WORKFLOWS) {
+      expect(read(file), file).not.toMatch(/cache: yarn/);
+    }
+  });
+});
+
+describe('node version (ADR 0041)', () => {
+  const nodeVersion = read('.node-version').trim();
+
+  it('names a bare major version', () => {
+    expect(nodeVersion).toMatch(/^\d+$/);
+  });
+
+  it('satisfies the engines floor', () => {
+    const floor = /^>=(\d+)$/.exec(packageJson.engines?.node ?? '')?.[1];
+    expect(floor).toBeDefined();
+    expect(Number(nodeVersion)).toBeGreaterThanOrEqual(Number(floor));
+  });
+
+  it('is the only node version the runner-hosted jobs use', () => {
+    for (const file of WORKFLOWS) {
+      const source = read(file);
+      expect(source, file).not.toMatch(/node-version:/);
+      if (source.includes('actions/setup-node')) {
+        expect(source, file).toMatch(/node-version-file: \.node-version/);
+      }
+    }
+  });
 });
 
 
@@ -32156,10 +32547,10 @@ npmMinimalAgeGate: 4320
 ################################################################################
 # DUMP SUMMARY
 ################################################################################
-  Files dumped   : 523
-  Total size     : 581.8 MiB (610138731 bytes)
+  Files dumped   : 527
+  Total size     : 581.8 MiB (610151896 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-11-06T13:25:36-05:00
+  Completed at   : 2026-11-06T13:48:37-05:00
 ################################################################################
 # END OF DUMP
 ################################################################################
