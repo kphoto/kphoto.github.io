@@ -1,35 +1,30 @@
 x-base: &base
-  image: mcr.microsoft.com/playwright:v1.64.1-noble
+  image: mcr.microsoft.com/playwright:v1.64.1-noble@sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f
   init: true
   ipc: host
   working_dir: /work
   volumes:
     - .:/work:Z
     - yarn-cache:/root/.yarn
-  environment:
-    COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
+    - tool-cache:/root/.cache
 
 services:
   e2e:
     <<: *base
-    command: ['bash', '-c', 'corepack enable && ./scripts/build.sh && ./scripts/test-e2e.sh']
+    command: ['bash', '-c', './scripts/build.sh && ./scripts/test-e2e.sh']
 
   dev:
     <<: *base
-    command: ['bash', '-c', 'corepack enable && ./scripts/dev.sh --host 0.0.0.0']
+    command: ['./scripts/dev.sh', '--host', '0.0.0.0']
     ports:
       - '5173:5173'
 
   preview:
     <<: *base
-    command:
-      [
-        'bash',
-        '-c',
-        'corepack enable && ./scripts/preview.sh --host 0.0.0.0 --port 4173 --strictPort',
-      ]
+    command: ['./scripts/preview.sh', '--host', '0.0.0.0', '--port', '4173', '--strictPort']
     ports:
       - '4173:4173'
 
 volumes:
   yarn-cache:
+  tool-cache:

@@ -42,3 +42,11 @@ coverage artifacts are uploaded from CI; failures are read from logs, and
 anything deeper is reproduced locally with the same scripts. The deploy job
 rebuilds rather than reusing the verify job's artifact — a few extra seconds
 buys workflow-level decoupling.
+
+## Amendment (2026-11-06)
+
+The allowed workflow steps are now `actions/checkout`, `actions/setup-node`
+(runner-hosted jobs only, version from `.node-version`), `actions/cache`
+and `./scripts/*.sh`. There is no `corepack enable` step and no setup-node
+yarn cache: the scripts provide Yarn themselves (ADR 0039), and the e2e job
+runs on the Node of its digest-pinned image (ADRs 0040, 0041).

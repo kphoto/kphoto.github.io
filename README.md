@@ -60,12 +60,11 @@ file and one small hand-written script. That required writing from scratch:
 ## Quick start (Fedora 43 and friends)
 
 ```bash
-sudo dnf install nodejs        # Node 24+ ships corepack
-sudo corepack enable           # provides yarn 4 (pinned in package.json)
+sudo dnf install nodejs nodejs-npm   # Node 24 or newer; no corepack or yarn needed
 
 git clone https://github.com/kphoto/kphoto.github.io.git
 cd kphoto.github.io
-./scripts/bootstrap.sh         # yarn install --immutable
+./scripts/bootstrap.sh         # pinned corepack + yarn 4, then yarn install --immutable
 ./scripts/dev.sh               # http://localhost:5173 — edit content/, it reloads
 ```
 
@@ -82,22 +81,22 @@ Before pushing, run everything CI runs:
 Every script works from any directory and does exactly one thing. CI calls
 these same scripts, so local and CI behaviour cannot drift.
 
-| Script                            | What it does                                                 |
-| --------------------------------- | ------------------------------------------------------------ |
-| `./scripts/bootstrap.sh`          | Verify Node 24+, enable corepack, `yarn install --immutable` |
-| `./scripts/dev.sh`                | Dev server; every route renders live from `content/`         |
-| `./scripts/format.sh`             | Prettier write mode (`--check` to verify only)               |
-| `./scripts/lint.sh`               | ESLint, type-aware rules, zero warnings allowed              |
-| `./scripts/typecheck.sh`          | `tsc --noEmit` with the TypeScript 7 native compiler         |
-| `./scripts/typecheck-next.sh`     | Same with the pinned TypeScript 7.1 preview                  |
-| `./scripts/test-unit.sh`          | Vitest unit suite with V8 coverage                           |
-| `./scripts/build.sh`              | Static build into `dist/` (pages + feed + sitemap)           |
-| `./scripts/test-e2e.sh`           | Playwright suite against a preview of `dist/`                |
-| `./scripts/test-e2e-container.sh` | Same suite inside the official Playwright image (podman)     |
-| `./scripts/preview.sh`            | Serve `dist/` the way GitHub Pages will                      |
-| `./scripts/clean.sh`              | Remove build and test artifacts                              |
-| `./check.sh`                      | All of the above in CI order, then `./export.sh`             |
-| `./export.sh`                     | Dump all tracked files to `docs/llm/dump.txt` for LLM use    |
+| Script                            | What it does                                              |
+| --------------------------------- | --------------------------------------------------------- |
+| `./scripts/bootstrap.sh`          | Verify Node 24+, provide pinned Yarn, `yarn install`      |
+| `./scripts/dev.sh`                | Dev server; every route renders live from `content/`      |
+| `./scripts/format.sh`             | Prettier write mode (`--check` to verify only)            |
+| `./scripts/lint.sh`               | ESLint, type-aware rules, zero warnings allowed           |
+| `./scripts/typecheck.sh`          | `tsc --noEmit` with the TypeScript 7 native compiler      |
+| `./scripts/typecheck-next.sh`     | Same with the pinned TypeScript 7.1 preview               |
+| `./scripts/test-unit.sh`          | Vitest unit suite with V8 coverage                        |
+| `./scripts/build.sh`              | Static build into `dist/` (pages + feed + sitemap)        |
+| `./scripts/test-e2e.sh`           | Playwright suite against a preview of `dist/`             |
+| `./scripts/test-e2e-container.sh` | Same suite inside the official Playwright image (podman)  |
+| `./scripts/preview.sh`            | Serve `dist/` the way GitHub Pages will                   |
+| `./scripts/clean.sh`              | Remove build and test artifacts                           |
+| `./check.sh`                      | All of the above in CI order, then `./export.sh`          |
+| `./export.sh`                     | Dump all tracked files to `docs/llm/dump.txt` for LLM use |
 
 ## End-to-end tests in a container
 
@@ -114,8 +113,11 @@ podman compose up preview                # containerised built site on :4173
 ```
 
 Docker works too: `CONTAINER_ENGINE=docker ./scripts/test-e2e-container.sh`.
-The image tag in `compose.yaml` and `.github/workflows/verify.yml` must match
-`@playwright/test` in `package.json` exactly; the unit suite
+`compose.yaml` and `.github/workflows/verify.yml` name the image by tag
+**and digest**, so a stale local copy of a republished tag can never stand in
+for what CI runs ([ADR 0040](docs/adr/0040-playwright-image-pinned-by-digest.md)).
+The tag must match `@playwright/test` in `package.json` exactly and both
+files must name the identical reference; the unit suite
 (`src/versionSync.test.ts`) fails the moment they drift. The chromium
 projects run the real Chromium build in "new headless" mode instead of the
 Chrome Headless Shell
@@ -249,19 +251,20 @@ and every non-obvious decision has an ADR in [docs/adr/](docs/adr/).
 
 ## Toolchain
 
-| Tool                         | Version                                 | Role                                            |
-| ---------------------------- | --------------------------------------- | ----------------------------------------------- |
-| TypeScript (native compiler) | 7.0.2                                   | Every type-check and the editor                 |
-| TypeScript 7.1 preview gate  | 7.1.0-beta                              | Second type-check so 7.1 never surprises us     |
-| `@typescript/typescript6`    | 6.0.2                                   | API facade for typescript-eslint only           |
-| Vite                         | 8.3.5                                   | Dev server, bundler (Rolldown), SSG plugin host |
-| Vitest + coverage-v8         | 5.0.5                                   | Unit tests with V8 coverage                     |
-| Playwright                   | 1.64.1                                  | E2E in the `v1.64.1-noble` image                |
-| ESLint + typescript-eslint   | 10.13.0 / 8.72.0                        | Strict type-checked linting, zero warnings      |
-| Prettier                     | 3.9.10                                  | Formatting                                      |
-| Yarn (corepack)              | 4.18.1                                  | Package manager, 72-hour minimal-age gate       |
-| Node                         | 24 LTS                                  | Build runtime only                              |
-| GitHub Actions               | checkout v7, setup-node v7, Pages v6/v5 | CI and deployment                               |
+| Tool                         | Version                                           | Role                                             |
+| ---------------------------- | ------------------------------------------------- | ------------------------------------------------ |
+| TypeScript (native compiler) | 7.0.2                                             | Every type-check and the editor                  |
+| TypeScript 7.1 preview gate  | 7.1.0-beta                                        | Second type-check so 7.1 never surprises us      |
+| `@typescript/typescript6`    | 6.0.2                                             | API facade for typescript-eslint only            |
+| Vite                         | 8.3.5                                             | Dev server, bundler (Rolldown), SSG plugin host  |
+| Vitest + coverage-v8         | 5.0.5                                             | Unit tests with V8 coverage                      |
+| Playwright                   | 1.64.1                                            | E2E in the `v1.64.1-noble` image                 |
+| ESLint + typescript-eslint   | 10.13.0 / 8.72.0                                  | Strict type-checked linting, zero warnings       |
+| Prettier                     | 3.9.10                                            | Formatting                                       |
+| Yarn                         | 4.18.1                                            | Package manager, 72-hour minimal-age gate        |
+| corepack                     | 0.36.0                                            | Pinned in `scripts/lib.sh`, runs the pinned Yarn |
+| Node                         | 26 LTS in CI (`.node-version`), ≥ 24              | Build runtime only                               |
+| GitHub Actions               | checkout v7, setup-node v7, cache v6, Pages v6/v5 | CI and deployment                                |
 
 typescript-eslint cannot load TypeScript 7 until 7.1's API ships, so the
 package named `typescript` is the official `@typescript/typescript6` facade,
@@ -284,7 +287,20 @@ yarn up <package>@<version>    # one deliberate bump at a time
 The `npm:` aliases (`typescript-native`, `typescript-native-next`,
 `typescript`) are not reported by npm-check-updates; check
 `npm view typescript dist-tags` by hand. When `@playwright/test` moves, the
-image tag in `compose.yaml` and `.github/workflows/verify.yml` moves with it.
+image tag and digest in `compose.yaml` and `.github/workflows/verify.yml`
+move with it (`podman pull mcr.microsoft.com/playwright:v<version>-noble`
+prints the digest).
+
+### Yarn without a bundled corepack
+
+Node 25 and later no longer ship corepack, and the Playwright image carries
+classic Yarn 1. The scripts therefore never rely on whatever `yarn` or
+`corepack` a machine has: `scripts/lib.sh` installs corepack 0.36.0 into
+`~/.cache/kphoto/` once, puts a `yarn` shim for the `packageManager` version
+first on `PATH`, and every script, CI step and container service goes
+through it ([ADR 0039](docs/adr/0039-yarn-without-bundled-corepack.md)).
+CI's runner-hosted jobs take Node from `.node-version`; the e2e job uses the
+image's Node ([ADR 0041](docs/adr/0041-node-version-file.md)).
 
 ## Deployment
 

@@ -10,14 +10,19 @@ jobs:
       - name: Check out
         uses: actions/checkout@v7
 
-      - name: Enable corepack (yarn)
-        run: corepack enable
-
-      - name: Set up Node 24
+      - name: Set up Node
         uses: actions/setup-node@v7
         with:
-          node-version: 24
-          cache: yarn
+          node-version-file: .node-version
+
+      - name: Cache yarn and corepack
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.yarn/berry/cache
+            ~/.cache/kphoto
+            ~/.cache/node/corepack
+          key: checks-${{ runner.os }}-${{ hashFiles('yarn.lock', 'package.json', 'scripts/lib.sh') }}
 
       - name: Bootstrap
         run: ./scripts/bootstrap.sh
@@ -43,7 +48,7 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      image: mcr.microsoft.com/playwright:v1.64.1-noble@sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f
       options: --init --ipc=host
     env:
       HOME: /root
@@ -51,14 +56,14 @@ jobs:
       - name: Check out
         uses: actions/checkout@v7
 
-      - name: Enable corepack (yarn)
-        run: corepack enable
-
-      - name: Set up Node 24
-        uses: actions/setup-node@v7
+      - name: Cache yarn and corepack
+        uses: actions/cache@v6
         with:
-          node-version: 24
-          cache: yarn
+          path: |
+            ~/.yarn/berry/cache
+            ~/.cache/kphoto
+            ~/.cache/node/corepack
+          key: e2e-${{ runner.os }}-${{ hashFiles('yarn.lock', 'package.json', 'scripts/lib.sh') }}
 
       - name: Bootstrap
         run: ./scripts/bootstrap.sh

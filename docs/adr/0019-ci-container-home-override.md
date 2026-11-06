@@ -51,3 +51,12 @@ this job, which costs nothing — the job container is ephemeral and nothing
 in this repository persists state there. If a future job ever runs as a
 non-root user, this override must be revisited together with the corepack
 step (see the `--user 1001` note above).
+
+## Amendment (2026-11-06)
+
+The `corepack enable` step is gone (ADR 0039); the pinned corepack now
+lives under `$HOME/.cache`, so a future non-root job needs only a writable
+`$HOME`. The override stays job-level so `actions/cache` and the scripts
+agree on `~`. The `open /root/.docker/config.json: permission denied`
+warning in the job log comes from the runner's host-side `docker exec`
+calls seeing the overridden `HOME`; it is harmless.

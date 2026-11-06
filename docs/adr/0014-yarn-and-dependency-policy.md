@@ -42,3 +42,10 @@ past the gate". Corepack needs enabling once per machine
 The `packageExtensions` block is gone: ADR 0031 replaces it with the
 official `@typescript/typescript6` alias. `.yarnrc.yml` now holds only the
 linker, the global cache and the 72-hour age gate.
+
+## Amendment (2026-11-06)
+
+Node 25+ no longer bundles corepack, so "provided by corepack" now means a
+corepack version pinned in `scripts/lib.sh` and installed by the scripts
+into the user cache (ADR 0039). `sudo corepack enable` is no longer needed
+on any machine.

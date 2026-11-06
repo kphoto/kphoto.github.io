@@ -91,6 +91,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   deprecated in Vite 8.3.5 (ADR 0005 amendment).
 - GitHub Actions: `actions/setup-node` v6 → v7.
 - The theme-init test evaluates the script with `node:vm`.
+- CI runner-hosted jobs use Node 26 LTS from the new `.node-version`; the
+  e2e job uses the image's Node and no longer runs `actions/setup-node`
+  (ADR 0041). Yarn and corepack downloads are cached with `actions/cache`
+  v6.
+
+### Fixed
+
+- `verify / e2e` failed with `corepack: not found`: the
+  `v1.64.1-noble` image was republished with Node 26, which no longer
+  bundles corepack. `scripts/lib.sh` now installs a pinned corepack
+  (0.36.0) into `~/.cache/kphoto` and shims the `packageManager` Yarn first
+  on `PATH`, also shadowing the image's classic Yarn; no workflow,
+  compose service or README step runs `corepack enable` any more
+  (ADR 0039).
+- Local runs did not catch it because podman reused its older copy of the
+  same tag. The image is now pinned by tag and digest in `compose.yaml` and
+  `verify.yml` (ADR 0040).
+- `src/versionSync.test.ts` guards the digest pin, identical images, exact
+  corepack and Yarn pins, the absence of direct corepack calls and the
+  `.node-version` contract.
 
 ## [0.1.0]
 

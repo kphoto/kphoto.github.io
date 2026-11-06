@@ -55,3 +55,14 @@ for environments without one. Rootless podman maps container root back to
 the invoking user, so `node_modules/` and `dist/` written through the bind
 mount stay owned by the developer; rootful docker would leave root-owned
 files (use rootless, or chown afterwards).
+
+## Amendment (2026-11-06)
+
+- The image is referenced by tag **and digest** in both files (ADR 0040).
+  A tag-only reference let a stale local copy hide a republished image.
+- The image now ships Node 26 without corepack. The container commands call
+  the scripts directly; `scripts/lib.sh` provides the pinned Yarn
+  (ADR 0039). A second named volume keeps `/root/.cache`, where the pinned
+  corepack and the Yarn it downloads live.
+- The CI e2e job uses the image's Node instead of installing one
+  (ADR 0041).
