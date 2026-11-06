@@ -7,22 +7,22 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-10-25T15:25:02-04:00
+  Generated at   : 2026-11-06T13:01:44-05:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
-  OS             : Linux 7.2.11-200.fc44.x86_64 x86_64
+  OS             : Linux 7.2.15-200.fc44.x86_64 x86_64
 
 REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : 26b5469813fa69865a4d0d8148b84740c6c7b4d2
-  Commit (short) : 26b5469
-  Commit date    : 2026-10-25 15:23:55 -0400
-  Commit message : add claude response
+  Commit (full)  : dc4c78ff2d053fd07659df13a11c53174147df8e
+  Commit (short) : dc4c78f
+  Commit date    : 2026-11-06 12:58:09 -0500
+  Commit message : add audio
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
-  Files included : 521
+  Files included : 523
   Excluded path  : docs/llm/
   Excluded files : yarn.lock, .pnp.cjs, .pnp.loader.mjs
 
@@ -430,7 +430,7 @@ FOOTER
 mv -f "$TMP_FILE" "$OUTPUT_FILE"
 
 ################################################################################
-# FILE TREE  (all 521 included files)
+# FILE TREE  (all 523 included files)
 ################################################################################
 .
 .
@@ -828,7 +828,9 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │       ├── the-temperature-danger-zone-en.wav
 │       ├── the-temperature-danger-zone-es.flac
 │       ├── the-temperature-danger-zone-es.opus
-│       └── the-temperature-danger-zone-es.wav
+│       ├── the-temperature-danger-zone-es.wav
+│       ├── tts_audio_86856_gacrux_2026_11_05_17_05_29.mp3
+│       └── tts_audio_86856_umbriel_2026_11_05_17_05_01.mp3
 ├── README.md
 ├── scripts
 │   ├── bootstrap.sh
@@ -15332,6 +15334,48 @@ yarn.lock
 
 --- CONTENT ---
 [Binary file — content omitted. Size: 16.7 MiB, SHA-256: 881f894d3ecafcd39b32db502a6b0b9f030e9eabfd7a7b00ea6281061e6c8d0f]
+
+################################################################################
+# FILE: public/spoken/tts_audio_86856_gacrux_2026_11_05_17_05_29.mp3
+################################################################################
+
+--- METADATA ---
+  File name:             tts_audio_86856_gacrux_2026_11_05_17_05_29.mp3
+  Relative path:         public/spoken/tts_audio_86856_gacrux_2026_11_05_17_05_29.mp3
+  Absolute path:         /home/kushal/src/ts/kphoto/public/spoken/tts_audio_86856_gacrux_2026_11_05_17_05_29.mp3
+  Size:                  2.5 MiB (2637888 bytes)
+  Last modified:         2026-11-06 12:56:02.576286276 -0500
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 69689669
+  Hard links:            1
+  MIME type:             audio/mpeg
+  SHA-256:               356540959db6d7005a5cf7728efe930401414b7bea9666a57ef0b0897e154892
+  Last git commit:       dc4c78f 2026-11-06 12:58:09 -0500 add audio
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 2.5 MiB, SHA-256: 356540959db6d7005a5cf7728efe930401414b7bea9666a57ef0b0897e154892]
+
+################################################################################
+# FILE: public/spoken/tts_audio_86856_umbriel_2026_11_05_17_05_01.mp3
+################################################################################
+
+--- METADATA ---
+  File name:             tts_audio_86856_umbriel_2026_11_05_17_05_01.mp3
+  Relative path:         public/spoken/tts_audio_86856_umbriel_2026_11_05_17_05_01.mp3
+  Absolute path:         /home/kushal/src/ts/kphoto/public/spoken/tts_audio_86856_umbriel_2026_11_05_17_05_01.mp3
+  Size:                  2.4 MiB (2572416 bytes)
+  Last modified:         2026-11-06 09:31:25.359150514 -0500
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 69672900
+  Hard links:            1
+  MIME type:             audio/mpeg
+  SHA-256:               c9a67703638f386678ba4aa9055d633414f4e192d3c9df59a6a72b2793e860f2
+  Last git commit:       a28c52f 2026-11-06 09:42:43 -0500 add tts mistake
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 2.4 MiB, SHA-256: c9a67703638f386678ba4aa9055d633414f4e192d3c9df59a6a72b2793e860f2]
 
 ################################################################################
 # FILE: README.md
@@ -32112,10 +32156,10 @@ npmMinimalAgeGate: 4320
 ################################################################################
 # DUMP SUMMARY
 ################################################################################
-  Files dumped   : 521
-  Total size     : 576.9 MiB (604928427 bytes)
+  Files dumped   : 523
+  Total size     : 581.8 MiB (610138731 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-10-25T15:25:17-04:00
+  Completed at   : 2026-11-06T13:02:00-05:00
 ################################################################################
 # END OF DUMP
 ################################################################################
