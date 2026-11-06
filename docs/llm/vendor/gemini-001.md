@@ -624,3 +624,377 @@ Notice that in `.github/workflows/verify.yml`, you had:
           cache: yarn
 ```
 `corepack enable` was being called **before** `setup-node` provisioned Node 24. However, inside container jobs, `actions/setup-node` does not manage system binaries the same way it does on the VM host. Running `npm install -g corepack` is the most reliable approach across both `podman-compose` locally and GitHub Actions container jobs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+revert changes 
+
+this was completely useless 
+it is still happening 
+
+2026-11-06T18:21:32.0295741Z Current runner version: '2.338.2'
+2026-11-06T18:21:32.0318551Z ##[group]Runner Image Provisioner
+2026-11-06T18:21:32.0319396Z Hosted Compute Agent
+2026-11-06T18:21:32.0319910Z Version: 20261028.624
+2026-11-06T18:21:32.0320457Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-06T18:21:32.0321138Z Build Date: 2026-10-28T21:51:42Z
+2026-11-06T18:21:32.0321768Z Worker ID: {56519b49-cd04-41b1-8806-a2fe9cf778b4}
+2026-11-06T18:21:32.0322916Z Region: westus2
+2026-11-06T18:21:32.0323433Z Cloud: Azure
+2026-11-06T18:21:32.0323907Z ##[endgroup]
+2026-11-06T18:21:32.0325143Z ##[group]Operating System
+2026-11-06T18:21:32.0325681Z Ubuntu
+2026-11-06T18:21:32.0326170Z 24.04.5
+2026-11-06T18:21:32.0326661Z LTS
+2026-11-06T18:21:32.0327116Z ##[endgroup]
+2026-11-06T18:21:32.0327628Z ##[group]Runner Image
+2026-11-06T18:21:32.0328186Z Image: ubuntu-24.04
+2026-11-06T18:21:32.0328688Z Version: 20261101.360.1
+2026-11-06T18:21:32.0329864Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261101.360/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-06T18:21:32.0331187Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261101.360
+2026-11-06T18:21:32.0331990Z ##[endgroup]
+2026-11-06T18:21:32.0334721Z ##[group]GITHUB_TOKEN Permissions
+2026-11-06T18:21:32.0336712Z Actions: write
+2026-11-06T18:21:32.0337301Z ArtifactMetadata: write
+2026-11-06T18:21:32.0337841Z Attestations: write
+2026-11-06T18:21:32.0338404Z Checks: write
+2026-11-06T18:21:32.0338971Z CodeQuality: write
+2026-11-06T18:21:32.0339460Z Contents: write
+2026-11-06T18:21:32.0339974Z CopilotRequests: write
+2026-11-06T18:21:32.0340502Z Deployments: write
+2026-11-06T18:21:32.0340997Z Discussions: write
+2026-11-06T18:21:32.0341533Z Drives: write
+2026-11-06T18:21:32.0341992Z Issues: write
+2026-11-06T18:21:32.0342510Z Metadata: read
+2026-11-06T18:21:32.0343224Z Models: read
+2026-11-06T18:21:32.0343688Z Packages: write
+2026-11-06T18:21:32.0344234Z Pages: write
+2026-11-06T18:21:32.0344714Z PullRequests: write
+2026-11-06T18:21:32.0345221Z RepositoryProjects: write
+2026-11-06T18:21:32.0345814Z SecurityEvents: write
+2026-11-06T18:21:32.0346316Z Statuses: write
+2026-11-06T18:21:32.0346845Z VulnerabilityAlerts: read
+2026-11-06T18:21:32.0347378Z ##[endgroup]
+2026-11-06T18:21:32.0349294Z Secret source: Actions
+2026-11-06T18:21:32.0350183Z Cache mode: write
+2026-11-06T18:21:32.0350795Z Prepare workflow directory
+2026-11-06T18:21:32.0757289Z Prepare all required actions
+2026-11-06T18:21:32.0801141Z Getting action download info
+2026-11-06T18:21:32.4436442Z Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-11-06T18:21:32.6725939Z Download action repository 'actions/setup-node@v7' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+2026-11-06T18:21:33.0708764Z Uses: kphoto/kphoto.github.io/.github/workflows/verify.yml@refs/heads/main (8f58d125e50daf696acc549e6158de1ea2f23f61)
+2026-11-06T18:21:33.0712348Z Complete job name: verify / e2e
+2026-11-06T18:21:33.1213620Z ##[group]Checking docker version
+2026-11-06T18:21:33.1224582Z ##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+2026-11-06T18:21:33.4167155Z '1.48'
+2026-11-06T18:21:33.4180937Z Docker daemon API version: '1.48'
+2026-11-06T18:21:33.4181572Z ##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+2026-11-06T18:21:33.4348354Z '1.48'
+2026-11-06T18:21:33.4361940Z Docker client API version: '1.48'
+2026-11-06T18:21:33.4367186Z ##[endgroup]
+2026-11-06T18:21:33.4369225Z ##[group]Clean up resources from previous jobs
+2026-11-06T18:21:33.4373845Z ##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=a9f6ba"
+2026-11-06T18:21:33.4562115Z ##[command]/usr/bin/docker network prune --force --filter "label=a9f6ba"
+2026-11-06T18:21:33.4701389Z ##[endgroup]
+2026-11-06T18:21:33.4701851Z ##[group]Create local container network
+2026-11-06T18:21:33.4709641Z ##[command]/usr/bin/docker network create --label a9f6ba github_network_ba3c49fe595f4067ad5b5510fbedca2d
+2026-11-06T18:21:33.5163660Z 9eea1d6ec6cdfa47208dbb6c6a5c348881227097325af24b245690cfdcfcb145
+2026-11-06T18:21:33.5184083Z ##[endgroup]
+2026-11-06T18:21:33.5204963Z ##[group]Starting job container
+2026-11-06T18:21:33.5222849Z ##[command]/usr/bin/docker pull mcr.microsoft.com/playwright:v1.64.1-noble
+2026-11-06T18:21:33.9496688Z v1.64.1-noble: Pulling from playwright
+2026-11-06T18:21:34.0034369Z 7a48b8f0e5c7: Already exists
+2026-11-06T18:21:34.0066777Z 7f09f8b6ee13: Pulling fs layer
+2026-11-06T18:21:34.0067863Z 1838e4eb65d9: Pulling fs layer
+2026-11-06T18:21:34.0068771Z 6a04ac251623: Pulling fs layer
+2026-11-06T18:21:34.0069700Z cc4939249994: Pulling fs layer
+2026-11-06T18:21:34.0070523Z ec6213bdc8d0: Pulling fs layer
+2026-11-06T18:21:34.0071363Z 81918556fc04: Pulling fs layer
+2026-11-06T18:21:34.0072101Z cc4939249994: Waiting
+2026-11-06T18:21:34.0072938Z ec6213bdc8d0: Waiting
+2026-11-06T18:21:34.0073502Z 81918556fc04: Waiting
+2026-11-06T18:21:34.0627031Z 1838e4eb65d9: Download complete
+2026-11-06T18:21:34.6365705Z 7f09f8b6ee13: Download complete
+2026-11-06T18:21:35.2273702Z ec6213bdc8d0: Verifying Checksum
+2026-11-06T18:21:35.2275206Z ec6213bdc8d0: Download complete
+2026-11-06T18:21:35.3726586Z 6a04ac251623: Verifying Checksum
+2026-11-06T18:21:35.3728164Z 6a04ac251623: Download complete
+2026-11-06T18:21:35.4186741Z cc4939249994: Verifying Checksum
+2026-11-06T18:21:35.4188378Z cc4939249994: Download complete
+2026-11-06T18:21:35.7598956Z 81918556fc04: Verifying Checksum
+2026-11-06T18:21:45.8634944Z 7f09f8b6ee13: Pull complete
+2026-11-06T18:21:45.8914354Z 1838e4eb65d9: Pull complete
+2026-11-06T18:21:55.5464680Z 6a04ac251623: Pull complete
+2026-11-06T18:22:02.0777836Z cc4939249994: Pull complete
+2026-11-06T18:22:04.9799947Z ec6213bdc8d0: Pull complete
+2026-11-06T18:22:07.7888654Z 81918556fc04: Pull complete
+2026-11-06T18:22:07.8119462Z Digest: sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f
+2026-11-06T18:22:07.8136282Z Status: Downloaded newer image for mcr.microsoft.com/playwright:v1.64.1-noble
+2026-11-06T18:22:07.8145814Z mcr.microsoft.com/playwright:v1.64.1-noble
+2026-11-06T18:22:07.8219248Z ##[command]/usr/bin/docker create --name ce3ed9388cdd485a8006f10a6ed26a77_mcrmicrosoftcomplaywrightv1641noble_e3cbff --label a9f6ba --workdir /__w/kphoto.github.io/kphoto.github.io --network github_network_ba3c49fe595f4067ad5b5510fbedca2d --init --ipc=host -e "HOME=/github/home" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work":"/__w" -v "/home/runner/actions-runner/cached/2.338.2/externals":"/__e":ro -v "/home/runner/work/_temp":"/__w/_temp" -v "/home/runner/work/_actions":"/__w/_actions" -v "/opt/hostedtoolcache":"/__t" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" --entrypoint "tail" mcr.microsoft.com/playwright:v1.64.1-noble "-f" "/dev/null"
+2026-11-06T18:22:07.8526483Z 5ff88167007738f3da4601650b7c0efbc5e2795d9904a99d7988add281f2c2aa
+2026-11-06T18:22:07.8552198Z ##[command]/usr/bin/docker start 5ff88167007738f3da4601650b7c0efbc5e2795d9904a99d7988add281f2c2aa
+2026-11-06T18:22:08.0327997Z 5ff88167007738f3da4601650b7c0efbc5e2795d9904a99d7988add281f2c2aa
+2026-11-06T18:22:08.0369317Z ##[command]/usr/bin/docker ps --all --filter id=5ff88167007738f3da4601650b7c0efbc5e2795d9904a99d7988add281f2c2aa --filter status=running --no-trunc --format "{{.ID}} {{.Status}}"
+2026-11-06T18:22:08.0492148Z 5ff88167007738f3da4601650b7c0efbc5e2795d9904a99d7988add281f2c2aa Up Less than a second
+2026-11-06T18:22:08.0512311Z ##[command]/usr/bin/docker inspect --format "{{range .Config.Env}}{{println .}}{{end}}" 5ff88167007738f3da4601650b7c0efbc5e2795d9904a99d7988add281f2c2aa
+2026-11-06T18:22:08.0639037Z HOME=/github/home
+2026-11-06T18:22:08.0639944Z GITHUB_ACTIONS=true
+2026-11-06T18:22:08.0640184Z CI=true
+2026-11-06T18:22:08.0640581Z PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+2026-11-06T18:22:08.0641091Z LANG=C.UTF-8
+2026-11-06T18:22:08.0641408Z LC_ALL=C.UTF-8
+2026-11-06T18:22:08.0641817Z PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+2026-11-06T18:22:08.0661973Z ##[endgroup]
+2026-11-06T18:22:08.0670126Z ##[group]Waiting for all services to be ready
+2026-11-06T18:22:08.0671554Z ##[endgroup]
+2026-11-06T18:22:08.0902277Z ##[group]Run actions/checkout@v7
+2026-11-06T18:22:08.0902928Z with:
+2026-11-06T18:22:08.0903129Z   repository: kphoto/kphoto.github.io
+2026-11-06T18:22:08.0905273Z   token: ***
+2026-11-06T18:22:08.0905461Z   ssh-strict: true
+2026-11-06T18:22:08.0905638Z   ssh-user: git
+2026-11-06T18:22:08.0905818Z   persist-credentials: true
+2026-11-06T18:22:08.0906013Z   clean: true
+2026-11-06T18:22:08.0906196Z   sparse-checkout-cone-mode: true
+2026-11-06T18:22:08.0906414Z   fetch-depth: 1
+2026-11-06T18:22:08.0906585Z   fetch-tags: false
+2026-11-06T18:22:08.0906762Z   show-progress: true
+2026-11-06T18:22:08.0906934Z   lfs: false
+2026-11-06T18:22:08.0907100Z   submodules: false
+2026-11-06T18:22:08.0907282Z   set-safe-directory: true
+2026-11-06T18:22:08.0907488Z   allow-unsafe-pr-checkout: false
+2026-11-06T18:22:08.0907883Z env:
+2026-11-06T18:22:08.0908037Z   HOME: /root
+2026-11-06T18:22:08.0908218Z ##[endgroup]
+2026-11-06T18:22:08.0960244Z ##[command]/usr/bin/docker exec  5ff88167007738f3da4601650b7c0efbc5e2795d9904a99d7988add281f2c2aa sh -c "cat /etc/*release | grep ^ID"
+2026-11-06T18:22:08.2004633Z WARNING: Error loading config file: open /root/.docker/config.json: permission denied
+2026-11-06T18:22:08.4918401Z Syncing repository: kphoto/kphoto.github.io
+2026-11-06T18:22:08.4920276Z ##[group]Getting Git version info
+2026-11-06T18:22:08.4920823Z Working directory is '/__w/kphoto.github.io/kphoto.github.io'
+2026-11-06T18:22:08.4921582Z [command]/usr/bin/git version
+2026-11-06T18:22:08.4921892Z git version 2.43.0
+2026-11-06T18:22:08.4929134Z ##[endgroup]
+2026-11-06T18:22:08.4944608Z Temporarily overriding HOME='/__w/_temp/96314aa4-0834-4fd1-aadb-4543f52f2507' before making global git config changes
+2026-11-06T18:22:08.4945505Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-06T18:22:08.4947521Z [command]/usr/bin/git config --global --add safe.directory /__w/kphoto.github.io/kphoto.github.io
+2026-11-06T18:22:08.4984494Z Deleting the contents of '/__w/kphoto.github.io/kphoto.github.io'
+2026-11-06T18:22:08.4988124Z ##[group]Determining repository object format
+2026-11-06T18:22:08.4989957Z ##[endgroup]
+2026-11-06T18:22:08.4990531Z ##[group]Initializing the repository
+2026-11-06T18:22:08.4993230Z [command]/usr/bin/git init /__w/kphoto.github.io/kphoto.github.io
+2026-11-06T18:22:08.5034925Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-06T18:22:08.5035628Z hint: is subject to change. To configure the initial branch name to use in all
+2026-11-06T18:22:08.5036254Z hint: of your new repositories, which will suppress this warning, call:
+2026-11-06T18:22:08.5036733Z hint: 
+2026-11-06T18:22:08.5037100Z hint: 	git config --global init.defaultBranch <name>
+2026-11-06T18:22:08.5037488Z hint: 
+2026-11-06T18:22:08.5037854Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-06T18:22:08.5038826Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-06T18:22:08.5039338Z hint: 
+2026-11-06T18:22:08.5039628Z hint: 	git branch -m <name>
+2026-11-06T18:22:08.5054774Z Initialized empty Git repository in /__w/kphoto.github.io/kphoto.github.io/.git/
+2026-11-06T18:22:08.5062317Z [command]/usr/bin/git remote add origin https://github.com/kphoto/kphoto.github.io
+2026-11-06T18:22:08.5097420Z ##[endgroup]
+2026-11-06T18:22:08.5097990Z ##[group]Disabling automatic garbage collection
+2026-11-06T18:22:08.5100465Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-06T18:22:08.5141058Z ##[endgroup]
+2026-11-06T18:22:08.5141534Z ##[group]Setting up auth
+2026-11-06T18:22:08.5141897Z Removing SSH command configuration
+2026-11-06T18:22:08.5142455Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-06T18:22:08.5173869Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-06T18:22:08.5448504Z Removing HTTP extra header
+2026-11-06T18:22:08.5452088Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-06T18:22:08.5489070Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-06T18:22:08.5741413Z Removing includeIf entries pointing to credentials config files
+2026-11-06T18:22:08.5746804Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-06T18:22:08.5787256Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-06T18:22:08.6020831Z [command]/usr/bin/git config --file /__w/_temp/git-credentials-08c53c28-987a-4b69-bdb1-29833adc1078.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-06T18:22:08.6064149Z [command]/usr/bin/git config --local includeIf.gitdir:/__w/kphoto.github.io/kphoto.github.io/.git.path /__w/_temp/git-credentials-08c53c28-987a-4b69-bdb1-29833adc1078.config
+2026-11-06T18:22:08.6102252Z [command]/usr/bin/git config --local includeIf.gitdir:/__w/kphoto.github.io/kphoto.github.io/.git/worktrees/*.path /__w/_temp/git-credentials-08c53c28-987a-4b69-bdb1-29833adc1078.config
+2026-11-06T18:22:08.6141198Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-08c53c28-987a-4b69-bdb1-29833adc1078.config
+2026-11-06T18:22:08.6180561Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-08c53c28-987a-4b69-bdb1-29833adc1078.config
+2026-11-06T18:22:08.6218524Z ##[endgroup]
+2026-11-06T18:22:08.6218986Z ##[group]Fetching the repository
+2026-11-06T18:22:08.6225525Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8f58d125e50daf696acc549e6158de1ea2f23f61:refs/remotes/origin/main
+2026-11-06T18:22:17.7491868Z From https://github.com/kphoto/kphoto.github.io
+2026-11-06T18:22:17.7492488Z  * [new ref]         8f58d125e50daf696acc549e6158de1ea2f23f61 -> origin/main
+2026-11-06T18:22:17.7518503Z [command]/usr/bin/git branch --list --remote origin/main
+2026-11-06T18:22:17.7552279Z   origin/main
+2026-11-06T18:22:17.7559182Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-11-06T18:22:17.7590787Z 8f58d125e50daf696acc549e6158de1ea2f23f61
+2026-11-06T18:22:17.7594271Z ##[endgroup]
+2026-11-06T18:22:17.7594749Z ##[group]Determining the checkout info
+2026-11-06T18:22:17.7596568Z ##[endgroup]
+2026-11-06T18:22:17.7615608Z [command]/usr/bin/git sparse-checkout disable
+2026-11-06T18:22:17.7662049Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-06T18:22:17.7699392Z ##[group]Checking out the ref
+2026-11-06T18:22:17.7701950Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-11-06T18:22:18.8017160Z Updating files:  75% (420/559)
+2026-11-06T18:22:18.8025037Z Updating files:  76% (425/559)
+2026-11-06T18:22:18.8025405Z Updating files:  77% (431/559)
+2026-11-06T18:22:18.8025725Z Updating files:  78% (437/559)
+2026-11-06T18:22:18.8026021Z Updating files:  79% (442/559)
+2026-11-06T18:22:18.8027200Z Updating files:  80% (448/559)
+2026-11-06T18:22:18.8033869Z Updating files:  81% (453/559)
+2026-11-06T18:22:18.8039936Z Updating files:  82% (459/559)
+2026-11-06T18:22:18.8040566Z Updating files:  83% (464/559)
+2026-11-06T18:22:18.8040914Z Updating files:  84% (470/559)
+2026-11-06T18:22:18.8044003Z Updating files:  85% (476/559)
+2026-11-06T18:22:18.8048201Z Updating files:  86% (481/559)
+2026-11-06T18:22:18.8049792Z Updating files:  87% (487/559)
+2026-11-06T18:22:18.8053260Z Updating files:  88% (492/559)
+2026-11-06T18:22:18.8056818Z Updating files:  89% (498/559)
+2026-11-06T18:22:18.8059064Z Updating files:  90% (504/559)
+2026-11-06T18:22:18.8061911Z Updating files:  91% (509/559)
+2026-11-06T18:22:18.8064064Z Updating files:  92% (515/559)
+2026-11-06T18:22:18.8066592Z Updating files:  93% (520/559)
+2026-11-06T18:22:18.8069880Z Updating files:  94% (526/559)
+2026-11-06T18:22:18.8072566Z Updating files:  95% (532/559)
+2026-11-06T18:22:18.8075269Z Updating files:  96% (537/559)
+2026-11-06T18:22:18.8078111Z Updating files:  97% (543/559)
+2026-11-06T18:22:18.8082383Z Updating files:  98% (548/559)
+2026-11-06T18:22:18.8087354Z Updating files:  99% (554/559)
+2026-11-06T18:22:18.8087728Z Updating files: 100% (559/559)
+2026-11-06T18:22:18.8088068Z Updating files: 100% (559/559), done.
+2026-11-06T18:22:18.8108369Z Switched to a new branch 'main'
+2026-11-06T18:22:18.8109271Z branch 'main' set up to track 'origin/main'.
+2026-11-06T18:22:18.8291409Z ##[endgroup]
+2026-11-06T18:22:18.8341245Z [command]/usr/bin/git log -1 --format=%H
+2026-11-06T18:22:18.8377632Z 8f58d125e50daf696acc549e6158de1ea2f23f61
+2026-11-06T18:22:18.8610146Z ##[group]Run npm install -g corepack
+2026-11-06T18:22:18.8610457Z [36;1mnpm install -g corepack[0m
+2026-11-06T18:22:18.8610689Z [36;1mcorepack enable[0m
+2026-11-06T18:22:18.8613336Z shell: sh -e {0}
+2026-11-06T18:22:18.8613524Z env:
+2026-11-06T18:22:18.8613684Z   HOME: /root
+2026-11-06T18:22:18.8613851Z ##[endgroup]
+2026-11-06T18:22:18.8763239Z WARNING: Error loading config file: open /root/.docker/config.json: permission denied
+2026-11-06T18:22:19.2274754Z npm error code EEXIST
+2026-11-06T18:22:19.2275108Z npm error path /usr/bin/yarn
+2026-11-06T18:22:19.2275455Z npm error EEXIST: file already exists
+2026-11-06T18:22:19.2276533Z npm error File exists: /usr/bin/yarn
+2026-11-06T18:22:19.2276864Z npm error Remove the existing file and try again, or run npm
+2026-11-06T18:22:19.2277921Z npm error with --force to overwrite files recklessly.
+2026-11-06T18:22:19.2288687Z npm error A complete log of this run can be found in: /root/.npm/_logs/2026-11-06T18_22_18_953Z-debug-0.log
+2026-11-06T18:22:19.2393566Z ##[error]Process completed with exit code 1.
+2026-11-06T18:22:19.2528094Z Post job cleanup.
+2026-11-06T18:22:19.2534846Z ##[command]/usr/bin/docker exec  5ff88167007738f3da4601650b7c0efbc5e2795d9904a99d7988add281f2c2aa sh -c "cat /etc/*release | grep ^ID"
+2026-11-06T18:22:19.3114698Z WARNING: Error loading config file: open /root/.docker/config.json: permission denied
+2026-11-06T18:22:19.4115654Z [command]/usr/bin/git version
+2026-11-06T18:22:19.4165080Z git version 2.43.0
+2026-11-06T18:22:19.4186862Z Temporarily overriding HOME='/__w/_temp/b53d2441-fcf2-4978-b50a-def4d57ec30a' before making global git config changes
+2026-11-06T18:22:19.4193752Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-06T18:22:19.4194925Z [command]/usr/bin/git config --global --add safe.directory /__w/kphoto.github.io/kphoto.github.io
+2026-11-06T18:22:19.4230906Z Removing SSH command configuration
+2026-11-06T18:22:19.4236085Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-06T18:22:19.4277505Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-06T18:22:19.4603771Z Removing HTTP extra header
+2026-11-06T18:22:19.4643737Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-06T18:22:19.4645347Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-06T18:22:19.4984932Z Removing includeIf entries pointing to credentials config files
+2026-11-06T18:22:19.4985923Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-06T18:22:19.5008209Z includeif.gitdir:/__w/kphoto.github.io/kphoto.github.io/.git.path
+2026-11-06T18:22:19.5009089Z includeif.gitdir:/__w/kphoto.github.io/kphoto.github.io/.git/worktrees/*.path
+2026-11-06T18:22:19.5010348Z includeif.gitdir:/github/workspace/.git.path
+2026-11-06T18:22:19.5011249Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-06T18:22:19.5017436Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/kphoto.github.io/kphoto.github.io/.git.path
+2026-11-06T18:22:19.5051871Z /__w/_temp/git-credentials-08c53c28-987a-4b69-bdb1-29833adc1078.config
+2026-11-06T18:22:19.5061133Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/kphoto.github.io/kphoto.github.io/.git.path \/__w\/_temp\/git\-credentials\-08c53c28\-987a\-4b69\-bdb1\-29833adc1078\.config
+2026-11-06T18:22:19.5107328Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/kphoto.github.io/kphoto.github.io/.git/worktrees/*.path
+2026-11-06T18:22:19.5142413Z /__w/_temp/git-credentials-08c53c28-987a-4b69-bdb1-29833adc1078.config
+2026-11-06T18:22:19.5151548Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/kphoto.github.io/kphoto.github.io/.git/worktrees/*.path \/__w\/_temp\/git\-credentials\-08c53c28\-987a\-4b69\-bdb1\-29833adc1078\.config
+2026-11-06T18:22:19.5195904Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-11-06T18:22:19.5229131Z /github/runner_temp/git-credentials-08c53c28-987a-4b69-bdb1-29833adc1078.config
+2026-11-06T18:22:19.5236142Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-08c53c28\-987a\-4b69\-bdb1\-29833adc1078\.config
+2026-11-06T18:22:19.5289980Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-06T18:22:19.5324834Z /github/runner_temp/git-credentials-08c53c28-987a-4b69-bdb1-29833adc1078.config
+2026-11-06T18:22:19.5331431Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-08c53c28\-987a\-4b69\-bdb1\-29833adc1078\.config
+2026-11-06T18:22:19.5384013Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-06T18:22:19.5606166Z Removing credentials config '/__w/_temp/git-credentials-08c53c28-987a-4b69-bdb1-29833adc1078.config'
+2026-11-06T18:22:19.5746455Z Stop and remove container: ce3ed9388cdd485a8006f10a6ed26a77_mcrmicrosoftcomplaywrightv1641noble_e3cbff
+2026-11-06T18:22:19.5750046Z ##[command]/usr/bin/docker rm --force 5ff88167007738f3da4601650b7c0efbc5e2795d9904a99d7988add281f2c2aa
+2026-11-06T18:22:22.9490525Z 5ff88167007738f3da4601650b7c0efbc5e2795d9904a99d7988add281f2c2aa
+2026-11-06T18:22:22.9521388Z Remove container network: github_network_ba3c49fe595f4067ad5b5510fbedca2d
+2026-11-06T18:22:22.9525003Z ##[command]/usr/bin/docker network rm github_network_ba3c49fe595f4067ad5b5510fbedca2d
+2026-11-06T18:22:23.0690612Z github_network_ba3c49fe595f4067ad5b5510fbedca2d
+2026-11-06T18:22:23.0756170Z Cleaning up orphan processes
+
+
+
+
+
+
+
+
