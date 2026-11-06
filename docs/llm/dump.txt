@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-11-06T13:19:48-05:00
+  Generated at   : 2026-11-06T13:25:22-05:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,10 +17,10 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : 077612647a24410f92995ee91d73103835d97ea0
-  Commit (short) : 0776126
-  Commit date    : 2026-11-06 13:18:51 -0500
-  Commit message : clean up
+  Commit (full)  : e837ab18d055b791f64d5d97cd80b4bb1ab3ad3b
+  Commit (short) : e837ab1
+  Commit date    : 2026-11-06 13:23:40 -0500
+  Commit message : add logs
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
   Files included : 523
   Excluded path  : docs/llm/
@@ -1377,15 +1377,15 @@ log "all checks passed ✔"
   File name:             compose.yaml
   Relative path:         compose.yaml
   Absolute path:         /home/kushal/src/ts/kphoto/compose.yaml
-  Size:                  782 B (782 bytes)
-  Last modified:         2026-11-06 13:18:28.921148834 -0500
+  Size:                  716 B (716 bytes)
+  Last modified:         2026-11-06 13:22:47.594237214 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
   Inode:                 68085385
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               7294171f8ac2257a93a4816aa0845012026a32c7a4190dac98a99b34ee4f09ad
-  Last git commit:       0776126 2026-11-06 13:18:51 -0500 clean up
+  SHA-256:               15cd701ef8d07ee777b4557dae5b38ff03d2258735d6a7bdc466388ab193c8d4
+  Last git commit:       e837ab1 2026-11-06 13:23:40 -0500 add logs
 
 --- CONTENT ---
 x-base: &base
@@ -1402,12 +1402,7 @@ x-base: &base
 services:
   e2e:
     <<: *base
-    command:
-      [
-        'bash',
-        '-c',
-        'npm install -g corepack && corepack enable && ./scripts/build.sh && ./scripts/test-e2e.sh',
-      ]
+    command: ['bash', '-c', 'corepack enable && ./scripts/build.sh && ./scripts/test-e2e.sh']
 
   dev:
     <<: *base
@@ -8829,15 +8824,15 @@ jobs:
   File name:             verify.yml
   Relative path:         .github/workflows/verify.yml
   Absolute path:         /home/kushal/src/ts/kphoto/.github/workflows/verify.yml
-  Size:                  1.4 KiB (1465 bytes)
-  Last modified:         2026-11-06 13:13:07.079452345 -0500
+  Size:                  1.3 KiB (1419 bytes)
+  Last modified:         2026-11-06 13:22:43.305083793 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
   Inode:                 68085382
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               37a1fc62b6e405e5a0082e0806f928920d5b46154ab2511c4445b66ec0da00d6
-  Last git commit:       468f99a 2026-11-06 13:16:30 -0500 add changes by gemini
+  SHA-256:               58fed3c7d380d876e0011a366e91de97cf6740406b8a8a0b4f51d197a845865e
+  Last git commit:       e837ab1 2026-11-06 13:23:40 -0500 add logs
 
 --- CONTENT ---
 name: verify
@@ -8894,9 +8889,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Enable corepack (yarn)
-        run: |
-          npm install -g corepack
-          corepack enable
+        run: corepack enable
 
       - name: Set up Node 24
         uses: actions/setup-node@v7
@@ -32164,9 +32157,9 @@ npmMinimalAgeGate: 4320
 # DUMP SUMMARY
 ################################################################################
   Files dumped   : 523
-  Total size     : 581.8 MiB (610138843 bytes)
+  Total size     : 581.8 MiB (610138731 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-11-06T13:20:03-05:00
+  Completed at   : 2026-11-06T13:25:36-05:00
 ################################################################################
 # END OF DUMP
 ################################################################################
