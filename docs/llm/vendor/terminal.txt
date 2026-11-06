@@ -19,85 +19,250 @@ Checking formatting...
 real	0m9.478s
 user	0m9.865s
 sys	0m1.327s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh --write
+[error] unknown argument: --write (supported: --no-e2e, --e2e-host)
+
+real	0m0.005s
+user	0m0.003s
+sys	0m0.002s
+kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash scripts/format.sh 
+[13:18:28] formatting (prettier --write)
+.github/workflows/ci.yml 8ms (unchanged)
+.github/workflows/deploy.yml 6ms (unchanged)
+.github/workflows/verify.yml 6ms (unchanged)
+.prettierrc.json 9ms (unchanged)
+.vscode/extensions.json 1ms (unchanged)
+.vscode/settings.json 1ms (unchanged)
+.yarnrc.yml 1ms (unchanged)
+CHANGELOG.md 84ms (unchanged)
+compose.yaml 4ms
+content/authors/casey-rivers.yml 1ms (unchanged)
+content/authors/kphoto-team.yml 1ms (unchanged)
+content/authors/kushal.yml 1ms (unchanged)
+content/blog/2026-03-22-good-morning.es.md 3ms (unchanged)
+content/blog/2026-03-22-good-morning.md 2ms (unchanged)
+content/blog/2026-04-01-good-morning.md 3ms (unchanged)
+content/blog/2026-05-05-typescript-7-native-compiler.md 4ms (unchanged)
+content/blog/2026-05-12-a-markdown-renderer-from-scratch.md 23ms (unchanged)
+content/blog/2026-05-19-scoped-styles-with-declarative-shadow-dom.md 20ms (unchanged)
+content/blog/2026-06-10-five-themes-one-localstorage-key.md 4ms (unchanged)
+content/blog/2026-07-01-what-this-site-is.md 3ms (unchanged)
+content/blog/2026-07-10-welcome.md 2ms (unchanged)
+content/blog/2026-07-13-light-the-foundation-of-every-photograph.md 3ms (unchanged)
+content/blog/2026-07-14-the-exposure-triangle.md 3ms (unchanged)
+content/blog/2026-07-15-reading-your-histogram.md 3ms (unchanged)
+content/blog/2026-07-16-composition-basics-that-never-expire.md 4ms (unchanged)
+content/blog/2026-07-17-leading-lines-framing-and-negative-space.md 3ms (unchanged)
+content/blog/2026-07-18-depth-of-field-and-selective-focus.md 3ms (unchanged)
+content/blog/2026-07-19-freezing-and-blurring-motion.md 3ms (unchanged)
+content/blog/2026-07-20-white-balance-and-color-temperature.md 5ms (unchanged)
+content/blog/2026-07-21-understanding-dynamic-range.md 3ms (unchanged)
+content/blog/2026-07-22-golden-hour-and-blue-hour.md 3ms (unchanged)
+content/blog/2026-07-23-portraits-working-with-people.md 3ms (unchanged)
+content/blog/2026-07-24-landscapes-patience-and-scale.md 3ms (unchanged)
+content/blog/2026-07-25-street-photography-ethics-and-instinct.md 3ms (unchanged)
+content/blog/2026-07-26-macro-photography-seeing-small-worlds.md 3ms (unchanged)
+content/blog/2026-07-27-seeing-in-black-and-white.md 4ms (unchanged)
+content/blog/2026-07-28-raw-versus-jpeg-and-why-it-still-matters.md 3ms (unchanged)
+content/blog/2026-07-29-a-philosophy-for-editing-photographs.md 3ms (unchanged)
+content/blog/2026-07-30-finding-your-own-style.md 4ms (unchanged)
+content/blog/2026-07-31-sharing-your-work-ethically.md 3ms (unchanged)
+content/blog/2026-08-01-how-to-keep-getting-better.md 4ms (unchanged)
+content/blog/2026-10-08-clean-hands-clean-food.es.md 7ms (unchanged)
+content/blog/2026-10-08-clean-hands-clean-food.md 9ms (unchanged)
+content/blog/2026-10-09-the-temperature-danger-zone.es.md 7ms (unchanged)
+content/blog/2026-10-09-the-temperature-danger-zone.md 9ms (unchanged)
+content/blog/2026-10-10-stopping-cross-contamination.es.md 10ms (unchanged)
+content/blog/2026-10-10-stopping-cross-contamination.md 6ms (unchanged)
+content/blog/2026-10-11-cleaning-versus-sanitizing.es.md 5ms (unchanged)
+content/blog/2026-10-11-cleaning-versus-sanitizing.md 5ms (unchanged)
+content/blog/2026-10-12-shopping-storage-and-leftovers.es.md 9ms (unchanged)
+content/blog/2026-10-12-shopping-storage-and-leftovers.md 6ms (unchanged)
+content/blog/2026-10-13-knives-and-cutting-safely.es.md 6ms (unchanged)
+content/blog/2026-10-13-knives-and-cutting-safely.md 7ms (unchanged)
+content/blog/2026-10-14-mise-en-place-and-reading-a-recipe.es.md 5ms (unchanged)
+content/blog/2026-10-14-mise-en-place-and-reading-a-recipe.md 5ms (unchanged)
+content/blog/2026-10-15-how-heat-cooks-food.es.md 6ms (unchanged)
+content/blog/2026-10-15-how-heat-cooks-food.md 7ms (unchanged)
+content/blog/2026-10-16-seasoning-and-building-flavor.es.md 6ms (unchanged)
+content/blog/2026-10-16-seasoning-and-building-flavor.md 5ms (unchanged)
+content/blog/2026-10-17-kitchen-safety-and-lifelong-habits.es.md 6ms (unchanged)
+content/blog/2026-10-17-kitchen-safety-and-lifelong-habits.md 6ms (unchanged)
+content/pages/about.es.md 4ms (unchanged)
+content/pages/about.md 4ms (unchanged)
+content/pages/contact.es.md 2ms (unchanged)
+content/pages/contact.md 2ms (unchanged)
+docs/adr/0001-record-architecture-decisions.md 2ms (unchanged)
+docs/adr/0002-agpl-license-and-dependency-policy.md 2ms (unchanged)
+docs/adr/0003-static-site-on-github-pages.md 2ms (unchanged)
+docs/adr/0004-zero-runtime-dependencies.md 3ms (unchanged)
+docs/adr/0005-vite-with-custom-ssg-plugin.md 3ms (unchanged)
+docs/adr/0006-dual-typescript-toolchain.md 5ms (unchanged)
+docs/adr/0007-declarative-shadow-dom-components.md 2ms (unchanged)
+docs/adr/0008-theming-and-contrast.md 2ms (unchanged)
+docs/adr/0009-content-model-and-url-scheme.md 3ms (unchanged)
+docs/adr/0010-test-strategy.md 5ms (unchanged)
+docs/adr/0011-slim-ci-and-pages-deploy.md 3ms (unchanged)
+docs/adr/0012-evergreen-browser-baseline.md 2ms (unchanged)
+docs/adr/0013-localstorage-settings-store.md 4ms (unchanged)
+docs/adr/0014-yarn-and-dependency-policy.md 3ms (unchanged)
+docs/adr/0015-accessibility-commitments.md 3ms (unchanged)
+docs/adr/0016-chromium-new-headless-channel.md 5ms (unchanged)
+docs/adr/0017-containerised-e2e-playwright-image.md 4ms (unchanged)
+docs/adr/0018-motion-gated-view-transitions.md 11ms (unchanged)
+docs/adr/0019-ci-container-home-override.md 3ms (unchanged)
+docs/adr/0020-repo-root-from-script-location.md 3ms (unchanged)
+docs/adr/0021-scheduled-publishing-and-daily-rebuild.md 4ms (unchanged)
+docs/adr/0022-optional-live-statistics-backend.md 4ms (unchanged)
+docs/adr/0023-live-statistics-privacy-model.md 4ms (unchanged)
+docs/adr/0024-ephemeral-live-statistics-schema.md 5ms (unchanged)
+docs/adr/0025-visibility-gated-polling-with-circuit-breaker.md 4ms (unchanged)
+docs/adr/0026-locale-prefixed-urls.md 2ms (unchanged)
+docs/adr/0027-typed-message-catalogs-with-fallback.md 2ms (unchanged)
+docs/adr/0028-translations-as-sibling-files.md 2ms (unchanged)
+docs/adr/0029-language-preference-without-redirects.md 2ms (unchanged)
+docs/adr/0030-build-provenance-in-footer.md 2ms (unchanged)
+docs/adr/0031-typescript-7-only-compiler.md 2ms (unchanged)
+docs/adr/0032-explicit-ts-extensions-and-7-1-gate.md 2ms (unchanged)
+docs/adr/0033-no-comments.md 1ms (unchanged)
+docs/adr/0034-narration-audio.md 3ms (unchanged)
+docs/adr/0035-remembered-listening.md 1ms (unchanged)
+docs/adr/0036-labs-section.md 2ms (unchanged)
+docs/adr/0037-time-based-flipbook-three-renderers.md 3ms (unchanged)
+docs/adr/0038-third-party-demonstration-assets.md 2ms (unchanged)
+docs/architecture.md 5ms (unchanged)
+docs/content-authoring.md 11ms (unchanged)
+docs/i18n.md 3ms (unchanged)
+docs/live-stats.md 6ms (unchanged)
+docs/README.md 2ms (unchanged)
+eslint.config.ts 8ms (unchanged)
+package.json 1ms (unchanged)
+playwright.config.ts 3ms (unchanged)
+README.md 28ms (unchanged)
+src/client/browser.ts 6ms (unchanged)
+src/client/circuitBreaker.test.ts 8ms (unchanged)
+src/client/circuitBreaker.ts 5ms (unchanged)
+src/client/flipbookController.test.ts 23ms (unchanged)
+src/client/flipbookController.ts 10ms (unchanged)
+src/client/flipbookElement.ts 19ms (unchanged)
+src/client/flipbookPreferences.test.ts 6ms (unchanged)
+src/client/flipbookPreferences.ts 4ms (unchanged)
+src/client/livePoller.test.ts 20ms (unchanged)
+src/client/livePoller.ts 8ms (unchanged)
+src/client/liveStats.test.ts 13ms (unchanged)
+src/client/liveStats.ts 9ms (unchanged)
+src/client/liveStatsApi.test.ts 10ms (unchanged)
+src/client/liveStatsApi.ts 7ms (unchanged)
+src/client/liveStatsElements.ts 7ms (unchanged)
+src/client/liveTestDoubles.ts 4ms (unchanged)
+src/client/locale.test.ts 2ms (unchanged)
+src/client/locale.ts 2ms (unchanged)
+src/client/main.ts 3ms (unchanged)
+src/client/narration.test.ts 13ms (unchanged)
+src/client/narration.ts 6ms (unchanged)
+src/client/narrationElement.ts 2ms (unchanged)
+src/client/storage.test.ts 5ms (unchanged)
+src/client/storage.ts 4ms (unchanged)
+src/client/theme.test.ts 4ms (unchanged)
+src/client/theme.ts 2ms (unchanged)
+src/client/themeInit.test.ts 2ms (unchanged)
+src/client/themeInit.ts 1ms (unchanged)
+src/components/authorCard.ts 3ms (unchanged)
+src/components/components.test.ts 14ms (unchanged)
+src/components/context.ts 1ms (unchanged)
+src/components/flipbook.test.ts 3ms (unchanged)
+src/components/flipbook.ts 4ms (unchanged)
+src/components/languageSwitcher.ts 4ms (unchanged)
+src/components/liveStats.ts 3ms (unchanged)
+src/components/narration.test.ts 3ms (unchanged)
+src/components/narration.ts 2ms (unchanged)
+src/components/postCard.ts 4ms (unchanged)
+src/components/postMeta.ts 2ms (unchanged)
+src/components/seriesNav.ts 3ms (unchanged)
+src/components/siteFooter.ts 2ms (unchanged)
+src/components/siteHeader.ts 3ms (unchanged)
+src/components/themePicker.ts 1ms (unchanged)
+src/i18n/format.test.ts 3ms (unchanged)
+src/i18n/format.ts 3ms (unchanged)
+src/i18n/locales.test.ts 3ms (unchanged)
+src/i18n/locales.ts 3ms (unchanged)
+src/i18n/localizedContent.test.ts 4ms (unchanged)
+src/i18n/localizedContent.ts 3ms (unchanged)
+src/i18n/messages/en.ts 4ms (unchanged)
+src/i18n/messages/es.ts 4ms (unchanged)
+src/i18n/messages/index.ts 1ms (unchanged)
+src/i18n/messages/messages.test.ts 2ms (unchanged)
+src/i18n/safeHtml.ts 1ms (unchanged)
+src/i18n/translator.test.ts 3ms (unchanged)
+src/i18n/translator.ts 4ms (unchanged)
+src/lib/buildInfo.test.ts 4ms (unchanged)
+src/lib/buildInfo.ts 2ms (unchanged)
+src/lib/collections.test.ts 4ms (unchanged)
+src/lib/collections.ts 4ms (unchanged)
+src/lib/config.test.ts 2ms (unchanged)
+src/lib/config.ts 2ms (unchanged)
+src/lib/content.test.ts 12ms (unchanged)
+src/lib/content.ts 15ms (unchanged)
+src/lib/contentNarration.test.ts 4ms (unchanged)
+src/lib/dates.test.ts 2ms (unchanged)
+src/lib/dates.ts 3ms (unchanged)
+src/lib/feed.test.ts 3ms (unchanged)
+src/lib/feed.ts 3ms (unchanged)
+src/lib/flipbook.test.ts 10ms (unchanged)
+src/lib/flipbook.ts 6ms (unchanged)
+src/lib/frontmatter.test.ts 1ms (unchanged)
+src/lib/frontmatter.ts 2ms (unchanged)
+src/lib/html.test.ts 2ms (unchanged)
+src/lib/html.ts 1ms (unchanged)
+src/lib/markdown.test.ts 3ms (unchanged)
+src/lib/markdown.ts 8ms (unchanged)
+src/lib/narration.test.ts 2ms (unchanged)
+src/lib/narration.ts 2ms (unchanged)
+src/lib/readingTime.test.ts 1ms (unchanged)
+src/lib/readingTime.ts 1ms (unchanged)
+src/lib/sitemap.test.ts 1ms (unchanged)
+src/lib/sitemap.ts 1ms (unchanged)
+src/lib/slug.test.ts 1ms (unchanged)
+src/lib/slug.ts 1ms (unchanged)
+src/lib/testFixtures.ts 1ms (unchanged)
+src/lib/types.ts 2ms (unchanged)
+src/lib/yaml.test.ts 2ms (unchanged)
+src/lib/yaml.ts 7ms (unchanged)
+src/pages/authors.ts 3ms (unchanged)
+src/pages/blogIndex.ts 1ms (unchanged)
+src/pages/home.ts 2ms (unchanged)
+src/pages/labs.test.ts 3ms (unchanged)
+src/pages/labs.ts 5ms (unchanged)
+src/pages/layout.ts 4ms (unchanged)
+src/pages/live.ts 2ms (unchanged)
+src/pages/markdownPage.ts 1ms (unchanged)
+src/pages/notFound.ts 1ms (unchanged)
+src/pages/post.ts 2ms (unchanged)
+src/pages/routes.test.ts 9ms (unchanged)
+src/pages/routes.ts 5ms (unchanged)
+src/pages/series.ts 3ms (unchanged)
+src/pages/tags.ts 3ms (unchanged)
+src/pages/testContext.ts 1ms (unchanged)
+src/repoHygiene.test.ts 3ms (unchanged)
+src/ssg/git.test.ts 1ms (unchanged)
+src/ssg/git.ts 1ms (unchanged)
+src/ssg/loadContent.test.ts 2ms (unchanged)
+src/ssg/loadContent.ts 2ms (unchanged)
+src/ssg/vitePlugin.ts 7ms (unchanged)
+src/styles/global.css 23ms (unchanged)
+src/versionSync.test.ts 2ms (unchanged)
+tests/e2e/fixtures.ts 2ms (unchanged)
+tests/e2e/i18n.spec.ts 4ms (unchanged)
+tests/e2e/labs.spec.ts 6ms (unchanged)
+tests/e2e/live.spec.ts 7ms (unchanged)
+tests/e2e/narration.spec.ts 3ms (unchanged)
+tests/e2e/site.spec.ts 6ms (unchanged)
+tsconfig.json 1ms (unchanged)
+vite.config.ts 1ms (unchanged)
+vitest.config.ts 1ms (unchanged)
+[13:18:36] format complete
+
+real	0m8.050s
+user	0m8.638s
+sys	0m0.973s
 kushal@fedora:~/src/ts/kphoto$ 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
