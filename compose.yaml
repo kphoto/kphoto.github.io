@@ -12,7 +12,7 @@ x-base: &base
 services:
   e2e:
     <<: *base
-    command: ['bash', '-c', 'corepack enable && ./scripts/build.sh && ./scripts/test-e2e.sh']
+    command: ['bash', '-c', 'npm install -g corepack && corepack enable && ./scripts/build.sh && ./scripts/test-e2e.sh']
 
   dev:
     <<: *base
