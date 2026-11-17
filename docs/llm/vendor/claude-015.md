@@ -398,3 +398,7 @@ Paste that output and I'll send the bump for `package.json`, `yarn.lock`, `compo
 
 
 
+kushal@fedora:~/src/ts/kphoto$ skopeo inspect --format '{{.Digest}}' docker://mcr.microsoft.com/playwright:v1.65.1-noble
+sha256:1507cbfc550a63a6b7396791ca4f00df17beb56342d2447b3f106c306f525579
+kushal@fedora:~/src/ts/kphoto$ 
+
