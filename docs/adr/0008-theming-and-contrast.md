@@ -35,3 +35,9 @@ Adding a theme is one CSS block plus one entry in `THEMES`. The inline script
 and the controller share logic by convention, guarded by a unit test that
 evaluates the generated script in a sandbox. Solarized purists will notice
 the adjusted values; readers with low vision will not have to.
+
+## Amendment (2026-11-17)
+
+The pre-paint script also sets `data-font` and, for the handwriting font,
+preloads its file (ADR 0042). It still reads the settings key exactly once
+and still falls back to light and the standard font on any failure.

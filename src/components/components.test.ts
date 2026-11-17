@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { THEMES } from '../client/storage.ts';
+import { FONTS, THEMES } from '../client/storage.ts';
 import { postIn } from '../i18n/localizedContent.ts';
 import { siteConfig } from '../lib/config.ts';
 import { makeAuthor, makePost } from '../lib/testFixtures.ts';
 import { makePageContext, TEST_COMMIT, withLiveStats } from '../pages/testContext.ts';
 import { renderAuthorCard } from './authorCard.ts';
+import { FONT_LABEL_KEYS, renderFontPicker } from './fontPicker.ts';
 import { orderedAlternates, renderLanguageSwitcher } from './languageSwitcher.ts';
 import { liveMessages, renderLiveBoard, renderLiveStats } from './liveStats.ts';
 import { renderPostCard } from './postCard.ts';
@@ -12,6 +13,7 @@ import { renderPostMeta } from './postMeta.ts';
 import { renderSeriesNav } from './seriesNav.ts';
 import { NAV_KEYS, navItems, renderSiteHeader } from './siteHeader.ts';
 import { renderBuildLine, renderSiteFooter } from './siteFooter.ts';
+import { renderSettingSelect } from './settingSelect.ts';
 import { renderThemePicker } from './themePicker.ts';
 
 const en = makePageContext('en');
@@ -28,6 +30,7 @@ describe('declarative shadow DOM contract', () => {
   const post = makePost({ slug: '2026-03-22-good-morning', date: '2026-03-22' });
   const renders: [string, string][] = [
     ['kp-theme-picker', renderThemePicker(en.t)],
+    ['kp-font-picker', renderFontPicker(en.t)],
     ['kp-header', renderSiteHeader(en, '/blog/', bothLocales)],
     ['kp-language-switcher', renderLanguageSwitcher(en, bothLocales)],
     ['kp-footer', renderSiteFooter(en, '/')],
@@ -62,7 +65,53 @@ describe('renderThemePicker', () => {
   });
 });
 
+describe('renderFontPicker', () => {
+  it('offers every font with an accessible label', () => {
+    const html = renderFontPicker(en.t);
+    for (const font of FONTS) {
+      expect(html).toContain(
+        `<option value="${font}">${en.t.text(FONT_LABEL_KEYS[font])}</option>`,
+      );
+    }
+    expect(html).toContain('<label class="visually-hidden" for="font-select">Font</label>');
+    expect(html).toContain('<select id="font-select" autocomplete="off">');
+  });
+
+  it('lists the standard font first so it reads as the default', () => {
+    expect(renderFontPicker(en.t).indexOf('value="standard"')).toBeLessThan(
+      renderFontPicker(en.t).indexOf('value="handwriting"'),
+    );
+  });
+
+  it('speaks the page language', () => {
+    const html = renderFontPicker(es.t);
+    expect(html).toContain('for="font-select">Tipo de letra</label>');
+    expect(html).toContain('>Letra manuscrita</option>');
+  });
+});
+
+describe('renderSettingSelect', () => {
+  it('escapes ids, values and labels but trusts the label markup it is given', () => {
+    const html = renderSettingSelect({
+      tag: 'kp-test-select',
+      id: 'a"b',
+      labelHtml: '<span lang="en">Label</span>',
+      options: [{ value: 'x"y', label: '<b>' }],
+    });
+    expect(html).toContain('for="a&quot;b"><span lang="en">Label</span></label>');
+    expect(html).toContain('<option value="x&quot;y">&lt;b&gt;</option>');
+    expect(html.startsWith('<kp-test-select>')).toBe(true);
+    expect(html.endsWith('</kp-test-select>')).toBe(true);
+  });
+});
+
 describe('renderSiteHeader', () => {
+  it('carries both appearance pickers', () => {
+    const html = renderSiteHeader(en, '/', []);
+    expect(html).toContain('<kp-theme-picker>');
+    expect(html).toContain('<kp-font-picker>');
+  });
+
   it('links every section', () => {
     const html = renderSiteHeader(en, '/', []);
     for (const item of navItems(en)) {

@@ -1,3 +1,4 @@
+import type { Page } from '@playwright/test';
 import { expect, SUPABASE, test } from './fixtures.ts';
 import { siteConfig } from '../../src/lib/config.ts';
 
@@ -107,6 +108,59 @@ test.describe('theming', () => {
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
     await page.emulateMedia({ colorScheme: 'light' });
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  });
+});
+
+test.describe('font', () => {
+  const bodyFont = (page: Page) => page.evaluate(() => getComputedStyle(document.body).fontFamily);
+
+  test('starts with the standard font', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('html')).toHaveAttribute('data-font', 'standard');
+    await expect(page.locator('kp-font-picker select')).toHaveValue('standard');
+    expect(await bodyFont(page)).not.toContain('kphoto handwriting');
+  });
+
+  test('the handwriting font loads and survives a reload', async ({ page }) => {
+    await page.goto('/');
+    const select = page.locator('kp-font-picker select');
+    await select.selectOption('handwriting');
+    await expect(page.locator('html')).toHaveAttribute('data-font', 'handwriting');
+    expect(await bodyFont(page)).toContain('kphoto handwriting');
+    await expect
+      .poll(() => page.evaluate(() => document.fonts.check('16px "kphoto handwriting"')))
+      .toBe(true);
+
+    const stored = await page.evaluate(() => localStorage.getItem('kphoto:settings:v1'));
+    expect(JSON.parse(stored ?? '{}')).toMatchObject({ font: 'handwriting' });
+
+    await page.reload();
+    await expect(page.locator('html')).toHaveAttribute('data-font', 'handwriting');
+    await expect(select).toHaveValue('handwriting');
+    await expect(page.locator('link[rel="preload"][as="font"]')).toHaveCount(1);
+    await expect
+      .poll(() => page.evaluate(() => document.fonts.check('16px "kphoto handwriting"')))
+      .toBe(true);
+  });
+
+  test('switching back restores the standard font', async ({ page }) => {
+    await page.goto('/');
+    const select = page.locator('kp-font-picker select');
+    await select.selectOption('handwriting');
+    await select.selectOption('standard');
+    await page.reload();
+    await expect(page.locator('html')).toHaveAttribute('data-font', 'standard');
+    expect(await bodyFont(page)).not.toContain('kphoto handwriting');
+  });
+
+  test('the font and the theme are independent choices', async ({ page }) => {
+    await page.goto('/es/');
+    await page.locator('kp-theme-picker select').selectOption('dark');
+    await page.locator('kp-font-picker select').selectOption('handwriting');
+    await page.reload();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    await expect(page.locator('html')).toHaveAttribute('data-font', 'handwriting');
+    await expect(page.getByRole('combobox', { name: 'Tipo de letra' })).toHaveValue('handwriting');
   });
 });
 

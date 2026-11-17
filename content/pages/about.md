@@ -16,6 +16,8 @@ waits for.
   declarative shadow DOM
 - theming, view transitions and persistence use only what evergreen browsers
   ship today
+- the optional handwriting font is the author's own, served from this site
+  and downloaded only if you pick it
 
 ## Live statistics, without tracking
 
@@ -28,8 +30,8 @@ nothing else changes. [The live page](/live/) spells out exactly what is
 collected.
 
 This site stores these things in your browser's local storage: your theme,
-the language you last picked, your listening speed and where you stopped in
-narrated posts, the speed and drawing technique you chose in
+your font, the language you last picked, your listening speed and where you
+stopped in narrated posts, the speed and drawing technique you chose in
 [the flapping-airplane lab](/labs/flapping-airplane/), and, only if the
 statistics server was unreachable, when to try it again.
 

@@ -35,7 +35,9 @@ src/ssg/         the only code that touches Node APIs and Vite
 src/client/      the only code that runs in the browser
   storage.ts       versioned, validated localStorage settings
   theme.ts         ThemeController with injected host/media/settings
-  themeInit.ts     builds the inline pre-paint script
+  font.ts          FontController and FONT_FILES (the files to preload)
+  themeInit.ts     builds the inline pre-paint script (theme, font, preload)
+  settingSelectElement.ts  upgrades the theme and font pickers
   liveStats.ts     live-stats types, validation, tracking policy, formatting
   liveStatsApi.ts  PostgREST client (injected fetch + timeout signal)
   circuitBreaker.ts  persisted back-off shared by every page
@@ -48,8 +50,8 @@ src/client/      the only code that runs in the browser
   flipbookPreferences.ts  kphoto:flipbook:v1 and the starting state
   flipbookController.ts   DOM-free flipbook against surface and panel ports
   flipbookElement.ts      upgrades <kp-flipbook>: preload, rAF loop, surfaces
-  main.ts          wires real browser APIs in; upgrades the theme picker,
-                   the language switcher and the narration player
+  main.ts          wires real browser APIs in; upgrades the theme and font
+                   pickers, the language switcher and the narration player
 
 docs/supabase/   SQL applied by hand in the Supabase SQL editor (ADR 0024)
 ```
@@ -129,3 +131,5 @@ per theme on `<html data-theme>` (including `--ink-filter` and
 content. Every component carries its own `<style>` inside a declarative
 shadow root; tokens inherit through the shadow boundary, so themes recolour
 components without any selector piercing. See ADR 0007 and ADR 0008.
+`<html data-font>` swaps `--font-body` for the optional handwriting face;
+`--font-mono` never changes (ADR 0042).

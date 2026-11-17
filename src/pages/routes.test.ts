@@ -112,7 +112,8 @@ describe('renderSite', () => {
       expect(file.body).toContain('<kp-footer>');
       expect(file.body).toContain('src="/assets/main-TEST.js"');
       expect(file.body).toContain('href="/assets/styles-TEST.css"');
-      expect(file.body).toContain('data-theme="light"');
+      expect(file.body).toContain('data-theme="light" data-font="standard"');
+      expect(file.body).toContain('<kp-font-picker>');
       expect(file.body).toContain('localStorage.getItem');
     }
   });

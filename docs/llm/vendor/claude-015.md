@@ -298,3 +298,103 @@ kushal@fedora:~/src/ts/kphoto$
 
 
 
+Now the docs, ADRs and about pages.
+
+Now the README.
+
+The archive has 31 files. Extract it at the repo root with `tar -xzf kphoto-handwriting-font.tar.gz`.
+
+**Delete:** `public/fonts/regular.ttf`. Nothing references it, and everything in `public/` ships with every deploy.
+
+In my sandbox, format, lint, both typechecks, all 568 unit tests (up from 524), `yarn install --immutable` and the build passed. I couldn't run the e2e suite there because the browser downloads are blocked, so `./check.sh` is the first real e2e run. The new e2e tests are in `tests/e2e/site.spec.ts`.
+
+**What readers get:**
+- **The picker:** a font picker in the header, next to the theme picker, with "Standard font" and "Handwriting font" (Spanish: "Letra estándar" / "Letra manuscrita"). Standard is the default and is always one click away.
+- **Remembered choice:** it's stored as `font` in `kphoto:settings:v1` and applied before the first frame, so a reload doesn't flash the wrong font.
+- **Loading:** only readers who pick the handwriting font download it. After that, every page preloads it.
+- **What changes:** only body text uses the handwriting font. Code and labels stay monospace. I scaled it up 15% because it renders small.
+- **Accents:** letters the font doesn't have, like accents, `ñ`, `¿` and `¡`, show in the system font. This is written up in ADR 0042, the README and the Spanish About page.
+
+**Dependencies:** the stable updates are Vite 8.3.8, Vitest and coverage 5.1.0, ESLint 10.15.0, typescript-eslint 8.72.2, Prettier 3.10.1 and @types/node 26.6.6. For TypeScript 7.1 I took the newest unstable build, the nightly `7.1.0-dev.20261114.1`, since no release candidate exists yet. `yarn.lock` is regenerated. typescript-eslint 8.73.0 is still blocked by the 72-hour gate until Nov 19.
+
+**Playwright is still at 1.64.1.** The hash `podman pull` printed is the local image ID, and the pin needs the manifest digest, which is a different hash. ADR 0040 claimed `podman pull` prints it, so I amended it. This command gives the right value:
+
+```
+skopeo inspect --format '{{.Digest}}' docker://mcr.microsoft.com/playwright:v1.65.1-noble
+```
+
+Paste that output and I'll send the bump for `package.json`, `yarn.lock`, `compose.yaml` and `.github/workflows/verify.yml`.
+
+**Docs:** there's a new ADR 0042, and ADRs 0008, 0013, 0032 and 0040 are amended. `docs/architecture.md`, `CHANGELOG.md`, `README.md` and both About pages are updated.
+
+22
+68
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

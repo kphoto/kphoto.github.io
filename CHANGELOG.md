@@ -9,6 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Optional handwriting font (ADR 0042):
+  - `<kp-font-picker>` in the header next to the theme picker: "Standard
+    font" or "Handwriting font", in English and Spanish;
+  - choice stored as `font` in `kphoto:settings:v1`, applied before first
+    paint as `<html data-font>`, with a preload of
+    `public/fonts/regular.woff2` only for readers who chose it;
+  - `[data-font='handwriting']` swaps `--font-body` (new `--font-sans`
+    keeps the system stack); monospace text is unchanged; `size-adjust:
+115%`; characters the font lacks (accents, `ñ`, `¿`, `¡`) fall back to
+    the system font;
+  - `FontController` and `FONT_FILES` in `src/client/font.ts`; shared
+    `renderSettingSelect` and `defineSettingSelect` for both pickers;
+  - unit tests (`font.test.ts`, settings, pre-paint script, components,
+    routes) and e2e tests for choosing, reloading, switching back and
+    combining with a theme.
+
 - Labs (ADRs 0036–0038):
   - `/labs/` index and a "Labs" header link, in English and Spanish;
   - `/labs/flapping-airplane/`: an interactive explainer of the
@@ -68,6 +84,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Dependencies: Vite 8.3.8, Vitest and @vitest/coverage-v8 5.1.0, ESLint
+  10.15.0, typescript-eslint 8.72.2, Prettier 3.10.1, @types/node 26.6.6.
+  typescript-eslint 8.73.0 waits for the 72-hour gate; Playwright stays at
+  1.64.1 until the `v1.65.1-noble` image digest is pinned.
+- TypeScript 7.1 preview gate moves from `7.1.0-beta` to the nightly
+  `7.1.0-dev.20261114.1`; no 7.1 release candidate exists (ADR 0032
+  amendment).
+- The theme picker renders through `renderSettingSelect`; `main.ts` no
+  longer defines its own picker element.
+- About pages list the font among the things stored in the browser.
 - TypeScript 7.0.2 is the only compiler; `typescript` is now the official
   `@typescript/typescript6` facade used by typescript-eslint alone, replacing
   the `packageExtensions` block (ADR 0031 supersedes ADR 0006).

@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'kphoto handwriting';
+  src: url('/fonts/regular.woff2') format('woff2');
+  font-display: swap;
+  size-adjust: 115%;
+}
+
 :root {
   color-scheme: light;
 
@@ -12,13 +19,18 @@
   --ink-filter: grayscale(1) brightness(1.08) contrast(1.6);
   --ink-blend: multiply;
 
-  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-body: var(--font-sans);
   --font-mono:
     ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 
   --measure: 44rem;
   --measure-wide: 60rem;
   --gutter: clamp(1rem, 4vw, 2rem);
+}
+
+[data-font='handwriting'] {
+  --font-body: 'kphoto handwriting', var(--font-sans);
 }
 
 [data-theme='dark'] {
@@ -135,7 +147,8 @@ kp-author-card {
   display: block;
 }
 
-kp-theme-picker {
+kp-theme-picker,
+kp-font-picker {
   display: inline-block;
 }
 

@@ -1,9 +1,11 @@
 import { browserStore } from './browser.ts';
 import { defineFlipbookElement } from './flipbookElement.ts';
+import { FontController } from './font.ts';
 import { chooseSuggestion } from './locale.ts';
 import { defineLiveStatsElements } from './liveStatsElements.ts';
 import { defineNarrationElement } from './narrationElement.ts';
-import { isThemeName, SettingsStore, type ThemeName } from './storage.ts';
+import { defineSettingSelect } from './settingSelectElement.ts';
+import { isFontName, isThemeName, SettingsStore, type ThemeName } from './storage.ts';
 import { isDarkTheme, ThemeController, type ConcreteTheme } from './theme.ts';
 
 const documentHost = {
@@ -30,23 +32,34 @@ const themeController = new ThemeController({
 
 themeController.start();
 
-class ThemePickerElement extends HTMLElement {
-  connectedCallback(): void {
-    const select = this.shadowRoot?.querySelector('select');
-    if (!(select instanceof HTMLSelectElement)) {
-      return;
-    }
-    select.value = themeController.theme;
-    select.addEventListener('change', () => {
-      const value: string = select.value;
-      if (isThemeName(value)) {
-        themeController.setTheme(value);
-      }
-    });
-  }
-}
+const fontController = new FontController({
+  settings,
+  host: {
+    applyFont(font) {
+      document.documentElement.dataset.font = font;
+    },
+  },
+});
 
-customElements.define('kp-theme-picker', ThemePickerElement);
+fontController.start();
+
+defineSettingSelect('kp-theme-picker', {
+  current: () => themeController.theme,
+  choose: (value) => {
+    if (isThemeName(value)) {
+      themeController.setTheme(value);
+    }
+  },
+});
+
+defineSettingSelect('kp-font-picker', {
+  current: () => fontController.font,
+  choose: (value) => {
+    if (isFontName(value)) {
+      fontController.setFont(value);
+    }
+  },
+});
 
 class LanguageSwitcherElement extends HTMLElement {
   connectedCallback(): void {

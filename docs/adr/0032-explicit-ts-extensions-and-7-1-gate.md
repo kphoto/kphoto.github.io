@@ -32,3 +32,10 @@ deliberately and folds into the main compiler when 7.1 is stable.
 `typescript-native-next` pins the newest 7.1 milestone (beta, then rc) that
 clears the 72-hour gate, and falls back to a nightly only when no milestone
 exists. It now pins `7.1.0-beta`; the code type-checks under it unchanged.
+
+## Amendment (2026-11-17)
+
+`typescript-native-next` pins the newest 7.1 pre-release of any kind that
+clears the 72-hour gate, milestone or nightly. No 7.1 release candidate
+exists, so it moves from `7.1.0-beta` to the nightly `7.1.0-dev.20261114.1`;
+the code type-checks under it unchanged.

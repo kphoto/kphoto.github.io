@@ -37,3 +37,10 @@ references to the new tag and its digest
 (`podman pull mcr.microsoft.com/playwright:v<version>-noble` prints it).
 Security rebuilds of the same tag are picked up only by such an update; the
 image runs tests only, never the deployed site.
+
+## Amendment (2026-11-17)
+
+`podman pull` prints the local image ID (the config digest), which cannot be
+used after `@`. The pin needs the manifest digest:
+`skopeo inspect --format '{{.Digest}}' docker://mcr.microsoft.com/playwright:v<version>-noble`,
+or `podman image inspect --format '{{.Digest}}' <image>` after a pull.

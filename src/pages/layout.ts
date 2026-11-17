@@ -99,7 +99,7 @@ export function renderDocument(context: PageContext, meta: PageMeta, mainHtml: s
   const fullTitle = meta.title === config.title ? config.title : `${meta.title} · ${config.title}`;
   const canonical = `${config.url}${meta.path}`;
   return `<!doctype html>
-<html lang="${escapeAttribute(t.locale.code)}" dir="${escapeAttribute(t.locale.dir)}" data-theme="light">
+<html lang="${escapeAttribute(t.locale.code)}" dir="${escapeAttribute(t.locale.dir)}" data-theme="light" data-font="standard">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />

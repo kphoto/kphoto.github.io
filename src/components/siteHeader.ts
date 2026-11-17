@@ -3,6 +3,7 @@ import type { MessageKey } from '../i18n/messages/index.ts';
 import type { Translator } from '../i18n/translator.ts';
 import { escapeAttribute, escapeHtml } from '../lib/html.ts';
 import type { RenderContext } from './context.ts';
+import { renderFontPicker } from './fontPicker.ts';
 import { renderLanguageSwitcher } from './languageSwitcher.ts';
 import { renderThemePicker } from './themePicker.ts';
 
@@ -127,6 +128,7 @@ nav a:focus-visible {
 <nav aria-label="${escapeAttribute(t.text('nav.label'))}">${links}</nav>
 ${renderLanguageSwitcher(context, alternates)}
 ${renderThemePicker(t)}
+${renderFontPicker(t)}
 </header>
 </template>
 </kp-header>`;

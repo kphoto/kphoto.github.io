@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import {
+  DEFAULT_FONT,
   DEFAULT_SETTINGS,
+  FONTS,
+  isFontName,
   isPlaybackRate,
   isThemeName,
   MAX_PLAYBACK_RATE,
@@ -34,6 +37,21 @@ describe('isThemeName', () => {
     expect(isThemeName('hotdog-stand')).toBe(false);
     expect(isThemeName(42)).toBe(false);
     expect(isThemeName(null)).toBe(false);
+  });
+});
+
+describe('isFontName', () => {
+  it('accepts every offered font', () => {
+    for (const font of FONTS) {
+      expect(isFontName(font)).toBe(true);
+    }
+    expect(FONTS).toContain(DEFAULT_FONT);
+  });
+
+  it('rejects anything else', () => {
+    for (const value of ['Handwriting', 'comic', '', 1, null, undefined, {}]) {
+      expect(isFontName(value)).toBe(false);
+    }
   });
 });
 
@@ -131,5 +149,30 @@ describe('SettingsStore', () => {
       backing.set(SETTINGS_KEY, JSON.stringify({ theme: 'light', playbackRate }));
       expect(new SettingsStore(backing).read()).toEqual({ theme: 'light' });
     }
+  });
+
+  it('leaves the font out until one is chosen', () => {
+    expect(new SettingsStore(memoryStore()).read().font).toBeUndefined();
+  });
+
+  it('remembers a font next to the other settings', () => {
+    const store = new SettingsStore(memoryStore());
+    store.write({ theme: 'dark', locale: 'es' });
+    store.write({ font: 'handwriting' });
+    expect(store.read()).toEqual({ theme: 'dark', locale: 'es', font: 'handwriting' });
+  });
+
+  it('drops an unknown stored font but keeps the rest', () => {
+    for (const font of ['comic', 'HANDWRITING', 3, null]) {
+      const backing = memoryStore();
+      backing.set(SETTINGS_KEY, JSON.stringify({ theme: 'light', font, playbackRate: 2 }));
+      expect(new SettingsStore(backing).read()).toEqual({ theme: 'light', playbackRate: 2 });
+    }
+  });
+
+  it('keeps a valid font when the theme is unknown', () => {
+    const backing = memoryStore();
+    backing.set(SETTINGS_KEY, JSON.stringify({ theme: 'neon', font: 'handwriting' }));
+    expect(new SettingsStore(backing).read()).toEqual({ theme: 'system', font: 'handwriting' });
   });
 });

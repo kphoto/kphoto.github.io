@@ -6,8 +6,15 @@ export const THEMES = ['system', 'light', 'dark', 'solarized-light', 'solarized-
 
 export type ThemeName = (typeof THEMES)[number];
 
+export const FONTS = ['standard', 'handwriting'] as const;
+
+export type FontName = (typeof FONTS)[number];
+
+export const DEFAULT_FONT: FontName = 'standard';
+
 export interface Settings {
   readonly theme: ThemeName;
+  readonly font?: FontName;
   readonly locale?: string;
   readonly playbackRate?: number;
 }
@@ -20,6 +27,10 @@ export const DEFAULT_SETTINGS: Settings = { theme: 'system' };
 
 export function isThemeName(value: unknown): value is ThemeName {
   return typeof value === 'string' && (THEMES as readonly string[]).includes(value);
+}
+
+export function isFontName(value: unknown): value is FontName {
+  return typeof value === 'string' && (FONTS as readonly string[]).includes(value);
 }
 
 export function isPlaybackRate(value: unknown): value is number {
@@ -42,10 +53,12 @@ function parseSettings(raw: string): Settings {
     return DEFAULT_SETTINGS;
   }
   const theme: unknown = 'theme' in parsed ? parsed.theme : undefined;
+  const font: unknown = 'font' in parsed ? parsed.font : undefined;
   const locale: unknown = 'locale' in parsed ? parsed.locale : undefined;
   const playbackRate: unknown = 'playbackRate' in parsed ? parsed.playbackRate : undefined;
   return {
     theme: isThemeName(theme) ? theme : DEFAULT_SETTINGS.theme,
+    ...(isFontName(font) ? { font } : {}),
     ...(isLocaleCode(locale) ? { locale } : {}),
     ...(isPlaybackRate(playbackRate) ? { playbackRate } : {}),
   };

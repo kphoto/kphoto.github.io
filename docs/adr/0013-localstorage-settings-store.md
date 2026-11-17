@@ -66,3 +66,9 @@ A fourth key, `kphoto:flipbook:v1`, holds the flapping-airplane lab's frame
 rate, drawing technique and last play/pause choice (ADR 0037). It belongs to
 one page, so it stays out of `SettingsStore`; `FlipbookPreferenceStore`
 validates each field and drops what it does not recognise.
+
+## Amendment (2026-11-17)
+
+Settings gain an optional `font` (`standard` or `handwriting`, ADR 0042),
+validated like `theme` and dropped when unrecognised. No version bump: older
+values simply lack it and read as the standard font.
