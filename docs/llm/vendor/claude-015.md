@@ -405,3 +405,96 @@ kushal@fedora:~/src/ts/kphoto$ skopeo inspect --format '{{.Digest}}' docker://mc
 sha256:1507cbfc550a63a6b7396791ca4f00df17beb56342d2447b3f106c306f525579
 kushal@fedora:~/src/ts/kphoto$ 
 
+Playwright is now at 1.65.1, built on top of your latest push (`5e17563`). Six files changed and nothing needs deleting, so it's packed as `kphoto-playwright-1.65.1.tar.gz`; extract it at the repo root with `tar -xzf kphoto-playwright-1.65.1.tar.gz`.
+
+| File | Change |
+|---|---|
+| `package.json` | `@playwright/test` 1.64.1 → 1.65.1 |
+| `yarn.lock` | regenerated |
+| `compose.yaml` | image → `v1.65.1-noble@sha256:1507cbfc…f525579` |
+| `.github/workflows/verify.yml` | same image reference |
+| `README.md` | toolchain table updated |
+| `CHANGELOG.md` | dependency line updated |
+
+In my sandbox, the format check, lint, typecheck, all 568 unit tests (including the image pin check) and `yarn install --immutable` passed. I couldn't run the browser tests there, so `./check.sh` is the real run against the new image.
+
+The only dependency still behind is typescript-eslint 8.73.0, which the 72-hour gate releases on Nov 19.
+
+23
+68
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
