@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-11-16T19:17:13-05:00
+  Generated at   : 2026-11-17T09:58:47-05:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,10 +17,10 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : fa97613e8de05ccf1def866b6fef124280695191
-  Commit (short) : fa97613
-  Commit date    : 2026-11-16 19:14:53 -0500
-  Commit message : add fonts
+  Commit (full)  : 77edbe3e0b189bcc3e33b81e356c9a08e97ae7db
+  Commit (short) : 77edbe3
+  Commit date    : 2026-11-16 19:17:53 -0500
+  Commit message : run scripts
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
   Files included : 529
   Excluded path  : docs/llm/
@@ -32595,7 +32595,7 @@ npmMinimalAgeGate: 4320
   Files dumped   : 529
   Total size     : 581.9 MiB (610255116 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-11-16T19:17:28-05:00
+  Completed at   : 2026-11-17T09:59:03-05:00
 ################################################################################
 # END OF DUMP
 ################################################################################
