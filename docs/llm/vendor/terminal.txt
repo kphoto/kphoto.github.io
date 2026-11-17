@@ -363,4 +363,105 @@ Running 160 tests using 8 workers
 real	1m16.264s
 user	0m39.111s
 sys	0m17.129s
+kushal@fedora:~/src/ts/kphoto$ time podman pull mcr.microsoft.com/playwright:v1.65.1-noble
+Trying to pull mcr.microsoft.com/playwright:v1.65.1-noble...
+Getting image source signatures
+Copying blob 47752f912df1 done   | 
+Copying blob 26538842dfbf done   | 
+Copying blob 16013128adc1 done   | 
+Copying blob 9e0eed0efbea done   | 
+Copying blob 6802dea8d812 done   | 
+Copying blob a41e11046077 done   | 
+Copying blob 80e9d9e1b5bb done   | 
+Copying config 12708c20bc done   | 
+Writing manifest to image destination
+12708c20bc005b7ecc920dd23b27079baa55359fd2739c7f0f3070c47cf263e9
+
+real	1m27.262s
+user	0m28.309s
+sys	0m11.467s
+kushal@fedora:~/src/ts/kphoto$ time podman info --format '{{.Store.GraphDriverName}}'
+overlay
+
+real	0m0.171s
+user	0m0.096s
+sys	0m0.043s
+kushal@fedora:~/src/ts/kphoto$ free -h && swapon --show
+               total        used        free      shared  buff/cache   available
+Mem:            14Gi       9.8Gi       258Mi       133Mi       5.0Gi       5.1Gi
+Swap:          8.0Gi       7.6Gi       416Mi
+NAME       TYPE      SIZE USED PRIO
+/dev/zram0 partition   8G 7.6G  100
+kushal@fedora:~/src/ts/kphoto$ ps aux --sort=-%mem | head -n 15
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+kushal   2021299  4.8  4.5 14036212 710384 ?     Sl   Nov16  48:40 /usr/lib64/firefox/firefox
+kushal   2018624  0.5  3.3 1525802204 523696 ?   Sl   Nov16   5:53 /app/extra/chrome --type=zygote --crashpad-handler-pid=18 --enable-crash-reporter=, --change-stack-guard-on-fork=enable
+kushal   2022202  2.2  2.7 3830232 431772 ?      Sl   Nov16  22:18 /usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle 0:37412 -prefMapHandle 1:307119 -jsInitHandle 2:161360 -parentBuildID 20261110113206 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {3c9a3c16-1baa-4503-bc60-eb2a9ab2ac5a} -parentPid 2021299 -crashHelperPid 2021320 -crashHelper 6 -crashReporter 7 -greomni /usr/lib64/firefox/omni.ja -appomni /usr/lib64/firefox/browser/omni.ja -appDir /usr/lib64/firefox/browser 12 tab
+kushal   3988536  0.9  2.6 3685048 417488 ?      Sl   Nov16   8:33 /usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle 0:56161 -prefMapHandle 1:307119 -jsInitHandle 2:161360 -parentBuildID 20261110113206 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {e4525fe2-4e9b-4d13-bd6f-2f7f09b6ad73} -parentPid 2021299 -crashHelperPid 2021320 -crashHelper 6 -crashReporter 7 -greomni /usr/lib64/firefox/omni.ja -appomni /usr/lib64/firefox/browser/omni.ja -appDir /usr/lib64/firefox/browser 56 tab
+kushal    404081  1.3  2.2 1522939564 353308 ?   Sl   01:54   7:02 /opt/VSCode-linux-x64/code --type=renderer --enable-crash-reporter=d7543a3b-1b9b-4bdc-ac73-84177d882a41,no_channel --user-data-dir=/home/kushal/.config/Code --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file,vscode-remote-resource,vscode-managed-remote-resource --cors-schemes=vscode-webview,vscode-file,vscode-remote-resource,vscode-managed-remote-resource --fetch-schemes=vscode-webview,vscode-file,vscode-remote-resource,vscode-managed-remote-resource --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --app-path=/opt/VSCode-linux-x64/resources/app --enable-sandbox --enable-blink-features=HighlightAPI --max-active-webgl-contexts=32 --ozone-platform=wayland --disable-blink-features=FontMatchingCTMigration,StandardizedBrowserZoom, --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=62 --time-ticks-at-unix-epoch=-1794796324993851 --launch-time-ticks=102122410372 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,10104979536272319559,7388351810322802298,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EstablishGpuChannelAsync,GlobalShortcutsPortal,GlobalShortcutsPortalPreferredTrigger,PdfUseShowSaveFilePicker,UpdateCompositorMemoryPolicyOnScreenChange --disable-features=CalculateNativeWinOcclusion,DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=7,i,581396543916023893,6346928835501145639,4 --trace-process-track-uuid=3190709044408466132 --vscode-window-config=vscode:2a6392f0-5c84-43a8-bcd9-6f17881b3735
+kushal   2699026  0.3  1.8 3215720 283336 ?      Sl   10:07   0:02 /usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle 0:56217 -prefMapHandle 1:307119 -jsInitHandle 2:161360 -parentBuildID 20261110113206 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {5e27b68c-b7f6-4ca0-b48b-67d5591ae73c} -parentPid 2021299 -crashHelperPid 2021320 -crashHelper 6 -crashReporter 7 -greomni /usr/lib64/firefox/omni.ja -appomni /usr/lib64/firefox/browser/omni.ja -appDir /usr/lib64/firefox/browser 225 tab
+kushal   2018712  0.0  1.6 1523533868 265056 ?   Sl   Nov16   0:48 /app/extra/chrome --type=zygote --crashpad-handler-pid=18 --enable-crash-reporter=, --change-stack-guard-on-fork=enable
+kushal   2022534  0.8  1.5 7761764 247852 ?      Sl   Nov16   8:21 /usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle 0:37412 -prefMapHandle 1:307119 -jsInitHandle 2:161360 -parentBuildID 20261110113206 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {e50897aa-d73e-43c5-a81f-0eeb7b2cf9ba} -parentPid 2021299 -crashHelperPid 2021320 -crashHelper 6 -crashReporter 7 -greomni /usr/lib64/firefox/omni.ja -appomni /usr/lib64/firefox/browser/omni.ja -appDir /usr/lib64/firefox/browser 22 tab
+kushal   2022180  0.1  1.5 3288308 244264 ?      Sl   Nov16   1:24 /usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle 0:37412 -prefMapHandle 1:307119 -jsInitHandle 2:161360 -parentBuildID 20261110113206 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {5f12712f-027c-471a-b1fd-3d02f2752282} -parentPid 2021299 -crashHelperPid 2021320 -crashHelper 6 -crashReporter 7 -greomni /usr/lib64/firefox/omni.ja -appomni /usr/lib64/firefox/browser/omni.ja -appDir /usr/lib64/firefox/browser 11 tab
+kushal   2022125  0.3  1.4 8189676 231728 ?      Sl   Nov16   3:33 /usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle 0:37412 -prefMapHandle 1:307119 -jsInitHandle 2:161360 -parentBuildID 20261110113206 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {d0d1f893-370e-43f8-a878-a4771659e5e2} -parentPid 2021299 -crashHelperPid 2021320 -crashHelper 6 -crashReporter 7 -greomni /usr/lib64/firefox/omni.ja -appomni /usr/lib64/firefox/browser/omni.ja -appDir /usr/lib64/firefox/browser 9 tab
+root         681  1.3  1.2 326532 190716 ?       Ss   Nov15  30:21 /usr/lib/systemd/systemd-journald
+kushal   2021850  0.3  1.2 16348988 187912 ?     Sl   Nov16   3:50 /usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle 0:42561 -prefMapHandle 1:307119 -jsInitHandle 2:161360 -parentBuildID 20261110113206 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {bd24e014-c258-473f-90b4-26cd6b4bbd28} -parentPid 2021299 -crashHelperPid 2021320 -crashHelper 6 -crashReporter 7 -greomni /usr/lib64/firefox/omni.ja -appomni /usr/lib64/firefox/browser/omni.ja -appDir /usr/lib64/firefox/browser 3 tab
+kushal   2746480  0.1  1.1 7446972 174984 ?      Sl   10:09   0:01 /usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle 0:56217 -prefMapHandle 1:307119 -jsInitHandle 2:161360 -parentBuildID 20261110113206 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {d7bf8a4c-3655-4ce5-8576-576508f43bc9} -parentPid 2021299 -crashHelperPid 2021320 -crashHelper 6 -crashReporter 7 -greomni /usr/lib64/firefox/omni.ja -appomni /usr/lib64/firefox/browser/omni.ja -appDir /usr/lib64/firefox/browser 226 tab
+kushal      4081  2.6  0.9 4379896 155324 ?      Ssl  Nov15  57:52 /usr/bin/gnome-shell --mode=user
+kushal@fedora:~/src/ts/kphoto$ for f in /proc/[0-9]*/status; do awk '/^Name:/{n=$2} /^VmSwap:/{s=$2} END{if(s>0) printf "%8.1f MB  %s\n", s/1024, n}' "$f" 2>/dev/null; done | sort -nr | head -n 15
+   382.0 MB  WebExtensions
+   357.0 MB  Isolated
+   347.2 MB  Isolated
+   341.1 MB  Isolated
+   329.5 MB  Isolated
+   313.5 MB  Isolated
+   279.4 MB  gnome-shell
+   266.6 MB  ibus-portal
+   266.6 MB  dnf5daemon-serv
+   259.4 MB  gnome-software
+   254.5 MB  firefox
+   200.4 MB  Isolated
+   170.2 MB  Isolated
+   168.5 MB  Isolated
+   154.7 MB  Isolated
+kushal@fedora:~/src/ts/kphoto$ free -h && swapon --show
+               total        used        free      shared  buff/cache   available
+Mem:            14Gi       6.4Gi       4.1Gi        92Mi       5.0Gi       8.5Gi
+Swap:          8.0Gi       3.9Gi       4.1Gi
+NAME       TYPE      SIZE USED PRIO
+/dev/zram0 partition   8G 3.9G  100
+kushal@fedora:~/src/ts/kphoto$ ps aux --sort=-%mem | head -n 15
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+kushal   2018624  0.5  3.3 1525802204 519196 ?   Sl   Nov16   5:54 /app/extra/chrome --type=zygote --crashpad-handler-pid=18 --enable-crash-reporter=, --change-stack-guard-on-fork=enable
+kushal    404081  1.3  2.2 1522939564 349620 ?   Sl   01:54   7:02 /opt/VSCode-linux-x64/code --type=renderer --enable-crash-reporter=d7543a3b-1b9b-4bdc-ac73-84177d882a41,no_channel --user-data-dir=/home/kushal/.config/Code --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file,vscode-remote-resource,vscode-managed-remote-resource --cors-schemes=vscode-webview,vscode-file,vscode-remote-resource,vscode-managed-remote-resource --fetch-schemes=vscode-webview,vscode-file,vscode-remote-resource,vscode-managed-remote-resource --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --app-path=/opt/VSCode-linux-x64/resources/app --enable-sandbox --enable-blink-features=HighlightAPI --max-active-webgl-contexts=32 --ozone-platform=wayland --disable-blink-features=FontMatchingCTMigration,StandardizedBrowserZoom, --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=62 --time-ticks-at-unix-epoch=-1794796324993851 --launch-time-ticks=102122410372 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,10104979536272319559,7388351810322802298,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EstablishGpuChannelAsync,GlobalShortcutsPortal,GlobalShortcutsPortalPreferredTrigger,PdfUseShowSaveFilePicker,UpdateCompositorMemoryPolicyOnScreenChange --disable-features=CalculateNativeWinOcclusion,DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=7,i,581396543916023893,6346928835501145639,4 --trace-process-track-uuid=3190709044408466132 --vscode-window-config=vscode:2a6392f0-5c84-43a8-bcd9-6f17881b3735
+kushal   2018712  0.0  1.6 1523533868 265648 ?   Sl   Nov16   0:48 /app/extra/chrome --type=zygote --crashpad-handler-pid=18 --enable-crash-reporter=, --change-stack-guard-on-fork=enable
+kushal      4081  2.6  0.8 4362716 139128 ?      Rsl  Nov15  57:57 /usr/bin/gnome-shell --mode=user
+kushal   2017356  0.1  0.8 106193676 135824 ?    Sl   Nov16   1:32 /app/extra/chrome --disable-features=WebAssemblyTrapHandler,DesktopPWAsRunOnOsLogin
+kushal   2454638  0.5  0.7 1518634412 116996 ?   Sl   09:57   0:07 /opt/VSCode-linux-x64/code --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --render-node-override=/dev/dri/renderD128 --dns-result-order=ipv4first --experimental-network-inspection --inspect-port=0 --enable-crash-reporter=d7543a3b-1b9b-4bdc-ac73-84177d882a41,no_channel --user-data-dir=/home/kushal/.config/Code --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file,vscode-remote-resource,vscode-managed-remote-resource --cors-schemes=vscode-webview,vscode-file,vscode-remote-resource,vscode-managed-remote-resource --fetch-schemes=vscode-webview,vscode-file,vscode-remote-resource,vscode-managed-remote-resource --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,10104979536272319559,7388351810322802298,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EstablishGpuChannelAsync,GlobalShortcutsPortal,GlobalShortcutsPortalPreferredTrigger,PdfUseShowSaveFilePicker,UpdateCompositorMemoryPolicyOnScreenChange --disable-features=CalculateNativeWinOcclusion,DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=7,i,581396543916023893,6346928835501145639,4 --trace-process-track-uuid=3190709054715926471
+kushal   2207760  0.2  0.6 1518963664 97140 ?    SLl  Nov16   2:15 /opt/VSCode-linux-x64/code --unity-launch
+root         681  1.3  0.5 211980 92652 ?        Ss   Nov15  30:22 /usr/lib/systemd/systemd-journald
+kushal   2017585  0.2  0.4 55669616 73144 ?      Sl   Nov16   2:30 /app/extra/chrome --type=gpu-process --gpu-recent-crash-count=0 --ozone-platform=wayland --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=18 --enable-crash-reporter=, --change-stack-guard-on-fork=enable --gpu-preferences=YAAAAAAAAACgAAACAAAAAAAAAAAAAGAASAAAAAAAAAABAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAMAAAAAQAAAAAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --shared-files --metrics-shmem-handle=4,i,13882772119652455502,7858189331642920530,262144 --field-trial-handle=3,i,13523939108623077775,14598127304315969017,262144 --disable-features=DesktopPWAsRunOnOsLogin,WebAssemblyTrapHandler --variations-seed-version=20261116-090048.636000-production --pseudonymization-salt-handle=7,i,18219620452592901581,13392869464868776028,4 --trace-process-track-uuid=3190708988185955192
+kushal   2608941  0.0  0.3 1518906844 51996 ?    Sl   10:03   0:00 /app/extra/chrome --type=zygote --crashpad-handler-pid=18 --enable-crash-reporter=, --change-stack-guard-on-fork=enable
+kushal   2963494 71.4  0.3 2349600 51892 ?       Sl   10:20   0:00 /usr/bin/podman --root /home/kushal/.local/share/containers/storage --runroot /run/user/1000/containers --log-level warning --cgroup-manager systemd --tmpdir /run/user/1000/libpod/tmp --network-config-dir  --volumepath /home/kushal/.local/share/containers/storage/volumes --transient-store=false --hooks-dir /usr/share/containers/oci/hooks.d --runtime crun --storage-driver overlay --storage-opt overlay.mountopt=nodev --events-backend journald container cleanup --stopped-only bc296a12d0271850702f8b0516e14cf080b2fe85a26708e36546a6e57d25edfb
+kushal   2474084  0.0  0.3 1518306536 50248 ?    Sl   09:58   0:00 /opt/VSCode-linux-x64/code /opt/VSCode-linux-x64/resources/app/extensions/markdown-language-features/dist/serverWorkerMain --node-ipc --clientProcessId=2454638
+kushal   2017597  0.0  0.3 55100576 50040 ?      Sl   Nov16   0:23 /app/extra/chrome --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=18 --enable-crash-reporter=, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,11100998142068193791,15583331129856963317,524288 --field-trial-handle=3,i,13523939108623077775,14598127304315969017,262144 --disable-features=DesktopPWAsRunOnOsLogin,WebAssemblyTrapHandler --variations-seed-version=20261116-090048.636000-production --pseudonymization-salt-handle=7,i,18219620452592901581,13392869464868776028,4 --trace-process-track-uuid=3190708989122997041
+kushal   2018759  0.0  0.3 1519014416 49392 ?    Sl   Nov16   0:00 /app/extra/chrome --type=zygote --crashpad-handler-pid=18 --enable-crash-reporter=, --change-stack-guard-on-fork=enable
+kushal@fedora:~/src/ts/kphoto$ for f in /proc/[0-9]*/status; do awk '/^Name:/{n=$2} /^VmSwap:/{s=$2} END{if(s>0) printf "%8.1f MB  %s\n", s/1024, n}' "$f" 2>/dev/null; done | sort -nr | head -n 15
+   279.2 MB  gnome-shell
+   266.8 MB  ibus-portal
+   266.6 MB  dnf5daemon-serv
+   259.5 MB  gnome-software
+    95.8 MB  chrome
+    91.4 MB  code
+    86.6 MB  code
+    81.4 MB  chrome
+    80.6 MB  code
+    71.4 MB  nautilus
+    61.6 MB  ibus-engine-tb
+    55.0 MB  gnome-system-mo
+    48.8 MB  code
+    48.6 MB  code
+    40.6 MB  dotnet
+kushal@fedora:~/src/ts/kphoto$ skopeo inspect --format '{{.Digest}}' docker://mcr.microsoft.com/playwright:v1.65.1-noble
+sha256:1507cbfc550a63a6b7396791ca4f00df17beb56342d2447b3f106c306f525579
 kushal@fedora:~/src/ts/kphoto$ 
