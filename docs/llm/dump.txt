@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-11-17T09:58:47-05:00
+  Generated at   : 2026-11-17T10:23:53-05:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,12 +17,12 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : 77edbe3e0b189bcc3e33b81e356c9a08e97ae7db
-  Commit (short) : 77edbe3
-  Commit date    : 2026-11-16 19:17:53 -0500
+  Commit (full)  : f08a0a46559d0a64698ede74c1efca11f8671352
+  Commit (short) : f08a0a4
+  Commit date    : 2026-11-17 10:22:49 -0500
   Commit message : run scripts
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
-  Files included : 529
+  Files included : 535
   Excluded path  : docs/llm/
   Excluded files : yarn.lock, .pnp.cjs, .pnp.loader.mjs
 
@@ -430,7 +430,7 @@ FOOTER
 mv -f "$TMP_FILE" "$OUTPUT_FILE"
 
 ################################################################################
-# FILE TREE  (all 529 included files)
+# FILE TREE  (all 535 included files)
 ################################################################################
 .
 .
@@ -539,7 +539,8 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── 0038-third-party-demonstration-assets.md
 │   │   ├── 0039-yarn-without-bundled-corepack.md
 │   │   ├── 0040-playwright-image-pinned-by-digest.md
-│   │   └── 0041-node-version-file.md
+│   │   ├── 0041-node-version-file.md
+│   │   └── 0042-optional-handwriting-font.md
 │   ├── architecture.md
 │   ├── content-authoring.md
 │   ├── i18n.md
@@ -866,6 +867,8 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── flipbookElement.ts
 │   │   ├── flipbookPreferences.test.ts
 │   │   ├── flipbookPreferences.ts
+│   │   ├── font.test.ts
+│   │   ├── font.ts
 │   │   ├── livePoller.test.ts
 │   │   ├── livePoller.ts
 │   │   ├── liveStatsApi.test.ts
@@ -880,6 +883,7 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── narrationElement.ts
 │   │   ├── narration.test.ts
 │   │   ├── narration.ts
+│   │   ├── settingSelectElement.ts
 │   │   ├── storage.test.ts
 │   │   ├── storage.ts
 │   │   ├── themeInit.test.ts
@@ -892,6 +896,7 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── context.ts
 │   │   ├── flipbook.test.ts
 │   │   ├── flipbook.ts
+│   │   ├── fontPicker.ts
 │   │   ├── languageSwitcher.ts
 │   │   ├── liveStats.ts
 │   │   ├── narration.test.ts
@@ -899,6 +904,7 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 │   │   ├── postCard.ts
 │   │   ├── postMeta.ts
 │   │   ├── seriesNav.ts
+│   │   ├── settingSelect.ts
 │   │   ├── siteFooter.ts
 │   │   ├── siteHeader.ts
 │   │   └── themePicker.ts
@@ -1002,15 +1008,15 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   File name:             CHANGELOG.md
   Relative path:         CHANGELOG.md
   Absolute path:         /home/kushal/src/ts/kphoto/CHANGELOG.md
-  Size:                  16.7 KiB (17141 bytes)
-  Last modified:         2026-11-06 13:37:44.000000000 -0500
+  Size:                  18.2 KiB (18661 bytes)
+  Last modified:         2026-11-17 10:19:48.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 69727809
+  Inode:                 87315829
   Hard links:            1
   MIME type:             text/html
-  SHA-256:               b05dda230988932448eb2010f531e7994bad6db43d78604c39a37c29acc12db3
-  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
+  SHA-256:               4c7951e73cd7e66227769f3660c1926e73c4b698684b326f4bf2944fc9af98b5
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 # Changelog
@@ -1023,6 +1029,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
+- Optional handwriting font (ADR 0042):
+  - `<kp-font-picker>` in the header next to the theme picker: "Standard
+    font" or "Handwriting font", in English and Spanish;
+  - choice stored as `font` in `kphoto:settings:v1`, applied before first
+    paint as `<html data-font>`, with a preload of
+    `public/fonts/regular.woff2` only for readers who chose it;
+  - `[data-font='handwriting']` swaps `--font-body` (new `--font-sans`
+    keeps the system stack); monospace text is unchanged; `size-adjust:
+115%`; characters the font lacks (accents, `ñ`, `¿`, `¡`) fall back to
+    the system font;
+  - `FontController` and `FONT_FILES` in `src/client/font.ts`; shared
+    `renderSettingSelect` and `defineSettingSelect` for both pickers;
+  - unit tests (`font.test.ts`, settings, pre-paint script, components,
+    routes) and e2e tests for choosing, reloading, switching back and
+    combining with a theme.
 
 - Labs (ADRs 0036–0038):
   - `/labs/` index and a "Labs" header link, in English and Spanish;
@@ -1083,6 +1105,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Dependencies: Vite 8.3.8, Vitest and @vitest/coverage-v8 5.1.0, ESLint
+  10.15.0, typescript-eslint 8.72.2, Prettier 3.10.1, @types/node 26.6.6.
+  typescript-eslint 8.73.0 waits for the 72-hour gate; Playwright stays at
+  1.64.1 until the `v1.65.1-noble` image digest is pinned.
+- TypeScript 7.1 preview gate moves from `7.1.0-beta` to the nightly
+  `7.1.0-dev.20261114.1`; no 7.1 release candidate exists (ADR 0032
+  amendment).
+- The theme picker renders through `renderSettingSelect`; `main.ts` no
+  longer defines its own picker element.
+- About pages list the font among the things stored in the browser.
 - TypeScript 7.0.2 is the only compiler; `typescript` is now the official
   `@typescript/typescript6` facade used by typescript-eslint alone, replacing
   the `packageExtensions` block (ADR 0031 supersedes ADR 0006).
@@ -4644,15 +4676,15 @@ Tools will change, delivery will get faster, and machines will cook more of our 
   File name:             about.es.md
   Relative path:         content/pages/about.es.md
   Absolute path:         /home/kushal/src/ts/kphoto/content/pages/about.es.md
-  Size:                  2.2 KiB (2344 bytes)
-  Last modified:         2026-10-25 14:45:44.000000000 -0400
+  Size:                  2.4 KiB (2537 bytes)
+  Last modified:         2026-11-17 10:19:27.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68062858
+  Inode:                 87315833
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               ff8a70b0a53b21810f41a6df2c427081e45af68408714d45d25d0263a26d3bc1
-  Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
+  SHA-256:               151cf247711ad17ae218c0f9c0bfc73c76380da898c09759a243ddccabc66085
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 ---
@@ -4674,6 +4706,9 @@ el sitio nunca espera.
   CSS con declarative shadow DOM
 - los temas, las transiciones de vista y la persistencia usan solo lo que los
   navegadores actuales ya incluyen
+- la letra manuscrita opcional es la del autor, se sirve desde este sitio y
+  solo se descarga si la eliges (no incluye tildes ni eñes, que se ven en la
+  letra del sistema)
 
 ## Estadísticas en directo, sin rastreo
 
@@ -4685,7 +4720,7 @@ Control. Si el servidor de estadísticas no responde, las cifras desaparecen
 discretamente y nada más cambia.
 
 Este sitio guarda estas cosas en el almacenamiento local de tu navegador: tu
-tema, el último idioma que elegiste, tu velocidad de escucha y dónde te
+tema, tu tipo de letra, el último idioma que elegiste, tu velocidad de escucha y dónde te
 quedaste en los artículos narrados, la velocidad y la técnica de dibujo que
 elegiste en [el laboratorio del avión que aletea](/es/labs/flapping-airplane/)
 y, solo si el servidor de estadísticas no respondió, cuándo volver a
@@ -4718,15 +4753,15 @@ tiempo de ejecución, nada de lo anterior.
   File name:             about.md
   Relative path:         content/pages/about.md
   Absolute path:         /home/kushal/src/ts/kphoto/content/pages/about.md
-  Size:                  2.1 KiB (2154 bytes)
-  Last modified:         2026-10-25 14:45:44.000000000 -0400
+  Size:                  2.2 KiB (2277 bytes)
+  Last modified:         2026-11-17 10:19:27.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68062859
+  Inode:                 87315834
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               757e2d4512d7fdbb9cd8793e252d06c686d0d864b992980c0df587990eae5960
-  Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
+  SHA-256:               510d44c3e334322f0b2f48f5cf72ebd0abd792cc9bc61462a5aca31558715628
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 ---
@@ -4747,6 +4782,8 @@ waits for.
   declarative shadow DOM
 - theming, view transitions and persistence use only what evergreen browsers
   ship today
+- the optional handwriting font is the author's own, served from this site
+  and downloaded only if you pick it
 
 ## Live statistics, without tracking
 
@@ -4759,8 +4796,8 @@ nothing else changes. [The live page](/live/) spells out exactly what is
 collected.
 
 This site stores these things in your browser's local storage: your theme,
-the language you last picked, your listening speed and where you stopped in
-narrated posts, the speed and drawing technique you chose in
+your font, the language you last picked, your listening speed and where you
+stopped in narrated posts, the speed and drawing technique you chose in
 [the flapping-airplane lab](/labs/flapping-airplane/), and, only if the
 statistics server was unreachable, when to try it again.
 
@@ -5290,15 +5327,15 @@ Everything renders and is testable as plain strings.
   File name:             0008-theming-and-contrast.md
   Relative path:         docs/adr/0008-theming-and-contrast.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0008-theming-and-contrast.md
-  Size:                  1.5 KiB (1617 bytes)
-  Last modified:         2026-10-09 09:26:45.000000000 -0400
+  Size:                  1.8 KiB (1862 bytes)
+  Last modified:         2026-11-17 10:19:14.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 65597888
+  Inode:                 87315837
   Hard links:            1
   MIME type:             text/html
-  SHA-256:               c2fde9422757946187955f18777739bd548287ec3c43a5fa72b6e906f5052069
-  Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
+  SHA-256:               1bee7f7270fce8b979d2dd64110395ea855593cb56042e7ab045e5e6a1474a7f
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 # 8. Five-way theming: tokens, pre-paint script, AA-adjusted palettes
@@ -5338,6 +5375,12 @@ Adding a theme is one CSS block plus one entry in `THEMES`. The inline script
 and the controller share logic by convention, guarded by a unit test that
 evaluates the generated script in a sandbox. Solarized purists will notice
 the adjusted values; readers with low vision will not have to.
+
+## Amendment (2026-11-17)
+
+The pre-paint script also sets `data-font` and, for the handwriting font,
+preloads its file (ADR 0042). It still reads the settings key exactly once
+and still falls back to light and the standard font on any failure.
 
 
 ################################################################################
@@ -5643,15 +5686,15 @@ suite is where it surfaces.
   File name:             0013-localstorage-settings-store.md
   Relative path:         docs/adr/0013-localstorage-settings-store.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0013-localstorage-settings-store.md
-  Size:                  3.0 KiB (3092 bytes)
-  Last modified:         2026-10-25 14:45:21.000000000 -0400
+  Size:                  3.2 KiB (3324 bytes)
+  Last modified:         2026-11-17 10:19:14.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68062863
+  Inode:                 87315838
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               39299a9099d5e79539156ceaff8605a9b552d09f4ef1994b1fb2331517b1ecc8
-  Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
+  SHA-256:               bf4c1102704b8ba8ad881ac04e91c3f6550fd10cfbe6ddf3327144499293503f
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 # 13. One versioned localStorage key behind a validated settings store
@@ -5722,6 +5765,12 @@ A fourth key, `kphoto:flipbook:v1`, holds the flapping-airplane lab's frame
 rate, drawing technique and last play/pause choice (ADR 0037). It belongs to
 one page, so it stays out of `SettingsStore`; `FlipbookPreferenceStore`
 validates each field and drops what it does not recognise.
+
+## Amendment (2026-11-17)
+
+Settings gain an optional `font` (`standard` or `handwriting`, ADR 0042),
+validated like `theme` and dropped when unrecognised. No version bump: older
+values simply lack it and read as the standard font.
 
 
 ################################################################################
@@ -7048,15 +7097,15 @@ supersede this ADR.
   File name:             0032-explicit-ts-extensions-and-7-1-gate.md
   Relative path:         docs/adr/0032-explicit-ts-extensions-and-7-1-gate.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0032-explicit-ts-extensions-and-7-1-gate.md
-  Size:                  1.2 KiB (1240 bytes)
-  Last modified:         2026-10-25 15:15:17.000000000 -0400
+  Size:                  1.4 KiB (1532 bytes)
+  Last modified:         2026-11-17 10:19:14.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68085389
+  Inode:                 87315839
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               9a055dfe61660fd9dd3e223d304c7af3c184925280ed564a4bf0c15111b14d06
-  Last git commit:       26b5469 2026-10-25 15:23:55 -0400 add claude response
+  SHA-256:               3af42e0cbcd04916cce6074172fdaf1ff071971cb9fac1114fc61b9e788635b6
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 # 32. Explicit `.ts` import extensions and a TypeScript 7.1 preview gate
@@ -7093,6 +7142,13 @@ deliberately and folds into the main compiler when 7.1 is stable.
 `typescript-native-next` pins the newest 7.1 milestone (beta, then rc) that
 clears the 72-hour gate, and falls back to a nightly only when no milestone
 exists. It now pins `7.1.0-beta`; the code type-checks under it unchanged.
+
+## Amendment (2026-11-17)
+
+`typescript-native-next` pins the newest 7.1 pre-release of any kind that
+clears the 72-hour gate, milestone or nightly. No 7.1 release candidate
+exists, so it moves from `7.1.0-beta` to the nightly `7.1.0-dev.20261114.1`;
+the code type-checks under it unchanged.
 
 
 ################################################################################
@@ -7515,15 +7571,15 @@ needed it for Yarn itself). Upgrading corepack is a one-line change in
   File name:             0040-playwright-image-pinned-by-digest.md
   Relative path:         docs/adr/0040-playwright-image-pinned-by-digest.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0040-playwright-image-pinned-by-digest.md
-  Size:                  1.5 KiB (1610 bytes)
-  Last modified:         2026-11-06 13:37:18.000000000 -0500
+  Size:                  1.8 KiB (1933 bytes)
+  Last modified:         2026-11-17 10:19:47.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 69727819
+  Inode:                 87315840
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               d883156f5abc25d0a5c7d49ad786b1fe3005dfce272aff21eb6bff318fa83641
-  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
+  SHA-256:               1be5813622e9c3522d15a3dad9ac9669352d0851a0a46391b1edec85176318b5
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 # 40. The Playwright image is pinned by tag and digest
@@ -7565,6 +7621,13 @@ references to the new tag and its digest
 (`podman pull mcr.microsoft.com/playwright:v<version>-noble` prints it).
 Security rebuilds of the same tag are picked up only by such an update; the
 image runs tests only, never the deployed site.
+
+## Amendment (2026-11-17)
+
+`podman pull` prints the local image ID (the config digest), which cannot be
+used after `@`. The pin needs the manifest digest:
+`skopeo inspect --format '{{.Digest}}' docker://mcr.microsoft.com/playwright:v<version>-noble`,
+or `podman image inspect --format '{{.Digest}}' <image>` after a pull.
 
 
 ################################################################################
@@ -7624,6 +7687,81 @@ supported by the engines range.
 
 
 ################################################################################
+# FILE: docs/adr/0042-optional-handwriting-font.md
+################################################################################
+
+--- METADATA ---
+  File name:             0042-optional-handwriting-font.md
+  Relative path:         docs/adr/0042-optional-handwriting-font.md
+  Absolute path:         /home/kushal/src/ts/kphoto/docs/adr/0042-optional-handwriting-font.md
+  Size:                  2.6 KiB (2681 bytes)
+  Last modified:         2026-11-17 10:19:14.000000000 -0500
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 87315841
+  Hard links:            1
+  MIME type:             text/plain
+  SHA-256:               db2ec5b46fe7c98fccb7176f11e5b38a5e2c088d59fa8e5ed216d4c4cefcd18b
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
+
+--- CONTENT ---
+# 42. An optional handwriting font, remembered like the theme
+
+Date: 2026-11-17
+
+## Status
+
+Accepted. Amends ADRs 0008 and 0013.
+
+## Context
+
+The repository gained a custom handwriting font, "My Hand", made with
+Ductus, as `public/fonts/regular.woff2` (and a TTF copy of the same font).
+Readers should be able to switch to it, switch back, and have the browser
+remember the choice. The font is a proof of concept: 106 code points, basic
+ASCII plus a little typographic punctuation, no accented letters, no bold or
+italic, and a low, narrow x-height.
+
+## Decision
+
+- **A setting, not a theme.** `font: 'standard' | 'handwriting'` is an
+  optional field of `kphoto:settings:v1`, validated by `isFontName` and
+  dropped when unrecognised. Font and theme are independent, so any theme
+  can be read in either font. `FontController` (`src/client/font.ts`) reads,
+  writes and applies it through an injected `FontHost`.
+- **Applied before first paint.** The inline pre-paint script (ADR 0008)
+  reads the same key once and sets `data-font` next to `data-theme`; the
+  server renders `data-font="standard"`. For the handwriting choice it also
+  injects `<link rel="preload" as="font" crossorigin>` so the file is
+  requested before the stylesheet asks for it. `FONT_FILES` is the single
+  source of that URL; a unit test checks that `global.css` declares the
+  same URL and that the file exists in `public/`.
+- **Only body text changes.** `[data-font='handwriting']` redefines
+  `--font-body` as the handwriting face over `--font-sans`. `--font-mono`
+  is untouched, so code, metadata and labels stay monospace.
+- **WOFF2 only, loaded only when used.** Every supported browser reads
+  WOFF2 (ADR 0012); `@font-face` downloads nothing until a reader picks the
+  font. `font-display: swap` keeps text visible; `size-adjust: 115%`
+  compensates for the small x-height.
+- **Missing glyphs fall back per character.** Accented letters, `¿`, `¡`
+  and symbols render in the system font. That is visible in Spanish and
+  accepted: extending the font is outside the generator's scope, and the
+  standard font is always one choice away.
+- **One picker component.** `renderSettingSelect` renders both the theme and
+  font pickers with the same scoped styles; `defineSettingSelect` upgrades
+  both in the browser.
+
+## Consequences
+
+Readers who never choose the font never download it. The TTF is not
+referenced and should not be in `public/`, which is copied verbatim into
+every deployment. Adding another font is one entry in `FONTS`, one in
+`FONT_FILES`, one `@font-face`, two message keys and one CSS rule. The font
+is the project owner's own handwriting and ships under the repository
+license.
+
+
+################################################################################
 # FILE: docs/architecture.md
 ################################################################################
 
@@ -7631,15 +7769,15 @@ supported by the engines range.
   File name:             architecture.md
   Relative path:         docs/architecture.md
   Absolute path:         /home/kushal/src/ts/kphoto/docs/architecture.md
-  Size:                  6.8 KiB (7024 bytes)
-  Last modified:         2026-10-25 14:45:32.000000000 -0400
+  Size:                  7.1 KiB (7306 bytes)
+  Last modified:         2026-11-17 10:19:14.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68062867
+  Inode:                 87315842
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               3a64aaca6b3a2044a0276961d9a8b0e2a01af4e6bd5c4248d264f5c904ee409f
-  Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
+  SHA-256:               1c029aab2540966127d2259cf9087a14ef1d32bddc455ea8eba95de7a093aa3f
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 # Architecture
@@ -7679,7 +7817,9 @@ src/ssg/         the only code that touches Node APIs and Vite
 src/client/      the only code that runs in the browser
   storage.ts       versioned, validated localStorage settings
   theme.ts         ThemeController with injected host/media/settings
-  themeInit.ts     builds the inline pre-paint script
+  font.ts          FontController and FONT_FILES (the files to preload)
+  themeInit.ts     builds the inline pre-paint script (theme, font, preload)
+  settingSelectElement.ts  upgrades the theme and font pickers
   liveStats.ts     live-stats types, validation, tracking policy, formatting
   liveStatsApi.ts  PostgREST client (injected fetch + timeout signal)
   circuitBreaker.ts  persisted back-off shared by every page
@@ -7692,8 +7832,8 @@ src/client/      the only code that runs in the browser
   flipbookPreferences.ts  kphoto:flipbook:v1 and the starting state
   flipbookController.ts   DOM-free flipbook against surface and panel ports
   flipbookElement.ts      upgrades <kp-flipbook>: preload, rAF loop, surfaces
-  main.ts          wires real browser APIs in; upgrades the theme picker,
-                   the language switcher and the narration player
+  main.ts          wires real browser APIs in; upgrades the theme and font
+                   pickers, the language switcher and the narration player
 
 docs/supabase/   SQL applied by hand in the Supabase SQL editor (ADR 0024)
 ```
@@ -7773,6 +7913,8 @@ per theme on `<html data-theme>` (including `--ink-filter` and
 content. Every component carries its own `<style>` inside a declarative
 shadow root; tokens inherit through the shadow boundary, so themes recolour
 components without any selector piercing. See ADR 0007 and ADR 0008.
+`<html data-font>` swaps `--font-body` for the optional handwriting face;
+`--font-mono` never changes (ADR 0042).
 
 
 ################################################################################
@@ -9918,15 +10060,15 @@ For more information on this, and how to apply and follow the GNU AGPL, see
   File name:             package.json
   Relative path:         package.json
   Absolute path:         /home/kushal/src/ts/kphoto/package.json
-  Size:                  1.3 KiB (1342 bytes)
-  Last modified:         2026-10-25 15:13:12.000000000 -0400
+  Size:                  1.3 KiB (1352 bytes)
+  Last modified:         2026-11-17 10:07:50.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68085390
+  Inode:                 87315843
   Hard links:            1
   MIME type:             application/json
-  SHA-256:               e5321df050a08060f81596818f1116c982fc7231b350ca4a85e244e4e4766b8c
-  Last git commit:       26b5469 2026-10-25 15:23:55 -0400 add claude response
+  SHA-256:               43bc58849ed64b67004878357f8e34191c4b97e91d107783cde194b2830e780a
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 {
@@ -9957,18 +10099,18 @@ For more information on this, and how to apply and follow the GNU AGPL, see
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "@playwright/test": "1.64.1",
-    "@types/node": "26.6.5",
-    "@vitest/coverage-v8": "5.0.5",
-    "eslint": "10.13.0",
+    "@types/node": "26.6.6",
+    "@vitest/coverage-v8": "5.1.0",
+    "eslint": "10.15.0",
     "eslint-config-prettier": "10.1.8",
     "jiti": "2.7.0",
-    "prettier": "3.9.10",
+    "prettier": "3.10.1",
     "typescript": "npm:@typescript/typescript6@6.0.2",
-    "typescript-eslint": "8.72.0",
+    "typescript-eslint": "8.72.2",
     "typescript-native": "npm:typescript@7.0.2",
-    "typescript-native-next": "npm:typescript@7.1.0-beta",
-    "vite": "8.3.5",
-    "vitest": "5.0.5"
+    "typescript-native-next": "npm:typescript@7.1.0-dev.20261114.1",
+    "vite": "8.3.8",
+    "vitest": "5.1.0"
   }
 }
 
@@ -15714,25 +15856,27 @@ yarn.lock
   File name:             README.md
   Relative path:         README.md
   Absolute path:         /home/kushal/src/ts/kphoto/README.md
-  Size:                  17.5 KiB (17976 bytes)
-  Last modified:         2026-11-06 13:37:59.000000000 -0500
+  Size:                  18.8 KiB (19314 bytes)
+  Last modified:         2026-11-17 10:19:42.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 69727810
+  Inode:                 87315830
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               b6b082713836fa4e73ee57b85ae4ea343c6c8febd86c98681a018d8f3c8da9e6
-  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
+  SHA-256:               e8fcef349c646470397e63a801980d70ad5a368a3e92d9ef81a7b41cdd0c430a
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 # kphoto
 
 **A demonstration of what is possible with TypeScript 7 and the modern web.**
 
-A complete blog — markdown posts, tags, series, authors, five themes, an Atom
-feed, two languages, narrated posts, interactive labs and optional live
-readership statistics — with **zero runtime dependencies**. No framework, no CSS library, no markdown or YAML package, no
-SDK, no external resources beyond one optional, non-blocking statistics API.
+A complete blog — markdown posts, tags, series, authors, five themes, an
+optional handwriting font, an Atom feed, two languages, narrated posts,
+interactive labs and optional live readership statistics — with **zero
+runtime dependencies**. No framework, no CSS library, no web-font service, no
+markdown or YAML package, no SDK, no external resources beyond one optional,
+non-blocking statistics API.
 Everything the browser receives was written in this repository and compiled
 by the TypeScript 7 **native compiler**.
 
@@ -15759,7 +15903,8 @@ researcher — please weigh it with that provenance in mind.
 **Contents:** [Zero runtime dependencies](#what-zero-runtime-dependencies-means) ·
 [Quick start](#quick-start-fedora-43-and-friends) · [Scripts](#scripts) ·
 [E2E in a container](#end-to-end-tests-in-a-container) ·
-[Writing content](#writing-content) · [Narrated posts](#narrated-posts) ·
+[Writing content](#writing-content) · [Themes and fonts](#themes-and-fonts) ·
+[Narrated posts](#narrated-posts) ·
 [Labs](#labs-how-the-flapping-airplane-flies) ·
 [Live statistics](#live-statistics-optional-never-blocking) ·
 [Languages](#languages) · [Architecture](#architecture-in-one-paragraph) ·
@@ -15776,7 +15921,8 @@ file and one small hand-written script. That required writing from scratch:
 - a markdown renderer with escaping and URL sanitisation (`src/lib/markdown.ts`)
 - a static site generator as a Vite plugin (`src/ssg/vitePlugin.ts`)
 - web components scoped with declarative shadow DOM (`src/components/`)
-- a theme system persisted in localStorage with a pre-paint script (`src/client/`)
+- a theme and font system persisted in localStorage with a pre-paint script
+  (`src/client/`)
 - internationalization: typed message catalogs, `Intl` plurals and dates,
   locale-prefixed routes, hreflang alternates (`src/i18n/`)
 - a live-statistics client — PostgREST over plain `fetch`, visibility-gated
@@ -15873,6 +16019,26 @@ sibling file, `YYYY-MM-DD-name.es.md`, with only `title`, `summary`, optional
 standalone pages in `content/pages/*.md`. Every rule is validated at build
 time with file-scoped error messages — see
 [docs/content-authoring.md](docs/content-authoring.md).
+
+## Themes and fonts
+
+The header offers five themes (system, light, dark, solarized light,
+solarized dark) and two fonts (standard, handwriting). Both choices live in
+one localStorage key, `kphoto:settings:v1`, and a tiny inline script applies
+them as `<html data-theme>` and `<html data-font>` before the first frame,
+so a reload never flashes the wrong look
+([ADR 0008](docs/adr/0008-theming-and-contrast.md),
+[ADR 0013](docs/adr/0013-localstorage-settings-store.md)).
+
+The handwriting font is the author's own, made with Ductus and served from
+`public/fonts/regular.woff2` — no font service involved. Nobody downloads it
+until they pick it; readers who did get a preload hint on every later page.
+It replaces body text only: code and labels stay monospace. It is a proof of
+concept with 106 characters, so accented letters, `ñ`, `¿` and `¡` appear in
+the system font — noticeable in Spanish, and the standard font is one click
+away ([ADR 0042](docs/adr/0042-optional-handwriting-font.md)). Adding a
+font is one entry in `FONTS` and `FONT_FILES`, one `@font-face`, one CSS
+rule and two message keys.
 
 ## Narrated posts
 
@@ -15981,13 +16147,13 @@ and every non-obvious decision has an ADR in [docs/adr/](docs/adr/).
 | Tool                         | Version                                           | Role                                             |
 | ---------------------------- | ------------------------------------------------- | ------------------------------------------------ |
 | TypeScript (native compiler) | 7.0.2                                             | Every type-check and the editor                  |
-| TypeScript 7.1 preview gate  | 7.1.0-beta                                        | Second type-check so 7.1 never surprises us      |
+| TypeScript 7.1 preview gate  | 7.1.0-dev.20261114.1                              | Second type-check so 7.1 never surprises us      |
 | `@typescript/typescript6`    | 6.0.2                                             | API facade for typescript-eslint only            |
-| Vite                         | 8.3.5                                             | Dev server, bundler (Rolldown), SSG plugin host  |
-| Vitest + coverage-v8         | 5.0.5                                             | Unit tests with V8 coverage                      |
+| Vite                         | 8.3.8                                             | Dev server, bundler (Rolldown), SSG plugin host  |
+| Vitest + coverage-v8         | 5.1.0                                             | Unit tests with V8 coverage                      |
 | Playwright                   | 1.64.1                                            | E2E in the `v1.64.1-noble` image                 |
-| ESLint + typescript-eslint   | 10.13.0 / 8.72.0                                  | Strict type-checked linting, zero warnings       |
-| Prettier                     | 3.9.10                                            | Formatting                                       |
+| ESLint + typescript-eslint   | 10.15.0 / 8.72.2                                  | Strict type-checked linting, zero warnings       |
+| Prettier                     | 3.10.1                                            | Formatting                                       |
 | Yarn                         | 4.18.1                                            | Package manager, 72-hour minimal-age gate        |
 | corepack                     | 0.36.0                                            | Pinned in `scripts/lib.sh`, runs the pinned Yarn |
 | Node                         | 26 LTS in CI (`.node-version`), ≥ 24              | Build runtime only                               |
@@ -15997,7 +16163,7 @@ typescript-eslint cannot load TypeScript 7 until 7.1's API ships, so the
 package named `typescript` is the official `@typescript/typescript6` facade,
 used by the linter alone
 ([ADR 0031](docs/adr/0031-typescript-7-only-compiler.md)). The 7.1 gate pins
-the newest 7.1 milestone past the quarantine
+the newest 7.1 pre-release — milestone or nightly — past the quarantine
 ([ADR 0032](docs/adr/0032-explicit-ts-extensions-and-7-1-gate.md)). VS Code:
 install the recommended _TypeScript (Native Preview)_ extension.
 
@@ -16015,8 +16181,9 @@ The `npm:` aliases (`typescript-native`, `typescript-native-next`,
 `typescript`) are not reported by npm-check-updates; check
 `npm view typescript dist-tags` by hand. When `@playwright/test` moves, the
 image tag and digest in `compose.yaml` and `.github/workflows/verify.yml`
-move with it (`podman pull mcr.microsoft.com/playwright:v<version>-noble`
-prints the digest).
+move with it. The digest is the manifest digest, not the image ID that
+`podman pull` prints:
+`skopeo inspect --format '{{.Digest}}' docker://mcr.microsoft.com/playwright:v<version>-noble`.
 
 ### Yarn without a bundled corepack
 
@@ -17958,6 +18125,206 @@ export function startingState(
     renderer: preferences.renderer ?? DEFAULT_RENDERER,
     playing: preferences.autoplay ?? !prefersReducedMotion,
   };
+}
+
+
+################################################################################
+# FILE: src/client/font.test.ts
+################################################################################
+
+--- METADATA ---
+  File name:             font.test.ts
+  Relative path:         src/client/font.test.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/client/font.test.ts
+  Size:                  3.7 KiB (3813 bytes)
+  Last modified:         2026-11-17 10:17:58.000000000 -0500
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 87315846
+  Hard links:            1
+  MIME type:             text/javascript
+  SHA-256:               923e6f41929bcb302f3dc5c6106bde7e0318f6c0a1171819ad92f8ddf4e9d208
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
+
+--- CONTENT ---
+import { existsSync, readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { describe, expect, it } from 'vitest';
+import { FontController, FONT_FILES, type FontHost } from './font.ts';
+import {
+  FONTS,
+  SETTINGS_KEY,
+  SettingsStore,
+  type FontName,
+  type KeyValueStore,
+} from './storage.ts';
+
+const fromRoot = (path: string): string => fileURLToPath(new URL(`../../${path}`, import.meta.url));
+
+function memoryStore(initial: Record<string, string> = {}): KeyValueStore & {
+  data: Map<string, string>;
+} {
+  const data = new Map(Object.entries(initial));
+  return {
+    data,
+    get: (key) => data.get(key) ?? null,
+    set: (key, value) => {
+      data.set(key, value);
+    },
+  };
+}
+
+function recordingHost(): FontHost & { applied: FontName[] } {
+  const applied: FontName[] = [];
+  return {
+    applied,
+    applyFont: (font) => {
+      applied.push(font);
+    },
+  };
+}
+
+function build(initial: Record<string, string> = {}) {
+  const backing = memoryStore(initial);
+  const host = recordingHost();
+  const controller = new FontController({ settings: new SettingsStore(backing), host });
+  return { backing, host, controller };
+}
+
+describe('FontController', () => {
+  it('applies the standard font when nothing is stored', () => {
+    const { controller, host } = build();
+    controller.start();
+    expect(controller.font).toBe('standard');
+    expect(host.applied).toEqual(['standard']);
+  });
+
+  it('applies a stored choice on start', () => {
+    const { controller, host } = build({ [SETTINGS_KEY]: '{"theme":"dark","font":"handwriting"}' });
+    controller.start();
+    expect(host.applied).toEqual(['handwriting']);
+  });
+
+  it('ignores an unknown stored font', () => {
+    const { controller, host } = build({ [SETTINGS_KEY]: '{"font":"comic-sans"}' });
+    controller.start();
+    expect(host.applied).toEqual(['standard']);
+  });
+
+  it('persists and applies a new choice next to the other settings', () => {
+    const { controller, host, backing } = build({ [SETTINGS_KEY]: '{"theme":"dark"}' });
+    controller.start();
+    controller.setFont('handwriting');
+    expect(controller.font).toBe('handwriting');
+    expect(host.applied).toEqual(['standard', 'handwriting']);
+    expect(backing.data.get(SETTINGS_KEY)).toBe('{"theme":"dark","font":"handwriting"}');
+  });
+
+  it('switches back to the standard font', () => {
+    const { controller, host } = build({ [SETTINGS_KEY]: '{"font":"handwriting"}' });
+    controller.setFont('standard');
+    expect(controller.font).toBe('standard');
+    expect(host.applied).toEqual(['standard']);
+  });
+
+  it('still applies a choice the browser refuses to store', () => {
+    const host = recordingHost();
+    const controller = new FontController({
+      settings: new SettingsStore({
+        get: () => null,
+        set: () => {
+          throw new Error('quota');
+        },
+      }),
+      host,
+    });
+    controller.setFont('handwriting');
+    expect(host.applied).toEqual(['handwriting']);
+  });
+});
+
+describe('font files', () => {
+  const css = readFileSync(fromRoot('src/styles/global.css'), 'utf8');
+
+  it('names a file only for fonts the site offers', () => {
+    for (const font of Object.keys(FONT_FILES)) {
+      expect(FONTS).toContain(font);
+    }
+  });
+
+  it.each(Object.entries(FONT_FILES))('ships %s as woff2 in public/', (_font, url) => {
+    expect(url).toMatch(/^\/fonts\/[\w-]+\.woff2$/);
+    expect(existsSync(fromRoot(`public${url}`))).toBe(true);
+  });
+
+  it.each(Object.entries(FONT_FILES))(
+    'declares %s in the stylesheet with the same url',
+    (_font, url) => {
+      expect(css).toContain(`url('${url}') format('woff2')`);
+    },
+  );
+
+  it('switches the body font with the data-font attribute', () => {
+    expect(css).toMatch(/\[data-font='handwriting'\]\s*\{\s*--font-body:/);
+  });
+});
+
+
+################################################################################
+# FILE: src/client/font.ts
+################################################################################
+
+--- METADATA ---
+  File name:             font.ts
+  Relative path:         src/client/font.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/client/font.ts
+  Size:                  826 B (826 bytes)
+  Last modified:         2026-11-17 10:09:52.000000000 -0500
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 87315847
+  Hard links:            1
+  MIME type:             text/javascript
+  SHA-256:               5ba3cd8b5e4c9b8f13e63cec900a1eafc2a935f2e72b6a0e71a40fe9f2636f7e
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
+
+--- CONTENT ---
+import { DEFAULT_FONT, type FontName, type SettingsStore } from './storage.ts';
+
+export const FONT_FILES: Readonly<Partial<Record<FontName, string>>> = {
+  handwriting: '/fonts/regular.woff2',
+};
+
+export interface FontHost {
+  applyFont(font: FontName): void;
+}
+
+interface FontControllerDeps {
+  readonly settings: SettingsStore;
+  readonly host: FontHost;
+}
+
+export class FontController {
+  readonly #settings: SettingsStore;
+  readonly #host: FontHost;
+
+  constructor(deps: FontControllerDeps) {
+    this.#settings = deps.settings;
+    this.#host = deps.host;
+  }
+
+  get font(): FontName {
+    return this.#settings.read().font ?? DEFAULT_FONT;
+  }
+
+  start(): void {
+    this.#host.applyFont(this.font);
+  }
+
+  setFont(next: FontName): void {
+    this.#settings.write({ font: next });
+    this.#host.applyFont(next);
+  }
 }
 
 
@@ -19907,23 +20274,25 @@ export function chooseSuggestion(input: SuggestionInput): string | undefined {
   File name:             main.ts
   Relative path:         src/client/main.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/client/main.ts
-  Size:                  2.6 KiB (2686 bytes)
-  Last modified:         2026-10-25 14:32:55.000000000 -0400
+  Size:                  2.7 KiB (2864 bytes)
+  Last modified:         2026-11-17 10:10:49.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68062875
+  Inode:                 87315848
   Hard links:            1
   MIME type:             text/javascript
-  SHA-256:               bf8be2187af4b3ead5684e0072c447584f693c7d5e8a414804c230322f7d6fef
-  Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
+  SHA-256:               a76d890b0b3dacfb657f124f2f51edd14dc7bb1f77d1b471fb39b25d7fc8ed9b
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 import { browserStore } from './browser.ts';
 import { defineFlipbookElement } from './flipbookElement.ts';
+import { FontController } from './font.ts';
 import { chooseSuggestion } from './locale.ts';
 import { defineLiveStatsElements } from './liveStatsElements.ts';
 import { defineNarrationElement } from './narrationElement.ts';
-import { isThemeName, SettingsStore, type ThemeName } from './storage.ts';
+import { defineSettingSelect } from './settingSelectElement.ts';
+import { isFontName, isThemeName, SettingsStore, type ThemeName } from './storage.ts';
 import { isDarkTheme, ThemeController, type ConcreteTheme } from './theme.ts';
 
 const documentHost = {
@@ -19950,23 +20319,34 @@ const themeController = new ThemeController({
 
 themeController.start();
 
-class ThemePickerElement extends HTMLElement {
-  connectedCallback(): void {
-    const select = this.shadowRoot?.querySelector('select');
-    if (!(select instanceof HTMLSelectElement)) {
-      return;
-    }
-    select.value = themeController.theme;
-    select.addEventListener('change', () => {
-      const value: string = select.value;
-      if (isThemeName(value)) {
-        themeController.setTheme(value);
-      }
-    });
-  }
-}
+const fontController = new FontController({
+  settings,
+  host: {
+    applyFont(font) {
+      document.documentElement.dataset.font = font;
+    },
+  },
+});
 
-customElements.define('kp-theme-picker', ThemePickerElement);
+fontController.start();
+
+defineSettingSelect('kp-theme-picker', {
+  current: () => themeController.theme,
+  choose: (value) => {
+    if (isThemeName(value)) {
+      themeController.setTheme(value);
+    }
+  },
+});
+
+defineSettingSelect('kp-font-picker', {
+  current: () => fontController.font,
+  choose: (value) => {
+    if (isFontName(value)) {
+      fontController.setFont(value);
+    }
+  },
+});
 
 class LanguageSwitcherElement extends HTMLElement {
   connectedCallback(): void {
@@ -20611,6 +20991,48 @@ export function connectNarration(
 
 
 ################################################################################
+# FILE: src/client/settingSelectElement.ts
+################################################################################
+
+--- METADATA ---
+  File name:             settingSelectElement.ts
+  Relative path:         src/client/settingSelectElement.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/client/settingSelectElement.ts
+  Size:                  594 B (594 bytes)
+  Last modified:         2026-11-17 10:10:49.000000000 -0500
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 87315849
+  Hard links:            1
+  MIME type:             text/javascript
+  SHA-256:               b157d095c447eb20b1570aafd51e32b1017b5436f45bb553f3d2982d3c95a7fd
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
+
+--- CONTENT ---
+export interface SettingBinding {
+  current(): string;
+  choose(value: string): void;
+}
+
+export function defineSettingSelect(tag: string, binding: SettingBinding): void {
+  class SettingSelectElement extends HTMLElement {
+    connectedCallback(): void {
+      const select = this.shadowRoot?.querySelector('select');
+      if (!(select instanceof HTMLSelectElement)) {
+        return;
+      }
+      select.value = binding.current();
+      select.addEventListener('change', () => {
+        binding.choose(select.value);
+      });
+    }
+  }
+
+  customElements.define(tag, SettingSelectElement);
+}
+
+
+################################################################################
 # FILE: src/client/storage.test.ts
 ################################################################################
 
@@ -20618,20 +21040,23 @@ export function connectNarration(
   File name:             storage.test.ts
   Relative path:         src/client/storage.test.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/client/storage.test.ts
-  Size:                  4.4 KiB (4530 bytes)
-  Last modified:         2026-10-09 09:32:26.000000000 -0400
+  Size:                  5.8 KiB (6037 bytes)
+  Last modified:         2026-11-17 10:10:29.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 65597963
+  Inode:                 87315850
   Hard links:            1
   MIME type:             text/javascript
-  SHA-256:               19eb237013c4c0301d35d4af721ba2c3f601aa13feb8e59fe156ccc6714ee3af
-  Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
+  SHA-256:               96f03bfba7afaecb725bbc87c5ace52861ec1f0b724edff253bc124f2c3cad3c
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 import { describe, expect, it } from 'vitest';
 import {
+  DEFAULT_FONT,
   DEFAULT_SETTINGS,
+  FONTS,
+  isFontName,
   isPlaybackRate,
   isThemeName,
   MAX_PLAYBACK_RATE,
@@ -20665,6 +21090,21 @@ describe('isThemeName', () => {
     expect(isThemeName('hotdog-stand')).toBe(false);
     expect(isThemeName(42)).toBe(false);
     expect(isThemeName(null)).toBe(false);
+  });
+});
+
+describe('isFontName', () => {
+  it('accepts every offered font', () => {
+    for (const font of FONTS) {
+      expect(isFontName(font)).toBe(true);
+    }
+    expect(FONTS).toContain(DEFAULT_FONT);
+  });
+
+  it('rejects anything else', () => {
+    for (const value of ['Handwriting', 'comic', '', 1, null, undefined, {}]) {
+      expect(isFontName(value)).toBe(false);
+    }
   });
 });
 
@@ -20763,6 +21203,31 @@ describe('SettingsStore', () => {
       expect(new SettingsStore(backing).read()).toEqual({ theme: 'light' });
     }
   });
+
+  it('leaves the font out until one is chosen', () => {
+    expect(new SettingsStore(memoryStore()).read().font).toBeUndefined();
+  });
+
+  it('remembers a font next to the other settings', () => {
+    const store = new SettingsStore(memoryStore());
+    store.write({ theme: 'dark', locale: 'es' });
+    store.write({ font: 'handwriting' });
+    expect(store.read()).toEqual({ theme: 'dark', locale: 'es', font: 'handwriting' });
+  });
+
+  it('drops an unknown stored font but keeps the rest', () => {
+    for (const font of ['comic', 'HANDWRITING', 3, null]) {
+      const backing = memoryStore();
+      backing.set(SETTINGS_KEY, JSON.stringify({ theme: 'light', font, playbackRate: 2 }));
+      expect(new SettingsStore(backing).read()).toEqual({ theme: 'light', playbackRate: 2 });
+    }
+  });
+
+  it('keeps a valid font when the theme is unknown', () => {
+    const backing = memoryStore();
+    backing.set(SETTINGS_KEY, JSON.stringify({ theme: 'neon', font: 'handwriting' }));
+    expect(new SettingsStore(backing).read()).toEqual({ theme: 'system', font: 'handwriting' });
+  });
 });
 
 
@@ -20774,15 +21239,15 @@ describe('SettingsStore', () => {
   File name:             storage.ts
   Relative path:         src/client/storage.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/client/storage.ts
-  Size:                  2.1 KiB (2151 bytes)
-  Last modified:         2026-10-09 09:32:26.000000000 -0400
+  Size:                  2.5 KiB (2600 bytes)
+  Last modified:         2026-11-17 10:09:09.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 65597964
+  Inode:                 87315851
   Hard links:            1
   MIME type:             text/javascript
-  SHA-256:               ec01d7f74b99acba2e2fd3adca990361f50c00f3276d14e55ce1b7d83589daa1
-  Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
+  SHA-256:               66bfd60881f588d808a271126e7dbfada32920689cdb586b1b96ce8333395afb
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 import { isLocaleCode } from '../i18n/locales.ts';
@@ -20793,8 +21258,15 @@ export const THEMES = ['system', 'light', 'dark', 'solarized-light', 'solarized-
 
 export type ThemeName = (typeof THEMES)[number];
 
+export const FONTS = ['standard', 'handwriting'] as const;
+
+export type FontName = (typeof FONTS)[number];
+
+export const DEFAULT_FONT: FontName = 'standard';
+
 export interface Settings {
   readonly theme: ThemeName;
+  readonly font?: FontName;
   readonly locale?: string;
   readonly playbackRate?: number;
 }
@@ -20807,6 +21279,10 @@ export const DEFAULT_SETTINGS: Settings = { theme: 'system' };
 
 export function isThemeName(value: unknown): value is ThemeName {
   return typeof value === 'string' && (THEMES as readonly string[]).includes(value);
+}
+
+export function isFontName(value: unknown): value is FontName {
+  return typeof value === 'string' && (FONTS as readonly string[]).includes(value);
 }
 
 export function isPlaybackRate(value: unknown): value is number {
@@ -20829,10 +21305,12 @@ function parseSettings(raw: string): Settings {
     return DEFAULT_SETTINGS;
   }
   const theme: unknown = 'theme' in parsed ? parsed.theme : undefined;
+  const font: unknown = 'font' in parsed ? parsed.font : undefined;
   const locale: unknown = 'locale' in parsed ? parsed.locale : undefined;
   const playbackRate: unknown = 'playbackRate' in parsed ? parsed.playbackRate : undefined;
   return {
     theme: isThemeName(theme) ? theme : DEFAULT_SETTINGS.theme,
+    ...(isFontName(font) ? { font } : {}),
     ...(isLocaleCode(locale) ? { locale } : {}),
     ...(isPlaybackRate(playbackRate) ? { playbackRate } : {}),
   };
@@ -20872,21 +21350,55 @@ export class SettingsStore {
   File name:             themeInit.test.ts
   Relative path:         src/client/themeInit.test.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/client/themeInit.test.ts
-  Size:                  1.6 KiB (1687 bytes)
-  Last modified:         2026-10-09 09:26:47.000000000 -0400
+  Size:                  4.6 KiB (4768 bytes)
+  Last modified:         2026-11-17 10:10:19.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 65597967
+  Inode:                 87315852
   Hard links:            1
   MIME type:             text/javascript
-  SHA-256:               328d2eb37311ab1c0e9023d8865e130bdf1ddc9a6b92783e555aea04c725737f
-  Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
+  SHA-256:               7832d13955e1e3956edc65f34bef4a987e9ed3f8ed507326b4b89753ef655b9f
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 import { runInNewContext } from 'node:vm';
 import { describe, expect, it } from 'vitest';
+import { FONT_FILES } from './font.ts';
 import { SETTINGS_KEY } from './storage.ts';
 import { buildThemeInitScript } from './themeInit.ts';
+
+interface Run {
+  readonly dataset: Record<string, string>;
+  readonly colorScheme: string;
+  readonly links: Record<string, string>[];
+}
+
+function run(
+  stored: string | null,
+  prefersDark: boolean,
+  overrides: { getItem?: () => string | null; appendChild?: () => void } = {},
+): Run {
+  const dataset: Record<string, string> = {};
+  const style = { colorScheme: '' };
+  const links: Record<string, string>[] = [];
+  const sandbox = {
+    localStorage: { getItem: overrides.getItem ?? (() => stored) },
+    window: { matchMedia: () => ({ matches: prefersDark }) },
+    document: {
+      documentElement: { dataset, style },
+      createElement: () => ({}),
+      head: {
+        appendChild:
+          overrides.appendChild ??
+          ((link: Record<string, string>) => {
+            links.push(link);
+          }),
+      },
+    },
+  };
+  runInNewContext(buildThemeInitScript(), sandbox);
+  return { dataset, colorScheme: style.colorScheme, links };
+}
 
 describe('buildThemeInitScript', () => {
   const script = buildThemeInitScript();
@@ -20905,6 +21417,17 @@ describe('buildThemeInitScript', () => {
     }
   });
 
+  it('knows every font and the file to preload', () => {
+    for (const font of ['standard', 'handwriting']) {
+      expect(script).toContain(`"${font}"`);
+    }
+    expect(script).toContain(JSON.stringify(FONT_FILES.handwriting));
+  });
+
+  it('honours a custom settings key', () => {
+    expect(buildThemeInitScript('elsewhere')).toContain('"elsewhere"');
+  });
+
   it('is wrapped in try/catch and self-invokes', () => {
     expect(script.startsWith('(function(){')).toBe(true);
     expect(script.endsWith('})();')).toBe(true);
@@ -20912,21 +21435,71 @@ describe('buildThemeInitScript', () => {
   });
 
   it('behaves like resolveConcreteTheme when evaluated with a stored theme', () => {
-    const run = (stored: string | null, prefersDark: boolean) => {
-      const dataset: Record<string, string> = {};
-      const sandbox = {
-        localStorage: { getItem: () => stored },
-        window: { matchMedia: () => ({ matches: prefersDark }) },
-        document: { documentElement: { dataset, style: { colorScheme: '' } } },
-      };
+    expect(run('{"theme":"solarized-dark"}', false).dataset.theme).toBe('solarized-dark');
+    expect(run('{"theme":"system"}', true).dataset.theme).toBe('dark');
+    expect(run('{"theme":"neon"}', false).dataset.theme).toBe('light');
+    expect(run(null, true).dataset.theme).toBe('dark');
+    expect(run(null, false).dataset.theme).toBe('light');
+    expect(run('{broken', true).dataset.theme).toBe('light');
+  });
 
-      runInNewContext(script, sandbox);
-      return dataset;
-    };
-    expect(run('{"theme":"solarized-dark"}', false).theme).toBe('solarized-dark');
-    expect(run('{"theme":"system"}', true).theme).toBe('dark');
-    expect(run(null, false).theme).toBe('light');
-    expect(run('{broken', true).theme).toBe('light');
+  it('sets the matching color scheme', () => {
+    expect(run('{"theme":"solarized-dark"}', false).colorScheme).toBe('dark');
+    expect(run('{"theme":"solarized-light"}', true).colorScheme).toBe('light');
+  });
+
+  it('falls back to light and the standard font when storage throws', () => {
+    const result = run(null, true, {
+      getItem: () => {
+        throw new Error('denied');
+      },
+    });
+    expect(result.dataset).toEqual({ theme: 'light', font: 'standard' });
+    expect(result.colorScheme).toBe('light');
+    expect(result.links).toEqual([]);
+  });
+
+  it('applies the stored font next to the stored theme', () => {
+    const result = run('{"theme":"dark","font":"handwriting"}', false);
+    expect(result.dataset).toEqual({ theme: 'dark', font: 'handwriting' });
+  });
+
+  it('uses the standard font when none or an unknown one is stored', () => {
+    for (const stored of [null, '{"theme":"dark"}', '{"font":"comic"}', '{"font":7}', '[]', '7']) {
+      expect(run(stored, false).dataset.font).toBe('standard');
+    }
+  });
+
+  it('keeps the stored font even when the theme is unknown', () => {
+    expect(run('{"theme":"neon","font":"handwriting"}', true).dataset).toEqual({
+      theme: 'dark',
+      font: 'handwriting',
+    });
+  });
+
+  it('preloads the handwriting file before the stylesheet asks for it', () => {
+    expect(run('{"font":"handwriting"}', false).links).toEqual([
+      {
+        rel: 'preload',
+        as: 'font',
+        type: 'font/woff2',
+        crossOrigin: 'anonymous',
+        href: FONT_FILES.handwriting,
+      },
+    ]);
+  });
+
+  it('preloads nothing for the standard font', () => {
+    expect(run('{"font":"standard"}', false).links).toEqual([]);
+  });
+
+  it('still applies the font when the preload cannot be added', () => {
+    const result = run('{"font":"handwriting"}', false, {
+      appendChild: () => {
+        throw new Error('no head');
+      },
+    });
+    expect(result.dataset.font).toBe('handwriting');
   });
 });
 
@@ -20939,18 +21512,19 @@ describe('buildThemeInitScript', () => {
   File name:             themeInit.ts
   Relative path:         src/client/themeInit.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/client/themeInit.ts
-  Size:                  929 B (929 bytes)
-  Last modified:         2026-10-09 09:26:47.000000000 -0400
+  Size:                  1.4 KiB (1509 bytes)
+  Last modified:         2026-11-17 10:09:52.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 65597968
+  Inode:                 87315853
   Hard links:            1
   MIME type:             text/javascript
-  SHA-256:               886952f8864c645446420e3df40fd8c7a423880e8aa0d9ebad67733fbb47c3e1
-  Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
+  SHA-256:               3f73152f63d27573a81e4c51ed2efb00726e51590cf1c191afd6cd4a8cc1fcb4
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
-import { SETTINGS_KEY, THEMES } from './storage.ts';
+import { FONT_FILES } from './font.ts';
+import { DEFAULT_FONT, FONTS, SETTINGS_KEY, THEMES } from './storage.ts';
 
 const CONCRETE_THEMES = THEMES.filter((theme) => theme !== 'system');
 
@@ -20958,14 +21532,23 @@ export function buildThemeInitScript(settingsKey: string = SETTINGS_KEY): string
   const key = JSON.stringify(settingsKey);
   const concrete = JSON.stringify(CONCRETE_THEMES);
   const dark = JSON.stringify(['dark', 'solarized-dark']);
+  const fonts = JSON.stringify(FONTS);
+  const files = JSON.stringify(FONT_FILES);
+  const fallbackFont = JSON.stringify(DEFAULT_FONT);
   return (
-    '(function(){var root=document.documentElement;try{' +
-    `var raw=localStorage.getItem(${key});var theme='system';` +
-    'if(raw){var parsed=JSON.parse(raw);if(parsed&&typeof parsed.theme==="string"){theme=parsed.theme;}}' +
+    `(function(){var root=document.documentElement;var theme="light";var font=${fallbackFont};try{` +
+    `var raw=localStorage.getItem(${key});theme="system";` +
+    'if(raw){var parsed=JSON.parse(raw);if(parsed&&typeof parsed==="object"){' +
+    'if(typeof parsed.theme==="string"){theme=parsed.theme;}' +
+    `if(${fonts}.indexOf(parsed.font)>-1){font=parsed.font;}}}` +
     `if(${concrete}.indexOf(theme)===-1){theme=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}` +
+    '}catch(error){theme="light";}' +
     'root.dataset.theme=theme;' +
     `root.style.colorScheme=${dark}.indexOf(theme)>-1?"dark":"light";` +
-    '}catch(error){root.dataset.theme="light";root.style.colorScheme="light";}})();'
+    'root.dataset.font=font;' +
+    `var file=${files}[font];` +
+    'if(file){try{var link=document.createElement("link");link.rel="preload";link.as="font";link.type="font/woff2";link.crossOrigin="anonymous";link.href=file;document.head.appendChild(link);}catch(error){}}' +
+    '})();'
   );
 }
 
@@ -21324,24 +21907,25 @@ ${contact}
   File name:             components.test.ts
   Relative path:         src/components/components.test.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/components/components.test.ts
-  Size:                  15.6 KiB (16074 bytes)
-  Last modified:         2026-10-09 09:26:47.000000000 -0400
+  Size:                  17.5 KiB (17979 bytes)
+  Last modified:         2026-11-17 10:17:59.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 65597971
+  Inode:                 87315855
   Hard links:            1
   MIME type:             text/javascript
-  SHA-256:               363cea5e3c13925d1fa0e4328c6e6050eee0f4040d1879439497568d78e3f06e
-  Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
+  SHA-256:               8cdf3acbd880c7dccb431069fba5f7bb6cd7cb40e149224737d8542ad8da675b
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 import { describe, expect, it } from 'vitest';
-import { THEMES } from '../client/storage.ts';
+import { FONTS, THEMES } from '../client/storage.ts';
 import { postIn } from '../i18n/localizedContent.ts';
 import { siteConfig } from '../lib/config.ts';
 import { makeAuthor, makePost } from '../lib/testFixtures.ts';
 import { makePageContext, TEST_COMMIT, withLiveStats } from '../pages/testContext.ts';
 import { renderAuthorCard } from './authorCard.ts';
+import { FONT_LABEL_KEYS, renderFontPicker } from './fontPicker.ts';
 import { orderedAlternates, renderLanguageSwitcher } from './languageSwitcher.ts';
 import { liveMessages, renderLiveBoard, renderLiveStats } from './liveStats.ts';
 import { renderPostCard } from './postCard.ts';
@@ -21349,6 +21933,7 @@ import { renderPostMeta } from './postMeta.ts';
 import { renderSeriesNav } from './seriesNav.ts';
 import { NAV_KEYS, navItems, renderSiteHeader } from './siteHeader.ts';
 import { renderBuildLine, renderSiteFooter } from './siteFooter.ts';
+import { renderSettingSelect } from './settingSelect.ts';
 import { renderThemePicker } from './themePicker.ts';
 
 const en = makePageContext('en');
@@ -21365,6 +21950,7 @@ describe('declarative shadow DOM contract', () => {
   const post = makePost({ slug: '2026-03-22-good-morning', date: '2026-03-22' });
   const renders: [string, string][] = [
     ['kp-theme-picker', renderThemePicker(en.t)],
+    ['kp-font-picker', renderFontPicker(en.t)],
     ['kp-header', renderSiteHeader(en, '/blog/', bothLocales)],
     ['kp-language-switcher', renderLanguageSwitcher(en, bothLocales)],
     ['kp-footer', renderSiteFooter(en, '/')],
@@ -21399,7 +21985,53 @@ describe('renderThemePicker', () => {
   });
 });
 
+describe('renderFontPicker', () => {
+  it('offers every font with an accessible label', () => {
+    const html = renderFontPicker(en.t);
+    for (const font of FONTS) {
+      expect(html).toContain(
+        `<option value="${font}">${en.t.text(FONT_LABEL_KEYS[font])}</option>`,
+      );
+    }
+    expect(html).toContain('<label class="visually-hidden" for="font-select">Font</label>');
+    expect(html).toContain('<select id="font-select" autocomplete="off">');
+  });
+
+  it('lists the standard font first so it reads as the default', () => {
+    expect(renderFontPicker(en.t).indexOf('value="standard"')).toBeLessThan(
+      renderFontPicker(en.t).indexOf('value="handwriting"'),
+    );
+  });
+
+  it('speaks the page language', () => {
+    const html = renderFontPicker(es.t);
+    expect(html).toContain('for="font-select">Tipo de letra</label>');
+    expect(html).toContain('>Letra manuscrita</option>');
+  });
+});
+
+describe('renderSettingSelect', () => {
+  it('escapes ids, values and labels but trusts the label markup it is given', () => {
+    const html = renderSettingSelect({
+      tag: 'kp-test-select',
+      id: 'a"b',
+      labelHtml: '<span lang="en">Label</span>',
+      options: [{ value: 'x"y', label: '<b>' }],
+    });
+    expect(html).toContain('for="a&quot;b"><span lang="en">Label</span></label>');
+    expect(html).toContain('<option value="x&quot;y">&lt;b&gt;</option>');
+    expect(html.startsWith('<kp-test-select>')).toBe(true);
+    expect(html.endsWith('</kp-test-select>')).toBe(true);
+  });
+});
+
 describe('renderSiteHeader', () => {
+  it('carries both appearance pickers', () => {
+    const html = renderSiteHeader(en, '/', []);
+    expect(html).toContain('<kp-theme-picker>');
+    expect(html).toContain('<kp-font-picker>');
+  });
+
   it('links every section', () => {
     const html = renderSiteHeader(en, '/', []);
     for (const item of navItems(en)) {
@@ -22205,6 +22837,45 @@ ${thumbs}
 </ol>
 </template>
 </kp-flipbook>`;
+}
+
+
+################################################################################
+# FILE: src/components/fontPicker.ts
+################################################################################
+
+--- METADATA ---
+  File name:             fontPicker.ts
+  Relative path:         src/components/fontPicker.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/components/fontPicker.ts
+  Size:                  654 B (654 bytes)
+  Last modified:         2026-11-17 10:10:41.000000000 -0500
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 87315856
+  Hard links:            1
+  MIME type:             text/javascript
+  SHA-256:               874b77d3529a5c4cf155ddddec73cd9bc520e851c9e5f2ba694bc2fe69411cd2
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
+
+--- CONTENT ---
+import { FONTS, type FontName } from '../client/storage.ts';
+import type { MessageKey } from '../i18n/messages/index.ts';
+import type { Translator } from '../i18n/translator.ts';
+import { renderSettingSelect } from './settingSelect.ts';
+
+export const FONT_LABEL_KEYS: Readonly<Record<FontName, MessageKey>> = {
+  standard: 'font.standard',
+  handwriting: 'font.handwriting',
+};
+
+export function renderFontPicker(t: Translator): string {
+  return renderSettingSelect({
+    tag: 'kp-font-picker',
+    id: 'font-select',
+    labelHtml: t.html('font.label'),
+    options: FONTS.map((font) => ({ value: font, label: t.text(FONT_LABEL_KEYS[font]) })),
+  });
 }
 
 
@@ -23039,6 +23710,82 @@ a:focus-visible {
 
 
 ################################################################################
+# FILE: src/components/settingSelect.ts
+################################################################################
+
+--- METADATA ---
+  File name:             settingSelect.ts
+  Relative path:         src/components/settingSelect.ts
+  Absolute path:         /home/kushal/src/ts/kphoto/src/components/settingSelect.ts
+  Size:                  1.3 KiB (1333 bytes)
+  Last modified:         2026-11-17 10:10:41.000000000 -0500
+  Permissions:           -rw-r--r--
+  Owner:                 kushal:kushal
+  Inode:                 87315857
+  Hard links:            1
+  MIME type:             text/javascript
+  SHA-256:               a364f7f067b4bd2e9f3567c23c201cb65c21117d8defdef7546732cd6bfc5b12
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
+
+--- CONTENT ---
+import { escapeAttribute, escapeHtml } from '../lib/html.ts';
+
+export interface SettingOption {
+  readonly value: string;
+  readonly label: string;
+}
+
+export interface SettingSelect {
+  readonly tag: string;
+  readonly id: string;
+  readonly labelHtml: string;
+  readonly options: readonly SettingOption[];
+}
+
+export function renderSettingSelect(select: SettingSelect): string {
+  const id = escapeAttribute(select.id);
+  const options = select.options
+    .map(
+      (option) =>
+        `<option value="${escapeAttribute(option.value)}">${escapeHtml(option.label)}</option>`,
+    )
+    .join('');
+  return `<${select.tag}>
+<template shadowrootmode="open">
+<style>
+:host { display: inline-block; }
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+select {
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  padding: 0.35rem 0.5rem;
+  cursor: pointer;
+}
+select:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+</style>
+<label class="visually-hidden" for="${id}">${select.labelHtml}</label>
+<select id="${id}" autocomplete="off">${options}</select>
+</template>
+</${select.tag}>`;
+}
+
+
+################################################################################
 # FILE: src/components/siteFooter.ts
 ################################################################################
 
@@ -23169,15 +23916,15 @@ ${renderLiveStats(context, currentPath)}
   File name:             siteHeader.ts
   Relative path:         src/components/siteHeader.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/components/siteHeader.ts
-  Size:                  3.5 KiB (3604 bytes)
-  Last modified:         2026-10-25 14:33:25.000000000 -0400
+  Size:                  3.5 KiB (3679 bytes)
+  Last modified:         2026-11-17 10:10:41.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68062879
+  Inode:                 87315858
   Hard links:            1
   MIME type:             text/javascript
-  SHA-256:               3ebbc904c3210d184335a5a79d78bca4227327fcef16bccfc5335f5687fd79e5
-  Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
+  SHA-256:               a717b32b7046ac2e1fe290b150b0a876ab5c99636da2949f746fd690c67590af
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 import type { Alternate } from '../i18n/localizedContent.ts';
@@ -23185,6 +23932,7 @@ import type { MessageKey } from '../i18n/messages/index.ts';
 import type { Translator } from '../i18n/translator.ts';
 import { escapeAttribute, escapeHtml } from '../lib/html.ts';
 import type { RenderContext } from './context.ts';
+import { renderFontPicker } from './fontPicker.ts';
 import { renderLanguageSwitcher } from './languageSwitcher.ts';
 import { renderThemePicker } from './themePicker.ts';
 
@@ -23309,6 +24057,7 @@ nav a:focus-visible {
 <nav aria-label="${escapeAttribute(t.text('nav.label'))}">${links}</nav>
 ${renderLanguageSwitcher(context, alternates)}
 ${renderThemePicker(t)}
+${renderFontPicker(t)}
 </header>
 </template>
 </kp-header>`;
@@ -23323,21 +24072,21 @@ ${renderThemePicker(t)}
   File name:             themePicker.ts
   Relative path:         src/components/themePicker.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/components/themePicker.ts
-  Size:                  1.4 KiB (1465 bytes)
-  Last modified:         2026-10-09 09:26:47.000000000 -0400
+  Size:                  763 B (763 bytes)
+  Last modified:         2026-11-17 10:10:41.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 65597982
+  Inode:                 87315859
   Hard links:            1
   MIME type:             text/javascript
-  SHA-256:               97cd2e9150a04a035a35d6b22e58c62479b5b8176cdfe913ff7edaa58c2450b0
-  Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
+  SHA-256:               f7d8c2c7d745f56822c8e44f608c5dd394ee542efdfa105d5658c09b78eb9643
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
-import { escapeAttribute, escapeHtml } from '../lib/html.ts';
 import { THEMES, type ThemeName } from '../client/storage.ts';
 import type { MessageKey } from '../i18n/messages/index.ts';
 import type { Translator } from '../i18n/translator.ts';
+import { renderSettingSelect } from './settingSelect.ts';
 
 export const THEME_LABEL_KEYS: Readonly<Record<ThemeName, MessageKey>> = {
   system: 'theme.system',
@@ -23348,42 +24097,12 @@ export const THEME_LABEL_KEYS: Readonly<Record<ThemeName, MessageKey>> = {
 };
 
 export function renderThemePicker(t: Translator): string {
-  const options = THEMES.map(
-    (theme) =>
-      `<option value="${escapeAttribute(theme)}">${escapeHtml(t.text(THEME_LABEL_KEYS[theme]))}</option>`,
-  ).join('');
-  return `<kp-theme-picker>
-<template shadowrootmode="open">
-<style>
-:host { display: inline-block; }
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-select {
-  font: inherit;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--text);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 0.4rem;
-  padding: 0.35rem 0.5rem;
-  cursor: pointer;
-}
-select:focus-visible {
-  outline: 2px solid var(--focus);
-  outline-offset: 2px;
-}
-</style>
-<label class="visually-hidden" for="theme-select">${t.html('theme.label')}</label>
-<select id="theme-select" autocomplete="off">${options}</select>
-</template>
-</kp-theme-picker>`;
+  return renderSettingSelect({
+    tag: 'kp-theme-picker',
+    id: 'theme-select',
+    labelHtml: t.html('theme.label'),
+    options: THEMES.map((theme) => ({ value: theme, label: t.text(THEME_LABEL_KEYS[theme]) })),
+  });
 }
 
 
@@ -24025,15 +24744,15 @@ export function pageLocales(page: MarkdownPage): string[] {
   File name:             en.ts
   Relative path:         src/i18n/messages/en.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/i18n/messages/en.ts
-  Size:                  12.6 KiB (12964 bytes)
-  Last modified:         2026-10-25 14:42:21.000000000 -0400
+  Size:                  12.7 KiB (13066 bytes)
+  Last modified:         2026-11-17 10:10:41.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68062882
+  Inode:                 87315862
   Hard links:            1
   MIME type:             text/javascript
-  SHA-256:               be0c858de9d737062a04cd44dc0e0c224145608f0139190a61f10b7282c81365
-  Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
+  SHA-256:               5470a91524f6830a0fb4708b7caa7a05eb8a2ad0a450b3f1b69cd721c7404333
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 import type { MessageValue } from '../format.ts';
@@ -24055,6 +24774,9 @@ export const en = {
   'theme.dark': 'Dark',
   'theme.solarizedLight': 'Solarized Light',
   'theme.solarizedDark': 'Solarized Dark',
+  'font.label': 'Font',
+  'font.standard': 'Standard font',
+  'font.handwriting': 'Handwriting font',
   'language.label': 'Language',
   'language.suggest': 'Read this page in English',
   'footer.repoTitle': '{title} on GitHub',
@@ -24245,15 +24967,15 @@ export const en = {
   File name:             es.ts
   Relative path:         src/i18n/messages/es.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/i18n/messages/es.ts
-  Size:                  13.8 KiB (14205 bytes)
-  Last modified:         2026-10-25 14:42:21.000000000 -0400
+  Size:                  13.9 KiB (14318 bytes)
+  Last modified:         2026-11-17 10:10:41.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68062883
+  Inode:                 87315863
   Hard links:            1
   MIME type:             text/javascript
-  SHA-256:               5d663728082ac0f3d606603ee7107ac5aac9af1e597ce5e428187a0fcc850512
-  Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
+  SHA-256:               dfa79d6cf686b2b8899d162830a85f1d3ec9dd5463cd3cb64437b10263b8a9a6
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 import type { Catalog } from './index.ts';
@@ -24275,6 +24997,9 @@ export const es: Partial<Catalog> = {
   'theme.dark': 'Oscuro',
   'theme.solarizedLight': 'Solarized claro',
   'theme.solarizedDark': 'Solarized oscuro',
+  'font.label': 'Tipo de letra',
+  'font.standard': 'Letra estándar',
+  'font.handwriting': 'Letra manuscrita',
   'language.label': 'Idioma',
   'language.suggest': 'Lee esta página en español',
   'footer.repoTitle': '{title} en GitHub',
@@ -29527,15 +30252,15 @@ ${snippet(SNIPPETS.css, t.text('lab.flapping.codeLabel'))}
   File name:             layout.ts
   Relative path:         src/pages/layout.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/pages/layout.ts
-  Size:                  4.7 KiB (4845 bytes)
-  Last modified:         2026-10-09 09:26:47.000000000 -0400
+  Size:                  4.7 KiB (4866 bytes)
+  Last modified:         2026-11-17 10:10:55.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 65598034
+  Inode:                 87315865
   Hard links:            1
   MIME type:             text/javascript
-  SHA-256:               0d09d789dc927b997a1c0ffa0de94ace83c277862da5e14313216ff158b397f8
-  Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
+  SHA-256:               d926fe60fd4d70c607ef75ebfd66933c6751bbbaccda271400f8a880d975786a
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 import { buildThemeInitScript } from '../client/themeInit.ts';
@@ -29639,7 +30364,7 @@ export function renderDocument(context: PageContext, meta: PageMeta, mainHtml: s
   const fullTitle = meta.title === config.title ? config.title : `${meta.title} · ${config.title}`;
   const canonical = `${config.url}${meta.path}`;
   return `<!doctype html>
-<html lang="${escapeAttribute(t.locale.code)}" dir="${escapeAttribute(t.locale.dir)}" data-theme="light">
+<html lang="${escapeAttribute(t.locale.code)}" dir="${escapeAttribute(t.locale.dir)}" data-theme="light" data-font="standard">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29911,15 +30636,15 @@ ${authorCard}
   File name:             routes.test.ts
   Relative path:         src/pages/routes.test.ts
   Absolute path:         /home/kushal/src/ts/kphoto/src/pages/routes.test.ts
-  Size:                  11.2 KiB (11571 bytes)
-  Last modified:         2026-10-25 14:33:25.000000000 -0400
+  Size:                  11.3 KiB (11647 bytes)
+  Last modified:         2026-11-17 10:17:20.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68062890
+  Inode:                 87315866
   Hard links:            1
   MIME type:             text/javascript
-  SHA-256:               1cf6b48e73ce1c6925b7139926e1f1f8609f2205b48892caec743825bb58b7a4
-  Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
+  SHA-256:               97655acba2b966fd420cacb0b6fecf72dbd858d471efed7dbf808994c8910fb3
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
 import { describe, expect, it } from 'vitest';
@@ -30036,7 +30761,8 @@ describe('renderSite', () => {
       expect(file.body).toContain('<kp-footer>');
       expect(file.body).toContain('src="/assets/main-TEST.js"');
       expect(file.body).toContain('href="/assets/styles-TEST.css"');
-      expect(file.body).toContain('data-theme="light"');
+      expect(file.body).toContain('data-theme="light" data-font="standard"');
+      expect(file.body).toContain('<kp-font-picker>');
       expect(file.body).toContain('localStorage.getItem');
     }
   });
@@ -31090,17 +31816,24 @@ export function kphotoSsg(): Plugin {
   File name:             global.css
   Relative path:         src/styles/global.css
   Absolute path:         /home/kushal/src/ts/kphoto/src/styles/global.css
-  Size:                  7.3 KiB (7489 bytes)
-  Last modified:         2026-10-25 14:41:44.000000000 -0400
+  Size:                  7.5 KiB (7772 bytes)
+  Last modified:         2026-11-17 10:10:55.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68062893
+  Inode:                 87315868
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               0117e550d5c268365da728e4398c08348ca5b2ecaa103477bb038b4a6c9ecded
-  Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
+  SHA-256:               b0ce333d677b6354def1bd357d777b9f600c253fbfe280eb056b0ce039395ce1
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
+@font-face {
+  font-family: 'kphoto handwriting';
+  src: url('/fonts/regular.woff2') format('woff2');
+  font-display: swap;
+  size-adjust: 115%;
+}
+
 :root {
   color-scheme: light;
 
@@ -31115,13 +31848,18 @@ export function kphotoSsg(): Plugin {
   --ink-filter: grayscale(1) brightness(1.08) contrast(1.6);
   --ink-blend: multiply;
 
-  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-body: var(--font-sans);
   --font-mono:
     ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 
   --measure: 44rem;
   --measure-wide: 60rem;
   --gutter: clamp(1rem, 4vw, 2rem);
+}
+
+[data-font='handwriting'] {
+  --font-body: 'kphoto handwriting', var(--font-sans);
 }
 
 [data-theme='dark'] {
@@ -31238,7 +31976,8 @@ kp-author-card {
   display: block;
 }
 
-kp-theme-picker {
+kp-theme-picker,
+kp-font-picker {
   display: inline-block;
 }
 
@@ -32216,17 +32955,18 @@ test.describe('narration', () => {
   File name:             site.spec.ts
   Relative path:         tests/e2e/site.spec.ts
   Absolute path:         /home/kushal/src/ts/kphoto/tests/e2e/site.spec.ts
-  Size:                  6.0 KiB (6219 bytes)
-  Last modified:         2026-10-25 14:42:40.000000000 -0400
+  Size:                  8.5 KiB (8741 bytes)
+  Last modified:         2026-11-17 10:18:01.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 68062897
+  Inode:                 87315871
   Hard links:            1
   MIME type:             text/javascript
-  SHA-256:               77a7baf462fbbc67a432327ae586aa28f65547dab8f251c3ac83ac095f790595
-  Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
+  SHA-256:               9f0a1f7fed65ed88d602770d33bd6c1a32f8402a4b7b1ed0a2bea6ec2f4a3366
+  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
 
 --- CONTENT ---
+import type { Page } from '@playwright/test';
 import { expect, SUPABASE, test } from './fixtures.ts';
 import { siteConfig } from '../../src/lib/config.ts';
 
@@ -32336,6 +33076,59 @@ test.describe('theming', () => {
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
     await page.emulateMedia({ colorScheme: 'light' });
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  });
+});
+
+test.describe('font', () => {
+  const bodyFont = (page: Page) => page.evaluate(() => getComputedStyle(document.body).fontFamily);
+
+  test('starts with the standard font', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('html')).toHaveAttribute('data-font', 'standard');
+    await expect(page.locator('kp-font-picker select')).toHaveValue('standard');
+    expect(await bodyFont(page)).not.toContain('kphoto handwriting');
+  });
+
+  test('the handwriting font loads and survives a reload', async ({ page }) => {
+    await page.goto('/');
+    const select = page.locator('kp-font-picker select');
+    await select.selectOption('handwriting');
+    await expect(page.locator('html')).toHaveAttribute('data-font', 'handwriting');
+    expect(await bodyFont(page)).toContain('kphoto handwriting');
+    await expect
+      .poll(() => page.evaluate(() => document.fonts.check('16px "kphoto handwriting"')))
+      .toBe(true);
+
+    const stored = await page.evaluate(() => localStorage.getItem('kphoto:settings:v1'));
+    expect(JSON.parse(stored ?? '{}')).toMatchObject({ font: 'handwriting' });
+
+    await page.reload();
+    await expect(page.locator('html')).toHaveAttribute('data-font', 'handwriting');
+    await expect(select).toHaveValue('handwriting');
+    await expect(page.locator('link[rel="preload"][as="font"]')).toHaveCount(1);
+    await expect
+      .poll(() => page.evaluate(() => document.fonts.check('16px "kphoto handwriting"')))
+      .toBe(true);
+  });
+
+  test('switching back restores the standard font', async ({ page }) => {
+    await page.goto('/');
+    const select = page.locator('kp-font-picker select');
+    await select.selectOption('handwriting');
+    await select.selectOption('standard');
+    await page.reload();
+    await expect(page.locator('html')).toHaveAttribute('data-font', 'standard');
+    expect(await bodyFont(page)).not.toContain('kphoto handwriting');
+  });
+
+  test('the font and the theme are independent choices', async ({ page }) => {
+    await page.goto('/es/');
+    await page.locator('kp-theme-picker select').selectOption('dark');
+    await page.locator('kp-font-picker select').selectOption('handwriting');
+    await page.reload();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    await expect(page.locator('html')).toHaveAttribute('data-font', 'handwriting');
+    await expect(page.getByRole('combobox', { name: 'Tipo de letra' })).toHaveValue('handwriting');
   });
 });
 
@@ -32592,10 +33385,10 @@ npmMinimalAgeGate: 4320
 ################################################################################
 # DUMP SUMMARY
 ################################################################################
-  Files dumped   : 529
-  Total size     : 581.9 MiB (610255116 bytes)
+  Files dumped   : 535
+  Total size     : 582.0 MiB (610279765 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-11-17T09:59:03-05:00
+  Completed at   : 2026-11-17T10:24:08-05:00
 ################################################################################
 # END OF DUMP
 ################################################################################
