@@ -7,22 +7,22 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-11-06T13:49:53-05:00
+  Generated at   : 2026-11-16T19:17:13-05:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
-  OS             : Linux 7.2.15-200.fc44.x86_64 x86_64
+  OS             : Linux 7.3.3-300.fc45.x86_64 x86_64
 
 REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : bfb3ef0eb4fc0dad3799750ab682f1143d2fa489
-  Commit (short) : bfb3ef0
-  Commit date    : 2026-11-06 13:48:49 -0500
-  Commit message : run scripts
+  Commit (full)  : fa97613e8de05ccf1def866b6fef124280695191
+  Commit (short) : fa97613
+  Commit date    : 2026-11-16 19:14:53 -0500
+  Commit message : add fonts
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
-  Files included : 527
+  Files included : 529
   Excluded path  : docs/llm/
   Excluded files : yarn.lock, .pnp.cjs, .pnp.loader.mjs
 
@@ -430,7 +430,7 @@ FOOTER
 mv -f "$TMP_FILE" "$OUTPUT_FILE"
 
 ################################################################################
-# FILE TREE  (all 527 included files)
+# FILE TREE  (all 529 included files)
 ################################################################################
 .
 .
@@ -565,6 +565,9 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
 ├── .prettierrc.json
 ├── public
 │   ├── favicon.svg
+│   ├── fonts
+│   │   ├── regular.ttf
+│   │   └── regular.woff2
 │   ├── icons.svg
 │   ├── images
 │   │   ├── authors
@@ -1708,7 +1711,7 @@ that speed budget on something fun.
   Owner:                 kushal:kushal
   Inode:                 65597828
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               787912fa399409257c9d4d7567f25fdc5c64ad7b42468da9a9cfdc79cade6e04
   Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
 
@@ -8481,7 +8484,7 @@ trim_trailing_whitespace = false
   Owner:                 kushal:kushal
   Inode:                 65597923
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               6f83e63f291024d2767c72c7c318db9a306b4e58d7eef8e6b1c3b25b692479b2
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -9984,7 +9987,7 @@ For more information on this, and how to apply and follow the GNU AGPL, see
   Owner:                 kushal:kushal
   Inode:                 65597926
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               209afaa4d1086f5af7f5ab07153039f07cd0d4b167b93cb11c879d202f0474cd
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -10095,6 +10098,48 @@ yarn.lock
 
 --- CONTENT ---
 [Binary file — content omitted. Size: 9.2 KiB, SHA-256: 61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66]
+
+################################################################################
+# FILE: public/fonts/regular.ttf
+################################################################################
+
+--- METADATA ---
+  File name:             regular.ttf
+  Relative path:         public/fonts/regular.ttf
+  Absolute path:         /home/kushal/src/ts/kphoto/public/fonts/regular.ttf
+  Size:                  78.6 KiB (80504 bytes)
+  Last modified:         2026-11-16 19:03:11.374207698 -0500
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 83590586
+  Hard links:            1
+  MIME type:             application/vnd.ms-opentype
+  SHA-256:               f785c88145c2845bae622420142496dbe527fa26c682e40051682dbaae040f2d
+  Last git commit:       fa97613 2026-11-16 19:14:53 -0500 add fonts
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 78.6 KiB, SHA-256: f785c88145c2845bae622420142496dbe527fa26c682e40051682dbaae040f2d]
+
+################################################################################
+# FILE: public/fonts/regular.woff2
+################################################################################
+
+--- METADATA ---
+  File name:             regular.woff2
+  Relative path:         public/fonts/regular.woff2
+  Absolute path:         /home/kushal/src/ts/kphoto/public/fonts/regular.woff2
+  Size:                  22.1 KiB (22716 bytes)
+  Last modified:         2026-11-16 19:03:23.777085530 -0500
+  Permissions:           -rw-------
+  Owner:                 kushal:kushal
+  Inode:                 83590587
+  Hard links:            1
+  MIME type:             font/woff2
+  SHA-256:               3d3e76a9605b15d8fdd7eb09f4e9f5863a50147f65b97944ed06f7dbd81c5505
+  Last git commit:       fa97613 2026-11-16 19:14:53 -0500 add fonts
+
+--- CONTENT ---
+[Binary file — content omitted. Size: 22.1 KiB, SHA-256: 3d3e76a9605b15d8fdd7eb09f4e9f5863a50147f65b97944ed06f7dbd81c5505]
 
 ################################################################################
 # FILE: public/icons.svg
@@ -16713,7 +16758,7 @@ audio_convert_dir "$DIR" opus "$DELETE" "encode_$ENCODER"
   Owner:                 kushal:kushal
   Inode:                 65597946
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               0a49b3042f453934a8aceb2860e604dabde788b1288885a8849b0753a6a0a07b
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -16782,7 +16827,7 @@ export function sendsGlobalPrivacyControl(): boolean {
   Owner:                 kushal:kushal
   Inode:                 65597947
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               b3909198279015288b100b9e03ff0e088289b29dbe5f2f2484e773d1091075b4
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -16874,7 +16919,7 @@ describe('CircuitBreaker', () => {
   Owner:                 kushal:kushal
   Inode:                 65597948
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               7b3a62b9730e0cd52acff49a8ccc22b8bdfe30b09ad303b3edd5534aad65bc00
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -16944,7 +16989,7 @@ export class CircuitBreaker {
   Owner:                 kushal:kushal
   Inode:                 68062870
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               17416b546901be64f98163c4fed711a591722d69526065885de7404031a5de80
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -17192,7 +17237,7 @@ describe('FlipbookController', () => {
   Owner:                 kushal:kushal
   Inode:                 68062871
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               34009be142a6dcad18762c4acb43a38493ac8d149598836d31738e4878e80096
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -17379,7 +17424,7 @@ export class FlipbookController {
   Owner:                 kushal:kushal
   Inode:                 68062872
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/vnd.typst
   SHA-256:               1c95cbce890ce024d54c05bc56dfc3031e8c072797369914ce39b84e368fdfcb
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -17722,7 +17767,7 @@ export function defineFlipbookElement(): void {
   Owner:                 kushal:kushal
   Inode:                 68062873
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               131e09c8f3272bcc2b4dff75dca455ad48d00ce29ff70d427e5ce84e370f066e
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -17836,7 +17881,7 @@ describe('startingState', () => {
   Owner:                 kushal:kushal
   Inode:                 68062874
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               f6980f2d99d62fa5140bc4db281a5ae42f8d36c3de0c62746598a64a89b7baa8
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -17930,7 +17975,7 @@ export function startingState(
   Owner:                 kushal:kushal
   Inode:                 65597949
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               9ba9b0c3f0c2cdf9553e3c39740c5e5f3f248e4ba78dfce129127f29214fce81
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -18330,7 +18375,7 @@ describe('LivePoller rendering errors', () => {
   Owner:                 kushal:kushal
   Inode:                 65597950
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               2e36856d548049fd3158d118c3ff9e0510d9d9233d8577d9f1da4cd9a23497d3
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -18500,7 +18545,7 @@ export class LivePoller<T> {
   Owner:                 kushal:kushal
   Inode:                 65597953
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               9ceadde1d695c27461e15ab3e9967c7e55bbe944b3f8476c67a51300d1500d72
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -18731,7 +18776,7 @@ describe('LiveStatsApi errors', () => {
   Owner:                 kushal:kushal
   Inode:                 65597954
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               76fa32c91d50ee4f54116496810afcffce714e62578e59397927957d3600fd77
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -18896,7 +18941,7 @@ export class LiveStatsApi {
   Owner:                 kushal:kushal
   Inode:                 65597955
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               70352e46ef3bf9b9076e9ae87d592ce650b4926f3002720457b385d860438c96
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -19129,7 +19174,7 @@ export function defineLiveStatsElements(): void {
   Owner:                 kushal:kushal
   Inode:                 65597951
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               cb05799cb454cb4c7563eba4221b5ee96ea3725a70775b9bf7da75850e70a7d9
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -19388,7 +19433,7 @@ describe('boardRowViews', () => {
   Owner:                 kushal:kushal
   Inode:                 65597952
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               853d4d11343d6926e8ccab9dbecd9c35d7764336194fe2dd08870200460b65bd
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -19613,7 +19658,7 @@ export function boardRowViews(board: LiveBoard, format: CountFormatter): BoardRo
   Owner:                 kushal:kushal
   Inode:                 65597956
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               b57bff429b6b747649584f961ca2d77b2a2a9ea2aaaa5d1c4ac1164f442314db
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -19754,7 +19799,7 @@ export async function flush(): Promise<void> {
   Owner:                 kushal:kushal
   Inode:                 65597957
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               7db26982587b54647ebb4f44bd70d5e8b509fb24d3cb2ccaa4fbbeeb15462ec4
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -19809,7 +19854,7 @@ describe('chooseSuggestion', () => {
   Owner:                 kushal:kushal
   Inode:                 65597958
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               04f31484575d2c89b3a1482c72422833ed35b69122439b59f326e3f91c8f36f0
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -19868,7 +19913,7 @@ export function chooseSuggestion(input: SuggestionInput): string | undefined {
   Owner:                 kushal:kushal
   Inode:                 68062875
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               bf8be2187af4b3ead5684e0072c447584f693c7d5e8a414804c230322f7d6fef
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -19976,7 +20021,7 @@ export type { ThemeName };
   Owner:                 kushal:kushal
   Inode:                 65597962
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               deefb66fca7dd7b504094a7074fee10c8c352e3d8d97b611ff8df93e92846b35
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -20037,7 +20082,7 @@ export function defineNarrationElement(settings: SettingsStore): void {
   Owner:                 kushal:kushal
   Inode:                 65597960
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               ed6434be63083fcfe303041c83682bfc57ce0e171d882992a1825fde657fb808
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -20411,7 +20456,7 @@ describe('connectNarration', () => {
   Owner:                 kushal:kushal
   Inode:                 65597961
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               30444930d46932059d4c1294e4801a0f4363a5cc3c18f856ff7cec7bed685a89
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -20579,7 +20624,7 @@ export function connectNarration(
   Owner:                 kushal:kushal
   Inode:                 65597963
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               19eb237013c4c0301d35d4af721ba2c3f601aa13feb8e59fe156ccc6714ee3af
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -20735,7 +20780,7 @@ describe('SettingsStore', () => {
   Owner:                 kushal:kushal
   Inode:                 65597964
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               ec01d7f74b99acba2e2fd3adca990361f50c00f3276d14e55ce1b7d83589daa1
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -20833,7 +20878,7 @@ export class SettingsStore {
   Owner:                 kushal:kushal
   Inode:                 65597967
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               328d2eb37311ab1c0e9023d8865e130bdf1ddc9a6b92783e555aea04c725737f
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -20900,7 +20945,7 @@ describe('buildThemeInitScript', () => {
   Owner:                 kushal:kushal
   Inode:                 65597968
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               886952f8864c645446420e3df40fd8c7a423880e8aa0d9ebad67733fbb47c3e1
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -20939,7 +20984,7 @@ export function buildThemeInitScript(settingsKey: string = SETTINGS_KEY): string
   Owner:                 kushal:kushal
   Inode:                 65597965
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               7f0382c18fe2079e78bc275692c395c885d7a872631e956df750c224f0f06f4d
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -21070,7 +21115,7 @@ describe('ThemeController', () => {
   Owner:                 kushal:kushal
   Inode:                 65597966
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               89796a631050ad7635505c08e3ae893dd082d289debb3458f46deff77f929e69
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -21155,7 +21200,7 @@ export class ThemeController {
   Owner:                 kushal:kushal
   Inode:                 65597970
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               eeb2633e8efded1214a4edac5a06d7c343fdf8ad2ae7d5570a62c835b189f89d
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -21285,7 +21330,7 @@ ${contact}
   Owner:                 kushal:kushal
   Inode:                 65597971
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               363cea5e3c13925d1fa0e4328c6e6050eee0f4040d1879439497568d78e3f06e
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -21728,7 +21773,7 @@ describe('renderAuthorCard', () => {
   Owner:                 kushal:kushal
   Inode:                 65597972
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               84ad489307ebdd0c07e782c76001e2173aea6c1c3d1824f633b673bbc3bf4333
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -21757,7 +21802,7 @@ export interface RenderContext {
   Owner:                 kushal:kushal
   Inode:                 68062877
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               60536094f4e0a107f5f6651e2454492346b8c1058d05aee092d40323fb5deec2
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -21860,7 +21905,7 @@ describe('renderFlipbook', () => {
   Owner:                 kushal:kushal
   Inode:                 68062878
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               4c05e3dfcf20a49a7f844eb22b194b4531478f28e4331712e2157bf45929ba30
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -22177,7 +22222,7 @@ ${thumbs}
   Owner:                 kushal:kushal
   Inode:                 65597973
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               dae80b8b2c0827c45ed4bae34c0940cfa9e3748ec36983ddfd340b1fd92ee277
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -22283,7 +22328,7 @@ a:focus-visible {
   Owner:                 kushal:kushal
   Inode:                 65597974
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               6e2527c582e5895f534172bb391b7f9c240ddced298dd1a5519bff6dbded833e
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -22472,7 +22517,7 @@ td a:focus-visible {
   Owner:                 kushal:kushal
   Inode:                 65597975
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               ef91f5be9a9c64416e175a7a79755d92ec8a1f16000362a86c0d56c3b8cc3b54
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -22606,7 +22651,7 @@ describe('renderPostCard narration badge', () => {
   Owner:                 kushal:kushal
   Inode:                 65597976
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               e1ecca7810dda76b4b48a515cb15e68bc0a5f140683d52e0cdbf13afa477bca6
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -22678,7 +22723,7 @@ audio:focus-visible {
   Owner:                 kushal:kushal
   Inode:                 65597977
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               ef08918ff2e509da60f3443dfb25d4360c9d1e19cf9a0f567e98c0d391e6e4bd
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -22813,7 +22858,7 @@ a:focus-visible {
   Owner:                 kushal:kushal
   Inode:                 65597978
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               1da0097aa4ad76b8507281c9bb261c3654b974d3c92907b77cadf0c23d079bda
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -22903,7 +22948,7 @@ ${original}
   Owner:                 kushal:kushal
   Inode:                 65597979
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               314a794ee33185218df28bb0ce2862f58ae3a9d4895c18e1bd9551bc6dc3aa26
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -23007,7 +23052,7 @@ a:focus-visible {
   Owner:                 kushal:kushal
   Inode:                 65597980
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               6002e532a7995848ef689fe43b908ab208f0fa35783343d6dc358ed7babcde28
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -23130,7 +23175,7 @@ ${renderLiveStats(context, currentPath)}
   Owner:                 kushal:kushal
   Inode:                 68062879
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               3ebbc904c3210d184335a5a79d78bca4227327fcef16bccfc5335f5687fd79e5
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -23284,7 +23329,7 @@ ${renderThemePicker(t)}
   Owner:                 kushal:kushal
   Inode:                 65597982
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               97cd2e9150a04a035a35d6b22e58c62479b5b8176cdfe913ff7edaa58c2450b0
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -23356,7 +23401,7 @@ select:focus-visible {
   Owner:                 kushal:kushal
   Inode:                 65597984
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               374a82289929a9e553a66f111144ae4c2212256d051a68df19be710ab34083f6
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -23451,7 +23496,7 @@ describe('formatMessage', () => {
   Owner:                 kushal:kushal
   Inode:                 65597985
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               7963e724f1b44aae4994972140829374c2ad5d7ec65b790965b6f10469ae38ab
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -23528,7 +23573,7 @@ export function formatMessage(
   Owner:                 kushal:kushal
   Inode:                 65597986
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               0c69c325d54c63596a799ab56c747fd5de21c0fdf5c85c29a0ed8d8ab8f311f2
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -23639,7 +23684,7 @@ describe('finding locales', () => {
   Owner:                 kushal:kushal
   Inode:                 65597987
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               0ed766feba5c97199c3db963147f7548187797c70b28f0565c5ab448dfe285fa
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -23732,7 +23777,7 @@ export function splitLocalePath(
   Owner:                 kushal:kushal
   Inode:                 65597988
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               9e4cace2dc10da2a92b4cabffd9f072793ee0a332a75d62d4837ebcca159696b
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -23872,7 +23917,7 @@ describe('pages in a locale', () => {
   Owner:                 kushal:kushal
   Inode:                 65597989
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               787fa28bb168b21b8d8b8ecb8daf7e8a2557f3847528cfeed84cd9ce6761795e
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -23986,7 +24031,7 @@ export function pageLocales(page: MarkdownPage): string[] {
   Owner:                 kushal:kushal
   Inode:                 68062882
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               be0c858de9d737062a04cd44dc0e0c224145608f0139190a61f10b7282c81365
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -24206,7 +24251,7 @@ export const en = {
   Owner:                 kushal:kushal
   Inode:                 68062883
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               5d663728082ac0f3d606603ee7107ac5aac9af1e597ce5e428187a0fcc850512
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -24432,7 +24477,7 @@ export const es: Partial<Catalog> = {
   Owner:                 kushal:kushal
   Inode:                 65597993
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               e46e62f2f19b94429edbd3f8bb5724b09210fd08f2bd98b908523c0d9de79821
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -24464,7 +24509,7 @@ export const catalogs: Catalogs = { en, es };
   Owner:                 kushal:kushal
   Inode:                 65597994
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               d45ceb14282827d1c865e20a932522d62d0ecc8564cdb1d93c08b2835ffd9b29
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -24528,7 +24573,7 @@ describe('message catalogs', () => {
   Owner:                 kushal:kushal
   Inode:                 65597995
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               c844a50c016b9c76ca093cfc8b3f62738447fe8ecc6183ccafb482f82494dadf
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -24560,7 +24605,7 @@ export function isSafeHtml(value: unknown): value is SafeHtml {
   Owner:                 kushal:kushal
   Inode:                 65597996
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               0c547244b71ecebde94e15d84e34758211cd3c6a65f16ad851a99df423755cbf
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -24657,7 +24702,7 @@ describe('missingKeys', () => {
   Owner:                 kushal:kushal
   Inode:                 65597997
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               baa85fb074512ec5fff93a3ebd60ca12cbda71aff6a7bf7f1277c2b5c671ad95
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -24782,7 +24827,7 @@ export function missingKeys(catalogs: Catalogs, defaultLocale: string, code: str
   Owner:                 kushal:kushal
   Inode:                 65597999
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               c31b871f969cf931b23694f5421c9c2dede6e3fda65c42ab97c69781f0d1bf43
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -24859,7 +24904,7 @@ describe('commit helpers', () => {
   Owner:                 kushal:kushal
   Inode:                 65598000
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               6f54a5c39caa82f3fc4bf7f4640f557036b5be2bc065f4c56eab5ff823de039d
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -24920,7 +24965,7 @@ export function commitUrl(repoUrl: string, commit: string): string {
   Owner:                 kushal:kushal
   Inode:                 65598001
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               7c36d8597b0b2770fa5d37999b8c32875520e7ee79e9f1ecc0ab32b7d0a402c9
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -25042,7 +25087,7 @@ describe('groupPostsByAuthor', () => {
   Owner:                 kushal:kushal
   Inode:                 65598002
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               149a76d90d565c065f66fb1e359992e7696bf9e666b03f42a95936db08762572
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -25124,7 +25169,7 @@ export function groupPostsByAuthor(
   Owner:                 kushal:kushal
   Inode:                 65598003
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               dcbc8013c1a78b51792559ed2c8eeae43b28591a28d269215cac613124ec089b
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -25187,7 +25232,7 @@ describe('liveStatsEnabled', () => {
   Owner:                 kushal:kushal
   Inode:                 65598004
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               17dee72400cd717e0cef13b5058ee53eabb297f8c91352318c83876131827e22
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -25258,7 +25303,7 @@ export function contentLocales(config: SiteConfig): {
   Owner:                 kushal:kushal
   Inode:                 65598007
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               a6657bb00888ac41f8dae072ca952a7b64b701a795037915c53f6a52c6a3ae21
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -25426,7 +25471,7 @@ describe('narration in the site model', () => {
   Owner:                 kushal:kushal
   Inode:                 65598005
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               b0b0c27ecf0558f554ef95658f74babbb8b8f75f6d5cfee0ae2a81403548d408
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -25894,7 +25939,7 @@ describe('translations', () => {
   Owner:                 kushal:kushal
   Inode:                 65598006
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               22ae2a20afa5a3911b309ce5b21fa056bdacd6b25d7ffe02970d6011b4a1e700
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -26432,7 +26477,7 @@ function describe(error: unknown): string {
   Owner:                 kushal:kushal
   Inode:                 65598008
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               343a574ce37e7c09b4487824cdb811364a0b01dc3f3bce680246a2e52a5202ee
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -26533,7 +26578,7 @@ describe('isoDateInTimeZone', () => {
   Owner:                 kushal:kushal
   Inode:                 65598009
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               030f602516d507f39ec42e9f9cc8033967b80e647fd5c0312d6aefca3f885fab
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -26642,7 +26687,7 @@ export function isoDateInTimeZone(instant: Date, timeZone: string): string {
   Owner:                 kushal:kushal
   Inode:                 65598010
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               67bcd2b1ab39a9c2947ed710cbc03833069b7f6460ba9157526927bbdd461b35
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -26752,7 +26797,7 @@ describe('buildAtomFeed for another locale', () => {
   Owner:                 kushal:kushal
   Inode:                 65598011
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               f44bbc8e4f05823d336a2495effcd412da720f647f3cae80ae043b7419fce56c
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -26825,7 +26870,7 @@ export function buildAtomFeed(model: SiteModel, context: RenderContext): string 
   Owner:                 kushal:kushal
   Inode:                 68062885
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               e5bbeabf66a656af7489a09b28e3c9cd4bdef203ffe7ec34e59bf97646caa51a
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -27129,7 +27174,7 @@ describe('FlipbookTimeline', () => {
   Owner:                 kushal:kushal
   Inode:                 68062886
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               29ab5bff162f2753beedea74210beaacd42c5ea16dee504907c138c21d9ba87f
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -27342,7 +27387,7 @@ export class FlipbookTimeline {
   Owner:                 kushal:kushal
   Inode:                 65598012
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               93fdbf3fd133199d21fd2601bbbe257785eb2a096e2251a04ac4b564b508ebb1
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -27386,7 +27431,7 @@ describe('extractFrontmatter', () => {
   Owner:                 kushal:kushal
   Inode:                 65598013
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               bedc45fb02a19f079ad94bb1ebe6e2bec360b56c4bfa2366fdec88d860ebd744
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -27430,7 +27475,7 @@ export function extractFrontmatter(source: string): FrontmatterDocument {
   Owner:                 kushal:kushal
   Inode:                 65598014
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               4331c41c9ece3f374879983e67e843ee8736feff11ae1ae05c13fa79037ff285
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -27471,7 +27516,7 @@ describe('escapeAttribute', () => {
   Owner:                 kushal:kushal
   Inode:                 65598015
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               a25ace4b729fb94744ed0ef66be6153c89b6bf449de9b2ec665f52a96d7692e3
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -27507,7 +27552,7 @@ export function escapeAttribute(text: string): string {
   Owner:                 kushal:kushal
   Inode:                 65598016
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               f2cdb5422786fd48a23e690e7bd115c2ff668cd452f422f82fbafffb970c8a47
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -27651,7 +27696,7 @@ describe('renderMarkdown', () => {
   Owner:                 kushal:kushal
   Inode:                 65598017
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               fc284b205172216a75a912e29148b74baca92a94541549ce3c30707faa53fd1f
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -27911,7 +27956,7 @@ export function renderMarkdown(source: string): RenderedMarkdown {
   Owner:                 kushal:kushal
   Inode:                 65598018
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               effef36e7b94be69961833fef984cced8967cfb125d1032ffc98b1446069b67d
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -27976,7 +28021,7 @@ describe('narrationLocation', () => {
   Owner:                 kushal:kushal
   Inode:                 65598019
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               e4194b94fb27fc637e398c75deda9e12c5b338f57324bb5856446fd7155a4fae
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -28034,7 +28079,7 @@ export function narrationLocation(fileName: string): string {
   Owner:                 kushal:kushal
   Inode:                 65598020
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               b56f5aac65ef3f7d006c4bf31da341febf6794f98903d81f783615e9db26f3fa
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -28074,7 +28119,7 @@ describe('readingMinutes', () => {
   Owner:                 kushal:kushal
   Inode:                 65598021
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               d815261fc1ee174e02786b496a105451758c1cb12c9385009acf79c1a6fcec4c
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -28101,7 +28146,7 @@ export function readingMinutes(text: string, wordsPerMinute: number = WORDS_PER_
   Owner:                 kushal:kushal
   Inode:                 65598022
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               b28105973be495ee799850e58c9a3d9d60b7ba4c96553eb4b36e3f0fcd87a329
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -28157,7 +28202,7 @@ describe('buildSitemap', () => {
   Owner:                 kushal:kushal
   Inode:                 65598023
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               707d753f2edffede02864eeea6e493a4051fc63f316deeec5fd10ae42bead3f0
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -28220,7 +28265,7 @@ export function buildSitemap(
   Owner:                 kushal:kushal
   Inode:                 65598024
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               587f65e883610f8ee33892a9dc07f6d1785806c8cc391dabdc2ac97840162c4e
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -28265,7 +28310,7 @@ describe('slugify', () => {
   Owner:                 kushal:kushal
   Inode:                 65598025
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               b560b0bf3f40a1fdc410a85c106dba0f5794b065bf7d33ee63bb4ab27e056d4d
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -28295,7 +28340,7 @@ export function slugify(input: string): string {
   Owner:                 kushal:kushal
   Inode:                 65598026
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               50b6689fd37a88a683acae63e4731846eb4cbe5e5bbf4ea6d9c297843e75951b
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -28343,7 +28388,7 @@ export function postFile(frontmatter: string, body = '\nHello.\n'): string {
   Owner:                 kushal:kushal
   Inode:                 65598027
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               d5c5013fea71c3326d28aad222dd0fd8503e75502f175b74308967d713026217
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -28467,7 +28512,7 @@ export const SINGLE_LOCALE: ContentLocales = { defaultLocale: 'en', locales: ['e
   Owner:                 kushal:kushal
   Inode:                 65598028
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               aa3200f3c65c06c9df21279d18f8f0e614d1743b48e01b105673182bcc92cd2d
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -28558,7 +28603,7 @@ describe('parseYaml', () => {
   Owner:                 kushal:kushal
   Inode:                 65598029
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               8ea29a118ff8307fb852c61f29b5907b673a0f4c5406428da0ec91d1c5057e9c
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -28785,7 +28830,7 @@ export function parseYaml(source: string): YamlMap {
   Owner:                 kushal:kushal
   Inode:                 65598031
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               f2542e7d293108914da679026b5b23bbc56f67dfd604be299512f93a1f288a57
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -28870,7 +28915,7 @@ ${postsSection}`;
   Owner:                 kushal:kushal
   Inode:                 65598032
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               98d8c9fad175d5c0b1f604033c869ea2c334e8d445625490e8e759c5fabaab49
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -28919,7 +28964,7 @@ ${cards}
   Owner:                 kushal:kushal
   Inode:                 65598033
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               8412f2f7d6bf6c80e163f8e64af55f9b74b7756bac4ab42f6655710e45538a00
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -29202,7 +29247,7 @@ ${FOOD_PHOTOS}
   Owner:                 kushal:kushal
   Inode:                 68062888
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               3739d0572aa9812cdb2d7a3045314dabb43c57264d4c8c03e60984bf3b2f9540
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -29302,7 +29347,7 @@ describe('renderFlappingAirplaneLab', () => {
   Owner:                 kushal:kushal
   Inode:                 68062889
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               6bf9b533bd9d876d32e7706b03be53fc4acb3f16837937b0dd997f7e90495e09
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -29488,7 +29533,7 @@ ${snippet(SNIPPETS.css, t.text('lab.flapping.codeLabel'))}
   Owner:                 kushal:kushal
   Inode:                 65598034
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               0d09d789dc927b997a1c0ffa0de94ace83c277862da5e14313216ff158b397f8
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -29639,7 +29684,7 @@ ${renderSiteFooter(context, meta.path)}
   Owner:                 kushal:kushal
   Inode:                 65598035
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               34b270fa900b099cbfe69df9ca5dd18d3db006f7a04813341135d0ee48a20369
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -29701,7 +29746,7 @@ ${board}
   Owner:                 kushal:kushal
   Inode:                 65598036
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               efdf04e05c4dafe1ec8acfe1f03c1f44159edef300ed10f6952530d3abd1085e
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -29757,7 +29802,7 @@ ${view.html}
   Owner:                 kushal:kushal
   Inode:                 65598037
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               5745cbcc8d4dfa9cfc395beb097dc9f3eb12c4fb4a3201f62c5a63ba560213ec
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -29807,7 +29852,7 @@ export function renderNotFound(context: PageContext): string {
   Owner:                 kushal:kushal
   Inode:                 65598038
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               d4c592e93d4b98d21d4dcc8ed8667f34da67b1addc3f2639549dedf8b694bb2b
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -29872,7 +29917,7 @@ ${authorCard}
   Owner:                 kushal:kushal
   Inode:                 68062890
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               1cf6b48e73ce1c6925b7139926e1f1f8609f2205b48892caec743825bb58b7a4
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -30207,7 +30252,7 @@ describe('renderSite with a second locale', () => {
   Owner:                 kushal:kushal
   Inode:                 68062891
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               84ca2e14e4026382ec076954f8ceb5e280d6a9fc0e174b5b541cdebeca3b667b
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -30349,7 +30394,7 @@ export type { PageContext, SiteContext };
   Owner:                 kushal:kushal
   Inode:                 65598041
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               02c3ea158a36c4cd0f38063a66595c7cae7a75e2796568161f4e1ed482417c97
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -30431,7 +30476,7 @@ ${cards}
   Owner:                 kushal:kushal
   Inode:                 65598042
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               8a34cfc120311b4b50f2cf02195eb1ea0412617178c283a2394151cdf7fb0b72
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -30510,7 +30555,7 @@ ${cards}
   Owner:                 kushal:kushal
   Inode:                 65598043
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               f7419c3651b952760b491059370b948d81c396824ce56ec5694bbe93865b4f47
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -30563,7 +30608,7 @@ export function withLiveStats(publishableKey: string): SiteConfig {
   Owner:                 kushal:kushal
   Inode:                 65598044
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               15cd46be1202401b35d8346a93523e591ed55fd26760f25472ab826594bad06a
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -30633,7 +30678,7 @@ describe('repository hygiene (ADR 0033)', () => {
   Owner:                 kushal:kushal
   Inode:                 65598046
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               39a293ee9bdb950aa10b5109685440ab606a3f51d2d379ee29354f5d9a67af8c
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -30673,7 +30718,7 @@ describe('nodeGitReader', () => {
   Owner:                 kushal:kushal
   Inode:                 65598047
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               c16df1cc9a4cba8ee1f689b6168e0e55850f8e30d513f986595c12550d4de1b3
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -30715,7 +30760,7 @@ export function nodeGitReader(rootDir: string): GitReader {
   Owner:                 kushal:kushal
   Inode:                 65598048
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               aad29cb3a9c35e6ad4dd0d7b4568513494aa0da9dc44e6684ac09df7a5ccf45a
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -30771,7 +30816,7 @@ describe('readContentInput', () => {
   Owner:                 kushal:kushal
   Inode:                 65598049
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               9cee1586a008bf5ec5c6eb16217bd817285ef6538ca1c8dd773fad42071258aa
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -30827,7 +30872,7 @@ export async function readContentInput(rootDir: string): Promise<ContentInput> {
   Owner:                 kushal:kushal
   Inode:                 65598050
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               c91d35a27c1f18121039412b13f1f4a60a340eb2c0aee0d85519f05d09454283
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -31515,7 +31560,7 @@ kp-theme-picker {
   Owner:                 kushal:kushal
   Inode:                 69727824
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               e297c7d5278c152cb1d17dfddec4e1c5fd3230ab62463b1f013fa0c85bfaa234
   Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
 
@@ -31635,7 +31680,7 @@ describe('node version (ADR 0041)', () => {
   Owner:                 kushal:kushal
   Inode:                 65598056
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               39ddef4ae6c6234fc35233821f7103f1b5ea2883a95b8afd9980e60c892a5af0
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -31681,7 +31726,7 @@ export { expect };
   Owner:                 kushal:kushal
   Inode:                 65598057
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               7c330eb1f03c9c3cdd598bd0292ed2154f21a5d5082cbefb2080509183f78f66
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -31789,7 +31834,7 @@ test.describe('build provenance', () => {
   Owner:                 kushal:kushal
   Inode:                 68062896
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               35bc08525dde35f6bce0f61164c91b77588da51daec1abe203eb56cbd75c5558
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -31932,7 +31977,7 @@ test.describe('the flipbook', () => {
   Owner:                 kushal:kushal
   Inode:                 65598058
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               16836fb09cc9d48613f06980147947dbaa0626f26330116170a865a43c3037ec
   Last git commit:       08bbd32 2026-10-06 16:08:02 -0400 add claude response
 
@@ -32094,7 +32139,7 @@ test.describe('live statistics switched on', () => {
   Owner:                 kushal:kushal
   Inode:                 65598059
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               921b4743ddb2b8b3ca20fafdcf3a05dfeb21afd9f3085d03dd5c2a6f72fbfcce
   Last git commit:       1c46bd9 2026-10-09 09:46:49 -0400 add claude response
 
@@ -32177,7 +32222,7 @@ test.describe('narration', () => {
   Owner:                 kushal:kushal
   Inode:                 68062897
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               77a7baf462fbbc67a432327ae586aa28f65547dab8f251c3ac83ac095f790595
   Last git commit:       b6fa40b 2026-10-25 14:51:01 -0400 add claude response
 
@@ -32392,7 +32437,7 @@ test.describe('own origin only', () => {
   Owner:                 kushal:kushal
   Inode:                 68085391
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               ccc96a7976372c7f61c8eaddf3ad51d141d04385b09489136393f28cd636bd31
   Last git commit:       26b5469 2026-10-25 15:23:55 -0400 add claude response
 
@@ -32429,7 +32474,7 @@ export default defineConfig({
   Owner:                 kushal:kushal
   Inode:                 65598063
   Hard links:            1
-  MIME type:             application/javascript
+  MIME type:             text/javascript
   SHA-256:               94b161644f4f9fd9aab8fff7da4b54f026dbefbbcb68f8ee57364563a3cbef18
   Last git commit:       7611c5c 2026-07-10 06:41:16 -0400 add claude changes
 
@@ -32547,10 +32592,10 @@ npmMinimalAgeGate: 4320
 ################################################################################
 # DUMP SUMMARY
 ################################################################################
-  Files dumped   : 527
-  Total size     : 581.8 MiB (610151896 bytes)
+  Files dumped   : 529
+  Total size     : 581.9 MiB (610255116 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-11-06T13:50:08-05:00
+  Completed at   : 2026-11-16T19:17:28-05:00
 ################################################################################
 # END OF DUMP
 ################################################################################

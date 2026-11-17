@@ -1,6 +1,6 @@
-kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
-[13:49:05] 1/9 bootstrap
-[13:49:05] installing dependencies (yarn install --immutable)
+kushal@fedora:~/src/dotnet/chaos-velixir-run$ cd ~/src/ts/kphoto/; time bash check.sh
+[19:15:30] 1/9 bootstrap
+[19:15:30] installing dependencies (yarn install --immutable)
 ➤ YN0000: · Yarn 4.18.1
 ➤ YN0000: ┌ Resolution step
 ➤ YN0000: └ Completed
@@ -8,74 +8,74 @@ kushal@fedora:~/src/ts/kphoto$ cd ~/src/ts/kphoto/; time bash check.sh
 ➤ YN0000: └ Completed
 ➤ YN0000: ┌ Link step
 ➤ YN0000: └ Completed
-➤ YN0000: · Done in 0s 308ms
-[13:49:06] bootstrap complete — try ./scripts/dev.sh
-[13:49:06] 2/9 format check
-[13:49:06] checking formatting (prettier --check)
+➤ YN0000: · Done in 0s 306ms
+[19:15:30] bootstrap complete — try ./scripts/dev.sh
+[19:15:30] 2/9 format check
+[19:15:30] checking formatting (prettier --check)
 Checking formatting...
 All matched files use Prettier code style!
-[13:49:14] format complete
-[13:49:14] 3/9 lint
-[13:49:14] linting (eslint, zero warnings allowed)
-[13:49:19] lint complete
-[13:49:19] 4/9 typecheck (TypeScript 7)
-[13:49:19] type-checking with Version 7.0.2 (TypeScript 7 native compiler)
-[13:49:19] typecheck complete
-[13:49:19] 5/9 typecheck (TypeScript 7.1 preview)
-[13:49:19] type-checking with Version 7.1.0-beta (TypeScript 7.1 preview)
-[13:49:20] typecheck (7.1 preview) complete
-[13:49:20] 6/9 unit tests
-[13:49:20] running unit tests with coverage (vitest)
+[19:15:40] format complete
+[19:15:40] 3/9 lint
+[19:15:40] linting (eslint, zero warnings allowed)
+[19:15:46] lint complete
+[19:15:46] 4/9 typecheck (TypeScript 7)
+[19:15:46] type-checking with Version 7.0.2 (TypeScript 7 native compiler)
+[19:15:46] typecheck complete
+[19:15:46] 5/9 typecheck (TypeScript 7.1 preview)
+[19:15:46] type-checking with Version 7.1.0-beta (TypeScript 7.1 preview)
+[19:15:47] typecheck (7.1 preview) complete
+[19:15:47] 6/9 unit tests
+[19:15:47] running unit tests with coverage (vitest)
 
  RUN  v5.0.5 /home/kushal/src/ts/kphoto
       Coverage enabled with v8
 
- ✓ src/lib/dates.test.ts (11 tests) 27ms
- ✓ src/i18n/format.test.ts (10 tests) 23ms
- ✓ src/ssg/git.test.ts (2 tests) 18ms
- ✓ src/client/narration.test.ts (27 tests) 18ms
- ✓ src/lib/flipbook.test.ts (32 tests) 18ms
- ✓ src/lib/collections.test.ts (9 tests) 17ms
- ✓ src/client/livePoller.test.ts (23 tests) 16ms
- ✓ src/i18n/messages/messages.test.ts (4 tests) 19ms
- ✓ src/client/liveStatsApi.test.ts (26 tests) 46ms
+ ✓ src/lib/dates.test.ts (11 tests) 30ms
+ ✓ src/ssg/git.test.ts (2 tests) 20ms
+ ✓ src/i18n/format.test.ts (10 tests) 24ms
+ ✓ src/client/flipbookController.test.ts (17 tests) 13ms
+ ✓ src/lib/collections.test.ts (9 tests) 19ms
+ ✓ src/lib/flipbook.test.ts (32 tests) 21ms
+ ✓ src/i18n/messages/messages.test.ts (4 tests) 18ms
+ ✓ src/client/liveStatsApi.test.ts (26 tests) 48ms
+ ✓ src/client/narration.test.ts (27 tests) 22ms
+ ✓ src/client/livePoller.test.ts (23 tests) 21ms
  ✓ src/lib/contentNarration.test.ts (12 tests) 24ms
- ✓ src/i18n/translator.test.ts (9 tests) 13ms
- ✓ src/client/liveStats.test.ts (49 tests) 15ms
- ✓ src/lib/content.test.ts (32 tests) 34ms
- ✓ src/i18n/localizedContent.test.ts (9 tests) 12ms
- ✓ src/client/flipbookController.test.ts (17 tests) 16ms
- ✓ src/components/components.test.ts (50 tests) 26ms
- ✓ src/ssg/loadContent.test.ts (3 tests) 13ms
- ✓ src/lib/markdown.test.ts (19 tests) 14ms
- ✓ src/components/flipbook.test.ts (10 tests) 14ms
- ✓ src/components/narration.test.ts (10 tests) 15ms
- ✓ src/i18n/locales.test.ts (9 tests) 11ms
- ✓ src/lib/yaml.test.ts (11 tests) 10ms
- ✓ src/lib/narration.test.ts (18 tests) 14ms
- ✓ src/client/storage.test.ts (16 tests) 13ms
- ✓ src/repoHygiene.test.ts (3 tests) 9ms
- ✓ src/client/themeInit.test.ts (5 tests) 10ms
- ✓ src/pages/labs.test.ts (8 tests) 15ms
- ✓ src/pages/routes.test.ts (26 tests) 56ms
- ✓ src/client/flipbookPreferences.test.ts (9 tests) 9ms
+ ✓ src/lib/content.test.ts (32 tests) 42ms
+ ✓ src/pages/labs.test.ts (8 tests) 11ms
+ ✓ src/client/liveStats.test.ts (49 tests) 23ms
+ ✓ src/lib/narration.test.ts (18 tests) 13ms
+ ✓ src/components/components.test.ts (50 tests) 33ms
+ ✓ src/lib/markdown.test.ts (19 tests) 11ms
+ ✓ src/components/narration.test.ts (10 tests) 12ms
+ ✓ src/client/storage.test.ts (16 tests) 10ms
+ ✓ src/components/flipbook.test.ts (10 tests) 11ms
+ ✓ src/ssg/loadContent.test.ts (3 tests) 14ms
+ ✓ src/i18n/locales.test.ts (9 tests) 13ms
+ ✓ src/i18n/translator.test.ts (9 tests) 20ms
  ✓ src/client/theme.test.ts (7 tests) 11ms
+ ✓ src/i18n/localizedContent.test.ts (9 tests) 13ms
+ ✓ src/lib/yaml.test.ts (11 tests) 19ms
+ ✓ src/pages/routes.test.ts (26 tests) 41ms
+ ✓ src/client/themeInit.test.ts (5 tests) 11ms
  ✓ src/lib/frontmatter.test.ts (4 tests) 10ms
- ✓ src/lib/buildInfo.test.ts (5 tests) 7ms
+ ✓ src/repoHygiene.test.ts (3 tests) 8ms
  ✓ src/client/circuitBreaker.test.ts (8 tests) 8ms
- ✓ src/versionSync.test.ts (11 tests) 8ms
- ✓ src/lib/readingTime.test.ts (3 tests) 5ms
- ✓ src/lib/config.test.ts (6 tests) 5ms
- ✓ src/lib/slug.test.ts (5 tests) 4ms
+ ✓ src/lib/buildInfo.test.ts (5 tests) 7ms
+ ✓ src/client/flipbookPreferences.test.ts (9 tests) 8ms
+ ✓ src/versionSync.test.ts (11 tests) 11ms
+ ✓ src/lib/slug.test.ts (5 tests) 5ms
+ ✓ src/lib/readingTime.test.ts (3 tests) 6ms
+ ✓ src/lib/config.test.ts (6 tests) 4ms
+ ✓ src/lib/sitemap.test.ts (2 tests) 5ms
  ✓ src/client/locale.test.ts (5 tests) 4ms
- ✓ src/lib/html.test.ts (3 tests) 4ms
- ✓ src/lib/sitemap.test.ts (2 tests) 4ms
+ ✓ src/lib/html.test.ts (3 tests) 3ms
  ✓ src/lib/feed.test.ts (8 tests) 4ms
 
  Test Files  41 passed (41)
       Tests  536 passed (536)
-   Start at  13:49:20
-   Duration  945ms (import 32%, worker 27%, transform 24%, tests 17%)
+   Start at  19:15:47
+   Duration  1.05s (transform 32%, import 28%, worker 24%, tests 15%)
 
  % Coverage report from v8
 -------------------------|---------|----------|---------|---------|------------------------------------------------------
@@ -160,9 +160,9 @@ All files                |   76.25 |    73.95 |   77.29 |    76.1 |
   loadContent.ts         |     100 |      100 |     100 |     100 |                                                      
   vitePlugin.ts          |       0 |        0 |       0 |       0 | 17-200                                               
 -------------------------|---------|----------|---------|---------|------------------------------------------------------
-[13:49:21] unit tests complete
-[13:49:21] 7/9 build
-[13:49:21] building the static site (vite build + kphoto-ssg)
+[19:15:48] unit tests complete
+[19:15:48] 7/9 build
+[19:15:48] building the static site (vite build + kphoto-ssg)
 vite v8.3.5 building client environment for production...
 ✓ 20 modules transformed.
 computing gzip size...
@@ -170,14 +170,25 @@ dist/.vite/manifest.json          0.34 kB │ gzip: 0.17 kB
 dist/assets/styles-DpycwCDr.css   6.36 kB │ gzip: 1.95 kB
 dist/assets/client-B2LZ4Win.js   21.19 kB │ gzip: 7.55 kB
 
-✓ built in 89ms
+✓ built in 94ms
 kphoto-ssg: wrote 159 pages and feeds
-[13:49:22] build complete — output in dist/
-[13:49:22] 8/9 end-to-end tests (container — see ADR 0017)
-[13:49:22] running end-to-end tests in a container (podman compose run --rm e2e)
+[19:15:49] build complete — output in dist/
+[19:15:49] 8/9 end-to-end tests (container — see ADR 0017)
+[19:15:49] running end-to-end tests in a container (podman compose run --rm e2e)
 >>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
 
-[18:49:23] building the static site (vite build + kphoto-ssg)
+Trying to pull mcr.microsoft.com/playwright@sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f...
+Getting image source signatures
+Copying blob ec6213bdc8d0 done   | 
+Copying blob 6a04ac251623 done   | 
+Copying blob 7f09f8b6ee13 done   | 
+Copying blob 1838e4eb65d9 done   | 
+Copying blob 7a48b8f0e5c7 done   | 
+Copying blob cc4939249994 done   | 
+Copying blob 81918556fc04 done   | 
+Copying config a0d7b2b49f done   | 
+Writing manifest to image destination
+[00:16:39] building the static site (vite build + kphoto-ssg)
 vite v8.3.5 building client environment for production...
 ✓ 20 modules transformed.
 computing gzip size...
@@ -185,182 +196,182 @@ dist/.vite/manifest.json          0.34 kB │ gzip: 0.17 kB
 dist/assets/styles-DpycwCDr.css   6.36 kB │ gzip: 1.95 kB
 dist/assets/client-B2LZ4Win.js   21.19 kB │ gzip: 7.55 kB
 
-✓ built in 64ms
+✓ built in 136ms
 kphoto-ssg: wrote 159 pages and feeds
-[18:49:24] build complete — output in dist/
-[18:49:24] using browsers preinstalled at /ms-playwright
-[18:49:24] running end-to-end tests (playwright)
+[00:16:41] build complete — output in dist/
+[00:16:41] using browsers preinstalled at /ms-playwright
+[00:16:41] running end-to-end tests (playwright)
 
 Running 160 tests using 8 workers
 
-  ✓    1 [chromium] › tests/e2e/i18n.spec.ts:49:3 › languages › the localized home page links its own sections (1.4s)
-  ✓    2 [chromium] › tests/e2e/labs.spec.ts:14:3 › labs › the index links to the flapping airplane lab (1.2s)
-  ✓    3 [chromium] › tests/e2e/i18n.spec.ts:44:3 › languages › a reader already in their language sees no suggestion (832ms)
-  ✓    4 [chromium] › tests/e2e/i18n.spec.ts:16:3 › languages › the document declares its language and its alternates (873ms)
-  ✓    5 [chromium] › tests/e2e/i18n.spec.ts:25:3 › languages › switching language changes the page language and is remembered (1.9s)
-  ✓    6 [chromium] › tests/e2e/labs.spec.ts:24:3 › labs › carries the image disclaimer (1.3s)
-  ✓    7 [chromium] › tests/e2e/i18n.spec.ts:78:3 › build provenance › the footer links the commit the site was built from (871ms)
-  ✓    8 [chromium] › tests/e2e/i18n.spec.ts:68:3 › languages from the browser › suggests the reader language when the page exists in it (777ms)
+  ✓    1 [chromium] › tests/e2e/i18n.spec.ts:78:3 › build provenance › the footer links the commit the site was built from (837ms)
+  ✓    2 [chromium] › tests/e2e/i18n.spec.ts:25:3 › languages › switching language changes the page language and is remembered (2.0s)
+  ✓    3 [chromium] › tests/e2e/i18n.spec.ts:49:3 › languages › the localized home page links its own sections (1.3s)
+  ✓    4 [chromium] › tests/e2e/i18n.spec.ts:44:3 › languages › a reader already in their language sees no suggestion (728ms)
+  ✓    5 [chromium] › tests/e2e/labs.spec.ts:14:3 › labs › the index links to the flapping airplane lab (1.0s)
+  ✓    6 [chromium] › tests/e2e/i18n.spec.ts:16:3 › languages › the document declares its language and its alternates (815ms)
+  ✓    7 [chromium] › tests/e2e/i18n.spec.ts:68:3 › languages from the browser › suggests the reader language when the page exists in it (869ms)
+  ✓    8 [chromium] › tests/e2e/labs.spec.ts:24:3 › labs › carries the image disclaimer (1.4s)
   ✓    9 [chromium] › tests/e2e/labs.spec.ts:31:3 › the flipbook › loads every drawing from this origin (1.1s)
-  ✓   10 [chromium] › tests/e2e/labs.spec.ts:45:3 › the flipbook › starts paused under reduced motion with every control enabled (987ms)
-  ✓   11 [chromium] › tests/e2e/labs.spec.ts:53:3 › the flipbook › steps one drawing at a time and names the file (1.4s)
-  ✓   12 [chromium] › tests/e2e/labs.spec.ts:66:3 › the flipbook › plays, pauses and remembers the choice (1.1s)
-  ✓   13 [chromium] › tests/e2e/labs.spec.ts:77:3 › the flipbook › switches drawing technique and keeps it across a reload (2.0s)
+  ✓   10 [chromium] › tests/e2e/labs.spec.ts:53:3 › the flipbook › steps one drawing at a time and names the file (1.5s)
+  ✓   11 [chromium] › tests/e2e/labs.spec.ts:45:3 › the flipbook › starts paused under reduced motion with every control enabled (1.0s)
+  ✓   12 [chromium] › tests/e2e/labs.spec.ts:66:3 › the flipbook › plays, pauses and remembers the choice (1.3s)
+  ✓   13 [chromium] › tests/e2e/labs.spec.ts:77:3 › the flipbook › switches drawing technique and keeps it across a reload (2.3s)
   ✓   14 [chromium] › tests/e2e/labs.spec.ts:98:3 › the flipbook › the CSS technique holds the chosen drawing while paused (1.1s)
-  ✓   15 [chromium] › tests/e2e/labs.spec.ts:109:3 › the flipbook › the climb slider tilts the airplane like the original (783ms)
-  ✓   16 [chromium] › tests/e2e/labs.spec.ts:115:3 › the flipbook › speaks Spanish under /es/ (714ms)
+  ✓   15 [chromium] › tests/e2e/labs.spec.ts:109:3 › the flipbook › the climb slider tilts the airplane like the original (934ms)
+  ✓   16 [chromium] › tests/e2e/labs.spec.ts:115:3 › the flipbook › speaks Spanish under /es/ (719ms)
   -   17 [chromium] › tests/e2e/live.spec.ts:40:3 › live statistics switched off › no live markup and no requests anywhere
-  ✓   18 [chromium] › tests/e2e/live.spec.ts:54:3 › live statistics switched on › the footer shows live numbers from a read-only summary (405ms)
-  ✓   19 [chromium] › tests/e2e/live.spec.ts:72:3 › live statistics switched on › automated browsers never count a visit (519ms)
-  ✓   20 [chromium] › tests/e2e/live.spec.ts:82:3 › live statistics switched on › an unreachable backend leaves the page exactly as it was (438ms)
-  ✓   21 [chromium] › tests/e2e/live.spec.ts:89:3 › live statistics switched on › a permanent failure trips the breaker for every later page (1.3s)
-  ✓   22 [chromium] › tests/e2e/live.spec.ts:104:3 › live statistics switched on › /live/ renders totals and the busiest pages, dropping unsafe paths (546ms)
-  ✓   23 [chromium] › tests/e2e/live.spec.ts:120:3 › live statistics switched on › /live/ says so, calmly, when the backend is gone (491ms)
-  ✓   24 [chromium] › tests/e2e/live.spec.ts:130:3 › live statistics switched on › /live/ shows an empty state for a quiet day (465ms)
-  ✓   25 [chromium] › tests/e2e/narration.spec.ts:17:3 › narration › a narrated post offers a native player that streams its recording inline (816ms)
-  ✓   26 [chromium] › tests/e2e/narration.spec.ts:42:3 › narration › a post without the badge has no player (577ms)
-  ✓   27 [chromium] › tests/e2e/narration.spec.ts:48:3 › narration › the listening speed is remembered across visits (973ms)
-  ✓   28 [chromium] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (445ms)
-  ✓   29 [chromium] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (719ms)
-  ✓   30 [chromium] › tests/e2e/site.spec.ts:31:3 › header navigation › marks the current section with aria-current (447ms)
-  ✓   31 [chromium] › tests/e2e/site.spec.ts:37:3 › header navigation › reaches every section from the header (1.8s)
-  ✓   32 [chromium] › tests/e2e/site.spec.ts:56:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (401ms)
-  ✓   33 [chromium] › tests/e2e/site.spec.ts:66:3 › series › series page lists episodes in ascending order (454ms)
-  ✓   34 [chromium] › tests/e2e/site.spec.ts:80:3 › series › a middle episode links to its neighbours (455ms)
-  ✓   35 [chromium] › tests/e2e/site.spec.ts:90:3 › theming › the picker applies a theme and it survives a reload (1.0s)
-  ✓   36 [chromium] › tests/e2e/site.spec.ts:104:3 › theming › system follows the OS colour scheme (587ms)
-  ✓   37 [chromium] › tests/e2e/site.spec.ts:120:3 › resilience and accessibility › the skip link jumps to the main content (689ms)
-  ✓   38 [chromium] › tests/e2e/site.spec.ts:114:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (512ms)
-  ✓   39 [chromium] › tests/e2e/site.spec.ts:130:3 › resilience and accessibility › every page advertises the Atom feed (348ms)
-  ✓   40 [chromium] › tests/e2e/site.spec.ts:139:3 › own origin only › pages load nothing from any other origin (988ms)
-  ✓   41 [firefox] › tests/e2e/i18n.spec.ts:16:3 › languages › the document declares its language and its alternates (1.0s)
-  ✓   42 [firefox] › tests/e2e/i18n.spec.ts:25:3 › languages › switching language changes the page language and is remembered (1.3s)
-  ✓   43 [firefox] › tests/e2e/i18n.spec.ts:44:3 › languages › a reader already in their language sees no suggestion (1.3s)
-  ✓   44 [firefox] › tests/e2e/i18n.spec.ts:49:3 › languages › the localized home page links its own sections (2.4s)
-  ✓   45 [firefox] › tests/e2e/i18n.spec.ts:68:3 › languages from the browser › suggests the reader language when the page exists in it (2.1s)
-  ✓   46 [firefox] › tests/e2e/i18n.spec.ts:78:3 › build provenance › the footer links the commit the site was built from (1.8s)
-  ✓   47 [firefox] › tests/e2e/labs.spec.ts:14:3 › labs › the index links to the flapping airplane lab (1.5s)
-  ✓   48 [firefox] › tests/e2e/labs.spec.ts:24:3 › labs › carries the image disclaimer (2.1s)
-  ✓   49 [firefox] › tests/e2e/labs.spec.ts:31:3 › the flipbook › loads every drawing from this origin (966ms)
-  ✓   50 [firefox] › tests/e2e/labs.spec.ts:45:3 › the flipbook › starts paused under reduced motion with every control enabled (704ms)
-  ✓   51 [firefox] › tests/e2e/labs.spec.ts:53:3 › the flipbook › steps one drawing at a time and names the file (1.5s)
+  ✓   18 [chromium] › tests/e2e/live.spec.ts:54:3 › live statistics switched on › the footer shows live numbers from a read-only summary (439ms)
+  ✓   19 [chromium] › tests/e2e/live.spec.ts:72:3 › live statistics switched on › automated browsers never count a visit (401ms)
+  ✓   20 [chromium] › tests/e2e/live.spec.ts:82:3 › live statistics switched on › an unreachable backend leaves the page exactly as it was (389ms)
+  ✓   21 [chromium] › tests/e2e/live.spec.ts:89:3 › live statistics switched on › a permanent failure trips the breaker for every later page (1.2s)
+  ✓   22 [chromium] › tests/e2e/live.spec.ts:104:3 › live statistics switched on › /live/ renders totals and the busiest pages, dropping unsafe paths (539ms)
+  ✓   23 [chromium] › tests/e2e/live.spec.ts:120:3 › live statistics switched on › /live/ says so, calmly, when the backend is gone (440ms)
+  ✓   24 [chromium] › tests/e2e/live.spec.ts:130:3 › live statistics switched on › /live/ shows an empty state for a quiet day (497ms)
+  ✓   25 [chromium] › tests/e2e/narration.spec.ts:17:3 › narration › a narrated post offers a native player that streams its recording inline (1.0s)
+  ✓   26 [chromium] › tests/e2e/narration.spec.ts:42:3 › narration › a post without the badge has no player (794ms)
+  ✓   27 [chromium] › tests/e2e/narration.spec.ts:48:3 › narration › the listening speed is remembered across visits (1.1s)
+  ✓   28 [chromium] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (565ms)
+  ✓   29 [chromium] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (729ms)
+  ✓   30 [chromium] › tests/e2e/site.spec.ts:31:3 › header navigation › marks the current section with aria-current (413ms)
+  ✓   31 [chromium] › tests/e2e/site.spec.ts:37:3 › header navigation › reaches every section from the header (1.7s)
+  ✓   32 [chromium] › tests/e2e/site.spec.ts:56:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (487ms)
+  ✓   33 [chromium] › tests/e2e/site.spec.ts:66:3 › series › series page lists episodes in ascending order (470ms)
+  ✓   34 [chromium] › tests/e2e/site.spec.ts:80:3 › series › a middle episode links to its neighbours (516ms)
+  ✓   35 [chromium] › tests/e2e/site.spec.ts:104:3 › theming › system follows the OS colour scheme (669ms)
+  ✓   36 [chromium] › tests/e2e/site.spec.ts:90:3 › theming › the picker applies a theme and it survives a reload (877ms)
+  ✓   37 [chromium] › tests/e2e/site.spec.ts:114:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (576ms)
+  ✓   38 [chromium] › tests/e2e/site.spec.ts:120:3 › resilience and accessibility › the skip link jumps to the main content (758ms)
+  ✓   39 [chromium] › tests/e2e/site.spec.ts:130:3 › resilience and accessibility › every page advertises the Atom feed (422ms)
+  ✓   40 [chromium] › tests/e2e/site.spec.ts:139:3 › own origin only › pages load nothing from any other origin (995ms)
+  ✓   41 [firefox] › tests/e2e/i18n.spec.ts:16:3 › languages › the document declares its language and its alternates (2.1s)
+  ✓   42 [firefox] › tests/e2e/i18n.spec.ts:44:3 › languages › a reader already in their language sees no suggestion (1.1s)
+  ✓   43 [firefox] › tests/e2e/i18n.spec.ts:25:3 › languages › switching language changes the page language and is remembered (2.8s)
+  ✓   44 [firefox] › tests/e2e/i18n.spec.ts:49:3 › languages › the localized home page links its own sections (1.8s)
+  ✓   45 [firefox] › tests/e2e/i18n.spec.ts:68:3 › languages from the browser › suggests the reader language when the page exists in it (1.1s)
+  ✓   46 [firefox] › tests/e2e/i18n.spec.ts:78:3 › build provenance › the footer links the commit the site was built from (2.4s)
+  ✓   47 [firefox] › tests/e2e/labs.spec.ts:14:3 › labs › the index links to the flapping airplane lab (2.8s)
+  ✓   48 [firefox] › tests/e2e/labs.spec.ts:24:3 › labs › carries the image disclaimer (1.1s)
+  ✓   49 [firefox] › tests/e2e/labs.spec.ts:31:3 › the flipbook › loads every drawing from this origin (825ms)
+  ✓   50 [firefox] › tests/e2e/labs.spec.ts:45:3 › the flipbook › starts paused under reduced motion with every control enabled (834ms)
+  ✓   51 [firefox] › tests/e2e/labs.spec.ts:53:3 › the flipbook › steps one drawing at a time and names the file (1.4s)
   ✓   52 [firefox] › tests/e2e/labs.spec.ts:66:3 › the flipbook › plays, pauses and remembers the choice (1.3s)
-  ✓   53 [firefox] › tests/e2e/labs.spec.ts:77:3 › the flipbook › switches drawing technique and keeps it across a reload (2.0s)
+  ✓   53 [firefox] › tests/e2e/labs.spec.ts:77:3 › the flipbook › switches drawing technique and keeps it across a reload (2.2s)
   ✓   54 [firefox] › tests/e2e/labs.spec.ts:98:3 › the flipbook › the CSS technique holds the chosen drawing while paused (1.3s)
-  ✓   55 [firefox] › tests/e2e/labs.spec.ts:109:3 › the flipbook › the climb slider tilts the airplane like the original (993ms)
-  ✓   56 [firefox] › tests/e2e/labs.spec.ts:115:3 › the flipbook › speaks Spanish under /es/ (847ms)
+  ✓   55 [firefox] › tests/e2e/labs.spec.ts:109:3 › the flipbook › the climb slider tilts the airplane like the original (984ms)
+  ✓   56 [firefox] › tests/e2e/labs.spec.ts:115:3 › the flipbook › speaks Spanish under /es/ (1.1s)
   -   57 [firefox] › tests/e2e/live.spec.ts:40:3 › live statistics switched off › no live markup and no requests anywhere
-  ✓   58 [firefox] › tests/e2e/live.spec.ts:72:3 › live statistics switched on › automated browsers never count a visit (898ms)
-  ✓   59 [firefox] › tests/e2e/live.spec.ts:54:3 › live statistics switched on › the footer shows live numbers from a read-only summary (670ms)
-  ✓   60 [firefox] › tests/e2e/live.spec.ts:82:3 › live statistics switched on › an unreachable backend leaves the page exactly as it was (642ms)
+  ✓   58 [firefox] › tests/e2e/live.spec.ts:54:3 › live statistics switched on › the footer shows live numbers from a read-only summary (633ms)
+  ✓   59 [firefox] › tests/e2e/live.spec.ts:72:3 › live statistics switched on › automated browsers never count a visit (635ms)
+  ✓   60 [firefox] › tests/e2e/live.spec.ts:82:3 › live statistics switched on › an unreachable backend leaves the page exactly as it was (621ms)
   ✓   61 [firefox] › tests/e2e/live.spec.ts:89:3 › live statistics switched on › a permanent failure trips the breaker for every later page (1.2s)
-  ✓   62 [firefox] › tests/e2e/live.spec.ts:104:3 › live statistics switched on › /live/ renders totals and the busiest pages, dropping unsafe paths (547ms)
-  ✓   63 [firefox] › tests/e2e/live.spec.ts:120:3 › live statistics switched on › /live/ says so, calmly, when the backend is gone (485ms)
-  ✓   64 [firefox] › tests/e2e/live.spec.ts:130:3 › live statistics switched on › /live/ shows an empty state for a quiet day (447ms)
-  ✓   65 [firefox] › tests/e2e/narration.spec.ts:17:3 › narration › a narrated post offers a native player that streams its recording inline (1.1s)
-  ✓   66 [firefox] › tests/e2e/narration.spec.ts:42:3 › narration › a post without the badge has no player (667ms)
-  ✓   67 [firefox] › tests/e2e/narration.spec.ts:48:3 › narration › the listening speed is remembered across visits (953ms)
-  ✓   68 [firefox] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (824ms)
-  ✓   69 [firefox] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (653ms)
-  ✓   70 [firefox] › tests/e2e/site.spec.ts:31:3 › header navigation › marks the current section with aria-current (492ms)
-  ✓   71 [firefox] › tests/e2e/site.spec.ts:37:3 › header navigation › reaches every section from the header (1.8s)
-  ✓   72 [firefox] › tests/e2e/site.spec.ts:56:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (507ms)
-  ✓   73 [firefox] › tests/e2e/site.spec.ts:66:3 › series › series page lists episodes in ascending order (469ms)
-  ✓   74 [firefox] › tests/e2e/site.spec.ts:80:3 › series › a middle episode links to its neighbours (495ms)
-  ✓   75 [firefox] › tests/e2e/site.spec.ts:90:3 › theming › the picker applies a theme and it survives a reload (769ms)
-  ✓   76 [firefox] › tests/e2e/site.spec.ts:104:3 › theming › system follows the OS colour scheme (674ms)
-  ✓   77 [firefox] › tests/e2e/site.spec.ts:120:3 › resilience and accessibility › the skip link jumps to the main content (648ms)
-  ✓   78 [firefox] › tests/e2e/site.spec.ts:114:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (507ms)
-  ✓   79 [firefox] › tests/e2e/site.spec.ts:130:3 › resilience and accessibility › every page advertises the Atom feed (542ms)
+  ✓   62 [firefox] › tests/e2e/live.spec.ts:104:3 › live statistics switched on › /live/ renders totals and the busiest pages, dropping unsafe paths (584ms)
+  ✓   63 [firefox] › tests/e2e/live.spec.ts:120:3 › live statistics switched on › /live/ says so, calmly, when the backend is gone (550ms)
+  ✓   64 [firefox] › tests/e2e/live.spec.ts:130:3 › live statistics switched on › /live/ shows an empty state for a quiet day (558ms)
+  ✓   65 [firefox] › tests/e2e/narration.spec.ts:17:3 › narration › a narrated post offers a native player that streams its recording inline (970ms)
+  ✓   66 [firefox] › tests/e2e/narration.spec.ts:42:3 › narration › a post without the badge has no player (717ms)
+  ✓   67 [firefox] › tests/e2e/narration.spec.ts:48:3 › narration › the listening speed is remembered across visits (1.1s)
+  ✓   68 [firefox] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (599ms)
+  ✓   69 [firefox] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (801ms)
+  ✓   70 [firefox] › tests/e2e/site.spec.ts:31:3 › header navigation › marks the current section with aria-current (629ms)
+  ✓   71 [firefox] › tests/e2e/site.spec.ts:37:3 › header navigation › reaches every section from the header (2.0s)
+  ✓   72 [firefox] › tests/e2e/site.spec.ts:56:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (618ms)
+  ✓   73 [firefox] › tests/e2e/site.spec.ts:66:3 › series › series page lists episodes in ascending order (627ms)
+  ✓   74 [firefox] › tests/e2e/site.spec.ts:80:3 › series › a middle episode links to its neighbours (614ms)
+  ✓   75 [firefox] › tests/e2e/site.spec.ts:90:3 › theming › the picker applies a theme and it survives a reload (749ms)
+  ✓   76 [firefox] › tests/e2e/site.spec.ts:104:3 › theming › system follows the OS colour scheme (718ms)
+  ✓   77 [firefox] › tests/e2e/site.spec.ts:114:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (557ms)
+  ✓   78 [firefox] › tests/e2e/site.spec.ts:120:3 › resilience and accessibility › the skip link jumps to the main content (623ms)
+  ✓   79 [firefox] › tests/e2e/site.spec.ts:130:3 › resilience and accessibility › every page advertises the Atom feed (561ms)
   ✓   80 [firefox] › tests/e2e/site.spec.ts:139:3 › own origin only › pages load nothing from any other origin (1.0s)
-  ✓   81 [webkit] › tests/e2e/i18n.spec.ts:16:3 › languages › the document declares its language and its alternates (676ms)
-  ✓   82 [webkit] › tests/e2e/i18n.spec.ts:25:3 › languages › switching language changes the page language and is remembered (1.1s)
-  ✓   83 [webkit] › tests/e2e/i18n.spec.ts:44:3 › languages › a reader already in their language sees no suggestion (659ms)
-  ✓   84 [webkit] › tests/e2e/i18n.spec.ts:68:3 › languages from the browser › suggests the reader language when the page exists in it (692ms)
-  ✓   85 [webkit] › tests/e2e/i18n.spec.ts:49:3 › languages › the localized home page links its own sections (913ms)
-  ✓   86 [webkit] › tests/e2e/i18n.spec.ts:78:3 › build provenance › the footer links the commit the site was built from (628ms)
-  ✓   87 [webkit] › tests/e2e/labs.spec.ts:14:3 › labs › the index links to the flapping airplane lab (886ms)
-  ✓   88 [webkit] › tests/e2e/labs.spec.ts:24:3 › labs › carries the image disclaimer (1.0s)
-  ✓   89 [webkit] › tests/e2e/labs.spec.ts:31:3 › the flipbook › loads every drawing from this origin (1.1s)
-  ✓   90 [webkit] › tests/e2e/labs.spec.ts:45:3 › the flipbook › starts paused under reduced motion with every control enabled (1.4s)
-  ✓   91 [webkit] › tests/e2e/labs.spec.ts:53:3 › the flipbook › steps one drawing at a time and names the file (3.3s)
-  ✓   92 [webkit] › tests/e2e/labs.spec.ts:66:3 › the flipbook › plays, pauses and remembers the choice (2.6s)
-  ✓   93 [webkit] › tests/e2e/labs.spec.ts:77:3 › the flipbook › switches drawing technique and keeps it across a reload (3.4s)
-  ✓   94 [webkit] › tests/e2e/labs.spec.ts:98:3 › the flipbook › the CSS technique holds the chosen drawing while paused (1.8s)
-  ✓   95 [webkit] › tests/e2e/labs.spec.ts:109:3 › the flipbook › the climb slider tilts the airplane like the original (1.2s)
+  ✓   81 [webkit] › tests/e2e/i18n.spec.ts:16:3 › languages › the document declares its language and its alternates (910ms)
+  ✓   82 [webkit] › tests/e2e/i18n.spec.ts:44:3 › languages › a reader already in their language sees no suggestion (884ms)
+  ✓   83 [webkit] › tests/e2e/i18n.spec.ts:25:3 › languages › switching language changes the page language and is remembered (1.4s)
+  ✓   84 [webkit] › tests/e2e/i18n.spec.ts:68:3 › languages from the browser › suggests the reader language when the page exists in it (884ms)
+  ✓   85 [webkit] › tests/e2e/i18n.spec.ts:49:3 › languages › the localized home page links its own sections (1.2s)
+  ✓   86 [webkit] › tests/e2e/i18n.spec.ts:78:3 › build provenance › the footer links the commit the site was built from (858ms)
+  ✓   87 [webkit] › tests/e2e/labs.spec.ts:14:3 › labs › the index links to the flapping airplane lab (933ms)
+  ✓   88 [webkit] › tests/e2e/labs.spec.ts:24:3 › labs › carries the image disclaimer (1.1s)
+  ✓   89 [webkit] › tests/e2e/labs.spec.ts:31:3 › the flipbook › loads every drawing from this origin (1.4s)
+  ✓   90 [webkit] › tests/e2e/labs.spec.ts:45:3 › the flipbook › starts paused under reduced motion with every control enabled (1.6s)
+  ✓   91 [webkit] › tests/e2e/labs.spec.ts:53:3 › the flipbook › steps one drawing at a time and names the file (3.8s)
+  ✓   92 [webkit] › tests/e2e/labs.spec.ts:66:3 › the flipbook › plays, pauses and remembers the choice (3.1s)
+  ✓   93 [webkit] › tests/e2e/labs.spec.ts:77:3 › the flipbook › switches drawing technique and keeps it across a reload (3.7s)
+  ✓   94 [webkit] › tests/e2e/labs.spec.ts:98:3 › the flipbook › the CSS technique holds the chosen drawing while paused (1.9s)
+  ✓   95 [webkit] › tests/e2e/labs.spec.ts:109:3 › the flipbook › the climb slider tilts the airplane like the original (1.3s)
   ✓   96 [webkit] › tests/e2e/labs.spec.ts:115:3 › the flipbook › speaks Spanish under /es/ (1.2s)
   -   97 [webkit] › tests/e2e/live.spec.ts:40:3 › live statistics switched off › no live markup and no requests anywhere
-  ✓   98 [webkit] › tests/e2e/live.spec.ts:54:3 › live statistics switched on › the footer shows live numbers from a read-only summary (744ms)
-  ✓   99 [webkit] › tests/e2e/live.spec.ts:72:3 › live statistics switched on › automated browsers never count a visit (940ms)
-  ✓  100 [webkit] › tests/e2e/live.spec.ts:82:3 › live statistics switched on › an unreachable backend leaves the page exactly as it was (780ms)
-  ✓  101 [webkit] › tests/e2e/live.spec.ts:89:3 › live statistics switched on › a permanent failure trips the breaker for every later page (1.2s)
-  ✓  102 [webkit] › tests/e2e/live.spec.ts:104:3 › live statistics switched on › /live/ renders totals and the busiest pages, dropping unsafe paths (780ms)
-  ✓  103 [webkit] › tests/e2e/live.spec.ts:120:3 › live statistics switched on › /live/ says so, calmly, when the backend is gone (687ms)
-  ✓  104 [webkit] › tests/e2e/live.spec.ts:130:3 › live statistics switched on › /live/ shows an empty state for a quiet day (583ms)
+  ✓   98 [webkit] › tests/e2e/live.spec.ts:54:3 › live statistics switched on › the footer shows live numbers from a read-only summary (714ms)
+  ✓   99 [webkit] › tests/e2e/live.spec.ts:72:3 › live statistics switched on › automated browsers never count a visit (620ms)
+  ✓  100 [webkit] › tests/e2e/live.spec.ts:82:3 › live statistics switched on › an unreachable backend leaves the page exactly as it was (597ms)
+  ✓  101 [webkit] › tests/e2e/live.spec.ts:89:3 › live statistics switched on › a permanent failure trips the breaker for every later page (1.1s)
+  ✓  102 [webkit] › tests/e2e/live.spec.ts:104:3 › live statistics switched on › /live/ renders totals and the busiest pages, dropping unsafe paths (581ms)
+  ✓  103 [webkit] › tests/e2e/live.spec.ts:120:3 › live statistics switched on › /live/ says so, calmly, when the backend is gone (522ms)
+  ✓  104 [webkit] › tests/e2e/live.spec.ts:130:3 › live statistics switched on › /live/ shows an empty state for a quiet day (568ms)
   ✓  105 [webkit] › tests/e2e/narration.spec.ts:17:3 › narration › a narrated post offers a native player that streams its recording inline (1.3s)
-  ✓  106 [webkit] › tests/e2e/narration.spec.ts:42:3 › narration › a post without the badge has no player (757ms)
+  ✓  106 [webkit] › tests/e2e/narration.spec.ts:42:3 › narration › a post without the badge has no player (704ms)
   ✓  107 [webkit] › tests/e2e/narration.spec.ts:48:3 › narration › the listening speed is remembered across visits (1.3s)
-  ✓  108 [webkit] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (542ms)
-  ✓  109 [webkit] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (841ms)
-  ✓  110 [webkit] › tests/e2e/site.spec.ts:31:3 › header navigation › marks the current section with aria-current (519ms)
+  ✓  108 [webkit] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (563ms)
+  ✓  109 [webkit] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (866ms)
+  ✓  110 [webkit] › tests/e2e/site.spec.ts:31:3 › header navigation › marks the current section with aria-current (536ms)
   ✓  111 [webkit] › tests/e2e/site.spec.ts:37:3 › header navigation › reaches every section from the header (1.7s)
-  ✓  112 [webkit] › tests/e2e/site.spec.ts:56:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (578ms)
-  ✓  113 [webkit] › tests/e2e/site.spec.ts:66:3 › series › series page lists episodes in ascending order (516ms)
-  ✓  114 [webkit] › tests/e2e/site.spec.ts:80:3 › series › a middle episode links to its neighbours (621ms)
-  ✓  115 [webkit] › tests/e2e/site.spec.ts:90:3 › theming › the picker applies a theme and it survives a reload (683ms)
-  ✓  116 [webkit] › tests/e2e/site.spec.ts:104:3 › theming › system follows the OS colour scheme (642ms)
-  ✓  117 [webkit] › tests/e2e/site.spec.ts:114:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (490ms)
-  ✓  118 [webkit] › tests/e2e/site.spec.ts:120:3 › resilience and accessibility › the skip link jumps to the main content (535ms)
-  ✓  119 [webkit] › tests/e2e/site.spec.ts:130:3 › resilience and accessibility › every page advertises the Atom feed (505ms)
+  ✓  112 [webkit] › tests/e2e/site.spec.ts:56:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (554ms)
+  ✓  113 [webkit] › tests/e2e/site.spec.ts:80:3 › series › a middle episode links to its neighbours (635ms)
+  ✓  114 [webkit] › tests/e2e/site.spec.ts:66:3 › series › series page lists episodes in ascending order (566ms)
+  ✓  115 [webkit] › tests/e2e/site.spec.ts:90:3 › theming › the picker applies a theme and it survives a reload (721ms)
+  ✓  116 [webkit] › tests/e2e/site.spec.ts:104:3 › theming › system follows the OS colour scheme (631ms)
+  ✓  117 [webkit] › tests/e2e/site.spec.ts:114:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (479ms)
+  ✓  118 [webkit] › tests/e2e/site.spec.ts:120:3 › resilience and accessibility › the skip link jumps to the main content (521ms)
+  ✓  119 [webkit] › tests/e2e/site.spec.ts:130:3 › resilience and accessibility › every page advertises the Atom feed (475ms)
   ✓  120 [webkit] › tests/e2e/site.spec.ts:139:3 › own origin only › pages load nothing from any other origin (1.2s)
-  ✓  121 [mobile-chrome] › tests/e2e/i18n.spec.ts:25:3 › languages › switching language changes the page language and is remembered (1.4s)
-  ✓  122 [mobile-chrome] › tests/e2e/i18n.spec.ts:16:3 › languages › the document declares its language and its alternates (821ms)
-  ✓  123 [mobile-chrome] › tests/e2e/i18n.spec.ts:44:3 › languages › a reader already in their language sees no suggestion (563ms)
-  ✓  124 [mobile-chrome] › tests/e2e/i18n.spec.ts:49:3 › languages › the localized home page links its own sections (1.0s)
-  ✓  125 [mobile-chrome] › tests/e2e/i18n.spec.ts:68:3 › languages from the browser › suggests the reader language when the page exists in it (557ms)
-  ✓  126 [mobile-chrome] › tests/e2e/i18n.spec.ts:78:3 › build provenance › the footer links the commit the site was built from (633ms)
-  ✓  127 [mobile-chrome] › tests/e2e/labs.spec.ts:14:3 › labs › the index links to the flapping airplane lab (905ms)
-  ✓  128 [mobile-chrome] › tests/e2e/labs.spec.ts:31:3 › the flipbook › loads every drawing from this origin (926ms)
-  ✓  129 [mobile-chrome] › tests/e2e/labs.spec.ts:45:3 › the flipbook › starts paused under reduced motion with every control enabled (935ms)
-  ✓  130 [mobile-chrome] › tests/e2e/labs.spec.ts:53:3 › the flipbook › steps one drawing at a time and names the file (2.1s)
-  ✓  131 [mobile-chrome] › tests/e2e/labs.spec.ts:66:3 › the flipbook › plays, pauses and remembers the choice (2.1s)
-  ✓  132 [mobile-chrome] › tests/e2e/labs.spec.ts:24:3 › labs › carries the image disclaimer (809ms)
-  ✓  133 [mobile-chrome] › tests/e2e/labs.spec.ts:77:3 › the flipbook › switches drawing technique and keeps it across a reload (2.7s)
-  ✓  134 [mobile-chrome] › tests/e2e/labs.spec.ts:98:3 › the flipbook › the CSS technique holds the chosen drawing while paused (1.9s)
-  ✓  135 [mobile-chrome] › tests/e2e/labs.spec.ts:109:3 › the flipbook › the climb slider tilts the airplane like the original (674ms)
-  ✓  136 [mobile-chrome] › tests/e2e/labs.spec.ts:115:3 › the flipbook › speaks Spanish under /es/ (635ms)
+  ✓  121 [mobile-chrome] › tests/e2e/i18n.spec.ts:16:3 › languages › the document declares its language and its alternates (622ms)
+  ✓  122 [mobile-chrome] › tests/e2e/i18n.spec.ts:44:3 › languages › a reader already in their language sees no suggestion (613ms)
+  ✓  123 [mobile-chrome] › tests/e2e/i18n.spec.ts:25:3 › languages › switching language changes the page language and is remembered (1.6s)
+  ✓  124 [mobile-chrome] › tests/e2e/i18n.spec.ts:49:3 › languages › the localized home page links its own sections (1.1s)
+  ✓  125 [mobile-chrome] › tests/e2e/i18n.spec.ts:68:3 › languages from the browser › suggests the reader language when the page exists in it (646ms)
+  ✓  126 [mobile-chrome] › tests/e2e/i18n.spec.ts:78:3 › build provenance › the footer links the commit the site was built from (613ms)
+  ✓  127 [mobile-chrome] › tests/e2e/labs.spec.ts:14:3 › labs › the index links to the flapping airplane lab (947ms)
+  ✓  128 [mobile-chrome] › tests/e2e/labs.spec.ts:31:3 › the flipbook › loads every drawing from this origin (921ms)
+  ✓  129 [mobile-chrome] › tests/e2e/labs.spec.ts:45:3 › the flipbook › starts paused under reduced motion with every control enabled (901ms)
+  ✓  130 [mobile-chrome] › tests/e2e/labs.spec.ts:66:3 › the flipbook › plays, pauses and remembers the choice (2.2s)
+  ✓  131 [mobile-chrome] › tests/e2e/labs.spec.ts:53:3 › the flipbook › steps one drawing at a time and names the file (2.2s)
+  ✓  132 [mobile-chrome] › tests/e2e/labs.spec.ts:77:3 › the flipbook › switches drawing technique and keeps it across a reload (2.9s)
+  ✓  133 [mobile-chrome] › tests/e2e/labs.spec.ts:24:3 › labs › carries the image disclaimer (582ms)
+  ✓  134 [mobile-chrome] › tests/e2e/labs.spec.ts:98:3 › the flipbook › the CSS technique holds the chosen drawing while paused (1.8s)
+  ✓  135 [mobile-chrome] › tests/e2e/labs.spec.ts:109:3 › the flipbook › the climb slider tilts the airplane like the original (679ms)
+  ✓  136 [mobile-chrome] › tests/e2e/labs.spec.ts:115:3 › the flipbook › speaks Spanish under /es/ (672ms)
   -  137 [mobile-chrome] › tests/e2e/live.spec.ts:40:3 › live statistics switched off › no live markup and no requests anywhere
-  ✓  138 [mobile-chrome] › tests/e2e/live.spec.ts:54:3 › live statistics switched on › the footer shows live numbers from a read-only summary (389ms)
-  ✓  139 [mobile-chrome] › tests/e2e/live.spec.ts:72:3 › live statistics switched on › automated browsers never count a visit (220ms)
-  ✓  140 [mobile-chrome] › tests/e2e/live.spec.ts:82:3 › live statistics switched on › an unreachable backend leaves the page exactly as it was (216ms)
-  ✓  141 [mobile-chrome] › tests/e2e/live.spec.ts:89:3 › live statistics switched on › a permanent failure trips the breaker for every later page (811ms)
-  ✓  142 [mobile-chrome] › tests/e2e/live.spec.ts:104:3 › live statistics switched on › /live/ renders totals and the busiest pages, dropping unsafe paths (271ms)
+  ✓  138 [mobile-chrome] › tests/e2e/live.spec.ts:54:3 › live statistics switched on › the footer shows live numbers from a read-only summary (430ms)
+  ✓  139 [mobile-chrome] › tests/e2e/live.spec.ts:72:3 › live statistics switched on › automated browsers never count a visit (278ms)
+  ✓  140 [mobile-chrome] › tests/e2e/live.spec.ts:82:3 › live statistics switched on › an unreachable backend leaves the page exactly as it was (267ms)
+  ✓  141 [mobile-chrome] › tests/e2e/live.spec.ts:89:3 › live statistics switched on › a permanent failure trips the breaker for every later page (861ms)
+  ✓  142 [mobile-chrome] › tests/e2e/live.spec.ts:104:3 › live statistics switched on › /live/ renders totals and the busiest pages, dropping unsafe paths (339ms)
   ✓  143 [mobile-chrome] › tests/e2e/live.spec.ts:120:3 › live statistics switched on › /live/ says so, calmly, when the backend is gone (240ms)
-  ✓  144 [mobile-chrome] › tests/e2e/live.spec.ts:130:3 › live statistics switched on › /live/ shows an empty state for a quiet day (217ms)
-  ✓  145 [mobile-chrome] › tests/e2e/narration.spec.ts:17:3 › narration › a narrated post offers a native player that streams its recording inline (481ms)
-  ✓  146 [mobile-chrome] › tests/e2e/narration.spec.ts:42:3 › narration › a post without the badge has no player (352ms)
-  ✓  147 [mobile-chrome] › tests/e2e/narration.spec.ts:48:3 › narration › the listening speed is remembered across visits (624ms)
-  ✓  148 [mobile-chrome] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (427ms)
-  ✓  149 [mobile-chrome] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (685ms)
-  ✓  150 [mobile-chrome] › tests/e2e/site.spec.ts:31:3 › header navigation › marks the current section with aria-current (488ms)
-  ✓  151 [mobile-chrome] › tests/e2e/site.spec.ts:37:3 › header navigation › reaches every section from the header (1.5s)
-  ✓  152 [mobile-chrome] › tests/e2e/site.spec.ts:56:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (572ms)
-  ✓  153 [mobile-chrome] › tests/e2e/site.spec.ts:66:3 › series › series page lists episodes in ascending order (394ms)
-  ✓  154 [mobile-chrome] › tests/e2e/site.spec.ts:80:3 › series › a middle episode links to its neighbours (563ms)
-  ✓  155 [mobile-chrome] › tests/e2e/site.spec.ts:90:3 › theming › the picker applies a theme and it survives a reload (718ms)
-  ✓  156 [mobile-chrome] › tests/e2e/site.spec.ts:104:3 › theming › system follows the OS colour scheme (519ms)
-  ✓  157 [mobile-chrome] › tests/e2e/site.spec.ts:114:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (335ms)
-  ✓  158 [mobile-chrome] › tests/e2e/site.spec.ts:120:3 › resilience and accessibility › the skip link jumps to the main content (555ms)
-  ✓  159 [mobile-chrome] › tests/e2e/site.spec.ts:130:3 › resilience and accessibility › every page advertises the Atom feed (461ms)
-  ✓  160 [mobile-chrome] › tests/e2e/site.spec.ts:139:3 › own origin only › pages load nothing from any other origin (643ms)
+  ✓  144 [mobile-chrome] › tests/e2e/live.spec.ts:130:3 › live statistics switched on › /live/ shows an empty state for a quiet day (224ms)
+  ✓  145 [mobile-chrome] › tests/e2e/narration.spec.ts:17:3 › narration › a narrated post offers a native player that streams its recording inline (614ms)
+  ✓  146 [mobile-chrome] › tests/e2e/narration.spec.ts:42:3 › narration › a post without the badge has no player (381ms)
+  ✓  147 [mobile-chrome] › tests/e2e/narration.spec.ts:48:3 › narration › the listening speed is remembered across visits (786ms)
+  ✓  148 [mobile-chrome] › tests/e2e/site.spec.ts:5:3 › home page › shows the hero and the latest posts (345ms)
+  ✓  149 [mobile-chrome] › tests/e2e/site.spec.ts:16:3 › home page › navigates from a post card to the post (936ms)
+  ✓  150 [mobile-chrome] › tests/e2e/site.spec.ts:31:3 › header navigation › marks the current section with aria-current (534ms)
+  ✓  151 [mobile-chrome] › tests/e2e/site.spec.ts:37:3 › header navigation › reaches every section from the header (1.6s)
+  ✓  152 [mobile-chrome] › tests/e2e/site.spec.ts:56:3 › date-stamped URLs › two posts share a title but not a URL, newest first on the tag page (477ms)
+  ✓  153 [mobile-chrome] › tests/e2e/site.spec.ts:66:3 › series › series page lists episodes in ascending order (423ms)
+  ✓  154 [mobile-chrome] › tests/e2e/site.spec.ts:80:3 › series › a middle episode links to its neighbours (583ms)
+  ✓  155 [mobile-chrome] › tests/e2e/site.spec.ts:90:3 › theming › the picker applies a theme and it survives a reload (763ms)
+  ✓  156 [mobile-chrome] › tests/e2e/site.spec.ts:104:3 › theming › system follows the OS colour scheme (500ms)
+  ✓  157 [mobile-chrome] › tests/e2e/site.spec.ts:114:3 › resilience and accessibility › unknown paths return the 404 page with a 404 status (551ms)
+  ✓  158 [mobile-chrome] › tests/e2e/site.spec.ts:120:3 › resilience and accessibility › the skip link jumps to the main content (532ms)
+  ✓  159 [mobile-chrome] › tests/e2e/site.spec.ts:130:3 › resilience and accessibility › every page advertises the Atom feed (457ms)
+  ✓  160 [mobile-chrome] › tests/e2e/site.spec.ts:139:3 › own origin only › pages load nothing from any other origin (781ms)
 
   4 skipped
-  156 passed (25.0s)
-[18:49:50] end-to-end tests complete
-[13:49:50] 9/9 export repository dump
-[13:50:08] all checks passed ✔
+  156 passed (27.2s)
+[00:17:09] end-to-end tests complete
+[19:17:10] 9/9 export repository dump
+[19:17:28] all checks passed ✔
 
-real	1m3.269s
-user	0m37.757s
-sys	0m15.744s
+real	1m58.668s
+user	1m6.949s
+sys	0m27.612s
 kushal@fedora:~/src/ts/kphoto$ 
