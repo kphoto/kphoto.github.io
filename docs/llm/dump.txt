@@ -7,7 +7,7 @@
 
 DUMP METADATA
 ═════════════════════════════════════════════════════════════════════════════════
-  Generated at   : 2026-11-17T10:23:53-05:00
+  Generated at   : 2026-11-17T10:30:12-05:00
   Generator      : export.sh
   Host           : fedora
   User           : kushal
@@ -17,10 +17,10 @@ REPOSITORY METADATA
 ═════════════════════════════════════════════════════════════════════════════════
   Repository root: /home/kushal/src/ts/kphoto
   Branch         : main
-  Commit (full)  : f08a0a46559d0a64698ede74c1efca11f8671352
-  Commit (short) : f08a0a4
-  Commit date    : 2026-11-17 10:22:49 -0500
-  Commit message : run scripts
+  Commit (full)  : ae7a3577db6de81a481ea290890e80bd4c9a8f4d
+  Commit (short) : ae7a357
+  Commit date    : 2026-11-17 10:29:12 -0500
+  Commit message : add claude response
   Remote origin  : git@github.com:kphoto/kphoto.github.io.git
   Files included : 535
   Excluded path  : docs/llm/
@@ -1008,15 +1008,15 @@ mv -f "$TMP_FILE" "$OUTPUT_FILE"
   File name:             CHANGELOG.md
   Relative path:         CHANGELOG.md
   Absolute path:         /home/kushal/src/ts/kphoto/CHANGELOG.md
-  Size:                  18.2 KiB (18661 bytes)
-  Last modified:         2026-11-17 10:19:48.000000000 -0500
+  Size:                  18.2 KiB (18689 bytes)
+  Last modified:         2026-11-17 10:26:19.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 87315829
+  Inode:                 87354270
   Hard links:            1
   MIME type:             text/html
-  SHA-256:               4c7951e73cd7e66227769f3660c1926e73c4b698684b326f4bf2944fc9af98b5
-  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
+  SHA-256:               09f5870af96dc7c82c105e0e6069539014a7b822aaf5f4c4450a277ee8adabec
+  Last git commit:       ae7a357 2026-11-17 10:29:12 -0500 add claude response
 
 --- CONTENT ---
 # Changelog
@@ -1107,8 +1107,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Dependencies: Vite 8.3.8, Vitest and @vitest/coverage-v8 5.1.0, ESLint
   10.15.0, typescript-eslint 8.72.2, Prettier 3.10.1, @types/node 26.6.6.
-  typescript-eslint 8.73.0 waits for the 72-hour gate; Playwright stays at
-  1.64.1 until the `v1.65.1-noble` image digest is pinned.
+  Playwright 1.65.1, with the `v1.65.1-noble` image pinned by digest in
+  `compose.yaml` and `verify.yml`. typescript-eslint 8.73.0 waits for the
+  72-hour gate.
 - TypeScript 7.1 preview gate moves from `7.1.0-beta` to the nightly
   `7.1.0-dev.20261114.1`; no 7.1 release candidate exists (ADR 0032
   amendment).
@@ -1437,18 +1438,18 @@ log "all checks passed ✔"
   Relative path:         compose.yaml
   Absolute path:         /home/kushal/src/ts/kphoto/compose.yaml
   Size:                  673 B (673 bytes)
-  Last modified:         2026-11-06 13:35:21.000000000 -0500
+  Last modified:         2026-11-17 10:26:09.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 69727811
+  Inode:                 87354272
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               6db23a3df951aa2cb7b23f22a160328b42c24102dbe8e823770666e612ab8fad
-  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
+  SHA-256:               a8df5ae01fac4272e9fcc6bc56aac0452cb2481fcd883f53417f1c495f2d5d2d
+  Last git commit:       ae7a357 2026-11-17 10:29:12 -0500 add claude response
 
 --- CONTENT ---
 x-base: &base
-  image: mcr.microsoft.com/playwright:v1.64.1-noble@sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f
+  image: mcr.microsoft.com/playwright:v1.65.1-noble@sha256:1507cbfc550a63a6b7396791ca4f00df17beb56342d2447b3f106c306f525579
   init: true
   ipc: host
   working_dir: /work
@@ -9227,14 +9228,14 @@ jobs:
   Relative path:         .github/workflows/verify.yml
   Absolute path:         /home/kushal/src/ts/kphoto/.github/workflows/verify.yml
   Size:                  1.7 KiB (1816 bytes)
-  Last modified:         2026-11-06 13:35:16.000000000 -0500
+  Last modified:         2026-11-17 10:26:09.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 69727808
+  Inode:                 87354269
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               52acd8af5548aaf537a62ef82b9e32991c502f5703de49a37122a88a975da477
-  Last git commit:       ca040ef 2026-11-06 13:44:41 -0500 add claude response
+  SHA-256:               bdb4757d138f382d81456e919a71bb9a147c4e887dfdbc8735b9636856408edd
+  Last git commit:       ae7a357 2026-11-17 10:29:12 -0500 add claude response
 
 --- CONTENT ---
 name: verify
@@ -9287,7 +9288,7 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.64.1-noble@sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f
+      image: mcr.microsoft.com/playwright:v1.65.1-noble@sha256:1507cbfc550a63a6b7396791ca4f00df17beb56342d2447b3f106c306f525579
       options: --init --ipc=host
     env:
       HOME: /root
@@ -10061,14 +10062,14 @@ For more information on this, and how to apply and follow the GNU AGPL, see
   Relative path:         package.json
   Absolute path:         /home/kushal/src/ts/kphoto/package.json
   Size:                  1.3 KiB (1352 bytes)
-  Last modified:         2026-11-17 10:07:50.000000000 -0500
+  Last modified:         2026-11-17 10:26:09.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 87315843
+  Inode:                 87354273
   Hard links:            1
   MIME type:             application/json
-  SHA-256:               43bc58849ed64b67004878357f8e34191c4b97e91d107783cde194b2830e780a
-  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
+  SHA-256:               5e4becd250169e925540cdb01b84b97ba653349b84a6c4993864bf62a4876092
+  Last git commit:       ae7a357 2026-11-17 10:29:12 -0500 add claude response
 
 --- CONTENT ---
 {
@@ -10098,7 +10099,7 @@ For more information on this, and how to apply and follow the GNU AGPL, see
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@playwright/test": "1.64.1",
+    "@playwright/test": "1.65.1",
     "@types/node": "26.6.6",
     "@vitest/coverage-v8": "5.1.0",
     "eslint": "10.15.0",
@@ -15857,14 +15858,14 @@ yarn.lock
   Relative path:         README.md
   Absolute path:         /home/kushal/src/ts/kphoto/README.md
   Size:                  18.8 KiB (19314 bytes)
-  Last modified:         2026-11-17 10:19:42.000000000 -0500
+  Last modified:         2026-11-17 10:26:19.000000000 -0500
   Permissions:           -rw-r--r--
   Owner:                 kushal:kushal
-  Inode:                 87315830
+  Inode:                 87354271
   Hard links:            1
   MIME type:             text/plain
-  SHA-256:               e8fcef349c646470397e63a801980d70ad5a368a3e92d9ef81a7b41cdd0c430a
-  Last git commit:       feb2a6f 2026-11-17 10:22:37 -0500 add claude response
+  SHA-256:               b2f1ba7ea9f2306de95a7a6a34fb29c346a8c7c306045713b7d38df515e7d650
+  Last git commit:       ae7a357 2026-11-17 10:29:12 -0500 add claude response
 
 --- CONTENT ---
 # kphoto
@@ -16151,7 +16152,7 @@ and every non-obvious decision has an ADR in [docs/adr/](docs/adr/).
 | `@typescript/typescript6`    | 6.0.2                                             | API facade for typescript-eslint only            |
 | Vite                         | 8.3.8                                             | Dev server, bundler (Rolldown), SSG plugin host  |
 | Vitest + coverage-v8         | 5.1.0                                             | Unit tests with V8 coverage                      |
-| Playwright                   | 1.64.1                                            | E2E in the `v1.64.1-noble` image                 |
+| Playwright                   | 1.65.1                                            | E2E in the `v1.65.1-noble` image                 |
 | ESLint + typescript-eslint   | 10.15.0 / 8.72.2                                  | Strict type-checked linting, zero warnings       |
 | Prettier                     | 3.10.1                                            | Formatting                                       |
 | Yarn                         | 4.18.1                                            | Package manager, 72-hour minimal-age gate        |
@@ -33386,9 +33387,9 @@ npmMinimalAgeGate: 4320
 # DUMP SUMMARY
 ################################################################################
   Files dumped   : 535
-  Total size     : 582.0 MiB (610279765 bytes)
+  Total size     : 582.0 MiB (610279793 bytes)
   Output file    : /home/kushal/src/ts/kphoto/docs/llm/dump.txt
-  Completed at   : 2026-11-17T10:24:08-05:00
+  Completed at   : 2026-11-17T10:30:27-05:00
 ################################################################################
 # END OF DUMP
 ################################################################################
