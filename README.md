@@ -282,7 +282,7 @@ and every non-obvious decision has an ADR in [docs/adr/](docs/adr/).
 | `@typescript/typescript6`    | 6.0.2                                             | API facade for typescript-eslint only            |
 | Vite                         | 8.3.8                                             | Dev server, bundler (Rolldown), SSG plugin host  |
 | Vitest + coverage-v8         | 5.1.0                                             | Unit tests with V8 coverage                      |
-| Playwright                   | 1.64.1                                            | E2E in the `v1.64.1-noble` image                 |
+| Playwright                   | 1.65.1                                            | E2E in the `v1.65.1-noble` image                 |
 | ESLint + typescript-eslint   | 10.15.0 / 8.72.2                                  | Strict type-checked linting, zero warnings       |
 | Prettier                     | 3.10.1                                            | Formatting                                       |
 | Yarn                         | 4.18.1                                            | Package manager, 72-hour minimal-age gate        |

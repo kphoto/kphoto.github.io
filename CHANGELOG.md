@@ -86,8 +86,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Dependencies: Vite 8.3.8, Vitest and @vitest/coverage-v8 5.1.0, ESLint
   10.15.0, typescript-eslint 8.72.2, Prettier 3.10.1, @types/node 26.6.6.
-  typescript-eslint 8.73.0 waits for the 72-hour gate; Playwright stays at
-  1.64.1 until the `v1.65.1-noble` image digest is pinned.
+  Playwright 1.65.1, with the `v1.65.1-noble` image pinned by digest in
+  `compose.yaml` and `verify.yml`. typescript-eslint 8.73.0 waits for the
+  72-hour gate.
 - TypeScript 7.1 preview gate moves from `7.1.0-beta` to the nightly
   `7.1.0-dev.20261114.1`; no 7.1 release candidate exists (ADR 0032
   amendment).
